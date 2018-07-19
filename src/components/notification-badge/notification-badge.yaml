@@ -1,0 +1,7 @@
+examples:
+- name: default
+  data:
+    badgeText: 3
+- name: with-text
+  data:
+    badgeText: New

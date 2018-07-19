@@ -1,8 +1,7 @@
 {
   "name": "hmrc-frontend",
   "version": "1.0.0",
-  "description": "[ ![Download](https://api.bintray.com/packages/hmrc/releases/hmrc-frontend/images/download.svg) ](https://bintray.com/hmrc/releases/hmrc-frontend/_latestVersion)",
-  "main": "index.js",
+  "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +12,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/hmrc/hmrc-frontend/issues"
   },
