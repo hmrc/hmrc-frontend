@@ -1,0 +1,8 @@
+{
+  "config": "config/",
+  "dist": "dist/",
+  "package": "",
+  "sassdoc": "sassdoc/",
+  "src": "src/",
+  "components": "src/components/"
+}

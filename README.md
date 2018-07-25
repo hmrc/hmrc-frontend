@@ -1,4 +1,4 @@
-# hmrc-frontend
+# HMRC Frontend
 
 [ ![Download](https://api.bintray.com/packages/hmrc/releases/hmrc-frontend/images/download.svg) ](https://bintray.com/hmrc/releases/hmrc-frontend/_latestVersion)
 

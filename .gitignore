@@ -20,3 +20,17 @@ node_modules/
 npm-debug.log
 yarn-debug.log
 yarn-error.log
+
+# From govuk-frontend
+.DS_Store
+preview/
+tmp/
+axeReports/
+public/
+package/package-lock.json
+examples/**/package-lock.json
+*.zip
+sassdoc/
+
+# hmrc-frontend specific
+package/
