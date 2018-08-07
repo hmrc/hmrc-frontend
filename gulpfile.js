@@ -36,6 +36,16 @@ gulp.task('copy:assets', () => {
     .pipe(gulp.dest(taskArguments.destination + '/assets/'))
 })
 
+gulp.task('copy:README', () => {
+  return gulp.src(paths.src + '../README.md')
+    .pipe(gulp.dest(taskArguments.destination))
+})
+
+gulp.task('copy:packageJson', () => {
+  return gulp.src(paths.src + '../package.json')
+    .pipe(gulp.dest(taskArguments.destination))
+})
+
 // Copy assets task for local & heroku --
 // Copies files to
 // taskArguments.destination (public)
@@ -56,6 +66,8 @@ gulp.task('build:package', cb => {
     'clean',
     'copy-files',
     'js:compile',
+    'copy:README',
+    'copy:packageJson',
     cb
   )
 })
