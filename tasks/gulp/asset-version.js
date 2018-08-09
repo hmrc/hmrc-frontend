@@ -1,6 +1,5 @@
 'use strict'
 
-const configPaths = require('../../config/paths.json')
 const gulp = require('gulp')
 const fs = require('fs')
 const taskArguments = require('./task-arguments')

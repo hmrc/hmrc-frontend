@@ -2,7 +2,6 @@
 const path = require('path')
 const lib = require('../../../lib/file-helper')
 const configPaths = require('../../../config/paths.json')
-const recursive = require('recursive-readdir')
 
 describe('dist/', () => {
   let version = require(path.join('../../../package.json')).version

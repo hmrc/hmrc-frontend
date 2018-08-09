@@ -46,6 +46,17 @@ gulp.task('copy:packageJson', () => {
     .pipe(gulp.dest(taskArguments.destination))
 })
 
+// All test combined --------------------
+// Runs js, scss and accessibility tests
+// --------------------------------------
+gulp.task('test', cb => {
+  runsequence(
+    'scss:lint',
+    'scss:compile',
+    cb
+  )
+})
+
 // Copy assets task for local & heroku --
 // Copies files to
 // taskArguments.destination (public)

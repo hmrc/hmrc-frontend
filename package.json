@@ -5,6 +5,7 @@
   "scripts": {
     "build:package": "gulp build:package --destination 'package' && npm run test:build:package",
     "build:dist": "gulp build:dist --destination 'dist' && npm run test:build:dist",
+    "test": "standard && gulp test && gulp copy-assets && jest --testPathIgnorePatterns='after-*'",
     "test:build:package": "jest tasks/gulp/__tests__/after-build-package.test.js",
     "test:build:dist": "jest tasks/gulp/__tests__/after-build-dist.test.js"
   },
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.1.0",
+    "cheerio": "^1.0.0-rc.2",
     "cssnano": "^4.0.5",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
@@ -38,15 +40,18 @@
     "gulp-sass-lint": "^1.4.0",
     "gulp-uglify": "^3.0.1",
     "jest": "^23.4.2",
+    "jest-axe": "^3.0.0",
     "jest-serializer-html": "^5.0.0",
     "js-yaml": "^3.12.0",
     "merge-stream": "^1.0.1",
+    "nunjucks": "^3.1.3",
     "oldie": "^1.3.0",
     "postcss-pseudo-classes": "^0.2.0",
     "postcss-scss": "^2.0.0",
     "recursive-readdir": "^2.2.2",
     "run-sequence": "^2.2.1",
     "sassdoc": "^2.5.0",
+    "standard": "^11.0.1",
     "vinyl-paths": "^2.1.0",
     "yargs": "^12.0.1"
   },
@@ -56,11 +61,19 @@
     "ie 9",
     "iOS 9"
   ],
+  "standard": {
+    "ignore": [
+      "/dist/**/*.js",
+      "/package/**/*.js",
+      "/src/vendor/polyfills/**/*.js"
+    ]
+  },
   "jest": {
     "modulePathIgnorePatterns": [
       "<rootDir>/package/"
     ],
     "testURL": "http://localhost",
+    "setupTestFrameworkScriptFile": "./config/jest-setup.js",
     "snapshotSerializers": [
       "jest-serializer-html"
     ]
