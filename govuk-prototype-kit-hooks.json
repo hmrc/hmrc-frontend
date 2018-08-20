@@ -1,0 +1,11 @@
+{
+  "assets": [
+    "/assets"
+  ],
+  "nunjucksDirs": [
+    "/src/components"
+  ],
+  "sassIncludes": [
+    "/src/all.scss"
+  ]
+}
