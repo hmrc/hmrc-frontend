@@ -1,11 +1,14 @@
 {
   "assets": [
-    "/assets"
+    "/src/assets"
   ],
   "nunjucksDirs": [
     "/src/components"
   ],
   "sassIncludes": [
     "/src/all.scss"
+  ],
+  "scripts": [
+    "/src/components/account-menu/account-menu.js"
   ]
 }
