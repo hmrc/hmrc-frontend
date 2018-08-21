@@ -1,6 +1,6 @@
 {
   "assets": [
-    "/src/assets"
+    "/src/components/account-menu/images"
   ],
   "nunjucksDirs": [
     "/src/components"

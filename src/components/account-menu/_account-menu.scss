@@ -27,7 +27,7 @@ $hmrc-account-menu-blue-1: #005ea5;
   background-size: 19px;
 
   @include govuk-if-ie8 {
-    background-image: url("/plugin-assets/hmrc-frontend/src/assets/images/icon-home.png");
+    background-image: url("/plugin-assets/hmrc-frontend/src/components/account-menu/images/icon-home.png");
   }
 }
 
@@ -224,13 +224,13 @@ $hmrc-account-menu-blue-1: #005ea5;
   .hmrc-account-menu__link--back {
     padding-left: 20px;
     border-bottom: 1px solid govuk-colour("grey-3");
-    background-image: url("/plugin-assets/hmrc-frontend/src/assets/images/icon-chevron-left.svg");
+    background-image: url("/plugin-assets/hmrc-frontend/src/components/account-menu/images/icon-chevron-left.svg");
     background-repeat: no-repeat;
     background-position: 10px;
     background-size: 12px;
 
     @include govuk-if-ie8 {
-      background-image: url("/plugin-assets/hmrc-frontend/src/assets/images/icon-chevron-left.png");
+      background-image: url("/plugin-assets/hmrc-frontend/src/components/account-menu/images/icon-chevron-left.png");
     }
 
     .hmrc-account-menu__link {
@@ -367,25 +367,25 @@ p {
 
 .js-enabled .hmrc-account-menu__link--menu,
 .js-enabled .is-smaller .hmrc-account-menu__link--more {
-  background-image: url("/plugin-assets/hmrc-frontend/src/assets/images/icon-chevron-right.svg");
+  background-image: url("/plugin-assets/hmrc-frontend/src/components/account-menu/images/icon-chevron-right.svg");
   background-repeat: no-repeat;
   background-position: right 4px center;
   background-size: 12px;
 
   @include govuk-if-ie8 {
-    background-image: url("/plugin-assets/hmrc-frontend/src/assets/images/icon-chevron-right.png");
+    background-image: url("/plugin-assets/hmrc-frontend/src/components/account-menu/images/icon-chevron-right.png");
   }
 }
 
 .js-enabled .hmrc-account-home--account--is-open,
 .js-enabled .is-smaller .hmrc-account-menu__link--more-expanded,
 .js-enabled .hmrc-account-menu__link--more {
-  background-image: url("/plugin-assets/hmrc-frontend/src/assets/images/icon-chevron-down.svg");
+  background-image: url("/plugin-assets/hmrc-frontend/src/components/account-menu/images/icon-chevron-down.svg");
   background-position: right 4px center;
   background-size: 12px;
 
   @include govuk-if-ie8 {
-    background-image: url("/plugin-assets/hmrc-frontend/src/assets/images/icon-chevron-down.png");
+    background-image: url("/plugin-assets/hmrc-frontend/src/components/account-menu/images/icon-chevron-down.png");
   }
 }
 
@@ -394,12 +394,12 @@ p {
   padding-right: 31px;
   border-bottom: 0;
   outline: 0;
-  background-image: url("/plugin-assets/hmrc-frontend/src/assets/images/icon-chevron-down.svg");
+  background-image: url("/plugin-assets/hmrc-frontend/src/components/account-menu/images/icon-chevron-down.svg");
   background-position: right 14px center;
   background-size: 12px;
 
   @include govuk-if-ie8 {
-    background-image: url("/plugin-assets/hmrc-frontend/src/assets/images/icon-chevron-down.png");
+    background-image: url("/plugin-assets/hmrc-frontend/src/components/account-menu/images/icon-chevron-down.png");
   }
 
   &:before,
