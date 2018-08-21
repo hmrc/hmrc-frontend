@@ -15,6 +15,7 @@
 $hmrc-account-menu-grey-1: #4a4a4a;
 $hmrc-account-menu-yellow-1: #ffbf47;
 $hmrc-account-menu-blue-1: #005ea5;
+$hmrc-account-menu-transition-time: .3s;
 
 .hmrc-account-icon {
   background-repeat: no-repeat;
@@ -42,7 +43,7 @@ $hmrc-account-menu-blue-1: #005ea5;
   @include govuk-clearfix;
   position: relative;
   margin-bottom: 0;
-  transition: margin .3s ease-in-out;
+  transition: margin $hmrc-account-menu-transition-time ease-in-out;
   border-bottom: 1px solid govuk-colour("grey-2");
   background-color: govuk-colour("white");
 
@@ -252,7 +253,7 @@ $hmrc-account-menu-blue-1: #005ea5;
   top: -61px;
   left: 0;
   width: 100%;
-  transition: top .3s ease-in-out;
+  transition: top $hmrc-account-menu-transition-time ease-in-out;
   border-bottom: 1px solid govuk-colour("grey-2");
   outline: none;
   background-color: govuk-colour("grey-4");

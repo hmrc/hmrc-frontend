@@ -414,8 +414,7 @@ rules:
         'px',
         'rem',
         'vh',
-        'ex',
-        's'
+        'ex'
       ]
 
   # Rule pseudo-element will enforce that:
