@@ -246,7 +246,7 @@ $hmrc-account-menu-transition-time: .3s;
 
 .hmrc-subnav {
   @include govuk-font(16);
-  @include govuk-clearfix
+  @include govuk-clearfix;
   display: none;
   position: absolute;
   z-index: -1;
