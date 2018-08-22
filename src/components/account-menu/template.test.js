@@ -6,7 +6,7 @@ const { render, getExamples } = require('../../../lib/jest-helpers')
 
 const examples = getExamples('account-menu')
 
-describe('Notification Badge', () => {
+describe('Account Menu', () => {
   describe('by default', () => {
     it('passes accessibility tests', async () => {
       const $ = render('account-menu', examples.default)
