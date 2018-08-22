@@ -1,12 +1,12 @@
 .hmrc-notification-badge {
-  display: inline-block;
-  min-width: 10px;
-  padding: 5px 8px 1px 8px;
-  border-radius: 10px;
-  color: govuk-colour("white");
   background: govuk-colour("red");
+  border-radius: 10px;
+  min-width: 10px;
+  color: govuk-colour("white");
+  display: inline-block;
   font-size: 14px;
   font-weight: 600;
+  padding: 5px 8px 1px 8px;
   text-align: center;
   white-space: nowrap;
 }
