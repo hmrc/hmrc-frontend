@@ -6,7 +6,7 @@
     "/src/components"
   ],
   "sassIncludes": [
-    "/src/all.scss"
+    "/src/_prototype-kit.scss"
   ],
   "scripts": [
     "/src/components/account-menu/account-menu.js"
