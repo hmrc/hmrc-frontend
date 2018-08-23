@@ -40,7 +40,7 @@ $hmrc-transition-type: "all";
   @include govuk-clearfix;
   position: relative;
   z-index: 0;
-  margin-bottom: 2;
+  margin-bottom: 0;
   transition: #{$hmrc-transition-type} $hmrc-account-menu-transition-time ease-in-out;
   border-bottom: 1px solid govuk-colour("grey-2");
   background-color: govuk-color("white");
@@ -277,7 +277,7 @@ $hmrc-transition-type: "all";
 
   &.hmrc-subnav-reveal {
     display: block;
-    top: 43px;
+    top: 48px;
   }
 }
 
