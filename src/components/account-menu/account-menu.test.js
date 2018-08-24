@@ -9,16 +9,17 @@ const PORT = configPaths.ports.test
 let browser
 let page
 let baseUrl = 'http://localhost:' + PORT
-// let subNavId
+// ToDo: learn how to pre-select the page element that we need to use
 // let nav
+// let subNavId
+let yourAccountLink
 
 beforeAll(async (done) => {
   browser = global.__BROWSER__
   page = await browser.newPage()
   await page.goto(baseUrl + '/components/account-menu/default/preview')
-  const nav = await page.evaluate(() => document.getElementById('secondary-nav'))
-  console.log({ ...nav
-  })
+  // ToDo: learn how to pre-select the page element that we need to use
+  // nav = await page.$('#secondary-nav')
   done()
 })
 
@@ -102,12 +103,56 @@ describe('/components/account-menu', () => {
     })
   })
   // Opening the account menu
-  describe('When \'Your account\' is opened', () => {
-    it('should reveal the subnav', () => {
-      return Promise.reject(new Error('not implemented'))
+  describe('When \'Your account\' link is clicked', () => {
+    beforeEach(async (done) => {
+      yourAccountLink = await page.$('#account-menu__main-2')
+      await yourAccountLink.click()
+      done()
     })
-    it('should close the subnav in second click', () => {
-      return Promise.reject(new Error('not implemented'))
+
+    it('should reveal the subnav', async (done) => {
+      const classList = await page.evaluate(() => {
+        return document
+          .getElementById('subnav-your-account')
+          .className.split(' ')
+      })
+      const ariaHidden = await page.evaluate(() => {
+        return document
+          .getElementById('subnav-your-account')
+          .getAttribute('aria-hidden')
+      })
+      const ariaExpanded = await page.evaluate(() => {
+        return document
+          .getElementById('account-menu__main-2')
+          .getAttribute('aria-expanded')
+      })
+      expect(classList).toContain('hmrc-subnav-reveal')
+      expect(ariaHidden).toBe('false')
+      expect(ariaExpanded).toBe('true')
+      done()
+    })
+    it('should close the subnav in second click', async (done) => {
+      await yourAccountLink.click()
+      await page.waitFor(300)
+      const classList = await page.evaluate(() => {
+        return document
+          .getElementById('subnav-your-account')
+          .className.split(' ')
+      })
+      const ariaHidden = await page.evaluate(() => {
+        return document
+          .getElementById('subnav-your-account')
+          .getAttribute('aria-hidden')
+      })
+      const ariaExpanded = await page.evaluate(() => {
+        return document
+          .getElementById('account-menu__main-2')
+          .getAttribute('aria-expanded')
+      })
+      expect(classList).not.toContain('hmrc-subnav-reveal')
+      expect(ariaHidden).toBe('true')
+      expect(ariaExpanded).toBe('false')
+      done()
     })
   })
 })
