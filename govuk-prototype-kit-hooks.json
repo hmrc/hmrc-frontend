@@ -1,0 +1,14 @@
+{
+  "assets": [
+    "/src/components/account-menu/images"
+  ],
+  "nunjucksDirs": [
+    "/src/components"
+  ],
+  "sassIncludes": [
+    "/src/_prototype-kit.scss"
+  ],
+  "scripts": [
+    "/src/components/account-menu/account-menu.js"
+  ]
+}
