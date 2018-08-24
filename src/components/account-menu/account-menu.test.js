@@ -105,6 +105,7 @@ describe('/components/account-menu', () => {
   // Opening the account menu
   describe('When \'Your account\' link is clicked', () => {
     beforeEach(async (done) => {
+      await page.goto(baseUrl + '/components/account-menu/default/preview')
       yourAccountLink = await page.$('#account-menu__main-2')
       await yourAccountLink.click()
       done()
@@ -116,16 +117,19 @@ describe('/components/account-menu', () => {
           .getElementById('subnav-your-account')
           .className.split(' ')
       })
+
       const ariaHidden = await page.evaluate(() => {
         return document
           .getElementById('subnav-your-account')
           .getAttribute('aria-hidden')
       })
+
       const ariaExpanded = await page.evaluate(() => {
         return document
           .getElementById('account-menu__main-2')
           .getAttribute('aria-expanded')
       })
+
       expect(classList).toContain('hmrc-subnav-reveal')
       expect(ariaHidden).toBe('false')
       expect(ariaExpanded).toBe('true')
@@ -133,22 +137,25 @@ describe('/components/account-menu', () => {
     })
     it('should close the subnav in second click', async (done) => {
       await yourAccountLink.click()
-      await page.waitFor(300)
+
       const classList = await page.evaluate(() => {
         return document
           .getElementById('subnav-your-account')
           .className.split(' ')
       })
+
       const ariaHidden = await page.evaluate(() => {
         return document
           .getElementById('subnav-your-account')
           .getAttribute('aria-hidden')
       })
+
       const ariaExpanded = await page.evaluate(() => {
         return document
           .getElementById('account-menu__main-2')
           .getAttribute('aria-expanded')
       })
+
       expect(classList).not.toContain('hmrc-subnav-reveal')
       expect(ariaHidden).toBe('true')
       expect(ariaExpanded).toBe('false')
