@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
+    "start": "gulp dev",
     "build:package": "gulp build:package --destination 'package' && npm run test:build:package",
     "build:dist": "gulp build:dist --destination 'dist' && npm run test:build:dist",
     "test": "standard && gulp test && gulp copy-assets && jest --testPathIgnorePatterns='after-*'",
