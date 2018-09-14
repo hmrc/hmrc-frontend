@@ -5,7 +5,7 @@
   "nunjucksPaths": [
     "/src/components"
   ],
-  "sassIncludes": [
+  "sass": [
     "/src/_prototype-kit.scss"
   ],
   "scripts": [
