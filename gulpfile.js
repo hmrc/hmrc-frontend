@@ -4,11 +4,13 @@ const paths = require("./config/paths.json");
 const gulp = require("gulp");
 const runsequence = require("run-sequence");
 const taskArguments = require("./tasks/gulp/task-arguments");
+const nodemon = require('nodemon')
 
 // Gulp sub-tasks
 require("./tasks/gulp/clean.js");
 require("./tasks/gulp/lint.js");
 require("./tasks/gulp/compile-assets.js");
+require('./tasks/gulp/watch.js')
 // new tasks
 require("./tasks/gulp/copy-to-destination.js");
 require("./tasks/gulp/asset-version.js");
@@ -70,6 +72,17 @@ gulp.task("copy-assets", cb => {
 gulp.task("dev", cb => {
   runsequence("clean", "copy-assets", "sassdoc", "serve", cb);
 });
+
+// Serve task ---------------------------
+// Restarts node app when there is changed
+// affecting js, css or njk files
+// --------------------------------------
+
+gulp.task('serve', ['watch'], () => {
+  return nodemon({
+    script: 'app/start.js'
+  })
+})
 
 // Build package task -----------------
 // Prepare package folder for publishing
