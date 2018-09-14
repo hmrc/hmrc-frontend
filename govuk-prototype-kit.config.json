@@ -2,7 +2,7 @@
   "assets": [
     "/src/components/account-menu/images"
   ],
-  "nunjucksDirs": [
+  "nunjucksPaths": [
     "/src/components"
   ],
   "sassIncludes": [
