@@ -6,6 +6,7 @@
     "build:package": "gulp build:package --destination 'package' && npm run test:build:package",
     "build:dist": "gulp build:dist --destination 'dist' && npm run test:build:dist",
     "test": "standard && gulp test && gulp copy-assets && jest --testPathIgnorePatterns='after-*'",
+    "test:autofix": "standard --fix && sass-lint-auto-fix",
     "test:build:package": "jest tasks/gulp/__tests__/after-build-package.test.js",
     "test:build:dist": "jest tasks/gulp/__tests__/after-build-dist.test.js"
   },
@@ -50,6 +51,7 @@
     "postcss-scss": "^2.0.0",
     "recursive-readdir": "^2.2.2",
     "run-sequence": "^2.2.1",
+    "sass-lint-auto-fix": "^0.11.3",
     "sassdoc": "^2.5.0",
     "standard": "^11.0.1",
     "vinyl-paths": "^2.1.0",
