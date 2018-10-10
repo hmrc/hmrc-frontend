@@ -17,7 +17,6 @@ beforeAll(async () => {
 
 afterAll(async () => {
   await page.close()
-  await browser.close()
 })
 
 describe('/components/account-menu', () => {
