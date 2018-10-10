@@ -28,7 +28,6 @@ function debounce (func, wait, immediate) {
 ;(function (global) {
   'use strict'
 
-  var $ = global.jQuery
   var HMRC = global.HMRC || {}
 
   HMRC.accountMenu = (function (global) {
