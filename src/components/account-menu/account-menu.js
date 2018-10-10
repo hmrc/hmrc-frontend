@@ -34,15 +34,13 @@ function debounce (func, wait, immediate) {
   HMRC.accountMenu = (function (global) {
     var $nav = document.querySelector('.hmrc-account-menu')
     var $mainNav = document.querySelector('.hmrc-account-menu__main')
-    var $subNav = $('.hmrc-subnav')
+    var $subNav = document.querySelector('.hmrc-subnav')
     var $showSubnavLink = $('#account-menu__main-2')
     var $showNavLinkMobile = $('.hmrc-account-menu__link--menu')
     var $backLink = $('.hmrc-account-menu__link--back a')
 
-    $subNav.attr({
-      'aria-hidden': 'true',
-      'tabindex': -1
-    })
+    $subNav.setAttribute('aria-hidden', 'true')
+    $subNav.setAttribute('tabindex', '-1')
 
     $showSubnavLink.attr({
       'aria-controls': $(this).hash,
@@ -92,18 +90,16 @@ function debounce (func, wait, immediate) {
       e.preventDefault()
     })
 
-    $subNav.on({
-      focusout: function () {
-        if (!isSmall(global)) {
-          $(this).data('subMenuTimer', setTimeout(function () {
-            hideSubnavDesktop()
-          }, 0))
-        }
-      },
-
-      focusin: function () {
-        clearTimeout($(this).data('subMenuTimer'))
+    $subNav.addEventListener('focusout', function (event) {
+      if (!isSmall(global)) {
+        event.currentTarget.dataset.subMenuTimer = setTimeout(function () {
+          hideSubnavDesktop()
+        }, 0)
       }
+    })
+
+    $subNav.addEventListener('focusin', function (event) {
+      clearTimeout(event.currentTarget.dataset.subMenuTimer)
     })
 
     $showNavLinkMobile.on('click', function (e) {
@@ -133,7 +129,7 @@ function debounce (func, wait, immediate) {
           .attr('aria-hidden', 'true')
           .addClass('js-hidden')
         $mainNav.classList.remove('main-nav-is-open', 'js-hidden')
-        $subNav.removeClass('js-hidden')
+        $subNav.classList.remove('js-hidden')
       }
     }
 
@@ -172,12 +168,9 @@ function debounce (func, wait, immediate) {
       $mainNav.classList.remove('main-nav-is-open')
       $mainNav.classList.add('hmrc-subnav-is-open')
 
-      $subNav
-        .addClass('hmrc-subnav-reveal')
-        .attr({
-          'aria-hidden': 'false',
-          'aria-expanded': 'true'
-        })
+      $subNav.classList.add('hmrc-subnav-reveal')
+      $subNav.setAttribute('aria-hidden', 'false')
+      $subNav.setAttribute('aria-expanded', 'true')
 
       $showSubnavLink
         .addClass('hmrc-account-menu__link--more-expanded')
@@ -192,7 +185,7 @@ function debounce (func, wait, immediate) {
 
       e.closest('li').addClass('active-subnav-parent')
 
-      $subNav.removeClass('js-hidden')
+      $subNav.classList.remove('js-hidden')
 
       e.parent().siblings().not($backLink.parent()).addClass('hidden')
     }
@@ -203,12 +196,9 @@ function debounce (func, wait, immediate) {
       $mainNav.classList.remove('hmrc-subnav-is-open')
       $mainNav.classList.add('main-nav-is-open')
 
-      $subNav
-        .removeClass('hmrc-subnav-reveal')
-        .attr({
-          'aria-hidden': 'true',
-          'aria-expanded': 'false'
-        })
+      $subNav.classList.remove('hmrc-subnav-reveal')
+      $subNav.setAttribute('aria-hidden', 'true')
+      $subNav.setAttribute('aria-expanded', 'false')
 
       $showSubnavLink
         .removeClass('hmrc-account-menu__link--more-expanded')
@@ -223,7 +213,7 @@ function debounce (func, wait, immediate) {
 
       $showSubnavLink.closest('li').removeClass('active-subnav-parent')
 
-      $subNav.addClass('js-hidden')
+      $subNav.classList.add('js-hidden')
 
       $backLink.parent().siblings().not($backLink.parent()).removeClass('hidden')
       // TODO: change to
@@ -235,14 +225,12 @@ function debounce (func, wait, immediate) {
 
       $mainNav.classList.add('hmrc-subnav-is-open')
 
-      $subNav
-        .addClass('hmrc-subnav-reveal')
-        .attr({
-          'aria-hidden': 'false',
-          'aria-expanded': 'true'
-        })
+      $subNav.classList.add('hmrc-subnav-reveal')
+      $subNav.setAttribute('aria-hidden', 'false')
+      $subNav.setAttribute('aria-expanded', 'true')
+
       setTimeout(function () {
-        $subNav.focus()
+        $($subNav).focus()
       }, 500)
 
       $showSubnavLink
@@ -258,12 +246,9 @@ function debounce (func, wait, immediate) {
 
       $mainNav.classList.remove('hmrc-subnav-is-open')
 
-      $subNav
-        .removeClass('hmrc-subnav-reveal')
-        .attr({
-          'aria-hidden': 'true',
-          'aria-expanded': 'false'
-        })
+      $subNav.classList.remove('hmrc-subnav-reveal')
+      $subNav.setAttribute('aria-hidden', 'true')
+      $subNav.setAttribute('aria-expanded', 'false')
 
       $showSubnavLink
         .removeClass('hmrc-account-menu__link--more-expanded')
