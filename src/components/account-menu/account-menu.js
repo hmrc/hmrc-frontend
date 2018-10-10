@@ -50,7 +50,7 @@ function debounce (func, wait, immediate) {
         // TODO: remove redundant check - showSubnavLink appears only when subnav is not expanded
         if (!event.currentTarget.classList.contains('hmrc-account-menu__link--more-expanded')) {
           hideMainNavMobile(event.currentTarget)
-          showSubnavMobile($(event.currentTarget))
+          showSubnavMobile(event.currentTarget)
         }
       } else {
         if (event.currentTarget.classList.contains('hmrc-account-menu__link--more-expanded')) {
@@ -154,7 +154,7 @@ function debounce (func, wait, immediate) {
       }
     }
 
-    function showSubnavMobile (e) {
+    function showSubnavMobile (element) {
       $nav.classList.add('hmrc-subnav-is-open')
 
       $mainNav.classList.remove('main-nav-is-open')
@@ -171,11 +171,18 @@ function debounce (func, wait, immediate) {
       $backLink.parentNode.setAttribute('aria-hidden', 'false')
       $backLink.parentNode.classList.remove('hidden')
 
-      e.closest('li').addClass('active-subnav-parent')
+      element.parentNode.classList.add('active-subnav-parent')
 
       $subNav.classList.remove('js-hidden')
 
-      e.parent().siblings().not($backLink.parentNode).addClass('hidden')
+      // TODO: modernise the following and polyfill it for IE8
+      var $elementSiblings = element.parentNode.parentNode.children
+      for (let i = 0; i < $elementSiblings.length; i++) {
+        const sibling = $elementSiblings[i]
+        if (sibling !== $backLink.parentNode && sibling !== element.parentNode) {
+          sibling.classList.add('hidden')
+        }
+      }
     }
 
     function hideSubnavMobile () {
@@ -199,9 +206,8 @@ function debounce (func, wait, immediate) {
 
       $subNav.classList.add('js-hidden')
 
-      var $backLinkSiblings = $backLink.parentNode.parentNode.children
-
       // TODO: modernise the following and polyfill it for IE8
+      var $backLinkSiblings = $backLink.parentNode.parentNode.children
       for (let i = 0; i < $backLinkSiblings.length; i++) {
         const sibling = $backLinkSiblings[i]
         if (sibling !== $backLink.parentNode) {
