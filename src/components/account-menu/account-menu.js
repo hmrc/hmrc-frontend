@@ -229,7 +229,7 @@ function debounce (func, wait, immediate) {
       $subNav.setAttribute('aria-expanded', 'true')
 
       setTimeout(function () {
-        $($subNav).focus()
+        $subNav.focus()
       }, 500)
 
       $showSubnavLink.classList.add('hmrc-account-menu__link--more-expanded')
