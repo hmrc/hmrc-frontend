@@ -153,7 +153,7 @@
 
       if (e.hasClass('hmrc-account-menu__link--menu')) {
         mainNav
-          .removeClass('subnav-is-open')
+          .removeClass('hmrc-subnav-is-open')
           .addClass('js-hidden')
 
         showNavLinkMobile
@@ -161,7 +161,7 @@
           .removeClass('hmrc-account-home--account--is-open')
       } else if (e.hasClass('hmrc-account-menu__link--more')) {
         mainNav
-          .addClass('subnav-is-open')
+          .addClass('hmrc-subnav-is-open')
       }
     }
 
@@ -261,10 +261,10 @@
     function hideSubnavDesktop () {
       nav
         .removeClass('main-nav-is-open')
-        .removeClass('subnav-is-open')
+        .removeClass('hmrc-subnav-is-open')
 
       mainNav
-        .removeClass('subnav-is-open')
+        .removeClass('hmrc-subnav-is-open')
 
       subNav
         .removeClass('hmrc-subnav-reveal')
