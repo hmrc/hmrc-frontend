@@ -37,7 +37,7 @@ function debounce (func, wait, immediate) {
     var $subNav = document.querySelector('.hmrc-subnav')
     var $showSubnavLink = document.querySelector('#account-menu__main-2')
     var $showNavLinkMobile = document.querySelector('.hmrc-account-menu__link--menu')
-    var $backLink = $('.hmrc-account-menu__link--back a')
+    var $backLink = document.querySelector('.hmrc-account-menu__link--back a')
 
     $subNav.setAttribute('aria-hidden', 'true')
     $subNav.setAttribute('tabindex', '-1')
@@ -76,14 +76,14 @@ function debounce (func, wait, immediate) {
       }
     })
 
-    $backLink.on('click', function (e) {
+    $backLink.addEventListener('click', function (event) {
       // TODO: remove redundant check - backlink appears only when subnav is open
       if ($mainNav.classList.contains('hmrc-subnav-is-open')) {
         hideSubnavMobile()
         showMainNavMobile()
       }
 
-      e.preventDefault()
+      event.preventDefault()
     })
 
     $subNav.addEventListener('focusout', function (event) {
@@ -168,15 +168,14 @@ function debounce (func, wait, immediate) {
       $showSubnavLink.setAttribute('aria-hidden', 'false')
       $showSubnavLink.setAttribute('aria-expanded', 'true')
 
-      $backLink.parent()
-        .attr('aria-hidden', 'false')
-        .removeClass('hidden')
+      $backLink.parentNode.setAttribute('aria-hidden', 'false')
+      $backLink.parentNode.classList.remove('hidden')
 
       e.closest('li').addClass('active-subnav-parent')
 
       $subNav.classList.remove('js-hidden')
 
-      e.parent().siblings().not($backLink.parent()).addClass('hidden')
+      e.parent().siblings().not($backLink.parentNode).addClass('hidden')
     }
 
     function hideSubnavMobile () {
@@ -193,15 +192,23 @@ function debounce (func, wait, immediate) {
       $showSubnavLink.setAttribute('aria-hidden', 'true')
       $showSubnavLink.setAttribute('aria-expanded', 'false')
 
-      $backLink.parent()
-        .attr('aria-hidden', 'true')
-        .addClass('hidden')
+      $backLink.parentNode.setAttribute('aria-hidden', 'true')
+      $backLink.parentNode.classList.add('hidden')
 
-      $showSubnavLink.parentElement.classList.remove('active-subnav-parent')
+      $showSubnavLink.parentNode.classList.remove('active-subnav-parent')
 
       $subNav.classList.add('js-hidden')
 
-      $backLink.parent().siblings().not($backLink.parent()).removeClass('hidden')
+      var $backLinkSiblings = $backLink.parentNode.parentNode.children
+
+      // TODO: modernise the following and polyfill it for IE8
+      for (let i = 0; i < $backLinkSiblings.length; i++) {
+        const sibling = $backLinkSiblings[i]
+        if (sibling !== $backLink.parentNode) {
+          sibling.classList.remove('hidden')
+        }
+      }
+
       // TODO: change to
       // mainNav.children().not(backLink).removeClass('js-hidden')
     }
