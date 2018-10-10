@@ -33,7 +33,7 @@ function debounce (func, wait, immediate) {
 
   HMRC.accountMenu = (function (global) {
     var $nav = document.querySelector('.hmrc-account-menu')
-    var $mainNav = $('.hmrc-account-menu__main')
+    var $mainNav = document.querySelector('.hmrc-account-menu__main')
     var $subNav = $('.hmrc-subnav')
     var $showSubnavLink = $('#account-menu__main-2')
     var $showNavLinkMobile = $('.hmrc-account-menu__link--menu')
@@ -84,7 +84,7 @@ function debounce (func, wait, immediate) {
 
     $backLink.on('click', function (e) {
       // TODO: remove redundant check - backlink appears only when subnav is open
-      if ($mainNav.hasClass('hmrc-subnav-is-open')) {
+      if ($mainNav.classList.contains('hmrc-subnav-is-open')) {
         hideSubnavMobile()
         showMainNavMobile()
       }
@@ -108,7 +108,7 @@ function debounce (func, wait, immediate) {
 
     $showNavLinkMobile.on('click', function (e) {
       if (isSmall(global)) {
-        if ($mainNav.hasClass('hmrc-subnav-is-open') || $mainNav.hasClass('main-nav-is-open')) {
+        if ($mainNav.classList.contains('hmrc-subnav-is-open') || $mainNav.classList.contains('main-nav-is-open')) {
           hideSubnavMobile()
           hideMainNavMobile($(this))
         } else {
@@ -132,9 +132,7 @@ function debounce (func, wait, immediate) {
         $showNavLinkMobile
           .attr('aria-hidden', 'true')
           .addClass('js-hidden')
-        $mainNav
-          .removeClass('main-nav-is-open')
-          .removeClass('js-hidden')
+        $mainNav.classList.remove('main-nav-is-open', 'js-hidden')
         $subNav.removeClass('js-hidden')
       }
     }
@@ -143,10 +141,9 @@ function debounce (func, wait, immediate) {
 
     function showMainNavMobile () {
       // TODO: shall we add main-nav-is-open to `nav`????
-      $mainNav
-        .addClass('main-nav-is-open')
-        .removeClass('js-hidden')
-        .attr('aria-expanded', 'true')
+      $mainNav.classList.remove('js-hidden')
+      $mainNav.classList.add('main-nav-is-open')
+      $mainNav.setAttribute('aria-expanded', 'true')
 
       $showNavLinkMobile
         .attr('aria-expanded', 'true')
@@ -154,30 +151,26 @@ function debounce (func, wait, immediate) {
     }
 
     function hideMainNavMobile (e) {
-      $mainNav
-        .removeClass('main-nav-is-open')
-        .attr('aria-expanded', 'false')
+      $mainNav.classList.remove('main-nav-is-open')
+      $mainNav.setAttribute('aria-expanded', 'false')
 
       if (e.hasClass('hmrc-account-menu__link--menu')) {
-        $mainNav
-          .removeClass('hmrc-subnav-is-open')
-          .addClass('js-hidden')
+        $mainNav.classList.remove('hmrc-subnav-is-open')
+        $mainNav.classList.add('js-hidden')
 
         $showNavLinkMobile
           .attr('aria-expanded', 'false')
           .removeClass('hmrc-account-home--account--is-open')
       } else if (e.hasClass('hmrc-account-menu__link--more')) {
-        $mainNav
-          .addClass('hmrc-subnav-is-open')
+        $mainNav.classList.add('hmrc-subnav-is-open')
       }
     }
 
     function showSubnavMobile (e) {
       $nav.classList.add('hmrc-subnav-is-open')
 
-      $mainNav
-        .removeClass('main-nav-is-open')
-        .addClass('hmrc-subnav-is-open')
+      $mainNav.classList.remove('main-nav-is-open')
+      $mainNav.classList.add('hmrc-subnav-is-open')
 
       $subNav
         .addClass('hmrc-subnav-reveal')
@@ -207,9 +200,8 @@ function debounce (func, wait, immediate) {
     function hideSubnavMobile () {
       $nav.classList.remove('hmrc-subnav-is-open')
 
-      $mainNav
-        .addClass('main-nav-is-open')
-        .removeClass('hmrc-subnav-is-open')
+      $mainNav.classList.remove('hmrc-subnav-is-open')
+      $mainNav.classList.add('main-nav-is-open')
 
       $subNav
         .removeClass('hmrc-subnav-reveal')
@@ -241,8 +233,7 @@ function debounce (func, wait, immediate) {
     function showSubnavDesktop () {
       $nav.classList.add('hmrc-subnav-is-open')
 
-      $mainNav
-        .addClass('hmrc-subnav-is-open')
+      $mainNav.classList.add('hmrc-subnav-is-open')
 
       $subNav
         .addClass('hmrc-subnav-reveal')
@@ -265,8 +256,7 @@ function debounce (func, wait, immediate) {
     function hideSubnavDesktop () {
       $nav.classList.remove('main-nav-is-open', 'hmrc-subnav-is-open')
 
-      $mainNav
-        .removeClass('hmrc-subnav-is-open')
+      $mainNav.classList.remove('hmrc-subnav-is-open')
 
       $subNav
         .removeClass('hmrc-subnav-reveal')
