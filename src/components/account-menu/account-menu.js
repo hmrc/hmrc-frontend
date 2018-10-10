@@ -1,19 +1,3 @@
-/* eslint-env jquery */
-
-/*
-* Basic functionality
-*
-* 1. if the viewport is small, show the extra menu link (showNavLinkMobile)
-* 2. if showNavLinkMobile is triggered, open the main nav (subNav)
-* 3. if menusSub is open, add `is-open` to the nav container (nav)
-* 4. if a menu link (accountLink) is triggered, close sub-nav (subNav)
-* 5. if a menu link with sub-nav (showSubnavLink) is triggered, open it
-* 6. if a sub-nav is open, add `is-open` to nav
-*
-* 1. if showNavLinkMobile is open, close it when triggered
-* 2. if a menu link with sub-nav (showSubnavLink) is open, close it when triggered
-**/
-
 ;(function (global) {
   'use strict'
 
