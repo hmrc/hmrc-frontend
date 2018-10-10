@@ -246,7 +246,7 @@ function debounce (func, wait, immediate) {
     }
 
     function isSmall (element) {
-      return ($(element).width() <= 768)
+      return element.innerWidth <= 768
     }
 
     return {
