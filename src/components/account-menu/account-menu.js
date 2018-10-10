@@ -36,7 +36,7 @@ function debounce (func, wait, immediate) {
     var $mainNav = document.querySelector('.hmrc-account-menu__main')
     var $subNav = document.querySelector('.hmrc-subnav')
     var $showSubnavLink = document.querySelector('#account-menu__main-2')
-    var $showNavLinkMobile = $('.hmrc-account-menu__link--menu')
+    var $showNavLinkMobile = document.querySelector('.hmrc-account-menu__link--menu')
     var $backLink = $('.hmrc-account-menu__link--back a')
 
     $subNav.setAttribute('aria-hidden', 'true')
@@ -98,32 +98,30 @@ function debounce (func, wait, immediate) {
       clearTimeout(event.currentTarget.dataset.subMenuTimer)
     })
 
-    $showNavLinkMobile.on('click', function (e) {
+    $showNavLinkMobile.addEventListener('click', function (event) {
       if (isSmall(global)) {
         if ($mainNav.classList.contains('hmrc-subnav-is-open') || $mainNav.classList.contains('main-nav-is-open')) {
           hideSubnavMobile()
-          hideMainNavMobile($(this))
+          hideMainNavMobile($(event.currentTarget))
         } else {
           showMainNavMobile()
         }
 
-        e.preventDefault()
+        event.preventDefault()
       }
     })
 
     function init () {
       if (isSmall(global)) {
         $nav.classList.add('is-smaller')
-        $showNavLinkMobile
-          .attr('aria-hidden', 'false')
-          .removeClass('js-hidden')
+        $showNavLinkMobile.setAttribute('aria-hidden', 'false')
+        $showNavLinkMobile.classList.remove('js-hidden')
         hideSubnavMobile()
-        hideMainNavMobile($showNavLinkMobile)
+        hideMainNavMobile($($showNavLinkMobile))
       } else {
         $nav.classList.remove('is-smaller')
-        $showNavLinkMobile
-          .attr('aria-hidden', 'true')
-          .addClass('js-hidden')
+        $showNavLinkMobile.setAttribute('aria-hidden', 'true')
+        $showNavLinkMobile.classList.add('js-hidden')
         $mainNav.classList.remove('main-nav-is-open', 'js-hidden')
         $subNav.classList.remove('js-hidden')
       }
@@ -137,9 +135,8 @@ function debounce (func, wait, immediate) {
       $mainNav.classList.add('main-nav-is-open')
       $mainNav.setAttribute('aria-expanded', 'true')
 
-      $showNavLinkMobile
-        .attr('aria-expanded', 'true')
-        .addClass('hmrc-account-home--account--is-open')
+      $showNavLinkMobile.setAttribute('aria-expanded', 'true')
+      $showNavLinkMobile.classList.add('hmrc-account-home--account--is-open')
     }
 
     function hideMainNavMobile (e) {
@@ -150,9 +147,8 @@ function debounce (func, wait, immediate) {
         $mainNav.classList.remove('hmrc-subnav-is-open')
         $mainNav.classList.add('js-hidden')
 
-        $showNavLinkMobile
-          .attr('aria-expanded', 'false')
-          .removeClass('hmrc-account-home--account--is-open')
+        $showNavLinkMobile.setAttribute('aria-expanded', 'false')
+        $showNavLinkMobile.classList.remove('hmrc-account-home--account--is-open')
       } else if (e.hasClass('hmrc-account-menu__link--more')) {
         $mainNav.classList.add('hmrc-subnav-is-open')
       }
