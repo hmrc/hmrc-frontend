@@ -73,10 +73,6 @@
     ]
   },
   "jest": {
-    "modulePathIgnorePatterns": [
-      "<rootDir>/package/"
-    ],
-    "testURL": "http://localhost",
     "setupTestFrameworkScriptFile": "./config/jest-setup.js",
     "snapshotSerializers": [
       "jest-serializer-html"
