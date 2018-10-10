@@ -35,48 +35,44 @@ function debounce (func, wait, immediate) {
     var $nav = document.querySelector('.hmrc-account-menu')
     var $mainNav = document.querySelector('.hmrc-account-menu__main')
     var $subNav = document.querySelector('.hmrc-subnav')
-    var $showSubnavLink = $('#account-menu__main-2')
+    var $showSubnavLink = document.querySelector('#account-menu__main-2')
     var $showNavLinkMobile = $('.hmrc-account-menu__link--menu')
     var $backLink = $('.hmrc-account-menu__link--back a')
 
     $subNav.setAttribute('aria-hidden', 'true')
     $subNav.setAttribute('tabindex', '-1')
 
-    $showSubnavLink.attr({
-      'aria-controls': $(this).hash,
-      'aria-expanded': 'false'
+    $showSubnavLink.setAttribute('aria-controls', $showSubnavLink.hash.substr(1))
+    $showSubnavLink.setAttribute('aria-expanded', 'false')
+
+    $showSubnavLink.addEventListener('click', function (event) {
+      if (isSmall(global)) {
+        // TODO: remove redundant check - showSubnavLink appears only when subnav is not expanded
+        if (!event.currentTarget.classList.contains('hmrc-account-menu__link--more-expanded')) {
+          hideMainNavMobile($(event.currentTarget))
+          showSubnavMobile($(event.currentTarget))
+        }
+      } else {
+        if (event.currentTarget.classList.contains('hmrc-account-menu__link--more-expanded')) {
+          hideSubnavDesktop()
+        } else {
+          showSubnavDesktop()
+        }
+      }
+
+      event.preventDefault()
+      event.stopPropagation()
     })
 
-    $showSubnavLink.on({
-      click: function (e) {
-        if (isSmall(global)) {
-          // TODO: remove redundant check - showSubnavLink appears only when subnav is not expanded
-          if (!$(this).hasClass('hmrc-account-menu__link--more-expanded')) {
-            hideMainNavMobile($(this))
-            showSubnavMobile($(this))
-          }
-        } else {
-          if ($(this).hasClass('hmrc-account-menu__link--more-expanded')) {
-            hideSubnavDesktop()
-          } else {
-            showSubnavDesktop()
-          }
-        }
+    $showSubnavLink.addEventListener('focusout', function () {
+      if (!isSmall(global)) {
+        document.querySelector(this.hash).dataset.subMenuTimer = setTimeout(0)
+      }
+    })
 
-        e.preventDefault()
-        e.stopPropagation()
-      },
-
-      focusout: function () {
-        if (!isSmall(global)) {
-          $(this.hash).data('subMenuTimer', setTimeout(0))
-        }
-      },
-
-      focusin: function () {
-        if (!isSmall(global)) {
-          clearTimeout($(this.hash).data('subMenuTimer'))
-        }
+    $showSubnavLink.addEventListener('focusin', function (event) {
+      if (!isSmall(global)) {
+        clearTimeout(document.querySelector(this.hash).dataset.subMenuTimer)
       }
     })
 
@@ -172,12 +168,9 @@ function debounce (func, wait, immediate) {
       $subNav.setAttribute('aria-hidden', 'false')
       $subNav.setAttribute('aria-expanded', 'true')
 
-      $showSubnavLink
-        .addClass('hmrc-account-menu__link--more-expanded')
-        .attr({
-          'aria-hidden': 'false',
-          'aria-expanded': 'true'
-        })
+      $showSubnavLink.classList.add('hmrc-account-menu__link--more-expanded')
+      $showSubnavLink.setAttribute('aria-hidden', 'false')
+      $showSubnavLink.setAttribute('aria-expanded', 'true')
 
       $backLink.parent()
         .attr('aria-hidden', 'false')
@@ -200,18 +193,15 @@ function debounce (func, wait, immediate) {
       $subNav.setAttribute('aria-hidden', 'true')
       $subNav.setAttribute('aria-expanded', 'false')
 
-      $showSubnavLink
-        .removeClass('hmrc-account-menu__link--more-expanded')
-        .attr({
-          'aria-hidden': 'true',
-          'aria-expanded': 'false'
-        })
+      $showSubnavLink.classList.remove('hmrc-account-menu__link--more-expanded')
+      $showSubnavLink.setAttribute('aria-hidden', 'true')
+      $showSubnavLink.setAttribute('aria-expanded', 'false')
 
       $backLink.parent()
         .attr('aria-hidden', 'true')
         .addClass('hidden')
 
-      $showSubnavLink.closest('li').removeClass('active-subnav-parent')
+      $showSubnavLink.parentElement.classList.remove('active-subnav-parent')
 
       $subNav.classList.add('js-hidden')
 
@@ -233,12 +223,9 @@ function debounce (func, wait, immediate) {
         $($subNav).focus()
       }, 500)
 
-      $showSubnavLink
-        .addClass('hmrc-account-menu__link--more-expanded')
-        .attr({
-          'aria-hidden': 'false',
-          'aria-expanded': 'true'
-        })
+      $showSubnavLink.classList.add('hmrc-account-menu__link--more-expanded')
+      $showSubnavLink.setAttribute('aria-hidden', 'false')
+      $showSubnavLink.setAttribute('aria-expanded', 'true')
     }
 
     function hideSubnavDesktop () {
@@ -250,12 +237,9 @@ function debounce (func, wait, immediate) {
       $subNav.setAttribute('aria-hidden', 'true')
       $subNav.setAttribute('aria-expanded', 'false')
 
-      $showSubnavLink
-        .removeClass('hmrc-account-menu__link--more-expanded')
-        .attr({
-          'aria-hidden': 'true',
-          'aria-expanded': 'false'
-        })
+      $showSubnavLink.classList.remove('hmrc-account-menu__link--more-expanded')
+      $showSubnavLink.setAttribute('aria-hidden', 'true')
+      $showSubnavLink.setAttribute('aria-expanded', 'false')
     }
 
     function isSmall (element) {
