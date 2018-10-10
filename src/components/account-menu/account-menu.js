@@ -49,7 +49,7 @@ function debounce (func, wait, immediate) {
       if (isSmall(global)) {
         // TODO: remove redundant check - showSubnavLink appears only when subnav is not expanded
         if (!event.currentTarget.classList.contains('hmrc-account-menu__link--more-expanded')) {
-          hideMainNavMobile($(event.currentTarget))
+          hideMainNavMobile(event.currentTarget)
           showSubnavMobile($(event.currentTarget))
         }
       } else {
@@ -102,7 +102,7 @@ function debounce (func, wait, immediate) {
       if (isSmall(global)) {
         if ($mainNav.classList.contains('hmrc-subnav-is-open') || $mainNav.classList.contains('main-nav-is-open')) {
           hideSubnavMobile()
-          hideMainNavMobile($(event.currentTarget))
+          hideMainNavMobile(event.currentTarget)
         } else {
           showMainNavMobile()
         }
@@ -117,7 +117,7 @@ function debounce (func, wait, immediate) {
         $showNavLinkMobile.setAttribute('aria-hidden', 'false')
         $showNavLinkMobile.classList.remove('js-hidden')
         hideSubnavMobile()
-        hideMainNavMobile($($showNavLinkMobile))
+        hideMainNavMobile($showNavLinkMobile)
       } else {
         $nav.classList.remove('is-smaller')
         $showNavLinkMobile.setAttribute('aria-hidden', 'true')
@@ -139,17 +139,17 @@ function debounce (func, wait, immediate) {
       $showNavLinkMobile.classList.add('hmrc-account-home--account--is-open')
     }
 
-    function hideMainNavMobile (e) {
+    function hideMainNavMobile (element) {
       $mainNav.classList.remove('main-nav-is-open')
       $mainNav.setAttribute('aria-expanded', 'false')
 
-      if (e.hasClass('hmrc-account-menu__link--menu')) {
+      if (element.classList.contains('hmrc-account-menu__link--menu')) {
         $mainNav.classList.remove('hmrc-subnav-is-open')
         $mainNav.classList.add('js-hidden')
 
         $showNavLinkMobile.setAttribute('aria-expanded', 'false')
         $showNavLinkMobile.classList.remove('hmrc-account-home--account--is-open')
-      } else if (e.hasClass('hmrc-account-menu__link--more')) {
+      } else if (element.classList.contains('hmrc-account-menu__link--more')) {
         $mainNav.classList.add('hmrc-subnav-is-open')
       }
     }
