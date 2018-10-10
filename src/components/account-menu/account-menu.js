@@ -256,7 +256,8 @@ function debounce (func, wait, immediate) {
   })(global)
 
   global.HMRC = HMRC
-  $(window).resize(HMRC.accountMenu.onresize)
+
+  window.addEventListener('resize', HMRC.accountMenu.onresize)
 })(window)
 
 // initialize
