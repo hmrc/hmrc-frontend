@@ -2,11 +2,11 @@
   "assets": [
     "/src/components/account-menu/images"
   ],
-  "nunjucksDirs": [
+  "nunjucksPaths": [
     "/src/components"
   ],
-  "sassIncludes": [
-    "/src/all.scss"
+  "sass": [
+    "/src/_prototype-kit.scss"
   ],
   "scripts": [
     "/src/components/account-menu/account-menu.js"
