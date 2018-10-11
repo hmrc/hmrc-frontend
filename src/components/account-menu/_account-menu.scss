@@ -1,3 +1,5 @@
+@import "node_modules/govuk-frontend/all";
+
 // previously provided by govuk-template, no equivalent in govuk-frontend
 .hidden {
   display: none;
@@ -5,7 +7,7 @@
 }
 
 // dirty, dirty, dirty
-// Necessary as there's a specicifity problem on the <li>'s in the mobile menu
+// Necessary as there's a specicifity problem on the <li>'s in the mobile menu 
 .hidden,
 .no-js .js-visible,
 .js .js-hidden {
@@ -16,6 +18,7 @@ $hmrc-account-menu-grey-1: #4a4a4a;
 $hmrc-account-menu-yellow-1: #ffbf47;
 $hmrc-account-menu-blue-1: #005ea5;
 $hmrc-account-menu-transition-time: .3s;
+$hmrc-transition-type: "all";
 
 .hmrc-account-icon {
   background-repeat: no-repeat;
@@ -27,25 +30,20 @@ $hmrc-account-menu-transition-time: .3s;
   background-position: left -1px;
   background-size: 19px;
 
+
   @include govuk-if-ie8 {
     background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-home.png");
   }
 }
 
-.hmrc-service-info {
-  display: block;
-  position: relative;
-  z-index: 997;
-  overflow: hidden;
-}
-
 .hmrc-account-menu {
   @include govuk-clearfix;
   position: relative;
+  z-index: 0;
   margin-bottom: 0;
-  transition: margin $hmrc-account-menu-transition-time ease-in-out;
+  transition: #{$hmrc-transition-type} $hmrc-account-menu-transition-time ease-in-out;
   border-bottom: 1px solid govuk-colour("grey-2");
-  background-color: govuk-colour("white");
+  background-color: govuk-color("white");
 
   &.hmrc-subnav-is-open {
     margin-bottom: 5em;
@@ -103,10 +101,10 @@ $hmrc-account-menu-transition-time: .3s;
 
 .is-smaller .hmrc-account-menu__link {
   padding-left: 10px;
-  color: govuk-colour("black");
+  color: govuk-color("black");
 
   &:hover {
-    color: govuk-colour("black");
+    color: govuk-color("black");
   }
 }
 
@@ -131,7 +129,7 @@ $hmrc-account-menu-transition-time: .3s;
   &.hmrc-account-menu__link--active {
     &:hover {
       border-bottom-color: $govuk-brand-colour;
-      color: govuk-colour("black");
+      color: govuk-color("black");
     }
 
     &:focus {
@@ -150,7 +148,7 @@ $hmrc-account-menu-transition-time: .3s;
 .hmrc-account-menu__link--active,
 .hmrc-account-menu__link--active:visited {
   border-bottom: 4px solid $govuk-brand-colour;
-  color: govuk-colour("black");
+  color: govuk-color("black");
 }
 
 .hmrc-account-menu__main {
@@ -173,6 +171,7 @@ $hmrc-account-menu-transition-time: .3s;
     background-color: govuk-colour("grey-4");
 
     &.main-nav-is-open,
+
     &.hmrc-subnav-is-open {
       position: relative;
       border-top: 1px solid govuk-colour("grey-2");
@@ -208,6 +207,7 @@ $hmrc-account-menu-transition-time: .3s;
       border-bottom: 1px solid govuk-colour("grey-2");
 
       &:last-child,
+
       &.active-subnav-parent {
         border-bottom: 0;
       }
@@ -253,7 +253,7 @@ $hmrc-account-menu-transition-time: .3s;
   top: -61px;
   left: 0;
   width: 100%;
-  transition: top $hmrc-account-menu-transition-time ease-in-out;
+  //transition: margin .3s ease-in-out;  
   border-bottom: 1px solid govuk-colour("grey-2");
   outline: none;
   background-color: govuk-colour("grey-4");
@@ -277,7 +277,7 @@ $hmrc-account-menu-transition-time: .3s;
 
   &.hmrc-subnav-reveal {
     display: block;
-    top: 43px;
+    top: 48px;
   }
 }
 
@@ -349,21 +349,17 @@ $hmrc-account-menu-transition-time: .3s;
   }
 }
 
-p {
-  &.hmrc-subnav__section__heading {
-    @include govuk-font(16, $weight: bold);
-    margin: 0;
-    padding-bottom: 5px;
-    font-weight: 400;
-  }
+hmrc-subnav__section__heading {
+  @include govuk-font(16, $weight: bold);
+  margin: 0;
+  padding-bottom: 5px;
+  font-weight: 400;
 }
 
-.is-smaller p {
-  &.hmrc-subnav__section__heading {
-    @include govuk-font(16, $weight: bold);
-    margin-bottom: 7px;
-    font-weight: 600;
-  }
+.is-smaller hmrc-subnav__section__heading {
+  @include govuk-font(16, $weight: bold);
+  margin-bottom: 7px;
+  font-weight: 600;
 }
 
 .js-enabled .hmrc-account-menu__link--menu,
@@ -394,7 +390,7 @@ p {
   position: relative;
   padding-right: 31px;
   border-bottom: 0;
-  outline: 0;
+  outline: none;
   background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-down.svg");
   background-position: right 14px center;
   background-size: 12px;
@@ -451,12 +447,14 @@ p {
   }
 }
 
+$hmrc-banner-blue: #005ea5;
+
 .hmrc-full-width-banner {
   display: block;
   position: relative;
   z-index: 999;
   color: govuk-colour("white");
-  background-color: $hmrc-account-menu-blue-1;
+  background-color: $hmrc-banner-blue;
 }
 
 .hmrc-full-width-banner__container {

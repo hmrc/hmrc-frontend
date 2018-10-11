@@ -1,8 +1,18 @@
 {
+  "app": "app/",
+  "views": "app/views/",
+  "layouts": "app/views/layouts/",
+  "examples": "app/views/examples/",
+  "partials": "app/views/partials/",
   "config": "config/",
   "dist": "dist/",
   "package": "package/",
+  "public": "public/",
   "sassdoc": "sassdoc/",
   "src": "src/",
-  "components": "src/components/"
+  "components": "src/components/",
+  "ports": {
+    "app": 3000,
+    "test": 8888
+  }
 }

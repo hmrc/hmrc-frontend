@@ -4,11 +4,13 @@ const paths = require('./config/paths.json')
 const gulp = require('gulp')
 const runsequence = require('run-sequence')
 const taskArguments = require('./tasks/gulp/task-arguments')
+const nodemon = require('nodemon')
 
 // Gulp sub-tasks
 require('./tasks/gulp/clean.js')
 require('./tasks/gulp/lint.js')
 require('./tasks/gulp/compile-assets.js')
+require('./tasks/gulp/watch.js')
 // new tasks
 require('./tasks/gulp/copy-to-destination.js')
 require('./tasks/gulp/asset-version.js')
@@ -32,17 +34,20 @@ gulp.task('styles', cb => {
 // Copies assets to taskArguments.destination (public)
 // --------------------------------------
 gulp.task('copy:assets', () => {
-  return gulp.src(paths.src + 'assets/**/*')
+  return gulp
+    .src(paths.src + 'assets/**/*')
     .pipe(gulp.dest(taskArguments.destination + '/assets/'))
 })
 
 gulp.task('copy:README', () => {
-  return gulp.src(paths.src + '../README.md')
+  return gulp
+    .src(paths.src + '../README.md')
     .pipe(gulp.dest(taskArguments.destination))
 })
 
 gulp.task('copy:packageJson', () => {
-  return gulp.src(paths.src + '../package.json')
+  return gulp
+    .src(paths.src + '../package.json')
     .pipe(gulp.dest(taskArguments.destination))
 })
 
@@ -50,11 +55,7 @@ gulp.task('copy:packageJson', () => {
 // Runs js, scss and accessibility tests
 // --------------------------------------
 gulp.task('test', cb => {
-  runsequence(
-    'scss:lint',
-    'scss:compile',
-    cb
-  )
+  runsequence('scss:lint', 'scss:compile', cb)
 })
 
 // Copy assets task for local & heroku --
@@ -62,11 +63,25 @@ gulp.task('test', cb => {
 // taskArguments.destination (public)
 // --------------------------------------
 gulp.task('copy-assets', cb => {
-  runsequence(
-    'styles',
-    'scripts',
-    cb
-  )
+  runsequence('styles', 'scripts', cb)
+})
+
+// Dev task -----------------------------
+// Runs a sequence of task on start
+// --------------------------------------
+gulp.task('dev', cb => {
+  runsequence('clean', 'copy-assets', 'sassdoc', 'serve', cb)
+})
+
+// Serve task ---------------------------
+// Restarts node app when there is changed
+// affecting js, css or njk files
+// --------------------------------------
+
+gulp.task('serve', ['watch'], () => {
+  return nodemon({
+    script: 'app/start.js'
+  })
 })
 
 // Build package task -----------------
