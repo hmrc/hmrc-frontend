@@ -4,7 +4,6 @@ const nunjucks = require('nunjucks')
 const util = require('util')
 const fs = require('fs')
 const path = require('path')
-const yaml = require('js-yaml')
 
 const readdir = util.promisify(fs.readdir)
 
@@ -15,9 +14,10 @@ const configPaths = require('../config/paths.json')
 // Set up views
 const appViews = [
   configPaths.layouts,
-  configPaths.partials,
+  configPaths.views,
   configPaths.examples,
-  configPaths.components
+  configPaths.components,
+  configPaths.src
 ]
 
 module.exports = (options) => {
@@ -40,8 +40,20 @@ module.exports = (options) => {
   // Set view engine
   app.set('view engine', 'njk')
 
+  // Disallow search index indexing
+  app.use(function (req, res, next) {
+    // none - Equivalent to noindex, nofollow
+    // noindex - Do not show this page in search results and do not show a
+    //   "Cached" link in search results.
+    // nofollow - Do not follow the links on this page
+    res.setHeader('X-Robots-Tag', 'none')
+    next()
+  })
+
   // Set up middleware to serve static assets
   app.use('/public', express.static(configPaths.public))
+
+  app.use('/docs', express.static(configPaths.sassdoc))
 
   // serve html5-shiv from node modules
   app.use('/vendor/html5-shiv/', express.static('node_modules/html5shiv/dist/'))
@@ -63,16 +75,31 @@ module.exports = (options) => {
   // Whenever the route includes a :component parameter, read the component data
   // from its YAML file
   app.param('component', function (req, res, next, componentName) {
-    let yamlPath = path.join(configPaths.components, componentName, `${componentName}.yaml`)
+    res.locals.componentData = fileHelper.getComponentData(componentName)
+    next()
+  })
 
-    try {
-      res.locals.componentData = yaml.safeLoad(
-        fs.readFileSync(yamlPath, 'utf8'), { json: true }
+  // All components view
+  app.get('/components/all', function (req, res, next) {
+    const components = fileHelper.allComponents
+
+    res.locals.componentData = components.map(componentName => {
+      let componentData = fileHelper.getComponentData(componentName)
+      let defaultExample = componentData.examples.find(
+        example => example.name === 'default'
       )
-      next()
-    } catch (e) {
-      next(new Error('failed to load component YAML file'))
-    }
+      return {
+        componentName,
+        examples: [defaultExample]
+      }
+    })
+    res.render(`all-components`, function (error, html) {
+      if (error) {
+        next(error)
+      } else {
+        res.send(html)
+      }
+    })
   })
 
   // Component 'README' page
@@ -80,7 +107,7 @@ module.exports = (options) => {
     // make variables available to nunjucks template
     res.locals.componentPath = req.params.component
 
-    res.render(`${req.params.component}/index`, function (error, html) {
+    res.render('component', function (error, html) {
       if (error) {
         next(error)
       } else {
@@ -98,7 +125,7 @@ module.exports = (options) => {
     let previewLayout = res.locals.componentData.previewLayout || 'layout'
 
     let exampleConfig = res.locals.componentData.examples.find(
-      example => example.name === requestedExampleName
+      example => example.name.replace(/ /g, '-') === requestedExampleName
     )
 
     if (!exampleConfig) {
@@ -131,15 +158,6 @@ module.exports = (options) => {
         res.send(html)
       }
     })
-  })
-
-  // Disallow search index indexing
-  app.use(function (req, res, next) {
-    // none - Equivalent to noindex, nofollow
-    // noindex - Do not show this page in search results and do not show a "Cached" link in search results.
-    // nofollow - Do not follow the links on this page
-    res.setHeader('X-Robots-Tag', 'none')
-    next()
   })
 
   app.get('/robots.txt', function (req, res) {
