@@ -11,6 +11,7 @@
   "sassdoc": "sassdoc/",
   "src": "src/",
   "components": "src/components/",
+  "govukFrontend": "node_modules/govuk-frontend",
   "ports": {
     "app": 3000,
     "test": 8888
