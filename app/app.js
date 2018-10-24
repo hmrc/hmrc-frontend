@@ -53,6 +53,8 @@ module.exports = (options) => {
   // Set up middleware to serve static assets
   app.use('/public', express.static(configPaths.public))
 
+  app.use('/govuk-frontend', express.static(configPaths.govukFrontend))
+
   app.use('/docs', express.static(configPaths.sassdoc))
 
   // serve html5-shiv from node modules
