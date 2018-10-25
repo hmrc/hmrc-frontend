@@ -47,6 +47,22 @@ module.exports = (options) => {
   app.use('/vendor/html5-shiv/', express.static('node_modules/html5shiv/dist/'))
   app.use('/assets', express.static(path.join(configPaths.src)))
 
+  // Partial implementation of extensions framework
+  ;(function () {
+    const scripts = require('../govuk-prototype-kit.config.json').scripts
+    const publicScriptPath = path => `/extension-assets/hmrc-frontend${path}`
+
+    scripts.forEach(script => {
+      app.use(publicScriptPath(script), express.static(`${__dirname}/..${script}`))
+    })
+
+    app.use(function (req, res, next) {
+      res.locals = res.locals || {}
+      res.locals.scripts = scripts.map(publicScriptPath)
+      next()
+    })
+  }())
+
   // Define routes
 
   // Index page - render the component list template
