@@ -20,6 +20,7 @@ node_modules/
 npm-debug.log
 yarn-debug.log
 yarn-error.log
+.vscode/
 
 # From govuk-frontend
 .DS_Store
