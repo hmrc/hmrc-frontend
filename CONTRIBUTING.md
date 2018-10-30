@@ -4,7 +4,7 @@ Hello! Thank you for taking the time to contribute to the [HMRC Multichannel Dig
 
 We welcome contributions to hmrc-frontend. Following these guidelines will help reduce the effort needed to have your contribution accepted.
 
-## How to Help?
+## How to Help
 
 We’re always looking for feedback, and help is always welcome. These are the areas where you can help:
 
@@ -15,7 +15,7 @@ We’re always looking for feedback, and help is always welcome. These are the a
 
 ## Communication
 
-It may help to **get in touch before starting** on a significant piece of work. 
+It may help to **get in touch before starting** on a significant piece of work.
 
 * We may already have what you’re planning to do in our backlog, or already be working on it.
 * It may have been proposed in the past and been deemed out of scope for the library.
@@ -31,18 +31,18 @@ It may help to **get in touch before starting** on a significant piece of work.
 
 Please follow these contribution guidelines to maintain the quality of the code:
 
-**Before a Pull Request**
+### Before a Pull Request
 
 * Follow style guides
-	* [Use EditorConfig](#use-editorconfig)
-	* [Lint the code](#lint-the-code)
+  * [Use EditorConfig](#use-editorconfig)
+  * [Lint the code](#lint-the-code)
 * [Write tests](#tests)
 * [Write documentation](#documentation)
 * [Write good commit messages](#commit-messages)
 * [Squash related commits before a PR merge](#squash-related-commits)
 * [Don't bump the `package.json` version](#versioning)
 
-**Opening a Pull Request**
+### Opening a Pull Request
 
 * [Follow the Pull Request template](#description)
 * [Find and link to issues](#closing-issues)
@@ -76,8 +76,7 @@ TBC
 
 “Your service must be universally accessible. This means building it to work on every browser or device that your users access it on.”
 
-[Details on GOV.UK Browser support]
-(https://www.gov.uk/service-manual/technology/designing-for-different-browsers-and-devices)
+[Details on GOV\.UK Browser support](https://www.gov.uk/service-manual/technology/designing-for-different-browsers-and-devices)
 
 ## Documentation
 
@@ -93,7 +92,7 @@ Writing good commit messages is important. Not just for other developers on your
 
 There has already been a lot written about git commit messages, so we follow [the same standards as GOV.UK](https://github.com/alphagov/styleguides/blob/master/git.md)
 
-**Recommended reading on this topic**
+#### Recommended reading on this topic**
 
 * [5 useful tips for a better commit message](https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message)
 * [Every line of code is always documented](http://mislav.uniqpath.com/2014/02/hidden-documentation/)
@@ -104,7 +103,7 @@ There has already been a lot written about git commit messages, so we follow [th
 
 Pull requests that do one thing have much more chance of being reviewed and merged quickly. Huge changes that take a long time to work through will have less chance of being reviewed or merged.
 
-**Recommended reading on this topic**
+#### Recommended reading on using source control
 
 * [One Commit. One change](https://medium.com/@fagnerbrack/one-commit-one-change-3d10b10cebbf#.im4vlnj3i)
 * [One Pull Request. One Concern](https://medium.com/@fagnerbrack/one-pull-request-one-concern-e84a27dfe9f1#.uz7cmt50g)
@@ -138,13 +137,13 @@ It's the responsibility of the Owning Team alone to deploy/schedule the release 
 
 ## Frontend Principles
 
-hmrc-frontend is code for features used on many services on the tax-platform, code used in a single service should not be in hmrc-frontend. 
+hmrc-frontend is code for features used on many services on the tax-platform, code used in a single service should not be in hmrc-frontend.
 
 ### Progressive Enhancement
 
 All work on GOV.UK should be [built in a progressive fashion](https://www.gov.uk/service-manual/technology/using-progressive-enhancement).
 
-**Recommended reading on this topic**
+#### Recommended reading on Progressive Enhancement
 
 * [Resilient Web Design](https://resilientwebdesign.com/)
 
