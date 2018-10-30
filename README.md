@@ -1,4 +1,4 @@
-# hmrc-frontend
+# HMRC Frontend
 
 This repository contains the source files and documentation for the Components & Design Patterns used to design and build digital services for the HMRC Tax Platform.
 
