@@ -1,8 +1,10 @@
 # HMRC Frontend
 
-This repository contains the source files and documentation for the Components & Design Patterns used to design and build digital services for the HMRC Tax Platform.
+HMRC Frontend contains the code and documentation for design patterns used to build digital services for HMRC.
 
-It provides additional styles on top of the [GOV.UK styles](govuk-frontend).
+See live examples of HMRC Frontend patterns and guidance on when to use them in your service, in HMRC Design Patterns.
+
+HMRC Frontend provides code for additional patterns designed specifically for HMRC, on top of those in [GOV.UK Frontend](govuk-frontend). 
 
 ## Quick Start
 
@@ -36,37 +38,37 @@ npm install
 | Notification badge | |
 | Personal tax account menu  |[http://localhost:3000/components/account-menu/default/preview](http://localhost:3000/components/account-menu/default/preview) |
 
-## Usage
+## Using HMRC Frontend
 
-### Using hmrc-frontend locally
+### Local
 
 #### Prototypes
 
 `npm install <path to hmrc-frontend>`
 
-### Frontend Microsservices
+### Frontend microservices
 
 Currently unsupported
 
-### Using hmrc-frontend in production
+### In production services
 
 Currently unsupported
 
-## HMRC Design System
+## HMRC Design Patterns
 
-A prototype of the HMRC design system is available to designers and developers working within HMRC
-
-If your service relies on a component or pattern that doesn’t appear in the HMRC Design System then please follow the [Design System contribution guidelines](https://github.com/hmrc/assets-frontend/wiki/HMRC-Design-System#contributing-a-design-pattern).
+HMRC Design Patterns is available, currently in prototype form, for designers and developers working within HMRC.
 
 ## Contributing
 
 ### Design Patterns
 
-For details on how to contribute Design Patterns, please take a few minutes to review our [Design Pattern standards and contribution process](https://github.com/hmrc/assets-frontend/wiki/HMRC-Design-System#contributing-a-design-pattern) before you submit your request, otherwise it may be rejected.
+If you need a pattern that does not appear in the HMRC Design Patterns, you can [contribute a new one](https://github.com/hmrc/assets-frontend/wiki/HMRC-Design-System#contributing-a-design-pattern).
 
 ### Features and issues
 
-If you’ve spotted an issue or thought of a feature that you’d like to be in hmrc-frontend then please create an issue. We also welcome cocontributions to hmrc-frontend as Github pull requests; please take a few minutes to review our [contribution process and guidelines for HMRC Frontend](CONTRIBUTING.md) before you submit your request.
+If you would like to propose a feature or flag up an issue in HMRC Frontend, please create an issue. 
+
+You can also contribute to HMRC Frontend by submitting a pull request. Review our [contribution process and guidelines for HMRC Frontend](CONTRIBUTING.md) before you submit your request.
 
 ## License
 
