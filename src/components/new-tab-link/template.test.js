@@ -52,5 +52,13 @@ describe('New Tab Link', () => {
 
       expect($component.attr('class')).toEqual('govuk-link govuk-!-font-weight-bold my-custom-class')
     })
+
+    it('uses the provided URL', () => {
+      const $ = render('new-tab-link', examples.welsh)
+
+      const $component = $('.govuk-link')
+
+      expect($component.attr('href')).toEqual('https://www.gov.uk/guidance/ffurflenni-cthem#4')
+    })
   })
 })

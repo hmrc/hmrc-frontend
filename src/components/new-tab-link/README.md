@@ -1,35 +1,7 @@
 # New Tab Link
 
-## Introduction
+A link which opens a new tab or window.
 
-## Guidance
+### License
 
-## Quick start examples
-
-### Component default
-
-#### Markup
-
-#### Macro
-
-### Notification-badge--with-text
-
-#### Markup
-
-#### Macro
-
-## Requirements
-
-### Build tool configuration
-
-### Static asset path configuration
-
-## Component arguments
-
-### Setting up Nunjucks views and paths
-
-## Contribution
-
-## License
-
-MIT
+This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
