@@ -25,10 +25,8 @@ function debounce (func, wait, immediate) {
   }
 }
 
-;(function (global) {
+function initAccountMenu (global, HMRC) {
   'use strict'
-
-  var HMRC = global.HMRC || {}
 
   HMRC.accountMenu = (function (global) {
     var $nav = document.querySelector('.hmrc-account-menu')
@@ -260,10 +258,8 @@ function debounce (func, wait, immediate) {
       return element.innerWidth <= 768
     }
 
-    return {
-      init
-    }
+    init()
   })(global)
+}
 
-  global.HMRC = HMRC
-})(window)
+export default initAccountMenu

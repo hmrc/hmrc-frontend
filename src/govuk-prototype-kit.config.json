@@ -9,6 +9,6 @@
     "/_prototype-kit.scss"
   ],
   "scripts": [
-    "/components/account-menu/account-menu.js"
+    "/all.js"
   ]
 }
