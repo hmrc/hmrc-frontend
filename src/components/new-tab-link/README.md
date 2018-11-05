@@ -1,6 +1,6 @@
-# New Tab Link
+# Open a link in a new window or tab
 
-A link which opens a new tab or window.
+A link that opens a new tab or window.
 
 ### License
 

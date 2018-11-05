@@ -10,3 +10,5 @@
 - if a sub-nav is open, add `is-open` to nav
 - if showNavLinkMobile is open, close it when triggered
 - if a menu link with sub-nav (showSubnavLink) is open, close it when triggered
+
+This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
