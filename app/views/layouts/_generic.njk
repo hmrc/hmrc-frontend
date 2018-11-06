@@ -9,8 +9,6 @@
 
   <!--[if !IE 8]><!-->
     <link rel="stylesheet" href="/public/app.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
   <!--<![endif]-->
   <!--[if IE 8]>
     <link rel="stylesheet" href="/public/app-ie8.css">
@@ -29,13 +27,6 @@
 {% block bodyEnd %}
   <script src="/public/all.js"></script>
   <script>window.GOVUKFrontend.initAll()</script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.15/iframeResizer.min.js"></script>
-  <!--[if lte IE 8]>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.15/ie8.polyfils.min.js"></script>
-  <![endif]-->
-  <script type="text/javascript">
-    var domReady = function(a,b,c){b=document,c='addEventListener';b[c]?b[c]('DOMContentLoaded',a):window.attachEvent('onload',a)}
-    domReady(iFrameResize({}, '.js-component-preview'))
-  </script>
+
   {% block scripts %}{% endblock %}
 {% endblock %}
