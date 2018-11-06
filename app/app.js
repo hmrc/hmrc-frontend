@@ -1,11 +1,7 @@
 const express = require('express')
 const app = express()
 const nunjucks = require('nunjucks')
-const util = require('util')
-const fs = require('fs')
 const path = require('path')
-
-const readdir = util.promisify(fs.readdir)
 
 const helperFunctions = require('../lib/helper-functions')
 const fileHelper = require('../lib/file-helper')
