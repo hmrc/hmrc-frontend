@@ -1,3 +1,5 @@
-$hmrc-assets-path: "/plugin-assets/hmrc-frontend/src/";
+$govuk-extensions-url-context: "/extension-assets" !default;
+
+$hmrc-assets-path: $govuk-extensions-url-context + "/hmrc-frontend/";
 
 @import "all";
