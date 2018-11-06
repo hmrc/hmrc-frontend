@@ -25,10 +25,8 @@ function debounce (func, wait, immediate) {
   }
 }
 
-;(function (global) {
+function initAccountMenu (global, HMRC) {
   'use strict'
-
-  var HMRC = global.HMRC || {}
 
   HMRC.accountMenu = (function (global) {
     var $nav = document.querySelector('.hmrc-account-menu')
@@ -111,6 +109,14 @@ function debounce (func, wait, immediate) {
     })
 
     function init () {
+      var args = arguments
+      setup.apply(null, args)
+      window.addEventListener('resize', debounce(function () {
+        setup.apply(null, args)
+      }))
+    }
+
+    function setup () {
       if (isSmall(global)) {
         $nav.classList.add('is-smaller')
         $showNavLinkMobile.setAttribute('aria-hidden', 'false')
@@ -125,8 +131,6 @@ function debounce (func, wait, immediate) {
         $subNav.classList.remove('js-hidden')
       }
     }
-
-    var resizeHandler = debounce(init, 250)
 
     function showMainNavMobile () {
       // TODO: shall we add main-nav-is-open to `nav`????
@@ -254,16 +258,8 @@ function debounce (func, wait, immediate) {
       return element.innerWidth <= 768
     }
 
-    return {
-      'init': init,
-      'onresize': resizeHandler
-    }
+    init()
   })(global)
+}
 
-  global.HMRC = HMRC
-
-  window.addEventListener('resize', HMRC.accountMenu.onresize)
-})(window)
-
-// initialize
-window.HMRC.accountMenu.init()
+export default initAccountMenu

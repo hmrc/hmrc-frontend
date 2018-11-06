@@ -40,11 +40,31 @@ npm install
 
 ## Using HMRC Frontend
 
-### Local
+### Locally
 
-#### Prototypes
+#### Installation into Prototype Kit
 
-`npm install <path to hmrc-frontend>`
+To use this preview:
+
+1. Clone the "extensions" version of the prototype kit `git clone -b extensions git@github.com:hmrc/govuk_prototype_kit.git`
+2. `cd govuk_prototype_kit`
+3. Install the preview of hmrc-frontend `npm install --save https://github.com/hmrc/hmrc-frontend.git#package-latest`
+4. Install everything else `npm install`
+5. `npm start`
+
+Now you can set up views which use `hmrc-frontend` like this one using the account menu:
+
+```nunjucks
+{% from 'account-menu/macro.njk' import hmrcAccountMenu %}
+{% extends 'layout.html' %}
+
+{% block content %}
+<main id="content">
+  {{ hmrcAccountMenu() }}
+</main>
+{% endblock %}
+```
+We have a pull request open for GOVUK's prototype kit which will allow `hmrc-frontend` (and other department's frontends) to be used easily with the prototype kit https://github.com/alphagov/govuk-prototype-kit/pull/613
 
 ### Frontend microservices
 
@@ -70,6 +90,6 @@ If you would like to propose a feature or flag up an issue in HMRC Frontend, ple
 
 You can also contribute to HMRC Frontend by submitting a pull request. Review our [contribution process and guidelines for HMRC Frontend](CONTRIBUTING.md) before you submit your request.
 
-## License
+### License
 
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").

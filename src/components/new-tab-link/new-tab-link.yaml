@@ -1,0 +1,17 @@
+examples:
+- name: default
+  data:
+    text: "find out if you qualify for tax credits"
+    href: "https://www.gov.uk/working-tax-credit/eligibility"
+    language: "en"
+- name: welsh
+  data:
+    text: "dod i wybod a ydych yn gymwys ar gyfer credydau treth"
+    href: "https://www.gov.uk/guidance/ffurflenni-cthem#4"
+    language: "cy"
+- name: with-classes
+  data:
+    text: "an example link"
+    href: "http://example.com"
+    classList: "govuk-!-font-weight-bold my-custom-class"
+    language: "en"

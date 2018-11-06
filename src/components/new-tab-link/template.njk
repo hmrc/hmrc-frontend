@@ -1,0 +1,3 @@
+{% if params.text %}
+<a class="govuk-link {{ params.classList }}" target="_blank" rel="noopener noreferrer" href="{{ params.href }}">{{ params.text }} {%  if params.language == 'en' %}(opens in a new window or tab){% endif %}{%  if params.language == 'cy' %}(yn agor ffenestr neu dab newydd){% endif %}</a>
+{% endif %}
