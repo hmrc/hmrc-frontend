@@ -15,7 +15,6 @@ const configPaths = require('../config/paths.json')
 const appViews = [
   configPaths.layouts,
   configPaths.views,
-  configPaths.examples,
   configPaths.components,
   configPaths.src
 ]
@@ -70,11 +69,9 @@ module.exports = (options) => {
   // Index page - render the component list template
   app.get('/', async function (req, res) {
     const components = fileHelper.allComponents
-    const examples = await readdir(path.resolve(configPaths.examples))
 
     res.render('index', {
-      componentsDirectory: components,
-      examplesDirectory: examples
+      componentsDirectory: components
     })
   })
 
@@ -83,29 +80,6 @@ module.exports = (options) => {
   app.param('component', function (req, res, next, componentName) {
     res.locals.componentData = fileHelper.getComponentData(componentName)
     next()
-  })
-
-  // All components view
-  app.get('/components/all', function (req, res, next) {
-    const components = fileHelper.allComponents
-
-    res.locals.componentData = components.map(componentName => {
-      let componentData = fileHelper.getComponentData(componentName)
-      let defaultExample = componentData.examples.find(
-        example => example.name === 'default'
-      )
-      return {
-        componentName,
-        examples: [defaultExample]
-      }
-    })
-    res.render(`all-components`, function (error, html) {
-      if (error) {
-        next(error)
-      } else {
-        res.send(html)
-      }
-    })
   })
 
   // Component 'README' page
@@ -153,17 +127,6 @@ module.exports = (options) => {
     }
 
     res.render('component-preview', { bodyClasses, previewLayout })
-  })
-
-  // Example view
-  app.get('/examples/:example', function (req, res, next) {
-    res.render(`${req.params.example}/index`, function (error, html) {
-      if (error) {
-        next(error)
-      } else {
-        res.send(html)
-      }
-    })
   })
 
   app.get('/robots.txt', function (req, res) {

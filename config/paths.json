@@ -2,8 +2,6 @@
   "app": "app/",
   "views": "app/views/",
   "layouts": "app/views/layouts/",
-  "examples": "app/views/examples/",
-  "partials": "app/views/partials/",
   "config": "config/",
   "dist": "dist/",
   "package": "package/",
