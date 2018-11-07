@@ -2,8 +2,6 @@
   "app": "app/",
   "views": "app/views/",
   "layouts": "app/views/layouts/",
-  "examples": "app/views/examples/",
-  "partials": "app/views/partials/",
   "config": "config/",
   "dist": "dist/",
   "package": "package/",
@@ -11,6 +9,7 @@
   "sassdoc": "sassdoc/",
   "src": "src/",
   "components": "src/components/",
+  "govukFrontend": "node_modules/govuk-frontend",
   "ports": {
     "app": 3000,
     "test": 8888

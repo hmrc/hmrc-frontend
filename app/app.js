@@ -1,12 +1,7 @@
 const express = require('express')
 const app = express()
 const nunjucks = require('nunjucks')
-const util = require('util')
-const fs = require('fs')
 const path = require('path')
-const yaml = require('js-yaml')
-
-const readdir = util.promisify(fs.readdir)
 
 const helperFunctions = require('../lib/helper-functions')
 const fileHelper = require('../lib/file-helper')
@@ -15,9 +10,9 @@ const configPaths = require('../config/paths.json')
 // Set up views
 const appViews = [
   configPaths.layouts,
-  configPaths.partials,
-  configPaths.examples,
-  configPaths.components
+  configPaths.views,
+  configPaths.components,
+  configPaths.src
 ]
 
 module.exports = (options) => {
@@ -40,39 +35,47 @@ module.exports = (options) => {
   // Set view engine
   app.set('view engine', 'njk')
 
+  // Disallow search index indexing
+  app.use(function (req, res, next) {
+    // none - Equivalent to noindex, nofollow
+    // noindex - Do not show this page in search results and do not show a
+    //   "Cached" link in search results.
+    // nofollow - Do not follow the links on this page
+    res.setHeader('X-Robots-Tag', 'none')
+    next()
+  })
+
   // Set up middleware to serve static assets
   app.use('/public', express.static(configPaths.public))
 
+  app.use('/govuk-frontend', express.static(configPaths.govukFrontend))
+
+  app.use('/docs', express.static(configPaths.sassdoc))
+
   // serve html5-shiv from node modules
   app.use('/vendor/html5-shiv/', express.static('node_modules/html5shiv/dist/'))
-  app.use('/assets', express.static(path.join(configPaths.src)))
+  app.use(
+    '/assets',
+    express.static(path.join(configPaths.src)),
+    express.static(path.join(configPaths.govukFrontend, 'assets'))
+  )
 
   // Define routes
 
   // Index page - render the component list template
   app.get('/', async function (req, res) {
     const components = fileHelper.allComponents
-    const examples = await readdir(path.resolve(configPaths.examples))
 
     res.render('index', {
-      componentsDirectory: components,
-      examplesDirectory: examples
+      componentsDirectory: components
     })
   })
 
   // Whenever the route includes a :component parameter, read the component data
   // from its YAML file
   app.param('component', function (req, res, next, componentName) {
-    let yamlPath = path.join(configPaths.components, componentName, `${componentName}.yaml`)
-
-    try {
-      res.locals.componentData = yaml.safeLoad(
-        fs.readFileSync(yamlPath, 'utf8'), { json: true }
-      )
-      next()
-    } catch (e) {
-      next(new Error('failed to load component YAML file'))
-    }
+    res.locals.componentData = fileHelper.getComponentData(componentName)
+    next()
   })
 
   // Component 'README' page
@@ -80,7 +83,7 @@ module.exports = (options) => {
     // make variables available to nunjucks template
     res.locals.componentPath = req.params.component
 
-    res.render(`${req.params.component}/index`, function (error, html) {
+    res.render('component', function (error, html) {
       if (error) {
         next(error)
       } else {
@@ -98,7 +101,7 @@ module.exports = (options) => {
     let previewLayout = res.locals.componentData.previewLayout || 'layout'
 
     let exampleConfig = res.locals.componentData.examples.find(
-      example => example.name === requestedExampleName
+      example => example.name.replace(/ /g, '-') === requestedExampleName
     )
 
     if (!exampleConfig) {
@@ -120,26 +123,6 @@ module.exports = (options) => {
     }
 
     res.render('component-preview', { bodyClasses, previewLayout })
-  })
-
-  // Example view
-  app.get('/examples/:example', function (req, res, next) {
-    res.render(`${req.params.example}/index`, function (error, html) {
-      if (error) {
-        next(error)
-      } else {
-        res.send(html)
-      }
-    })
-  })
-
-  // Disallow search index indexing
-  app.use(function (req, res, next) {
-    // none - Equivalent to noindex, nofollow
-    // noindex - Do not show this page in search results and do not show a "Cached" link in search results.
-    // nofollow - Do not follow the links on this page
-    res.setHeader('X-Robots-Tag', 'none')
-    next()
   })
 
   app.get('/robots.txt', function (req, res) {
