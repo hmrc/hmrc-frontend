@@ -1,12 +1,12 @@
 # HMRC Frontend
 
-HMRC Frontend contains the code and documentation for patterns specifically designed for HMRC. 
+HMRC Frontend contains the code and documentation for patterns specifically designed for HMRC.
 
 [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend) and the [GOV.UK Design System](https://design-system.service.gov.uk/) contains the code and documentation for design patterns designed to be used by all government departments.
 
 The two sets of code and documentation are separate but used together.
 
-See [HMRC Design Patterns](.) for examples of what the design patterns look like and guidance on how to use them in your service. 
+See [HMRC Design Patterns](.) for examples of what the design patterns look like and guidance on how to use them in your service.
 
 ## Quick Start
 
@@ -37,7 +37,7 @@ npm install
 | Notification badge | |
 | Personal tax account menu  |[http://localhost:3000/components/account-menu/default/preview](http://localhost:3000/components/account-menu/default/preview) |
 
-## Using HMRC Frontend
+## Using HMRC Frontend locally
 
 ### Prototypes
 
@@ -47,7 +47,7 @@ npm install
 
 Currently unsupported.
 
-### In production services
+## Using HMRC Frontend in production services
 
 Currently unsupported.
 
@@ -59,7 +59,7 @@ If you need a pattern that does not appear in the HMRC Design Patterns, you can 
 
 ### Features and issues
 
-If you would like to propose a feature or flag up an issue in HMRC Frontend, [create an issue](https://github.com/hmrc/hmrc-frontend/issues/new). 
+If you would like to propose a feature or flag up an issue in HMRC Frontend, [create an issue](https://github.com/hmrc/hmrc-frontend/issues/new).
 
 You can also create a pull request to contribute to HMRC Frontend. See our [contribution process and guidelines for HMRC Frontend](CONTRIBUTING.md) before you create a pull request.
 
