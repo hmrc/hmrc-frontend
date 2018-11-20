@@ -6,7 +6,7 @@ HMRC Frontend contains the code and documentation for patterns specifically desi
 
 The two sets of code and documentation are separate but used together.
 
-See [HMRC Design Patterns](.) for examples of what the design patterns look like and guidance on how to use them in your service.
+See [HMRC Design Patterns](#) for examples of what the design patterns look like and guidance on how to use them in your service.
 
 ## Quick Start
 
@@ -30,24 +30,15 @@ npm install
 ### How to run
 
 1. Run `npm start`
-2. Components are available at the following urls:
-
-| component | url |
-|-----------|-----|
-| Notification badge | |
-| Personal tax account menu  |[http://localhost:3000/components/account-menu/default/preview](http://localhost:3000/components/account-menu/default/preview) |
+2. Components are available at http://localhost:3000
 
 ## Using HMRC Frontend locally
 
 ### Prototypes
 
-`npm install <path to hmrc-frontend>`
+`npm install hmrc/hmrc-frontend#package-latest`
 
 ### Frontend microservices
-
-Currently unsupported.
-
-## Using HMRC Frontend in production services
 
 Currently unsupported.
 
@@ -59,7 +50,7 @@ If you need a pattern that does not appear in the HMRC Design Patterns, you can 
 
 ### Features and issues
 
-If you would like to propose a feature or flag up an issue in HMRC Frontend, [create an issue](https://github.com/hmrc/hmrc-frontend/issues/new).
+If you would like to propose a feature or raise an issue with HMRC Frontend, [create an issue](https://github.com/hmrc/hmrc-frontend/issues/new).
 
 You can also create a pull request to contribute to HMRC Frontend. See our [contribution process and guidelines for HMRC Frontend](CONTRIBUTING.md) before you create a pull request.
 
