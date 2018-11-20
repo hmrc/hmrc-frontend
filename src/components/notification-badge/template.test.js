@@ -31,13 +31,13 @@ describe('Notification Badge', () => {
     })
 
     it('renders badge text', () => {
-      const text = 'New'
+      const badgeText = 'New'
 
-      const $ = render('notification-badge', { text })
+      const $ = render('notification-badge', { badgeText })
 
       const labelText = $('.hmrc-notification-badge').text().trim()
 
-      expect(labelText).toEqual(text)
+      expect(labelText).toEqual(badgeText)
     })
   })
 })

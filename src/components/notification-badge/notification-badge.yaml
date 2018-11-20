@@ -1,7 +1,7 @@
 examples:
 - name: default
   data:
-    text: 3
+    badgeText: 3
 - name: with-text
   data:
-    text: New
+    badgeText: New
