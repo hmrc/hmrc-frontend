@@ -1,10 +1,12 @@
 # HMRC Frontend
 
-HMRC Frontend contains the code and documentation for design patterns used to build digital services for HMRC.
+HMRC Frontend contains the code and documentation for patterns specifically designed for HMRC.
 
-See live examples of HMRC Frontend patterns and guidance on when to use them in your service, in HMRC Design Patterns.
+[GOV.UK Frontend](https://github.com/alphagov/govuk-frontend) and the [GOV.UK Design System](https://design-system.service.gov.uk/) contains the code and documentation for design patterns designed to be used by all government departments.
 
-HMRC Frontend provides code for additional patterns designed specifically for HMRC, on top of those in [GOV.UK Frontend](govuk-frontend). 
+The two sets of code and documentation are separate but used together.
+
+See [HMRC Design Patterns](.) for examples of what the design patterns look like and guidance on how to use them in your service.
 
 ## Quick Start
 
@@ -13,14 +15,11 @@ HMRC Frontend provides code for additional patterns designed specifically for HM
 * [Node.js](https://nodejs.org/en/) `>= 10.12.0`
 * [npm](https://www.npmjs.com/) `>= 6.4.1`
 
-To install multiple versions of Node.js, you may find it easier to use a node version manager:
+To install more than one version of Node.js, it may be easier to use a node version manager like [nvm](https://github.com/creationix/nvm) or [n](https://github.com/tj/n).
 
-* [nvm](https://github.com/creationix/nvm)
-* [n](https://github.com/tj/n)
+### How to install
 
-### Installation
-
-Clone this repository and install its dependencies:
+Clone this repository and install its dependencies.
 
 ```bash
 git clone https://github.com/hmrc/hmrc-frontend.git
@@ -28,7 +27,7 @@ cd hmrc-frontend
 npm install
 ```
 
-### Running
+### How to run
 
 1. Run `npm start`
 2. Components are available at the following urls:
@@ -38,58 +37,32 @@ npm install
 | Notification badge | |
 | Personal tax account menu  |[http://localhost:3000/components/account-menu/default/preview](http://localhost:3000/components/account-menu/default/preview) |
 
-## Using HMRC Frontend
+## Using HMRC Frontend locally
 
-### Locally
+### Prototypes
 
-#### Installation into Prototype Kit
-
-To use this preview:
-
-1. Clone the "extensions" version of the prototype kit `git clone -b extensions git@github.com:hmrc/govuk_prototype_kit.git`
-2. `cd govuk_prototype_kit`
-3. Install the preview of hmrc-frontend `npm install --save https://github.com/hmrc/hmrc-frontend.git#package-latest`
-4. Install everything else `npm install`
-5. `npm start`
-
-Now you can set up views which use `hmrc-frontend` like this one using the account menu:
-
-```nunjucks
-{% from 'account-menu/macro.njk' import hmrcAccountMenu %}
-{% extends 'layout.html' %}
-
-{% block content %}
-<main id="content">
-  {{ hmrcAccountMenu() }}
-</main>
-{% endblock %}
-```
-We have a pull request open for GOVUK's prototype kit which will allow `hmrc-frontend` (and other department's frontends) to be used easily with the prototype kit https://github.com/alphagov/govuk-prototype-kit/pull/613
+`npm install <path to hmrc-frontend>`
 
 ### Frontend microservices
 
-Currently unsupported
+Currently unsupported.
 
-### In production services
+## Using HMRC Frontend in production services
 
-Currently unsupported
+Currently unsupported.
 
-## HMRC Design Patterns
+## How to contribute
 
-HMRC Design Patterns is available, currently in prototype form, for designers and developers working within HMRC.
+### Design patterns
 
-## Contributing
-
-### Design Patterns
-
-If you need a pattern that does not appear in the HMRC Design Patterns, you can [contribute a new one](https://github.com/hmrc/assets-frontend/wiki/HMRC-Design-System#contributing-a-design-pattern).
+If you need a pattern that does not appear in the HMRC Design Patterns, you can [contribute a new one](https://github.com/hmrc/design-patterns/issues/new).
 
 ### Features and issues
 
-If you would like to propose a feature or flag up an issue in HMRC Frontend, please create an issue. 
+If you would like to propose a feature or flag up an issue in HMRC Frontend, [create an issue](https://github.com/hmrc/hmrc-frontend/issues/new).
 
-You can also contribute to HMRC Frontend by submitting a pull request. Review our [contribution process and guidelines for HMRC Frontend](CONTRIBUTING.md) before you submit your request.
+You can also create a pull request to contribute to HMRC Frontend. See our [contribution process and guidelines for HMRC Frontend](CONTRIBUTING.md) before you create a pull request.
 
-### License
+## License
 
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
