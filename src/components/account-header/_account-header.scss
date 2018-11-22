@@ -1,17 +1,17 @@
+.govuk-header__link--service-name {
+  float: left;
+}
+
 .hmrc-language-select {
   float: right;
-}
 
-.hmrc-language-select__items {
-  margin: 0;
-  padding: 0;
-}
+  .govuk-header__navigation-item {
+    margin-right: 0;
+  }
 
-.hmrc-language-select__item {
-  display: inline;
-}
-
-.hmrc-language-select__item + .hmrc-language-select__item:before {
-  content: "|";
-  color: govuk-colour("white");
+  .govuk-header__navigation-item + .govuk-header__navigation-item:before {
+    content: "|";
+    padding-right: 2px;
+    color: govuk-colour("white");
+  }
 }

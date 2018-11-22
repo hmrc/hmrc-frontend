@@ -12,7 +12,8 @@ const appViews = [
   configPaths.layouts,
   configPaths.views,
   configPaths.components,
-  configPaths.src
+  configPaths.src,
+  configPaths.govukFrontend + '/components'
 ]
 
 module.exports = (options) => {
