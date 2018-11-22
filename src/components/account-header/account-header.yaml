@@ -1,0 +1,7 @@
+previewLayout: full-width
+
+examples:
+- name: default
+  data:
+    messageCount: 3
+    hasWelsh: true
