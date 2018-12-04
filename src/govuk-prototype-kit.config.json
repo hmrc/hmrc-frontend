@@ -3,6 +3,7 @@
     "/components/account-menu/images"
   ],
   "nunjucksPaths": [
+    "/layouts",
     "/components"
   ],
   "sass": [

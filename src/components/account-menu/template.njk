@@ -1,3 +1,5 @@
+{% from "notification-badge/macro.njk" import hmrcNotificationBadge %}
+
 <!-- ACCOUNT MENU -->
 <nav id="secondary-nav" class="hmrc-account-menu" aria-label="Account" data-module="hmrc-account-menu">
   <a href="#" class="hmrc-account-menu__link hmrc-account-menu__link--home hmrc-account-menu__link--active">
@@ -9,7 +11,10 @@
       <a href="#" class="hmrc-account-menu__link">Back</a>
     </li>
     <li>
-      <a href="#" class="hmrc-account-menu__link">Messages<span class="hmrc-notification-badge">2</span>
+      <a href="#" class="hmrc-account-menu__link">Messages
+      {% if params.messageCount -%}
+      {{ hmrcNotificationBadge({ badgeText: params.messageCount }) }}
+      {%- endif -%}
       </a>
     </li>
     <li>
