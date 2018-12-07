@@ -6,7 +6,9 @@
   float: right;
 
   .govuk-header__navigation-item {
+    display: inline-block;
     margin-right: 0;
+    border-bottom: 0;
   }
 
   .govuk-header__navigation-item + .govuk-header__navigation-item:before {
