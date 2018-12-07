@@ -34,14 +34,10 @@ const errorHandler = function (error) {
 const compileStyleshet = isDist ? configPaths.src + 'all.scss' : configPaths.app + 'assets/scss/app.scss'
 const compileOldIeStyleshet = isDist ? configPaths.src + 'all-ie8.scss' : configPaths.app + 'assets/scss/app-ie8.scss'
 
-const sassConfig = {
-  includePaths: ['node_modules']
-}
-
 gulp.task('scss:compile', () => {
   let compile = gulp.src(compileStyleshet)
     .pipe(plumber(errorHandler))
-    .pipe(sass(sassConfig))
+    .pipe(sass())
     // minify css add vendor prefixes and normalize to compiled css
     .pipe(gulpif(isDist, postcss([
       autoprefixer,
@@ -63,7 +59,7 @@ gulp.task('scss:compile', () => {
 
   let compileOldIe = gulp.src(compileOldIeStyleshet)
     .pipe(plumber(errorHandler))
-    .pipe(sass(sassConfig))
+    .pipe(sass())
     // minify css add vendor prefixes and normalize to compiled css
     .pipe(gulpif(isDist, postcss([
       autoprefixer,
