@@ -1,0 +1,4 @@
+leakDetectionExemptions:
+  - ruleId: 'ip_addresses'
+    filepaths:
+      - '/src/layouts/layout-account-header.htmls'
