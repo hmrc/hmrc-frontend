@@ -1,7 +1,12 @@
-import initAccountMenu from './components/hmrc-account-menu/account-menu'
+import AccountMenu from './components/hmrc-account-menu/account-menu'
 
-window.HMRC = window.HMRC || {}
+function initAll () {
+  if (document.querySelector('[data-module="hmrc-account-menu"]')) {
+    new AccountMenu('[data-module="hmrc-account-menu"]').init()
+  }
+}
 
-if (document.querySelector('[data-module="hmrc-account-menu"]')) {
-  initAccountMenu(window, window.HMRC)
+export {
+  initAll,
+  AccountMenu
 }
