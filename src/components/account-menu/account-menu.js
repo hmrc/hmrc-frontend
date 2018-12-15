@@ -180,8 +180,8 @@ function initAccountMenu (global, HMRC) {
 
       // TODO: modernise the following and polyfill it for IE8
       var $elementSiblings = element.parentNode.parentNode.children
-      for (let i = 0; i < $elementSiblings.length; i++) {
-        const sibling = $elementSiblings[i]
+      for (var i = 0; i < $elementSiblings.length; i++) {
+        var sibling = $elementSiblings[i]
         if (sibling !== $backLink.parentNode && sibling !== element.parentNode) {
           sibling.classList.add('hidden')
         }
@@ -211,8 +211,8 @@ function initAccountMenu (global, HMRC) {
 
       // TODO: modernise the following and polyfill it for IE8
       var $backLinkSiblings = $backLink.parentNode.parentNode.children
-      for (let i = 0; i < $backLinkSiblings.length; i++) {
-        const sibling = $backLinkSiblings[i]
+      for (var i = 0; i < $backLinkSiblings.length; i++) {
+        var sibling = $backLinkSiblings[i]
         if (sibling !== $backLink.parentNode) {
           sibling.classList.remove('hidden')
         }
