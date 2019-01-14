@@ -1,0 +1,13 @@
+.govuk-header__link--service-name {
+  float: left;
+}
+
+.hmrc-sign-out-nav {
+  float: right;
+
+  .hmrc-sign-out-link {
+    color: govuk-colour("white");
+    line-height: 1.8em;
+    text-decoration: none;
+  }
+}
