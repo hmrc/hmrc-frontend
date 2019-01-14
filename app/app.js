@@ -32,6 +32,7 @@ module.exports = (options) => {
 
   // make the function available as a filter for all templates
   env.addFilter('componentNameToMacroName', helperFunctions.componentNameToMacroName)
+  env.addFilter('componentNameToComponentDirectory', helperFunctions.componentNameToComponentDirectory)
 
   // Set view engine
   app.set('view engine', 'njk')
@@ -68,7 +69,7 @@ module.exports = (options) => {
     const components = fileHelper.allComponents
 
     res.render('index', {
-      componentsDirectory: components
+      componentsDirectory: components.map(x => x.match(/^(?:hmrc-)?(.*)$/)[1])
     })
   })
 
@@ -112,10 +113,11 @@ module.exports = (options) => {
     // Construct and evaluate the component with the data for this example
     let macroName = helperFunctions.componentNameToMacroName(componentName)
     let macroParameters = JSON.stringify(exampleConfig.data, null, '\t')
+    let componentDirectory = helperFunctions.componentNameToComponentDirectory(componentName)
 
     res.locals.componentView = env.renderString(
-      `{% from '${componentName}/macro.njk' import ${macroName} %}
-      {{ ${macroName}(${macroParameters}) }}`
+      `{% from '${componentDirectory}/macro.njk' import ${macroName} %}
+    {{ ${macroName}(${macroParameters}) }}`
     )
 
     let bodyClasses = ''
