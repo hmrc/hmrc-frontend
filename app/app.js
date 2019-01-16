@@ -79,7 +79,6 @@ module.exports = (options) => {
     })
   }())
 
-
   // Whenever the route includes a :component parameter, read the component data
   // from its YAML file
   app.param('component', function (req, res, next, componentName) {
