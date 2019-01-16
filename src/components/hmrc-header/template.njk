@@ -79,11 +79,7 @@
     </nav>
     {% endif %}
     {% if params.signOutHref %}
-      {% from 'hmrc-sign-out-link/macro.njk' import hmrcSignOutLink %}
-      {{ hmrcSignOutLink({
-        href: params.signOutHref,
-        language: params.language
-      }) }}
+      <nav class="hmrc-sign-out-nav"><a class="govuk-link hmrc-sign-out-link" href="{{ params.signOutHref }}">Sign out</a></nav>
     {% endif %}
     </div>
     {% endif %}

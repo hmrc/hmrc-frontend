@@ -30,10 +30,6 @@ module.exports = (options) => {
     ...nunjucksOptions // merge any additional options and overwrite defaults above.
   })
 
-  // make the function available as a filter for all templates
-  env.addFilter('componentNameToMacroName', helperFunctions.componentNameToMacroName)
-  env.addFilter('componentNameToComponentDirectory', helperFunctions.componentNameToComponentDirectory)
-
   // Set view engine
   app.set('view engine', 'njk')
 
@@ -65,13 +61,24 @@ module.exports = (options) => {
   // Define routes
 
   // Index page - render the component list template
-  app.get('/', async function (req, res) {
+  ;(function () {
     const components = fileHelper.allComponents
 
-    res.render('index', {
-      componentsDirectory: components.map(x => x.match(/^(?:hmrc-)?(.*)$/)[1])
+    const departmentPrefix = configPaths.departmentPrefix + '-'
+
+    if (components.some(x => !x.startsWith(departmentPrefix))) {
+      throw new Error('Error: There is a component directory which doesn\'t have your chosen prefix.')
+    }
+
+    const preparedComponents = components.map(x => x.substr(departmentPrefix.length))
+
+    app.get('/', function (req, res) {
+      res.render('index', {
+        componentsDirectory: preparedComponents
+      })
     })
-  })
+  }())
+
 
   // Whenever the route includes a :component parameter, read the component data
   // from its YAML file
