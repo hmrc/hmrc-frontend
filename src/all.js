@@ -1,4 +1,4 @@
-import initAccountMenu from './components/account-menu/account-menu'
+import initAccountMenu from './components/hmrc-account-menu/account-menu'
 
 window.HMRC = window.HMRC || {}
 
