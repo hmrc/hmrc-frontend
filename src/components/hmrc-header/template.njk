@@ -1,9 +1,11 @@
-<header class="govuk-header hmrc-header {{ params.classes if params.classes }} {{ "hmrc-header__with-sign-out-link" if params.signOutHref }}" role="banner" data-module="header"
-        {%- for attribute, value in params.attributes %} {{attribute}}="{{value}}"{% endfor %}>
-  <div class="govuk-header__container {{ params.containerClasses | default('govuk-width-container') }}">
+<header
+  class="govuk-header hmrc-header {{ params.classes if params.classes }} {{ 'hmrc-header--with-additional-navigation' if params.signOutHref or params.languageToggle }}"
+  role="banner" data-module="header"
+{%- for attribute, value in params.attributes %} {{ attribute }}="{{ value }}"{% endfor %}>
+<div class="govuk-header__container {{ params.containerClasses | default('govuk-width-container') }}">
 
-    <div class="govuk-header__logo">
-      <a href="{{ params.homepageUrl | default('/') }}" class="govuk-header__link govuk-header__link--homepage">
+  <div class="govuk-header__logo">
+    <a href="{{ params.homepageUrl | default('/') }}" class="govuk-header__link govuk-header__link--homepage">
         <span class="govuk-header__logotype">
           {# We use an inline SVG for the crown so that we can cascade the
           currentColor into the crown whilst continuing to support older browsers
@@ -40,48 +42,86 @@
 
             In other browsers <image> is synonymous for the <img> tag and will be
             interpreted as such, displaying the fallback image. #}
-            <image src="{{ params.assetsPath | default('/assets/images') }}/govuk-logotype-crown.png" class="govuk-header__logotype-crown-fallback-image"></image>
+            <image src="{{ params.assetsPath | default('/assets/images') }}/govuk-logotype-crown.png"
+                   class="govuk-header__logotype-crown-fallback-image"></image>
           </svg>
           <span class="govuk-header__logotype-text">
             GOV.UK
           </span>
         </span>
-        {% if (params.productName) %}
+      {% if (params.productName) %}
         <span class="govuk-header__product-name">
           {{ params.productName }}
         </span>
-        {% endif %}
-      </a>
-    </div>
-    {% if params.serviceName or params.navigation or params.signoutLink.url %}
+      {% endif %}
+    </a>
+  </div>
+  {% if params.serviceName or params.navigation or params.signOutHref or params.languageToggle %}
     <div class="govuk-header__content">
 
-    {% if params.serviceName %}
-    <a href="{{ params.serviceUrl }}" class="govuk-header__link govuk-header__link--service-name">
-      {{ params.serviceName }}
-    </a>
-    {% endif %}
+      {% if params.serviceName %}
+        <a href="{{ params.serviceUrl }}" class="govuk-header__link govuk-header__link--service-name">
+          {{ params.serviceName }}
+        </a>
+      {% endif %}
 
-    {% if params.navigation %}
-    <button type="button" role="button" class="govuk-header__menu-button js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
-    <nav>
-      <ul id="navigation" class="govuk-header__navigation {{ params.navigationClasses if params.navigationClasses }}" aria-label="Top Level Navigation">
-        {% for item in params.navigation %}
-          {% if item.href and item.text %}
-            <li class="govuk-header__navigation-item{{ ' govuk-header__navigation-item--active' if item.active }}">
-              <a class="govuk-header__link" href="{{ item.href }}"{% for attribute, value in item.attributes %} {{attribute}}="{{value}}"{% endfor %}>
-                {{ item.text }}
-              </a>
+      {% if params.navigation %}
+        <button type="button" role="button" class="govuk-header__menu-button js-header-toggle"
+                aria-controls="navigation"
+                aria-label="Show or hide Top Level Navigation">Menu
+        </button>
+        <nav>
+          <ul id="navigation"
+              class="govuk-header__navigation {{ params.navigationClasses if params.navigationClasses }}"
+              aria-label="Top Level Navigation">
+            {% for item in params.navigation %}
+              {% if item.href and item.text %}
+                <li class="govuk-header__navigation-item{{ ' govuk-header__navigation-item--active' if item.active }}">
+                  <a class="govuk-header__link"
+                     href="{{ item.href }}"{% for attribute, value in item.attributes %} {{ attribute }}="{{ value }}"{% endfor %}
+                  >
+                  {{ item.text }}
+                  </a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </nav>
+      {% endif %}
+
+      {% if params.signOutHref %}
+
+        <nav class="hmrc-sign-out-nav"><a class="govuk-link hmrc-sign-out-link" href="{{ params.signOutHref }}">Sign
+            out</a></nav>
+
+      {% elseif params.languageToggle %}
+
+        <nav class="hmrc-language-select" aria-label="Choose a language">
+          <ul class="govuk-list hmrc-language-select__items">
+            <li class="govuk-header__navigation-item">
+              <a
+                {% if params.languageToggle.currentLanguage == 'en' %}
+                  class="govuk-header__link" aria-current="page"
+                {% else %}
+                  class="govuk-header__navigation-item"
+                {% endif %}
+                lang="en" hreflang="en" href="?lang=en">English</a>
             </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    </nav>
-    {% endif %}
-    {% if params.signOutHref %}
-      <nav class="hmrc-sign-out-nav"><a class="govuk-link hmrc-sign-out-link" href="{{ params.signOutHref }}">Sign out</a></nav>
-    {% endif %}
+            <li class="govuk-header__navigation-item">
+              <a
+                {% if params.languageToggle.currentLanguage == 'cy' %}
+                  class="govuk-header__link" aria-current="page"
+                {% else %}
+                  class="govuk-header__navigation-item"
+                {% endif %}
+                lang="cy" hreflang="cy" href="?lang=cy">Cymraeg</a>
+            </li>
+          </ul>
+        </nav>
+
+      {% endif %}
+
     </div>
-    {% endif %}
-  </div>
+  {% endif %}
+</div>
 </header>
