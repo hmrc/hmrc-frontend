@@ -20,12 +20,11 @@ To use the Account header in a view you will need to extend 'hmrc-layout-account
 </main>
 {% endblock %}
 ```
-The page will then have a variation of the GOVUK page header which includes a language toggle, and the Account Menu 
+The page will then have a variation of the GOVUK page header which includes a language toggle, and the Account Menu.
 
 ### Decision Log
 
-* 2018-01-28
-Implemented via a Layout file. `hmrc-layout-account-menu`. This layout file extends the GOVUK default layout file and overrides the _header_ and _main_ blocks.
+* **2018-01-28** Implemented via a Layout file. `hmrc-layout-account-menu`. This layout file extends the GOVUK default layout file and overrides the _header_ and _main_ blocks.
 
   * The Header block is overridden to include the HMRC Header variation with a language selector on the right hand side.
     * We have been able to parameterise the `hmrc-header` component to allow a single macro to provide all the necessary variants.
