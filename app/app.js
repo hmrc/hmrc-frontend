@@ -13,7 +13,9 @@ const appViews = [
   configPaths.views,
   configPaths.components,
   configPaths.src,
-  configPaths.govukFrontend + '/components'
+  path.join(configPaths.src, 'layouts'),
+  configPaths.govukFrontend + '/components',
+  configPaths.govukFrontend
 ]
 
 module.exports = (options) => {
@@ -107,6 +109,7 @@ module.exports = (options) => {
     let requestedExampleName = req.params.example || 'default'
 
     let previewLayout = res.locals.componentData.previewLayout || 'layout'
+    let type = res.locals.componentData.type || 'component'
 
     let exampleConfig = res.locals.componentData.examples.find(
       example => example.name.replace(/ /g, '-') === requestedExampleName
@@ -131,7 +134,7 @@ module.exports = (options) => {
       bodyClasses = 'app-iframe-in-component-preview'
     }
 
-    res.render('component-preview', { bodyClasses, previewLayout })
+    res.render(type + '-preview', { bodyClasses, previewLayout })
   })
 
   app.get('/robots.txt', function (req, res) {

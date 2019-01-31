@@ -1,0 +1,9 @@
+params:
+previewLayout: 'hmrc-account-header/example'
+type: 'layout' 
+examples:
+- name: default
+  description: 
+  language: en
+  data:
+    {}
