@@ -5,7 +5,7 @@
 
 {% block header %}
 {% include "includes/cookie-banner.html" %}
-{# Set serviceName in config.js. #}
+{% set serviceName = "HMRC Frontend" %}
 {{ hmrcHeader({
   homepageUrl: "/",
   serviceName: serviceName,
@@ -19,8 +19,8 @@
 
 {% block main %}
   <div class="govuk-width-container">
-    {{ hmrcAccountMenu ({ messageCount: messageCount }) }}
     {% block beforeContent %}{% endblock %}
+    {{ hmrcAccountMenu ({ messageCount: messageCount }) }}
     <main class="govuk-main-wrapper {{ mainClasses }}" id="main-content" role="main">
       {% block content %}{% endblock %}
     </main>
