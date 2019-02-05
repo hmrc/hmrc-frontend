@@ -65,6 +65,8 @@ describe('/components/account-menu', () => {
       const yourAccountLink = await page.$('#account-menu__main-2')
       await yourAccountLink.click()
 
+      await page.waitFor(500)
+
       const classList = await page.evaluate(() => document.getElementById('subnav-your-account').className)
       const ariaHidden = await page.evaluate(() => document.getElementById('subnav-your-account').getAttribute('aria-hidden'))
       const ariaExpanded = await page.evaluate(() => document.getElementById('account-menu__main-2').getAttribute('aria-expanded'))
@@ -79,6 +81,7 @@ describe('/components/account-menu', () => {
 
       const yourAccountLink = await page.$('#account-menu__main-2')
       await yourAccountLink.click()
+      await page.waitFor(500)
       await yourAccountLink.click()
 
       const classList = await page.evaluate(() => document.getElementById('subnav-your-account').className)
