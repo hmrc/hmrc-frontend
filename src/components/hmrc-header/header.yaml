@@ -192,3 +192,22 @@ examples:
     language: cy
     serviceName: Example Service
 
+- name: with-language-toggle-english
+  data: 
+    language: en
+    languageToggle:
+      en:
+        href: "/components/header/with-language-toggle-english/preview"
+      cy: 
+        href: "/components/header/with-language-toggle-welsh/preview"
+
+- name: with-language-toggle-welsh
+  data: 
+    language: cy
+    languageToggle:
+      en:
+        href: "/components/header/with-language-toggle-english/preview"
+      cy: 
+        href: "/components/header/with-language-toggle-welsh/preview"
+
+

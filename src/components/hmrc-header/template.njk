@@ -100,21 +100,21 @@
           <ul class="govuk-list hmrc-language-select__items">
             <li class="govuk-header__navigation-item">
               <a
-                {% if params.languageToggle.currentLanguage == 'en' %}
-                  class="govuk-header__link" aria-current="page"
+                {% if params.language == 'en' %}
+                  aria-current="page"
                 {% else %}
-                  class="govuk-header__navigation-item"
+                  class="govuk-header__link"
                 {% endif %}
-                lang="en" hreflang="en" href="?lang=en">English</a>
+                lang="en" hreflang="en" href="{{ params.languageToggle.en.href }}">English</a>
             </li>
             <li class="govuk-header__navigation-item">
               <a
-                {% if params.languageToggle.currentLanguage == 'cy' %}
-                  class="govuk-header__link" aria-current="page"
+                {% if params.language == 'cy' %}
+                  aria-current="page"
                 {% else %}
-                  class="govuk-header__navigation-item"
+                  class="govuk-header__link"
                 {% endif %}
-                lang="cy" hreflang="cy" href="?lang=cy">Cymraeg</a>
+                lang="cy" hreflang="cy" href="{{ params.languageToggle.cy.href }}">Cymraeg</a>
             </li>
           </ul>
         </nav>
