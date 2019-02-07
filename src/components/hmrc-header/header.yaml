@@ -182,32 +182,32 @@ examples:
 
 - name: sign-out-link
   data:
-    signOutHref: /sign-out
     serviceName: Example Service
+    signOutHref: /sign-out
 
 - name: sign-out-link-in-welsh
   description: This puts the signout link into the header and sets the whole header to be welsh.  At the time of writing the language only affects the signout text.
   data:
-    signOutHref: /sign-out
+    serviceName: Gwasanaeth enghreifftiol
     language: cy
-    serviceName: Example Service
+    signOutHref: /sign-out
 
 - name: with-language-toggle-english
-  data: 
+  data:
+    serviceName: Example Service
     language: en
     languageToggle:
       en:
         href: "/components/header/with-language-toggle-english/preview"
-      cy: 
+      cy:
         href: "/components/header/with-language-toggle-welsh/preview"
 
 - name: with-language-toggle-welsh
-  data: 
+  data:
+    serviceName: Gwasanaeth enghreifftiol
     language: cy
     languageToggle:
       en:
         href: "/components/header/with-language-toggle-english/preview"
-      cy: 
+      cy:
         href: "/components/header/with-language-toggle-welsh/preview"
-
-
