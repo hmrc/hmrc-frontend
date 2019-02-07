@@ -115,6 +115,8 @@ module.exports = (options) => {
       example => example.name.replace(/ /g, '-') === requestedExampleName
     )
 
+    const globalData = (type === 'layout' && exampleConfig.data) || {}
+
     if (!exampleConfig) {
       next()
     }
@@ -134,7 +136,9 @@ module.exports = (options) => {
       bodyClasses = 'app-iframe-in-component-preview'
     }
 
-    res.render(type + '-preview', { bodyClasses, previewLayout })
+    Object.assign(globalData, { bodyClasses, previewLayout })
+
+    res.render(type + '-preview', globalData)
   })
 
   app.get('/robots.txt', function (req, res) {

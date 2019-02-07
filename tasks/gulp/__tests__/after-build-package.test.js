@@ -37,6 +37,7 @@ describe('package/', () => {
         '.DS_Store',
         '*.test.js',
         '*.yaml',
+        'example.njk',
         'README.njk',
         '*.snap'
       ]

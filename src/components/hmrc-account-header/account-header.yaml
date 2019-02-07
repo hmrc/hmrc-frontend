@@ -3,7 +3,25 @@ previewLayout: 'hmrc-account-header/example'
 type: 'layout' 
 examples:
 - name: default
-  description: 
-  language: en
+  description:
+- name: with-service-name
+  description:
   data:
-    {}
+    serviceName: 'My service'
+    hmrcAccountHeader:
+      languageToggle:
+        en:
+          href: '/components/account-header/with-service-name/preview'
+        cy:
+          href: '/components/account-header/welsh-with-service-name/preview'
+- name: welsh-with-service-name
+  description:
+  data:
+    serviceName: 'Gwasanaeth enghreifftiol'
+    hmrcAccountHeader:
+      language: cy
+      languageToggle:
+        en:
+          href: '/components/account-header/with-service-name/preview'
+        cy:
+          href: '/components/account-header/welsh-with-service-name/preview'
