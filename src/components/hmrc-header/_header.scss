@@ -14,10 +14,20 @@
   }
 
   .hmrc-language-select {
+    padding-right: govuk-spacing(3);
     float: right;
 
     .govuk-list {
       margin-bottom: 0;
+
+      a {
+        color: govuk-colour("white");
+
+        &:not(.govuk-header__link) {
+          color: govuk-colour("grey-1");
+          text-decoration: none;
+        }
+      }
     }
 
     .govuk-header__navigation-item {
@@ -29,7 +39,7 @@
     .govuk-header__navigation-item + .govuk-header__navigation-item:before {
       content: "|";
       padding-right: 2px;
-      color: govuk-colour("white");
+      color: govuk-colour("grey-1");
     }
   }
 }
