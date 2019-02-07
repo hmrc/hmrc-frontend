@@ -11,7 +11,7 @@ params:
   type: number
   required: false
   description: "The number of messages to display in the notifacation badge next to Messages. Defaults to not being displayed"
-- name: checkProgress
+- name: checkProgressHref
   type: string
   required: false
   description: "The url of the Check progress menu item. Defaults to #"
