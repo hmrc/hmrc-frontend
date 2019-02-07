@@ -44,7 +44,7 @@ examples:
   data:
     accountHomeHref: "#account-home"
     messagesHref: "#messages"
-    checkProgress: "#check-progress"
+    checkProgressHref: "#check-progress"
     paperlessSettingsHref: "#paperless-settings"
     personalDetailsHref: "#personal-details"
     signOutHref: "#sign-out"
