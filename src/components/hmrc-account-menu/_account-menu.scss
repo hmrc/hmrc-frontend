@@ -43,7 +43,7 @@ $hmrc-transition-type: "all";
   margin-bottom: 0;
   transition: #{$hmrc-transition-type} $hmrc-account-menu-transition-time ease-in-out;
   border-bottom: 1px solid govuk-colour("grey-2");
-  background-color: govuk-color("white");
+  background-color: govuk-colour("white");
 
   &.hmrc-subnav-is-open {
     margin-bottom: 5em;
@@ -101,10 +101,10 @@ $hmrc-transition-type: "all";
 
 .is-smaller .hmrc-account-menu__link {
   padding-left: 10px;
-  color: govuk-color("black");
+  color: govuk-colour("black");
 
   &:hover {
-    color: govuk-color("black");
+    color: govuk-colour("black");
   }
 }
 
@@ -129,7 +129,7 @@ $hmrc-transition-type: "all";
   &.hmrc-account-menu__link--active {
     &:hover {
       border-bottom-color: $govuk-brand-colour;
-      color: govuk-color("black");
+      color: govuk-colour("black");
     }
 
     &:focus {
@@ -148,7 +148,7 @@ $hmrc-transition-type: "all";
 .hmrc-account-menu__link--active,
 .hmrc-account-menu__link--active:visited {
   border-bottom: 4px solid $govuk-brand-colour;
-  color: govuk-color("black");
+  color: govuk-colour("black");
 }
 
 .hmrc-account-menu__main {
