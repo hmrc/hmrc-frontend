@@ -1,5 +1,5 @@
 leakDetectionExemptions:
  - ruleId: 'ip_addresses'
    filePaths:
-    - '/src/layouts/hmrc-layout-account-header.html'
+    - '/src/layouts/layout-hmrc-account-header.html'
     - '/src/components/hmrc-header/template.njk'
