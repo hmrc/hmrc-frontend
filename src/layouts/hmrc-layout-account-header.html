@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% from "hmrc-header/macro.njk" import hmrcHeader %}
+{% from "hmrc-account-menu/macro.njk" import hmrcAccountMenu %}
+
+{% block header %}
+  {% include "includes/cookie-banner.html" %}
+
+  {{ hmrcHeader({
+    homepageUrl: "/",
+    serviceName: serviceName,
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container",
+    language: hmrcAccountHeader.language,
+    languageToggle: {
+      en: {
+        href: hmrcAccountHeader.languageToggle.en.href
+      },
+      cy: {
+        href: hmrcAccountHeader.languageToggle.cy.href
+      }
+    }
+  }) }}
+{% endblock %}
+
+{% block main %}
+  <div class="govuk-width-container">
+    {% block beforeContent %}{% endblock %}
+    {{ hmrcAccountMenu (hmrcAccountHeader) }}
+    <main class="govuk-main-wrapper {{ mainClasses }}" id="main-content" role="main">
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+{% endblock %}

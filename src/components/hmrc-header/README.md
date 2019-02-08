@@ -13,3 +13,10 @@ Find out when to use the header component in your service in the [GOV.UK Design 
 Use options to customise the appearance, content and behaviour of a component when using a macro, for example, changing the text.
 
 See [options table](https://design-system.service.gov.uk/components/header/#options-example-default) for details.
+
+### Decision Log
+
+* **2019-01-28** In order to simplify the use and maintainence of HMRC header variants we have combiined the HMRC specific variants into a single Nunjucks Macro. This macro will display the variant with a sign out link when the parameter object contains a `signOutHref` value. If no `signOutHref` value is present but a `languageToggle` parameter is present then a laguage selector is present instead. The variation with a language selector is intended to be used alongside the HMRC Account Menu component.
+
+  * Other options considered
+    * We considered and discounted maintaining a different macro for the two major variations of the Header.

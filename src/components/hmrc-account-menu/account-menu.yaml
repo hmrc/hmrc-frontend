@@ -1,5 +1,50 @@
+params:
+- name: accountHomeHref
+  type: string
+  required: false
+  description: "The url of the Account home menu item. Defaults to #"
+- name: messagesHref
+  type: string
+  required: false
+  description: The url of the Messages menu item. Defaults to /
+- name: messageCount
+  type: number
+  required: false
+  description: "The number of messages to display in the notifacation badge next to Messages. Defaults to not being displayed"
+- name: checkProgressHref
+  type: string
+  required: false
+  description: "The url of the Check progress menu item. Defaults to #"
+- name: paperlessSettingsHref
+  type: string
+  required: false
+  description: "The url of the Manage your paperless settings submenu item. Defaults to #"
+- name: personalDetailsHref
+  type: string
+  required: false
+  description: "The url of the Manage your personal details submenu item. Defaults to #"
+- name: signOutHref
+  type: string
+  required: false
+  description: "The url of the Sign out menu item. Defaults to #"
+
 examples:
 - name: default
-  href: '/'
+  description: The standard account menu as used on Personal Tax Account pages
+  data:
+    {}
+
+- name: with-unread-messages
+  description: If you need to show the user they have unread messages
   data:
     messageCount: 2
+
+- name: with-navigaiton-urls
+  description: If you need to provide a custom urls for the menu items
+  data:
+    accountHomeHref: "#account-home"
+    messagesHref: "#messages"
+    checkProgressHref: "#check-progress"
+    paperlessSettingsHref: "#paperless-settings"
+    personalDetailsHref: "#personal-details"
+    signOutHref: "#sign-out"
