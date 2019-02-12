@@ -153,12 +153,11 @@ $hmrc-transition-type: "all";
 
 .hmrc-account-menu__main {
   z-index: 995;
-  margin: initial;
+  margin: 0;
   float: right;
 
   li {
     display: inline-block;
-    margin: initial;
     margin-bottom: 0;
   }
 }
