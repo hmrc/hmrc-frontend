@@ -153,12 +153,11 @@ $hmrc-transition-type: "all";
 
 .hmrc-account-menu__main {
   z-index: 995;
-  margin: initial;
+  margin: 0;
   float: right;
 
   li {
     display: inline-block;
-    margin: initial;
     margin-bottom: 0;
   }
 }
@@ -386,7 +385,7 @@ hmrc-subnav__section__heading {
   }
 }
 
-.js-enabled .hmrc-hmrc-account-menu__link--more {
+.js-enabled .hmrc-account-menu__link--more {
   position: relative;
   padding-right: 31px;
   border-bottom: 0;
