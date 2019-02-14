@@ -1,9 +1,41 @@
+{% set hmrcAccountHeader = {
+  language: "en",
+  languageToggle: {
+    en: {
+      href: "#lang=en"
+    },
+    cy: {
+      href: "#lang=cy"
+    }
+  },
+  accountHome:{
+    href: "#account-home",
+    active: true
+  },
+  messages: {
+    href: "#messages",
+    messageCount: 10
+  },
+  checkProgress: {
+    href: "#check-progress"
+  },
+  paperlessSettings: {
+    href: "#paperless-settings"
+  },
+  personalDetails: {
+    href: "#personal-details"
+  },
+  signOut: {
+    href: "#sign-out"
+  }
+} %}
+
 {% extends 'layout-hmrc-account-header.html' %}
 
 {% block content %}
-    <div style="min-height: 500px">
+  <div style="min-height: 500px">
     <h1 class="govuk-heading-xl">HMRC Account Menu</h1>
-    </div>
+  </div>
 {% endblock %}
 
 {% block bodyEnd %}

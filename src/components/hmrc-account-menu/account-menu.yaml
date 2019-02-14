@@ -1,50 +1,100 @@
 params:
-- name: accountHomeHref
+- name: accountHome
+  type: object
+  required: false
+  description: The Account home menu item.
+  params:
+  - name: href
+    type: string
+    required: false
+    description: "The url of the Account home item. Defaults to #."
+  - name: active
+    type: boolean
+    required: false
+    description: Flag to mark the Account home item as active or not.
+- name: messages
+  type: object
+  required: false
+  description: The Messages menu item.
+  params:
+  - name: href
+    type: string
+    required: false
+    description: "The url of the Messages item. Defaults to #."
+  - name: active
+    type: string
+    required: false
+    description: Flag to mark the Messages item as active or not.
+  - name: messageCount
+    type: number
+    required: false
+    description: The number of messages to display in the notifacation badge next to Messages. Defaults to not being displayed.
+- name: checkProgress
+  type: object
+  required: false
+  description: The Check progress menu item.
+  params:
+  - name: href
+    type: string
+    required: false
+    description: "The url of the Check progress item. Defaults to #."
+  - name: active
+    type: string
+    required: false
+    description: Flag to mark the Check progress item as active or not.
+- name: paperlessSettings
+  type: object
+  required: false
+  description: The Manage your paperless settings submenu item.
+  params:
+  - name: href
+    type: string
+    required: false
+    description: "The url of the Manage your paperless settings submenu item. Defaults to #."
+- name: personalDetails
   type: string
   required: false
-  description: "The url of the Account home menu item. Defaults to #"
-- name: messagesHref
+  description: The Manage your personal details submenu item.
+  params:
+  - name: href
+    type: string
+    required: false
+    description: "The url of the Manage your personal details submenu item. Defaults to #."
+- name: signOut
   type: string
   required: false
-  description: The url of the Messages menu item. Defaults to /
-- name: messageCount
-  type: number
-  required: false
-  description: "The number of messages to display in the notifacation badge next to Messages. Defaults to not being displayed"
-- name: checkProgressHref
-  type: string
-  required: false
-  description: "The url of the Check progress menu item. Defaults to #"
-- name: paperlessSettingsHref
-  type: string
-  required: false
-  description: "The url of the Manage your paperless settings submenu item. Defaults to #"
-- name: personalDetailsHref
-  type: string
-  required: false
-  description: "The url of the Manage your personal details submenu item. Defaults to #"
-- name: signOutHref
-  type: string
-  required: false
-  description: "The url of the Sign out menu item. Defaults to #"
+  description: The Sign out menu item.
+  params:
+  - name: href
+    type: string
+    required: false
+    description: "The url of the Sign out menu item. Defaults to #."
 
 examples:
 - name: default
-  description: The standard account menu as used on Personal Tax Account pages
+  description: The standard account menu as used on Personal Tax Account pages.
   data:
     {}
 
 - name: with-unread-messages
-  description: If you need to show the user they have unread messages
+  description: If you need to show the user they have unread messages.
   data:
-    messageCount: 2
+    messages:
+      messageCount: 2
 
 - name: with-navigaiton-urls
-  description: If you need to provide a custom urls for the menu items
+  description: If you need to provide a custom urls for the menu items.
   data:
-    accountHomeHref: "#account-home"
-    messagesHref: "#messages"
-    checkProgressHref: "#check-progress"
-    paperlessSettingsHref: "#paperless-settings"
-    personalDetailsHref: "#personal-details"
-    signOutHref: "#sign-out"
+    accountHome:
+      href: "#account-home"
+      active: true
+    messages:
+      href: "#messages"
+    checkProgress:
+      href: "#check-progress"
+    paperlessSettings:
+      href: "#paperless-settings"
+    personalDetails:
+      href: "#personal-details"
+    signOut:
+      href: "#sign-out"
