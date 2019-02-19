@@ -25,20 +25,40 @@ examples:
           href: '/components/account-header/with-service-name/preview'
         cy:
           href: '/components/account-header/welsh-with-service-name/preview'
+- name: global-service-name
+  data:
+    serviceName: 'My Service'
+- name: overridden-global-service-name
+  data:
+    serviceName: 'My Global Service Name (unused)'
+    hmrcAccountHeader:
+      serviceName: 'My Actual Service Name'
+      abc: 'def'
 - name: all-available-options
   data:
     hmrcAccountHeader:
-      accountHomeHref: '#accountHomeHref'
-      messagesHref: '#messagesHref'
-      messageCount: '30'
-      checkProgressHref: '#checkProgress'
-      paperlessSettingsHref: '#paperlessSettingsHref'
-      personalDetailsHref: '#personalDetailsHref'
-      signOutHref: '#signOutHref'
+      serviceName: 'My Service'
+      accountHome:
+        href: '/account/home'
+      messages:
+        href: '/messages/href'
+        messageCount: '30'
+      checkProgress:
+        href: '/checkProgress'
+      paperlessSettings:
+        href: '/paperless/settings'
+      personalDetails:
+        href: '/personalDetails'
+      signOut:
+        href: '?signOut=true'
       language: 'en'
       languageToggle:
         en:
           href: '/components/account-header/with-service-name/preview'
         cy:
           href: '/components/account-header/welsh-with-service-name/preview'
-    serviceName: 'My service'
+      serviceName: 'My service'
+      homepageUrl: '/the-homepage'
+      serviceUrl: '/the-service'
+      containerClasses: 'the-header-container-classes govuk-width-container'
+      classes: 'the-header-classes'
