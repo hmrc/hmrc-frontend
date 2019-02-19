@@ -1,10 +1,8 @@
 {% from "hmrc-notification-badge/macro.njk" import hmrcNotificationBadge %}
 
-{% set defaultAccountHomeAsActive = not params.messages.active and not params.checkProgress.active %}
-
 <!-- ACCOUNT MENU -->
 <nav id="secondary-nav" class="hmrc-account-menu" aria-label="Account" data-module="hmrc-account-menu">
-  <a href="{{ params.accountHome.href | default('#') }}" class="hmrc-account-menu__link hmrc-account-menu__link--home{% if params.accountHome.active or defaultAccountHomeAsActive %} hmrc-account-menu__link--active{% endif %}">
+  <a href="{{ params.accountHome.href | default('#') }}" class="hmrc-account-menu__link hmrc-account-menu__link--home{% if params.accountHome.active %} hmrc-account-menu__link--active{% endif %}">
     <span class="hmrc-account-icon hmrc-account-icon--home">Account home</span>
   </a>
 
