@@ -7,11 +7,14 @@
   {% include "includes/cookie-banner.html" %}
 
   {{ hmrcHeader({
-    homepageUrl: "/",
-    serviceName: serviceName,
-    serviceUrl: "/",
-    containerClasses: "govuk-width-container",
+    homepageUrl: hmrcAccountHeader.homepageUrl,
+    serviceName: hmrcAccountHeader.serviceName or serviceName,
+    serviceUrl: hmrcAccountHeader.serviceUrl,
+    containerClasses: hmrcAccountHeader.headerContainerClasses or "govuk-width-container",
     language: hmrcAccountHeader.language,
+    attributes: hmrcAccountHeader.attributes,
+    classes: hmrcAccountHeader.classes,
+    containerClasses: hmrcAccountHeader.containerClasses,
     languageToggle: {
       en: {
         href: hmrcAccountHeader.languageToggle.en.href

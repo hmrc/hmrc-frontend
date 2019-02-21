@@ -2,7 +2,7 @@
 
 <!-- ACCOUNT MENU -->
 <nav id="secondary-nav" class="hmrc-account-menu" aria-label="Account" data-module="hmrc-account-menu">
-  <a href="{{ params.accountHomeHref | default('#') }}" class="hmrc-account-menu__link hmrc-account-menu__link--home hmrc-account-menu__link--active">
+  <a href="{{ params.accountHome.href | default('#') }}" class="hmrc-account-menu__link hmrc-account-menu__link--home{% if params.accountHome.active %} hmrc-account-menu__link--active{% endif %}">
     <span class="hmrc-account-icon hmrc-account-icon--home">Account home</span>
   </a>
 
@@ -18,16 +18,16 @@
     </li>
 
     <li>
-      <a href="{{ params.messagesHref | default('#') }}" class="hmrc-account-menu__link">
+      <a href="{{ params.messages.href | default('#') }}" class="hmrc-account-menu__link{% if params.messages.active %} hmrc-account-menu__link--active{% endif %}">
         Messages
-        {% if params.messageCount -%}
-        {{ hmrcNotificationBadge({ text: params.messageCount }) }}
+        {% if params.messages.messageCount -%}
+        {{ hmrcNotificationBadge({ text: params.messages.messageCount }) }}
         {%- endif -%}
       </a>
     </li>
 
     <li>
-      <a href="{{ params.checkProgressHref | default('#') }}" class="hmrc-account-menu__link">
+      <a href="{{ params.checkProgress.href | default('#') }}" class="hmrc-account-menu__link{% if params.checkProgress.active %} hmrc-account-menu__link--active{% endif %}">
         Check progress
       </a>
     </li>
@@ -42,7 +42,7 @@
           <p class="hmrc-subnav__section__heading">Paperless settings</p>
 
           <div>
-            <a href="{{ params.paperlessSettingsHref | default('#') }}">Manage your paperless settings</a>
+            <a href="{{ params.paperlessSettings.href | default('#') }}">Manage your paperless settings</a>
           </div>
         </div>
 
@@ -50,14 +50,14 @@
           <p class="hmrc-subnav__section__heading">Personal details</p>
 
           <div>
-            <a href="{{ params.personalDetailsHref | default('#') }}">Manage your personal details</a>
+            <a href="{{ params.personalDetails.href | default('#') }}">Manage your personal details</a>
           </div>
         </div>
       </div>
     </li>
 
     <li>
-      <a href="{{ params.signOutHref | default('#') }}" class="hmrc-account-menu__link">Sign out</a>
+      <a href="{{ params.signOut.href | default('#') }}" class="hmrc-account-menu__link">Sign out</a>
     </li>
   </ul>
 </nav>

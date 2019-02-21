@@ -47,12 +47,12 @@ describe('Account Menu', () => {
       const $detailsLink = $nav.find('a:contains("personal details")')
       const $signOutLink = $nav.find('a:contains("Sign out")')
 
-      expect($accountHomeLink.attr('href')).toEqual(example.accountHomeHref)
-      expect($messagesLink.attr('href')).toEqual(example.messagesHref)
-      expect($progressLink.attr('href')).toEqual(example.checkProgressHref)
-      expect($paperlessLink.attr('href')).toEqual(example.paperlessSettingsHref)
-      expect($detailsLink.attr('href')).toEqual(example.personalDetailsHref)
-      expect($signOutLink.attr('href')).toEqual(example.signOutHref)
+      expect($accountHomeLink.attr('href')).toEqual(example.accountHome.href)
+      expect($messagesLink.attr('href')).toEqual(example.messages.href)
+      expect($progressLink.attr('href')).toEqual(example.checkProgress.href)
+      expect($paperlessLink.attr('href')).toEqual(example.paperlessSettings.href)
+      expect($detailsLink.attr('href')).toEqual(example.personalDetails.href)
+      expect($signOutLink.attr('href')).toEqual(example.signOut.href)
     })
 
     it('renders a notification badge with a message count', () => {
@@ -62,7 +62,7 @@ describe('Account Menu', () => {
       const $messageCount = $('.hmrc-notification-badge')
 
       expect($messageCount).not.toBeNull()
-      expect($messageCount.text()).toEqual(example.messageCount.toString())
+      expect($messageCount.text()).toEqual(example.messages.messageCount.toString())
     })
   })
 })
