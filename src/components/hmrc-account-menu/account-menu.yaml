@@ -82,7 +82,7 @@ examples:
     messages:
       messageCount: 2
 
-- name: with-navigaiton-urls
+- name: with-navigation-urls
   description: If you need to provide a custom urls for the menu items.
   data:
     accountHome:
