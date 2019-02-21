@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/hmrc/hmrc-frontend#readme",
   "dependencies": {
-    "govuk-frontend": "^1.2.0"
+    "govuk-frontend": "^2.7.0"
   },
   "devDependencies": {
     "autoprefixer": "^9.1.0",
