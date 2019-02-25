@@ -2,7 +2,7 @@ examples:
 - name: default
   data:
     text: "What is your name?"
-- name: withSection
+- name: with-section
   data:
     text: "What is your name?"
     section: "Personal details"

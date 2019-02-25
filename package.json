@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/hmrc/hmrc-frontend#readme",
   "dependencies": {
-    "govuk-frontend": "^1.2.0"
+    "govuk-frontend": "^2.7.0"
   },
   "devDependencies": {
     "autoprefixer": "^9.1.0",
@@ -41,6 +41,7 @@
     "gulp-sass": "^4.0.1",
     "gulp-sass-lint": "^1.4.0",
     "gulp-uglify": "^3.0.1",
+    "html5shiv": "^3.7.3",
     "jest": "^23.6.0",
     "jest-axe": "^3.1.0",
     "jest-serializer-html": "^5.0.0",

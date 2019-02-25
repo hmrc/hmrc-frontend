@@ -1,6 +1,6 @@
 params:
 previewLayout: 'hmrc-account-header/example'
-type: 'layout' 
+type: 'layout'
 examples:
 - name: default
   description:
@@ -40,6 +40,7 @@ examples:
       serviceName: 'My Service'
       accountHome:
         href: '/account/home'
+        active: true
       messages:
         href: '/messages/href'
         messageCount: '30'
