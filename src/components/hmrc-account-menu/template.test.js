@@ -36,7 +36,7 @@ describe('Account Menu', () => {
     })
 
     it('renders custom hrefs', () => {
-      const example = examples['with-navigaiton-urls']
+      const example = examples['with-navigation-urls']
       const $ = render('account-menu', example)
 
       const $nav = $('[data-module="hmrc-account-menu"]')
