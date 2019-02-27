@@ -1,0 +1,13 @@
+params:
+examples:
+- name: default
+  description:
+  data:
+    lang: 'en'
+    cy:
+      href: '/components/language-select/welsh/preview'
+- name: welsh
+  data:
+    lang: 'cy'
+    en:
+      href: '/components/language-select/preview'

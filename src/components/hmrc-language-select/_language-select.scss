@@ -1,0 +1,31 @@
+.hrmc-lang-select {
+  overflow: auto;
+}
+
+.hrmc-lang-select__content {
+  width: auto;
+  margin: 1rem 0;
+  float: right;
+  list-style: none;
+  font-family: "nta", Arial, sans-serif;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.14286;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: 40.0625em) {
+  .hrmc-lang-select__content {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+}
+
+@media print {
+  .hrmc-lang-select__content {
+    font-family: sans-serif;
+    font-size: 14pt;
+    line-height: 1.2;
+  }
+}
