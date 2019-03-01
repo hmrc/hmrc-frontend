@@ -1,4 +1,18 @@
-@import "node_modules/govuk-frontend/all";
+
+$govuk-is-ie8: false !default;
+@import "node_modules/govuk-frontend/settings/media-queries";
+@import "node_modules/govuk-frontend/settings/colours-applied";
+@import "node_modules/govuk-frontend/settings/typography-font-families";
+@import "node_modules/govuk-frontend/settings/typography-font";
+@import "node_modules/govuk-frontend/settings/typography-responsive";
+@import "node_modules/govuk-frontend/settings/assets";
+@import "node_modules/govuk-frontend/tools/font-url";
+@import "node_modules/govuk-frontend/tools/ie8";
+@import "node_modules/govuk-frontend/helpers/clearfix";
+@import "node_modules/govuk-frontend/helpers/typography";
+@import "node_modules/govuk-frontend/helpers/font-faces";
+@import "node_modules/govuk-frontend/helpers/media-queries";
+@import "node_modules/govuk-frontend/vendor/sass-mq";
 
 // previously provided by govuk-template, no equivalent in govuk-frontend
 .hidden {
@@ -244,8 +258,6 @@ $hmrc-transition-type: "all";
 }
 
 .hmrc-subnav {
-  @include govuk-font(16);
-  @include govuk-clearfix;
   display: none;
   position: absolute;
   z-index: -1;
@@ -257,9 +269,6 @@ $hmrc-transition-type: "all";
   outline: none;
   background-color: govuk-colour("grey-4");
 
-  p {
-    @include govuk-font(16);
-  }
 
   a {
     text-decoration: none;
@@ -349,7 +358,6 @@ $hmrc-transition-type: "all";
 }
 
 hmrc-subnav__section__heading {
-  @include govuk-font(16, $weight: bold);
   margin: 0;
   padding-bottom: 5px;
   font-weight: 400;
