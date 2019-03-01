@@ -1,0 +1,39 @@
+.hmrc-internal-header {
+  padding: govuk-spacing(4) govuk-spacing(3);
+  border-bottom: 10px solid govuk-organisation-colour("hm-revenue-customs");
+  @include govuk-media-query(desktop) {
+    display: table;
+    width: 100%;
+    min-height: 35px;
+  }
+
+  .hmrc-logo {
+    min-width: 275px;
+    margin-bottom: govuk-spacing(2);
+    @include govuk-media-query(desktop) {
+      display: table-cell;
+      width: 33.33%;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.hmrc-internal-service-name {
+  @include govuk-media-query(desktop) {
+    display: table-cell;
+  }
+}
+
+.hmrc-internal-service-name__link {
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+
+  &:link,
+  &:visited {
+    color: govuk-colour("black");
+  }
+  @include govuk-media-query(desktop) {
+    font-size: 24px;
+  }
+}
