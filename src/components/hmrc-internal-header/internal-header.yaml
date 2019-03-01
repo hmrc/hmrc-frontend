@@ -42,4 +42,4 @@ examples:
   description: If your service is more than a few pages long, you can help users understand where they are by adding the service name.
   data:
     serviceName: Service Name
-    serviceUrl: 'components/internal-header/with-service-name/preview'
+    serviceUrl: '/components/internal-header/with-service-name/preview'

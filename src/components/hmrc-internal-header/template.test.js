@@ -15,8 +15,9 @@ describe('Internal Header', () => {
   describe('With a Service Name', () => {
     it('renders a service name', () => {
       const $ = render('internal-header', examples['with-service-name'])
-      const serviceName = $('.hmrc-internal-service-name a').text().trim()
-      expect(serviceName).toBe('Service Name')
+      const $serviceNameLink = $('.hmrc-internal-service-name a')
+      expect($serviceNameLink.text().trim()).toBe('Service Name')
+      expect($serviceNameLink.attr('href')).toBe('/components/internal-header/with-service-name/preview')
     })
   })
 })
