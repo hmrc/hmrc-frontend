@@ -1,0 +1,17 @@
+<div class="hrmc-lang-select">
+  <p class="hrmc-lang-select__content">
+    {% if params.language === 'en' %}
+      English
+    {% else %}
+      <a class="govuk-link" id="switchToEnglish" lang="en" href="{{ params.en.href }}"
+         data-journey-click="link - click:lang-select:English">English</a>
+    {% endif %}
+    <span aria-hidden="true">|</span>
+    {% if params.language === 'cy' %}
+      Cymraeg
+    {% else %}
+      <a class="govuk-link" id="switchToWelsh" lang="cy" href="{{ params.cy.href }}"
+         data-journey-click="link - click:lang-select:Cymraeg">Cymraeg</a>
+    {% endif %}
+  </p>
+</div>

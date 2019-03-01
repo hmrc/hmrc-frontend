@@ -69,6 +69,29 @@ params:
     type: string
     required: false
     description: "The url of the Sign out menu item. Defaults to #."
+- name: languageToggle
+  type: object
+  required: false
+  description: The options for the user to switch languages
+  params:
+  - name: en
+    type: object
+    required: false
+    description: A container for the English link URL
+    params:
+    - name: href
+      type: string
+      required: false
+      description: The URL the user would use to switch to English
+  - name: cy
+    type: object
+    required: false
+    description: A container for the English link URL
+    params:
+    - name: href
+      type: string
+      required: false
+      description: The URL the user would use to switch to English
 
 examples:
 - name: default
