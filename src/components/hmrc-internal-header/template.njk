@@ -1,0 +1,15 @@
+<header role="banner" class="hmrc-internal-header">
+    <div class="hmrc-internal-header__logo">
+        <a href="{{ params.homepageUrl | default('/') }}" class="hmrc-internal-header__logo-link">
+            HM Revenue &amp; Customs
+        </a>
+    </div>
+
+    {%- if params.serviceName -%}
+    <div class="hmrc-internal-header__service-name">
+        <a href="{{ params.serviceUrl }}" class="hmrc-internal-header__link">
+         {{ params.serviceName }}
+        </a>
+    </div>
+    {%- endif -%}
+</header>

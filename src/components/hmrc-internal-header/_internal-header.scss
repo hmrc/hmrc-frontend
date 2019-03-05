@@ -1,0 +1,61 @@
+.hmrc-internal-header {
+  padding: govuk-spacing(4) govuk-spacing(3);
+  border-bottom: 10px solid govuk-organisation-colour("hm-revenue-customs");
+  @include govuk-media-query(desktop) {
+    display: table;
+    width: 100%;
+    min-height: 35px;
+  }
+}
+
+.hmrc-internal-header__logo {
+  min-width: 275px;
+  margin-bottom: govuk-spacing(2);
+  border-left: 2px solid govuk-organisation-colour("hm-revenue-customs");
+  @include govuk-media-query(desktop) {
+    display: table-cell;
+    width: 33.33%;
+    margin-bottom: 0;
+  }
+}
+
+.hmrc-internal-header__logo-link {
+  display: table;
+
+  &::before {
+    content: "";
+    display: table-cell;
+    width: 52px;
+    height: 32px;
+    background: url("#{$hmrc-assets-path}/components/hmrc-internal-header/images/hmrc-crown-logo_black.svg") no-repeat;
+    background-size: 100% 100%;
+  }
+
+  &:link,
+  &:visited {
+    color: govuk-colour("black");
+    font-size: 20px;
+    line-height: 32px;
+    text-decoration: none;
+  }
+}
+
+.hmrc-internal-header__service-name {
+  @include govuk-media-query(desktop) {
+    display: table-cell;
+  }
+}
+
+.hmrc-internal-header__link {
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+
+  &:link,
+  &:visited {
+    color: govuk-colour("black");
+  }
+  @include govuk-media-query(desktop) {
+    font-size: 24px;
+  }
+}

@@ -1,0 +1,45 @@
+previewLayout: full-width
+params:
+- name: homepageUrl
+  type: string
+  required: false
+  description: The url of the homepage. Defaults to /
+- name: serviceName
+  type: string
+  required: false
+  description: Header title that is placed next to GOV.UK. Used for product names (i.e. Pay, Verify)
+- name: serviceUrl
+  type: string
+  required: false
+  description: Url for the service name anchor.
+
+accessibilityCriteria:
+  Text and links in the Header must:
+  - have a text contrast ratio higher than 4.5:1 against the background colour to meet [WCAG AA](https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast)
+
+  Links in the Header must:
+  - accept focus
+  - be focusable with a keyboard
+  - be usable with a keyboard
+  - indicate when they have focus
+  - change in appearance when touched (in the touch-down state)
+  - change in appearance when hovered
+  - have visible text
+
+  Images in the Header must:
+  - be presentational when linked to from accompanying text (crown icon).
+
+  Landmarks and Roles in the Header should:
+  - have a role of `banner` at the root of the component (<header>) (https://www.w3.org/TR/wai-aria-1.1/#banner)
+
+examples:
+- name: default
+  description: The standard header
+  data:
+    {}
+
+- name: with-service-name
+  description: If your service is more than a few pages long, you can help users understand where they are by adding the service name.
+  data:
+    serviceName: Service Name
+    serviceUrl: '/components/internal-header/with-service-name/preview'
