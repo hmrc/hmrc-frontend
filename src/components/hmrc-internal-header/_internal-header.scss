@@ -28,7 +28,8 @@
     width: 52px;
     height: 32px;
     background: url("#{$hmrc-assets-path}/components/hmrc-internal-header/images/hmrc-crown-logo_black.svg") no-repeat;
-    background-size: 100% 100%;
+    background-size: 32px 32px;
+    background-position-x: 10px;
   }
 
   &:link,
