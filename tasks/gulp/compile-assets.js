@@ -8,6 +8,8 @@ const postcss = require('gulp-postcss')
 const autoprefixer = require('autoprefixer')
 const merge = require('merge-stream')
 const rollup = require('gulp-better-rollup')
+const resolve = require('rollup-plugin-node-resolve')
+const commonjs = require('rollup-plugin-commonjs')
 const taskArguments = require('./task-arguments')
 const gulpif = require('gulp-if')
 const uglify = require('gulp-uglify')
@@ -104,6 +106,11 @@ gulp.task('js:compile', () => {
     srcFiles
   ])
     .pipe(rollup({
+      plugins: [
+        resolve(),
+        commonjs()
+      ]
+    }, {
       // Used to set the `window` global and UMD/AMD export name.
       name: 'HMRCFrontend',
       // Legacy mode is required for IE8 support
