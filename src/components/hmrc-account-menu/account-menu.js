@@ -1,3 +1,4 @@
+import '../../vendor/polyfills/Element/prototype/dataset'
 import { debounce } from '../../utils/debounce'
 
 function AccountMenu ($module) {
@@ -44,7 +45,7 @@ AccountMenu.prototype.eventHandlers = {
   },
   showSubnavLinkFocusOut: function (event) {
     if (!isSmall(window)) {
-      this.$module.querySelector(event.target.hash).dataset.subMenuTimer = setTimeout(0)
+      this.$module.querySelector(event.target.hash).dataset.subMenuTimer = setTimeout(function () {}, 0)
     }
   },
   showSubnavLinkFocusIn: function (event) {
