@@ -1,17 +1,8 @@
 
 $govuk-is-ie8: false !default;
-@import "node_modules/govuk-frontend/settings/media-queries";
-@import "node_modules/govuk-frontend/settings/colours-applied";
-@import "node_modules/govuk-frontend/settings/typography-font-families";
-@import "node_modules/govuk-frontend/settings/typography-font";
-@import "node_modules/govuk-frontend/settings/typography-responsive";
-@import "node_modules/govuk-frontend/settings/assets";
-@import "node_modules/govuk-frontend/tools/font-url";
-@import "node_modules/govuk-frontend/tools/ie8";
-@import "node_modules/govuk-frontend/helpers/clearfix";
-@import "node_modules/govuk-frontend/helpers/typography";
-@import "node_modules/govuk-frontend/helpers/font-faces";
-@import "node_modules/govuk-frontend/helpers/media-queries";
+@import "node_modules/govuk-frontend/settings/all";
+@import "node_modules/govuk-frontend/tools/all";
+@import "node_modules/govuk-frontend/helpers/all";
 @import "node_modules/govuk-frontend/vendor/sass-mq";
 
 // previously provided by govuk-template, no equivalent in govuk-frontend
