@@ -70,7 +70,7 @@ gulp.task('copy-assets', cb => {
 // Runs a sequence of task on start
 // --------------------------------------
 gulp.task('dev', cb => {
-  runsequence('clean', 'copy-assets', 'sassdoc', 'serve', cb)
+  runsequence('clean', 'copy-assets', 'copy-dist-files', 'sassdoc', 'serve', cb)
 })
 
 // Serve task ---------------------------
