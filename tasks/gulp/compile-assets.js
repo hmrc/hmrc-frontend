@@ -41,8 +41,10 @@ const compileOldIeStylesheet = isDist ? configPaths.src + 'all-ie8.scss' : confi
 gulp.task('scss:compile', () => {
   let compile = gulp.src(compileStylesheet)
     .pipe(plumber(errorHandler))
-    .pipe(sass())
     .pipe(gulpif(!isPackage, sourcemaps.init()))
+    .pipe(sass({
+      includePaths: ['node_modules']
+    }))
     // minify css add vendor prefixes and normalize to compiled css
     .pipe(gulpif(isDist, postcss([
       autoprefixer,
@@ -67,8 +69,10 @@ gulp.task('scss:compile', () => {
 
   let compileOldIe = gulp.src(compileOldIeStylesheet)
     .pipe(plumber(errorHandler))
-    .pipe(sass())
     .pipe(gulpif(!isPackage, sourcemaps.init()))
+    .pipe(sass({
+      includePaths: ['node_modules']
+    }))
     // minify css add vendor prefixes and normalize to compiled css
     .pipe(gulpif(isDist, postcss([
       autoprefixer,
