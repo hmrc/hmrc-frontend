@@ -11,6 +11,7 @@
     "/_prototype-kit.scss"
   ],
   "scripts": [
-    "/all.js"
+    "/all.js",
+    "/init-all.js"
   ]
 }
