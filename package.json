@@ -40,6 +40,7 @@
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.1",
     "gulp-sass-lint": "^1.4.0",
+    "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.1",
     "html5shiv": "^3.7.3",
     "jest": "^23.6.0",
