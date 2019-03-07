@@ -9,6 +9,8 @@ $govuk-global-styles: true;
 /// @type String
 /// @access public
 
-$hmrc-assets-path: "/assets/" !default;
+$hmrc-assets-path: "./" !default;
+$govuk-assets-path: $hmrc-assets-path !default;
+$govuk-is-ie8: false !default;
 
 @import "components/all";

@@ -102,6 +102,7 @@ gulp.task('build:dist', cb => {
   runsequence(
     'clean',
     'copy-assets',
+    'copy-dist-files',
     'copy:assets',
     'update-assets-version',
     cb

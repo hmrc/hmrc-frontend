@@ -1,4 +1,7 @@
-@import "node_modules/govuk-frontend/all";
+@import "node_modules/govuk-frontend/settings/all";
+@import "node_modules/govuk-frontend/tools/all";
+@import "node_modules/govuk-frontend/helpers/all";
+@import "node_modules/govuk-frontend/vendor/sass-mq";
 
 // previously provided by govuk-template, no equivalent in govuk-frontend
 .hidden {

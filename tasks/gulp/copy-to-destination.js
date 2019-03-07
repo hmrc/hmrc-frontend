@@ -28,3 +28,19 @@ gulp.task('copy-files', () => {
     .pipe(scssFiles.restore)
     .pipe(gulp.dest(taskArguments.destination + '/'))
 })
+
+gulp.task('copy-dist-files', ['copy-dist-component-files', 'copy-dist-fonts'])
+
+gulp.task('copy-dist-component-files', () => {
+  return gulp.src([
+    configPaths.src + '{components,needs-to-be-a-glob-to-preserve-directories}/hmrc-account-menu/images/*'
+  ])
+    .pipe(gulp.dest(taskArguments.destination + '/'))
+})
+
+gulp.task('copy-dist-fonts', () => {
+  return gulp.src([
+    'node_modules/govuk-frontend/assets/fonts/*'
+  ])
+    .pipe(gulp.dest(taskArguments.destination + '/fonts'))
+})
