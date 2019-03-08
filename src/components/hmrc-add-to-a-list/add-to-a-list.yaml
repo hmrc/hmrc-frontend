@@ -1,0 +1,22 @@
+params:
+  - itemList:
+    type: array
+    required: true
+    description: the list of items being added to
+
+
+
+examples:
+- name: default
+  description: A default example.
+  data: {}
+
+- name: directors
+  data:
+    itemList:
+        - { name: Director One, changeUrl: '#c1url', removeUrl: '#r1url' }
+        - { name: Director Two, changeUrl: '#c1url', removeUrl: '#r1url'}
+    itemType:
+      singular: director
+      plural: directors
+    hintText: 'You must tell us about all your directors'
