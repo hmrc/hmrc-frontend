@@ -3,5 +3,6 @@
 // to this list, ordered by width, e.g. (mobile, tablet, desktop).
 $mq-show-breakpoints: (mobile, tablet, desktop);
 
+@import "govuk-frontend/all";
 @import "../../../src/all";
 @import "partials/app";

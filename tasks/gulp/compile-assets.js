@@ -17,12 +17,14 @@ const eol = require('gulp-eol')
 const rename = require('gulp-rename')
 const cssnano = require('cssnano')
 const postcsspseudoclasses = require('postcss-pseudo-classes')
+const sourcemaps = require('gulp-sourcemaps')
 
 // Compile CSS and JS task --------------
 // --------------------------------------
 
 // check if destination flag is dist
 const isDist = taskArguments.destination === 'dist' || false
+const isPackage = taskArguments.destination === 'package' || false
 
 const errorHandler = function (error) {
   // Log the error to the console
@@ -39,7 +41,10 @@ const compileOldIeStylesheet = isDist ? configPaths.src + 'all-ie8.scss' : confi
 gulp.task('scss:compile', () => {
   let compile = gulp.src(compileStylesheet)
     .pipe(plumber(errorHandler))
-    .pipe(sass())
+    .pipe(gulpif(!isPackage, sourcemaps.init()))
+    .pipe(sass({
+      includePaths: ['node_modules']
+    }))
     // minify css add vendor prefixes and normalize to compiled css
     .pipe(gulpif(isDist, postcss([
       autoprefixer,
@@ -57,11 +62,17 @@ gulp.task('scss:compile', () => {
         extname: '.min.css'
       })
     ))
+    // Write external sourcemap files to the root of the destination directory,
+    // but not for the npm package
+    .pipe(gulpif(!isPackage, sourcemaps.write('./')))
     .pipe(gulp.dest(taskArguments.destination + '/'))
 
   let compileOldIe = gulp.src(compileOldIeStylesheet)
     .pipe(plumber(errorHandler))
-    .pipe(sass())
+    .pipe(gulpif(!isPackage, sourcemaps.init()))
+    .pipe(sass({
+      includePaths: ['node_modules']
+    }))
     // minify css add vendor prefixes and normalize to compiled css
     .pipe(gulpif(isDist, postcss([
       autoprefixer,
@@ -91,6 +102,9 @@ gulp.task('scss:compile', () => {
         extname: '.min.css'
       })
     ))
+    // Write external sourcemap files to the root of the destination directory,
+    // but not for the npm package
+    .pipe(gulpif(!isPackage, sourcemaps.write('./')))
     .pipe(gulp.dest(taskArguments.destination + '/'))
 
   return merge(compile, compileOldIe)
@@ -105,6 +119,7 @@ gulp.task('js:compile', () => {
     '!' + configPaths.src + '**/*.test.js',
     srcFiles
   ])
+    .pipe(gulpif(!isPackage, sourcemaps.init()))
     .pipe(rollup({
       plugins: [
         resolve(),
@@ -126,5 +141,8 @@ gulp.task('js:compile', () => {
       })
     ))
     .pipe(eol())
+    // Write external sourcemap files to the root of the destination directory,
+    // but not for the npm package
+    .pipe(gulpif(!isPackage, sourcemaps.write('./')))
     .pipe(gulp.dest(taskArguments.destination + '/'))
 })
