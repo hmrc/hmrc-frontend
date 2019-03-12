@@ -3,8 +3,43 @@ params:
     type: array
     required: true
     description: the list of items being added to
+    params:
+      - name:
+        type: string
+        required: true
+        description: the identifier for this item
 
+      - changeUrl:
+        type: string
+        description: the URL to edit the details for this item
 
+      - removeUrl:
+        type: string
+        description: the URL to remove this item from the list
+
+  - itemType:
+      - singular:
+        type: string
+        required: false
+        default: Item
+        description: Noun used for a single entry in the itemList
+
+      - plural:
+        type: string
+        required: false
+        default: Items
+        description: Noun used for multiple entries in the itemList
+
+      - itemSize:
+        type: string
+        required: false
+        default: short
+        description: 'short or long, used to choose the correct css classes for the first column text'
+
+      - formAction:
+        type: string
+        required: true
+        description: URL used to handle the form
 
 examples:
 - name: default
@@ -19,4 +54,4 @@ examples:
     itemType:
       singular: director
       plural: directors
-    hintText: 'You must tell us about all your directors'
+    hintText: You must tell us about all your directors
