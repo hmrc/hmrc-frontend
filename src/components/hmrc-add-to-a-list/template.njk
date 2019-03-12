@@ -1,3 +1,6 @@
+{% from "button/macro.njk" import govukButton with context%}
+{% from "radios/macro.njk" import govukRadios with context %}
+
 <h1 class="govuk-heading-xl">You have added {{ params.itemList | length | default('no', true)}} {{ params.itemType.plural | default('items')}}</h1>
 <div class="govuk-form-group">
   <div class="hmrc-add-to-a-list hmrc-add-to-a-list--{{ params.itemSize | default('short') }}">
@@ -27,25 +30,23 @@
   </div>
 </div>
 <form method="post" action="{{ params.formAction }}">
-  <div class="govuk-form-group">
-    <fieldset class="govuk-fieldset" id="add-another" aria-describedby="add-another-hint">
-      <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">Do you need to add another {{params.itemType.singular | default('item') }}?</legend>
-      <span class="govuk-hint" id="add-another-hint">{{ params.hintText }}</span>
-      <div class="govuk-radios govuk-radios--inline">
-        <div class="govuk-radios__item">
-          <input class="govuk-radios__input" id="add-another-yes" type="radio" name="add-another" value="true">
-          <label class="govuk-radios__label" for="add-another-yes">
-            Yes
-          </label>
-        </div>
-        <div class="govuk-radios__item">
-          <input class="govuk-radios__input" id="add-another-no" type="radio" name="add-another" value="false">
-          <label class="govuk-radios__label" for="add-another-no">
-            No
-          </label>
-        </div>
-      </div>
-    </fieldset>
-  </div>
-  <button type="submit" class="govuk-button">Continue</button>
+  {{ govukRadios({
+    classes: "govuk-radios--inline",
+    idPrefix: "add-another",
+    name: "add-another",
+    fieldset: {
+      legend: {
+        text:  "Do you need to add another " + params.itemType.singular | default('item') + "?",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend govuk-fieldset__legend--m"
+      }
+    },
+    hint: {
+      text: params.hintText
+    },
+    items: [
+      { text: "Yes", value: "yes" },
+      { text: "No", value: "no" }
+    ] }) }}
+  {{ govukButton({ text: " Submit " }) }}
 </form>
