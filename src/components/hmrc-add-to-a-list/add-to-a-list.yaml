@@ -50,8 +50,15 @@ examples:
   data:
     itemList:
         - { name: Director One, changeUrl: '#c1url', removeUrl: '#r1url' }
-        - { name: Director Two, changeUrl: '#c1url', removeUrl: '#r1url'}
+        - { name: Director Two, changeUrl: '#c2url', removeUrl: '#r2url' }
     itemType:
       singular: director
       plural: directors
     hintText: You must tell us about all your directors
+    formAction: '#addDirector'
+
+- name: signleitem
+  description: A list with a single unnamed item
+  data:
+    itemList:
+      - { name: item one, changeUrl: '#c1url', removeUrl: '#r1url' }
