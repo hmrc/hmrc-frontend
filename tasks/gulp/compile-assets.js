@@ -62,9 +62,9 @@ gulp.task('scss:compile', () => {
         extname: '.min.css'
       })
     ))
-    // Write external sourcemap files to the root of the destination directory,
+    // Write external sourcemap files to a maps directory of the destination,
     // but not for the npm package
-    .pipe(gulpif(!isPackage, sourcemaps.write('./')))
+    .pipe(gulpif(!isPackage, sourcemaps.write('./maps')))
     .pipe(gulp.dest(taskArguments.destination + '/'))
 
   let compileOldIe = gulp.src(compileOldIeStylesheet)
@@ -102,9 +102,9 @@ gulp.task('scss:compile', () => {
         extname: '.min.css'
       })
     ))
-    // Write external sourcemap files to the root of the destination directory,
+    // Write external sourcemap files to a maps directory of the destination,
     // but not for the npm package
-    .pipe(gulpif(!isPackage, sourcemaps.write('./')))
+    .pipe(gulpif(!isPackage, sourcemaps.write('./maps')))
     .pipe(gulp.dest(taskArguments.destination + '/'))
 
   return merge(compile, compileOldIe)
@@ -141,8 +141,8 @@ gulp.task('js:compile', () => {
       })
     ))
     .pipe(eol())
-    // Write external sourcemap files to the root of the destination directory,
+    // Write external sourcemap files to a maps directory of the destination,
     // but not for the npm package
-    .pipe(gulpif(!isPackage, sourcemaps.write('./')))
+    .pipe(gulpif(!isPackage, sourcemaps.write('./maps')))
     .pipe(gulp.dest(taskArguments.destination + '/'))
 })
