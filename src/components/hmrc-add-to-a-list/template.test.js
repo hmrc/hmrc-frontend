@@ -21,7 +21,7 @@ describe('Add to a list', () => {
   })
 
   describe('with one item', () => {
-    const $ = render('add-to-a-list', examples.signleitem)
+    const $ = render('add-to-a-list', examples.singleitem)
     const $heading = $('h1')
     const $rows = $('.hmrc-add-to-a-list__contents')
     it('Uses \'item\' as the singular item name', () => {

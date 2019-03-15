@@ -57,7 +57,7 @@ examples:
     hintText: You must tell us about all your directors
     formAction: '#addDirector'
 
-- name: signleitem
+- name: singleitem
   description: A list with a single unnamed item
   data:
     itemList:
