@@ -1,5 +1,5 @@
 .hmrc-add-to-a-list {
-  padding-inline-start: 0;
+  padding-left: 0;
   @include govuk-font($size: 19);
   @include mq($from: desktop) {
     display: table;
