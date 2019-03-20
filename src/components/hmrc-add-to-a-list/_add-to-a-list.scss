@@ -41,12 +41,6 @@
   }
 }
 
-.hmrc-add-to-a-list__contents:first-child dt {
-  @include mq($from: desktop) {
-    padding-top: 0;
-  }
-}
-
 .hmrc-add-to-a-list__identifier,
 .hmrc-add-to-a-list__remove,
 .hmrc-add-to-a-list__change {
