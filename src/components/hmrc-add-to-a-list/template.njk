@@ -7,10 +7,10 @@
 {%- endif -%}
 </h1>
 <div class="govuk-form-group">
-  <div class="hmrc-add-to-a-list hmrc-add-to-a-list--{{ params.itemSize | default('short') }}">
+  <ul class="hmrc-add-to-a-list hmrc-add-to-a-list--{{ params.itemSize | default('short') }}">
     {# loop through items in  the itemList #}
     {% for item in params.itemList %}
-    <div class="hmrc-add-to-a-list__contents">
+    <li class="hmrc-add-to-a-list__contents">
       <span class="hmrc-add-to-a-list__identifier hmrc-add-to-a-list__identifier--light">
         {{ item.name }}
       </span>
@@ -26,12 +26,12 @@
           <span class="govuk-visually-hidden">Remove {{item.name}} from the list</span>
         </a>
       </span>
-    </div>
+    </li>
     {% else %}
       {# empty list stuff goes here #}
     {% endfor %}
     {# end loop #}
-  </div>
+  </ul>
 </div>
 <form method="post" action="{{ params.formAction }}">
   {{ govukRadios({
