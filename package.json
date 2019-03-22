@@ -14,8 +14,15 @@
     "type": "git",
     "url": "git+https://github.com/hmrc/hmrc-frontend.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "HMRC",
+    "frontend",
+    "design patterns"
+  ],
+  "author": {
+    "name": "HM Revenue and Customs",
+    "email": "service-design-tools@digital.hmrc.gov.uk"
+  },
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/hmrc/hmrc-frontend/issues"
