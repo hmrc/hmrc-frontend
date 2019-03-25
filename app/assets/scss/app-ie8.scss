@@ -2,5 +2,6 @@
 // right corner of your site during development, add the breakpoints
 // to this list, ordered by width, e.g. (mobile, tablet, desktop).
 $mq-show-breakpoints: (desktop);
+@import "govuk-frontend/all-ie8";
 @import "../../../src/all-ie8";
 @import "partials/app";

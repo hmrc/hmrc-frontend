@@ -45,10 +45,34 @@ gulp.task('copy:README', () => {
     .pipe(gulp.dest(taskArguments.destination))
 })
 
-gulp.task('copy:packageJson', () => {
-  return gulp
-    .src(paths.src + '../package.json')
-    .pipe(gulp.dest(taskArguments.destination))
+gulp.task('copy:packageJson', (done) => {
+  const packageFile = require('./package.json')
+  const requiredKeys = [
+    'name',
+    'version',
+    'description',
+    'main',
+    'scss',
+    'repository',
+    'keywords',
+    'author',
+    'bugs',
+    'homepage',
+    'dependencies'
+  ]
+
+  Object.keys(packageFile).forEach(key => {
+    if (!requiredKeys.includes(key)) {
+      delete packageFile[key]
+    }
+  })
+
+  require('fs').writeFileSync(
+    taskArguments.destination + '/package.json',
+    JSON.stringify(packageFile, null, 2)
+  )
+
+  done()
 })
 
 // All test combined --------------------

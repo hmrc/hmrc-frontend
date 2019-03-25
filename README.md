@@ -36,7 +36,7 @@ npm install
 
 ### Prototypes
 
-`npm install hmrc/hmrc-frontend#package-latest`
+`npm install hmrc-frontend`
 
 ### Frontend microservices
 
