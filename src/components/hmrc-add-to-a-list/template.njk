@@ -1,0 +1,56 @@
+{% from "button/macro.njk" import govukButton with context%}
+{% from "radios/macro.njk" import govukRadios with context %}
+
+<h1 class="govuk-heading-xl">You have added {{ params.itemList | length | default('no', true) }}
+{%- if params.itemList | length  === 1 %} {{ params.itemType.singular | default('item') }}
+{%- else %} {{ params.itemType.plural | default('items') }}
+{%- endif -%}
+</h1>
+<div class="govuk-form-group">
+  <ul class="hmrc-add-to-a-list hmrc-add-to-a-list--{{ params.itemSize | default('short') }}">
+    {# loop through items in  the itemList #}
+    {% for item in params.itemList %}
+    <li class="hmrc-add-to-a-list__contents">
+      <span class="hmrc-add-to-a-list__identifier hmrc-add-to-a-list__identifier--light">
+        {{ item.name }}
+      </span>
+      <span class="hmrc-add-to-a-list__change">
+        <a class="govuk-link" href="{{ item.changeUrl }}">
+          <span aria-hidden="true">Change</span>
+          <span class="govuk-visually-hidden">Change {{ item.name }}</span>
+        </a>
+      </span>
+      <span class="hmrc-add-to-a-list__remove">
+        <a class="govuk-link" href="{{ item.removeUrl }}">
+          <span aria-hidden="true">Remove</span>
+          <span class="govuk-visually-hidden">Remove {{item.name}} from the list</span>
+        </a>
+      </span>
+    </li>
+    {% else %}
+      {# empty list stuff goes here #}
+    {% endfor %}
+    {# end loop #}
+  </ul>
+</div>
+<form method="post" action="{{ params.formAction }}">
+  {{ govukRadios({
+    classes: "govuk-radios--inline",
+    idPrefix: "add-another",
+    name: "add-another",
+    fieldset: {
+      legend: {
+        text:  "Do you need to add another " + params.itemType.singular | default('item') + "?",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend govuk-fieldset__legend--m"
+      }
+    },
+    hint: {
+      text: params.hintText
+    },
+    items: [
+      { text: "Yes", value: "yes" },
+      { text: "No", value: "no" }
+    ] }) }}
+  {{ govukButton({ text: " Submit " }) }}
+</form>

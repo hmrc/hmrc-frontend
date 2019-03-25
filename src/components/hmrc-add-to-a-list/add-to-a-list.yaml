@@ -1,0 +1,64 @@
+params:
+  - itemList:
+    type: array
+    required: true
+    description: the list of items being added to
+    params:
+      - name:
+        type: string
+        required: true
+        description: the identifier for this item
+
+      - changeUrl:
+        type: string
+        description: the URL to edit the details for this item
+
+      - removeUrl:
+        type: string
+        description: the URL to remove this item from the list
+
+  - itemType:
+      - singular:
+        type: string
+        required: false
+        default: Item
+        description: Noun used for a single entry in the itemList
+
+      - plural:
+        type: string
+        required: false
+        default: Items
+        description: Noun used for multiple entries in the itemList
+
+      - itemSize:
+        type: string
+        required: false
+        default: short
+        description: 'short or long, used to choose the correct css classes for the first column text'
+
+      - formAction:
+        type: string
+        required: true
+        description: URL used to handle the form
+
+examples:
+- name: default
+  description: A default example.
+  data: {}
+
+- name: directors
+  data:
+    itemList:
+        - { name: Director One, changeUrl: '#c1url', removeUrl: '#r1url' }
+        - { name: Director Two, changeUrl: '#c2url', removeUrl: '#r2url' }
+    itemType:
+      singular: director
+      plural: directors
+    hintText: You must tell us about all your directors
+    formAction: '#addDirector'
+
+- name: singleitem
+  description: A list with a single unnamed item
+  data:
+    itemList:
+      - { name: item one, changeUrl: '#c1url', removeUrl: '#r1url' }
