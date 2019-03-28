@@ -1,3 +1,8 @@
+@import "node_modules/govuk-frontend/settings/all";
+@import "node_modules/govuk-frontend/tools/all";
+@import "node_modules/govuk-frontend/helpers/all";
+@import "node_modules/govuk-frontend/vendor/sass-mq";
+
 .hmrc-add-to-a-list {
   padding-left: 0;
   @include govuk-font($size: 19);
@@ -12,7 +17,7 @@
     width: 100%;
 
     // recommended for mostly short questions
-    .hmrc-add-to-a-list__question {
+    .hmrc-add-to-a-list__identifier {
       width: 30%;
     }
   }
@@ -24,13 +29,14 @@
     width: 100%;
 
     // recommended for mostly long questions
-    .hmrc-add-to-a-list__question {
+    .hmrc-add-to-a-list__identifier {
       width: 50%;
     }
   }
 }
 
 .hmrc-add-to-a-list__contents {
+  display: block;
   position: relative;
   padding-bottom: govuk-spacing(1);
   border-bottom: 1px solid $govuk-border-colour;
