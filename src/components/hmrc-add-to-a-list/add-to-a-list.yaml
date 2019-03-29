@@ -44,6 +44,7 @@ params:
 examples:
 - name: default
   description: A default example.
+  data:
 
 - name: single-generic-item
   description: A list with a single unnamed item
