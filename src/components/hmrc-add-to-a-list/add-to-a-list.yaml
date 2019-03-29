@@ -44,21 +44,26 @@ params:
 examples:
 - name: default
   description: A default example.
-  data: {}
 
-- name: directors
-  data:
-    itemList:
-        - { name: Director One, changeUrl: '#c1url', removeUrl: '#r1url' }
-        - { name: Director Two, changeUrl: '#c2url', removeUrl: '#r2url' }
-    itemType:
-      singular: director
-      plural: directors
-    hintText: You must tell us about all your directors
-    formAction: '#addDirector'
-
-- name: singleitem
+- name: single-generic-item
   description: A list with a single unnamed item
   data:
     itemList:
-      - { name: item one, changeUrl: '#c1url', removeUrl: '#r1url' }
+      - name: item one
+        changeUrl: '#c1url'
+        removeUrl: '#r1url'
+
+- name: multiple-specific-items
+  data:
+    itemType:
+      singular: director
+      plural: directors
+    itemList:
+        - name: Director One
+          changeUrl: '#change-item-1'
+          removeUrl: '#remove-item-1'
+        - name: Director Two
+          changeUrl: '#change-item-2'
+          removeUrl: '#remove-item-2'
+    hintText: You must tell us about all your directors
+    formAction: '#add-director'
