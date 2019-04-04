@@ -84,9 +84,10 @@ function TimeoutDialog (options) {
     }
     const $timeoutMessage = utils.generateDomElementFromStringAndAppendText('<p id="timeout-message" class="govuk-body" role="text">', settings.message)
     const $staySignedInButton = utils.generateDomElementFromStringAndAppendText('<button id="timeout-keep-signin-btn" class="govuk-button">', settings.keepAliveButtonText)
-    const $signOutButton = utils.generateDomElementFromStringAndAppendText('<button id="timeout-sign-out-btn" class="govuk-button govuk-button--link">', settings.signOutButtonText)
+    const $signOutButton = utils.generateDomElementFromStringAndAppendText('<a id="timeout-sign-out-btn" class="govuk-link link">', settings.signOutButtonText)
     $staySignedInButton.addEventListener('click', keepAliveAndClose)
     $signOutButton.addEventListener('click', signOut)
+    $signOutButton.setAttribute('href', settings.signOutUrl)
 
     $timeoutMessage.appendChild(document.createTextNode(' '))
     $timeoutMessage.appendChild($countdownElement)
