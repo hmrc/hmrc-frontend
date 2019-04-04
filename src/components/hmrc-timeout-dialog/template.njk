@@ -1,0 +1,23 @@
+<script>
+  window.HMRCReady = window.HMRCReady || []
+  window.HMRCReady.push(function () {
+    (function (validate) {
+      window.HMRCFrontend.TimeoutDialog({
+        timeout: validate.int("{{ params.timeout }}"),
+        countdown: validate.int("{{ params.countdown }}"),
+        keepAliveUrl: validate.string("{{ params.keepAliveUrl }}"),
+        signOutUrl: validate.string("{{ params.signOutUrl }}"),
+        title: validate.string("{{ params.title }}"),
+        message: validate.string("{{ params.message }}"),
+        keepAliveButtonText: validate.string("{{ params.keepAliveButtonText }}"),
+        signOutButtonText: validate.string("{{ params.signOutButtonText }}"),
+        properties: {
+          minutes: validate.string("{{ params.properties.minutes }}"),
+          minute: validate.string("{{ params.properties.minute }}"),
+          seconds: validate.string("{{ params.properties.seconds }}"),
+          second: validate.string("{{ params.properties.second }}")
+        }
+      })
+    }(window.HMRCFrontend.ValidateInput))
+  })
+</script>
