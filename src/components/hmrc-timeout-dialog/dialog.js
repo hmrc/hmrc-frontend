@@ -1,8 +1,8 @@
 import utils from './utils'
 
 function displayDialog ($elementToDisplay) {
-  var $dialog = utils.generateDomElementFromString('<div id="timeout-dialog" tabindex="-1" role="dialog" class="timeout-dialog">')
-  var $overlay = utils.generateDomElementFromString('<div id="timeout-overlay" class="timeout-overlay">')
+  var $dialog = utils.generateDomElementFromString('<div id="hmrc-timeout-dialog" tabindex="-1" role="dialog" class="hmrc-timeout-dialog">')
+  var $overlay = utils.generateDomElementFromString('<div id="hmrc-timeout-overlay" class="hmrc-timeout-overlay">')
   var $preparedElementToDisplay = typeof $elementToDisplay === 'string' ? utils.generateDomElementFromString($elementToDisplay) : $elementToDisplay
   var resetElementsFunctionList = []
   var closeCallbacks = []
@@ -54,7 +54,7 @@ function displayDialog ($elementToDisplay) {
 
   function setupFocusHandlerAndFocusDialog () {
     function keepFocus (event) {
-      var modalFocus = document.getElementById('timeout-dialog')
+      var modalFocus = document.getElementById('hmrc-timeout-dialog')
       if (modalFocus) {
         if (event.target !== modalFocus && !modalFocus.contains(event.target)) {
           event.stopPropagation()

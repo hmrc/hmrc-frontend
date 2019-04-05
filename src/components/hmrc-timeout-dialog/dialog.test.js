@@ -51,31 +51,31 @@ describe('Dialog', function () {
 
   describe('When open', function () {
     beforeEach(function () {
-      assume(document.querySelector('#timeout-overlay')).toBeNull()
-      assume(document.querySelector('#timeout-dialog')).toBeNull()
+      assume(document.querySelector('#hmrc-timeout-overlay')).toBeNull()
+      assume(document.querySelector('#hmrc-timeout-dialog')).toBeNull()
 
       openDefaultDialog()
     })
 
     it('calling close should remove the elements', function () {
-      assume(document.querySelector('#timeout-overlay.timeout-overlay')).not.toBeNull()
-      assume(document.querySelector('#timeout-dialog.timeout-dialog')).not.toBeNull()
+      assume(document.querySelector('#hmrc-timeout-overlay.hmrc-timeout-overlay')).not.toBeNull()
+      assume(document.querySelector('#hmrc-timeout-dialog.hmrc-timeout-dialog')).not.toBeNull()
 
       testScope.dialogControl.closeDialog()
 
-      expect(document.querySelector('#timeout-overlay')).toBeNull()
-      expect(document.querySelector('#timeout-dialog')).toBeNull()
+      expect(document.querySelector('#hmrc-timeout-overlay')).toBeNull()
+      expect(document.querySelector('#hmrc-timeout-dialog')).toBeNull()
       expect(testScope.closeCallback).not.toHaveBeenCalled()
     })
 
     it('should be added to the dom with correct attributes', function () {
-      var $overlay = document.querySelector('#timeout-overlay')
-      var $dialog = document.querySelector('#timeout-dialog')
+      var $overlay = document.querySelector('#hmrc-timeout-overlay')
+      var $dialog = document.querySelector('#hmrc-timeout-dialog')
 
       expect($overlay).not.toBeNull()
-      expect($overlay.classList).toContain('timeout-overlay')
+      expect($overlay.classList).toContain('hmrc-timeout-overlay')
       expect($dialog).not.toBeNull()
-      expect($dialog.classList).toContain('timeout-dialog')
+      expect($dialog.classList).toContain('hmrc-timeout-dialog')
       expect($dialog.attributes.getNamedItem('role').value).toEqual('dialog')
       expect($dialog.attributes.getNamedItem('tabindex').value).toEqual('-1')
     })
@@ -84,8 +84,8 @@ describe('Dialog', function () {
       var $lastElement = document.querySelector('body').lastElementChild
       var $secondToLastElement = $lastElement.previousElementSibling
 
-      expect($lastElement.id).toEqual('timeout-overlay')
-      expect($secondToLastElement.id).toEqual('timeout-dialog')
+      expect($lastElement.id).toEqual('hmrc-timeout-overlay')
+      expect($secondToLastElement.id).toEqual('hmrc-timeout-dialog')
     })
 
     // it('should contain provided element', function () {
@@ -98,8 +98,8 @@ describe('Dialog', function () {
       pretendEscapeWasPressed()
 
       expect(testScope.closeCallback).toHaveBeenCalled()
-      expect(document.querySelector('#timeout-overlay')).toBeNull()
-      expect(document.querySelector('#timeout-dialog')).toBeNull()
+      expect(document.querySelector('#hmrc-timeout-overlay')).toBeNull()
+      expect(document.querySelector('#hmrc-timeout-dialog')).toBeNull()
     })
 
     it('should only call callback once when escape is pressed many times', function () {
@@ -127,8 +127,8 @@ describe('Dialog', function () {
     it('should hide when escape is pressed', function () {
       pretendEverythingButEscapeWasPressed()
 
-      expect(document.querySelector('#timeout-dialog')).not.toBeNull()
-      expect(document.querySelector('#timeout-overlay')).not.toBeNull()
+      expect(document.querySelector('#hmrc-timeout-dialog')).not.toBeNull()
+      expect(document.querySelector('#hmrc-timeout-overlay')).not.toBeNull()
       expect(testScope.closeCallback).not.toHaveBeenCalled()
     })
 
@@ -165,7 +165,7 @@ describe('Dialog', function () {
 
     testScope.dialogControl = dialog.displayDialog($root)
 
-    let $dialogElem = document.querySelector('#timeout-dialog')
+    let $dialogElem = document.querySelector('#hmrc-timeout-dialog')
 
     expect($dialogElem.querySelector('#my-custom-elem')).toBe($root)
   })
@@ -174,8 +174,8 @@ describe('Dialog', function () {
 
     expect(pretendEscapeWasPressed).not.toThrow()
 
-    expect(document.querySelector('#timeout-dialog')).toBeNull()
-    expect(document.querySelector('#timeout-overlay')).toBeNull()
+    expect(document.querySelector('#hmrc-timeout-dialog')).toBeNull()
+    expect(document.querySelector('#hmrc-timeout-overlay')).toBeNull()
   })
 
   describe('Manipulating page elements for dialog', function () {
@@ -246,7 +246,7 @@ describe('Dialog', function () {
 
     it('should allow aria-live to be set, reset and removed', function () {
       openDefaultDialog()
-      var $dialog = document.querySelector('#timeout-dialog')
+      var $dialog = document.querySelector('#hmrc-timeout-dialog')
 
       expect($dialog.attributes.getNamedItem('aria-live')).toBeNull()
 
@@ -261,7 +261,7 @@ describe('Dialog', function () {
 
     it('should allow aria-labelledby to be set, reset and removed', function () {
       openDefaultDialog()
-      var $dialog = document.querySelector('#timeout-dialog')
+      var $dialog = document.querySelector('#hmrc-timeout-dialog')
 
       expect($dialog.attributes.getNamedItem('aria-labelledby')).toBeNull()
 
@@ -303,7 +303,7 @@ describe('Dialog', function () {
       it('should take focus when opening', function () {
         openDefaultDialog()
 
-        expeectActiveElementToHaveId('timeout-dialog')
+        expeectActiveElementToHaveId('hmrc-timeout-dialog')
       })
 
       it('should return the focus when closed', function () {
@@ -330,7 +330,7 @@ describe('Dialog', function () {
 
         testScope.elementsCreatedForThisTest.forEach(function ($elem) {
           $elem.focus()
-          expeectActiveElementToHaveId('timeout-dialog')
+          expeectActiveElementToHaveId('hmrc-timeout-dialog')
         })
       })
 
@@ -386,7 +386,7 @@ describe('Dialog', function () {
     }
 
     beforeEach(function () {
-      assume(document.querySelector('#timeout-dialog')).toBeNull()
+      assume(document.querySelector('#hmrc-timeout-dialog')).toBeNull()
       expect.extend({
         toHaveHadDefaultPrevented: function (received) {
           var result = {}

@@ -75,16 +75,16 @@ function TimeoutDialog (options) {
   }
 
   function setupDialog () {
-    var $countdownElement = utils.generateDomElementFromString('<span id="timeout-countdown" class="countdown">')
+    var $countdownElement = utils.generateDomElementFromString('<span id="hmrc-timeout-countdown" class="countdown">')
     var $element = utils.generateDomElementFromString('<div>')
 
     if (settings.title) {
       let $tmp = utils.generateDomElementFromStringAndAppendText('<h1 class="govuk-heading-m push--top">', settings.title)
       $element.appendChild($tmp)
     }
-    const $timeoutMessage = utils.generateDomElementFromStringAndAppendText('<p id="timeout-message" class="govuk-body" role="text">', settings.message)
-    const $staySignedInButton = utils.generateDomElementFromStringAndAppendText('<button id="timeout-keep-signin-btn" class="govuk-button">', settings.keepAliveButtonText)
-    const $signOutButton = utils.generateDomElementFromStringAndAppendText('<a id="timeout-sign-out-btn" class="govuk-link link">', settings.signOutButtonText)
+    const $timeoutMessage = utils.generateDomElementFromStringAndAppendText('<p id="hmrc-timeout-message" class="govuk-body" role="text">', settings.message)
+    const $staySignedInButton = utils.generateDomElementFromStringAndAppendText('<button id="hmrc-timeout-keep-signin-btn" class="govuk-button">', settings.keepAliveButtonText)
+    const $signOutButton = utils.generateDomElementFromStringAndAppendText('<a id="hmrc-timeout-sign-out-btn" class="govuk-link link">', settings.signOutButtonText)
     $staySignedInButton.addEventListener('click', keepAliveAndClose)
     $signOutButton.addEventListener('click', signOut)
     $signOutButton.setAttribute('href', settings.signOutUrl)
@@ -105,7 +105,7 @@ function TimeoutDialog (options) {
 
     dialogControl.addCloseHandler(keepAliveAndClose)
 
-    dialogControl.setAriaLabelledBy('timeout-message')
+    dialogControl.setAriaLabelledBy('hmrc-timeout-message')
     if (getSecondsRemaining() > 60) {
       dialogControl.setAriaLive('polite')
     }
