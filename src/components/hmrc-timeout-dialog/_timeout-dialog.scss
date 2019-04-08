@@ -1,3 +1,8 @@
+@import "node_modules/govuk-frontend/settings/all";
+@import "node_modules/govuk-frontend/tools/all";
+@import "node_modules/govuk-frontend/helpers/all";
+@import "node_modules/govuk-frontend/vendor/sass-mq";
+
 @media (max-width: 640px) {
   .hmrc-timeout-dialog {
     width: 280px !important;
@@ -35,28 +40,21 @@ html {
   transform: translate(-50%, -50%);
   border: 5px solid govuk-colour("black");
   background-color: govuk-colour("white");
+}
 
-  p {
-    font-size: 19px;
-    line-height: 1.31579;
-  }
+.hmrc-timeout-dialog__message {
+  font-size: 19px;
+  line-height: 1.31579;
+}
 
-  .countdown {
-    display: inline-block;
-    font-weight: 700;
-    white-space: nowrap;
-  }
+.hmrc-timeout-dialog__countdown {
+  display: inline-block;
+  font-weight: 700;
+  white-space: nowrap;
+}
 
-  .link {
-    display: inline-block;
-    padding: .526315em .789473em .263157em;
-    line-height: 1.25;
-  }
-  //
-  //#timeout-sign-out-btn {
-  //  display: inline-block;
-  //  margin-top: 0.5em;
-  //  margin-left: 1em;
-  //}
-
+.hmrc-timeout-dialog__link {
+  display: inline-block;
+  padding: .526315em .789473em .263157em;
+  line-height: 1.5;
 }

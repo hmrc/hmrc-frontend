@@ -133,18 +133,18 @@ describe('/components/timeout-dialog', () => {
     })
 
     it('should show sign out link', function () {
-      expect(testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-btn.govuk-link.link').innerText).toEqual('Sign out')
+      expect(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link').innerText).toEqual('Sign out')
     })
 
     it('should redirect to default signout url when signout is clicked', function () {
       assume(redirectHelper.redirectToUrl).not.toHaveBeenCalled()
 
-      clickElem(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-btn'))
+      clickElem(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link'))
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('/sign-out')
     })
 
     it('should use the default signout url on the signout link', function () {
-      var $signoutLink = testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-btn')
+      var $signoutLink = testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-link')
       expect($signoutLink.attributes.getNamedItem('href').value).toEqual('/sign-out')
     })
 
@@ -187,7 +187,7 @@ describe('/components/timeout-dialog', () => {
     })
 
     it('should show sign out button', function () {
-      expect(getElemText(testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-btn.govuk-link.link'))).toEqual('Allgofnodi')
+      expect(getElemText(testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-link'))).toEqual('Allgofnodi')
     })
   })
 
@@ -232,15 +232,15 @@ describe('/components/timeout-dialog', () => {
     })
 
     it('should show sign out button', function () {
-      expect(getElemText(testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-btn.govuk-link.link'))).toEqual('sign OUT')
+      expect(getElemText(testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-link'))).toEqual('sign OUT')
     })
 
     it('should redirect to default signout url when signout is clicked', function () {
       assume(redirectHelper.redirectToUrl).not.toHaveBeenCalled()
 
-      expect(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-btn')).not.toBeNull()
+      expect(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link')).not.toBeNull()
 
-      clickElem(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-btn'))
+      clickElem(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link'))
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('/mySignOutUrl.html')
     })
   })
