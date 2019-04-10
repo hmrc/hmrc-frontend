@@ -1,3 +1,4 @@
+
 import dialog from './dialog.js'
 import RedirectHelper from './redirectHelper.js'
 import utils from './utils'
@@ -51,7 +52,7 @@ function TimeoutDialog (options) {
 
   function mergeOptionsWithDefaults (options, localisedDefaults) {
     const clone = Object.assign({}, options)
-    Object.keys(localisedDefaults).forEach(key => {
+    Object.keys(localisedDefaults).forEach(function (key) {
       if (typeof clone[key] === 'object') {
         clone[key] = mergeOptionsWithDefaults(options[key], localisedDefaults[key])
       }

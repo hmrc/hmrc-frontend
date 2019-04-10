@@ -48,7 +48,7 @@ function displayDialog ($elementToDisplay) {
   }
 
   function closeAndInform () {
-    closeCallbacks.forEach(fn => fn())
+    closeCallbacks.forEach(function (fn) { fn() })
     close()
   }
 
