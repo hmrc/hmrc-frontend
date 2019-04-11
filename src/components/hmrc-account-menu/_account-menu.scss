@@ -392,8 +392,6 @@ hmrc-subnav__section__heading {
 .js-enabled .hmrc-account-menu__link--more {
   position: relative;
   padding-right: 31px;
-  border-bottom: 0;
-  outline: none;
   background-image: url("#{$hmrc-assets-path}components/hmrc-account-menu/images/icon-chevron-down.svg");
   background-position: right 14px center;
   background-size: 12px;
