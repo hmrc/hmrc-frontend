@@ -1,6 +1,7 @@
 import utils from './utils'
+import { nodeListForEach } from '../../common'
 
-function displayDialog ($elementToDisplay) {
+function dialog ($elementToDisplay) {
   var $dialog = utils.generateDomElementFromString('<div id="hmrc-timeout-dialog" tabindex="-1" role="dialog" class="hmrc-timeout-dialog">')
   var $overlay = utils.generateDomElementFromString('<div id="hmrc-timeout-overlay" class="hmrc-timeout-overlay">')
   var $preparedElementToDisplay = typeof $elementToDisplay === 'string' ? utils.generateDomElementFromString($elementToDisplay) : $elementToDisplay
@@ -24,7 +25,15 @@ function displayDialog ($elementToDisplay) {
   })
 
   // disable the non-dialog page to prevent confusion for VoiceOver users
-  document.querySelectorAll('#skiplink-container, body>header, #global-cookie-message, body>main, body>footer').forEach(function ($elem) {
+  var selectors = [
+    '#skiplink-container',
+    'body > header',
+    '#global-cookie-message',
+    'body > main',
+    'body > footer'
+  ]
+  var elements = document.querySelectorAll(selectors.join(', '))
+  nodeListForEach(elements, function ($elem) {
     var value = $elem.getAttribute('aria-hidden')
     $elem.setAttribute('aria-hidden', 'true')
     resetElementsFunctionList.push(function () {
@@ -126,4 +135,4 @@ function displayDialog ($elementToDisplay) {
   }
 }
 
-export default {displayDialog}
+export default dialog

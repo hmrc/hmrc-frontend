@@ -3,15 +3,16 @@ import TimeoutDialog from './components/hmrc-timeout-dialog/timeout-dialog'
 import ValidateInput from './components/hmrc-timeout-dialog/validate-input'
 
 function initAll () {
-  const invoke = fn => { fn() }
-  const itemsToInit = window.HMRCReady || []
-  window.HMRCReady = {
-    push: invoke
-  }
+  var itemsToInit = window.HMRCReady || []
+
   if (document.querySelector('[data-module="hmrc-account-menu"]')) {
     new AccountMenu('[data-module="hmrc-account-menu"]').init()
   }
-  itemsToInit.forEach(invoke)
+
+  for (var index = 0; index < itemsToInit.length; index++) {
+    var init = itemsToInit[index]
+    init()
+  }
 }
 
 export {

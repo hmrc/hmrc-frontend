@@ -1,7 +1,8 @@
 /* global XMLHttpRequest, ActiveXObject */
 
-var utils = {
+import { nodeListForEach } from '../../common'
 
+var utils = {
   generateDomElementFromString: function (str) {
     var abc = document.createElement('div')
     abc.innerHTML = str
@@ -19,11 +20,13 @@ var utils = {
   },
 
   addClass: function (selector, className) {
-    document.querySelectorAll(selector).forEach(function (i) { i.classList.add(className) })
+    var elements = document.querySelectorAll(selector)
+    nodeListForEach(elements, function (i) { i.classList.add(className) })
   },
 
   removeClass: function (selector, className) {
-    document.querySelectorAll(selector).forEach(function (i) { i.classList.remove(className) })
+    var elements = document.querySelectorAll(selector)
+    nodeListForEach(elements, function (i) { i.classList.remove(className) })
   },
 
   removeElement: function ($elem) {
@@ -31,7 +34,7 @@ var utils = {
     if (parent) {
       parent.removeChild($elem)
     } else {
-      console.warn('couldn\'t find parent for elem', $elem)
+      console.warn("couldn't find parent for elem", $elem)
     }
   },
 

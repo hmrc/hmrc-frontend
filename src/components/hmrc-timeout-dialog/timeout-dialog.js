@@ -1,3 +1,7 @@
+import '../../vendor/polyfills/Array/prototype/forEach'
+import '../../vendor/polyfills/Object/assign'
+import '../../vendor/polyfills/Object/keys'
+import '../../vendor/polyfills/Date/now'
 
 import dialog from './dialog.js'
 import RedirectHelper from './redirectHelper.js'
@@ -51,7 +55,8 @@ function TimeoutDialog (options) {
   }
 
   function mergeOptionsWithDefaults (options, localisedDefaults) {
-    const clone = Object.assign({}, options)
+    var clone = Object.assign({}, options)
+
     Object.keys(localisedDefaults).forEach(function (key) {
       if (typeof clone[key] === 'object') {
         clone[key] = mergeOptionsWithDefaults(options[key], localisedDefaults[key])
@@ -60,6 +65,7 @@ function TimeoutDialog (options) {
         clone[key] = localisedDefaults[key]
       }
     })
+
     return clone
   }
 
@@ -80,12 +86,14 @@ function TimeoutDialog (options) {
     var $element = utils.generateDomElementFromString('<div>')
 
     if (settings.title) {
-      let $tmp = utils.generateDomElementFromStringAndAppendText('<h1 class="govuk-heading-m push--top">', settings.title)
+      var $tmp = utils.generateDomElementFromStringAndAppendText('<h1 class="govuk-heading-m push--top">', settings.title)
       $element.appendChild($tmp)
     }
-    const $timeoutMessage = utils.generateDomElementFromStringAndAppendText('<p id="hmrc-timeout-message" class="govuk-body hmrc-timeout-dialog__message" role="text">', settings.message)
-    const $staySignedInButton = utils.generateDomElementFromStringAndAppendText('<button id="hmrc-timeout-keep-signin-btn" class="govuk-button">', settings.keepAliveButtonText)
-    const $signOutButton = utils.generateDomElementFromStringAndAppendText('<a id="hmrc-timeout-sign-out-link" class="govuk-link hmrc-timeout-dialog__link">', settings.signOutButtonText)
+
+    var $timeoutMessage = utils.generateDomElementFromStringAndAppendText('<p id="hmrc-timeout-message" class="govuk-body hmrc-timeout-dialog__message" role="text">', settings.message)
+    var $staySignedInButton = utils.generateDomElementFromStringAndAppendText('<button id="hmrc-timeout-keep-signin-btn" class="govuk-button">', settings.keepAliveButtonText)
+    var $signOutButton = utils.generateDomElementFromStringAndAppendText('<a id="hmrc-timeout-sign-out-link" class="govuk-link hmrc-timeout-dialog__link">', settings.signOutButtonText)
+
     $staySignedInButton.addEventListener('click', keepAliveAndClose)
     $signOutButton.addEventListener('click', signOut)
     $signOutButton.setAttribute('href', settings.signOutUrl)
@@ -93,12 +101,13 @@ function TimeoutDialog (options) {
     $timeoutMessage.appendChild(document.createTextNode(' '))
     $timeoutMessage.appendChild($countdownElement)
     $timeoutMessage.appendChild(document.createTextNode('.'))
+
     $element.appendChild($timeoutMessage)
     $element.appendChild($staySignedInButton)
     $element.appendChild(document.createTextNode(' '))
     $element.appendChild($signOutButton)
 
-    var dialogControl = dialog.displayDialog($element)
+    var dialogControl = dialog($element)
 
     cleanupFunctions.push(function () {
       dialogControl.closeDialog()
@@ -156,7 +165,7 @@ function TimeoutDialog (options) {
   }
 
   function getDateNow () {
-    return Date.now() || +new Date()
+    return Date.now()
   }
 
   function signOut () {
@@ -177,7 +186,7 @@ function TimeoutDialog (options) {
     return ''
   }
 
-  return {cleanup: cleanup}
+  return { cleanup: cleanup }
 }
 
 TimeoutDialog.dialog = dialog

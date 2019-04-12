@@ -2,7 +2,7 @@ function ValidateInput ($module) {
 }
 
 ValidateInput.int = function (stringToValidate) {
-  const parsedInt = parseInt(stringToValidate, 10)
+  var parsedInt = parseInt(stringToValidate, 10)
   return isNaN(parsedInt) ? undefined : parsedInt
 }
 
