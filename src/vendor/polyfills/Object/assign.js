@@ -3,7 +3,7 @@ import 'govuk-frontend/vendor/polyfills/Function/prototype/bind'
 import './getOwnPropertyDescriptor'
 import './keys'
 
-(function(undefined) {
+(function (undefined) {
 
   // Detection from https://github.com/Financial-Times/polyfill-library/blob/987630a085e29226da16b5dc542042c687560191/polyfills/Object/assign/detect.js
   var detect = (
@@ -13,7 +13,7 @@ import './keys'
   if (detect) return
 
   // Polyfill from https://cdn.polyfill.io/v2/polyfill.js?features=Object.assign&flags=always
-  (function() {
+  (function () {
 
     // 7.1.13 ToObject ( argument )
     function toObject(argument) {
@@ -27,7 +27,6 @@ import './keys'
       enumerable: false,
       configurable: true,
       writable: true,
-      // 19.1.2.1 Object.assign ( target, ...sources )
       value: function assign(target, source) { // eslint-disable-line no-unused-vars
 
         // 1. Let to be ? ToObject(target).
