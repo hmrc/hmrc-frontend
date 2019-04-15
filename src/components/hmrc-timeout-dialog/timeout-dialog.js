@@ -107,7 +107,7 @@ function TimeoutDialog (options) {
     $element.appendChild(document.createTextNode(' '))
     $element.appendChild($signOutButton)
 
-    var dialogControl = dialog($element)
+    var dialogControl = dialog.displayDialog($element)
 
     cleanupFunctions.push(function () {
       dialogControl.closeDialog()

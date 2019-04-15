@@ -1,7 +1,7 @@
 import utils from './utils'
 import { nodeListForEach } from '../../common'
 
-function dialog ($elementToDisplay) {
+function displayDialog ($elementToDisplay) {
   var $dialog = utils.generateDomElementFromString('<div id="hmrc-timeout-dialog" tabindex="-1" role="dialog" class="hmrc-timeout-dialog">')
   var $overlay = utils.generateDomElementFromString('<div id="hmrc-timeout-overlay" class="hmrc-timeout-overlay">')
   var $preparedElementToDisplay = typeof $elementToDisplay === 'string' ? utils.generateDomElementFromString($elementToDisplay) : $elementToDisplay
@@ -135,4 +135,4 @@ function dialog ($elementToDisplay) {
   }
 }
 
-export default dialog
+export default { displayDialog: displayDialog }
