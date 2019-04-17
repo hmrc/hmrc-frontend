@@ -1,23 +1,13 @@
-<script>
-  window.HMRCReady = window.HMRCReady || []
-  window.HMRCReady.push(function () {
-    (function (validate) {
-      window.HMRCFrontend.TimeoutDialog({
-        timeout: validate.int("{{ params.timeout }}"),
-        countdown: validate.int("{{ params.countdown }}"),
-        keepAliveUrl: validate.string("{{ params.keepAliveUrl }}"),
-        signOutUrl: validate.string("{{ params.signOutUrl }}"),
-        title: validate.string("{{ params.title }}"),
-        message: validate.string("{{ params.message }}"),
-        keepAliveButtonText: validate.string("{{ params.keepAliveButtonText }}"),
-        signOutButtonText: validate.string("{{ params.signOutButtonText }}"),
-        properties: {
-          minutes: validate.string("{{ params.properties.minutes }}"),
-          minute: validate.string("{{ params.properties.minute }}"),
-          seconds: validate.string("{{ params.properties.seconds }}"),
-          second: validate.string("{{ params.properties.second }}")
-        }
-      })
-    }(window.HMRCFrontend.ValidateInput))
-  })
-</script>
+<meta name="hmrc-timeout-dialog"
+  data-timeout="{{ params.timeout }}"
+  data-countdown="{{ params.countdown }}"
+  data-keep-alive-url="{{ params.keepAliveUrl }}"
+  data-sign-out-url="{{ params.signOutUrl }}"
+  data-title="{{ params.title }}"
+  data-message="{{ params.message }}"
+  data-keep-alive-button-text="{{ params.keepAliveButtonText }}"
+  data-sign-out-button-text="{{ params.signOutButtonText }}"
+  data-properties--minutes="{{ params.properties.minutes }}"
+  data-properties--minute="{{ params.properties.minute }}"
+  data-properties--seconds="{{ params.properties.seconds }}"
+  data-properties--second="{{ params.properties.second }}" />
