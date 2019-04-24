@@ -6,12 +6,6 @@ const dialog = TimeoutDialog.dialog
 const redirectHelper = TimeoutDialog.redirectHelper
 const utils = TimeoutDialog.utils
 
-// jest.mock('../../../public/all')
-
-// dialog.mockImplementation(() => {
-
-// })
-
 describe('/components/timeout-dialog', () => {
   var assume
   var testScope // an object which is reset between test runs
@@ -30,7 +24,17 @@ describe('/components/timeout-dialog', () => {
   }
 
   function setupDialog (partialConfig) {
-    testScope.timeoutDialogControl = TimeoutDialog(Object.assign({}, testScope.minimumValidConfig, partialConfig))
+    const $TimeoutDialog = document.createElement('meta')
+    $TimeoutDialog.setAttribute('name', 'hmrc-timeout-dialog')
+
+    const config = Object.assign({}, testScope.minimumValidConfig, partialConfig)
+
+    for (let item in config) {
+      $TimeoutDialog.setAttribute(item, config[item])
+    }
+
+    testScope.timeoutDialogControl = new TimeoutDialog($TimeoutDialog)
+    testScope.timeoutDialogControl.init()
   }
 
   function setLanguageToWelsh () {
@@ -46,8 +50,8 @@ describe('/components/timeout-dialog', () => {
     mock.spyOn(Date, 'now').mockImplementation(function () {
       return testScope.currentDateTime
     })
-    mock.spyOn(utils, 'ajaxGet').mockImplementation(() => {})
-    mock.spyOn(redirectHelper, 'redirectToUrl').mockImplementation(() => {})
+    mock.spyOn(utils, 'ajaxGet').mockImplementation(() => { })
+    mock.spyOn(redirectHelper, 'redirectToUrl').mockImplementation(() => { })
     mock.spyOn(dialog, 'displayDialog').mockImplementation(function ($elementToDisplay) {
       testScope.latestDialog$element = $elementToDisplay
       testScope.latestDialogControl = {
@@ -62,10 +66,10 @@ describe('/components/timeout-dialog', () => {
     })
     jest.useFakeTimers()
     testScope.minimumValidConfig = {
-      timeout: 900,
-      countdown: 120,
-      keepAliveUrl: '/keep-alive',
-      signOutUrl: '/sign-out'
+      'data-timeout': 900,
+      'data-countdown': 120,
+      'data-keep-alive-url': '/keep-alive',
+      'data-sign-out-url': '/sign-out'
     }
   })
 
@@ -82,7 +86,7 @@ describe('/components/timeout-dialog', () => {
 
   describe('Delay before displaying', function () {
     it('should start countdown at 2.5 minutes', function () {
-      setupDialog({timeout: 300, countdown: 30, title: 'one'})
+      setupDialog({ 'data-timeout': 300, 'data-countdown': 30, 'data-title': 'one' })
 
       pretendSecondsHavePassed(269)
 
@@ -98,7 +102,7 @@ describe('/components/timeout-dialog', () => {
 
   describe('Timeout Dialog', function () {
     it('should start countdown at 13 minutes', function () {
-      setupDialog({timeout: 900, countdown: 120, title: 'two'})
+      setupDialog({ 'data-timeout': 900, 'data-countdown': 120, 'data-title': 'two' })
 
       pretendSecondsHavePassed(779)
 
@@ -192,12 +196,12 @@ describe('/components/timeout-dialog', () => {
   })
 
   it('should AJAX call the configured URL', function () {
-    mock.spyOn(utils, 'ajaxGet').mockImplementation(() => {})
+    mock.spyOn(utils, 'ajaxGet').mockImplementation(() => { })
 
     setupDialog({
-      timeout: 130,
-      countdown: 120,
-      keepAliveUrl: '/customKeepAlive'
+      'data-timeout': 130,
+      'data-countdown': 120,
+      'data-keep-alive-url': '/customKeepAlive'
     })
 
     pretendSecondsHavePassed(10)
@@ -210,11 +214,11 @@ describe('/components/timeout-dialog', () => {
   describe('the configuration options', function () {
     beforeEach(function () {
       setupDialog({
-        title: 'my custom TITLE',
-        message: 'MY custom message',
-        keepAliveButtonText: 'KEEP alive',
-        signOutButtonText: 'sign OUT',
-        signOutUrl: '/mySignOutUrl.html'
+        'data-title': 'my custom TITLE',
+        'data-message': 'MY custom message',
+        'data-keep-alive-button-text': 'KEEP alive',
+        'data-sign-out-button-text': 'sign OUT',
+        'data-sign-out-url': '/mySignOutUrl.html'
       })
       pretendSecondsHavePassed(780)
     })
@@ -247,7 +251,7 @@ describe('/components/timeout-dialog', () => {
 
   describe('Restarting countdown on close', function () {
     it('should restart with default settings', function () {
-      setupDialog({message: 'time:'})
+      setupDialog({ 'data-message': 'time:' })
 
       pretendSecondsHavePassed(880)
       pretendDialogWasClosedWithoutButtonPress()
@@ -258,43 +262,45 @@ describe('/components/timeout-dialog', () => {
       expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 20 seconds.')
     })
   })
+
   describe('required configuration', function () {
     it('should fail when timeout is missing', function () {
-      delete testScope.minimumValidConfig.timeout
+      delete testScope.minimumValidConfig['data-timeout']
 
       expect(function () {
-        TimeoutDialog(testScope.minimumValidConfig)
-      }).toThrow(new Error('Missing config item(s): [timeout]'))
+        setupDialog()
+      }).toThrowError('Missing config item(s): [data-timeout]')
     })
 
     it('should fail when countdown is missing', function () {
-      delete testScope.minimumValidConfig.countdown
+      delete testScope.minimumValidConfig['data-countdown']
 
       expect(function () {
-        TimeoutDialog(testScope.minimumValidConfig)
-      }).toThrow(new Error('Missing config item(s): [countdown]'))
+        setupDialog()
+      }).toThrowError('Missing config item(s): [data-countdown]')
     })
 
     it('should fail when keepAliveUrl is missing', function () {
-      delete testScope.minimumValidConfig.keepAliveUrl
+      delete testScope.minimumValidConfig['data-keep-alive-url']
 
       expect(function () {
-        TimeoutDialog(testScope.minimumValidConfig)
-      }).toThrow(new Error('Missing config item(s): [keepAliveUrl]'))
+        setupDialog()
+      }).toThrowError('Missing config item(s): [data-keep-alive-url]')
     })
 
     it('should fail when signOutUrl is missing', function () {
-      delete testScope.minimumValidConfig.signOutUrl
+      delete testScope.minimumValidConfig['data-sign-out-url']
 
       expect(function () {
-        TimeoutDialog(testScope.minimumValidConfig)
-      }).toThrow(new Error('Missing config item(s): [signOutUrl]'))
+        setupDialog()
+      }).toThrowError('Missing config item(s): [data-sign-out-url]')
     })
 
     it('should fail when all config is missing', function () {
+      testScope.minimumValidConfig = {}
       expect(function () {
-        TimeoutDialog({})
-      }).toThrow(new Error('Missing config item(s): [timeout, countdown, keepAliveUrl, signOutUrl]'))
+        setupDialog()
+      }).toThrowError('Missing config item(s): [data-timeout, data-countdown, data-keep-alive-url, data-sign-out-url]')
     })
   })
 
@@ -302,7 +308,7 @@ describe('/components/timeout-dialog', () => {
     var MINIMUM_TIME_UNTIL_MODAL_DISPLAYED = 10
 
     it('should not display the dialog if cleanup has already been called', function () {
-      setupDialog({timeout: 130, countdown: 120})
+      setupDialog({ 'data-timeout': 130, 'data-countdown': 120 })
 
       testScope.timeoutDialogControl.cleanup()
       pretendSecondsHavePassed(MINIMUM_TIME_UNTIL_MODAL_DISPLAYED)
@@ -310,7 +316,7 @@ describe('/components/timeout-dialog', () => {
     })
 
     it('should remove dialog when cleanup is called', function () {
-      setupDialog({timeout: 130, countdown: 120})
+      setupDialog({ 'data-timeout': 130, 'data-countdown': 120 })
       pretendSecondsHavePassed(MINIMUM_TIME_UNTIL_MODAL_DISPLAYED)
       assume(dialog.displayDialog).toHaveBeenCalled()
 
@@ -323,10 +329,10 @@ describe('/components/timeout-dialog', () => {
   describe('Countdown timer', function () {
     it('should countdown minutes and then seconds in english', function () {
       setupDialog({
-        timeout: 130,
-        countdown: 120,
-        message: 'time:',
-        signOutUrl: 'logout'
+        'data-timeout': 130,
+        'data-countdown': 120,
+        'data-message': 'time:',
+        'data-sign-out-url': 'logout'
       })
 
       pretendSecondsHavePassed(10)
@@ -365,10 +371,10 @@ describe('/components/timeout-dialog', () => {
     it('should countdown minutes and then seconds in welsh', function () {
       setLanguageToWelsh()
       setupDialog({
-        timeout: 130,
-        countdown: 120,
-        message: 'time:',
-        signOutUrl: 'logout'
+        'data-timeout': 130,
+        'data-countdown': 120,
+        'data-message': 'time:',
+        'data-sign-out-url': 'logout'
       })
 
       pretendSecondsHavePassed(10)
@@ -407,9 +413,9 @@ describe('/components/timeout-dialog', () => {
 
     it('should countdown lots of minutes when countdown is long', function () {
       setupDialog({
-        timeout: 1810,
-        countdown: 1800,
-        message: 'time:'
+        'data-timeout': 1810,
+        'data-countdown': 1800,
+        'data-message': 'time:'
       })
 
       pretendSecondsHavePassed(10)
@@ -427,10 +433,10 @@ describe('/components/timeout-dialog', () => {
 
     it('should countdown only seconds when the countdown is short', function () {
       setupDialog({
-        timeout: 130,
-        countdown: 50,
-        message: 'time:',
-        signOutUrl: 'logout'
+        'data-timeout': 130,
+        'data-countdown': 50,
+        'data-message': 'time:',
+        'data-sign-out-url': 'logout'
       })
 
       pretendSecondsHavePassed(80)
@@ -463,9 +469,9 @@ describe('/components/timeout-dialog', () => {
   describe('techy features', function () {
     it('should not rely on setInterval for countdown', function () {
       setupDialog({
-        timeout: 80,
-        countdown: 50,
-        message: 'time:'
+        'data-timeout': 80,
+        'data-countdown': 50,
+        'data-message': 'time:'
       })
 
       pretendSecondsHavePassed(29)
@@ -483,16 +489,16 @@ describe('/components/timeout-dialog', () => {
     })
 
     it('should clearInterval on cleanup', function () {
-      var intervalReturn = {message: 'this has been returned from a spy'}
+      var intervalReturn = { 'data-message': 'this has been returned from a spy' }
       jest.clearAllTimers()
 
       mock.spyOn(window, 'setInterval').mockReturnValue(intervalReturn)
-      mock.spyOn(window, 'clearInterval').mockImplementation(() => {})
+      mock.spyOn(window, 'clearInterval').mockImplementation(() => { })
       mock.spyOn(window, 'setTimeout').mockImplementation(function (fn) {
         fn()
       })
 
-      setupDialog({timeout: 130, countdown: 120})
+      setupDialog({ 'data-timeout': 130, 'data-countdown': 120 })
       assume(window.setInterval).toHaveBeenCalled()
       assume(window.clearInterval).not.toHaveBeenCalled()
 
@@ -501,16 +507,16 @@ describe('/components/timeout-dialog', () => {
     })
 
     it('should clearInterval on closeDialog', function () {
-      var intervalReturn = {message: 'this has been returned from a spy'}
+      var intervalReturn = { 'data-message': 'this has been returned from a spy' }
       jest.clearAllTimers()
 
       mock.spyOn(window, 'setInterval').mockReturnValue(intervalReturn)
-      mock.spyOn(window, 'clearInterval').mockImplementation(() => {})
+      mock.spyOn(window, 'clearInterval').mockImplementation(() => { })
       mock.spyOn(window, 'setTimeout').mockImplementation(function (fn) {
         fn()
       })
 
-      setupDialog({timeout: 130, countdown: 120})
+      setupDialog({ 'data-timeout': 130, 'data-countdown': 120 })
       assume(window.setInterval).toHaveBeenCalled()
       assume(window.clearInterval).not.toHaveBeenCalled()
 
