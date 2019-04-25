@@ -1,12 +1,11 @@
 examples:
 - name: default
   data:
-    title: "Example Timeout Dialog"
     timeout: 70
     countdown: 68
     keepAliveUrl: "?abc=def"
     signOutUrl: "?ghi=jkl"
-- name: long-delay
+- name: long-delay-with-title
   data:
     title: "Example Timeout Dialog"
     timeout: 700
@@ -23,8 +22,3 @@ examples:
     message: "message"
     keepAliveButtonText: "keepAliveButtonText"
     signOutButtonText: "signOutButtonText"
-    properties:
-      minutes: "minutes3"
-      minute: "minute3"
-      seconds: "seconds3"
-      second: "second3"

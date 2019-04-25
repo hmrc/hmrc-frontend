@@ -3,7 +3,7 @@ import TimeoutDialog from './components/hmrc-timeout-dialog/timeout-dialog'
 
 function initAll () {
   var $AccountMenuSelector = '[data-module="hmrc-account-menu"]'
-  if ($AccountMenuSelector) {
+  if (document.querySelector($AccountMenuSelector)) {
     new AccountMenu($AccountMenuSelector).init()
   }
 
