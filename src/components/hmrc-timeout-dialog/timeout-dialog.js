@@ -72,7 +72,7 @@ function TimeoutDialog ($module) {
 
     requiredConfig.forEach(function (item) {
       if (!config.hasOwnProperty(item) || !config[item]) {
-        missingRequiredConfig.push(`data-${item.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}`)
+        missingRequiredConfig.push('data-' + item.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase())
       }
     })
 
