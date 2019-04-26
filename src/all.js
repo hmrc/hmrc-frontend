@@ -1,12 +1,20 @@
 import AccountMenu from './components/hmrc-account-menu/account-menu'
+import TimeoutDialog from './components/hmrc-timeout-dialog/timeout-dialog'
 
 function initAll () {
-  if (document.querySelector('[data-module="hmrc-account-menu"]')) {
-    new AccountMenu('[data-module="hmrc-account-menu"]').init()
+  var $AccountMenuSelector = '[data-module="hmrc-account-menu"]'
+  if (document.querySelector($AccountMenuSelector)) {
+    new AccountMenu($AccountMenuSelector).init()
+  }
+
+  var $TimeoutDialog = document.querySelector('meta[name="hmrc-timeout-dialog"]')
+  if ($TimeoutDialog) {
+    new TimeoutDialog($TimeoutDialog).init()
   }
 }
 
-export {
-  initAll,
-  AccountMenu
+export default {
+  initAll: initAll,
+  AccountMenu: AccountMenu,
+  TimeoutDialog: TimeoutDialog
 }

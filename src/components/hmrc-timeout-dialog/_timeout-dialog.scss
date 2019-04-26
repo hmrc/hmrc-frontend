@@ -1,0 +1,66 @@
+@import "node_modules/govuk-frontend/settings/all";
+@import "node_modules/govuk-frontend/tools/all";
+@import "node_modules/govuk-frontend/helpers/all";
+@import "node_modules/govuk-frontend/vendor/sass-mq";
+
+.hmrc-timeout-overlay {
+  position: fixed;
+  z-index: 1001;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .8;
+  background-color: govuk-colour("black");
+  filter: alpha(opacity=80);
+  -moz-opacity: .8;
+}
+
+html {
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+.hmrc-timeout-dialog {
+  position: fixed;
+  z-index: 1002;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  padding: 30px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transform: translate(-50%, -50%);
+  border: 5px solid govuk-colour("black");
+  background-color: govuk-colour("white");
+
+  @include govuk-media-query($from: tablet) {
+    width: 435px;
+    @include govuk-if-ie8 {
+      margin-top: -128px;
+      margin-left: -227px;
+    }
+  }
+}
+
+.hmrc-timeout-dialog__message {
+  @include govuk-font(19);
+  line-height: 1.31579;
+}
+
+.hmrc-timeout-dialog__countdown {
+  display: inline-block;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.hmrc-timeout-dialog__link {
+  display: inline-block;
+  @include govuk-media-query($from: tablet) {
+    position: relative;
+    top: 2px;
+    padding: .526315em .789473em .263157em;
+    line-height: 1.5;
+  }
+}

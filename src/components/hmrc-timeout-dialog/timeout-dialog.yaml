@@ -1,0 +1,24 @@
+examples:
+- name: default
+  data:
+    timeout: 70
+    countdown: 68
+    keepAliveUrl: "?abc=def"
+    signOutUrl: "?ghi=jkl"
+- name: long-delay-with-title
+  data:
+    title: "Example Timeout Dialog"
+    timeout: 700
+    countdown: 690
+    keepAliveUrl: "?abc=def"
+    signOutUrl: "?ghi=jkl"
+- name: all-options-set
+  data:
+    timeout: 100
+    countdown: 90
+    keepAliveUrl: "keepAliveUrl"
+    signOutUrl: "signOutUrl"
+    title: "title"
+    message: "message"
+    keepAliveButtonText: "keepAliveButtonText"
+    signOutButtonText: "signOutButtonText"
