@@ -66,7 +66,6 @@ function TimeoutDialog ($module) {
   }
 
   function validateInput (config) {
-    console.log(config)
     var requiredConfig = ['timeout', 'countdown', 'keepAliveUrl', 'signOutUrl']
     var missingRequiredConfig = []
 
@@ -93,7 +92,7 @@ function TimeoutDialog ($module) {
           localisedDefaults[key]
         )
       }
-      if (clone[key] === undefined) {
+      if (clone[key] === undefined || clone[key] === '') {
         clone[key] = localisedDefaults[key]
       }
     })

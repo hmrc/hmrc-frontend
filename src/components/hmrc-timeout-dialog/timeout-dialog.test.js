@@ -140,14 +140,14 @@ describe('/components/timeout-dialog', () => {
       expect(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link').innerText).toEqual('Sign out')
     })
 
-    it('should redirect to default signout url when signout is clicked', function () {
+    it('should redirect to signout url when signout is clicked', function () {
       assume(redirectHelper.redirectToUrl).not.toHaveBeenCalled()
 
       clickElem(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link'))
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('/sign-out')
     })
 
-    it('should use the default signout url on the signout link', function () {
+    it('should use the signout url on the signout link', function () {
       var $signoutLink = testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-link')
       expect($signoutLink.attributes.getNamedItem('href').value).toEqual('/sign-out')
     })
@@ -211,41 +211,31 @@ describe('/components/timeout-dialog', () => {
     expect(utils.ajaxGet.mock.calls.length).toEqual(1)
   })
 
-  describe('the configuration options', function () {
+  describe('the default options when empty strings are provided', function () {
     beforeEach(function () {
       setupDialog({
-        'data-title': 'my custom TITLE',
-        'data-message': 'MY custom message',
-        'data-keep-alive-button-text': 'KEEP alive',
-        'data-sign-out-button-text': 'sign OUT',
-        'data-sign-out-url': '/mySignOutUrl.html'
+        'data-title': '',
+        'data-message': '',
+        'data-keep-alive-button-text': '',
+        'data-sign-out-button-text': ''
       })
       pretendSecondsHavePassed(780)
     })
 
-    it('should show heading', function () {
-      expect(getElemText(testScope.latestDialog$element.querySelector('h1'))).toEqual('my custom TITLE')
+    it('should not show heading', function () {
+      expect(testScope.latestDialog$element.querySelector('h1')).toBeNull()
     })
 
     it('should show message', function () {
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('MY custom message 2 minutes.')
+      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('For your security, we will sign you out in 2 minutes.')
     })
 
     it('should show keep signed in button', function () {
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-keep-signin-btn'))).toEqual('KEEP alive')
+      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-keep-signin-btn'))).toEqual('Stay signed in')
     })
 
     it('should show sign out button', function () {
-      expect(getElemText(testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-link'))).toEqual('sign OUT')
-    })
-
-    it('should redirect to default signout url when signout is clicked', function () {
-      assume(redirectHelper.redirectToUrl).not.toHaveBeenCalled()
-
-      expect(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link')).not.toBeNull()
-
-      clickElem(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link'))
-      expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('/mySignOutUrl.html')
+      expect(getElemText(testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-link'))).toEqual('Sign out')
     })
   })
 
@@ -301,6 +291,38 @@ describe('/components/timeout-dialog', () => {
       expect(function () {
         setupDialog()
       }).toThrowError('Missing config item(s): [data-timeout, data-countdown, data-keep-alive-url, data-sign-out-url]')
+    })
+
+    it('should fail when timeout is empty', function () {
+      testScope.minimumValidConfig['data-timeout'] = ''
+
+      expect(function () {
+        setupDialog()
+      }).toThrowError('Missing config item(s): [data-timeout]')
+    })
+
+    it('should fail when countdown is empty', function () {
+      testScope.minimumValidConfig['data-countdown'] = ''
+
+      expect(function () {
+        setupDialog()
+      }).toThrowError('Missing config item(s): [data-countdown]')
+    })
+
+    it('should fail when keepAliveUrl is empty', function () {
+      testScope.minimumValidConfig['data-keep-alive-url'] = ''
+
+      expect(function () {
+        setupDialog()
+      }).toThrowError('Missing config item(s): [data-keep-alive-url]')
+    })
+
+    it('should fail when signOutUrl is empty', function () {
+      testScope.minimumValidConfig['data-sign-out-url'] = ''
+
+      expect(function () {
+        setupDialog()
+      }).toThrowError('Missing config item(s): [data-sign-out-url]')
     })
   })
 
