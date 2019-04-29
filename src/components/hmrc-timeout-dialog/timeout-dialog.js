@@ -13,8 +13,15 @@ function TimeoutDialog ($module) {
   var options = {}
   var settings = {}
   var cleanupFunctions = []
-  var localisedDefaults = (readCookie('PLAY_LANG') &&
-    readCookie('PLAY_LANG') === 'cy' && {
+
+  function init () {
+    var validate = ValidateInput
+
+    function lookupData (key) {
+      return ($module.attributes.getNamedItem(key) || {}).value
+    }
+
+    var localisedDefaults = validate.string(lookupData('data-language')) === 'cy' ? {
       title: undefined,
       message: 'Er eich diogelwch, byddwn yn eich allgofnodi cyn pen',
       keepAliveButtonText: 'Parhau i fod wedi’ch mewngofnodi',
@@ -25,7 +32,7 @@ function TimeoutDialog ($module) {
         seconds: 'eiliad',
         second: 'eiliad'
       }
-    }) || {
+    } : {
       title: undefined,
       message: 'For your security, we will sign you out in',
       keepAliveButtonText: 'Stay signed in',
@@ -38,13 +45,6 @@ function TimeoutDialog ($module) {
       }
     }
 
-  function init () {
-    var validate = ValidateInput
-
-    function lookupData (key) {
-      return ($module.attributes.getNamedItem(key) || {}).value
-    }
-
     options = {
       timeout: validate.int(lookupData('data-timeout')),
       countdown: validate.int(lookupData('data-countdown')),
@@ -52,6 +52,7 @@ function TimeoutDialog ($module) {
       signOutUrl: validate.string(lookupData('data-sign-out-url')),
       title: validate.string(lookupData('data-title')),
       message: validate.string(lookupData('data-message')),
+      messageSuffix: validate.string(lookupData('data-message-suffix')),
       keepAliveButtonText: validate.string(
         lookupData('data-keep-alive-button-text')
       ),
@@ -113,9 +114,6 @@ function TimeoutDialog ($module) {
   }
 
   function setupDialog () {
-    var $countdownElement = utils.generateDomElementFromString(
-      '<span id="hmrc-timeout-countdown" class="hmrc-timeout-dialog__countdown">'
-    )
     var $element = utils.generateDomElementFromString('<div>')
 
     if (settings.title) {
@@ -126,10 +124,21 @@ function TimeoutDialog ($module) {
       $element.appendChild($tmp)
     }
 
+    var $countdownElement = utils.generateDomElementFromString(
+      '<span id="hmrc-timeout-countdown" class="hmrc-timeout-dialog__countdown">'
+    )
+
     var $timeoutMessage = utils.generateDomElementFromStringAndAppendText(
       '<p id="hmrc-timeout-message" class="govuk-body hmrc-timeout-dialog__message" role="text">',
       settings.message
     )
+    $timeoutMessage.appendChild(document.createTextNode(' '))
+    $timeoutMessage.appendChild($countdownElement)
+    $timeoutMessage.appendChild(document.createTextNode('.'))
+    if (settings.messageSuffix) {
+      $timeoutMessage.appendChild(document.createTextNode(' ' + settings.messageSuffix))
+    }
+
     var $staySignedInButton = utils.generateDomElementFromStringAndAppendText(
       '<button id="hmrc-timeout-keep-signin-btn" class="govuk-button">',
       settings.keepAliveButtonText
@@ -142,10 +151,6 @@ function TimeoutDialog ($module) {
     $staySignedInButton.addEventListener('click', keepAliveAndClose)
     $signOutButton.addEventListener('click', signOut)
     $signOutButton.setAttribute('href', settings.signOutUrl)
-
-    $timeoutMessage.appendChild(document.createTextNode(' '))
-    $timeoutMessage.appendChild($countdownElement)
-    $timeoutMessage.appendChild(document.createTextNode('.'))
 
     $element.appendChild($timeoutMessage)
     $element.appendChild($staySignedInButton)
@@ -221,13 +226,6 @@ function TimeoutDialog ($module) {
       var fn = cleanupFunctions.shift()
       fn()
     }
-  }
-
-  function readCookie (cookieName) { // From http://www.javascripter.net/faq/readingacookie.htm
-    var re = new RegExp('[; ]' + cookieName + '=([^\\s;]*)')
-    var sMatch = (' ' + document.cookie).match(re)
-    if (cookieName && sMatch) return unescape(sMatch[1])
-    return ''
   }
 
   return { init: init, cleanup: cleanup }

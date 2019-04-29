@@ -20,5 +20,6 @@ examples:
     signOutUrl: "signOutUrl"
     title: "title"
     message: "message"
+    messageSuffix : "there is a suffix for the message"
     keepAliveButtonText: "keepAliveButtonText"
     signOutButtonText: "signOutButtonText"
