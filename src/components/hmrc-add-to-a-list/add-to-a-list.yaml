@@ -21,13 +21,13 @@ params:
       - singular:
         type: string
         required: false
-        default: Item
+        default: item
         description: Noun used for a single entry in the itemList
 
       - plural:
         type: string
         required: false
-        default: Items
+        default: items
         description: Noun used for multiple entries in the itemList
 
       - itemSize:
@@ -49,6 +49,15 @@ examples:
 - name: single-generic-item
   description: A list with a single unnamed item
   data:
+    itemList:
+      - name: item one
+        changeUrl: '#c1url'
+        removeUrl: '#r1url'
+
+- name: single-generic-welsh-item
+  description: A list with a single unnamed item
+  data:
+    language: 'cy'
     itemList:
       - name: item one
         changeUrl: '#c1url'

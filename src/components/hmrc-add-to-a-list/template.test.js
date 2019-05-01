@@ -4,22 +4,33 @@ const { render, getExamples } = require('../../../lib/jest-helpers')
 
 const examples = getExamples('add-to-a-list')
 
+const getTableItems = ($) => {
+  const $rows = $('.hmrc-add-to-a-list__contents')
+  const $changeLinks = $('span.hmrc-add-to-a-list__change', $rows)
+  const $removeLinks = $('span.hmrc-add-to-a-list__remove', $rows)
+
+  const listItems = {}
+  listItems.identifiers = $('span.hmrc-add-to-a-list__identifier', $rows)
+  listItems.changeLinkText = $changeLinks.find('[aria-hidden="true"]').eq(0).text().trim()
+  listItems.removeLinkText = $removeLinks.find('[aria-hidden="true"]').eq(0).text().trim()
+  listItems.ariaChangeText = $changeLinks.find('.govuk-visually-hidden').eq(0).text().trim()
+  listItems.ariaRemoveText = $removeLinks.find('.govuk-visually-hidden').eq(0).text().trim()
+
+  return listItems
+}
+
 describe('Add to a list', () => {
   describe('by default', () => {
     const $ = render('add-to-a-list', examples['default'])
     const $heading = $('h1')
     const $legend = $('fieldset legend')
 
-    it('Uses "items" as the plural item name', () => {
-      expect($heading.text()).toContain('items')
-    })
-
-    it('Uses "no" as the count value', () => {
-      expect($heading.text()).toContain('no items')
+    it('Has the correct no-items form of heading', () => {
+      expect($heading.text().trim()).toBe('You have added no items')
     })
 
     it('has the default legend text', () => {
-      expect($legend.text()).toContain('Do you need to add another item?')
+      expect($legend.text().trim()).toBe('Do you need to add another item?')
     })
   })
 
@@ -28,25 +39,40 @@ describe('Add to a list', () => {
     const $heading = $('h1')
     const $rows = $('.hmrc-add-to-a-list__contents')
 
-    it('Uses "item" as the singular item name', () => {
-      expect($heading.text()).toContain('item')
-    })
-
-    it('Uses "1" as the count value', () => {
-      expect($heading.text()).toContain('1 item')
+    it('has the correct text for 1 item', () => {
+      expect($heading.text()).toBe('You have added 1 item')
     })
 
     it('Contains a list of 1 item', () => {
-      const $identifiers = $('span.hmrc-add-to-a-list__identifier', $rows)
-      const $changeLinks = $('span.hmrc-add-to-a-list__change', $rows)
-      const $removeLinks = $('span.hmrc-add-to-a-list__remove', $rows)
+      const listItems = getTableItems($)
 
       expect($rows.length).toBe(1)
-      expect($identifiers.text()).toContain('item one')
-      expect($changeLinks.text()).toContain('Change')
-      expect($removeLinks.text()).toContain('Remove')
-      expect($changeLinks.find('.govuk-visually-hidden').text()).toContain('Change item one')
-      expect($removeLinks.find('.govuk-visually-hidden').text()).toContain('Remove item one from the list')
+      expect(listItems.identifiers.text().trim()).toBe('item one')
+      expect(listItems.changeLinkText).toBe('Change')
+      expect(listItems.removeLinkText).toBe('Remove')
+      expect(listItems.ariaChangeText).toBe('Change item one')
+      expect(listItems.ariaRemoveText).toBe('Remove item one from the list')
+    })
+  })
+
+  describe('with one item in welsh', () => {
+    const $ = render('add-to-a-list', examples['single-generic-welsh-item'])
+    const $heading = $('h1')
+    const $rows = $('.hmrc-add-to-a-list__contents')
+
+    it('Has the correct singular welsh heading', () => {
+      expect($heading.text()).toBe('You have added - cy 1 item-cy')
+    })
+
+    it('Contains a list of 1 item', () => {
+      const listItems = getTableItems($)
+
+      expect($rows.length).toBe(1)
+      expect(listItems.identifiers.text().trim()).toBe('item one')
+      expect(listItems.changeLinkText).toBe('Change-cy')
+      expect(listItems.removeLinkText).toBe('Remove-cy')
+      expect(listItems.ariaChangeText).toBe('Change-cy item one')
+      expect(listItems.ariaRemoveText).toBe('Remove-cy item one from the list')
     })
   })
 
@@ -56,7 +82,6 @@ describe('Add to a list', () => {
     const $rows = $('.hmrc-add-to-a-list__contents')
     const $legend = $('fieldset legend')
     const $form = $('form')
-
     it('Uses "directors" as the plural item name', () => {
       expect($heading.text()).toContain('directors')
     })

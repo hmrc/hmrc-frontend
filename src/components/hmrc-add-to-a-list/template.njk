@@ -1,9 +1,33 @@
-{% from "button/macro.njk" import govukButton with context%}
+{% from "button/macro.njk" import govukButton with context %}
 {% from "radios/macro.njk" import govukRadios with context %}
-
-<h1 class="govuk-heading-xl">You have added {{ params.itemList | length | default('no', true) }}
-{%- if params.itemList | length  === 1 %} {{ params.itemType.singular | default('item') }}
-{%- else %} {{ params.itemType.plural | default('items') }}
+{% if params.language == 'cy' %}
+    {% set messages = {
+    itemTypeDefault: {singular: 'item-cy', plural: 'items-cy', noItems: 'items-cy'},
+    haveAdded: 'You have added - cy',
+    addAnother: 'Do you need to add another - cy',
+    continue: 'continue-cy',
+    change: 'Change-cy',
+    remove: 'Remove-cy',
+    aria: {before: 'Remove-cy', after: 'from the list'},
+    yes : 'yes-cy',
+    no: 'no-cy'
+  } %}
+{% else %}
+  {% set messages = {
+    itemTypeDefault: {singular: 'item', plural: 'items', noItems: 'items'},
+    haveAdded: 'You have added',
+    addAnother: 'Do you need to add another',
+    continue: 'continue',
+    change: 'Change',
+    remove: 'Remove',
+    aria: {before: 'Remove', after: 'from the list'},
+    yes : 'yes',
+    no: 'no'
+  } %}
+{% endif %}
+<h1 class="govuk-heading-xl">{{ messages.haveAdded }} {{ params.itemList | length | default('no', true) }}
+{%- if params.itemList | length  === 1 %} {{ params.itemType.singular | default(messages.itemTypeDefault.singular) }}
+{%- else %} {{ params.itemType.plural | default(messages.itemTypeDefault.plural) }}
 {%- endif -%}
 </h1>
 <div class="govuk-form-group">
@@ -16,14 +40,14 @@
       </span>
       <span class="hmrc-add-to-a-list__change">
         <a class="govuk-link" href="{{ item.changeUrl }}">
-          <span aria-hidden="true">Change</span>
-          <span class="govuk-visually-hidden">Change {{ item.name }}</span>
+          <span aria-hidden="true">{{messages.change}}</span>
+          <span class="govuk-visually-hidden">{{messages.change}} {{ item.name }}</span>
         </a>
       </span>
       <span class="hmrc-add-to-a-list__remove">
         <a class="govuk-link" href="{{ item.removeUrl }}">
-          <span aria-hidden="true">Remove</span>
-          <span class="govuk-visually-hidden">Remove {{item.name}} from the list</span>
+          <span aria-hidden="true">{{messages.remove}}</span>
+          <span class="govuk-visually-hidden">{{messages.aria.before}} {{ item.name }} {{messages.aria.after}}</span>
         </a>
       </span>
     </li>
@@ -40,7 +64,7 @@
     name: "add-another",
     fieldset: {
       legend: {
-        text:  "Do you need to add another " + params.itemType.singular | default('item') + "?",
+        text:  messages.addAnother + " " + params.itemType.singular | default(messages.itemTypeDefault.singular) + "?",
         isPageHeading: false,
         classes: "govuk-fieldset__legend govuk-fieldset__legend--m"
       }
@@ -49,8 +73,8 @@
       text: params.hintText
     },
     items: [
-      { text: "Yes", value: "yes" },
-      { text: "No", value: "no" }
+      { text: messages.yes, value: "yes" },
+      { text: messages.no, value: "no" }
     ] }) }}
-  {{ govukButton({ text: " Submit " }) }}
+  {{ govukButton({ text: messages.continue }) }}
 </form>
