@@ -2,7 +2,7 @@
 
 const axe = require('../../../lib/axe-helper')
 
-const { render, getExamples } = require('../../../lib/jest-helpers')
+const {render, getExamples} = require('../../../lib/jest-helpers')
 
 const examples = getExamples('banner')
 
@@ -16,11 +16,11 @@ describe('Internal Header', () => {
     })
     it('should have English text by default', () => {
       const $ = render('banner', examples.default)
-      expect($.find('.hmrc-banner p.govuk-body').text()).toEqual('HMRC Revenue & Customs')
+      expect($('.hmrc-banner > .hmrc-organisation-logo > p.govuk-body-s').text().trim()).toEqual('HM Revenue & Customs')
     })
     it('should have Welsh text when specified', () => {
       const $ = render('banner', examples.welsh)
-      expect($.find('.hmrc-banner p.govuk-body').text()).toEqual('Cyllid a Thollau EM')
+      expect($('.hmrc-banner > .hmrc-organisation-logo > p.govuk-body-s').text().trim()).toEqual('Cyllid a Thollau EM')
     })
   })
 })

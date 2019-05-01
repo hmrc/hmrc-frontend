@@ -1,6 +1,7 @@
 {
   "assets": [
     "/components/hmrc-account-menu/images",
+    "/components/hmrc-banner/images",
     "/components/hmrc-internal-header/images"
   ],
   "nunjucksPaths": [

@@ -211,8 +211,3 @@ examples:
         href: "/components/header/with-language-toggle-english/preview"
       cy:
         href: "/components/header/with-language-toggle-welsh/preview"
-
-- name: with-banner
-  data:
-    serviceName: Example Service
-    displayHmrcBanner: true
