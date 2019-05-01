@@ -1,0 +1,15 @@
+.hmrc-banner {
+  margin: .5em 0;
+  padding: 3px 0 3px 30px;
+  border-left: 2px solid govuk-organisation-colour("hm-revenue-customs");
+  background: url("#{$hmrc-assets-path}components/hmrc-banner/images/hmrc_crest_18px.png") 5px center no-repeat;
+
+  @media all and (-webkit-min-device-pixel-ratio: 2) {
+    background-image: url("#{$hmrc-assets-path}components/hmrc-banner/images/hmrc_crest_18px_x2.png");
+    background-size: auto 20px;
+  }
+
+  p {
+    margin: 0;
+  }
+}

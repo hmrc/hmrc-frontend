@@ -38,6 +38,7 @@ examples:
   data:
     hmrcAccountHeader:
       serviceName: 'My Service'
+      displayHmrcBanner: true
       accountHome:
         href: '/account/home'
         active: true
