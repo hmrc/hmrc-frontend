@@ -10,7 +10,11 @@ const getTableItems = ($) => {
   const $removeLinks = $('span.hmrc-add-to-a-list__remove', $rows)
 
   const listItems = {}
-  listItems.identifiers = $('span.hmrc-add-to-a-list__identifier', $rows)
+  listItems.identifiers = []
+  $('span.hmrc-add-to-a-list__identifier', $rows).each((index, element) => {
+    listItems.identifiers.push($(element).text().trim())
+  })
+  console.log(listItems.identifiers)
   listItems.changeLinkText = $changeLinks.find('[aria-hidden="true"]').eq(0).text().trim()
   listItems.removeLinkText = $removeLinks.find('[aria-hidden="true"]').eq(0).text().trim()
   listItems.ariaChangeText = $changeLinks.find('.govuk-visually-hidden').eq(0).text().trim()
@@ -47,7 +51,7 @@ describe('Add to a list', () => {
       const listItems = getTableItems($)
 
       expect($rows.length).toBe(1)
-      expect(listItems.identifiers.text().trim()).toBe('item one')
+      expect(listItems.identifiers[0]).toBe('item one')
       expect(listItems.changeLinkText).toBe('Change')
       expect(listItems.removeLinkText).toBe('Remove')
       expect(listItems.ariaChangeText).toBe('Change item one')
@@ -68,7 +72,7 @@ describe('Add to a list', () => {
       const listItems = getTableItems($)
 
       expect($rows.length).toBe(1)
-      expect(listItems.identifiers.text().trim()).toBe('item one')
+      expect(listItems.identifiers[0]).toBe('item one')
       expect(listItems.changeLinkText).toBe('Change-cy')
       expect(listItems.removeLinkText).toBe('Remove-cy')
       expect(listItems.ariaChangeText).toBe('Change-cy item one')
@@ -98,7 +102,10 @@ describe('Add to a list', () => {
       expect($rows.length).toBe(2)
       expect($identifiers.eq(0).text()).toContain('Director One')
       expect($changeLinks.eq(0).text()).toContain('Change Director One')
+      // TODO: add test for the change url
       expect($removeLinks.eq(0).text()).toContain('Remove Director One from the list')
+      // TODO: add test for the remove url
+
       expect($identifiers.eq(1).text()).toContain('Director Two')
       expect($changeLinks.eq(1).text()).toContain('Change Director Two')
       expect($removeLinks.eq(1).text()).toContain('Remove Director Two from the list')

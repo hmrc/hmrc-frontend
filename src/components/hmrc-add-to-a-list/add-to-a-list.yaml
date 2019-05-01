@@ -11,10 +11,12 @@ params:
 
       - changeUrl:
         type: string
+        required: true
         description: the URL to edit the details for this item
 
       - removeUrl:
         type: string
+        required: true
         description: the URL to remove this item from the list
 
   - itemType:
@@ -45,6 +47,7 @@ examples:
 - name: default
   description: A default example.
   data:
+    itemlist: []
 
 - name: single-generic-item
   description: A list with a single unnamed item
@@ -53,6 +56,7 @@ examples:
       - name: item one
         changeUrl: '#c1url'
         removeUrl: '#r1url'
+    formAction: '#addItem'
 
 - name: single-generic-welsh-item
   description: A list with a single unnamed item
@@ -62,6 +66,7 @@ examples:
       - name: item one
         changeUrl: '#c1url'
         removeUrl: '#r1url'
+    formAction: '#addItem'
 
 - name: multiple-specific-items
   data:
