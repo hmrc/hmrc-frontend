@@ -113,7 +113,8 @@
   {% endif %}
   </div>
 </header>
-
+<div class="govuk-width-container">
 {% if params.displayHmrcBanner %}
-  {{ hmrcBanner() }}
+  {{ hmrcBanner({language: params.language}) }}
 {% endif %}
+</div>
