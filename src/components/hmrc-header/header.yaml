@@ -211,3 +211,25 @@ examples:
         href: "/components/header/with-language-toggle-english/preview"
       cy:
         href: "/components/header/with-language-toggle-welsh/preview"
+
+- name: with-hmrc-banner-english
+  data:
+    serviceName: Service with HMRC Banner
+    language: en
+    displayHmrcBanner: true
+    languageToggle:
+      en:
+        href: "/components/header/with-hmrc-banner-english/preview"
+      cy:
+        href: "/components/header/with-hmrc-banner-welsh/preview"
+
+- name: with-hmrc-banner-welsh
+  data:
+    serviceName: Gwasanaeth gyda Banner CThEM
+    language: cy
+    displayHmrcBanner: true
+    languageToggle:
+      en:
+        href: "/components/header/with-hmrc-banner-english/preview"
+      cy:
+        href: "/components/header/with-hmrc-banner-welsh/preview"

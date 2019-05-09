@@ -2,6 +2,7 @@
 
 {% from "hmrc-header/macro.njk" import hmrcHeader %}
 {% from "hmrc-account-menu/macro.njk" import hmrcAccountMenu %}
+{% from "hmrc-banner/macro.njk" import hmrcBanner %}
 
 {% block header %}
   {% include "includes/cookie-banner.html" %}
@@ -30,6 +31,9 @@
   <div class="govuk-width-container">
     {% block beforeContent %}{% endblock %}
     {{ hmrcAccountMenu (hmrcAccountHeader) }}
+    {% if hmrcAccountHeader.displayHmrcBanner %}
+      {{ hmrcBanner () }}
+    {% endif %}
     <main class="govuk-main-wrapper {{ mainClasses }}" id="main-content" role="main">
       {% block content %}{% endblock %}
     </main>

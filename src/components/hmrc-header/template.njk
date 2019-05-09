@@ -1,4 +1,5 @@
 {% set language = params.language | default('en') %}
+{% from "hmrc-banner/macro.njk" import hmrcBanner %}
 
 <header class="govuk-header hmrc-header {{ params.classes if params.classes }} {{ 'hmrc-header--with-additional-navigation' if params.signOutHref or params.languageToggle }}" role="banner" data-module="header"
         {%- for attribute, value in params.attributes %} {{ attribute }}="{{ value }}"{% endfor %}>
@@ -112,3 +113,8 @@
   {% endif %}
   </div>
 </header>
+<div class="govuk-width-container">
+{% if params.displayHmrcBanner %}
+  {{ hmrcBanner({language: params.language}) }}
+{% endif %}
+</div>
