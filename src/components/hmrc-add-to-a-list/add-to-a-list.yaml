@@ -49,6 +49,12 @@ examples:
   data:
     itemlist: []
 
+- name: empty-list-welsh
+  description: A default example.
+  data:
+    language: 'cy'
+    itemlist: []
+
 - name: single-generic-item
   description: A list with a single unnamed item
   data:
@@ -82,3 +88,16 @@ examples:
           removeUrl: '#remove-item-2'
     hintText: You must tell us about all your directors
     formAction: '#add-director'
+
+- name: mutltiple-generic-welsh-items
+  description: A list with a single unnamed item using Welsh language
+  data:
+    language: 'cy'
+    itemList:
+      - name: Eitem un
+        changeUrl: '#c1url'
+        removeUrl: '#r1url'
+      - name: Eitem dau
+        changeUrl: '#c2url'
+        removeUrl: '#r2url'
+    formAction: '#addItem'

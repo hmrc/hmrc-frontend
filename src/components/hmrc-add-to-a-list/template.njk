@@ -2,21 +2,23 @@
 {% from "radios/macro.njk" import govukRadios with context %}
 {% if params.language == 'cy' %}
     {% set messages = {
-    itemTypeDefault: {singular: 'item-cy', plural: 'items-cy', noItems: 'items-cy'},
-    haveAdded: 'You have added - cy',
-    addAnother: 'Do you need to add another - cy',
-    continue: 'continue-cy',
-    change: 'Change-cy',
-    remove: 'Remove-cy',
-    aria: {before: 'Remove-cy', after: 'from the list'},
-    yes : 'yes-cy',
-    no: 'no-cy'
+    itemTypeDefault: {singular: 'eitem', plural: 'o eitemau'},
+    emptyList: 'Nid ydych wedi ychwanegu unrhyw eitemau',
+    haveAdded: 'Rydych wedi ychwanegu',
+    addAnother: {prefix: 'Oes angen i chi ychwanegu', suffix: ' arall'},
+    continue: 'Yn eich blaen',
+    change: 'Newid',
+    remove: 'Dileu',
+    aria: {before: 'Dileu’r', after: 'o’r rhestr'},
+    yes : 'iawn',
+    no: 'na'
   } %}
 {% else %}
   {% set messages = {
-    itemTypeDefault: {singular: 'item', plural: 'items', noItems: 'items'},
+    itemTypeDefault: {singular: 'item', plural: 'items'},
+    emptyList: 'You have not added any items',
     haveAdded: 'You have added',
-    addAnother: 'Do you need to add another',
+    addAnother: {prefix: 'Do you need to add another', suffix: ''},
     continue: 'continue',
     change: 'Change',
     remove: 'Remove',
@@ -25,9 +27,13 @@
     no: 'no'
   } %}
 {% endif %}
-<h1 class="govuk-heading-xl">{{ messages.haveAdded }} {{ params.itemList | length | default('no', true) }}
-{%- if params.itemList | length  === 1 %} {{ params.itemType.singular | default(messages.itemTypeDefault.singular) }}
-{%- else %} {{ params.itemType.plural | default(messages.itemTypeDefault.plural) }}
+<h1 class="govuk-heading-xl">{%- if params.itemList | length === 0 -%}
+  {{ messages.emptyList }}
+{%- else -%}
+  {{ messages.haveAdded }} {{ params.itemList | length }}
+  {%- if params.itemList | length  === 1 %} {{ params.itemType.singular | default(messages.itemTypeDefault.singular) }}
+  {%- else %} {{ params.itemType.plural | default(messages.itemTypeDefault.plural) }}
+{%- endif -%}
 {%- endif -%}
 </h1>
 <div class="govuk-form-group">
@@ -64,7 +70,7 @@
     name: "add-another",
     fieldset: {
       legend: {
-        text:  messages.addAnother + " " + params.itemType.singular | default(messages.itemTypeDefault.singular) + "?",
+        text:  messages.addAnother.prefix + " " + params.itemType.singular | default(messages.itemTypeDefault.singular) + messages.addAnother.suffix + "?",
         isPageHeading: false,
         classes: "govuk-fieldset__legend govuk-fieldset__legend--m"
       }
@@ -73,8 +79,8 @@
       text: params.hintText
     },
     items: [
-      { text: messages.yes, value: "yes" },
-      { text: messages.no, value: "no" }
+      { text: messages.yes, value: messages.yes },
+      { text: messages.no, value: messages.yes }
     ] }) }}
   {{ govukButton({ text: messages.continue }) }}
 </form>
