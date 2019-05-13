@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.6.0] - 2019-05-13
+
+### Added
+- `hmrcBanner` added [#39](https://github.com/hmrc/hmrc-frontend/pull/39)
+
 ## [0.5.0] - 2019-04-26
 
 ### Added
