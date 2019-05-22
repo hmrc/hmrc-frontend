@@ -38,11 +38,10 @@ describe('/components/timeout-dialog', () => {
   }
 
   function setLanguageToWelsh () {
-    document.cookie = 'PLAY_LANG=cy'
+    testScope.minimumValidConfig['data-language'] = 'cy'
   }
 
   beforeEach(function () {
-    document.cookie = 'PLAY_LANG=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path/;'
     assume = expect
     testScope = {
       currentDateTime: 1554196031049 // the time these tests were written - this can change but it's best not to write randomness into tests
@@ -236,6 +235,45 @@ describe('/components/timeout-dialog', () => {
 
     it('should show sign out button', function () {
       expect(getElemText(testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-link'))).toEqual('Sign out')
+    })
+  })
+
+  describe('the configuration options', function () {
+    beforeEach(function () {
+      setupDialog({
+        'data-title': 'my custom TITLE',
+        'data-message': 'MY custom message',
+        'data-message-suffix': 'My message suffix.',
+        'data-keep-alive-button-text': 'KEEP alive',
+        'data-sign-out-button-text': 'sign OUT',
+        'data-sign-out-url': '/mySignOutUrl.html'
+      })
+      pretendSecondsHavePassed(780)
+    })
+
+    it('should show heading', function () {
+      expect(getElemText(testScope.latestDialog$element.querySelector('h1'))).toEqual('my custom TITLE')
+    })
+
+    it('should show message', function () {
+      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('MY custom message 2 minutes. My message suffix.')
+    })
+
+    it('should show keep signed in button', function () {
+      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-keep-signin-btn'))).toEqual('KEEP alive')
+    })
+
+    it('should show sign out button', function () {
+      expect(getElemText(testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-link'))).toEqual('sign OUT')
+    })
+
+    it('should redirect to default signout url when signout is clicked', function () {
+      assume(redirectHelper.redirectToUrl).not.toHaveBeenCalled()
+
+      expect(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link')).not.toBeNull()
+
+      clickElem(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link'))
+      expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('/mySignOutUrl.html')
     })
   })
 
