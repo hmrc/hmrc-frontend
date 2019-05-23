@@ -11,23 +11,25 @@ params:
 
       - changeUrl:
         type: string
+        required: true
         description: the URL to edit the details for this item
 
       - removeUrl:
         type: string
+        required: true
         description: the URL to remove this item from the list
 
   - itemType:
       - singular:
         type: string
         required: false
-        default: Item
+        default: item
         description: Noun used for a single entry in the itemList
 
       - plural:
         type: string
         required: false
-        default: Items
+        default: items
         description: Noun used for multiple entries in the itemList
 
       - itemSize:
@@ -45,6 +47,13 @@ examples:
 - name: default
   description: A default example.
   data:
+    itemlist: []
+
+- name: empty-list-welsh
+  description: A default example.
+  data:
+    language: 'cy'
+    itemlist: []
 
 - name: single-generic-item
   description: A list with a single unnamed item
@@ -53,6 +62,17 @@ examples:
       - name: item one
         changeUrl: '#c1url'
         removeUrl: '#r1url'
+    formAction: '#addItem'
+
+- name: single-generic-welsh-item
+  description: A list with a single unnamed item
+  data:
+    language: 'cy'
+    itemList:
+      - name: item one
+        changeUrl: '#c1url'
+        removeUrl: '#r1url'
+    formAction: '#addItem'
 
 - name: multiple-specific-items
   data:
@@ -68,3 +88,16 @@ examples:
           removeUrl: '#remove-item-2'
     hintText: You must tell us about all your directors
     formAction: '#add-director'
+
+- name: mutltiple-generic-welsh-items
+  description: A list with a single unnamed item using Welsh language
+  data:
+    language: 'cy'
+    itemList:
+      - name: Eitem un
+        changeUrl: '#c1url'
+        removeUrl: '#r1url'
+      - name: Eitem dau
+        changeUrl: '#c2url'
+        removeUrl: '#r2url'
+    formAction: '#addItem'
