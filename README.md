@@ -6,7 +6,7 @@ HMRC Frontend contains the code and documentation for patterns specifically desi
 
 The two sets of code and documentation are separate but used together.
 
-See [HMRC Design Patterns](#) for examples of what the design patterns look like and guidance on how to use them in your service.
+See [HMRC Design Patterns](https://design-resources-for-hmrc.herokuapp.com/design-library/) for examples of what the design patterns look like and guidance on how to use them in your service.
 
 ## Quick Start
 
