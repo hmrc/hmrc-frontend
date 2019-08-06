@@ -115,6 +115,7 @@ gulp.task('build:package', cb => {
   runsequence(
     'clean',
     'copy-files',
+    'copy-govuk-config',
     'js:compile',
     'copy:README',
     'copy:packageJson',
