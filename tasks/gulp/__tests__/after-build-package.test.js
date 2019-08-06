@@ -14,9 +14,11 @@ const readFile = util.promisify(fs.readFile)
 
 describe('package/', () => {
   it('should contain the expected files', () => {
+    const filesToIgnore = ['.DS_Store']
+
     // Build an array of the files that are present in the package directory.
     const actualPackageFiles = () => {
-      return recursive(configPaths.package).then(
+      return recursive(configPaths.package, filesToIgnore).then(
         files => {
           return files
             // Remove /package prefix from filenames
@@ -33,7 +35,8 @@ describe('package/', () => {
     // Build an array of files we expect to be found in the package directory,
     // based on the contents of the src directory.
     const expectedPackageFiles = () => {
-      const filesToIgnore = [
+      const srcFilesToIgnore = [
+        'govuk-prototype-kit.config.json',
         '.DS_Store',
         '*.test.js',
         '*.yaml',
@@ -42,18 +45,19 @@ describe('package/', () => {
         '*.snap'
       ]
 
-      const additionalFilesNotInSrc = [
+      const additionalFilesNotFromSrc = [
+        'govuk-prototype-kit.config.json',
         'package.json',
         'README.md'
       ]
 
-      return recursive(configPaths.src, filesToIgnore).then(
+      return recursive(configPaths.src, srcFilesToIgnore).then(
         files => {
           return files
-            // Remove /src prefix from filenames
-            .map(file => file.replace(/^src\//, ''))
+            // Replace src/ prefix in filepaths with hmrc/ package namespace
+            .map(file => file.replace(/^src\//, 'hmrc/'))
             // Allow for additional files that are not in src
-            .concat(additionalFilesNotInSrc)
+            .concat(additionalFilesNotFromSrc)
             // Sort to make comparison easier
             .sort()
         },
