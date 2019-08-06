@@ -40,7 +40,7 @@ gulp.task('copy-dist-component-files', () => {
 
 gulp.task('copy-dist-fonts', () => {
   return gulp.src([
-    'node_modules/govuk-frontend/assets/fonts/*'
+    'node_modules/govuk-frontend/govuk/assets/fonts/*'
   ])
     .pipe(gulp.dest(taskArguments.destination + '/fonts'))
 })

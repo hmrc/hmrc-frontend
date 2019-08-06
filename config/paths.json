@@ -9,7 +9,7 @@
   "sassdoc": "sassdoc/",
   "src": "src/",
   "components": "src/components/",
-  "govukFrontend": "node_modules/govuk-frontend",
+  "govukFrontend": "node_modules/govuk-frontend/govuk",
   "departmentPrefix": "hmrc",
   "ports": {
     "app": 3000,

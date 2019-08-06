@@ -92,7 +92,6 @@ module.exports = (options) => {
   app.get('/components/:component', function (req, res, next) {
     // make variables available to nunjucks template
     res.locals.componentPath = req.params.component
-
     res.render('component', function (error, html) {
       if (error) {
         next(error)
@@ -123,6 +122,7 @@ module.exports = (options) => {
 
     // Construct and evaluate the component with the data for this example
     let macroName = helperFunctions.componentNameToMacroName(componentName)
+
     let macroParameters = JSON.stringify(exampleConfig.data, null, '\t')
     let componentDirectory = helperFunctions.componentNameToComponentDirectory(componentName)
 
