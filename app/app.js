@@ -126,10 +126,14 @@ module.exports = (options) => {
     let macroParameters = JSON.stringify(exampleConfig.data, null, '\t')
     let componentDirectory = helperFunctions.componentNameToComponentDirectory(componentName)
 
-    res.locals.componentView = env.renderString(
-      `{% from '${componentDirectory}/macro.njk' import ${macroName} %}
-    {{ ${macroName}(${macroParameters}) }}`
-    )
+    try {
+      res.locals.componentView = env.renderString(
+        `{% from '${componentDirectory}/macro.njk' import ${macroName} %}
+      {{ ${macroName}(${macroParameters}) }}`
+      )
+    } catch (err) {
+      res.locals.componentView = null
+    }
 
     let bodyClasses = ''
     if (req.query.iframe) {
