@@ -87,7 +87,7 @@ describe('package/', () => {
 
   describe('all.scss', () => {
     it('should compile without throwing an exeption', async () => {
-      const allScssFile = path.join(configPaths.package, 'all.scss')
+      const allScssFile = path.join(configPaths.package, 'hmrc/all.scss')
       await sassRender({ file: allScssFile })
     })
   })
