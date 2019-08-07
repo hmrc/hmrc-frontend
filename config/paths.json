@@ -10,7 +10,6 @@
   "src": "src/",
   "components": "src/components/",
   "govukFrontend": "node_modules/govuk-frontend/govuk",
-  "departmentPrefix": "hmrc",
   "ports": {
     "app": 3000,
     "test": 8888

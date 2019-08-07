@@ -66,17 +66,9 @@ module.exports = (options) => {
   ;(function () {
     const components = fileHelper.allComponents
 
-    const departmentPrefix = configPaths.departmentPrefix + '-'
-
-    if (components.some(x => !x.startsWith(departmentPrefix))) {
-      throw new Error('Error: There is a component directory which doesn\'t have your chosen prefix.')
-    }
-
-    const preparedComponents = components.map(x => x.substr(departmentPrefix.length))
-
     app.get('/', function (req, res) {
       res.render('index', {
-        componentsDirectory: preparedComponents
+        componentsDirectory: components
       })
     })
   }())

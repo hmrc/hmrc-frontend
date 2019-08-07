@@ -38,7 +38,7 @@ gulp.task('copy-dist-files', ['copy-dist-component-files', 'copy-dist-fonts'])
 
 gulp.task('copy-dist-component-files', () => {
   return gulp.src([
-    'components/hmrc-*/images/*'
+    'components/*/images/*'
   ], {cwd: configPaths.src + '/**'})
     .pipe(gulp.dest(taskArguments.destination + '/'))
 })

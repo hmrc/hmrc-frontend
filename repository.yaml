@@ -1,6 +1,6 @@
 leakDetectionExemptions:
  - ruleId: 'ip_addresses'
    filePaths:
-    - '/src/layouts/layout-hmrc-account-header.html'
-    - '/src/components/hmrc-header/template.njk'
+    - '/src/layouts/account-header.html'
+    - '/src/components/header/template.njk'
 repoVisibility: public_0C3F0CE3E6E6448FAD341E7BFA50FCD333E06A20CFF05FCACE61154DDBBADF71
