@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.2] - 2019-08-08
+
+### Fixed
+- Fixed some broken govuk macro paths [ee8405b](ee8405b7690dcb74060065f091dcf35ee52d67fc)
+
 ## [1.0.1] - 2019-08-08
 
 ### Fixed
