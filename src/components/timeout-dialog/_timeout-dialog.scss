@@ -1,7 +1,7 @@
-@import "node_modules/govuk-frontend/settings/all";
-@import "node_modules/govuk-frontend/tools/all";
-@import "node_modules/govuk-frontend/helpers/all";
-@import "node_modules/govuk-frontend/vendor/sass-mq";
+@import "node_modules/govuk-frontend/govuk/settings/all";
+@import "node_modules/govuk-frontend/govuk/tools/all";
+@import "node_modules/govuk-frontend/govuk/helpers/all";
+@import "node_modules/govuk-frontend/govuk/vendor/sass-mq";
 
 .hmrc-timeout-overlay {
   position: fixed;

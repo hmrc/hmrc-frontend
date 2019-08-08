@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 
-{% from "hmrc-header/macro.njk" import hmrcHeader %}
-{% from "hmrc-account-menu/macro.njk" import hmrcAccountMenu %}
-{% from "hmrc-banner/macro.njk" import hmrcBanner %}
+{% from "../components/header/macro.njk" import hmrcHeader %}
+{% from "../components/account-menu/macro.njk" import hmrcAccountMenu %}
+{% from "../components/banner/macro.njk" import hmrcBanner %}
 
 {% block header %}
   {% include "includes/cookie-banner.html" %}

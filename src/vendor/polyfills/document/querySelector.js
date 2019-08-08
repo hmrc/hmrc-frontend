@@ -1,5 +1,5 @@
-import 'govuk-frontend/vendor/polyfills/Document'
-import 'govuk-frontend/vendor/polyfills/Element'
+import 'govuk-frontend/govuk/vendor/polyfills/Document'
+import 'govuk-frontend/govuk/vendor/polyfills/Element'
 
 (function(undefined) {
 

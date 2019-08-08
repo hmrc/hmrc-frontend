@@ -6,10 +6,10 @@ The account header component is used at the top of HMRC pages where a user is lo
 
 ## Prototype Kit Usage
 
-To use the Account header in a view you will need to extend 'layout-hmrc-account-header.html'
+To use the Account header in a view you will need to extend 'hmrc/layouts/account-header.html'
 
 ```
-{% extends 'layout-hmrc-account-header.html' %}
+{% extends 'hmrc/layouts/account-header.html' %}
 
 {% set currentLanguage = 'cy' %}
 
@@ -24,10 +24,10 @@ The page will then have a variation of the GOVUK page header which includes a la
 
 ## Notes
 
-Implemented as a [layout file](`/src/layouts/layout-hmrc-account-menu.html`) for use in GOVUK prototype kits. It extends the default GOVUK layout file and overrides the _header_ and _main_ blocks.
+Implemented as a [layout file](`/src/layouts/account-header.html`) for use in GOVUK prototype kits. It extends the default GOVUK layout file and overrides the _header_ and _main_ blocks.
 
 * The Header block is overridden to include the HMRC Header variation with a language selector on the right hand side.
-  * We have been able to parameterise the `hmrc-header` component to allow a single macro to provide all the necessary variants.
+  * We have been able to parameterise the HMRC `header` component to allow a single macro to provide all the necessary variants.
 
 * The main block is overridden to insert the HMRC Account Menu between the header and the _beforeContent_ block.
   * We have decided to use this method as it seems the least worst option of the methods that we have considered.

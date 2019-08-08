@@ -1,7 +1,7 @@
-@import "node_modules/govuk-frontend/settings/all";
-@import "node_modules/govuk-frontend/tools/all";
-@import "node_modules/govuk-frontend/helpers/all";
-@import "node_modules/govuk-frontend/vendor/sass-mq";
+@import "node_modules/govuk-frontend/govuk/settings/all";
+@import "node_modules/govuk-frontend/govuk/tools/all";
+@import "node_modules/govuk-frontend/govuk/helpers/all";
+@import "node_modules/govuk-frontend/govuk/vendor/sass-mq";
 
 // previously provided by govuk-template, no equivalent in govuk-frontend
 .hidden {
@@ -35,7 +35,7 @@ $hmrc-transition-type: "all";
 
 
   @include govuk-if-ie8 {
-    background-image: url("#{$hmrc-assets-path}components/hmrc-account-menu/images/icon-home.png");
+    background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-home.png");
   }
 }
 
@@ -46,7 +46,7 @@ $hmrc-transition-type: "all";
   z-index: 0;
   margin-bottom: 0;
   transition: #{$hmrc-transition-type} $hmrc-account-menu-transition-time ease-in-out;
-  border-bottom: 1px solid govuk-colour("grey-2");
+  border-bottom: 1px solid govuk-colour("mid-grey");
   background-color: govuk-colour("white");
 
   &.hmrc-subnav-is-open {
@@ -57,7 +57,7 @@ $hmrc-transition-type: "all";
 .is-smaller.hmrc-account-menu {
   margin-bottom: 0;
   transition: none;
-  border-bottom: 1px solid govuk-colour("grey-2");
+  border-bottom: 1px solid govuk-colour("mid-grey");
 
   &.main-nav-menu-is-open {
     margin-bottom: 5em;
@@ -94,7 +94,7 @@ $hmrc-transition-type: "all";
   }
 
   &:hover {
-    border-bottom-color: govuk-colour("grey-3");
+    border-bottom-color: govuk-colour("light-grey");
   }
 
   &:focus {
@@ -171,13 +171,13 @@ $hmrc-transition-type: "all";
     padding: 0;
     float: none;
     clear: both;
-    background-color: govuk-colour("grey-4");
+    background-color: govuk-colour("light-grey");
 
     &.main-nav-is-open,
 
     &.hmrc-subnav-is-open {
       position: relative;
-      border-top: 1px solid govuk-colour("grey-2");
+      border-top: 1px solid govuk-colour("mid-grey");
 
       &:before,
       &:after {
@@ -194,7 +194,7 @@ $hmrc-transition-type: "all";
       &:before {
         right: 3px;
         border-width: 7px;
-        border-bottom-color: govuk-colour("grey-2");
+        border-bottom-color: govuk-colour("mid-grey");
       }
 
       &:after {
@@ -207,7 +207,7 @@ $hmrc-transition-type: "all";
     li {
       display: block;
       overflow: hidden;
-      border-bottom: 1px solid govuk-colour("grey-2");
+      border-bottom: 1px solid govuk-colour("mid-grey");
 
       &:last-child,
 
@@ -227,14 +227,14 @@ $hmrc-transition-type: "all";
 
   .hmrc-account-menu__link--back {
     padding-left: 20px;
-    border-bottom: 1px solid govuk-colour("grey-3");
-    background-image: url("#{$hmrc-assets-path}components/hmrc-account-menu/images/icon-chevron-left.svg");
+    border-bottom: 1px solid govuk-colour("light-grey");
+    background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-left.svg");
     background-repeat: no-repeat;
     background-position: 10px;
     background-size: 12px;
 
     @include govuk-if-ie8 {
-      background-image: url("#{$hmrc-assets-path}components/hmrc-account-menu/images/icon-chevron-left.png");
+      background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-left.png");
     }
 
     .hmrc-account-menu__link {
@@ -257,9 +257,9 @@ $hmrc-transition-type: "all";
   left: 0;
   width: 100%;
   //transition: margin .3s ease-in-out;
-  border-bottom: 1px solid govuk-colour("grey-2");
+  border-bottom: 1px solid govuk-colour("mid-grey");
   outline: none;
-  background-color: govuk-colour("grey-4");
+  background-color: govuk-colour("light-grey");
 
   p {
     @include govuk-font(16);
@@ -331,7 +331,7 @@ $hmrc-transition-type: "all";
   width: 100%;
   margin: 0;
   padding: 1em 0 1em 0;
-  border-bottom: 1px solid govuk-colour("grey-2");
+  border-bottom: 1px solid govuk-colour("mid-grey");
 
   &:last-child {
     border-bottom: 0;
@@ -367,37 +367,37 @@ hmrc-subnav__section__heading {
 
 .js-enabled .hmrc-account-menu__link--menu,
 .js-enabled .is-smaller .hmrc-account-menu__link--more {
-  background-image: url("#{$hmrc-assets-path}components/hmrc-account-menu/images/icon-chevron-right.svg");
+  background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-right.svg");
   background-repeat: no-repeat;
   background-position: right 4px center;
   background-size: 12px;
 
   @include govuk-if-ie8 {
-    background-image: url("#{$hmrc-assets-path}components/hmrc-account-menu/images/icon-chevron-right.png");
+    background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-right.png");
   }
 }
 
 .js-enabled .hmrc-account-home--account--is-open,
 .js-enabled .is-smaller .hmrc-account-menu__link--more-expanded,
 .js-enabled .hmrc-account-menu__link--more {
-  background-image: url("#{$hmrc-assets-path}components/hmrc-account-menu/images/icon-chevron-down.svg");
+  background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-down.svg");
   background-position: right 4px center;
   background-size: 12px;
 
   @include govuk-if-ie8 {
-    background-image: url("#{$hmrc-assets-path}components/hmrc-account-menu/images/icon-chevron-down.png");
+    background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-down.png");
   }
 }
 
 .js-enabled .hmrc-account-menu__link--more {
   position: relative;
   padding-right: 31px;
-  background-image: url("#{$hmrc-assets-path}components/hmrc-account-menu/images/icon-chevron-down.svg");
+  background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-down.svg");
   background-position: right 14px center;
   background-size: 12px;
 
   @include govuk-if-ie8 {
-    background-image: url("#{$hmrc-assets-path}components/hmrc-account-menu/images/icon-chevron-down.png");
+    background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-down.png");
   }
 
   &:before,
@@ -421,13 +421,13 @@ hmrc-subnav__section__heading {
     &:before {
       right: 13px;
       border-width: 7px;
-      border-bottom-color: govuk-colour("grey-2");
+      border-bottom-color: govuk-colour("mid-grey");
     }
 
     &:after {
       margin-left: -6px;
       border-width: 6px;
-      border-bottom-color: govuk-colour("grey-4");
+      border-bottom-color: govuk-colour("light-grey");
     }
   }
 }

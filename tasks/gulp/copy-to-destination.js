@@ -14,7 +14,7 @@ gulp.task('copy-files', () => {
     configPaths.src + '**/*',
     '!**/.DS_Store',
     '!**/*.test.js',
-    '!' + configPaths.src + 'README.md', // Don't override the existing README in /package
+    '!' + configPaths.src + 'govuk-prototype-kit.config.json',
     '!' + configPaths.components + '**/README.njk',
     '!' + configPaths.components + '**/*.{yml,yaml}',
     '!' + configPaths.components + '**/example.njk',
@@ -26,6 +26,11 @@ gulp.task('copy-files', () => {
       autoprefixer
     ], {syntax: require('postcss-scss')}))
     .pipe(scssFiles.restore)
+    .pipe(gulp.dest(taskArguments.destination + '/hmrc/'))
+})
+
+gulp.task('copy-govuk-config', () => {
+  return gulp.src([configPaths.src + 'govuk-prototype-kit.config.json'])
     .pipe(gulp.dest(taskArguments.destination + '/'))
 })
 
@@ -33,14 +38,14 @@ gulp.task('copy-dist-files', ['copy-dist-component-files', 'copy-dist-fonts'])
 
 gulp.task('copy-dist-component-files', () => {
   return gulp.src([
-    'components/hmrc-*/images/*'
+    'components/*/images/*'
   ], {cwd: configPaths.src + '/**'})
     .pipe(gulp.dest(taskArguments.destination + '/'))
 })
 
 gulp.task('copy-dist-fonts', () => {
   return gulp.src([
-    'node_modules/govuk-frontend/assets/fonts/*'
+    'node_modules/govuk-frontend/govuk/assets/fonts/*'
   ])
     .pipe(gulp.dest(taskArguments.destination + '/fonts'))
 })

@@ -1,8 +1,8 @@
-import 'govuk-frontend/vendor/polyfills/Object/defineProperty'
-import 'govuk-frontend/vendor/polyfills/Function/prototype/bind'
+import 'govuk-frontend/govuk/vendor/polyfills/Object/defineProperty'
+import 'govuk-frontend/govuk/vendor/polyfills/Function/prototype/bind'
 import '../../Object/getOwnPropertyDescriptor'
-import 'govuk-frontend/vendor/polyfills/Document'
-import 'govuk-frontend/vendor/polyfills/Element'
+import 'govuk-frontend/govuk/vendor/polyfills/Document'
+import 'govuk-frontend/govuk/vendor/polyfills/Element'
 import '../../document/querySelector'
 
 (function(undefined) {

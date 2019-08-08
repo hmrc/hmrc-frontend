@@ -66,17 +66,9 @@ module.exports = (options) => {
   ;(function () {
     const components = fileHelper.allComponents
 
-    const departmentPrefix = configPaths.departmentPrefix + '-'
-
-    if (components.some(x => !x.startsWith(departmentPrefix))) {
-      throw new Error('Error: There is a component directory which doesn\'t have your chosen prefix.')
-    }
-
-    const preparedComponents = components.map(x => x.substr(departmentPrefix.length))
-
     app.get('/', function (req, res) {
       res.render('index', {
-        componentsDirectory: preparedComponents
+        componentsDirectory: components
       })
     })
   }())
@@ -92,7 +84,6 @@ module.exports = (options) => {
   app.get('/components/:component', function (req, res, next) {
     // make variables available to nunjucks template
     res.locals.componentPath = req.params.component
-
     res.render('component', function (error, html) {
       if (error) {
         next(error)
@@ -123,13 +114,18 @@ module.exports = (options) => {
 
     // Construct and evaluate the component with the data for this example
     let macroName = helperFunctions.componentNameToMacroName(componentName)
+
     let macroParameters = JSON.stringify(exampleConfig.data, null, '\t')
     let componentDirectory = helperFunctions.componentNameToComponentDirectory(componentName)
 
-    res.locals.componentView = env.renderString(
-      `{% from '${componentDirectory}/macro.njk' import ${macroName} %}
-    {{ ${macroName}(${macroParameters}) }}`
-    )
+    try {
+      res.locals.componentView = env.renderString(
+        `{% from '${componentDirectory}/macro.njk' import ${macroName} %}
+      {{ ${macroName}(${macroParameters}) }}`
+      )
+    } catch (err) {
+      res.locals.componentView = null
+    }
 
     let bodyClasses = ''
     if (req.query.iframe) {

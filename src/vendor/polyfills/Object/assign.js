@@ -1,5 +1,5 @@
-import 'govuk-frontend/vendor/polyfills/Object/defineProperty'
-import 'govuk-frontend/vendor/polyfills/Function/prototype/bind'
+import 'govuk-frontend/govuk/vendor/polyfills/Object/defineProperty'
+import 'govuk-frontend/govuk/vendor/polyfills/Function/prototype/bind'
 import './getOwnPropertyDescriptor'
 import './keys'
 

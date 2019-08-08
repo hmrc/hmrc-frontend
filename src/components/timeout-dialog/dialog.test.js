@@ -1,8 +1,8 @@
 /* eslint-env jest */
 const mock = require('jest-mock')
 const expect = require('expect')
-const dialog = require('../../../public/components/hmrc-timeout-dialog/dialog')
-const utils = require('../../../public/components/hmrc-timeout-dialog/utils')
+const dialog = require('../../../public/components/timeout-dialog/dialog')
+const utils = require('../../../public/components/timeout-dialog/utils')
 
 describe('Dialog', function () {
   var assume = expect

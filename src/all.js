@@ -1,5 +1,5 @@
-import AccountMenu from './components/hmrc-account-menu/account-menu'
-import TimeoutDialog from './components/hmrc-timeout-dialog/timeout-dialog'
+import AccountMenu from './components/account-menu/account-menu'
+import TimeoutDialog from './components/timeout-dialog/timeout-dialog'
 
 function initAll () {
   var $AccountMenuSelector = '[data-module="hmrc-account-menu"]'

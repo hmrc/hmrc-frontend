@@ -26,6 +26,16 @@ const sourcemaps = require('gulp-sourcemaps')
 const isDist = taskArguments.destination === 'dist' || false
 const isPackage = taskArguments.destination === 'package' || false
 
+// Set the destination
+const destinationPath = function () {
+  // Public & Dist directories do not need to be namespaced with `hmrc`
+  if (taskArguments.destination === 'dist' || taskArguments.destination === 'public') {
+    return taskArguments.destination
+  } else {
+    return `${taskArguments.destination}/hmrc/`
+  }
+}
+
 const errorHandler = function (error) {
   // Log the error to the console
   console.error(error.message)
@@ -144,5 +154,5 @@ gulp.task('js:compile', () => {
     // Write external sourcemap files to a maps directory of the destination,
     // but not for the npm package
     .pipe(gulpif(!isPackage, sourcemaps.write('./maps')))
-    .pipe(gulp.dest(taskArguments.destination + '/'))
+    .pipe(gulp.dest(destinationPath))
 })

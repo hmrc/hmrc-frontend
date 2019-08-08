@@ -29,7 +29,7 @@
         color: govuk-colour("white");
 
         &:not(.govuk-header__link) {
-          color: govuk-colour("grey-1");
+          color: govuk-colour("dark-grey");
           text-decoration: none;
         }
       }
@@ -44,7 +44,7 @@
     .govuk-header__navigation-item + .govuk-header__navigation-item:before {
       content: "|";
       padding-right: 2px;
-      color: govuk-colour("grey-1");
+      color: govuk-colour("dark-grey");
     }
   }
 }
