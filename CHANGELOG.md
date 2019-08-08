@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.0.1] - 2019-08-08
 
 ### Fixed
-- Bumped patch version due to failed previous release [ac846a0](ac846a01ebb6f8fb356381a52d00310f62fe635b)
+- Bumped patch version due to failed previous release [a653a0d](a653a0d81a2200eb776624469634cca25b8f8573)
 
 ## [1.0.0] - 2019-08-06
 
