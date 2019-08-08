@@ -1,5 +1,5 @@
-{% from "button/macro.njk" import govukButton with context %}
-{% from "radios/macro.njk" import govukRadios with context %}
+{% from "govuk/components/button/macro.njk" import govukButton with context %}
+{% from "govuk/components/radios/macro.njk" import govukRadios with context %}
 {% if params.language == 'cy' %}
     {% set messages = {
     itemTypeDefault: {singular: 'eitem', plural: 'o eitemau'},

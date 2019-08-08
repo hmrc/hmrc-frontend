@@ -14,7 +14,6 @@ const appViews = [
   configPaths.components,
   configPaths.src,
   path.join(configPaths.src, 'layouts'),
-  configPaths.govukFrontend + '/components',
   configPaths.govukFrontend
 ]
 
@@ -57,7 +56,7 @@ module.exports = (options) => {
   app.use(
     '/assets',
     express.static(path.join(configPaths.src)),
-    express.static(path.join(configPaths.govukFrontend, 'assets'))
+    express.static(path.join(configPaths.govukFrontend, 'govuk', 'assets'))
   )
 
   // Define routes
