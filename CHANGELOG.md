@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.1] - 2019-08-08
+
+### Fixed
+- Bu ped patch version due to failed previous release [ac846a0](ac846a01ebb6f8fb356381a52d00310f62fe635b)
+
 ## [1.0.0] - 2019-08-06
 
 ### Changed
