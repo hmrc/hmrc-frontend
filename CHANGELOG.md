@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.3] - 2019-08-19
+
+### Changed
+- Switched color of language toggle selected link state to accessible value [0a1c1ce](0a1c1cebac6f0d38dec6c1b70bc648c5a5f0d196)
+
 ## [1.0.2] - 2019-08-08
 
 ### Fixed
