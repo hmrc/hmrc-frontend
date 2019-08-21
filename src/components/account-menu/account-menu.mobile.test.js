@@ -135,7 +135,8 @@ describe('When the page is loaded on mobile', () => {
 
     await page.click(mobileMenuLink)
     // Set width to > tablet breakpoint
-    await page.setViewport({ height: 500, width: 643 })
+    const { height } = await page.viewport()
+    await page.setViewport({ height, width: 643 })
 
     const mobileSubMenuClasses = await page.$eval(mobileSubMenu, el => el.className)
     expect(mobileSubMenuClasses).not.toContain('main-nav-is-open')
@@ -145,8 +146,21 @@ describe('When the page is loaded on mobile', () => {
     await page.goto(baseUrl + '/components/account-menu/default/preview')
 
     await page.click(mobileMenuLink)
-    // Set width to larger mobile width
-    await page.setViewport({ height: 500, width: 400 })
+    // Set width to different mobile width
+    const { height, width } = await page.viewport()
+    await page.setViewport({ height, width: width + 10 })
+
+    const mobileSubMenuClasses = await page.$eval(mobileSubMenu, el => el.className)
+    expect(mobileSubMenuClasses).toContain('main-nav-is-open')
+  })
+
+  it('should NOT close the Your Account navigation when window resizes vertically', async () => {
+    await page.goto(baseUrl + '/components/account-menu/default/preview')
+
+    await page.click(mobileMenuLink)
+    // Change height
+    const { height, width } = await page.viewport()
+    await page.setViewport({ height: height + 10, width })
 
     const mobileSubMenuClasses = await page.$eval(mobileSubMenu, el => el.className)
     expect(mobileSubMenuClasses).toContain('main-nav-is-open')

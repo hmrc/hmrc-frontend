@@ -27,8 +27,8 @@ AccountMenu.prototype.init = function () {
 }
 
 AccountMenu.prototype.reinstantiate = function (resizeEvent) {
-  const newBreakpoint = getCurrentBreakpoint(resizeEvent.target.innerWidth)
-  const hasCrossedBreakpoint = this.$currentBreakpoint !== newBreakpoint
+  var newBreakpoint = getCurrentBreakpoint(resizeEvent.target.innerWidth)
+  var hasCrossedBreakpoint = this.$currentBreakpoint !== newBreakpoint
   if (hasCrossedBreakpoint) {
     this.$currentBreakpoint = newBreakpoint
     this.setup()

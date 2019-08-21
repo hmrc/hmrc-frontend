@@ -143,7 +143,9 @@ gulp.task('js:compile', () => {
       // UMD allows the published bundle to work in CommonJS and in the browser.
       format: 'umd'
     }))
-    .pipe(gulpif(isDist, uglify()))
+    .pipe(gulpif(isDist, uglify().on('error', function (e) {
+      console.log(e)
+    })))
     .pipe(gulpif(isDist,
       rename({
         basename: 'hmrc-frontend',
