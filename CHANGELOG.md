@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.4] - 2019-08-21
+
+### Changed
+- Only JS reset account menu when crossing a breakpoint [0ca3224](0ca322424416cab8f01969aca0eb05b22f7358d8)
+
 ## [1.0.3] - 2019-08-19
 
 ### Changed

@@ -129,4 +129,26 @@ describe('When the page is loaded on mobile', () => {
     const subnavItemsHidden = await page.$$eval(subnavItems, els => els.filter(el => el.parentElement.className === 'hidden').length)
     expect(subnavItemsHidden).toBe(0)
   })
+
+  it('should close the Your Account navigation when window resize crosses a breakpoint', async () => {
+    await page.goto(baseUrl + '/components/account-menu/default/preview')
+
+    await page.click(mobileMenuLink)
+    // Set width to > tablet breakpoint
+    await page.setViewport({ height: 500, width: 643 })
+
+    const mobileSubMenuClasses = await page.$eval(mobileSubMenu, el => el.className)
+    expect(mobileSubMenuClasses).not.toContain('main-nav-is-open')
+  })
+
+  it('should NOT close the Your Account navigation when window resizes without crossing a breakpoint', async () => {
+    await page.goto(baseUrl + '/components/account-menu/default/preview')
+
+    await page.click(mobileMenuLink)
+    // Set width to larger mobile width
+    await page.setViewport({ height: 500, width: 400 })
+
+    const mobileSubMenuClasses = await page.$eval(mobileSubMenu, el => el.className)
+    expect(mobileSubMenuClasses).toContain('main-nav-is-open')
+  })
 })
