@@ -1,5 +1,6 @@
 import '../../vendor/polyfills/Element/prototype/dataset'
 import { debounce } from '../../utils/debounce'
+import { getCurrentBreakpoint } from '../../utils/breakpoints'
 
 function AccountMenu ($module) {
   this.$module = document.querySelector($module)
@@ -8,6 +9,7 @@ function AccountMenu ($module) {
   this.$showSubnavLink = this.$module.querySelector('#account-menu__main-2')
   this.$showNavLinkMobile = this.$module.querySelector('.hmrc-account-menu__link--menu')
   this.$backLink = this.$module.querySelector('.hmrc-account-menu__link--back a')
+  this.$currentBreakpoint = getCurrentBreakpoint()
 }
 
 AccountMenu.prototype.init = function () {
@@ -21,7 +23,16 @@ AccountMenu.prototype.init = function () {
   this.$subNav.addEventListener('focusin', this.eventHandlers.subNavFocusIn.bind(this))
   this.$showNavLinkMobile.addEventListener('click', this.eventHandlers.showNavLinkMobileClick.bind(this))
 
-  window.addEventListener('resize', debounce(this.setup.bind(this)))
+  window.addEventListener('resize', debounce(this.reinstantiate.bind(this)))
+}
+
+AccountMenu.prototype.reinstantiate = function (resizeEvent) {
+  const newBreakpoint = getCurrentBreakpoint(resizeEvent.target.innerWidth)
+  const hasCrossedBreakpoint = this.$currentBreakpoint !== newBreakpoint
+  if (hasCrossedBreakpoint) {
+    this.$currentBreakpoint = newBreakpoint
+    this.setup()
+  }
 }
 
 AccountMenu.prototype.eventHandlers = {
