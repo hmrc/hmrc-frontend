@@ -4,6 +4,7 @@ import { getCurrentBreakpoint } from '../../utils/breakpoints'
 
 function AccountMenu ($module) {
   this.$module = document.querySelector($module)
+  this.$moduleBottomMargin = this.$module.style.marginBottom
   this.$mainNav = this.$module.querySelector('.hmrc-account-menu__main')
   this.$subNav = this.$module.querySelector('.hmrc-subnav')
   this.$showSubnavLink = this.$module.querySelector('#account-menu__main-2')
@@ -129,6 +130,9 @@ AccountMenu.prototype.showSubnavDesktop = function () {
   this.$subNav.setAttribute('aria-hidden', 'false')
   this.$subNav.setAttribute('aria-expanded', 'true')
 
+  const subNavHeight = this.$subNav.offsetHeight
+  this.$module.style.marginBottom = `${subNavHeight - 40}px`
+
   setTimeout(function () {
     _this.$subNav.focus()
   }, 500)
@@ -150,6 +154,8 @@ AccountMenu.prototype.hideSubnavDesktop = function () {
   this.$showSubnavLink.classList.remove('hmrc-account-menu__link--more-expanded')
   this.$showSubnavLink.setAttribute('aria-hidden', 'true')
   this.$showSubnavLink.setAttribute('aria-expanded', 'false')
+
+  this.$module.style.marginBottom = this.$moduleBottomMargin
 }
 
 AccountMenu.prototype.showMainNavMobile = function () {

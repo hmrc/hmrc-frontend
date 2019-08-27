@@ -92,5 +92,32 @@ describe('/components/account-menu', () => {
       expect(ariaHidden).toBe('true')
       expect(ariaExpanded).toBe('false')
     })
+
+    it('should add a botttom margin to the account wrapper equivalent to the height of the subnav - 40px', async () => {
+      await page.goto(baseUrl + '/components/account-menu/default/preview')
+
+      const yourAccountLink = await page.$('#account-menu__main-2')
+      await yourAccountLink.click()
+
+      await page.waitFor(500)
+
+      const accountWrapperMarginBottom = await page.evaluate(() => document.getElementById('secondary-nav').style.marginBottom)
+      const subNavHeight = await page.evaluate(() => document.getElementById('subnav-your-account').offsetHeight)
+
+      expect(accountWrapperMarginBottom).toBe(`${subNavHeight - 40}px`)
+    })
+
+    it('should remove botttom margin on second click', async () => {
+      await page.goto(baseUrl + '/components/account-menu/default/preview')
+
+      const yourAccountLink = await page.$('#account-menu__main-2')
+      await yourAccountLink.click()
+      await page.waitFor(500)
+      await yourAccountLink.click()
+
+      const accountWrapperMarginBottom = await page.evaluate(() => document.getElementById('secondary-nav').style.marginBottom)
+
+      expect(accountWrapperMarginBottom).toBe('')
+    })
   })
 })
