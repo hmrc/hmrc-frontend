@@ -28,6 +28,7 @@ describe('When the page is loaded on mobile', () => {
   const mobileMenuLink = '.hmrc-account-menu__link--menu'
   const mobileSubMenu = '.hmrc-account-menu__main'
   const mobileBack = '.hmrc-account-menu__link--back'
+  const mobileBackLink = '.hmrc-account-menu__link--back a'
   const yourAccountLink = '#account-menu__main-2'
   const subnavItems = '.hmrc-account-menu__main .hmrc-account-menu__link'
 
@@ -40,6 +41,9 @@ describe('When the page is loaded on mobile', () => {
     const mobileMenuLinkIsHidden = await page.$eval(mobileMenuLink, el => el.getAttribute('aria-hidden'))
     expect(mobileMenuLinkIsHidden).toBe('false')
 
+    const mobileMenuLinkIsFocusable = await page.$eval(mobileMenuLink, el => !el.getAttribute('tabindex'))
+    expect(mobileMenuLinkIsFocusable).toBeTruthy()
+
     const mobileMenuLinkClasses = await page.$eval(mobileMenuLink, el => el.className)
     expect(mobileMenuLinkClasses).toContain('js-visible')
     expect(mobileMenuLinkClasses).not.toContain('js-hidden')
@@ -49,6 +53,9 @@ describe('When the page is loaded on mobile', () => {
 
     const mobileBackIsHidden = await page.$eval(mobileBack, el => el.getAttribute('aria-hidden'))
     expect(mobileBackIsHidden).toBe('true')
+
+    const mobileBackLinkIsFocussable = await page.$eval(mobileBackLink, el => !el.getAttribute('tabindex'))
+    expect(mobileBackLinkIsFocussable).toBeFalsy()
   })
 
   it('should show the sub nav when account menu is clicked', async () => {
@@ -96,6 +103,9 @@ describe('When the page is loaded on mobile', () => {
     const mobileBackIsHidden = await page.$eval(mobileBack, el => el.getAttribute('aria-hidden'))
     expect(mobileBackIsHidden).toBe('false')
 
+    const mobileBackLinkIsFocussable = await page.$eval(mobileBackLink, el => !el.getAttribute('tabindex'))
+    expect(mobileBackLinkIsFocussable).toBeTruthy()
+
     const subnavItemsParentsClasses = await page.$$eval(subnavItems, els => els.map(el => el.parentElement.className))
     subnavItemsParentsClasses.forEach(subnavItemsParentClasses => {
       if ([mobileBack.substr(1), 'active-subnav-parent'].includes(subnavItemsParentClasses)) {
@@ -125,6 +135,9 @@ describe('When the page is loaded on mobile', () => {
 
     const mobileBackIsHidden = await page.$eval(mobileBack, el => el.getAttribute('aria-hidden'))
     expect(mobileBackIsHidden).toBe('true')
+
+    const mobileBackLinkIsFocussable = await page.$eval(mobileBackLink, el => !el.getAttribute('tabindex'))
+    expect(mobileBackLinkIsFocussable).toBeFalsy()
 
     const subnavItemsHidden = await page.$$eval(subnavItems, els => els.filter(el => el.parentElement.className === 'hidden').length)
     expect(subnavItemsHidden).toBe(0)
