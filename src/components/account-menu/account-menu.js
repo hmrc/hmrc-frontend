@@ -106,6 +106,7 @@ AccountMenu.prototype.setup = function () {
   if (isSmall(window)) {
     this.$module.classList.add('is-smaller')
     this.$showNavLinkMobile.setAttribute('aria-hidden', 'false')
+    this.$showNavLinkMobile.removeAttribute('tabindex')
     this.$showNavLinkMobile.classList.remove('js-hidden')
 
     this.hideSubnavMobile()
@@ -115,6 +116,7 @@ AccountMenu.prototype.setup = function () {
     this.$mainNav.classList.remove('main-nav-is-open', 'js-hidden')
     this.$subNav.classList.remove('js-hidden')
     this.$showNavLinkMobile.setAttribute('aria-hidden', 'true')
+    this.$showNavLinkMobile.setAttribute('tabindex', '-1')
     this.$showNavLinkMobile.classList.add('js-hidden')
   }
 }
@@ -199,6 +201,7 @@ AccountMenu.prototype.showSubnavMobile = function (element) {
   this.$showSubnavLink.setAttribute('aria-expanded', 'true')
 
   this.$backLink.parentNode.setAttribute('aria-hidden', 'false')
+  this.$backLink.removeAttribute('tabindex')
   this.$backLink.parentNode.classList.remove('hidden')
 
   element.parentNode.classList.add('active-subnav-parent')
@@ -229,6 +232,7 @@ AccountMenu.prototype.hideSubnavMobile = function () {
   this.$showSubnavLink.setAttribute('aria-expanded', 'false')
 
   this.$backLink.parentNode.setAttribute('aria-hidden', 'true')
+  this.$backLink.setAttribute('tabindex', '-1')
   this.$backLink.parentNode.classList.add('hidden')
 
   this.$showSubnavLink.parentNode.classList.remove('active-subnav-parent')
