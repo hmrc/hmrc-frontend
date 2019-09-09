@@ -133,7 +133,7 @@ AccountMenu.prototype.showSubnavDesktop = function () {
   this.$subNav.setAttribute('aria-expanded', 'true')
 
   const subNavHeight = this.$subNav.offsetHeight
-  this.$module.style.marginBottom = `${subNavHeight - 40}px`
+  this.$module.style.marginBottom = `${subNavHeight}px`
 
   setTimeout(function () {
     _this.$subNav.focus()
