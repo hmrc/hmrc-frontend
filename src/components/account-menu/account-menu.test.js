@@ -93,7 +93,7 @@ describe('/components/account-menu', () => {
       expect(ariaExpanded).toBe('false')
     })
 
-    it('should add a bottom margin to the account wrapper equivalent to the height of the subnav - 40px (equal existing to margin at bottom of nav bar)', async () => {
+    it('should add a bottom margin to the account wrapper equivalent to the height of the subnav', async () => {
       await page.goto(baseUrl + '/components/account-menu/default/preview')
 
       const yourAccountLink = await page.$('#account-menu__main-2')
@@ -104,7 +104,7 @@ describe('/components/account-menu', () => {
       const accountWrapperMarginBottom = await page.evaluate(() => document.getElementById('secondary-nav').style.marginBottom)
       const subNavHeight = await page.evaluate(() => document.getElementById('subnav-your-account').offsetHeight)
 
-      expect(accountWrapperMarginBottom).toBe(`${subNavHeight - 40}px`)
+      expect(accountWrapperMarginBottom).toBe(`${subNavHeight}px`)
     })
 
     it('should remove bottom margin on second click', async () => {
