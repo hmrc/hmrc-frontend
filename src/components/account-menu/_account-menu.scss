@@ -305,7 +305,7 @@ $hmrc-transition-type: "all";
 
   &:first-child {
     > p,
-    > div a {
+    > div {
       padding-right: 15px;
       padding-left: 30px;
     }
@@ -313,7 +313,7 @@ $hmrc-transition-type: "all";
 
   &:nth-child(2) {
     > p,
-    > div a {
+    > div {
       padding-right: 15px;
       padding-left: 15px;
     }
@@ -321,7 +321,7 @@ $hmrc-transition-type: "all";
 
   &:last-child {
     > p,
-    > div a {
+    > div {
       padding-right: 30px;
     }
   }
