@@ -1,5 +1,14 @@
 {% extends '../../layouts/account-header.html' %}
 
+{% block beforeContent %}
+  {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "#"
+  }) }}
+{% endblock %}
+
 {% block content %}
   <div style="min-height: 500px">
     <h1 class="govuk-heading-xl">HMRC Account Menu</h1>
