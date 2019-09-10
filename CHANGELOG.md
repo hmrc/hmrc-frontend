@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.0] - 2019-09-09
+
+### Updated
+- AXE core and fixed resulting accessibility issues [fb92b11](fb92b11aa20906b0d440bba2954404836426d831)
+
+### Changed
+- Switched positions of `hmrcAccountMenu` macro and `{% block beforeContent %}` to allow use of GOV.uk backlink  [6842a82](6842a822c9e53f0490b337282c2922ed98531f39)
+
+- Removed 40px height adjustment which was causing weird layout issues [bcb6dca](bcb6dcaf946e66a24e1dcd63b543c64b51d6bc78)
+
+### Fixed
+- Line break bug at certain resolutions [26bbe43](26bbe432bb0c98d599fa43e62f5c3a748a5d8f6e)
+
 ## [1.0.4] - 2019-08-21
 
 ### Changed
