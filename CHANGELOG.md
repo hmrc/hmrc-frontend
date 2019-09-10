@@ -15,7 +15,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Switched positions of `hmrcAccountMenu` macro and `{% block beforeContent %}` to allow use of GOV.uk backlink  [6842a82](6842a822c9e53f0490b337282c2922ed98531f39)
 
-### Changed
 - Removed 40px height adjustment which was causing weird layout issues [bcb6dca](bcb6dcaf946e66a24e1dcd63b543c64b51d6bc78)
 
 ### Fixed
