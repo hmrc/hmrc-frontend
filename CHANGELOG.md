@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.1] - 2019-09-10
+
+### Added
+- Welsh translations for Account Header [f5b1ae2](f5b1ae25a4a84a98a50ed1be9c0ed08c93b258a1)
+
 ## [1.1.0] - 2019-09-09
 
 ### Updated
