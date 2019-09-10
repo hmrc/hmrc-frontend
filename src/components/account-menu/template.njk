@@ -1,13 +1,16 @@
+{% set language = params.language | default('en') %}
 {% from "../notification-badge/macro.njk" import hmrcNotificationBadge %}
 
 <!-- ACCOUNT MENU -->
 <nav id="secondary-nav" class="hmrc-account-menu" aria-label="Account" data-module="hmrc-account-menu">
   <a href="{{ params.accountHome.href | default('#') }}" class="hmrc-account-menu__link hmrc-account-menu__link--home{% if params.accountHome.active %} hmrc-account-menu__link--active{% endif %}">
-    <span class="hmrc-account-icon hmrc-account-icon--home">Account home</span>
+    <span class="hmrc-account-icon hmrc-account-icon--home">
+      {% if language == 'cy' %}Hafan y cyfrif{% else %}Account home{% endif %}
+    </span>
   </a>
 
   <a href="#" class="hmrc-account-menu__link hmrc-account-menu__link--menu js-hidden js-visible" tabindex="-1" aria-hidden="true" aria-expanded="false">
-    Account menu
+    {% if language == 'cy' %}Dewislen y cyfrif{% else %}Account menu{% endif %}
   </a>
 
   <ul class="hmrc-account-menu__main js-hidden">
@@ -19,7 +22,7 @@
 
     <li>
       <a href="{{ params.messages.href | default('#') }}" class="hmrc-account-menu__link{% if params.messages.active %} hmrc-account-menu__link--active{% endif %}">
-        Messages
+        {% if language == 'cy' %}Negeseuon{% else %}Messages{% endif %}
         {% if params.messages.messageCount -%}
         {{ hmrcNotificationBadge({ text: params.messages.messageCount }) }}
         {%- endif -%}
@@ -28,36 +31,46 @@
 
     <li>
       <a href="{{ params.checkProgress.href | default('#') }}" class="hmrc-account-menu__link{% if params.checkProgress.active %} hmrc-account-menu__link--active{% endif %}">
-        Check progress
+        {% if language == 'cy' %}Gwirio cynnydd{% else %}Check progress{% endif %}
       </a>
     </li>
 
     <li>
       <a href="#subnav-your-account" id="account-menu__main-2" class="hmrc-account-menu__link hmrc-account-icon hmrc-account-menu__link--more" aria-haspopup="true" aria-owns="subnav-your-account">
-        Your account
+        {% if language == 'cy' %}Eich cyfrif{% else %}Your account{% endif %}
       </a>
 
       <div class="hmrc-subnav" id="subnav-your-account" role="navigation" aria-labelledby="account-menu__main-2" aria-label="Your account">
         <div class="govuk-grid-column-one-third hmrc-subnav__section">
-          <p class="hmrc-subnav__section__heading">Paperless settings</p>
+          <p class="hmrc-subnav__section__heading">
+            {% if language == 'cy' %}Gosodiadau di-bapur{% else %}Paperless settings{% endif %}
+          </p>
 
           <div>
-            <a href="{{ params.paperlessSettings.href | default('#') }}">Manage your paperless settings</a>
+            <a href="{{ params.paperlessSettings.href | default('#') }}">
+              {% if language == 'cy' %}Rheoli'ch gosodiadau di-bapur{% else %}Manage your paperless settings{% endif %}
+            </a>
           </div>
         </div>
 
         <div class="govuk-grid-column-one-third hmrc-subnav__section">
-          <p class="hmrc-subnav__section__heading">Personal details</p>
+          <p class="hmrc-subnav__section__heading">
+            {% if language == 'cy' %}Manylion personol{% else %}Personal details{% endif %}
+          </p>
 
           <div>
-            <a href="{{ params.personalDetails.href | default('#') }}">Manage your personal details</a>
+            <a href="{{ params.personalDetails.href | default('#') }}">
+              {% if language == 'cy' %}Rheoli'ch manylion personol{% else %}Manage your personal details{% endif %}
+            </a>
           </div>
         </div>
       </div>
     </li>
 
     <li>
-      <a href="{{ params.signOut.href | default('#') }}" class="hmrc-account-menu__link">Sign out</a>
+      <a href="{{ params.signOut.href | default('#') }}" class="hmrc-account-menu__link">
+        {% if language == 'cy' %}Allgofnodi{% else %}Sign out{% endif %}
+      </a>
     </li>
   </ul>
 </nav>
