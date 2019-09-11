@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.3.0] - 2019-09-11
+
+### Updated
+- `govuk-frontend` dependency [06fe087](06fe0877883325be9fb1f073b74a17d01b26a80e)
+
 ## [1.2.0] - 2019-09-11
 
 ### Added
