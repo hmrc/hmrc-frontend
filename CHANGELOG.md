@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.3.1] - 2019-09-11
+
+### Fixed
+- ES6 syntax breaking build [55a049e](55a049e9bd34ac767891bb92e7b2d4c9c49c9856)
+
 ## [1.3.0] - 2019-09-11
 
 ### Updated
