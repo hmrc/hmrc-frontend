@@ -78,6 +78,8 @@ if (!prototypeKitVersion.Compatibility) {
     )
   }
 
+  console.log('|___________|')
+
   process.exit(1)
 }
 
