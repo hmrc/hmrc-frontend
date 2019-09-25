@@ -8,7 +8,8 @@
     "build:dist": "npm test && gulp build:dist --destination 'dist' && npm run test:build:dist",
     "test": "standard && gulp test && gulp copy-assets && jest --testPathIgnorePatterns='after-*'",
     "test:build:package": "jest tasks/gulp/__tests__/after-build-package.test.js",
-    "test:build:dist": "jest tasks/gulp/__tests__/after-build-dist.test.js"
+    "test:build:dist": "jest tasks/gulp/__tests__/after-build-dist.test.js",
+    "preinstall": "node checkCompatibility.js \"$(npm prefix)\""
   },
   "repository": {
     "type": "git",
