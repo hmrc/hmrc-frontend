@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.3.0] - 2019-09-26
+
+### Added
+- Version compatibility checking [5de91c](5de91cd5037c601231773fecaab333651c3441eb)
+
 ## [1.2.0] - 2019-09-11
 
 ### Updated
