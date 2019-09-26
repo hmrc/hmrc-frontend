@@ -11,10 +11,12 @@ if (consumerPackageJson.name === !hmrcFrontendPackageJson.name) {
 
 const compatibility = {
   '1.0': {
+    // 'prototype-kit': ['1.2.0', '9.2', '9.1', '9.0'], // < Compatible version
     'prototype-kit': ['9.2', '9.1', '9.0'],
     'govuk-frontend': ['3.2', '3.1', '3.0']
   },
   '0.6': {
+    // 'prototype-kit': ['1.2.0', '8.12', '8.11', '8.10', '8.9', '8.8', '8.7'], // < Compatible with older version
     'prototype-kit': ['8.12', '8.11', '8.10', '8.9', '8.8', '8.7'],
     'govuk-frontend': ['2.13', '2.12', '2.11', '2.10', '2.9', '2.8']
   }
@@ -33,52 +35,51 @@ const compatibilityVersion = Object.keys(compatibility)
   .filter(version => parseFloat(version) < parseFloat(hmrcFrontendVersion))[0]
 
 const checkCompatibility = (dependency, version) => {
-  const isCompatible = compatibility[compatibilityVersion][dependency].find(v => v === String(parseFloat(version)))
-  return { 'Installed Version': version, 'Compatibility': !!isCompatible }
+  const compatible = !!compatibility[compatibilityVersion][dependency].find(v => String(parseFloat(v)) === String(parseFloat(version)))
+  return { version, compatible }
 }
 
-console.log(styles.green, `Checking compatibility for hmrc-frontend v${hmrcFrontendVersion}`, styles.reset)
+const tableRow = (dependency) => ({
+  'Installed version': dependency.version,
+  'Compatibility': dependency.compatible
+})
+
+console.log(`${styles.green}Checking compatibility for hmrc-frontend v${hmrcFrontendVersion}${styles.reset}`)
 
 const prototypeKitVersion = checkCompatibility('prototype-kit', consumerPackageJson.version)
 const govkFrontendVersion = checkCompatibility('govuk-frontend', govukFrontendPackageJson.version)
 
 console.table({
-  'Prototype kit': prototypeKitVersion,
-  'govuk-frontend': govkFrontendVersion
+  'Prototype kit': tableRow(prototypeKitVersion),
+  'govuk-frontend': tableRow(govkFrontendVersion)
 })
 
-if (prototypeKitVersion.Compatibility) {
-  console.log(styles.green, 'Versions are compatible', '\n\n\n', styles.reset)
+if (prototypeKitVersion.compatible) {
+  console.log(`${styles.green}Versions are compatible${styles.reset}`, '\n\n\n')
   process.exit(0)
 }
 
-if (!prototypeKitVersion.Compatibility) {
-  console.log(styles.red, 'Versions are incompatible', '\n')
+if (!prototypeKitVersion.compatible) {
+  const { red, green, blue, underline, reset } = styles
+  console.log(`${red}Versions are incompatible`, '\n')
   const alternativeVersion = Object.keys(compatibility)
-    .filter(version => compatibility[version]['prototype-kit'].includes(String(parseFloat(prototypeKitVersion['Installed Version']))))
+    .filter(version => compatibility[version]['prototype-kit'].includes(prototypeKitVersion.version))
 
   if (alternativeVersion.length) {
     console.log(
-      styles.green,
-      `There is a compatible version of hmrc-frontend available, you can install it by running \`npm install 'hmrc-frontend@${alternativeVersion[0]}.x'\``,
-      '\n\n',
-      styles.reset
+      `${green}There is a compatible version of hmrc-frontend available, you can install it by running \`npm install 'hmrc-frontend@${alternativeVersion[0]}.x'\`${reset}`,
+      '\n\n'
     )
   } else {
     console.log(
-      styles.green,
-      'You will need to update to the latest version of the Prototype kit. you can find instructions for doing this at:',
-      styles.blue
+      `${green}You will need to update to the latest version of the Prototype kit. you can find instructions for doing this at:`
     )
     console.log(
-      styles.underline,
-      'https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit',
-      styles.reset,
+      `${underline}${blue}https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit${reset}`,
       '\n\n'
     )
   }
 
-  console.log('|___________|')
 
   process.exit(1)
 }
