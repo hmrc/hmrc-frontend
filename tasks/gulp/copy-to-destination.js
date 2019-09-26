@@ -34,6 +34,11 @@ gulp.task('copy-govuk-config', () => {
     .pipe(gulp.dest(taskArguments.destination + '/'))
 })
 
+gulp.task('copy-check-compatibility', () => {
+  return gulp.src(['check-compatibility.js'])
+    .pipe(gulp.dest(taskArguments.destination + '/'))
+})
+
 gulp.task('copy-dist-files', ['copy-dist-component-files', 'copy-dist-fonts'])
 
 gulp.task('copy-dist-component-files', () => {
