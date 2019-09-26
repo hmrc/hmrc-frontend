@@ -4,8 +4,10 @@ const consumerPackageJson = require(`${consumerRoot}/package.json`)
 const govukFrontendPackageJson = require(`${consumerRoot}/node_modules/govuk-frontend/package.json`)
 const hmrcFrontendPackageJson = require('./package.json')
 
-if (consumerPackageJson.name === !hmrcFrontendPackageJson.name) {
-  console.log('Not installing as a dependency')
+const knownPrototypeKitNames = ['govuk-prototype-kit', 'express-prototype']
+
+if (!knownPrototypeKitNames.includes(consumerPackageJson.name)) {
+  //Not installing as a dependency of the prototype kit so silently exit and continue
   process.exit(0)
 }
 
