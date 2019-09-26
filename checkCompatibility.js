@@ -1,10 +1,18 @@
-const consumerRoot = process.argv[2]
+const consumerRoot = process.env.INIT_CWD
 const consumerPackageJson = require(`${consumerRoot}/package.json`)
-
-const govukFrontendPackageJson = require(`${consumerRoot}/node_modules/govuk-frontend/package.json`)
 const hmrcFrontendPackageJson = require('./package.json')
 
+let govukFrontendPackageJson
+try {
+  govukFrontendPackageJson = require(`${consumerRoot}/node_modules/govuk-frontend/package.json`)
+} catch (err) {
+  govukFrontendPackageJson = { version: 'N/A' }
+}
+
 const knownPrototypeKitNames = ['govuk-prototype-kit', 'express-prototype']
+
+console.log('consumerRoot', consumerRoot)
+console.log('consumerPackageJson.name', consumerPackageJson.name)
 
 if (!knownPrototypeKitNames.includes(consumerPackageJson.name)) {
   //Not installing as a dependency of the prototype kit so silently exit and continue
@@ -13,12 +21,10 @@ if (!knownPrototypeKitNames.includes(consumerPackageJson.name)) {
 
 const compatibility = {
   '1.0': {
-    // 'prototype-kit': ['1.2.0', '9.2', '9.1', '9.0'], // < Compatible version
     'prototype-kit': ['9.2', '9.1', '9.0'],
     'govuk-frontend': ['3.2', '3.1', '3.0']
   },
   '0.6': {
-    // 'prototype-kit': ['1.2.0', '8.12', '8.11', '8.10', '8.9', '8.8', '8.7'], // < Compatible with older version
     'prototype-kit': ['8.12', '8.11', '8.10', '8.9', '8.8', '8.7'],
     'govuk-frontend': ['2.13', '2.12', '2.11', '2.10', '2.9', '2.8']
   }
@@ -37,8 +43,9 @@ const compatibilityVersion = Object.keys(compatibility)
   .filter(version => parseFloat(version) < parseFloat(hmrcFrontendVersion))[0]
 
 const checkCompatibility = (dependency, version) => {
-  const compatible = !!compatibility[compatibilityVersion][dependency].find(v => String(parseFloat(v)) === String(parseFloat(version)))
-  return { version, compatible }
+  const minVersion  = String(parseFloat(version))
+  const compatible = !!compatibility[compatibilityVersion][dependency].find(v => String(parseFloat(v)) === minVersion)
+  return { version, compatible, minVersion }
 }
 
 const tableRow = (dependency) => ({
@@ -65,7 +72,7 @@ if (!prototypeKitVersion.compatible) {
   const { red, green, blue, underline, reset } = styles
   console.log(`${red}Versions are incompatible`, '\n')
   const alternativeVersion = Object.keys(compatibility)
-    .filter(version => compatibility[version]['prototype-kit'].includes(prototypeKitVersion.version))
+    .filter(version => compatibility[version]['prototype-kit'].includes(prototypeKitVersion.minVersion))
 
   if (alternativeVersion.length) {
     console.log(
