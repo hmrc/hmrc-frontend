@@ -67,7 +67,7 @@ if (!prototypeKitVersion.compatible) {
 
   if (alternativeVersion.length) {
     console.log(
-      styleString(`There is a compatible version of hmrc-frontend available, you can install it by running \`npm install 'hmrc-frontend@${alternativeVersion[0]}.x'\``),
+      styleString(`There is a compatible version of hmrc-frontend available, you can install it by running \`npm install hmrc-frontend@${alternativeVersion[0]}.x\``),
       '\n\n'
     )
     process.exit(1)
