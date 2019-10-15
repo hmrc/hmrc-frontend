@@ -1,6 +1,6 @@
 {
   "name": "hmrc-frontend",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/hmrc/hmrc-frontend#readme",
   "dependencies": {
-    "govuk-frontend": "^3.2.0"
+    "govuk-frontend": "^3.3.0"
   },
   "devDependencies": {
     "autoprefixer": "^9.6.1",
