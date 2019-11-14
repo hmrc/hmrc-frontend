@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.4.0] - 2019-11-14
+
+### Added
+- Styles for status tags in task lists pattern [c9dc268](c9dc2689cc090f6aae806112c8815135963ca9b8)
+
+### Changed
+- `childDirectories` file helper to only return component directories containing yaml files [c9dc268](c9dc2689cc090f6aae806112c8815135963ca9b8)
+
 ## [1.3.0] - 2019-10-15
 
 ### Updated
