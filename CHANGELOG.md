@@ -7,10 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [1.3.0] - 2019-09-26
+## [1.5.0] - 2019-11-18
 
 ### Added
 - Version compatibility checking [5de91c](5de91cd5037c601231773fecaab333651c3441eb)
+  
+## [1.4.0] - 2019-11-14
+
+### Added
+- Styles for status tags in task lists pattern [c9dc268](c9dc2689cc090f6aae806112c8815135963ca9b8)
+
+### Changed
+- `childDirectories` file helper to only return component directories containing yaml files [c9dc268](c9dc2689cc090f6aae806112c8815135963ca9b8)
+
+## [1.3.0] - 2019-10-15
+
+### Updated
+- `govuk-frontend` dependency [02763cd](02763cdee6d3757c96626542c1e176c63b619875)
 
 ## [1.2.0] - 2019-09-11
 
