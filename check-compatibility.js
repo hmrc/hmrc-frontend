@@ -52,10 +52,6 @@ if (!prototypeKitVersion.compatible) {
   const alternativeVersion = Object.keys(compatibility)
     .filter(version => compatibility[version]['prototype-kit'].includes(prototypeKitVersion.versionMatcher))
 
-  console.log(styleString(compatibilityVersion, blue))
-  console.log(styleString(prototypeKitVersion.versionMatcher, blue))
-  console.log(styleString(alternativeVersion, blue))
-
   if (alternativeVersion.length) {
     console.log(
       styleString('The version of HMRC Frontend you are trying to install is not compatible with your version of the GOV.UK Prototype Kit.'),
