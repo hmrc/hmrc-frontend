@@ -1,3 +1,4 @@
+
 const consumerRoot = process.env.INIT_CWD
 const consumerPackageJson = require(`${consumerRoot}/package.json`)
 const hmrcFrontendPackageJson = require('./package.json')
@@ -22,11 +23,10 @@ const readline = require('readline').createInterface({
   input: process.stdin,
   output: process.stdout
 })
+readline.on('close', () => process.exit(1))
 
 const blue = '\x1b[36m'
-const yellow = '\x1b[33m'
 const green = '\x1b[32m'
-const red = '\x1b[31m'
 const underline = '\x1b[4m'
 const reset = '\x1b[0m'
 
@@ -35,46 +35,45 @@ const compatibilityVersion = Object.keys(compatibility)
   .filter(version => parseFloat(version) < parseFloat(hmrcFrontendVersion))[0]
 
 const checkCompatibility = (dependency, version) => {
-  const versionMatcher = String(parseFloat(version))
+  const versionMatcher = String(parseFloat(version).toFixed(1))
   const compatible = !!compatibility[compatibilityVersion][dependency].find(v => String(parseFloat(v)) === versionMatcher)
   return { version, compatible, versionMatcher }
 }
 
-const tableRow = (dependency) => ({
-  'Installed version': dependency.version,
-  'Compatibility': dependency.compatible
-})
-
 const styleString = (str, colour = green, style = '') => `${colour}${style}${str}${reset}`
-
-console.log(styleString(`Checking compatibility for hmrc-frontend v${hmrcFrontendVersion}`))
 
 const prototypeKitVersion = checkCompatibility('prototype-kit', consumerPackageJson.version)
 
-console.table({
-  'GOV.UK Prototype kit': tableRow(prototypeKitVersion)
-})
-
 if (prototypeKitVersion.compatible) {
-  console.log(styleString('Versions are compatible'), '\n\n\n')
   process.exit(0)
 }
 
 if (!prototypeKitVersion.compatible) {
-  console.log(styleString('Versions are incompatible', red), '\n')
   const alternativeVersion = Object.keys(compatibility)
     .filter(version => compatibility[version]['prototype-kit'].includes(prototypeKitVersion.versionMatcher))
 
+  console.log(styleString(compatibilityVersion, blue))
+  console.log(styleString(prototypeKitVersion.versionMatcher, blue))
+  console.log(styleString(alternativeVersion, blue))
+
   if (alternativeVersion.length) {
     console.log(
-      styleString(`There is a compatible version of hmrc-frontend available, you can install it by running \`npm install hmrc-frontend@${alternativeVersion[0]}.x\``),
+      styleString('The version of HMRC Frontend you are trying to install is not compatible with your version of the GOV.UK Prototype Kit.'),
       '\n\n'
     )
+    console.log('You can install a compatible version by typing', '\n\n')
+
+    console.log('┌─────────────────────────────────┐')
+    console.log(`| npm install hmrc-frontend@${alternativeVersion[0]}.x |`)
+    console.log('└─────────────────────────────────┘', '\n\n')
     process.exit(1)
   } else {
-    console.log(styleString('You will need to update to the latest version of the Prototype kit. you can find instructions for doing this at:'))
+    console.log(styleString('Your prototype is not compatible with HMRC Frontend'), '\n\n')
+    console.log('You are using an old version of the GOV.UK Prototype Kit. This means it is not compatible with HMRC Frontend. You need to update to the latest version of the GOV.UK Prototype Kit.', '\n\n')
+    console.log('Find out more about updating your GOV.UK prototype')
     console.log(styleString('https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit', blue, underline), '\n\n')
-    readline.question(styleString('You can continue with this install but some features may break or not work as expected. Would you like to continue? (y/n) ', yellow), (answer) => {
+    readline.question('You can continue to install HMRC Frontend, but your prototype may look different or some features may not work. Do you want to continue? (y/n) ', (answer) => {
+      console.log('\n\n')
       if (answer[0].toLowerCase() === 'y') {
         process.exit(0)
       } else {
