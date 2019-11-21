@@ -58,12 +58,23 @@ gulp.task('copy:packageJson', (done) => {
     'author',
     'bugs',
     'homepage',
-    'dependencies'
+    'dependencies',
+    'scripts'
   ]
 
   Object.keys(packageFile).forEach(key => {
     if (!requiredKeys.includes(key)) {
       delete packageFile[key]
+    }
+  })
+
+  const requiredScripts = [
+    'preinstall'
+  ]
+
+  Object.keys(packageFile.scripts).forEach(key => {
+    if (!requiredScripts.includes(key)) {
+      delete packageFile.scripts[key]
     }
   })
 
@@ -116,6 +127,7 @@ gulp.task('build:package', cb => {
     'clean',
     'copy-files',
     'copy-govuk-config',
+    'copy-check-compatibility',
     'js:compile',
     'copy:README',
     'copy:packageJson',
