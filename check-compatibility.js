@@ -11,8 +11,8 @@ if (!knownPrototypeKitNames.includes(consumerPackageJson.name)) {
 }
 
 const compatibility = {
-  '1.0': {
-    'prototype-kit': ['9.2', '9.1', '9.0']
+  '1.4': {
+    'prototype-kit': ['9.4', '9.3', '9.2', '9.1', '9.0']
   },
   '0.6': {
     'prototype-kit': ['8.12', '8.11', '8.10', '8.9', '8.8', '8.7']
@@ -35,8 +35,9 @@ const compatibilityVersion = Object.keys(compatibility)
   .filter(version => parseFloat(version) < parseFloat(hmrcFrontendVersion))[0]
 
 const checkCompatibility = (dependency, version) => {
-  const versionMatcher = String(parseFloat(version).toFixed(1))
-  const compatible = !!compatibility[compatibilityVersion][dependency].find(v => String(parseFloat(v)) === versionMatcher)
+  const getMatchableVersion = (v) => String(parseFloat(v).toFixed(1))
+  const versionMatcher = getMatchableVersion(version)
+  const compatible = !!compatibility[compatibilityVersion][dependency].find(v => getMatchableVersion(v) === versionMatcher)
   return { version, compatible, versionMatcher }
 }
 
