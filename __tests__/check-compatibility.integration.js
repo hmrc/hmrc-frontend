@@ -1,31 +1,43 @@
 /* eslint-env jest */
+import { writeFileSync } from 'fs'
 import path from 'path'
 import { exec } from 'child_process'
 
 describe('Version compatibility check', () => {
+  expect.extend({
+    toContainPartial(array, str) {
+      const pass = array.some(x => x.includes(str))
+      return {
+        message: () => `expected ${array}${pass ? ' not' : ''} to contain an item with ${str}`,
+        pass,
+      }
+    }
+  })
+
   const scriptPath = path.resolve(__dirname, '../check-compatibility.js')
+  const mockPackagePath = path.resolve(__dirname, 'package.json')
+  const mockEnv = { env: { ...process.env, 'INIT_CWD': './__tests__' } }
+
+  const createMockPackage = (contents) => writeFileSync(mockPackagePath, JSON.stringify(contents))
+
   let logs
   let errors
-  let child = exec(`node ${scriptPath}`)
-  child.stdout.on('data', (data) => {
-    console.log('message: ', data)
-    logs.push(data)
-  })
-  child.stderr.on('data', (error) => errors.push(error))
 
   beforeEach(() => {
-    process.env = { ...process.env, INIT_CWD: './'}
     logs = []
     errors = []
   })
 
   describe('Installing outside of Prototype kit', () => {
     it('should exit the process with code 0', (done) => {
-      jest.mock('__tests__/package.json', () => ({
+      createMockPackage({
         name: 'foo'
-      }))
+      })
 
-      child = exec(`node ${scriptPath}`)
+      const child = exec(`node ${scriptPath}`, mockEnv)
+      child.stdout.on('data', (data) => logs.push(data))
+      child.stderr.on('data', (error) => errors.push(error))
+      child.on('error', (error) => errors.push(error))
 
       child.on('exit', (code) => {
         expect(code).toBe(0)
@@ -39,19 +51,109 @@ describe('Version compatibility check', () => {
   describe('Installing inside of Prototype kit', () => {
     describe('Installing a compatible version', () => {
       it('should exit the process with code 0', (done) => {
-        jest.mock('__tests__/package.json', () => ({
-          name: 'foo'
-        }))
+        createMockPackage({
+          name: 'govuk-prototype-kit',
+          version: '9.4.0'
+        })
 
-        child = exec(`node ${scriptPath}`)
-
+        const child = exec(`node ${scriptPath}`, mockEnv)
         child.stdout.on('data', (data) => logs.push(data))
         child.stderr.on('data', (error) => errors.push(error))
+        child.on('error', (error) => errors.push(error))
 
         child.on('exit', (code) => {
           expect(code).toBe(0)
           expect(errors.length).toBe(0)
           expect(logs.length).toBe(0)
+          done()
+        })
+      })
+    })
+
+    describe('Installing a future version', () => {
+      it('should exit the process with code 0', (done) => {
+        createMockPackage({
+          name: 'govuk-prototype-kit',
+          version: '100.0.0'
+        })
+
+        const child = exec(`node ${scriptPath}`, mockEnv)
+        child.stdout.on('data', (data) => { console.log('data: ', data); logs.push(data) })
+        child.stderr.on('data', (error) =>  { console.log('error: ', error); errors.push(error) })
+        child.on('error', (error) => errors.push(error))
+
+        child.on('exit', (code) => {
+          expect(code).toBe(0)
+          expect(errors.length).toBe(0)
+          expect(logs.length).toBe(0)
+          done()
+        })
+      })
+    })
+
+    describe('Installing a non-compatible version, but a compatible version exists', () => {
+      it('should exit the process with code 1 and provide instructions for installing a compatible version', (done) => {
+        createMockPackage({
+          name: 'govuk-prototype-kit',
+          version: '8.7.2'
+        })
+
+        const child = exec(`node ${scriptPath}`, mockEnv)
+        child.stdout.on('data', (data) => logs.push(data))
+        child.stderr.on('data', (error) => errors.push(error))
+        child.on('error', (error) => errors.push(error))
+
+        child.on('exit', (code) => {
+          expect(code).toBe(1)
+          expect(errors.length).toBe(0)
+          expect(logs).toContainPartial('npm install hmrc-frontend@0.6.x')
+          done()
+        })
+      })
+    })
+
+    describe('Installing a non-compatible version, and a compatible version does not exist', () => {
+      beforeEach(() => {
+        createMockPackage({
+          name: 'express-prototype',
+          version: '6.0.0'
+        })
+      })
+
+      it('should offer information on upgrading the prototype kit', (done) => {
+        const child = exec(`node ${scriptPath}`, { env: { ...mockEnv.env, atPrompt: 'y' } })
+        child.stdout.on('data', (data) => logs.push(data))
+        child.stderr.on('data', (error) => errors.push(error))
+        child.on('error', (error) => errors.push(error))
+
+        child.on('exit', () => {
+          expect(errors.length).toBe(0)
+          expect(logs).toContainPartial('Your prototype is not compatible with HMRC Frontend')
+          expect(logs).toContainPartial('https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit')
+          done()
+        })
+      })
+
+      it('should exit the process with code 0 when user chooses to continue', (done) => {
+        const child = exec(`node ${scriptPath}`, { env: { ...mockEnv.env, atPrompt: 'y' } })
+        child.stdout.on('data', (data) => logs.push(data))
+        child.stderr.on('data', (error) => errors.push(error))
+        child.on('error', (error) => errors.push(error))
+
+        child.on('exit', (code) => {
+          expect(code).toBe(0)
+          done()
+        })
+      })
+
+      it('should exit the process with code 1 when user chooses NOT to continue', (done) => {
+        const child = exec(`node ${scriptPath}`, { env: { ...mockEnv.env, atPrompt: 'n' } })
+        child.stdout.on('data', (data) => logs.push(data))
+        child.stderr.on('data', (error) => errors.push(error))
+        child.on('error', (error) => errors.push(error))
+
+        child.on('exit', (code) => {
+          expect(code).toBe(1)
           done()
         })
       })
@@ -62,54 +164,3 @@ describe('Version compatibility check', () => {
     jest.resetAllMocks()
   })
 })
-
-
-/*
-describe('Version compatibility check', () => {
-  const consoleSpy = jest.spyOn(console, 'log');
-
-  describe('Installing outside of Prototype kit', () => {
-    it('should exit the process with code 0', () => {
-      jest.mock('../package.json', () => ({
-        name: 'foo'
-      }))
-
-      jest.spyOn(process, 'exit').mockImplementation(() => {
-        throw new Error('process.exit() was called.')
-      });
-
-      expect(() => {
-        require('../check-compatibility.js');
-      }).toThrow('process.exit() was called.');
-
-      expect(process.exit).toHaveBeenCalledWith(0);
-      expect(consoleSpy.mock.calls.length).toBe(0);
-    })
-  })
-
-  describe('Installing inside of Prototype kit', () => {
-    describe('Installing a compatible version', () => {
-      it('should exit the process with code 0', () => {
-        jest.mock('../package.json', () => ({
-          name: 'govuk-prototype-kit'
-        }))
-
-        jest.spyOn(process, 'exit').mockImplementation(() => {
-          throw new Error('process.exit() was called.')
-        });
-
-        expect(() => {
-          require('../check-compatibility.js');
-        }).toThrow('process.exit() was called.');
-
-        expect(process.exit).toHaveBeenCalledWith(0);
-        expect(consoleSpy.mock.calls.length).toBe(0);
-      })
-    })
-  })
-
-  afterEach(() => {
-    jest.resetAllMocks()
-  })
-})
-*/

@@ -1,4 +1,1 @@
-{
-  "name": "test-package",
-  "description": "A package.json for mocking"
-}
+{"name":"express-prototype","version":"6.0.0"}

@@ -2,18 +2,12 @@ const consumerRoot = process.env.INIT_CWD
 const consumerPackageJson = require(`${consumerRoot}/package.json`)
 const hmrcFrontendPackageJson = require('./package.json')
 
-console.log('!!! 1')
-
 const knownPrototypeKitNames = ['govuk-prototype-kit', 'express-prototype']
-
-console.log('!!! 2', consumerPackageJson)
 
 if (!knownPrototypeKitNames.includes(consumerPackageJson.name)) {
   // Not installing as a dependency of the prototype kit so silently exit and continue
   process.exit(0)
 }
-
-console.log('!!! 3')
 
 const compatibility = {
   '1.4': {
@@ -42,15 +36,18 @@ const compatibilityVersion = Object.keys(compatibility)
 const checkCompatibility = (dependency, version) => {
   const getMatchableVersion = (v) => String(parseFloat(v).toFixed(1))
   const versionMatcher = getMatchableVersion(version)
-  const compatible = !!compatibility[compatibilityVersion][dependency].find(v => getMatchableVersion(v) === versionMatcher)
+  const compatibleVersions = compatibility[compatibilityVersion][dependency]
+  const compatible =
+    // Version is newer than our compatibility matrix
+    parseFloat(compatibleVersions[0]) < parseFloat(versionMatcher)
+    // Version is compatible
+    || !!compatibleVersions.find(v => getMatchableVersion(v) === versionMatcher)
   return { version, compatible, versionMatcher }
 }
 
 const styleString = (str, colour = green, style = '') => `${colour}${style}${str}${reset}`
 
 const prototypeKitVersion = checkCompatibility('prototype-kit', consumerPackageJson.version)
-
-console.log('!!!', prototypeKitVersion)
 
 if (prototypeKitVersion.compatible) {
   process.exit(0)
@@ -76,13 +73,16 @@ if (!prototypeKitVersion.compatible) {
     console.log('You are using an old version of the GOV.UK Prototype Kit. This means it is not compatible with HMRC Frontend. You need to update to the latest version of the GOV.UK Prototype Kit.', '\n\n')
     console.log('Find out more about updating your GOV.UK prototype')
     console.log(styleString('https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit', blue, underline), '\n\n')
-    readline.question('You can continue to install HMRC Frontend, but your prototype may look different or some features may not work. Do you want to continue? (y/n) ', (answer) => {
-      console.log('\n\n')
-      if (answer[0].toLowerCase() === 'y') {
-        process.exit(0)
-      } else {
-        process.exit(1)
-      }
-    })
+
+    const acceptPrompt = (response) => process.exit((response === 'y') ? 0 : 1)
+
+    if (process.env.atPrompt) {
+      acceptPrompt(process.env.atPrompt)
+    } else {
+      readline.question('You can continue to install HMRC Frontend, but your prototype may look different or some features may not work. Do you want to continue? (y/n) ', (answer) => {
+        console.log('\n\n')
+        acceptPrompt(answer[0].toLowerCase())
+      })
+    }
   }
 }
