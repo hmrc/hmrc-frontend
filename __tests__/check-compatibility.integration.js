@@ -1,3 +1,70 @@
+/* eslint-env jest */
+import path from 'path'
+import { exec } from 'child_process'
+
+describe('Version compatibility check', () => {
+  const scriptPath = path.resolve(__dirname, '../check-compatibility.js')
+  let logs
+  let errors
+  let child = exec(`node ${scriptPath}`)
+  child.stdout.on('data', (data) => {
+    console.log('message: ', data)
+    logs.push(data)
+  })
+  child.stderr.on('data', (error) => errors.push(error))
+
+  beforeEach(() => {
+    process.env = { ...process.env, INIT_CWD: './'}
+    logs = []
+    errors = []
+  })
+
+  describe('Installing outside of Prototype kit', () => {
+    it('should exit the process with code 0', (done) => {
+      jest.mock('__tests__/package.json', () => ({
+        name: 'foo'
+      }))
+
+      child = exec(`node ${scriptPath}`)
+
+      child.on('exit', (code) => {
+        expect(code).toBe(0)
+        expect(errors.length).toBe(0)
+        expect(logs.length).toBe(0)
+        done()
+      })
+    })
+  })
+
+  describe('Installing inside of Prototype kit', () => {
+    describe('Installing a compatible version', () => {
+      it('should exit the process with code 0', (done) => {
+        jest.mock('__tests__/package.json', () => ({
+          name: 'foo'
+        }))
+
+        child = exec(`node ${scriptPath}`)
+
+        child.stdout.on('data', (data) => logs.push(data))
+        child.stderr.on('data', (error) => errors.push(error))
+
+        child.on('exit', (code) => {
+          expect(code).toBe(0)
+          expect(errors.length).toBe(0)
+          expect(logs.length).toBe(0)
+          done()
+        })
+      })
+    })
+  })
+
+  afterEach(() => {
+    jest.resetAllMocks()
+  })
+})
+
+
+/*
 describe('Version compatibility check', () => {
   const consoleSpy = jest.spyOn(console, 'log');
 
@@ -45,3 +112,4 @@ describe('Version compatibility check', () => {
     jest.resetAllMocks()
   })
 })
+*/

@@ -1,14 +1,19 @@
-
 const consumerRoot = process.env.INIT_CWD
 const consumerPackageJson = require(`${consumerRoot}/package.json`)
 const hmrcFrontendPackageJson = require('./package.json')
 
+console.log('!!! 1')
+
 const knownPrototypeKitNames = ['govuk-prototype-kit', 'express-prototype']
+
+console.log('!!! 2', consumerPackageJson)
 
 if (!knownPrototypeKitNames.includes(consumerPackageJson.name)) {
   // Not installing as a dependency of the prototype kit so silently exit and continue
   process.exit(0)
 }
+
+console.log('!!! 3')
 
 const compatibility = {
   '1.4': {
@@ -44,6 +49,8 @@ const checkCompatibility = (dependency, version) => {
 const styleString = (str, colour = green, style = '') => `${colour}${style}${str}${reset}`
 
 const prototypeKitVersion = checkCompatibility('prototype-kit', consumerPackageJson.version)
+
+console.log('!!!', prototypeKitVersion)
 
 if (prototypeKitVersion.compatible) {
   process.exit(0)
