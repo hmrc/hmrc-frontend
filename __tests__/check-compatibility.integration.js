@@ -8,7 +8,7 @@ describe('Version compatibility check', () => {
     toContainPartial(array, str) {
       const pass = array.some(x => x.includes(str))
       return {
-        message: () => `expected ${array}${pass ? ' not' : ''} to contain an item with ${str}`,
+        message: () => `expected ${array}${pass ? ' NOT' : ''} to contain an item with ${str}`,
         pass,
       }
     }
@@ -92,7 +92,7 @@ describe('Version compatibility check', () => {
     })
 
     describe('Installing a non-compatible version, but a compatible version exists', () => {
-      it('should exit the process with code 1 and provide instructions for installing a compatible version', (done) => {
+      it('should exit the process with code 1 and provide instructions for installing a compatible version if no other steps are required', (done) => {
         createMockPackage({
           name: 'govuk-prototype-kit',
           version: '8.7.2'
@@ -107,6 +107,25 @@ describe('Version compatibility check', () => {
           expect(code).toBe(1)
           expect(errors.length).toBe(0)
           expect(logs).toContainPartial('npm install hmrc-frontend@0.6.x')
+          done()
+        })
+      })
+
+      it('should offer information on installing a compaitble version as well as instructions on manual steps required', (done) => {
+        createMockPackage({
+          name: 'express-prototype',
+          version: '7.1.0'
+        })
+
+        const child = exec(`node ${scriptPath}`, { env: { ...mockEnv.env, atPrompt: 'y' } })
+        child.stdout.on('data', (data) => logs.push(data))
+        child.stderr.on('data', (error) => errors.push(error))
+        child.on('error', (error) => errors.push(error))
+
+        child.on('exit', (code) => {
+          expect(code).toBe(1)
+          expect(errors.length).toBe(0)
+          expect(logs).toContainPartial('https://design.tax.service.gov.uk/hmrc-design-patterns/install-hmrc-frontend-in-your-prototype/install-hrmc-frontend-in-an-old-version-of-the-govuk-prototype-kit/')
           done()
         })
       })
