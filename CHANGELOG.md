@@ -7,10 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.6.0] - 2019-11-29
+
+### Added
+- Support for versions that are compatible with manual steps [c941cd4](c941cd4c4422aa2ea2a2aebbfe29c19cf613504c)
+- Support for future versions [85aa22f](85aa22ffd641d48065c2bfd835120e204a43fdaf)
+- Suite of unit tests for compatibility checking [aecdcbd](aecdcbdfad08c27b23429581e6708ec8f25db34b)
+
 ## [1.5.0] - 2019-11-18
 
 ### Added
-- Version compatibility checking [5de91c](5de91cd5037c601231773fecaab333651c3441eb)
+- Version compatibility checking [5de91cd](5de91cd5037c601231773fecaab333651c3441eb)
   
 ## [1.4.0] - 2019-11-14
 
