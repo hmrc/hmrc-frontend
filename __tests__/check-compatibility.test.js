@@ -111,7 +111,7 @@ describe('Version compatibility check', () => {
         })
       })
 
-      it('should offer information on installing a compaitble version as well as instructions on manual steps required', (done) => {
+      it('should offer information on installing a compatible version as well as instructions on manual steps required', (done) => {
         createMockPackage({
           name: 'express-prototype',
           version: '7.1.0'
