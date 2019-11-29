@@ -5,11 +5,11 @@ import { exec } from 'child_process'
 
 describe('Version compatibility check', () => {
   expect.extend({
-    toContainPartial(array, str) {
+    toContainPartial (array, str) {
       const pass = array.some(x => x.includes(str))
       return {
         message: () => `expected ${array}${pass ? ' NOT' : ''} to contain an item with ${str}`,
-        pass,
+        pass
       }
     }
   })
@@ -79,7 +79,7 @@ describe('Version compatibility check', () => {
 
         const child = exec(`node ${scriptPath}`, mockEnv)
         child.stdout.on('data', (data) => { console.log('data: ', data); logs.push(data) })
-        child.stderr.on('data', (error) =>  { console.log('error: ', error); errors.push(error) })
+        child.stderr.on('data', (error) => { console.log('error: ', error); errors.push(error) })
         child.on('error', (error) => errors.push(error))
 
         child.on('exit', (code) => {

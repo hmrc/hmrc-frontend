@@ -19,7 +19,7 @@ const compatibility = {
     'prototype-kit': ['8.12', '8.11', '8.10', '8.9', '8.8', '8.7']
   },
   [`0.6${withManualSteps}`]: {
-    'prototype-kit': ['8.0', '7.1']
+    'prototype-kit': ['8.6', '8.5', '8.4', '8.3', '8.2', '8.1', '8.0', '7.1', '7.0']
   }
 }
 
@@ -45,9 +45,9 @@ const checkCompatibility = (dependency, version) => {
 
   let compatible =
     // Version is newer than our compatibility matrix
-    parseFloat(compatibleVersions[0]) < parseFloat(versionMatcher)
+    parseFloat(compatibleVersions[0]) < parseFloat(versionMatcher) ||
     // Version is compatible
-    || !!compatibleVersions.find(v => getMatchableVersion(v) === versionMatcher)
+    !!compatibleVersions.find(v => getMatchableVersion(v) === versionMatcher)
 
   let alternativeVersion = Object.keys(compatibility)
     .find(version => compatibility[version]['prototype-kit'].includes(versionMatcher))
@@ -59,7 +59,7 @@ const checkCompatibility = (dependency, version) => {
     compatible = true
   }
 
-  return { version, compatible, alternativeVersion, requiresManualSteps  }
+  return { version, compatible, alternativeVersion, requiresManualSteps }
 }
 
 const styleString = (str, colour = green, style = '') => `${colour}${style}${str}${reset}`
