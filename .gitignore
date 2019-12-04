@@ -35,3 +35,4 @@ sassdoc/
 
 # hmrc-frontend specific
 package/
+__tests__/package.json
