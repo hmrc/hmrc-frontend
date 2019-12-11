@@ -30,16 +30,17 @@ const readline = require('readline').createInterface({
 readline.on('close', () => process.exit(1))
 
 const blue = '\x1b[36m'
-const green = '\x1b[32m'
+const red = '\x1b[31m'
 const underline = '\x1b[4m'
 const reset = '\x1b[0m'
 
 const hmrcFrontendVersion = hmrcFrontendPackageJson.version
 const compatibilityVersion = Object.keys(compatibility)
-  .find(version => parseFloat(version) < parseFloat(hmrcFrontendVersion))
+  .find(version => parseFloat(version) <= parseFloat(hmrcFrontendVersion))
 
 const checkCompatibility = (dependency, version) => {
   const getMatchableVersion = (v) => String(parseFloat(v).toFixed(1))
+
   const versionMatcher = getMatchableVersion(version)
   const compatibleVersions = compatibility[compatibilityVersion][dependency]
 
@@ -49,28 +50,27 @@ const checkCompatibility = (dependency, version) => {
     // Version is compatible
     !!compatibleVersions.find(v => getMatchableVersion(v) === versionMatcher)
 
-  let alternativeVersion = Object.keys(compatibility)
+  let alternativeVersion = !compatible && Object.keys(compatibility)
     .find(version => compatibility[version]['prototype-kit'].includes(versionMatcher))
 
   let requiresManualSteps = false
   if (alternativeVersion && alternativeVersion.includes(withManualSteps)) {
     alternativeVersion = alternativeVersion.replace(withManualSteps, '')
     requiresManualSteps = true
-    compatible = true
   }
 
   return { version, compatible, alternativeVersion, requiresManualSteps }
 }
 
-const styleString = (str, colour = green, style = '') => `${colour}${style}${str}${reset}`
+const styleString = (str, colour = red, style = '') => `${colour}${style}${str}${reset}`
 
 const { alternativeVersion, compatible, requiresManualSteps } = checkCompatibility('prototype-kit', consumerPackageJson.version)
 
-if (compatible && !requiresManualSteps) {
+if (compatible) {
   process.exit(0)
 }
 
-if (!compatible || requiresManualSteps) {
+if (!compatible) {
   if (alternativeVersion && requiresManualSteps) {
     console.log(
       styleString('The version of HMRC Frontend you are trying to install is not compatible with your version of the GOV.UK Prototype Kit.'),
@@ -102,15 +102,18 @@ if (!compatible || requiresManualSteps) {
     console.log('Find out more about updating your GOV.UK prototype')
     console.log(styleString('https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit', blue, underline), '\n\n')
 
-    const acceptPrompt = (response) => process.exit((response === 'y') ? 0 : 1)
-
-    if (process.env.atPrompt) {
-      acceptPrompt(process.env.atPrompt)
+    if (process.env.allowIncompatible) {
+      const acceptPrompt = (response) => process.exit((response === 'y') ? 0 : 1)
+      if (process.env.atPrompt) {
+        acceptPrompt(process.env.atPrompt)
+      } else {
+        readline.question('You can continue to install HMRC Frontend, but your prototype may look different or some features may not work. Do you want to continue? (y/n) ', (answer) => {
+          console.log('\n\n')
+          acceptPrompt(answer[0].toLowerCase())
+        })
+      }
     } else {
-      readline.question('You can continue to install HMRC Frontend, but your prototype may look different or some features may not work. Do you want to continue? (y/n) ', (answer) => {
-        console.log('\n\n')
-        acceptPrompt(answer[0].toLowerCase())
-      })
+      process.exit(1)
     }
   }
 }
