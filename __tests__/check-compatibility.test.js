@@ -16,16 +16,17 @@ describe('Version compatibility check', () => {
 
   const scriptPath = path.resolve(__dirname, '../check-compatibility.js')
   const mockPackagePath = path.resolve(__dirname, 'package.json')
-  const mockEnv = { env: { ...process.env, 'INIT_CWD': './__tests__' } }
 
   const createMockPackage = (contents) => writeFileSync(mockPackagePath, JSON.stringify(contents))
 
   let logs
   let errors
+  let mockEnv
 
   beforeEach(() => {
     logs = []
     errors = []
+    mockEnv = { env: { ...process.env, 'INIT_CWD': './__tests__' } }
   })
 
   describe('Installing outside of Prototype kit', () => {
@@ -78,8 +79,8 @@ describe('Version compatibility check', () => {
         })
 
         const child = exec(`node ${scriptPath}`, mockEnv)
-        child.stdout.on('data', (data) => { console.log('data: ', data); logs.push(data) })
-        child.stderr.on('data', (error) => { console.log('error: ', error); errors.push(error) })
+        child.stdout.on('data', (data) => logs.push(data))
+        child.stderr.on('data', (error) => errors.push(error))
         child.on('error', (error) => errors.push(error))
 
         child.on('exit', (code) => {
@@ -145,35 +146,38 @@ describe('Version compatibility check', () => {
         child.stderr.on('data', (error) => errors.push(error))
         child.on('error', (error) => errors.push(error))
 
-        child.on('exit', () => {
+        child.on('exit', (code) => {
           expect(errors.length).toBe(0)
           expect(logs).toContainPartial('Your prototype is not compatible with HMRC Frontend')
           expect(logs).toContainPartial('https://govuk-prototype-kit.herokuapp.com/docs/updating-the-kit')
-          done()
-        })
-      })
-
-      it('should exit the process with code 0 when user chooses to continue', (done) => {
-        const child = exec(`node ${scriptPath}`, { env: { ...mockEnv.env, atPrompt: 'y' } })
-        child.stdout.on('data', (data) => logs.push(data))
-        child.stderr.on('data', (error) => errors.push(error))
-        child.on('error', (error) => errors.push(error))
-
-        child.on('exit', (code) => {
-          expect(code).toBe(0)
-          done()
-        })
-      })
-
-      it('should exit the process with code 1 when user chooses NOT to continue', (done) => {
-        const child = exec(`node ${scriptPath}`, { env: { ...mockEnv.env, atPrompt: 'n' } })
-        child.stdout.on('data', (data) => logs.push(data))
-        child.stderr.on('data', (error) => errors.push(error))
-        child.on('error', (error) => errors.push(error))
-
-        child.on('exit', (code) => {
           expect(code).toBe(1)
           done()
+        })
+      })
+
+      describe('when \'env.allowIncompatible\' is true', () => {
+        it('should exit the process with code 0 when user chooses to continue', (done) => {
+          const child = exec(`node ${scriptPath}`, { env: { ...mockEnv.env, allowIncompatible: true, atPrompt: 'y' } })
+          child.stdout.on('data', (data) => logs.push(data))
+          child.stderr.on('data', (error) => errors.push(error))
+          child.on('error', (error) => errors.push(error))
+
+          child.on('exit', (code) => {
+            expect(code).toBe(0)
+            done()
+          })
+        })
+
+        it('should exit the process with code 1 when user chooses NOT to continue', (done) => {
+          const child = exec(`node ${scriptPath}`, { env: { ...mockEnv.env, allowIncompatible: true, atPrompt: 'n' } })
+          child.stdout.on('data', (data) => logs.push(data))
+          child.stderr.on('data', (error) => errors.push(error))
+          child.on('error', (error) => errors.push(error))
+
+          child.on('exit', (code) => {
+            expect(code).toBe(1)
+            done()
+          })
         })
       })
     })
