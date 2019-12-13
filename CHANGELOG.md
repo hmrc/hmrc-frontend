@@ -7,15 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [1.7.0] - 2019-12-11
+## [1.6.0] - 2019-12-13
 
 ### Changed
 - Version check [023c85a](023c85a2f866980981bc404f2701764ec41c6a8a)
   - Refactored check to flag only fully compatible versions as compatible
   - Change green text colour to red
   - Hide ability to install anyway behind environment flag
-
-## [1.6.0] - 2019-11-29
 
 ### Added
 - Support for versions that are compatible with manual steps [c941cd4](c941cd4c4422aa2ea2a2aebbfe29c19cf613504c)
