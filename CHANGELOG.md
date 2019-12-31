@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.7.0] - 2019-12-31
+
+### Fixed
+- Broken support for manual updates [3d2b90a](3d2b90a601c63b093b5c1a1a476350659e12adbd)
+
+### Updated
+- Vulnerable dependencies [e9ed4e1](e9ed4e19eb228e1083ec42f9f3117aee608b538c)
+- govuk-frontend [2cbf3d0](2cbf3d0e3d27905098760d69497395976a0ac3b0)
+
 ## [1.6.0] - 2019-12-13
 
 ### Changed
