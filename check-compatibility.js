@@ -35,23 +35,17 @@ const underline = '\x1b[4m'
 const reset = '\x1b[0m'
 
 const hmrcFrontendVersion = hmrcFrontendPackageJson.version
-const compatibilityVersion = Object.keys(compatibility)
-  .find(version => parseFloat(version) <= parseFloat(hmrcFrontendVersion))
 
-const checkCompatibility = (dependency, version) => {
-  const getMatchableVersion = (v) => String(parseFloat(v).toFixed(1))
+const checkCompatibility = (version, host = 'prototype-kit') => {
+  const getMatchableVersion = (v) => parseFloat(v).toFixed(1)
 
-  const versionMatcher = getMatchableVersion(version)
-  const compatibleVersions = compatibility[compatibilityVersion][dependency]
+  const installingHmrcVersion = String(getMatchableVersion(hmrcFrontendVersion))
+  const latestKnownHost = compatibility[installingHmrcVersion][host][0]
+  const hostVersion = String(getMatchableVersion(version))
 
-  let compatible =
-    // Version is newer than our compatibility matrix
-    parseFloat(compatibleVersions[0]) < parseFloat(versionMatcher) ||
-    // Version is compatible
-    !!compatibleVersions.find(v => getMatchableVersion(v) === versionMatcher)
-
+  const compatible = compatibility[installingHmrcVersion][host].includes(hostVersion) || parseFloat(hostVersion) > parseFloat(latestKnownHost)
   let alternativeVersion = !compatible && Object.keys(compatibility)
-    .find(version => compatibility[version]['prototype-kit'].includes(versionMatcher))
+    .find(hmrcVersion => compatibility[hmrcVersion][host].includes(hostVersion))
 
   let requiresManualSteps = false
   if (alternativeVersion && alternativeVersion.includes(withManualSteps)) {
@@ -64,7 +58,7 @@ const checkCompatibility = (dependency, version) => {
 
 const styleString = (str, colour = red, style = '') => `${colour}${style}${str}${reset}`
 
-const { alternativeVersion, compatible, requiresManualSteps } = checkCompatibility('prototype-kit', consumerPackageJson.version)
+const { alternativeVersion, compatible, requiresManualSteps } = checkCompatibility(consumerPackageJson.version)
 
 if (compatible) {
   process.exit(0)
