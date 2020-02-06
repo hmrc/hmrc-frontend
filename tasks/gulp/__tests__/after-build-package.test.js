@@ -48,6 +48,10 @@ describe('package/', () => {
       const additionalFilesNotFromSrc = [
         'check-compatibility.js',
         'govuk-prototype-kit.config.json',
+        'hmrc-frontend.min.css',
+        'hmrc-frontend-ie8.min.css',
+        'maps/hmrc-frontend.min.css.map',
+        'maps/hmrc-frontend-ie8.min.css.map',
         'package.json',
         'README.md'
       ]

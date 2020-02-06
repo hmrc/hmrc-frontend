@@ -51,17 +51,16 @@ const compileOldIeStylesheet = isDist ? configPaths.src + 'all-ie8.scss' : confi
 gulp.task('scss:compile', () => {
   let compile = gulp.src(compileStylesheet)
     .pipe(plumber(errorHandler))
-    .pipe(gulpif(!isPackage, sourcemaps.init()))
+    .pipe(sourcemaps.init())
     .pipe(sass({
       includePaths: ['node_modules']
     }))
     // minify css add vendor prefixes and normalize to compiled css
-    .pipe(gulpif(isDist, postcss([
+    .pipe(postcss([
       autoprefixer,
       cssnano
-    ])))
+    ]))
     .pipe(gulpif(!isDist, postcss([
-      autoprefixer,
       // Auto-generate 'companion' classes for pseudo-selector states - e.g. a
       // :hover class you can use to simulate the hover state in the review app
       postcsspseudoclasses
@@ -72,14 +71,15 @@ gulp.task('scss:compile', () => {
         extname: '.min.css'
       })
     ))
+    .pipe(gulpif(isPackage, rename('hmrc-frontend.min.css')))
     // Write external sourcemap files to a maps directory of the destination,
     // but not for the npm package
-    .pipe(gulpif(!isPackage, sourcemaps.write('./maps')))
+    .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest(taskArguments.destination + '/'))
 
   let compileOldIe = gulp.src(compileOldIeStylesheet)
     .pipe(plumber(errorHandler))
-    .pipe(gulpif(!isPackage, sourcemaps.init()))
+    .pipe(sourcemaps.init())
     .pipe(sass({
       includePaths: ['node_modules']
     }))
@@ -112,9 +112,10 @@ gulp.task('scss:compile', () => {
         extname: '.min.css'
       })
     ))
+    .pipe(gulpif(isPackage, rename('hmrc-frontend-ie8.min.css')))
     // Write external sourcemap files to a maps directory of the destination,
     // but not for the npm package
-    .pipe(gulpif(!isPackage, sourcemaps.write('./maps')))
+    .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest(taskArguments.destination + '/'))
 
   return merge(compile, compileOldIe)

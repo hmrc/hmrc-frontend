@@ -129,6 +129,7 @@ gulp.task('build:package', cb => {
     'copy-govuk-config',
     'copy-check-compatibility',
     'js:compile',
+    'copy-assets',
     'copy:README',
     'copy:packageJson',
     cb
