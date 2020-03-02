@@ -1,0 +1,15 @@
+examples:
+- name: default
+  data:
+    serviceCode: the-url-safe-service-name
+    language: "en"
+- name: welsh
+  data:
+    serviceCode: the-url-safe-service-name
+    language: "cy"
+
+- name: with-classes
+  data:
+    serviceCode: the-url-safe-service-name
+    classList: govuk-!-font-weight-bold my-custom-class
+    language: "cy"
