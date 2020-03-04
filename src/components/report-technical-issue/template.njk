@@ -1,2 +1,7 @@
-<a class="govuk-link {{ params.classList }}" target="_blank" href="/contact/problem_reports_nonjs?service={{ params.serviceCode | default("unknown") }}"
+{% set language %}{% if params.language == 'cy' %}cy{% else %}en{% endif %}{% endset %}
+
+<a lang="{{ language }}" hreflang="{{ language }}"
+  class="govuk-link {{ params.classList }}"
+  target="_blank"
+  href="/contact/problem_reports_nonjs{% if params.serviceCode %}?service={{ params.serviceCode }}{% endif %}"
 >{% if params.language == 'cy' %}Help gyda'r dudalen hon{% else %}Get help with this page{% endif %}</a>

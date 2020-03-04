@@ -1,3 +1,12 @@
+params:
+  - name: serviceCode
+    type: string
+    required: true
+    description: The URL-friendly service name which is passed to Contact Frontend
+  - name: language
+    type: string
+    required: false
+    description: Either "en" for english or "cy" for welsh.
 examples:
 - name: default
   data:
@@ -7,7 +16,6 @@ examples:
   data:
     serviceCode: the-url-safe-service-name
     language: "cy"
-
 - name: with-classes
   data:
     serviceCode: the-url-safe-service-name

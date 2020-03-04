@@ -21,9 +21,15 @@ describe('Report Technical Issue', () => {
       const $component = $('.govuk-link')
       expect($component.get(0).tagName).toEqual('a')
       expect($component.attr('target')).toEqual('_blank')
-      expect($component.attr('rel')).toEqual(undefined)
       expect($component.attr('href')).toEqual('/contact/problem_reports_nonjs?service=the-url-safe-service-name')
       expect($component.text()).toEqual('Get help with this page')
+    })
+
+    it('shouldn\'t specify any rel attributes so that referrer data is passed through', () => {
+      const $ = render('report-technical-issue', examples.default)
+
+      const $component = $('.govuk-link')
+      expect($component.attr('rel')).toEqual(undefined)
     })
 
     it('renders link with custom classes', () => {
@@ -34,7 +40,7 @@ describe('Report Technical Issue', () => {
       expect($component.attr('class')).toEqual('govuk-link govuk-!-font-weight-bold my-custom-class')
     })
 
-    it('uses the provided URL', () => {
+    it('should display in welsh', () => {
       const $ = render('report-technical-issue', examples.welsh)
 
       const $component = $('.govuk-link')
