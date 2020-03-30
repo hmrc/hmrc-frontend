@@ -40,8 +40,38 @@ npm install
 
 ### Frontend microservices
 
-Currently unsupported.
+We offer a few ways of incorporating the GOV UK and HMRC CSS and JS libraries into your service. Pick the one which best suits your service.
 
+### 1. CDN
+If you are just using the GOVUK Frontend and HMRC Frontend and are not going to be adding any service-specific CSS or JS we suggest you use the HMRC CDN version of the assets.
+You will need to link to these in your service’s page template.
+
+1. add CDN js links to your `@bodyEnd` block in the layout template
+    - `<script type="text/javascript" src="https://www.tax.service.gov.uk/assets/hmrc-frontend/3.X.X/hmrc-frontend-3.X.X.min.js"></script>`
+2. add CDN css links to your `@headTag` block in the layout template
+    - `<link rel="stylesheet" type="text/css" href="https://www.tax.service.gov.uk/assets/hmrc-frontend/3.X.X/hmrc-frontend-3.X.X.min.css">`
+    - `<link rel="stylesheet" type="text/css" href="https://www.tax.service.gov.uk/assets/hmrc-frontend/3.X.X/hmrc-frontend-ie8-3.X.X.min.css">`
+`
+
+### 2. Webjar
+If you are adding some custom CSS to your service we suggest you use a webjar to pull in the GOV UK and HMRC Frontend libraries.
+This will enable you to use the appropriate SASS mixins to ensure your custom code is consistent with other components. 
+It will allow you to package your code along with the libraries into a single download for the user. 
+It will also mean you can optionally just consume the parts of the libraries you actually need for your service.
+
+1. add `"org.webjars.npm" % "govuk-frontend" % "3.X.X"` to your app dependencies (`hmrc-frontend` has a dependency on `govuk-frontend`)
+2. add `"org.webjars.npm" % "hmrc-frontend" % "1.X.X"` to your app dependencies
+3. in `application.scss`: 
+    - add `$hmrc-assets-path: "/url-of-your-service/assets/lib/hmrc-frontend/hmrc/assets";`
+    - to import all components, add `@import "lib/hmrc-frontend/hmrc/all";`
+    - to import individual components, add
+        - `@import "lib/hmrc-frontend/hmrc/components/header/header";` 
+        - `@import "lib/hmrc-frontend/hmrc/components/account-menu/account-menu";`
+        - `and so on`
+    - to add to or override SASS, update `application.scss` or create additional `.scss` files and import them as described above
+4. in `application.js`:
+    - to add to or override javascript, update `application.js` or create additional `.js` files and add them to `build.sbt`
+    
 ## How to contribute
 
 ### Design patterns
