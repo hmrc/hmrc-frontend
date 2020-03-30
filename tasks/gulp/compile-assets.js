@@ -52,9 +52,6 @@ gulp.task('scss:compile', () => {
   let compile = gulp.src(compileStylesheet)
     .pipe(plumber(errorHandler))
     .pipe(gulpif(!isPackage, sourcemaps.init()))
-    .pipe(sass({
-      includePaths: ['node_modules']
-    }))
     // minify css add vendor prefixes and normalize to compiled css
     .pipe(gulpif(isDist, postcss([
       autoprefixer,
