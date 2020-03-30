@@ -47,10 +47,10 @@ If you are just using the GOVUK Frontend and HMRC Frontend and are not going to 
 You will need to link to these in your service’s page template.
 
 1. add CDN js links to your `@bodyEnd` block in the layout template
-    - `<script type="text/javascript" src="https://www.tax.service.gov.uk/assets/hmrc-frontend/3.X.X/hmrc-frontend-3.X.X.min.js"></script>`
+    - `<script type="text/javascript" src="https://www.tax.service.gov.uk/assets/hmrc-frontend/1.X.X/hmrc-frontend-1.X.X.min.js"></script>`
 2. add CDN css links to your `@headTag` block in the layout template
-    - `<link rel="stylesheet" type="text/css" href="https://www.tax.service.gov.uk/assets/hmrc-frontend/3.X.X/hmrc-frontend-3.X.X.min.css">`
-    - `<link rel="stylesheet" type="text/css" href="https://www.tax.service.gov.uk/assets/hmrc-frontend/3.X.X/hmrc-frontend-ie8-3.X.X.min.css">`
+    - `<link rel="stylesheet" type="text/css" href="https://www.tax.service.gov.uk/assets/hmrc-frontend/1.X.X/hmrc-frontend-1.X.X.min.css">`
+    - `<link rel="stylesheet" type="text/css" href="https://www.tax.service.gov.uk/assets/hmrc-frontend/1.X.X/hmrc-frontend-ie8-1.X.X.min.css">`
 `
 
 ### 2. Webjar
