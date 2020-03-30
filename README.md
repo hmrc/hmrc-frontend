@@ -40,7 +40,7 @@ npm install
 
 ### Frontend microservices
 
-We offer a few ways of incorporating the GOV UK and HMRC CSS and JS libraries into your service. Pick the one which best suits your service.
+We offer a few ways of incorporating the GOV UK and HMRC CSS and JS libraries into your service. Pick the one which best suits your service. In the following instructions, `1.X.X` and `3.X.X` refers to the version of the library you require.
 
 ### 1. CDN
 If you are just using the GOVUK Frontend and HMRC Frontend and are not going to be adding any service-specific CSS or JS we suggest you use the HMRC CDN version of the assets.
