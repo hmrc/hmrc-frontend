@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- check-compatibility.js for 1.8.0 release and recent versions of prototype kit
+
+## [1.8.0] - 2020-04-02
+
+### Changed
+- Language toggle to a more accessible version [925f85a](925f85aeff3938e9ec06f9a325e8274b2283f53a)
+
 ## [1.7.0] - 2019-12-31
 
 ### Fixed
