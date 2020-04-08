@@ -23,10 +23,6 @@ params:
     type: string
     required: false
     description: Options for the error message component. The error message component will not display if you use a falsy value for `errorMessage`, for example `false` or `null`.
-  - name: maxlength
-    type: number
-    required: false
-    description: The max length of the input.
   - name: classes
     type: string
     required: false

@@ -1,8 +1,8 @@
 # Currency Input
 
-This macro generates an `<input>` and `<label>`.
+This macro generates an `<input>` and `<label>` for a currency input
 
-## Variables
+## Parameters
 
 ```
 name
@@ -10,36 +10,12 @@ id
 label
 hint
 value
-error
-maxlength
+errorMessage
 classes
+describedBy
+autocomplete
+attributes
 ```
-
-## Descriptions of variables
-
-| Name          | Description                                                   |
-| ------------- |---------------------------------------------------------------|
-| name          | sets the name of the input                                    |
-| id            | sets the id of the input, and the for of the label            |
-| label         | sets the text of the label                                    |
-| hint          | sets hint text within the label                               |
-| value         | sets the value of the input                                   |
-| error         | sets the error message                                        |
-| maxlength     | sets the max length of the input                              |
-| classes       | object used for styling elements                              |
-
-With hint, error and maxlength if the values are empty, then they are not displayed in the render.
-
-## Classes
-
-You can add various styles to the elements within the macro.
-
-| Name          | Description                                                   |
-| ------------- |---------------------------------------------------------------|
-| label         | this overrides the form-label-bold                            |
-| input         | adds addtional classes to the input                           |
-
-These are supplied as a string i.e `{label: 'form-label', input: 'new-class new-class-two'}`.
 
 ### License
 
