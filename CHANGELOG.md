@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.9.0] - 2020-04-08
 
 ### Added
-- `Currency input` added [861d830](861d830b3c22d7bce7fe03b827c41288d66f148b)
+- `hmrcCurrencyInput` added [861d830](861d830b3c22d7bce7fe03b827c41288d66f148b)
 
 ## [1.8.1] - 2020-04-07
 
