@@ -21,8 +21,22 @@ describe('Report Technical Issue', () => {
       const $component = $('.govuk-link')
       expect($component.get(0).tagName).toEqual('a')
       expect($component.attr('target')).toEqual('_blank')
-      expect($component.attr('href')).toEqual('/contact/problem_reports_nonjs?service=the-url-safe-service-name')
-      expect($component.text()).toEqual('Get help with this page')
+      expect($component.attr('hreflang')).toEqual('en')
+      expect($component.attr('lang')).toEqual('en')
+      expect($component.attr('href')).toEqual('/contact/problem_reports_nonjs?newTab=true&service=the-url-safe-service-name')
+      expect($component.text()).toEqual('Get help with this page (opens in a new window or tab)')
+    })
+
+    it('renders a link element when nothing is provided', () => {
+      const $ = render('report-technical-issue', {})
+
+      const $component = $('.govuk-link')
+      expect($component.get(0).tagName).toEqual('a')
+      expect($component.attr('target')).toEqual('_blank')
+      expect($component.attr('hreflang')).toEqual('en')
+      expect($component.attr('lang')).toEqual('en')
+      expect($component.attr('href')).toEqual('/contact/problem_reports_nonjs?newTab=true')
+      expect($component.text()).toEqual('Get help with this page (opens in a new window or tab)')
     })
 
     it('shouldn\'t specify any rel attributes so that referrer data is passed through', () => {
@@ -45,7 +59,9 @@ describe('Report Technical Issue', () => {
 
       const $component = $('.govuk-link')
 
-      expect($component.text()).toEqual('Help gyda\'r dudalen hon')
+      expect($component.attr('hreflang')).toEqual('cy')
+      expect($component.attr('lang')).toEqual('cy')
+      expect($component.text()).toEqual('Help gyda\'r dudalen hon (yn agor ffenestr neu dab newydd)')
     })
   })
 })

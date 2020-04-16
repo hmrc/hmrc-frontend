@@ -3,5 +3,5 @@
 <a lang="{{ language }}" hreflang="{{ language }}"
   class="govuk-link {{ params.classList }}"
   target="_blank"
-  href="/contact/problem_reports_nonjs{% if params.serviceCode %}?service={{ params.serviceCode }}{% endif %}"
->{% if params.language == 'cy' %}Help gyda'r dudalen hon{% else %}Get help with this page{% endif %}</a>
+  href="/contact/problem_reports_nonjs?newTab=true{% if params.serviceCode %}&amp;service={{ params.serviceCode }}{% endif %}"
+>{% if params.language == 'cy' %}Help gyda'r dudalen hon (yn agor ffenestr neu dab newydd){% else %}Get help with this page (opens in a new window or tab){% endif %}</a>
