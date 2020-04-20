@@ -10,6 +10,7 @@
   "src": "src/",
   "components": "src/components/",
   "govukFrontend": "node_modules/govuk-frontend",
+  "packageTest": "__tests__/packageTest",
   "ports": {
     "app": 3000,
     "test": 8888
