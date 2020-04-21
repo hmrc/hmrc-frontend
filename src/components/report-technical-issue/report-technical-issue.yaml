@@ -1,0 +1,23 @@
+params:
+  - name: serviceCode
+    type: string
+    required: true
+    description: The URL-friendly service name which is passed to Contact Frontend
+  - name: language
+    type: string
+    required: false
+    description: Either "en" for english or "cy" for welsh.
+examples:
+- name: default
+  data:
+    serviceCode: the-url-safe-service-name
+    language: "en"
+- name: welsh
+  data:
+    serviceCode: the-url-safe-service-name
+    language: "cy"
+- name: with-classes
+  data:
+    serviceCode: the-url-safe-service-name
+    classList: govuk-!-font-weight-bold my-custom-class
+    language: "cy"

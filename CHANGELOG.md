@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.10.0] - 2020-04-21
+
+### Added
+
+- Report technical issue component
+
+## [1.9.1] - 2020-04-21
+
+### Fixed
+- Fix incorrect nesting of language selector styles
+
+## [1.9.0] - 2020-04-08
+
+### Added
+- `hmrcCurrencyInput` added [861d830](861d830b3c22d7bce7fe03b827c41288d66f148b)
+
+## [1.8.1] - 2020-04-07
+
+### Fixed
+- check-compatibility.js for 1.8.0 release and recent versions of prototype kit
+
+## [1.8.0] - 2020-04-02
+
+### Changed
+- Language toggle to a more accessible version [925f85a](925f85aeff3938e9ec06f9a325e8274b2283f53a)
+
 ## [1.7.0] - 2019-12-31
 
 ### Fixed
@@ -33,7 +59,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Version compatibility checking [5de91cd](5de91cd5037c601231773fecaab333651c3441eb)
-  
+
 ## [1.4.0] - 2019-11-14
 
 ### Added
@@ -114,7 +140,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - `hmrcTimeoutDialog` added [#37](https://github.com/hmrc/hmrc-frontend/pull/37)
 
-## [0.4.0] - 2019-04-18 
+## [0.4.0] - 2019-04-18
 
 ### Fixed
 - Enable `focusHighlight` on the "Your Account" link inside Account Menu [#38](https://github.com/hmrc/hmrc-frontend/pull/38)
@@ -125,7 +151,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Fix mobile add-to-a-list [#36](https://github.com/hmrc/hmrc-frontend/pull/36)
 
-## [0.3.0] - 2019-03-25 
+## [0.3.0] - 2019-03-25
 
 ### Added
 
