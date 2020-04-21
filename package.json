@@ -1,6 +1,6 @@
 {
   "name": "hmrc-frontend",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
@@ -9,8 +9,7 @@
     "test": "standard && gulp test && gulp copy-assets && jest src",
     "test:compatibility": "jest __tests__/check-compatibility.test.js",
     "test:build:package": "jest tasks/gulp/__tests__/after-build-package.test.js",
-    "test:build:dist": "jest tasks/gulp/__tests__/after-build-dist.test.js",
-    "preinstall": "node check-compatibility.js"
+    "test:build:dist": "jest tasks/gulp/__tests__/after-build-dist.test.js"
   },
   "repository": {
     "type": "git",
