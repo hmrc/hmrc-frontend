@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.9.1] - 2020-04-08
+
+### Fixed
+- Fix incorrect nesting of language selector styles
+
 ## [1.9.0] - 2020-04-08
 
 ### Added

@@ -22,9 +22,9 @@
     height: 1em;
     border-right: .09375em solid  $govuk-text-colour;
   }
-}
 
-a,
-[aria-current] {
-  padding: .3125em;
+  a,
+  [aria-current] {
+    padding: .3125em;
+  }
 }
