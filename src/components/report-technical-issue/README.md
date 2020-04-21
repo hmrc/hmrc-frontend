@@ -1,6 +1,6 @@
-# Open a link in a new window or tab
+# Report technical issue
 
-A link that opens a new tab or window.
+Renders a link to the report technical issue form.
 
 ### License
 
