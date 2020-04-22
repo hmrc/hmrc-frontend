@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.11.0] - 2020-04-22
+
+### Fixed
+
+- The way Sass assets from govuk-frontend are imported to allow use in Scala front-ends
+- Removed compatibility check for now due to issues with versions of the form X.Y0.Z
+
 ## [1.10.1] - 2020-04-22
 
 ### Fixed
