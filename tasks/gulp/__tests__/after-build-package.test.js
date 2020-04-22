@@ -91,9 +91,35 @@ describe('package/', () => {
   })
 
   describe('all.scss', () => {
-    it('should compile without throwing an exeption', async () => {
-      const allScssFile = path.join(configPaths.package, 'hmrc/all.scss')
-      await sassRender({ file: allScssFile })
+    const govukLink = path.join(configPaths.packageTest, 'govuk-frontend')
+    const hmrcLink = path.join(configPaths.packageTest, 'hmrc-frontend')
+    const removeSymLinksIfPresent = async () => {
+      try {
+        await fs.promises.unlink(govukLink)
+      } catch (e) {}
+      try {
+        await fs.promises.unlink(hmrcLink)
+      } catch (e) {}
+    }
+    const createSymlinks = async () => {
+      await fs.promises.mkdir(path.join(configPaths.packageTest), { recursive: true })
+      await removeSymLinksIfPresent()
+      const projectRoot = path.join(__dirname, '../../..')
+      await fs.promises.symlink(path.join(projectRoot, configPaths.govukFrontend), govukLink)
+      await fs.promises.symlink(path.join(projectRoot, configPaths.package), hmrcLink)
+    }
+
+    it('should compile without throwing an exception', async () => {
+      await createSymlinks()
+      try {
+        const allScssFile = path.join(configPaths.packageTest, 'hmrc-frontend/hmrc/all.scss')
+        await sassRender({ file: allScssFile })
+      } catch (e) {
+        await removeSymLinksIfPresent()
+        console.error(e.messageFormatted || e)
+        throw e
+      }
+      await removeSymLinksIfPresent()
     })
   })
 })
