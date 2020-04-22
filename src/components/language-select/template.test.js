@@ -25,7 +25,7 @@ describe('New Tab Link', () => {
       expect($component.attr('hreflang')).toEqual('cy')
       expect($component.attr('lang')).toEqual('cy')
       expect($component.attr('href')).toEqual(examples.default.cy.href)
-      expect($component.data('journeyClick')).toEqual('link - click:lang-select:English')
+      expect($component.data('journeyClick')).toEqual('link - click:lang-select:Cymraeg')
 
       expect($component.find('.govuk-visually-hidden').eq(0).text()).toEqual('Newid yr iaith ir Gymraeg')
       expect($component.find('[aria-hidden="true"]').eq(0).text()).toEqual('Cymraeg')
@@ -44,7 +44,7 @@ describe('New Tab Link', () => {
       expect($component.attr('hreflang')).toEqual('en')
       expect($component.attr('lang')).toEqual('en')
       expect($component.attr('href')).toEqual(examples.welsh.en.href)
-      expect($component.data('journeyClick')).toEqual('link - click:lang-select:Cymraeg')
+      expect($component.data('journeyClick')).toEqual('link - click:lang-select:English')
 
       expect($component.find('.govuk-visually-hidden').eq(0).text()).toEqual('Change the language to English')
       expect($component.find('[aria-hidden="true"]').eq(0).text()).toEqual('English')
