@@ -40,10 +40,15 @@ const checkCompatibility = (version, host = 'prototype-kit') => {
   const getMatchableVersion = (v) => parseFloat(v).toFixed(1)
 
   const installingHmrcVersion = String(getMatchableVersion(hmrcFrontendVersion))
-  const latestKnownHost = compatibility[installingHmrcVersion][host][0]
+  const compatibilityMatch = compatibility[installingHmrcVersion]
+  if (!compatibilityMatch) {
+    console.log('The version couldn\'t be matched, compatibility couldn\'t be checked')
+    process.exit(0)
+  }
+  const latestKnownHost = compatibilityMatch[host][0]
   const hostVersion = String(getMatchableVersion(version))
 
-  const compatible = compatibility[installingHmrcVersion][host].includes(hostVersion) || parseFloat(hostVersion) > parseFloat(latestKnownHost)
+  const compatible = compatibilityMatch[host].includes(hostVersion) || parseFloat(hostVersion) > parseFloat(latestKnownHost)
   let alternativeVersion = !compatible && Object.keys(compatibility)
     .find(hmrcVersion => compatibility[hmrcVersion][host].includes(hostVersion))
 
