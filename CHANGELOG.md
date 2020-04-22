@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.10.1] - 2020-04-22
+
+### Fixed
+- Fix compatibility check - this is a temporary workaround to avoid throwing an exception with the version can't be found. 
+
 ## [1.10.0] - 2020-04-21
 
 ### Added
