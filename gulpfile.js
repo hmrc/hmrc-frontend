@@ -15,6 +15,7 @@ require('./tasks/gulp/watch.js')
 require('./tasks/gulp/copy-to-destination.js')
 require('./tasks/gulp/asset-version.js')
 require('./tasks/gulp/sassdoc.js')
+require('./tasks/gulp/backstop.js')
 
 // Umbrella scripts tasks for preview ---
 // Runs js lint and compilation
@@ -90,7 +91,7 @@ gulp.task('copy:packageJson', (done) => {
 // Runs js, scss and accessibility tests
 // --------------------------------------
 gulp.task('test', cb => {
-  runsequence('scss:lint', 'scss:compile', cb)
+  runsequence('scss:lint', 'scss:compile', 'copy-assets', 'copy-dist-files', cb)
 })
 
 // Copy assets task for local & heroku --
