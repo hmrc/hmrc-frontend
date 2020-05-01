@@ -39,7 +39,27 @@ HMRC Frontend follows the [JavaScript Standard Style](http://standardjs.com).
 Run tests to make sure they pass. If the existing tests do not apply to your code, write new ones.
 
 #### Visual regression tests
-To be confirmed.
+We are using [backstopJS](https://github.com/garris/BackstopJS) to perform visual regression testing. This renders 
+each page of the app in a headless Chrome browser and compares against known references. The reference images
+are stored in backstop_data/bitmaps_reference.
+
+To run the tests locally, you will need [Docker Desktop](https://www.docker.com/products/docker-desktop). 
+This is because there are subtle differences in rendering between platforms and we want the results to be 
+consistent with CI. To run the tests,
+
+```shell script
+npm run test:backstop
+```
+
+On completion, Backstop will emit the results as an HTML report in backstop_data/hmrc_report  If a failure is the
+result of a known change to the component, the reference images can be updated by running,
+
+```shell script
+npm run test:backstop-approve
+```
+
+If any changes are needed to the backstop configuration, for example to test on different device types or add to the
+ list of scenarios, these can be made by editing the file `tasks/gulp/backstop-config.js`
 
 #### Test for compatibility
 The code you contribute must be accessible. This means it works on every browser or device your users may use to access it.

@@ -6,10 +6,12 @@
     "start": "gulp dev",
     "build:package": "npm test && gulp build:package --destination 'package' && npm run test:build:package",
     "build:dist": "npm test && gulp build:dist --destination 'dist' && npm run test:build:dist",
-    "test": "standard && gulp test && gulp copy-assets && jest src",
+    "test": "standard && gulp test && jest src",
     "test:compatibility": "jest __tests__/check-compatibility.test.js",
     "test:build:package": "jest tasks/gulp/__tests__/after-build-package.test.js",
     "test:build:dist": "jest tasks/gulp/__tests__/after-build-dist.test.js",
+    "test:backstop": "gulp backstop:test",
+    "test:backstop-approve": "gulp backstop:approve",
     "preinstall": "node check-compatibility.js"
   },
   "repository": {
@@ -31,11 +33,12 @@
   },
   "homepage": "https://github.com/hmrc/hmrc-frontend#readme",
   "dependencies": {
-    "govuk-frontend": "^3.4.0"
+    "govuk-frontend": "^3.6.0"
   },
   "devDependencies": {
     "autoprefixer": "^9.6.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "backstopjs": "^4.5.1",
     "cheerio": "^1.0.0-rc.3",
     "cssnano": "^4.1.10",
     "del": "^3.0.0",
