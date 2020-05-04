@@ -7,8 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.12.0] - 2020-05-01
+
+### Added
+
 - Upgrade govuk-frontend to v3.6.0
-- Add visual regression testing
+- Visual regression testing
+
+### Fixed
+
+- Fix static asset bundling issue
 
 ## [1.11.0] - 2020-04-22
 
