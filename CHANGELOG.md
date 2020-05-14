@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.13.0] - 2020-05-14
+
+### Fixed
+
+- Add to list pattern having same values for yes and no radio inputs
+- Add to list pattern capitalisation for radio inputs changed to 'Yes', 'No' from 'yes', 'no'
+
 ## [1.12.0] - 2020-05-01
 
 ### Added
