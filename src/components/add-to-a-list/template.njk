@@ -10,8 +10,8 @@
     change: 'Newid',
     remove: 'Dileu',
     aria: {before: 'Dileu’r', after: 'o’r rhestr'},
-    yes : 'iawn',
-    no: 'na'
+    yes : 'Iawn',
+    no: 'Na'
   } %}
 {% else %}
   {% set messages = {
@@ -23,8 +23,8 @@
     change: 'Change',
     remove: 'Remove',
     aria: {before: 'Remove', after: 'from the list'},
-    yes : 'yes',
-    no: 'no'
+    yes : 'Yes',
+    no: 'No'
   } %}
 {% endif %}
 <h1 class="govuk-heading-xl">{%- if params.itemList | length === 0 -%}
@@ -80,7 +80,7 @@
     },
     items: [
       { text: messages.yes, value: messages.yes },
-      { text: messages.no, value: messages.yes }
+      { text: messages.no, value: messages.no }
     ] }) }}
   {{ govukButton({ text: messages.continue }) }}
 </form>
