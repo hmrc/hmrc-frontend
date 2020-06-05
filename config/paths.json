@@ -13,6 +13,6 @@
   "packageTest": "__tests__/packageTest",
   "ports": {
     "app": 3000,
-    "test": 8888
+    "test": 8887
   }
 }
