@@ -139,6 +139,18 @@ describe('header', () => {
       expect($navigationLink.attr('data-attribute')).toEqual('my-attribute')
       expect($navigationLink.attr('data-attribute-2')).toEqual('my-attribute-2')
     })
+    it('renders navigation the same with different empty values', () => {
+      function overrideItemList (navigation) {
+        const params = {...examples.default}
+        params.navigation = navigation
+        return params
+      }
+
+      const outputs = [undefined, null, []].map(itemList => render('header', overrideItemList(itemList)).html())
+
+      expect(outputs[0]).toEqual(outputs[1])
+      expect(outputs[0]).toEqual(outputs[2])
+    })
     describe('menu button', () => {
       it('has an explicit type="button" so it does not act as a submit button', () => {
         const $ = render('header', examples['with navigation'])
