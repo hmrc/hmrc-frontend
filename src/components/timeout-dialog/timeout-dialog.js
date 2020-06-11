@@ -178,18 +178,47 @@ function TimeoutDialog ($module) {
   }
 
   function startCountdown ($countdownElement, dialogControl) {
+    var audibleUpdateRate = 20
+
+    function createVisualAndAudioMessages ($countdownElement, visualMessage, audibleMessage) {
+      var $visualDisplay = document.createElement('span')
+      var $audibleDisplay = document.createElement('span')
+      $visualDisplay.setAttribute('aria-hidden', 'true')
+      $audibleDisplay.setAttribute('class', 'govuk-visually-hidden')
+      $visualDisplay.innerText = visualMessage
+      $audibleDisplay.innerText = audibleMessage
+      $countdownElement.innerHTML = ''
+      $countdownElement.appendChild($visualDisplay)
+      $countdownElement.appendChild($audibleDisplay)
+    }
+
+    function getHumanText (counter, visibleMessage) {
+      if (counter < 60) {
+        visibleMessage = counter + ' ' + settings.properties[counter !== 1 ? 'seconds' : 'second']
+      } else {
+        var minutes = Math.ceil(counter / 60)
+        visibleMessage = minutes + ' ' + settings.properties[minutes === 1 ? 'minute' : 'minutes']
+      }
+      return visibleMessage
+    }
+
     function updateCountdown (counter, $countdownElement) {
-      var message
+      var visibleMessage
+      var audibleMessage
       if (counter === 60) {
         dialogControl.setAriaLive()
       }
-      if (counter < 60) {
-        message = counter + ' ' + settings.properties[counter !== 1 ? 'seconds' : 'second']
-      } else {
-        var minutes = Math.ceil(counter / 60)
-        message = minutes + ' ' + settings.properties[minutes === 1 ? 'minute' : 'minutes']
+
+      visibleMessage = getHumanText(counter)
+      if (counter <= 60) {
+        audibleMessage = getHumanText(Math.ceil(counter / audibleUpdateRate) * audibleUpdateRate)
       }
-      $countdownElement.innerText = message
+
+      if (audibleMessage) {
+        createVisualAndAudioMessages($countdownElement, visibleMessage, audibleMessage)
+      } else {
+        $countdownElement.innerText = visibleMessage
+      }
     }
 
     function runUpdate () {

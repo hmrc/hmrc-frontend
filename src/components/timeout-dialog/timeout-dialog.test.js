@@ -9,6 +9,8 @@ const utils = TimeoutDialog.utils
 describe('/components/timeout-dialog', () => {
   var assume
   var testScope // an object which is reset between test runs
+  const audibleCountSelector = '#hmrc-timeout-message .govuk-visually-hidden'
+  const visualCountSelector = '#hmrc-timeout-message [aria-hidden=true]'
 
   function pretendSecondsHavePassed (numberOfSeconds) {
     var millis = numberOfSeconds * 1000
@@ -287,7 +289,8 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(880)
 
       expect(dialog.displayDialog).toHaveBeenCalled()
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 20 seconds.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('20 seconds')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('20 seconds')
     })
   })
 
@@ -405,28 +408,75 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(1)
 
       expect(testScope.latestDialogControl.setAriaLive).toHaveBeenCalledWith()
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 1 minute.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('1 minute')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('1 minute')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 59 seconds.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('59 seconds')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('1 minute')
       pretendSecondsHavePassed(57)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 2 seconds.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('2 seconds')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('20 seconds')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 1 second.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('1 second')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('20 seconds')
       expect(redirectHelper.redirectToUrl).not.toHaveBeenCalled()
 
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 0 seconds.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('0 seconds')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('0 seconds')
       pretendSecondsHavePassed(1)
 
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout')
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: -1 seconds.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('-1 seconds')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('0 seconds')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: -2 seconds.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('-2 seconds')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('0 seconds')
+    })
+    it('should have an audio countdown which counts the last minute in 20 second decrements', function () {
+      setupDialog({
+        'data-timeout': 70,
+        'data-countdown': 65,
+        'data-message': 'time:',
+        'data-sign-out-url': 'logout'
+      })
+
+      pretendSecondsHavePassed(10)
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('1 minute')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('1 minute')
+
+      pretendSecondsHavePassed(1)
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('59 seconds')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('1 minute')
+
+      pretendSecondsHavePassed(18)
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('41 seconds')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('1 minute')
+
+      pretendSecondsHavePassed(1)
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('40 seconds')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('40 seconds')
+
+      pretendSecondsHavePassed(1)
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('39 seconds')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('40 seconds')
+
+      pretendSecondsHavePassed(18)
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('21 seconds')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('40 seconds')
+
+      pretendSecondsHavePassed(1)
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('20 seconds')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('20 seconds')
+
+      pretendSecondsHavePassed(1)
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('19 seconds')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('20 seconds')
     })
     it('should countdown minutes and then seconds in welsh', function () {
       setLanguageToWelsh()
@@ -447,28 +497,35 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(1)
 
       expect(testScope.latestDialogControl.setAriaLive).toHaveBeenCalledWith()
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 1 funud.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('1 funud')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('1 funud')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 59 eiliad.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('59 eiliad')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('1 funud')
       pretendSecondsHavePassed(57)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 2 eiliad.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('2 eiliad')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('20 eiliad')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 1 eiliad.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('1 eiliad')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('20 eiliad')
       expect(redirectHelper.redirectToUrl).not.toHaveBeenCalled()
 
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 0 eiliad.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('0 eiliad')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('0 eiliad')
       pretendSecondsHavePassed(1)
 
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout')
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: -1 eiliad.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('-1 eiliad')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('0 eiliad')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: -2 eiliad.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('-2 eiliad')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('0 eiliad')
     })
 
     it('should countdown lots of minutes when countdown is long', function () {
@@ -502,28 +559,28 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(80)
 
       expect(testScope.latestDialogControl.setAriaLive).not.toHaveBeenCalled()
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 50 seconds.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('50 seconds')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 49 seconds.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('49 seconds')
       pretendSecondsHavePassed(47)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 2 seconds.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('2 seconds')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 1 second.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('1 second')
       expect(redirectHelper.redirectToUrl).not.toHaveBeenCalled()
 
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 0 seconds.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('0 seconds')
       pretendSecondsHavePassed(1)
 
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout')
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: -1 seconds.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('-1 seconds')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: -2 seconds.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('-2 seconds')
     })
   })
   describe('techy features', function () {
@@ -540,12 +597,12 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(1)
 
       expect(dialog.displayDialog).toHaveBeenCalled()
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 50 seconds.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('50 seconds')
       testScope.currentDateTime += 2 * 1000 // two seconds go by without any interval events
       pretendSecondsHavePassed(1)
 
       expect(dialog.displayDialog).toHaveBeenCalled()
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 47 seconds.')
+      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('47 seconds')
     })
 
     it('should clearInterval on cleanup', function () {
