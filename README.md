@@ -62,7 +62,7 @@ It will also mean you can optionally just consume the parts of the libraries you
 1. add `"org.webjars.npm" % "govuk-frontend" % "3.X.X"` to your app dependencies (`hmrc-frontend` has a dependency on `govuk-frontend`)
 2. add `"org.webjars.npm" % "hmrc-frontend" % "1.X.X"` to your app dependencies
 3. in `application.scss`: 
-    - add `$hmrc-assets-path: "/url-of-your-service/assets/lib/hmrc-frontend/hmrc/assets";`
+    - add `$hmrc-assets-path: "/url-of-your-service/assets/lib/hmrc-frontend/hmrc/";`
     - to import all components, add `@import "lib/hmrc-frontend/hmrc/all";`
     - to import individual components, add
         - `@import "lib/hmrc-frontend/hmrc/components/header/header";` 
