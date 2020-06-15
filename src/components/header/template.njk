@@ -55,7 +55,7 @@
         {% endif %}
       </a>
     </div>
-    {% if params.serviceName or params.navigation | length %}
+    {% if params.serviceName or params.navigation | length or params.signOutHref or params.languageToggle %}
     <div class="govuk-header__content">
     {% if params.serviceName %}
     <a href="{{ params.serviceUrl }}" class="govuk-header__link govuk-header__link--service-name">
