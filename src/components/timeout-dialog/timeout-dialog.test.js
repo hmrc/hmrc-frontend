@@ -51,8 +51,10 @@ describe('/components/timeout-dialog', () => {
     mock.spyOn(Date, 'now').mockImplementation(function () {
       return testScope.currentDateTime
     })
-    mock.spyOn(utils, 'ajaxGet').mockImplementation(() => { })
-    mock.spyOn(redirectHelper, 'redirectToUrl').mockImplementation(() => { })
+    mock.spyOn(utils, 'ajaxGet').mockImplementation(() => {
+    })
+    mock.spyOn(redirectHelper, 'redirectToUrl').mockImplementation(() => {
+    })
     mock.spyOn(dialog, 'displayDialog').mockImplementation(function ($elementToDisplay) {
       testScope.latestDialog$element = $elementToDisplay
       testScope.latestDialogControl = {
@@ -87,7 +89,7 @@ describe('/components/timeout-dialog', () => {
 
   describe('Delay before displaying', function () {
     it('should start countdown at 2.5 minutes', function () {
-      setupDialog({ 'data-timeout': 300, 'data-countdown': 30, 'data-title': 'one' })
+      setupDialog({'data-timeout': 300, 'data-countdown': 30, 'data-title': 'one'})
 
       pretendSecondsHavePassed(269)
 
@@ -103,7 +105,7 @@ describe('/components/timeout-dialog', () => {
 
   describe('Timeout Dialog', function () {
     it('should start countdown at 13 minutes', function () {
-      setupDialog({ 'data-timeout': 900, 'data-countdown': 120, 'data-title': 'two' })
+      setupDialog({'data-timeout': 900, 'data-countdown': 120, 'data-title': 'two'})
 
       pretendSecondsHavePassed(779)
 
@@ -121,8 +123,8 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(781)
     })
 
-    it('should start with a polite screenreader tone', function () {
-      expect(testScope.latestDialogControl.setAriaLive).toHaveBeenCalledWith('polite')
+    it('should start with a assertive screenreader tone', function () {
+      expect(testScope.latestDialogControl.setAriaLive).toHaveBeenCalledWith('assertive')
     })
 
     it('should not show heading', function () {
@@ -197,7 +199,8 @@ describe('/components/timeout-dialog', () => {
   })
 
   it('should AJAX call the configured URL', function () {
-    mock.spyOn(utils, 'ajaxGet').mockImplementation(() => { })
+    mock.spyOn(utils, 'ajaxGet').mockImplementation(() => {
+    })
 
     setupDialog({
       'data-timeout': 130,
@@ -281,7 +284,7 @@ describe('/components/timeout-dialog', () => {
 
   describe('Restarting countdown on close', function () {
     it('should restart with default settings', function () {
-      setupDialog({ 'data-message': 'time:' })
+      setupDialog({'data-message': 'time:'})
 
       pretendSecondsHavePassed(880)
       pretendDialogWasClosedWithoutButtonPress()
@@ -371,7 +374,7 @@ describe('/components/timeout-dialog', () => {
     var MINIMUM_TIME_UNTIL_MODAL_DISPLAYED = 10
 
     it('should not display the dialog if cleanup has already been called', function () {
-      setupDialog({ 'data-timeout': 130, 'data-countdown': 120 })
+      setupDialog({'data-timeout': 130, 'data-countdown': 120})
 
       testScope.timeoutDialogControl.cleanup()
       pretendSecondsHavePassed(MINIMUM_TIME_UNTIL_MODAL_DISPLAYED)
@@ -379,7 +382,7 @@ describe('/components/timeout-dialog', () => {
     })
 
     it('should remove dialog when cleanup is called', function () {
-      setupDialog({ 'data-timeout': 130, 'data-countdown': 120 })
+      setupDialog({'data-timeout': 130, 'data-countdown': 120})
       pretendSecondsHavePassed(MINIMUM_TIME_UNTIL_MODAL_DISPLAYED)
       assume(dialog.displayDialog).toHaveBeenCalled()
 
@@ -404,10 +407,10 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(59)
 
       expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 2 minutes.')
-      expect(testScope.latestDialogControl.setAriaLive).not.toHaveBeenCalledWith()
+      // expect(testScope.latestDialogControl.setAriaLive).not.toHaveBeenCalledWith()
       pretendSecondsHavePassed(1)
 
-      expect(testScope.latestDialogControl.setAriaLive).toHaveBeenCalledWith()
+      // expect(testScope.latestDialogControl.setAriaLive).toHaveBeenCalledWith()
       expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('1 minute')
       expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('1 minute')
       pretendSecondsHavePassed(1)
@@ -427,16 +430,16 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(1)
 
       expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('0 seconds')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('0 seconds')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('20 seconds')
       pretendSecondsHavePassed(1)
 
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout')
       expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('-1 seconds')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('0 seconds')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('20 seconds')
       pretendSecondsHavePassed(1)
 
       expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('-2 seconds')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('0 seconds')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('20 seconds')
     })
     it('should have an audio countdown which counts the last minute in 20 second decrements', function () {
       setupDialog({
@@ -493,10 +496,10 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(59)
 
       expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 2 funud.')
-      expect(testScope.latestDialogControl.setAriaLive).not.toHaveBeenCalledWith()
+      // expect(testScope.latestDialogControl.setAriaLive).not.toHaveBeenCalledWith()
       pretendSecondsHavePassed(1)
 
-      expect(testScope.latestDialogControl.setAriaLive).toHaveBeenCalledWith()
+      // expect(testScope.latestDialogControl.setAriaLive).toHaveBeenCalledWith()
       expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('1 funud')
       expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('1 funud')
       pretendSecondsHavePassed(1)
@@ -516,16 +519,16 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(1)
 
       expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('0 eiliad')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('0 eiliad')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('20 eiliad')
       pretendSecondsHavePassed(1)
 
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout')
       expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('-1 eiliad')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('0 eiliad')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('20 eiliad')
       pretendSecondsHavePassed(1)
 
       expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('-2 eiliad')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('0 eiliad')
+      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('20 eiliad')
     })
 
     it('should countdown lots of minutes when countdown is long', function () {
@@ -537,7 +540,7 @@ describe('/components/timeout-dialog', () => {
 
       pretendSecondsHavePassed(10)
       assume(dialog.displayDialog).toHaveBeenCalled()
-      expect(testScope.latestDialogControl.setAriaLive).toHaveBeenCalledWith('polite')
+      expect(testScope.latestDialogControl.setAriaLive).toHaveBeenCalledWith('assertive')
 
       expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 30 minutes.')
       pretendSecondsHavePassed(59)
@@ -558,7 +561,7 @@ describe('/components/timeout-dialog', () => {
 
       pretendSecondsHavePassed(80)
 
-      expect(testScope.latestDialogControl.setAriaLive).not.toHaveBeenCalled()
+      // expect(testScope.latestDialogControl.setAriaLive).not.toHaveBeenCalled()
       expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('50 seconds')
       pretendSecondsHavePassed(1)
 
@@ -584,7 +587,7 @@ describe('/components/timeout-dialog', () => {
     })
   })
   describe('techy features', function () {
-    it('should not rely on setInterval for countdown', function () {
+    it('should not rely on timeout/interval accuracy for countdown', function () {
       setupDialog({
         'data-timeout': 80,
         'data-countdown': 50,
@@ -604,41 +607,51 @@ describe('/components/timeout-dialog', () => {
       expect(dialog.displayDialog).toHaveBeenCalled()
       expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('47 seconds')
     })
+    describe('a', function () {
+      beforeEach(function () {
+        testScope.intervalReturn = {'data-message': 'this has been returned from a spy'}
+        testScope.timeoutFirstRun = true
+        jest.clearAllTimers()
 
-    it('should clearInterval on cleanup', function () {
-      var intervalReturn = { 'data-message': 'this has been returned from a spy' }
-      jest.clearAllTimers()
+        mock.spyOn(window, 'clearTimeout').mockImplementation(() => {
+        })
+        mock.spyOn(window, 'setTimeout').mockImplementation(function (fn) {
+          if (testScope.timeoutFirstRun) {
+            testScope.timeoutFirstRun = false
+            fn()
+          } else {
+            return testScope.intervalReturn
+          }
+        })
 
-      mock.spyOn(window, 'setInterval').mockReturnValue(intervalReturn)
-      mock.spyOn(window, 'clearInterval').mockImplementation(() => { })
-      mock.spyOn(window, 'setTimeout').mockImplementation(function (fn) {
-        fn()
+        setupDialog({'data-timeout': 130, 'data-countdown': 120})
+        pretendSecondsHavePassed(30)
+        assume(window.setTimeout).toHaveBeenCalled()
+        assume(window.clearTimeout).not.toHaveBeenCalled()
       })
 
-      setupDialog({ 'data-timeout': 130, 'data-countdown': 120 })
-      assume(window.setInterval).toHaveBeenCalled()
-      assume(window.clearInterval).not.toHaveBeenCalled()
+      it('should clearTimeout on cleanup', function () {
+        testScope.timeoutDialogControl.cleanup()
+        expect(window.clearTimeout).toHaveBeenCalledWith(testScope.intervalReturn)
+      })
 
-      testScope.timeoutDialogControl.cleanup()
-      expect(window.clearInterval).toHaveBeenCalledWith(intervalReturn)
+      it('should clearInterval on closeDialog', function () {
+        pretendDialogWasClosedWithoutButtonPress()
+        expect(window.clearTimeout).toHaveBeenCalledWith(testScope.intervalReturn)
+      })
     })
-
-    it('should clearInterval on closeDialog', function () {
-      var intervalReturn = { 'data-message': 'this has been returned from a spy' }
-      jest.clearAllTimers()
-
-      mock.spyOn(window, 'setInterval').mockReturnValue(intervalReturn)
-      mock.spyOn(window, 'clearInterval').mockImplementation(() => { })
-      mock.spyOn(window, 'setTimeout').mockImplementation(function (fn) {
-        fn()
+    it('shouldn\'t regenerate audible countdown', function () {
+      setupDialog({
+        'data-timeout': 80,
+        'data-countdown': 70
       })
+      pretendSecondsHavePassed(20)
+      const $originalElem = testScope.latestDialog$element.querySelector(audibleCountSelector)
 
-      setupDialog({ 'data-timeout': 130, 'data-countdown': 120 })
-      assume(window.setInterval).toHaveBeenCalled()
-      assume(window.clearInterval).not.toHaveBeenCalled()
+      expect($originalElem).not.toBeNull()
 
-      testScope.latestDialogCloseCallback()
-      expect(window.clearInterval).toHaveBeenCalledWith(intervalReturn)
+      pretendSecondsHavePassed(19)
+      expect(testScope.latestDialog$element.querySelector(audibleCountSelector)).toBe($originalElem)
     })
   })
 })

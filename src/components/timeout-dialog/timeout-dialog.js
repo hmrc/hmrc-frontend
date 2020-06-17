@@ -9,10 +9,18 @@ import RedirectHelper from './redirectHelper.js'
 import utils from './utils.js'
 
 // TODO: rewruite this to follow govuk-frontend's protoytpe module pattern
+
 function TimeoutDialog ($module) {
   var options = {}
   var settings = {}
   var cleanupFunctions = []
+  var currentTimer
+
+  cleanupFunctions.push(function () {
+    if (currentTimer) {
+      window.clearTimeout(currentTimer)
+    }
+  })
 
   function init () {
     var validate = ValidateInput
@@ -167,36 +175,46 @@ function TimeoutDialog ($module) {
 
     dialogControl.setAriaLabelledBy('hmrc-timeout-message')
     if (getSecondsRemaining() > 60) {
-      dialogControl.setAriaLive('polite')
+      dialogControl.setAriaLive('assertive')
     }
 
-    startCountdown($countdownElement, dialogControl)
+    startCountdown($countdownElement)
   }
 
   function getSecondsRemaining () {
     return Math.floor((settings.signout_time - getDateNow()) / 1000)
   }
 
-  function startCountdown ($countdownElement, dialogControl) {
+  function updateIfChanged ($parent, selector, text) {
+    var $elem = $parent.querySelector(selector)
+    if ($elem && $elem.innerText !== text) {
+      $elem.innerText = text
+    }
+  }
+
+  function startCountdown ($countdownElement) {
     var audibleUpdateRate = 20
 
     function createVisualAndAudioMessages ($countdownElement, visualMessage, audibleMessage) {
-      var $visualDisplay = document.createElement('span')
-      var $audibleDisplay = document.createElement('span')
-      $visualDisplay.setAttribute('aria-hidden', 'true')
-      $audibleDisplay.setAttribute('class', 'govuk-visually-hidden')
-      $visualDisplay.innerText = visualMessage
-      $audibleDisplay.innerText = audibleMessage
-      $countdownElement.innerHTML = ''
-      $countdownElement.appendChild($visualDisplay)
-      $countdownElement.appendChild($audibleDisplay)
+      if (!$countdownElement.querySelector('.govuk-visually-hidden')) {
+        var $visualDisplay = document.createElement('span')
+        var $audibleDisplay = document.createElement('span')
+        $visualDisplay.setAttribute('aria-hidden', 'true')
+        $audibleDisplay.setAttribute('class', 'govuk-visually-hidden')
+        $countdownElement.innerHTML = ''
+        $countdownElement.appendChild($visualDisplay)
+        $countdownElement.appendChild($audibleDisplay)
+      }
+      updateIfChanged($countdownElement, '[aria-hidden=true]', visualMessage)
+      updateIfChanged($countdownElement, '.govuk-visually-hidden', audibleMessage)
     }
 
     function getHumanText (counter, visibleMessage) {
+      var minutes
       if (counter < 60) {
         visibleMessage = counter + ' ' + settings.properties[counter !== 1 ? 'seconds' : 'second']
       } else {
-        var minutes = Math.ceil(counter / 60)
+        minutes = Math.ceil(counter / 60)
         visibleMessage = minutes + ' ' + settings.properties[minutes === 1 ? 'minute' : 'minutes']
       }
       return visibleMessage
@@ -205,13 +223,12 @@ function TimeoutDialog ($module) {
     function updateCountdown (counter, $countdownElement) {
       var visibleMessage
       var audibleMessage
-      if (counter === 60) {
-        dialogControl.setAriaLive()
-      }
+      var audibleCount
 
       visibleMessage = getHumanText(counter)
       if (counter <= 60) {
-        audibleMessage = getHumanText(Math.ceil(counter / audibleUpdateRate) * audibleUpdateRate)
+        audibleCount = Math.ceil(counter / audibleUpdateRate) * audibleUpdateRate
+        audibleMessage = getHumanText(audibleCount > 0 ? audibleCount : audibleUpdateRate)
       }
 
       if (audibleMessage) {
@@ -227,19 +244,17 @@ function TimeoutDialog ($module) {
       if (counter <= 0) {
         signOut()
       }
+      currentTimer = window.setTimeout(runUpdate, counter > 60 ? 60000 : 1000)
     }
 
-    var countdown = window.setInterval(runUpdate, 1000)
-    cleanupFunctions.push(function () {
-      window.clearInterval(countdown)
-    })
     runUpdate()
   }
 
   function keepAliveAndClose () {
     cleanup()
     setupDialogTimer()
-    utils.ajaxGet(settings.keepAliveUrl, function () { })
+    utils.ajaxGet(settings.keepAliveUrl, function () {
+    })
   }
 
   function getDateNow () {
@@ -257,7 +272,7 @@ function TimeoutDialog ($module) {
     }
   }
 
-  return { init: init, cleanup: cleanup }
+  return {init: init, cleanup: cleanup}
 }
 
 TimeoutDialog.dialog = dialog
