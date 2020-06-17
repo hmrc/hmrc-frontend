@@ -1,4 +1,4 @@
-# HMRC Frontend
+# HMRC-Frontend
 
 HMRC Frontend contains the code and documentation for patterns specifically designed for HMRC.
 
