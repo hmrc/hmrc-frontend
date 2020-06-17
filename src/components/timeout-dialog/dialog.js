@@ -1,5 +1,5 @@
 import utils from './utils'
-import { nodeListForEach } from '../../common'
+import {nodeListForEach} from '../../common'
 
 function displayDialog ($elementToDisplay) {
   var $dialog = utils.generateDomElementFromString('<div id="hmrc-timeout-dialog" tabindex="-1" role="dialog" class="hmrc-timeout-dialog">')
@@ -29,7 +29,7 @@ function displayDialog ($elementToDisplay) {
     '#skiplink-container',
     'body > header',
     '#global-cookie-message',
-    'body > main',
+    'main[role=main]',
     'body > footer'
   ]
   var elements = document.querySelectorAll(selectors.join(', '))
@@ -113,22 +113,17 @@ function displayDialog ($elementToDisplay) {
     })
   }
 
-  function createSetterFunctionForAttributeOfDialog (attributeName) {
-    return function (value) {
-      if (value) {
-        $dialog.setAttribute(attributeName, value)
-      } else {
-        $dialog.removeAttribute(attributeName)
-      }
-    }
-  }
-
   return {
     closeDialog: function () {
       close()
     },
-    setAriaLive: createSetterFunctionForAttributeOfDialog('aria-live'),
-    setAriaLabelledBy: createSetterFunctionForAttributeOfDialog('aria-labelledby'),
+    setAriaLabelledBy: function (value) {
+      if (value) {
+        $dialog.setAttribute('aria-labelledby', value)
+      } else {
+        $dialog.removeAttribute('aria-labelledby')
+      }
+    },
     addCloseHandler: function (closeHandler) {
       closeCallbacks.push(closeHandler)
     }

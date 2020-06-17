@@ -121,6 +121,14 @@ function TimeoutDialog ($module) {
     })
   }
 
+  function wrapLink ($elem) {
+    var $wrapper = document.createElement('div')
+    $wrapper.classList.add('hmrc-timeout-dialog__link-wrapper')
+    $wrapper.appendChild($elem)
+
+    return $wrapper
+  }
+
   function setupDialog () {
     var $element = utils.generateDomElementFromString('<div>')
 
@@ -161,9 +169,9 @@ function TimeoutDialog ($module) {
     $signOutButton.setAttribute('href', settings.signOutUrl)
 
     $element.appendChild($timeoutMessage)
-    $element.appendChild($staySignedInButton)
+    $element.appendChild(wrapLink($staySignedInButton))
     $element.appendChild(document.createTextNode(' '))
-    $element.appendChild($signOutButton)
+    $element.appendChild(wrapLink($signOutButton))
 
     var dialogControl = dialog.displayDialog($element)
 
@@ -201,6 +209,7 @@ function TimeoutDialog ($module) {
         var $audibleDisplay = document.createElement('span')
         $visualDisplay.setAttribute('aria-hidden', 'true')
         $audibleDisplay.setAttribute('class', 'govuk-visually-hidden')
+        $audibleDisplay.setAttribute('aria-live', 'assertive')
         $countdownElement.innerHTML = ''
         $countdownElement.appendChild($visualDisplay)
         $countdownElement.appendChild($audibleDisplay)

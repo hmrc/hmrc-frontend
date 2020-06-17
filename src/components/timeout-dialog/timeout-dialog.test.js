@@ -143,6 +143,10 @@ describe('/components/timeout-dialog', () => {
       expect(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link').innerText).toEqual('Sign out')
     })
 
+    it('should separate the call-to-actions into different containers', function () {
+      expect(testScope.latestDialog$element.querySelector('button#hmrc-timeout-keep-signin-btn.govuk-button').parentNode).not.toBe(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link').parentNode)
+    })
+
     it('should redirect to signout url when signout is clicked', function () {
       assume(redirectHelper.redirectToUrl).not.toHaveBeenCalled()
 

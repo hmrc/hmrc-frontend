@@ -55,8 +55,15 @@ html {
   white-space: nowrap;
 }
 
+.hmrc-timeout-dialog__link-wrapper {
+  display: inline-block;
+  line-height: 2.5em;
+  vertical-align: baseline;
+}
+
 .hmrc-timeout-dialog__link {
   display: inline-block;
+  font-size: 19px;
   @include govuk-media-query($from: tablet) {
     position: relative;
     top: 2px;
