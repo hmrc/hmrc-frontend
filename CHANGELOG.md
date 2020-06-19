@@ -7,12 +7,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.14.0] - 2020-06-19
+
+### Fixed
+
+- Updated implementation of hmrcHeader to be consistent with govuk-frontend v3.7.0 (an empty navigation
+array now treated as the same as navigation not being specified at all)
+
+### Compatible with
+
+- [alphagov/govuk-frontend v3.7.0](https://github.com/alphagov/govuk-frontend/releases/tag/v3.7.0)
+
 ## [1.13.0] - 2020-05-14
 
 ### Fixed
 
 - Add to list pattern having same values for yes and no radio inputs
 - Add to list pattern capitalisation for radio inputs changed to 'Yes', 'No' from 'yes', 'no'
+
+### Compatible with
+
+- [alphagov/govuk-frontend v3.6.0](https://github.com/alphagov/govuk-frontend/releases/tag/v3.6.0)
 
 ## [1.12.0] - 2020-05-01
 
