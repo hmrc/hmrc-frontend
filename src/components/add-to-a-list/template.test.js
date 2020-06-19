@@ -171,4 +171,19 @@ describe('Add to a list', () => {
       expect($form.attr('action')).toBe('#addItem')
     })
   })
+
+  describe('Empty, null and missing itemLists', () => {
+    function overrideItemList (itemList) {
+      const params = {...examples.default}
+      params.itemList = itemList
+      return params
+    }
+
+    it('should have the same output for all versions of no items being provided', () => {
+      const outputs = [undefined, null, []].map(itemList => render('add-to-a-list', overrideItemList(itemList)).html())
+
+      expect(outputs[0]).toEqual(outputs[1])
+      expect(outputs[0]).toEqual(outputs[2])
+    })
+  })
 })

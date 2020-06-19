@@ -10,11 +10,11 @@ params:
 - name: productName
   type: string
   required: false
-  description: Header title that is placed next to GOV.UK. Used for product names (i.e. Pay, Verify)
+  description: Product name, used when the product name follows on directly from ‘GOV.UK’. For example, GOV.UK Pay or GOV.UK Design System. In most circumstances, you should use serviceName.
 - name: serviceName
   type: string
   required: false
-  description: Header title that is placed next to GOV.UK. Used for product names (i.e. Pay, Verify)
+  description: The name of your service, included in the header.
 - name: serviceUrl
   type: string
   required: false
@@ -27,7 +27,11 @@ params:
   - name: text
     type: string
     required: false
-    description: Text of the navigation item.
+    description: Text for the navigation item. If `html` is provided, the `text` argument will be ignored.
+  - name: html
+    type: string
+    required: false
+    description: HTML for the navigation item. If `html` is provided, the `text` argument will be ignored.
   - name: href
     type: string
     required: false
@@ -84,17 +88,16 @@ accessibilityCriteria: |
 examples:
 - name: default
   description: The standard header as used on information pages on GOV.UK
-  language: en
   data:
     {}
 
-- name: with-service-name
+- name: with service name
   description: If your service is more than a few pages long, you can help users understand where they are by adding the service name.
   data:
     serviceName: Service Name
     serviceUrl: '/components/header'
 
-- name: with-navigation
+- name: with navigation
   data:
     navigation:
       - href: '#1'
@@ -107,7 +110,7 @@ examples:
       - href: '#4'
         text: Navigation item 4
 
-- name: with-service-name-and-navigation
+- name: with service name and navigation
   description: If you need to include basic navigation, contact or account management links.
   data:
     serviceName: Service Name
@@ -123,7 +126,7 @@ examples:
       - href: '#4'
         text: Navigation item 4
 
-- name: with-large-navigation
+- name: with large navigation
   description: An edge case example with a large number of navitation items with long names used to test wrapping
   data:
     navigation:
@@ -160,13 +163,18 @@ examples:
       - href: '/browse/working'
         text: Working, jobs and pensions
 
-- name: full-width
+- name: with product name
+  data:
+    navigationClasses: govuk-header__navigation--end
+    productName: Product Name
+
+- name: full width
   data:
     containerClasses: govuk-header__container--full-width
     navigationClasses: govuk-header__navigation--end
     productName: Product Name
 
-- name: full-width-with-navigation
+- name: full width with navigation
   data:
     containerClasses: govuk-header__container--full-width
     navigationClasses: govuk-header__navigation--end
@@ -180,19 +188,32 @@ examples:
       - href: '#3'
         text: Navigation item 3
 
-- name: sign-out-link
+- name: navigation item with html
+  data:
+    serviceName: Service Name
+    serviceUrl: '/components/header'
+    navigation:
+      - href: '#1'
+        html: <em>Navigation item 1</em>
+        active: true
+      - href: '#2'
+        html: <em>Navigation item 2</em>
+      - href: '#3'
+        html: <em>Navigation item 3</em>
+
+- name: sign out link
   data:
     serviceName: Example Service
     signOutHref: /sign-out
 
-- name: sign-out-link-in-welsh
+- name: sign out link in welsh
   description: This puts the signout link into the header and sets the whole header to be welsh.  At the time of writing the language only affects the signout text.
   data:
     serviceName: Gwasanaeth enghreifftiol
     language: cy
     signOutHref: /sign-out
 
-- name: with-language-toggle-english
+- name: with language toggle english
   data:
     serviceName: Example Service
     language: en
@@ -202,7 +223,7 @@ examples:
       cy:
         href: "/components/header/with-language-toggle-welsh/preview"
 
-- name: with-language-toggle-welsh
+- name: with language toggle welsh
   data:
     serviceName: Gwasanaeth enghreifftiol
     language: cy
@@ -212,7 +233,7 @@ examples:
       cy:
         href: "/components/header/with-language-toggle-welsh/preview"
 
-- name: with-hmrc-banner-english
+- name: with hmrc banner english
   data:
     serviceName: Service with HMRC Banner
     language: en
@@ -223,7 +244,7 @@ examples:
       cy:
         href: "/components/header/with-hmrc-banner-welsh/preview"
 
-- name: with-hmrc-banner-welsh
+- name: with hmrc banner welsh
   data:
     serviceName: Gwasanaeth gyda Banner CThEM
     language: cy
