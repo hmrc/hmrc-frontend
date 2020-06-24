@@ -144,15 +144,16 @@ function TimeoutDialog ($module) {
       '<span id="hmrc-timeout-countdown" class="hmrc-timeout-dialog__countdown">'
     )
 
-    var $timeoutMessage = utils.generateDomElementFromStringAndAppendText(
-      '<p id="hmrc-timeout-message" class="govuk-body hmrc-timeout-dialog__message" role="text">',
+    var $audibleMessage = utils.generateDomElementFromString('<p id="hmrc-timeout-message" class="govuk-visually-hidden screenreader-content" aria-live="assertive">')
+    var viualMessge = utils.generateDomElementFromStringAndAppendText(
+      '<p class="govuk-body hmrc-timeout-dialog__message" aria-hidden="true">',
       settings.message
     )
-    $timeoutMessage.appendChild(document.createTextNode(' '))
-    $timeoutMessage.appendChild($countdownElement)
-    $timeoutMessage.appendChild(document.createTextNode('.'))
+    viualMessge.appendChild(document.createTextNode(' '))
+    viualMessge.appendChild($countdownElement)
+    viualMessge.appendChild(document.createTextNode('.'))
     if (settings.messageSuffix) {
-      $timeoutMessage.appendChild(document.createTextNode(' ' + settings.messageSuffix))
+      viualMessge.appendChild(document.createTextNode(' ' + settings.messageSuffix))
     }
 
     var $staySignedInButton = utils.generateDomElementFromStringAndAppendText(
@@ -168,7 +169,8 @@ function TimeoutDialog ($module) {
     $signOutButton.addEventListener('click', signOut)
     $signOutButton.setAttribute('href', settings.signOutUrl)
 
-    $element.appendChild($timeoutMessage)
+    $element.appendChild(viualMessge)
+    $element.appendChild($audibleMessage)
     $element.appendChild(wrapLink($staySignedInButton))
     $element.appendChild(document.createTextNode(' '))
     $element.appendChild(wrapLink($signOutButton))
@@ -182,44 +184,19 @@ function TimeoutDialog ($module) {
     dialogControl.addCloseHandler(keepAliveAndClose)
 
     dialogControl.setAriaLabelledBy('hmrc-timeout-message')
-    if (getSecondsRemaining() > 60) {
-      dialogControl.setAriaLive('assertive')
-    }
 
-    startCountdown($countdownElement)
+    startCountdown($countdownElement, $audibleMessage)
   }
 
   function getSecondsRemaining () {
     return Math.floor((settings.signout_time - getDateNow()) / 1000)
   }
 
-  function updateIfChanged ($parent, selector, text) {
-    var $elem = $parent.querySelector(selector)
-    if ($elem && $elem.innerText !== text) {
-      $elem.innerText = text
-    }
-  }
+  function startCountdown ($countdownElement, $screenReaderCountdownElement) {
+    // var audibleUpdateRate = 20
 
-  function startCountdown ($countdownElement) {
-    var audibleUpdateRate = 20
-
-    function createVisualAndAudioMessages ($countdownElement, visualMessage, audibleMessage) {
-      if (!$countdownElement.querySelector('.govuk-visually-hidden')) {
-        var $visualDisplay = document.createElement('span')
-        var $audibleDisplay = document.createElement('span')
-        $visualDisplay.setAttribute('aria-hidden', 'true')
-        $audibleDisplay.setAttribute('class', 'govuk-visually-hidden')
-        $audibleDisplay.setAttribute('aria-live', 'assertive')
-        $countdownElement.innerHTML = ''
-        $countdownElement.appendChild($visualDisplay)
-        $countdownElement.appendChild($audibleDisplay)
-      }
-      updateIfChanged($countdownElement, '[aria-hidden=true]', visualMessage)
-      updateIfChanged($countdownElement, '.govuk-visually-hidden', audibleMessage)
-    }
-
-    function getHumanText (counter, visibleMessage) {
-      var minutes
+    function getHumanText (counter) {
+      var minutes, visibleMessage
       if (counter < 60) {
         visibleMessage = counter + ' ' + settings.properties[counter !== 1 ? 'seconds' : 'second']
       } else {
@@ -229,22 +206,28 @@ function TimeoutDialog ($module) {
       return visibleMessage
     }
 
+    function getAudibleHumanText (counter) {
+      var humanText = getHumanText(counter < 20 ? 20 : counter >= 60 ? Math.ceil(counter / 60) * 60 : Math.ceil(counter / 20) * 20)
+      var messageParts = [settings.message, ' ', humanText, '.']
+      if (settings.messageSuffix) {
+        messageParts.push(' ')
+        messageParts.push(settings.messageSuffix)
+      }
+      return messageParts.join('')
+    }
+
+    function updateTextIfChanged ($elem, text) {
+      if ($elem.innerText !== text) {
+        $elem.innerText = text
+      }
+    }
+
     function updateCountdown (counter, $countdownElement) {
-      var visibleMessage
-      var audibleMessage
-      var audibleCount
+      var visibleMessage = getHumanText(counter)
+      var audibleHumanText = getAudibleHumanText(counter)
 
-      visibleMessage = getHumanText(counter)
-      if (counter <= 60) {
-        audibleCount = Math.ceil(counter / audibleUpdateRate) * audibleUpdateRate
-        audibleMessage = getHumanText(audibleCount > 0 ? audibleCount : audibleUpdateRate)
-      }
-
-      if (audibleMessage) {
-        createVisualAndAudioMessages($countdownElement, visibleMessage, audibleMessage)
-      } else {
-        $countdownElement.innerText = visibleMessage
-      }
+      updateTextIfChanged($countdownElement, visibleMessage)
+      updateTextIfChanged($screenReaderCountdownElement, audibleHumanText)
     }
 
     function runUpdate () {
