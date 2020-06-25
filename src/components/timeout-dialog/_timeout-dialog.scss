@@ -56,9 +56,11 @@ html {
 }
 
 .hmrc-timeout-dialog__link-wrapper {
-  display: inline-block;
-  line-height: 2.5em;
-  vertical-align: baseline;
+  @include govuk-media-query($from: tablet) {
+    display: inline-block;
+    line-height: 2.5em;
+    vertical-align: baseline;
+  }
 }
 
 .hmrc-timeout-dialog__link {

@@ -171,7 +171,7 @@ function TimeoutDialog ($module) {
 
     $element.appendChild(viualMessge)
     $element.appendChild($audibleMessage)
-    $element.appendChild(wrapLink($staySignedInButton))
+    $element.appendChild($staySignedInButton)
     $element.appendChild(document.createTextNode(' '))
     $element.appendChild(wrapLink($signOutButton))
 
