@@ -207,13 +207,23 @@ function TimeoutDialog ($module) {
     }
 
     function getAudibleHumanText (counter) {
-      var humanText = getHumanText(counter < 20 ? 20 : counter >= 60 ? Math.ceil(counter / 60) * 60 : Math.ceil(counter / 20) * 20)
+      var humanText = getHumanText(roundSecondsUp(counter))
       var messageParts = [settings.message, ' ', humanText, '.']
       if (settings.messageSuffix) {
         messageParts.push(' ')
         messageParts.push(settings.messageSuffix)
       }
       return messageParts.join('')
+    }
+
+    function roundSecondsUp (counter) {
+      if (counter > 60) {
+        return counter
+      } else if (counter < 20) {
+        return 20
+      } else {
+        return Math.ceil(counter / 20) * 20
+      }
     }
 
     function updateTextIfChanged ($elem, text) {

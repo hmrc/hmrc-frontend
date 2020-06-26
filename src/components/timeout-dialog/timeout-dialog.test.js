@@ -43,6 +43,14 @@ describe('/components/timeout-dialog', () => {
     testScope.minimumValidConfig['data-language'] = 'cy'
   }
 
+  function getVisualCountText () {
+    return getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))
+  }
+
+  function getAudibleCountText () {
+    return getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))
+  }
+
   beforeEach(function () {
     assume = expect
     testScope = {
@@ -132,8 +140,8 @@ describe('/components/timeout-dialog', () => {
     })
 
     it('should show message', function () {
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual(initialMessage)
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual(initialMessage)
+      expect(getVisualCountText()).toEqual(initialMessage)
+      expect(getAudibleCountText()).toEqual(initialMessage)
     })
 
     it('should show keep signed in button', function () {
@@ -192,8 +200,8 @@ describe('/components/timeout-dialog', () => {
 
     it('should show message', function () {
       const expected = 'Er eich diogelwch, byddwn yn eich allgofnodi cyn pen 2 funud.'
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual(expected)
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual(expected)
+      expect(getVisualCountText()).toEqual(expected)
+      expect(getAudibleCountText()).toEqual(expected)
     })
 
     it('should show keep signed in button', function () {
@@ -238,8 +246,8 @@ describe('/components/timeout-dialog', () => {
     })
 
     it('should show message', function () {
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('For your security, we will sign you out in 2 minutes.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('For your security, we will sign you out in 2 minutes.')
+      expect(getVisualCountText()).toEqual('For your security, we will sign you out in 2 minutes.')
+      expect(getAudibleCountText()).toEqual('For your security, we will sign you out in 2 minutes.')
     })
 
     it('should show keep signed in button', function () {
@@ -269,8 +277,8 @@ describe('/components/timeout-dialog', () => {
     })
 
     it('should show message', function () {
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('MY custom message 2 minutes. My message suffix.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('MY custom message 2 minutes. My message suffix.')
+      expect(getVisualCountText()).toEqual('MY custom message 2 minutes. My message suffix.')
+      expect(getAudibleCountText()).toEqual('MY custom message 2 minutes. My message suffix.')
     })
 
     it('should show keep signed in button', function () {
@@ -302,8 +310,8 @@ describe('/components/timeout-dialog', () => {
 
       expect(dialog.displayDialog).toHaveBeenCalled()
       const expected = 'time: 20 seconds.'
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual(expected)
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual(expected)
+      expect(getVisualCountText()).toEqual(expected)
+      expect(getAudibleCountText()).toEqual(expected)
     })
   })
 
@@ -413,43 +421,43 @@ describe('/components/timeout-dialog', () => {
 
       pretendSecondsHavePassed(10)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 2 minutes.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 2 minutes.')
+      expect(getVisualCountText()).toEqual('time: 2 minutes.')
+      expect(getAudibleCountText()).toEqual('time: 2 minutes.')
       pretendSecondsHavePassed(59)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 2 minutes.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 2 minutes.')
+      expect(getVisualCountText()).toEqual('time: 2 minutes.')
+      expect(getAudibleCountText()).toEqual('time: 2 minutes.')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 1 minute.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 1 minute.')
+      expect(getVisualCountText()).toEqual('time: 1 minute.')
+      expect(getAudibleCountText()).toEqual('time: 1 minute.')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 59 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 1 minute.')
+      expect(getVisualCountText()).toEqual('time: 59 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 1 minute.')
       pretendSecondsHavePassed(57)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 2 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 20 seconds.')
+      expect(getVisualCountText()).toEqual('time: 2 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 20 seconds.')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 1 second.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 20 seconds.')
+      expect(getVisualCountText()).toEqual('time: 1 second.')
+      expect(getAudibleCountText()).toEqual('time: 20 seconds.')
       expect(redirectHelper.redirectToUrl).not.toHaveBeenCalled()
 
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 0 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 20 seconds.')
+      expect(getVisualCountText()).toEqual('time: 0 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 20 seconds.')
       pretendSecondsHavePassed(1)
 
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout')
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: -1 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 20 seconds.')
+      expect(getVisualCountText()).toEqual('time: -1 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 20 seconds.')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: -2 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 20 seconds.')
+      expect(getVisualCountText()).toEqual('time: -2 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 20 seconds.')
     })
     it('should have an audio countdown which counts the last minute in 20 second decrements', function () {
       setupDialog({
@@ -460,36 +468,36 @@ describe('/components/timeout-dialog', () => {
       })
 
       pretendSecondsHavePassed(10)
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 1 minute.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 1 minute.')
+      expect(getVisualCountText()).toEqual('time: 1 minute.')
+      expect(getAudibleCountText()).toEqual('time: 1 minute.')
 
       pretendSecondsHavePassed(1)
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 59 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 1 minute.')
+      expect(getVisualCountText()).toEqual('time: 59 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 1 minute.')
 
       pretendSecondsHavePassed(18)
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 41 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 1 minute.')
+      expect(getVisualCountText()).toEqual('time: 41 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 1 minute.')
 
       pretendSecondsHavePassed(1)
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 40 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 40 seconds.')
+      expect(getVisualCountText()).toEqual('time: 40 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 40 seconds.')
 
       pretendSecondsHavePassed(1)
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 39 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 40 seconds.')
+      expect(getVisualCountText()).toEqual('time: 39 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 40 seconds.')
 
       pretendSecondsHavePassed(18)
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 21 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 40 seconds.')
+      expect(getVisualCountText()).toEqual('time: 21 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 40 seconds.')
 
       pretendSecondsHavePassed(1)
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 20 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 20 seconds.')
+      expect(getVisualCountText()).toEqual('time: 20 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 20 seconds.')
 
       pretendSecondsHavePassed(1)
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 19 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 20 seconds.')
+      expect(getVisualCountText()).toEqual('time: 19 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 20 seconds.')
     })
     it('should countdown minutes and then seconds in welsh', function () {
       setLanguageToWelsh()
@@ -502,43 +510,43 @@ describe('/components/timeout-dialog', () => {
 
       pretendSecondsHavePassed(10)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('Welsh, time: 2 funud.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('Welsh, time: 2 funud.')
+      expect(getVisualCountText()).toEqual('Welsh, time: 2 funud.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 2 funud.')
       pretendSecondsHavePassed(59)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('Welsh, time: 2 funud.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('Welsh, time: 2 funud.')
+      expect(getVisualCountText()).toEqual('Welsh, time: 2 funud.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 2 funud.')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('Welsh, time: 1 funud.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('Welsh, time: 1 funud.')
+      expect(getVisualCountText()).toEqual('Welsh, time: 1 funud.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 1 funud.')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('Welsh, time: 59 eiliad.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('Welsh, time: 1 funud.')
+      expect(getVisualCountText()).toEqual('Welsh, time: 59 eiliad.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 1 funud.')
       pretendSecondsHavePassed(57)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('Welsh, time: 2 eiliad.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('Welsh, time: 20 eiliad.')
+      expect(getVisualCountText()).toEqual('Welsh, time: 2 eiliad.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 20 eiliad.')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('Welsh, time: 1 eiliad.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('Welsh, time: 20 eiliad.')
+      expect(getVisualCountText()).toEqual('Welsh, time: 1 eiliad.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 20 eiliad.')
       expect(redirectHelper.redirectToUrl).not.toHaveBeenCalled()
 
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('Welsh, time: 0 eiliad.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('Welsh, time: 20 eiliad.')
+      expect(getVisualCountText()).toEqual('Welsh, time: 0 eiliad.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 20 eiliad.')
       pretendSecondsHavePassed(1)
 
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout')
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('Welsh, time: -1 eiliad.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('Welsh, time: 20 eiliad.')
+      expect(getVisualCountText()).toEqual('Welsh, time: -1 eiliad.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 20 eiliad.')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('Welsh, time: -2 eiliad.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('Welsh, time: 20 eiliad.')
+      expect(getVisualCountText()).toEqual('Welsh, time: -2 eiliad.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 20 eiliad.')
     })
 
     it('should countdown lots of minutes when countdown is long', function () {
@@ -551,16 +559,16 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(10)
       assume(dialog.displayDialog).toHaveBeenCalled()
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 30 minutes.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 30 minutes.')
+      expect(getVisualCountText()).toEqual('time: 30 minutes.')
+      expect(getAudibleCountText()).toEqual('time: 30 minutes.')
       pretendSecondsHavePassed(59)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 30 minutes.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 30 minutes.')
+      expect(getVisualCountText()).toEqual('time: 30 minutes.')
+      expect(getAudibleCountText()).toEqual('time: 30 minutes.')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('time: 29 minutes.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('time: 29 minutes.')
+      expect(getVisualCountText()).toEqual('time: 29 minutes.')
+      expect(getAudibleCountText()).toEqual('time: 29 minutes.')
     })
 
     it('should countdowshould countdown minutes and then seconds in welsh\nn only seconds when the countdown is short', function () {
@@ -574,35 +582,35 @@ describe('/components/timeout-dialog', () => {
 
       pretendSecondsHavePassed(80)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('Remaining time is 50 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('Remaining time is 1 minute.')
+      expect(getVisualCountText()).toEqual('Remaining time is 50 seconds.')
+      expect(getAudibleCountText()).toEqual('Remaining time is 1 minute.')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('Remaining time is 49 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual('Remaining time is 1 minute.')
+      expect(getVisualCountText()).toEqual('Remaining time is 49 seconds.')
+      expect(getAudibleCountText()).toEqual('Remaining time is 1 minute.')
       pretendSecondsHavePassed(47)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('Remaining time is 2 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual(lowestAudibleCount)
+      expect(getVisualCountText()).toEqual('Remaining time is 2 seconds.')
+      expect(getAudibleCountText()).toEqual(lowestAudibleCount)
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('Remaining time is 1 second.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual(lowestAudibleCount)
+      expect(getVisualCountText()).toEqual('Remaining time is 1 second.')
+      expect(getAudibleCountText()).toEqual(lowestAudibleCount)
       expect(redirectHelper.redirectToUrl).not.toHaveBeenCalled()
 
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('Remaining time is 0 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual(lowestAudibleCount)
+      expect(getVisualCountText()).toEqual('Remaining time is 0 seconds.')
+      expect(getAudibleCountText()).toEqual(lowestAudibleCount)
       pretendSecondsHavePassed(1)
 
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout')
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('Remaining time is -1 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual(lowestAudibleCount)
+      expect(getVisualCountText()).toEqual('Remaining time is -1 seconds.')
+      expect(getAudibleCountText()).toEqual(lowestAudibleCount)
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('Remaining time is -2 seconds.')
-      expect(getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))).toEqual(lowestAudibleCount)
+      expect(getVisualCountText()).toEqual('Remaining time is -2 seconds.')
+      expect(getAudibleCountText()).toEqual(lowestAudibleCount)
     })
   })
   describe('screen reader tools', function () {
@@ -633,12 +641,12 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(1)
 
       expect(dialog.displayDialog).toHaveBeenCalled()
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('You will be timed out in 50 seconds.')
+      expect(getVisualCountText()).toEqual('You will be timed out in 50 seconds.')
       testScope.currentDateTime += 2 * 1000 // two seconds go by without any interval events
       pretendSecondsHavePassed(1)
 
       expect(dialog.displayDialog).toHaveBeenCalled()
-      expect(getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))).toEqual('You will be timed out in 47 seconds.')
+      expect(getVisualCountText()).toEqual('You will be timed out in 47 seconds.')
     })
     describe('a', function () {
       beforeEach(function () {
