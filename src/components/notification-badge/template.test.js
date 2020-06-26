@@ -11,7 +11,11 @@ describe('Notification Badge', () => {
     it('passes accessibility tests', async () => {
       const $ = render('notification-badge', examples.default)
 
-      const results = await axe($.html())
+      const results = await axe($.html(), {
+        rules: {
+          'region': { enabled: false }
+        }
+      })
       expect(results).toHaveNoViolations()
     })
 

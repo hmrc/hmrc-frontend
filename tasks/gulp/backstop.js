@@ -1,6 +1,5 @@
 const chalk = require('chalk')
 const gulp = require('gulp')
-const runsequence = require('run-sequence')
 const backstop = require('backstopjs')
 const appListen = require('../../lib/puppeteer/appListen')
 const configPaths = require('../../config/paths.json')
@@ -28,8 +27,4 @@ gulp.task('backstop-test', async () => {
     console.log(chalk.green('\nClose server for visual regression testing'))
     await server.close()
   }
-})
-
-gulp.task('backstop:test', cb => {
-  runsequence('scss:compile', 'copy-assets', 'copy-dist-files', 'backstop-test', cb)
 })

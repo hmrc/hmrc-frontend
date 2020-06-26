@@ -13,12 +13,12 @@ gulp.task('clean', () => {
   const destination = taskArguments.destination
 
   if (destination === 'package') {
-    return del.sync([
+    return del([
       `${destination}/**`,
       `!${destination}`
     ])
   } else {
-    return del.sync([
+    return del([
       `${destination}/**/*`
     ])
   }

@@ -41,7 +41,7 @@
       border-bottom: 0;
     }
 
-    .govuk-header__navigation-item + .govuk-header__navigation-item:before {
+    .govuk-header__navigation-item + .govuk-header__navigation-item::before {
       content: "|";
       padding-right: 2px;
       color: govuk-colour("dark-grey");

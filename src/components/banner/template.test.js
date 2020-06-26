@@ -9,9 +9,14 @@ const examples = getExamples('banner')
 describe('Internal Header', () => {
   describe('by default', () => {
     it('passes accessibility tests', async () => {
-      const $ = render('new-tab-link', examples.default)
+      const $ = render('internal-header', examples.default)
 
-      const results = await axe($.html())
+      const results = await axe($.html(), {
+        rules: {
+          'region': { enabled: false }
+        }
+      })
+
       expect(results).toHaveNoViolations()
     })
     it('should have English text by default', () => {

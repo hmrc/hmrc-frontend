@@ -39,8 +39,6 @@ gulp.task('copy-check-compatibility', () => {
     .pipe(gulp.dest(taskArguments.destination + '/'))
 })
 
-gulp.task('copy-dist-files', ['copy-dist-component-files', 'copy-dist-fonts'])
-
 gulp.task('copy-dist-component-files', () => {
   return gulp.src([
     'components/*/images/*'
@@ -54,3 +52,5 @@ gulp.task('copy-dist-fonts', () => {
   ])
     .pipe(gulp.dest(taskArguments.destination + '/fonts'))
 })
+
+gulp.task('copy-dist-files', gulp.series('copy-dist-component-files', 'copy-dist-fonts'))

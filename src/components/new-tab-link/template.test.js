@@ -11,7 +11,11 @@ describe('New Tab Link', () => {
     it('passes accessibility tests', async () => {
       const $ = render('new-tab-link', examples.default)
 
-      const results = await axe($.html())
+      const results = await axe($.html(), {
+        rules: {
+          'region': { enabled: false }
+        }
+      })
       expect(results).toHaveNoViolations()
     })
 
