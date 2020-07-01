@@ -49,8 +49,6 @@ module.exports = (options) => {
 
   app.use('/govuk-frontend', express.static(configPaths.govukFrontend))
 
-  app.use('/docs', express.static(configPaths.sassdoc))
-
   // serve html5-shiv from node modules
   app.use('/vendor/html5-shiv/', express.static('node_modules/html5shiv/dist/'))
   app.use(

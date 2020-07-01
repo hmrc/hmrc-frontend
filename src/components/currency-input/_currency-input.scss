@@ -18,6 +18,7 @@
   border-right: 2px solid;
   background: govuk-colour("light-grey");
   text-align: center;
+
   @include govuk-font($size: 19, $weight: bold);
 }
 
@@ -52,24 +53,24 @@
   @include govuk-font($size: 36, $weight: bold);
 }
 
-.hmrc-currency-input__pence:after,
-.hmrc-currency-input__unit:after,
-.hmrc-currency-input__unit--pence:after {
+.hmrc-currency-input__pence::after,
+.hmrc-currency-input__unit::after,
+.hmrc-currency-input__unit--pence::after {
   content: "";
   display: inline-block;
   height: 100%;
   vertical-align: middle;
 }
 
-.hmrc-currency-input__unit~.govuk-input {
+.hmrc-currency-input__unit ~ .govuk-input {
   padding-left: 2rem;
 }
 
-.hmrc-currency-input__pence~.govuk-input {
+.hmrc-currency-input__pence ~ .govuk-input {
   padding-right: 3.5rem;
 }
 
-.hmrc-currency-input__unit--pence~.govuk-input {
+.hmrc-currency-input__unit--pence ~ .govuk-input {
   padding-right: 2rem;
 }
 

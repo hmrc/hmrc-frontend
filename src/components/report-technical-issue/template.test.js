@@ -11,7 +11,11 @@ describe('Report Technical Issue', () => {
     it('passes accessibility tests', async () => {
       const $ = render('report-technical-issue', examples.default)
 
-      const results = await axe($.html())
+      const results = await axe($.html(), {
+        rules: {
+          'region': { enabled: false }
+        }
+      })
       expect(results).toHaveNoViolations()
     })
 

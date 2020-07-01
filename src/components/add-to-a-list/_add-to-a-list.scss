@@ -5,7 +5,9 @@
 
 .hmrc-add-to-a-list {
   padding-left: 0;
+
   @include govuk-font($size: 19);
+
   @include mq($from: desktop) {
     display: table;
   }
@@ -40,6 +42,7 @@
   position: relative;
   padding-bottom: govuk-spacing(1);
   border-bottom: 1px solid $govuk-border-colour;
+
   @include mq($from: desktop) {
     display: table-row;
     padding-bottom: 0;
@@ -52,6 +55,7 @@
 .hmrc-add-to-a-list__change {
   display: block;
   margin: 0;
+
   @include mq($from: desktop) {
     display: table-cell;
     padding: govuk-spacing(3) 0;
@@ -62,6 +66,7 @@
 .hmrc-add-to-a-list__identifier {
   margin: govuk-spacing(2) govuk-spacing(9) 0 0;
   font-weight: bold;
+
   @include mq($from: desktop) {
     margin: 0;
   }
@@ -86,6 +91,7 @@
   top: 0;
   right: 0;
   text-align: right;
+
   @include mq($from: desktop) {
     position: static;
 

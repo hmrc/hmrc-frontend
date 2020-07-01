@@ -1,6 +1,7 @@
 .hmrc-internal-header {
   padding: govuk-spacing(4) govuk-spacing(3);
   border-bottom: 10px solid govuk-organisation-colour("hm-revenue-customs");
+
   @include govuk-media-query(desktop) {
     display: table;
     width: 100%;
@@ -12,6 +13,7 @@
   min-width: 275px;
   margin-bottom: govuk-spacing(2);
   border-left: 2px solid govuk-organisation-colour("hm-revenue-customs");
+
   @include govuk-media-query(desktop) {
     display: table-cell;
     width: 33.33%;
@@ -56,6 +58,7 @@
   &:visited {
     color: govuk-colour("black");
   }
+
   @include govuk-media-query(desktop) {
     font-size: 24px;
   }

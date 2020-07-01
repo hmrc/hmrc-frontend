@@ -2,34 +2,17 @@
 
 const paths = require('./config/paths.json')
 const gulp = require('gulp')
-const runsequence = require('run-sequence')
 const taskArguments = require('./tasks/gulp/task-arguments')
 const nodemon = require('nodemon')
 
 // Gulp sub-tasks
 require('./tasks/gulp/clean.js')
-require('./tasks/gulp/lint.js')
 require('./tasks/gulp/compile-assets.js')
 require('./tasks/gulp/watch.js')
 // new tasks
 require('./tasks/gulp/copy-to-destination.js')
 require('./tasks/gulp/asset-version.js')
-require('./tasks/gulp/sassdoc.js')
 require('./tasks/gulp/backstop.js')
-
-// Umbrella scripts tasks for preview ---
-// Runs js lint and compilation
-// --------------------------------------
-gulp.task('scripts', cb => {
-  runsequence('js:compile', cb)
-})
-
-// Umbrella styles tasks for preview ----
-// Runs js lint and compilation
-// --------------------------------------
-gulp.task('styles', cb => {
-  runsequence('scss:lint', 'scss:compile', cb)
-})
 
 // Copy assets task ----------------------
 // Copies assets to taskArguments.destination (public)
@@ -87,62 +70,47 @@ gulp.task('copy:packageJson', (done) => {
   done()
 })
 
-// All test combined --------------------
-// Runs js, scss and accessibility tests
+// Compile scss and js assets
 // --------------------------------------
-gulp.task('test', cb => {
-  runsequence('scss:lint', 'scss:compile', 'copy-assets', 'copy-dist-files', cb)
-})
+gulp.task('compile-assets', gulp.series('scss:compile', 'js:compile'))
 
-// Copy assets task for local & heroku --
-// Copies files to
-// taskArguments.destination (public)
+// Compile and copy assets
 // --------------------------------------
-gulp.task('copy-assets', cb => {
-  runsequence('styles', 'scripts', cb)
-})
+gulp.task('compile-and-copy-assets', gulp.series('compile-assets', 'copy-dist-files'))
 
-// Dev task -----------------------------
-// Runs a sequence of task on start
-// --------------------------------------
-gulp.task('dev', cb => {
-  runsequence('clean', 'copy-assets', 'copy-dist-files', 'sassdoc', 'serve', cb)
-})
+gulp.task('nodemon', () => nodemon({
+  script: 'app/start.js'
+}))
 
 // Serve task ---------------------------
 // Restarts node app when there is changed
 // affecting js, css or njk files
 // --------------------------------------
+gulp.task('serve', gulp.parallel('nodemon', 'watch'))
 
-gulp.task('serve', ['watch'], () => {
-  return nodemon({
-    script: 'app/start.js'
-  })
-})
+// Dev task -----------------------------
+// Runs a sequence of task on start
+// --------------------------------------
+gulp.task('dev', gulp.series('clean', 'compile-and-copy-assets', 'serve'))
 
 // Build package task -----------------
 // Prepare package folder for publishing
 // -------------------------------------
-gulp.task('build:package', cb => {
-  runsequence(
-    'clean',
-    'copy-files',
-    'copy-govuk-config',
-    'copy-check-compatibility',
-    'js:compile',
-    'copy:README',
-    'copy:packageJson',
-    cb
-  )
-})
+gulp.task('build:package', gulp.series(
+  'clean',
+  'copy-files',
+  'copy-govuk-config',
+  'copy-check-compatibility',
+  'js:compile',
+  'copy:README',
+  'copy:packageJson'
+))
 
-gulp.task('build:dist', cb => {
-  runsequence(
-    'clean',
-    'copy-assets',
-    'copy-dist-files',
-    'copy:assets',
-    'update-assets-version',
-    cb
-  )
-})
+gulp.task('build:dist', gulp.series(
+  'clean',
+  'compile-and-copy-assets',
+  'copy:assets',
+  'update-assets-version'
+))
+
+gulp.task('backstop:test', gulp.series('compile-and-copy-assets', 'backstop-test'))

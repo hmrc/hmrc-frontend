@@ -37,6 +37,11 @@ module.exports = ({host, port}) => {
         'url': `http://${host}:${port}/components/currency-input/preview`
       },
       {
+        'label': 'HMRC Currency Input (Focus)',
+        'url': `http://${host}:${port}/components/currency-input/preview`,
+        'clickSelector': '.govuk-label'
+      },
+      {
         'label': 'HMRC Header',
         'url': `http://${host}:${port}/components/header/preview`
       },

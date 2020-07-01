@@ -126,8 +126,8 @@ gulp.task('js:compile', () => {
   // for dist/ folder we only want compiled 'all.js' file
   let srcFiles = isDist ? configPaths.src + 'all.js' : configPaths.src + '**/*.js'
   return gulp.src([
-    '!' + configPaths.src + '**/*.test.js',
-    srcFiles
+    srcFiles,
+    '!' + configPaths.src + '**/*.test.js'
   ])
     .pipe(gulpif(!isPackage, sourcemaps.init()))
     .pipe(rollup({
@@ -157,4 +157,15 @@ gulp.task('js:compile', () => {
     // but not for the npm package
     .pipe(gulpif(!isPackage, sourcemaps.write('./maps')))
     .pipe(gulp.dest(destinationPath))
+})
+
+gulp.task('js:copy', () => {
+  // for dist/ folder we only want compiled 'all.js' file
+  let srcFiles = isDist ? configPaths.src + 'all.js' : configPaths.src + '**/*.js'
+  return gulp.src([
+    srcFiles,
+    '!' + configPaths.src + '**/*.test.js'
+  ])
+    .pipe(gulpif(!isPackage, sourcemaps.init()))
+    .pipe(gulp.dest('copy-test'))
 })
