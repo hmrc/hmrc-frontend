@@ -12,6 +12,13 @@ examples:
     countdown: 690
     keepAliveUrl: "?abc=def"
     signOutUrl: "?ghi=jkl"
+- name: welsh-language
+  data:
+    language: "cy"
+    timeout: 70
+    countdown: 68
+    keepAliveUrl: "?abc=def"
+    signOutUrl: "?ghi=jkl"
 - name: all-options-set
   data:
     timeout: 100

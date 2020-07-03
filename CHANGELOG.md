@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Updated implementation of hmrcHeader to be consistent with govuk-frontend v3.7.0 (an empty navigation
 array now treated as the same as navigation not being specified at all)
+- Added language parameter to the hmrcTimeoutDialog component to allow welsh language versions to be supported
 
 ### Compatible with
 

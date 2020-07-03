@@ -13,6 +13,12 @@ describe('Page Heading', () => {
 
       const results = await axe($.html())
       expect(results).toHaveNoViolations()
+      expect($('meta[name="hmrc-timeout-dialog"]').attr('data-language')).toBe('')
+    })
+    it('renders in welsh', async () => {
+      const $ = render('timeout-dialog', examples['welsh-language'])
+
+      expect($('meta[name="hmrc-timeout-dialog"]').attr('data-language')).toBe('cy')
     })
   })
 })
