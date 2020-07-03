@@ -1,8 +1,8 @@
 examples:
 - name: default
   data:
-    timeout: 70
-    countdown: 68
+    timeout: 75
+    countdown: 74
     keepAliveUrl: "?abc=def"
     signOutUrl: "?ghi=jkl"
 - name: long-delay-with-title

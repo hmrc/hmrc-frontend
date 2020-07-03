@@ -9,6 +9,8 @@ const utils = TimeoutDialog.utils
 describe('/components/timeout-dialog', () => {
   var assume
   var testScope // an object which is reset between test runs
+  const audibleCountSelector = '.screenreader-content.govuk-visually-hidden[aria-live=assertive]'
+  const visualCountSelector = '[aria-hidden=true]'
 
   function pretendSecondsHavePassed (numberOfSeconds) {
     var millis = numberOfSeconds * 1000
@@ -41,6 +43,14 @@ describe('/components/timeout-dialog', () => {
     testScope.minimumValidConfig['data-language'] = 'cy'
   }
 
+  function getVisualCountText () {
+    return getElemText(testScope.latestDialog$element.querySelector(visualCountSelector))
+  }
+
+  function getAudibleCountText () {
+    return getElemText(testScope.latestDialog$element.querySelector(audibleCountSelector))
+  }
+
   beforeEach(function () {
     assume = expect
     testScope = {
@@ -49,13 +59,14 @@ describe('/components/timeout-dialog', () => {
     mock.spyOn(Date, 'now').mockImplementation(function () {
       return testScope.currentDateTime
     })
-    mock.spyOn(utils, 'ajaxGet').mockImplementation(() => { })
-    mock.spyOn(redirectHelper, 'redirectToUrl').mockImplementation(() => { })
+    mock.spyOn(utils, 'ajaxGet').mockImplementation(() => {
+    })
+    mock.spyOn(redirectHelper, 'redirectToUrl').mockImplementation(() => {
+    })
     mock.spyOn(dialog, 'displayDialog').mockImplementation(function ($elementToDisplay) {
       testScope.latestDialog$element = $elementToDisplay
       testScope.latestDialogControl = {
         closeDialog: mock.fn(),
-        setAriaLive: mock.fn(),
         setAriaLabelledBy: mock.fn(),
         addCloseHandler: mock.fn().mockImplementation(function (fn) {
           testScope.latestDialogCloseCallback = fn
@@ -85,7 +96,7 @@ describe('/components/timeout-dialog', () => {
 
   describe('Delay before displaying', function () {
     it('should start countdown at 2.5 minutes', function () {
-      setupDialog({ 'data-timeout': 300, 'data-countdown': 30, 'data-title': 'one' })
+      setupDialog({'data-timeout': 300, 'data-countdown': 30, 'data-title': 'one'})
 
       pretendSecondsHavePassed(269)
 
@@ -94,14 +105,13 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(1)
 
       expect(dialog.displayDialog).toHaveBeenCalled()
-      expect(testScope.latestDialogControl.setAriaLive).not.toHaveBeenCalled()
       expect(testScope.latestDialogControl.setAriaLabelledBy).toHaveBeenCalledWith('hmrc-timeout-message')
     })
   })
 
   describe('Timeout Dialog', function () {
     it('should start countdown at 13 minutes', function () {
-      setupDialog({ 'data-timeout': 900, 'data-countdown': 120, 'data-title': 'two' })
+      setupDialog({'data-timeout': 900, 'data-countdown': 120, 'data-title': 'two'})
 
       pretendSecondsHavePassed(779)
 
@@ -114,13 +124,15 @@ describe('/components/timeout-dialog', () => {
   })
 
   describe('the default options', function () {
+    const initialMessage = 'For your security, we will sign you out in 2 minutes.'
+
     beforeEach(function () {
       setupDialog()
       pretendSecondsHavePassed(781)
     })
 
-    it('should start with a polite screenreader tone', function () {
-      expect(testScope.latestDialogControl.setAriaLive).toHaveBeenCalledWith('polite')
+    it('should start with a assertive screenreader tone', function () {
+      expect(getElemText(testScope.latestDialog$element.querySelector('[aria-live="assertive"]'))).toBe(initialMessage)
     })
 
     it('should not show heading', function () {
@@ -128,7 +140,8 @@ describe('/components/timeout-dialog', () => {
     })
 
     it('should show message', function () {
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('For your security, we will sign you out in 2 minutes.')
+      expect(getVisualCountText()).toEqual(initialMessage)
+      expect(getAudibleCountText()).toEqual(initialMessage)
     })
 
     it('should show keep signed in button', function () {
@@ -137,6 +150,10 @@ describe('/components/timeout-dialog', () => {
 
     it('should show sign out link', function () {
       expect(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link').innerText).toEqual('Sign out')
+    })
+
+    it('should separate the call-to-actions into different containers', function () {
+      expect(testScope.latestDialog$element.querySelector('button#hmrc-timeout-keep-signin-btn.govuk-button').parentNode).not.toBe(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link').parentNode)
     })
 
     it('should redirect to signout url when signout is clicked', function () {
@@ -182,7 +199,9 @@ describe('/components/timeout-dialog', () => {
     })
 
     it('should show message', function () {
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('Er eich diogelwch, byddwn yn eich allgofnodi cyn pen 2 funud.')
+      const expected = 'Er eich diogelwch, byddwn yn eich allgofnodi cyn pen 2 funud.'
+      expect(getVisualCountText()).toEqual(expected)
+      expect(getAudibleCountText()).toEqual(expected)
     })
 
     it('should show keep signed in button', function () {
@@ -195,7 +214,8 @@ describe('/components/timeout-dialog', () => {
   })
 
   it('should AJAX call the configured URL', function () {
-    mock.spyOn(utils, 'ajaxGet').mockImplementation(() => { })
+    mock.spyOn(utils, 'ajaxGet').mockImplementation(() => {
+    })
 
     setupDialog({
       'data-timeout': 130,
@@ -226,7 +246,8 @@ describe('/components/timeout-dialog', () => {
     })
 
     it('should show message', function () {
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('For your security, we will sign you out in 2 minutes.')
+      expect(getVisualCountText()).toEqual('For your security, we will sign you out in 2 minutes.')
+      expect(getAudibleCountText()).toEqual('For your security, we will sign you out in 2 minutes.')
     })
 
     it('should show keep signed in button', function () {
@@ -256,7 +277,8 @@ describe('/components/timeout-dialog', () => {
     })
 
     it('should show message', function () {
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('MY custom message 2 minutes. My message suffix.')
+      expect(getVisualCountText()).toEqual('MY custom message 2 minutes. My message suffix.')
+      expect(getAudibleCountText()).toEqual('MY custom message 2 minutes. My message suffix.')
     })
 
     it('should show keep signed in button', function () {
@@ -279,7 +301,7 @@ describe('/components/timeout-dialog', () => {
 
   describe('Restarting countdown on close', function () {
     it('should restart with default settings', function () {
-      setupDialog({ 'data-message': 'time:' })
+      setupDialog({'data-message': 'time:'})
 
       pretendSecondsHavePassed(880)
       pretendDialogWasClosedWithoutButtonPress()
@@ -287,7 +309,9 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(880)
 
       expect(dialog.displayDialog).toHaveBeenCalled()
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 20 seconds.')
+      const expected = 'time: 20 seconds.'
+      expect(getVisualCountText()).toEqual(expected)
+      expect(getAudibleCountText()).toEqual(expected)
     })
   })
 
@@ -368,7 +392,7 @@ describe('/components/timeout-dialog', () => {
     var MINIMUM_TIME_UNTIL_MODAL_DISPLAYED = 10
 
     it('should not display the dialog if cleanup has already been called', function () {
-      setupDialog({ 'data-timeout': 130, 'data-countdown': 120 })
+      setupDialog({'data-timeout': 130, 'data-countdown': 120})
 
       testScope.timeoutDialogControl.cleanup()
       pretendSecondsHavePassed(MINIMUM_TIME_UNTIL_MODAL_DISPLAYED)
@@ -376,7 +400,7 @@ describe('/components/timeout-dialog', () => {
     })
 
     it('should remove dialog when cleanup is called', function () {
-      setupDialog({ 'data-timeout': 130, 'data-countdown': 120 })
+      setupDialog({'data-timeout': 130, 'data-countdown': 120})
       pretendSecondsHavePassed(MINIMUM_TIME_UNTIL_MODAL_DISPLAYED)
       assume(dialog.displayDialog).toHaveBeenCalled()
 
@@ -397,78 +421,132 @@ describe('/components/timeout-dialog', () => {
 
       pretendSecondsHavePassed(10)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 2 minutes.')
+      expect(getVisualCountText()).toEqual('time: 2 minutes.')
+      expect(getAudibleCountText()).toEqual('time: 2 minutes.')
       pretendSecondsHavePassed(59)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 2 minutes.')
-      expect(testScope.latestDialogControl.setAriaLive).not.toHaveBeenCalledWith()
+      expect(getVisualCountText()).toEqual('time: 2 minutes.')
+      expect(getAudibleCountText()).toEqual('time: 2 minutes.')
       pretendSecondsHavePassed(1)
 
-      expect(testScope.latestDialogControl.setAriaLive).toHaveBeenCalledWith()
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 1 minute.')
+      expect(getVisualCountText()).toEqual('time: 1 minute.')
+      expect(getAudibleCountText()).toEqual('time: 1 minute.')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 59 seconds.')
+      expect(getVisualCountText()).toEqual('time: 59 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 1 minute.')
       pretendSecondsHavePassed(57)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 2 seconds.')
+      expect(getVisualCountText()).toEqual('time: 2 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 20 seconds.')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 1 second.')
+      expect(getVisualCountText()).toEqual('time: 1 second.')
+      expect(getAudibleCountText()).toEqual('time: 20 seconds.')
       expect(redirectHelper.redirectToUrl).not.toHaveBeenCalled()
 
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 0 seconds.')
+      expect(getVisualCountText()).toEqual('time: 0 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 20 seconds.')
       pretendSecondsHavePassed(1)
 
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout')
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: -1 seconds.')
+      expect(getVisualCountText()).toEqual('time: -1 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 20 seconds.')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: -2 seconds.')
+      expect(getVisualCountText()).toEqual('time: -2 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 20 seconds.')
+    })
+    it('should have an audio countdown which counts the last minute in 20 second decrements', function () {
+      setupDialog({
+        'data-timeout': 70,
+        'data-countdown': 65,
+        'data-message': 'time:',
+        'data-sign-out-url': 'logout'
+      })
+
+      pretendSecondsHavePassed(10)
+      expect(getVisualCountText()).toEqual('time: 1 minute.')
+      expect(getAudibleCountText()).toEqual('time: 1 minute.')
+
+      pretendSecondsHavePassed(1)
+      expect(getVisualCountText()).toEqual('time: 59 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 1 minute.')
+
+      pretendSecondsHavePassed(18)
+      expect(getVisualCountText()).toEqual('time: 41 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 1 minute.')
+
+      pretendSecondsHavePassed(1)
+      expect(getVisualCountText()).toEqual('time: 40 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 40 seconds.')
+
+      pretendSecondsHavePassed(1)
+      expect(getVisualCountText()).toEqual('time: 39 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 40 seconds.')
+
+      pretendSecondsHavePassed(18)
+      expect(getVisualCountText()).toEqual('time: 21 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 40 seconds.')
+
+      pretendSecondsHavePassed(1)
+      expect(getVisualCountText()).toEqual('time: 20 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 20 seconds.')
+
+      pretendSecondsHavePassed(1)
+      expect(getVisualCountText()).toEqual('time: 19 seconds.')
+      expect(getAudibleCountText()).toEqual('time: 20 seconds.')
     })
     it('should countdown minutes and then seconds in welsh', function () {
       setLanguageToWelsh()
       setupDialog({
         'data-timeout': 130,
         'data-countdown': 120,
-        'data-message': 'time:',
+        'data-message': 'Welsh, time:',
         'data-sign-out-url': 'logout'
       })
 
       pretendSecondsHavePassed(10)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 2 funud.')
+      expect(getVisualCountText()).toEqual('Welsh, time: 2 funud.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 2 funud.')
       pretendSecondsHavePassed(59)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 2 funud.')
-      expect(testScope.latestDialogControl.setAriaLive).not.toHaveBeenCalledWith()
+      expect(getVisualCountText()).toEqual('Welsh, time: 2 funud.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 2 funud.')
       pretendSecondsHavePassed(1)
 
-      expect(testScope.latestDialogControl.setAriaLive).toHaveBeenCalledWith()
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 1 funud.')
+      expect(getVisualCountText()).toEqual('Welsh, time: 1 funud.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 1 funud.')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 59 eiliad.')
+      expect(getVisualCountText()).toEqual('Welsh, time: 59 eiliad.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 1 funud.')
       pretendSecondsHavePassed(57)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 2 eiliad.')
+      expect(getVisualCountText()).toEqual('Welsh, time: 2 eiliad.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 20 eiliad.')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 1 eiliad.')
+      expect(getVisualCountText()).toEqual('Welsh, time: 1 eiliad.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 20 eiliad.')
       expect(redirectHelper.redirectToUrl).not.toHaveBeenCalled()
 
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 0 eiliad.')
+      expect(getVisualCountText()).toEqual('Welsh, time: 0 eiliad.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 20 eiliad.')
       pretendSecondsHavePassed(1)
 
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout')
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: -1 eiliad.')
+      expect(getVisualCountText()).toEqual('Welsh, time: -1 eiliad.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 20 eiliad.')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: -2 eiliad.')
+      expect(getVisualCountText()).toEqual('Welsh, time: -2 eiliad.')
+      expect(getAudibleCountText()).toEqual('Welsh, time: 20 eiliad.')
     })
 
     it('should countdown lots of minutes when countdown is long', function () {
@@ -480,18 +558,110 @@ describe('/components/timeout-dialog', () => {
 
       pretendSecondsHavePassed(10)
       assume(dialog.displayDialog).toHaveBeenCalled()
-      expect(testScope.latestDialogControl.setAriaLive).toHaveBeenCalledWith('polite')
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 30 minutes.')
+      expect(getVisualCountText()).toEqual('time: 30 minutes.')
+      expect(getAudibleCountText()).toEqual('time: 30 minutes.')
       pretendSecondsHavePassed(59)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 30 minutes.')
+      expect(getVisualCountText()).toEqual('time: 30 minutes.')
+      expect(getAudibleCountText()).toEqual('time: 30 minutes.')
       pretendSecondsHavePassed(1)
 
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 29 minutes.')
+      expect(getVisualCountText()).toEqual('time: 29 minutes.')
+      expect(getAudibleCountText()).toEqual('time: 29 minutes.')
     })
 
-    it('should countdown only seconds when the countdown is short', function () {
+    it('should countdown properly when the starting time is not in a round number of minutes', function () {
+      setupDialog({
+        'data-timeout': 70,
+        'data-countdown': 68,
+        'data-message': 'Remaining time is'
+      })
+
+      window.setTimeout.mockClear()
+
+      pretendSecondsHavePassed(2.123)
+
+      expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 7877)
+    })
+
+    it('should countdown properly when the starting time is not in a round number of minutes', function () {
+      setupDialog({
+        'data-timeout': 300,
+        'data-countdown': 120,
+        'data-message': 'Remaining time is'
+      })
+
+      window.setTimeout.mockClear()
+
+      pretendSecondsHavePassed(180.4)
+
+      expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 59600)
+    })
+
+    it('should countdown properly when the the intervals aren\'t at perfect seconds', function () {
+      setupDialog({
+        'data-timeout': 70,
+        'data-countdown': 68,
+        'data-message': 'Remaining time is'
+      })
+
+      window.setTimeout.mockClear()
+
+      pretendSecondsHavePassed(12.123)
+
+      expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 877)
+
+      window.setTimeout.mockClear()
+      pretendSecondsHavePassed(0.879)
+
+      expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 998)
+    })
+
+    it('should countdown minutes and then seconds in welsh\nn only seconds when the countdown is short', function () {
+      setupDialog({
+        'data-timeout': 130,
+        'data-countdown': 50,
+        'data-message': 'Remaining time is',
+        'data-sign-out-url': 'logout'
+      })
+      const lowestAudibleCount = 'Remaining time is 20 seconds.'
+
+      pretendSecondsHavePassed(80)
+
+      expect(getVisualCountText()).toEqual('Remaining time is 50 seconds.')
+      expect(getAudibleCountText()).toEqual('Remaining time is 1 minute.')
+      pretendSecondsHavePassed(1)
+
+      expect(getVisualCountText()).toEqual('Remaining time is 49 seconds.')
+      expect(getAudibleCountText()).toEqual('Remaining time is 1 minute.')
+      pretendSecondsHavePassed(47)
+
+      expect(getVisualCountText()).toEqual('Remaining time is 2 seconds.')
+      expect(getAudibleCountText()).toEqual(lowestAudibleCount)
+      pretendSecondsHavePassed(1)
+
+      expect(getVisualCountText()).toEqual('Remaining time is 1 second.')
+      expect(getAudibleCountText()).toEqual(lowestAudibleCount)
+      expect(redirectHelper.redirectToUrl).not.toHaveBeenCalled()
+
+      pretendSecondsHavePassed(1)
+
+      expect(getVisualCountText()).toEqual('Remaining time is 0 seconds.')
+      expect(getAudibleCountText()).toEqual(lowestAudibleCount)
+      pretendSecondsHavePassed(1)
+
+      expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout')
+      expect(getVisualCountText()).toEqual('Remaining time is -1 seconds.')
+      expect(getAudibleCountText()).toEqual(lowestAudibleCount)
+      pretendSecondsHavePassed(1)
+
+      expect(getVisualCountText()).toEqual('Remaining time is -2 seconds.')
+      expect(getAudibleCountText()).toEqual(lowestAudibleCount)
+    })
+  })
+  describe('screen reader tools', function () {
+    it('should not place aria-hidden elements inside aria-live elements', function () {
       setupDialog({
         'data-timeout': 130,
         'data-countdown': 50,
@@ -501,37 +671,15 @@ describe('/components/timeout-dialog', () => {
 
       pretendSecondsHavePassed(80)
 
-      expect(testScope.latestDialogControl.setAriaLive).not.toHaveBeenCalled()
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 50 seconds.')
-      pretendSecondsHavePassed(1)
-
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 49 seconds.')
-      pretendSecondsHavePassed(47)
-
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 2 seconds.')
-      pretendSecondsHavePassed(1)
-
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 1 second.')
-      expect(redirectHelper.redirectToUrl).not.toHaveBeenCalled()
-
-      pretendSecondsHavePassed(1)
-
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 0 seconds.')
-      pretendSecondsHavePassed(1)
-
-      expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout')
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: -1 seconds.')
-      pretendSecondsHavePassed(1)
-
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: -2 seconds.')
+      expect(testScope.latestDialog$element.querySelector('[aria-live] [aria-hidden]')).toBeNull()
     })
   })
   describe('techy features', function () {
-    it('should not rely on setInterval for countdown', function () {
+    it('should not rely on timeout/interval accuracy for countdown', function () {
       setupDialog({
         'data-timeout': 80,
         'data-countdown': 50,
-        'data-message': 'time:'
+        'data-message': 'You will be timed out in'
       })
 
       pretendSecondsHavePassed(29)
@@ -540,48 +688,70 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(1)
 
       expect(dialog.displayDialog).toHaveBeenCalled()
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 50 seconds.')
+      expect(getVisualCountText()).toEqual('You will be timed out in 50 seconds.')
       testScope.currentDateTime += 2 * 1000 // two seconds go by without any interval events
       pretendSecondsHavePassed(1)
 
       expect(dialog.displayDialog).toHaveBeenCalled()
-      expect(getElemText(testScope.latestDialog$element.querySelector('#hmrc-timeout-message'))).toEqual('time: 47 seconds.')
+      expect(getVisualCountText()).toEqual('You will be timed out in 47 seconds.')
     })
+    describe('Timeouts', function () {
+      beforeEach(function () {
+        testScope.intervalReturn = {'data-message': 'this has been returned from a spy'}
+        testScope.timeoutFirstRun = true
+        jest.clearAllTimers()
 
-    it('should clearInterval on cleanup', function () {
-      var intervalReturn = { 'data-message': 'this has been returned from a spy' }
-      jest.clearAllTimers()
+        mock.spyOn(window, 'clearTimeout').mockImplementation(() => {
+        })
+        mock.spyOn(window, 'setTimeout').mockImplementation(function (fn) {
+          if (testScope.timeoutFirstRun) {
+            testScope.timeoutFirstRun = false
+            fn()
+          } else {
+            return testScope.intervalReturn
+          }
+        })
 
-      mock.spyOn(window, 'setInterval').mockReturnValue(intervalReturn)
-      mock.spyOn(window, 'clearInterval').mockImplementation(() => { })
-      mock.spyOn(window, 'setTimeout').mockImplementation(function (fn) {
-        fn()
+        setupDialog({'data-timeout': 130, 'data-countdown': 120})
+        pretendSecondsHavePassed(30)
+        assume(window.setTimeout).toHaveBeenCalled()
+        assume(window.clearTimeout).not.toHaveBeenCalled()
       })
 
-      setupDialog({ 'data-timeout': 130, 'data-countdown': 120 })
-      assume(window.setInterval).toHaveBeenCalled()
-      assume(window.clearInterval).not.toHaveBeenCalled()
-
-      testScope.timeoutDialogControl.cleanup()
-      expect(window.clearInterval).toHaveBeenCalledWith(intervalReturn)
-    })
-
-    it('should clearInterval on closeDialog', function () {
-      var intervalReturn = { 'data-message': 'this has been returned from a spy' }
-      jest.clearAllTimers()
-
-      mock.spyOn(window, 'setInterval').mockReturnValue(intervalReturn)
-      mock.spyOn(window, 'clearInterval').mockImplementation(() => { })
-      mock.spyOn(window, 'setTimeout').mockImplementation(function (fn) {
-        fn()
+      it('should clearTimeout on cleanup', function () {
+        testScope.timeoutDialogControl.cleanup()
+        expect(window.clearTimeout).toHaveBeenCalledWith(testScope.intervalReturn)
       })
 
-      setupDialog({ 'data-timeout': 130, 'data-countdown': 120 })
-      assume(window.setInterval).toHaveBeenCalled()
-      assume(window.clearInterval).not.toHaveBeenCalled()
+      it('should clearInterval on closeDialog', function () {
+        pretendDialogWasClosedWithoutButtonPress()
+        expect(window.clearTimeout).toHaveBeenCalledWith(testScope.intervalReturn)
+      })
+    })
+    it('shouldn\'t regenerate audible countdown', function () {
+      setupDialog({
+        'data-timeout': 80,
+        'data-countdown': 70
+      })
+      pretendSecondsHavePassed(20)
+      var currentValue
+      const setterSpy = jest.fn(newValue => {
+        currentValue = newValue
+      })
+      const $originalElem = testScope.latestDialog$element.querySelector(audibleCountSelector)
+      assume($originalElem).not.toBeNull()
+      currentValue = $originalElem.innerText
 
-      testScope.latestDialogCloseCallback()
-      expect(window.clearInterval).toHaveBeenCalledWith(intervalReturn)
+      Object.defineProperty($originalElem, 'innerText', {
+        set: setterSpy,
+        get: jest.fn(() => currentValue)
+      })
+
+      pretendSecondsHavePassed(19)
+      expect(setterSpy).not.toHaveBeenCalled()
+
+      pretendSecondsHavePassed(1)
+      expect(setterSpy).toHaveBeenCalled()
     })
   })
 })
