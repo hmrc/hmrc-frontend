@@ -191,8 +191,8 @@ describe('Dialog', function () {
       if (!document.querySelector('body>header')) {
         arr.push(utils.generateDomElementFromString('<header>'))
       }
-      if (!document.querySelector('body>main')) {
-        arr.push(utils.generateDomElementFromString('<main>'))
+      if (!document.querySelector('main[role=main]')) {
+        arr.push(utils.generateDomElementFromString('<main role="main">'))
       }
       if (!document.querySelector('body>footer')) {
         arr.push(utils.generateDomElementFromString('<footer>'))
@@ -210,7 +210,7 @@ describe('Dialog', function () {
         '#skiplink-container',
         'body>header',
         '#global-cookie-message',
-        'body>main',
+        'main[role=main]',
         'body>footer'
       ]
       selectors.forEach(function (selector) {
@@ -242,21 +242,6 @@ describe('Dialog', function () {
       expect(testScope.elementsCreatedForThisTest[0].attributes.getNamedItem('aria-hidden').value).toEqual('abcd')
       expect(testScope.elementsCreatedForThisTest[1].attributes.getNamedItem('aria-hidden').value).toEqual('efgh')
       expect(testScope.elementsCreatedForThisTest[2].attributes.getNamedItem('aria-hidden')).toBeNull()
-    })
-
-    it('should allow aria-live to be set, reset and removed', function () {
-      openDefaultDialog()
-      var $dialog = document.querySelector('#hmrc-timeout-dialog')
-
-      expect($dialog.attributes.getNamedItem('aria-live')).toBeNull()
-
-      testScope.dialogControl.setAriaLive('polite')
-
-      expect($dialog.attributes.getNamedItem('aria-live').value).toEqual('polite')
-
-      testScope.dialogControl.setAriaLive()
-
-      expect($dialog.attributes.getNamedItem('aria-live')).toBeNull()
     })
 
     it('should allow aria-labelledby to be set, reset and removed', function () {

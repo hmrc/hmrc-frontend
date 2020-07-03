@@ -9,10 +9,18 @@ import RedirectHelper from './redirectHelper.js'
 import utils from './utils.js'
 
 // TODO: rewruite this to follow govuk-frontend's protoytpe module pattern
+
 function TimeoutDialog ($module) {
   var options = {}
   var settings = {}
   var cleanupFunctions = []
+  var currentTimer
+
+  cleanupFunctions.push(function () {
+    if (currentTimer) {
+      window.clearTimeout(currentTimer)
+    }
+  })
 
   function init () {
     var validate = ValidateInput
@@ -113,6 +121,14 @@ function TimeoutDialog ($module) {
     })
   }
 
+  function wrapLink ($elem) {
+    var $wrapper = document.createElement('div')
+    $wrapper.classList.add('hmrc-timeout-dialog__link-wrapper')
+    $wrapper.appendChild($elem)
+
+    return $wrapper
+  }
+
   function setupDialog () {
     var $element = utils.generateDomElementFromString('<div>')
 
@@ -128,15 +144,16 @@ function TimeoutDialog ($module) {
       '<span id="hmrc-timeout-countdown" class="hmrc-timeout-dialog__countdown">'
     )
 
-    var $timeoutMessage = utils.generateDomElementFromStringAndAppendText(
-      '<p id="hmrc-timeout-message" class="govuk-body hmrc-timeout-dialog__message" role="text">',
+    var $audibleMessage = utils.generateDomElementFromString('<p id="hmrc-timeout-message" class="govuk-visually-hidden screenreader-content" aria-live="assertive">')
+    var $visualMessge = utils.generateDomElementFromStringAndAppendText(
+      '<p class="govuk-body hmrc-timeout-dialog__message" aria-hidden="true">',
       settings.message
     )
-    $timeoutMessage.appendChild(document.createTextNode(' '))
-    $timeoutMessage.appendChild($countdownElement)
-    $timeoutMessage.appendChild(document.createTextNode('.'))
+    $visualMessge.appendChild(document.createTextNode(' '))
+    $visualMessge.appendChild($countdownElement)
+    $visualMessge.appendChild(document.createTextNode('.'))
     if (settings.messageSuffix) {
-      $timeoutMessage.appendChild(document.createTextNode(' ' + settings.messageSuffix))
+      $visualMessge.appendChild(document.createTextNode(' ' + settings.messageSuffix))
     }
 
     var $staySignedInButton = utils.generateDomElementFromStringAndAppendText(
@@ -152,10 +169,11 @@ function TimeoutDialog ($module) {
     $signOutButton.addEventListener('click', signOut)
     $signOutButton.setAttribute('href', settings.signOutUrl)
 
-    $element.appendChild($timeoutMessage)
+    $element.appendChild($visualMessge)
+    $element.appendChild($audibleMessage)
     $element.appendChild($staySignedInButton)
     $element.appendChild(document.createTextNode(' '))
-    $element.appendChild($signOutButton)
+    $element.appendChild(wrapLink($signOutButton))
 
     var dialogControl = dialog.displayDialog($element)
 
@@ -166,30 +184,71 @@ function TimeoutDialog ($module) {
     dialogControl.addCloseHandler(keepAliveAndClose)
 
     dialogControl.setAriaLabelledBy('hmrc-timeout-message')
-    if (getSecondsRemaining() > 60) {
-      dialogControl.setAriaLive('polite')
-    }
 
-    startCountdown($countdownElement, dialogControl)
+    startCountdown($countdownElement, $audibleMessage)
+  }
+
+  function getMillisecondsRemaining () {
+    return settings.signout_time - getDateNow()
   }
 
   function getSecondsRemaining () {
-    return Math.floor((settings.signout_time - getDateNow()) / 1000)
+    return Math.round(getMillisecondsRemaining() / 1000)
   }
 
-  function startCountdown ($countdownElement, dialogControl) {
-    function updateCountdown (counter, $countdownElement) {
-      var message
-      if (counter === 60) {
-        dialogControl.setAriaLive()
-      }
+  function startCountdown ($countdownElement, $screenReaderCountdownElement) {
+    function getHumanText (counter) {
+      var minutes, visibleMessage
       if (counter < 60) {
-        message = counter + ' ' + settings.properties[counter !== 1 ? 'seconds' : 'second']
+        visibleMessage = counter + ' ' + settings.properties[counter !== 1 ? 'seconds' : 'second']
       } else {
-        var minutes = Math.ceil(counter / 60)
-        message = minutes + ' ' + settings.properties[minutes === 1 ? 'minute' : 'minutes']
+        minutes = Math.ceil(counter / 60)
+        visibleMessage = minutes + ' ' + settings.properties[minutes === 1 ? 'minute' : 'minutes']
       }
-      $countdownElement.innerText = message
+      return visibleMessage
+    }
+
+    function getAudibleHumanText (counter) {
+      var humanText = getHumanText(roundSecondsUp(counter))
+      var messageParts = [settings.message, ' ', humanText, '.']
+      if (settings.messageSuffix) {
+        messageParts.push(' ')
+        messageParts.push(settings.messageSuffix)
+      }
+      return messageParts.join('')
+    }
+
+    function roundSecondsUp (counter) {
+      if (counter > 60) {
+        return counter
+      } else if (counter < 20) {
+        return 20
+      } else {
+        return Math.ceil(counter / 20) * 20
+      }
+    }
+
+    function updateTextIfChanged ($elem, text) {
+      if ($elem.innerText !== text) {
+        $elem.innerText = text
+      }
+    }
+
+    function updateCountdown (counter, $countdownElement) {
+      var visibleMessage = getHumanText(counter)
+      var audibleHumanText = getAudibleHumanText(counter)
+
+      updateTextIfChanged($countdownElement, visibleMessage)
+      updateTextIfChanged($screenReaderCountdownElement, audibleHumanText)
+    }
+
+    function getNextTimeout () {
+      var remaining = getMillisecondsRemaining()
+      var roundedRemaining = Math.floor(getMillisecondsRemaining() / 1000) * 1000
+      if (roundedRemaining <= 60000) {
+        return (remaining - roundedRemaining) || 1000
+      }
+      return remaining - (roundedRemaining - (roundedRemaining % 60000 || 60000))
     }
 
     function runUpdate () {
@@ -198,19 +257,17 @@ function TimeoutDialog ($module) {
       if (counter <= 0) {
         signOut()
       }
+      currentTimer = window.setTimeout(runUpdate, getNextTimeout())
     }
 
-    var countdown = window.setInterval(runUpdate, 1000)
-    cleanupFunctions.push(function () {
-      window.clearInterval(countdown)
-    })
     runUpdate()
   }
 
   function keepAliveAndClose () {
     cleanup()
     setupDialogTimer()
-    utils.ajaxGet(settings.keepAliveUrl, function () { })
+    utils.ajaxGet(settings.keepAliveUrl, function () {
+    })
   }
 
   function getDateNow () {
@@ -228,7 +285,7 @@ function TimeoutDialog ($module) {
     }
   }
 
-  return { init: init, cleanup: cleanup }
+  return {init: init, cleanup: cleanup}
 }
 
 TimeoutDialog.dialog = dialog
