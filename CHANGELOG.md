@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.15.1] - 2020-07-13
+
+- Added the messageSuffix parameter to the timeout Nunjucks component
+
 ## [1.15.0] - 2020-07-03
 
 ### Fixed
@@ -63,7 +67,7 @@ array now treated as the same as navigation not being specified at all)
 ## [1.10.1] - 2020-04-22
 
 ### Fixed
-- Fix compatibility check - this is a temporary workaround to avoid throwing an exception with the version can't be found. 
+- Fix compatibility check - this is a temporary workaround to avoid throwing an exception with the version can't be found.
 
 ## [1.10.0] - 2020-04-21
 
