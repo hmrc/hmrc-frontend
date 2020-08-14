@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.15.3] - 2020-08-14
+
+### Fixed
+
+- issue where internal header where font wasn't being set
+
 ## [1.15.1] - 2020-07-13
 
 - Added the messageSuffix parameter to the timeout Nunjucks component

@@ -1,4 +1,6 @@
 .hmrc-internal-header {
+  @include govuk-font($size: 19);
+
   padding: govuk-spacing(4) govuk-spacing(3);
   border-bottom: 10px solid govuk-organisation-colour("hm-revenue-customs");
 
