@@ -267,7 +267,8 @@ describe('/components/timeout-dialog', () => {
         'data-message-suffix': 'My message suffix.',
         'data-keep-alive-button-text': 'KEEP alive',
         'data-sign-out-button-text': 'sign OUT',
-        'data-sign-out-url': '/mySignOutUrl.html'
+        'data-sign-out-url': '/mySignOutUrl.html',
+        'data-timeout-url': '/myTimeoutUrl.html'
       })
       pretendSecondsHavePassed(780)
     })
@@ -416,7 +417,8 @@ describe('/components/timeout-dialog', () => {
         'data-timeout': 130,
         'data-countdown': 120,
         'data-message': 'time:',
-        'data-sign-out-url': 'logout'
+        'data-sign-out-url': 'signout',
+        'data-timeout-url': 'timeout'
       })
 
       pretendSecondsHavePassed(10)
@@ -451,7 +453,7 @@ describe('/components/timeout-dialog', () => {
       expect(getAudibleCountText()).toEqual('time: 20 seconds.')
       pretendSecondsHavePassed(1)
 
-      expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout')
+      expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('timeout')
       expect(getVisualCountText()).toEqual('time: -1 seconds.')
       expect(getAudibleCountText()).toEqual('time: 20 seconds.')
       pretendSecondsHavePassed(1)
@@ -459,12 +461,23 @@ describe('/components/timeout-dialog', () => {
       expect(getVisualCountText()).toEqual('time: -2 seconds.')
       expect(getAudibleCountText()).toEqual('time: 20 seconds.')
     })
+    it('should default redirectToUrl to data-sign-out-url if data-timeout-url is not set', function () {
+      setupDialog({
+        'data-timeout': 130,
+        'data-countdown': 120,
+        'data-message': 'time:',
+        'data-sign-out-url': 'logout'
+      })
+      pretendSecondsHavePassed(131)
+      expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout')
+    })
     it('should have an audio countdown which counts the last minute in 20 second decrements', function () {
       setupDialog({
         'data-timeout': 70,
         'data-countdown': 65,
         'data-message': 'time:',
-        'data-sign-out-url': 'logout'
+        'data-sign-out-url': 'signout',
+        'data-timeout-url': 'timeout'
       })
 
       pretendSecondsHavePassed(10)
@@ -505,7 +518,8 @@ describe('/components/timeout-dialog', () => {
         'data-timeout': 130,
         'data-countdown': 120,
         'data-message': 'Welsh, time:',
-        'data-sign-out-url': 'logout'
+        'data-sign-out-url': 'signout',
+        'data-timeout-url': 'timeout'
       })
 
       pretendSecondsHavePassed(10)
@@ -540,7 +554,7 @@ describe('/components/timeout-dialog', () => {
       expect(getAudibleCountText()).toEqual('Welsh, time: 20 eiliad.')
       pretendSecondsHavePassed(1)
 
-      expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout')
+      expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('timeout')
       expect(getVisualCountText()).toEqual('Welsh, time: -1 eiliad.')
       expect(getAudibleCountText()).toEqual('Welsh, time: 20 eiliad.')
       pretendSecondsHavePassed(1)
@@ -623,7 +637,8 @@ describe('/components/timeout-dialog', () => {
         'data-timeout': 130,
         'data-countdown': 50,
         'data-message': 'Remaining time is',
-        'data-sign-out-url': 'logout'
+        'data-sign-out-url': 'signout',
+        'data-timeout-url': 'timeout'
       })
       const lowestAudibleCount = 'Remaining time is 20 seconds.'
 
@@ -651,7 +666,7 @@ describe('/components/timeout-dialog', () => {
       expect(getAudibleCountText()).toEqual(lowestAudibleCount)
       pretendSecondsHavePassed(1)
 
-      expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout')
+      expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('timeout')
       expect(getVisualCountText()).toEqual('Remaining time is -1 seconds.')
       expect(getAudibleCountText()).toEqual(lowestAudibleCount)
       pretendSecondsHavePassed(1)
@@ -666,7 +681,8 @@ describe('/components/timeout-dialog', () => {
         'data-timeout': 130,
         'data-countdown': 50,
         'data-message': 'time:',
-        'data-sign-out-url': 'logout'
+        'data-sign-out-url': 'signout',
+        'data-timeout-url': 'timeout'
       })
 
       pretendSecondsHavePassed(80)

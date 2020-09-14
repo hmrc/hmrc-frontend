@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.16.0] - 2020-09-10
+
+### Changed
+
+- `hmrcTimeoutDialog` Allow users to set a different URL for timeouts than manual sign outs
+
 ## [1.15.3] - 2020-08-14
 
 ### Fixed

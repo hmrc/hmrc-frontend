@@ -58,6 +58,7 @@ function TimeoutDialog ($module) {
       countdown: validate.int(lookupData('data-countdown')),
       keepAliveUrl: validate.string(lookupData('data-keep-alive-url')),
       signOutUrl: validate.string(lookupData('data-sign-out-url')),
+      timeoutUrl: validate.string(lookupData('data-timeout-url')),
       title: validate.string(lookupData('data-title')),
       message: validate.string(lookupData('data-message')),
       messageSuffix: validate.string(lookupData('data-message-suffix')),
@@ -68,6 +69,9 @@ function TimeoutDialog ($module) {
         lookupData('data-sign-out-button-text')
       )
     }
+
+    // Default timeoutUrl to signOutUrl if not set
+    options.timeoutUrl = options.timeoutUrl || options.signOutUrl
 
     validateInput(options)
     settings = mergeOptionsWithDefaults(options, localisedDefaults)
@@ -255,7 +259,7 @@ function TimeoutDialog ($module) {
       var counter = getSecondsRemaining()
       updateCountdown(counter, $countdownElement)
       if (counter <= 0) {
-        signOut()
+        timeout()
       }
       currentTimer = window.setTimeout(runUpdate, getNextTimeout())
     }
@@ -276,6 +280,10 @@ function TimeoutDialog ($module) {
 
   function signOut () {
     RedirectHelper.redirectToUrl(settings.signOutUrl)
+  }
+
+  function timeout () {
+    RedirectHelper.redirectToUrl(settings.timeoutUrl)
   }
 
   function cleanup () {
