@@ -632,7 +632,7 @@ describe('/components/timeout-dialog', () => {
       expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 998)
     })
 
-    it('should countdown minutes and then seconds in welsh\nn only seconds when the countdown is short', function () {
+    it('should countdown minutes and then seconds in welsh', function () {
       setupDialog({
         'data-timeout': 130,
         'data-countdown': 50,

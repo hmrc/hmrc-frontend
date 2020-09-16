@@ -1,4 +1,4 @@
-# Open a link in a new window or tab
+# Open a link in a new tab
 
 A link that opens a new tab or window.
 
