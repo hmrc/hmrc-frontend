@@ -36,7 +36,7 @@ describe('New Tab Link', () => {
 
       const labelText = $('.govuk-link').text().trim()
 
-      expect(labelText).toEqual('my link TEXT (opens in a new window or tab)')
+      expect(labelText).toEqual('my link TEXT (opens in a new tab)')
     })
 
     it('renders link text with english explanation', () => {

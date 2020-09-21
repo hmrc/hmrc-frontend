@@ -28,7 +28,7 @@ describe('Report Technical Issue', () => {
       expect($component.attr('hreflang')).toEqual('en')
       expect($component.attr('lang')).toEqual('en')
       expect($component.attr('href')).toEqual('/contact/problem_reports_nonjs?newTab=true&service=the-url-safe-service-name')
-      expect($component.text()).toEqual('Get help with this page (opens in a new window or tab)')
+      expect($component.text()).toEqual('Get help with this page (opens in a new tab)')
     })
 
     it('renders a link element when nothing is provided', () => {
@@ -40,7 +40,7 @@ describe('Report Technical Issue', () => {
       expect($component.attr('hreflang')).toEqual('en')
       expect($component.attr('lang')).toEqual('en')
       expect($component.attr('href')).toEqual('/contact/problem_reports_nonjs?newTab=true')
-      expect($component.text()).toEqual('Get help with this page (opens in a new window or tab)')
+      expect($component.text()).toEqual('Get help with this page (opens in a new tab)')
     })
 
     it('shouldn\'t specify any rel attributes so that referrer data is passed through', () => {
