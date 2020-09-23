@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.17.0] - 2020-09-21
+
+### Changed
+
+- `hmrcNewTabLink` Text updated to match GDS recommendation (English only)
+
 ## [1.16.0] - 2020-09-10
 
 ### Changed
