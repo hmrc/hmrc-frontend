@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- issue where status tags weren't left aligning at mobile widths
+
 ## [1.17.0] - 2020-09-21
 
 ### Changed
