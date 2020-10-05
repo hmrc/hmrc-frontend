@@ -22,6 +22,10 @@
   @include govuk-font($size: 19, $weight: bold);
 }
 
+.hmrc-currency-input__unit {
+  pointer-events: none;
+}
+
 .govuk-form-group--error .hmrc-currency-input__unit {
   top: 4px;
   bottom: 4px;
