@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - issue where status tags weren't left aligning at mobile widths
+- issue where iPadOS 13.6+ caused issues with currency input
 
 ## [1.17.0] - 2020-09-21
 
