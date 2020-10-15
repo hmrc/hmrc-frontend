@@ -24,6 +24,7 @@ afterAll(async () => {
 })
 
 describe('When the page is loaded on mobile', () => {
+  const accountMenuUrl = baseUrl + '/components/account-menu/default/preview'
   const nav = '.hmrc-account-menu'
   const mobileMenuLink = '.hmrc-account-menu__link--menu'
   const mobileSubMenu = '.hmrc-account-menu__main'
@@ -59,7 +60,7 @@ describe('When the page is loaded on mobile', () => {
   })
 
   it('should show the sub nav when account menu is clicked', async () => {
-    await page.goto(baseUrl + '/components/account-menu/default/preview')
+    await page.goto(accountMenuUrl)
 
     await page.click(mobileMenuLink)
 
@@ -79,8 +80,17 @@ describe('When the page is loaded on mobile', () => {
     expect(yourAccountLinkIsExpanded).toBe('false')
   })
 
+  it('should not add an aria-hidden attribute to the Your Account link', async () => {
+    await page.goto(accountMenuUrl)
+
+    await page.click(mobileMenuLink)
+
+    const yourAccountAriaHidden = await page.$eval(yourAccountLink, el => el.getAttribute('aria-hidden'))
+    expect(yourAccountAriaHidden).toBeNull()
+  })
+
   it('should reveal the Your Account subnav when clicked', async () => {
-    await page.goto(baseUrl + '/components/account-menu/default/preview')
+    await page.goto(accountMenuUrl)
 
     await page.click(mobileMenuLink)
     await page.click(yourAccountLink)
@@ -117,7 +127,7 @@ describe('When the page is loaded on mobile', () => {
   })
 
   it('should close the Your Account navigation when clicking back', async () => {
-    await page.goto(baseUrl + '/components/account-menu/default/preview')
+    await page.goto(accountMenuUrl)
 
     await page.click(mobileMenuLink)
     await page.click(yourAccountLink)
@@ -143,8 +153,19 @@ describe('When the page is loaded on mobile', () => {
     expect(subnavItemsHidden).toBe(0)
   })
 
+  it('should not add aria-hidden to the Your Account link when clicking back', async () => {
+    await page.goto(accountMenuUrl)
+
+    await page.click(mobileMenuLink)
+    await page.click(yourAccountLink)
+    await page.click(`${mobileBack} a`)
+
+    const yourAccountAriaHidden = await page.$eval(yourAccountLink, el => el.getAttribute('aria-hidden'))
+    expect(yourAccountAriaHidden).toBeNull()
+  })
+
   it('should close the Your Account navigation when window resize crosses a breakpoint', async () => {
-    await page.goto(baseUrl + '/components/account-menu/default/preview')
+    await page.goto(accountMenuUrl)
 
     await page.click(mobileMenuLink)
     // Set width to > tablet breakpoint
@@ -156,7 +177,7 @@ describe('When the page is loaded on mobile', () => {
   })
 
   it('should NOT close the Your Account navigation when window resizes without crossing a breakpoint', async () => {
-    await page.goto(baseUrl + '/components/account-menu/default/preview')
+    await page.goto(accountMenuUrl)
 
     await page.click(mobileMenuLink)
     // Set width to different mobile width
@@ -168,7 +189,7 @@ describe('When the page is loaded on mobile', () => {
   })
 
   it('should NOT close the Your Account navigation when window resizes vertically', async () => {
-    await page.goto(baseUrl + '/components/account-menu/default/preview')
+    await page.goto(accountMenuUrl)
 
     await page.click(mobileMenuLink)
     // Change height

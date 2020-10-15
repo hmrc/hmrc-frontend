@@ -140,7 +140,6 @@ AccountMenu.prototype.showSubnavDesktop = function () {
   }, 500)
 
   this.$showSubnavLink.classList.add('hmrc-account-menu__link--more-expanded')
-  this.$showSubnavLink.setAttribute('aria-hidden', 'false')
   this.$showSubnavLink.setAttribute('aria-expanded', 'true')
 }
 
@@ -154,7 +153,6 @@ AccountMenu.prototype.hideSubnavDesktop = function () {
   this.$subNav.setAttribute('aria-expanded', 'false')
 
   this.$showSubnavLink.classList.remove('hmrc-account-menu__link--more-expanded')
-  this.$showSubnavLink.setAttribute('aria-hidden', 'true')
   this.$showSubnavLink.setAttribute('aria-expanded', 'false')
 
   this.$module.style.marginBottom = this.$moduleBottomMargin
@@ -197,7 +195,6 @@ AccountMenu.prototype.showSubnavMobile = function (element) {
   this.$subNav.setAttribute('aria-expanded', 'true')
 
   this.$showSubnavLink.classList.add('hmrc-account-menu__link--more-expanded')
-  this.$showSubnavLink.setAttribute('aria-hidden', 'false')
   this.$showSubnavLink.setAttribute('aria-expanded', 'true')
 
   this.$backLink.parentNode.setAttribute('aria-hidden', 'false')
@@ -228,7 +225,6 @@ AccountMenu.prototype.hideSubnavMobile = function () {
   this.$subNav.setAttribute('aria-expanded', 'false')
 
   this.$showSubnavLink.classList.remove('hmrc-account-menu__link--more-expanded')
-  this.$showSubnavLink.setAttribute('aria-hidden', 'true')
   this.$showSubnavLink.setAttribute('aria-expanded', 'false')
 
   this.$backLink.parentNode.setAttribute('aria-hidden', 'true')
@@ -245,9 +241,6 @@ AccountMenu.prototype.hideSubnavMobile = function () {
       sibling.classList.remove('hidden')
     }
   }
-
-  // TODO: change to
-  // mainNav.children().not(backLink).removeClass('js-hidden')
 }
 
 function isSmall (element) {
