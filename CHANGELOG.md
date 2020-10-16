@@ -5,7 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## Unreleased
+
+## [1.18.0] - 2020-10-16
 
 ### Fixed
 
@@ -13,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - issue where iPadOS 13.6+ caused issues with currency input
 - issue where empty div was created when displayHmrcBanner is false
 - incorrectly added aria-hidden attribute on 'Your Account' link in PTA account menu
+- issue where horizontal scrollbars were appearing on the internal header in certain browsers
 
 ## [1.17.0] - 2020-09-21
 
