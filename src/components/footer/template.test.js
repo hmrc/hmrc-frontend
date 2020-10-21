@@ -3,13 +3,17 @@
  */
 /* eslint-env jest */
 
-const axe = require('../../../../lib/axe-helper')
+const axe = require('../../../lib/axe-helper')
 
-const { render, getExamples } = require('../../../../lib/jest-helpers')
+const { render, getExamples } = require('../../../lib/jest-helpers')
 
 const examples = getExamples('footer')
 
 describe('footer', () => {
+  function normaliseText (text) {
+    return (text || '').trim().replace(/\s+/g, ' ')
+  }
+
   it('default example passes accessibility tests', async () => {
     const $ = render('footer', examples.default)
 
@@ -195,6 +199,24 @@ describe('footer', () => {
       const $component = $('.govuk-footer')
       const $sectionBreak = $component.find('hr.govuk-footer__section-break')
       expect($sectionBreak.length).toBeFalsy()
+    })
+  })
+
+  describe('Copyright notice', () => {
+    it('renders in English', () => {
+      const $ = render('footer', examples['with empty navigation'])
+
+      const $component = $('.govuk-footer')
+      const $licenceDescription = $component.find('.govuk-footer__licence-description')
+      expect(normaliseText($licenceDescription.text())).toBe('All content is available under the Open Government Licence v3.0, except where otherwise stated')
+    })
+
+    it('renders in Welsh', () => {
+      const $ = render('footer', examples['welsh language'])
+
+      const $component = $('.govuk-footer')
+      const $licenceDescription = $component.find('.govuk-footer__licence-description')
+      expect(normaliseText($licenceDescription.text())).toBe('Mae‘r holl gynnwys ar gael o dan y Drwydded Llywodraeth Agored v3.0, oni nodir yn wahanol')
     })
   })
 })

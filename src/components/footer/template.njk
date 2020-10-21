@@ -68,12 +68,13 @@
           />
         </svg>
         <span class="govuk-footer__licence-description">
-          All content is available under the
+          {% if(params.language == 'cy') %}Mae‘r holl gynnwys ar gael o dan y {% else %}All content is available under the {% endif %}
           <a
             class="govuk-footer__link"
             href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
             rel="license"
-          >Open Government Licence v3.0</a>, except where otherwise stated
+          >          {% if(params.language == 'cy') %}Drwydded Llywodraeth Agored{% else %}Open Government Licence{% endif %}  v3.0</a>, {% if(params.language == 'cy') %}oni nodir yn wahanol{% else %}except where otherwise stated{% endif %}
+
         </span>
       </div>
       <div class="govuk-footer__meta-item">

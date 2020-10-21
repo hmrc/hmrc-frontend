@@ -354,3 +354,6 @@ examples:
             attributes:
               data-attribute: my-attribute
               data-attribute-2: my-attribute-2
+- name: welsh language
+  data:
+    language: cy
