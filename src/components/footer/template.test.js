@@ -209,6 +209,8 @@ describe('footer', () => {
       const $component = $('.govuk-footer')
       const $licenceDescription = $component.find('.govuk-footer__licence-description')
       expect(normaliseText($licenceDescription.text())).toBe('All content is available under the Open Government Licence v3.0, except where otherwise stated')
+      expect(normaliseText($licenceDescription.find('a').text())).toBe('Open Government Licence v3.0')
+      expect(normaliseText($component.find('.govuk-footer__link.govuk-footer__copyright-logo').text())).toBe('© Crown copyright')
     })
 
     it('renders in Welsh', () => {
@@ -217,6 +219,8 @@ describe('footer', () => {
       const $component = $('.govuk-footer')
       const $licenceDescription = $component.find('.govuk-footer__licence-description')
       expect(normaliseText($licenceDescription.text())).toBe('Mae‘r holl gynnwys ar gael o dan y Drwydded Llywodraeth Agored v3.0, oni nodir yn wahanol')
+      expect(normaliseText($licenceDescription.find('a').text())).toBe('y Drwydded Llywodraeth Agored v3.0')
+      expect(normaliseText($component.find('.govuk-footer__link.govuk-footer__copyright-logo').text())).toBe('© Hawlfraint y Goron')
     })
   })
 })
