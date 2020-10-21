@@ -320,6 +320,10 @@ examples:
 - name: with empty meta
   data:
     meta: {}
+- name: with empty meta in Welsh
+  data:
+    language: cy
+    meta: {}
 - name: with empty meta items
   data:
     meta:

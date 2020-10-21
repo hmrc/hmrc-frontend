@@ -32,7 +32,8 @@
     <div class="govuk-footer__meta">
       <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
         {% if params.meta %}
-          <h2 class="govuk-visually-hidden">{{ params.meta.visuallyHiddenTitle | default("Support links") }}</h2>
+          {% set supportLinksDefaultText %}{% if params.language == "cy" %}Cysylltiadau cymorth{% else %}Support links{% endif %}{% endset %}
+          <h2 class="govuk-visually-hidden">{{ params.meta.visuallyHiddenTitle | default(supportLinksDefaultText) }}</h2>
           {% if params.meta.items | length %}
             <ul class="govuk-footer__inline-list">
               {% for item in params.meta.items %}

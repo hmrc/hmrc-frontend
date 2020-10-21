@@ -76,6 +76,14 @@ describe('footer', () => {
       expect($heading.text()).toEqual('Support links')
     })
 
+    it('renders default heading in Welsh when none supplied', () => {
+      const $ = render('footer', examples['with empty meta in Welsh'])
+
+      const $component = $('.govuk-footer')
+      const $heading = $component.find('h2.govuk-visually-hidden')
+      expect($heading.text()).toEqual('Cysylltiadau cymorth')
+    })
+
     it('doesn\'t render footer link list when no items are provided', () => {
       const $ = render('footer', examples['with empty meta items'])
 
