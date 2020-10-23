@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## [1.19.0] - 2020-10-16
+
+### Fixed
+
+- Added clone of GDS footer with Welsh language translations
+
 ## [1.18.0] - 2020-10-16
 
 ### Fixed
