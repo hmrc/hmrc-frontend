@@ -2,11 +2,11 @@
 
 exports[`Currency input when it includes a hint renders the hint 1`] = `
 
-<span id="input-with-hint-hint"
-      class="govuk-hint"
+<div id="input-with-hint-hint"
+     class="govuk-hint"
 >
   Enter the amount in pounds and pence, for example &#xA3;30.00 or &#xA3;50.99
-</span>
+</div>
 
 `;
 
