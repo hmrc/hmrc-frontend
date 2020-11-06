@@ -1,6 +1,6 @@
 {
   "name": "hmrc-frontend",
-  "version": "1.19.0",
+  "version": "1.19.1",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
@@ -9,6 +9,7 @@
     "build": "npm run build:dist && npm run build:package",
     "lint": "stylelint 'src/**/*.scss' && standard",
     "test": "gulp compile-and-copy-assets && jest src && npm run lint",
+    "test:update-snapshots": "jest src -u",
     "test:compatibility": "jest __tests__/check-compatibility.test.js",
     "test:build:package": "jest tasks/gulp/__tests__/after-build-package.test.js",
     "test:build:dist": "jest tasks/gulp/__tests__/after-build-dist.test.js",
@@ -35,12 +36,12 @@
   },
   "homepage": "https://github.com/hmrc/hmrc-frontend#readme",
   "dependencies": {
-    "govuk-frontend": "^3.7.0"
+    "govuk-frontend": "^3.9.1"
   },
   "devDependencies": {
     "autoprefixer": "^9.6.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "backstopjs": "^5.0.1",
+    "backstopjs": "^5.0.6",
     "cheerio": "^1.0.0-rc.3",
     "cssnano": "^4.1.10",
     "del": "^5.0.0",

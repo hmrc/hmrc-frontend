@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## [1.19.1] - 2020-11-06
+
+### Updated
+
+- Using the latest version of `govuk-frontend`.
+- Upgrading to the latest version of `backstopjs`, trying and failing to avoid a vulnerability but still worth upgrading.
+
 ## [1.19.0] - 2020-10-16
 
 ### Fixed
