@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## [1.20.0] - 2020-11-12
+
+### Updated
+
+- Added `baseUrl` to `hmrcReportTechnicalIssue` to allow it to work in pre-live environments.
+- Added `referrerUrl` to `hmrcReportTechnicalIssue` to enable services to pass through the page on which the user encountered the problem.
+
 ## [1.19.1] - 2020-11-06
 
 ### Updated
