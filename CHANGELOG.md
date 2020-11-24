@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## [1.21.0] - 2020-11-23
+
+### Changed
+
+- Content for report a technical problem link to be consistent with contact-frontend
+
 ## [1.20.0] - 2020-11-12
 
 ### Updated

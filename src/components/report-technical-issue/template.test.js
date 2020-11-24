@@ -28,7 +28,7 @@ describe('Report Technical Issue', () => {
       expect($component.attr('hreflang')).toEqual('en')
       expect($component.attr('lang')).toEqual('en')
       expect($component.attr('href')).toEqual('/contact/problem_reports_nonjs?newTab=true&service=the-url-safe-service-name')
-      expect($component.text()).toEqual('Get help with this page (opens in new tab)')
+      expect($component.text()).toEqual('Is this page not working properly? (opens in new tab)')
     })
   })
 
@@ -41,7 +41,7 @@ describe('Report Technical Issue', () => {
     expect($component.attr('hreflang')).toEqual('en')
     expect($component.attr('lang')).toEqual('en')
     expect($component.attr('href')).toEqual('/contact/problem_reports_nonjs?newTab=true')
-    expect($component.text()).toEqual('Get help with this page (opens in new tab)')
+    expect($component.text()).toEqual('Is this page not working properly? (opens in new tab)')
   })
 
   it('shouldn\'t specify any rel attributes so that referrer data is passed through', () => {
@@ -66,7 +66,7 @@ describe('Report Technical Issue', () => {
 
     expect($component.attr('hreflang')).toEqual('cy')
     expect($component.attr('lang')).toEqual('cy')
-    expect($component.text()).toEqual('Help gyda\'r dudalen hon (yn agor ffenestr neu dab newydd)')
+    expect($component.text()).toEqual('A yw’r dudalen hon yn gweithio’n iawn? (yn agor mewn tab newydd)')
   })
 
   it('should default to no Base URL', () => {
