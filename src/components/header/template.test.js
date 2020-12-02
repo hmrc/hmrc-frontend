@@ -17,11 +17,18 @@ describe('header', () => {
     expect(results).toHaveNoViolations()
   })
 
-  it('has a role of `banner`', () => {
+  it('passes accessibility tests when including the banner', async () => {
+    const $ = render('header', examples['with hmrc banner english'])
+
+    const results = await axe($.html())
+    expect(results).toHaveNoViolations()
+  })
+
+  it('does not have a role of `banner` because this is implicit', () => {
     const $ = render('header', {})
 
     const $component = $('.govuk-header')
-    expect($component.attr('role')).toEqual('banner')
+    expect($component.attr('role')).toBeUndefined()
   })
 
   it('renders attributes correctly', () => {
