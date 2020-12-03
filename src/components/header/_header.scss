@@ -16,6 +16,10 @@
     &:hover {
       text-decoration: underline;
     }
+
+    &:focus {
+      color: #0B0C0C;
+    }
   }
 
   .hmrc-language-select {
