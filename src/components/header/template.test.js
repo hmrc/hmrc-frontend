@@ -20,7 +20,7 @@ describe('header', () => {
   it('has a role of `banner`', () => {
     const $ = render('header', {})
 
-    const $component = $('.govuk-header')
+    const $component = $('header')
     expect($component.attr('role')).toEqual('banner')
   })
 
@@ -185,6 +185,23 @@ describe('header', () => {
         // Cheerio converts xhref to href - https://github.com/cheeriojs/cheerio/issues/1101
         expect($fallbackImage.attr('href')).toEqual('')
       })
+    })
+  })
+
+  describe('HMRC banner', () => {
+    it('passes accessibility tests when including the banner', async () => {
+      const $ = render('header', examples['with hmrc banner english'])
+
+      const results = await axe($.html())
+      expect(results).toHaveNoViolations()
+    })
+    it('should have English text by default', () => {
+      const $ = render('banner', examples['with hmrc banner english'])
+      expect($('.hmrc-banner > .hmrc-organisation-logo > p.govuk-body-s').text().trim()).toEqual('HM Revenue & Customs')
+    })
+    it('should have Welsh text when specified', () => {
+      const $ = render('banner', examples['with hmrc banner welsh'])
+      expect($('.hmrc-banner > .hmrc-organisation-logo > p.govuk-body-s').text().trim()).toEqual('Cyllid a Thollau EM')
     })
   })
 })

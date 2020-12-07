@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Fixed colour contrast for focused sign out link in gov.uk header not meeting accessibility standards
 
+## [1.22.0] - 2020-12-02
+
+### Fixed
+
+- Accessibility issue with hmrcHeader when displayHmrcBanner set to true. Previously this
+component defined two top-level 'banner' landmarks failing accessibility tests. On advice from the 
+HMRC accessibility team, the HMRC banner has been moved inside HEADER so that screen-reader users read the
+banner as part of the overall header and can skip to the main content more easily. 
+
 ## [1.21.0] - 2020-11-23
 
 ### Changed
