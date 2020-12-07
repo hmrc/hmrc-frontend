@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+- Fixed colour contrast for focused sign out link in gov.uk header not meeting accessibility standards
+
 ## [1.22.0] - 2020-12-02
 
 ### Fixed
