@@ -32,6 +32,11 @@ examples:
   data:
     serviceCode: the-url-safe-service-code
     language: "en"
+- name: with-service-id-and-service-code
+  data:
+    serviceCode: the-url-safe-service-code
+    serviceId: the-url-safe-service-id
+    language: "en"
 - name: welsh
   data:
     serviceId: the-url-safe-service-id

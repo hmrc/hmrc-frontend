@@ -44,16 +44,18 @@ describe('Report Technical Issue', () => {
     expect($component.text()).toEqual('Is this page not working properly? (opens in new tab)')
   })
 
-  it('renders a link element when using the deprecated serviceCode parameter', () => {
+  it('supports the deprecated serviceCode parameter', () => {
     const $ = render('report-technical-issue', examples['with-deprecated-service-code'])
 
     const $component = $('.govuk-link')
-    expect($component.get(0).tagName).toEqual('a')
-    expect($component.attr('target')).toEqual('_blank')
-    expect($component.attr('hreflang')).toEqual('en')
-    expect($component.attr('lang')).toEqual('en')
     expect($component.attr('href')).toEqual('/contact/problem_reports_nonjs?newTab=true&service=the-url-safe-service-code')
-    expect($component.text()).toEqual('Is this page not working properly? (opens in new tab)')
+  })
+
+  it('uses the serviceId if serviceId and serviceCode are supplied', () => {
+    const $ = render('report-technical-issue', examples['with-service-id-and-service-code'])
+
+    const $component = $('.govuk-link')
+    expect($component.attr('href')).toEqual('/contact/problem_reports_nonjs?newTab=true&service=the-url-safe-service-id')
   })
 
   it('shouldn\'t specify any rel attributes so that referrer data is passed through', () => {
