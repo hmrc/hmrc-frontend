@@ -27,7 +27,7 @@ describe('Report Technical Issue', () => {
       expect($component.attr('target')).toEqual('_blank')
       expect($component.attr('hreflang')).toEqual('en')
       expect($component.attr('lang')).toEqual('en')
-      expect($component.attr('href')).toEqual('/contact/problem_reports_nonjs?newTab=true&service=the-url-safe-service-name')
+      expect($component.attr('href')).toEqual('/contact/problem_reports_nonjs?newTab=true&service=the-url-safe-service-id')
       expect($component.text()).toEqual('Is this page not working properly? (opens in new tab)')
     })
   })
@@ -42,6 +42,20 @@ describe('Report Technical Issue', () => {
     expect($component.attr('lang')).toEqual('en')
     expect($component.attr('href')).toEqual('/contact/problem_reports_nonjs?newTab=true')
     expect($component.text()).toEqual('Is this page not working properly? (opens in new tab)')
+  })
+
+  it('supports the deprecated serviceCode parameter', () => {
+    const $ = render('report-technical-issue', examples['with-deprecated-service-code'])
+
+    const $component = $('.govuk-link')
+    expect($component.attr('href')).toEqual('/contact/problem_reports_nonjs?newTab=true&service=the-url-safe-service-code')
+  })
+
+  it('uses the serviceId if serviceId and serviceCode are supplied', () => {
+    const $ = render('report-technical-issue', examples['with-service-id-and-service-code'])
+
+    const $component = $('.govuk-link')
+    expect($component.attr('href')).toEqual('/contact/problem_reports_nonjs?newTab=true&service=the-url-safe-service-id')
   })
 
   it('shouldn\'t specify any rel attributes so that referrer data is passed through', () => {
@@ -87,20 +101,20 @@ describe('Report Technical Issue', () => {
     expect($('.govuk-link').attr('href')).toEqual('/contact/problem_reports_nonjs?newTab=true&service=my-generic-service')
   })
 
-  it('should URL encode the service name', () => {
-    const $ = render('report-technical-issue', examples['with-non-url-safe-service-name'])
+  it('should URL encode the service identifier', () => {
+    const $ = render('report-technical-issue', examples['with-non-url-safe-service-id'])
 
     expect($('.govuk-link').attr('href')).toEqual('/contact/problem_reports_nonjs?newTab=true&service=Build%20%26%20Deploy')
   })
 
-  it('should URL encode the service name', () => {
-    const $ = render('report-technical-issue', examples['with-redirect-url'])
+  it('should URL encode the referrer url', () => {
+    const $ = render('report-technical-issue', examples['with-referrer-url'])
 
     expect($('.govuk-link').attr('href')).toEqual('/contact/problem_reports_nonjs?newTab=true&service=pay&referrerUrl=https%3A%2F%2Fwww.tax.service.gov.uk%2Fpay%3Fabc%3Ddef')
   })
 
-  it('should URL encode the service name', () => {
-    const $ = render('report-technical-issue', examples['with-local-redirect-url'])
+  it('should URL encode the local referrer url', () => {
+    const $ = render('report-technical-issue', examples['with-local-referrer-url'])
 
     expect($('.govuk-link').attr('href')).toEqual('/contact/problem_reports_nonjs?newTab=true&service=pay&referrerUrl=http%3A%2F%2Flocalhost%3A9123%2Fmy-service')
   })
