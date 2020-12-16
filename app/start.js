@@ -1,8 +1,9 @@
-const configPaths = require('../config/paths.json')
-const PORT = process.env.PORT || configPaths.ports.app
+const configPaths = require('../config/paths.json');
 
-const app = require('./app.js')()
+const PORT = process.env.PORT || configPaths.ports.app;
+
+const app = require('./app.js')();
 
 app.listen(PORT, () => {
-  console.log('Server started at http://localhost:' + PORT)
-})
+  console.log(`Server started at http://localhost:${PORT}`);
+});
