@@ -84,6 +84,18 @@ If you would like to propose a feature or raise an issue with HMRC Frontend, [cr
 
 You can also create a pull request to contribute to HMRC Frontend. See our [contribution process and guidelines for HMRC Frontend](CONTRIBUTING.md) before you create a pull request.
 
+### Code Style (Linting)
+
+We use tools to ensure the style of our SCSS and JS is consistent.  The code is checked when the tests
+run on the build server.  If you are contributing SCSS or JS you'll probably be running
+the tests using `npm test` - this includes the code style checks.
+
+To run the code style checks independently you can run `npm run lint`.
+
+Automatic fixing is available for a number of the code style rules we apply.  To let the tool
+automatically fix the issues it can fix run `npm run lint:fix` - that will show you any remaining
+issues after the tool has fixed what it can for you.
+
 ## License
 
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
