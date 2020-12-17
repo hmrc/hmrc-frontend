@@ -1,443 +1,438 @@
 /* eslint-env jest */
-const mock = require('jest-mock')
-const expect = require('expect')
-const dialog = require('../../../public/components/timeout-dialog/dialog')
-const utils = require('../../../public/components/timeout-dialog/utils')
+const mock = require('jest-mock');
+const expect = require('expect');
+const dialog = require('../../../public/components/timeout-dialog/dialog');
+const utils = require('../../../public/components/timeout-dialog/utils');
 
-describe('Dialog', function () {
-  var assume = expect
-  var $DEFAULT_ELEMENT_TO_DISPLAY
-  var testScope
+describe('Dialog', () => {
+  const assume = expect;
+  const ESCAPE_KEY_CODE = 27;
+  let $DEFAULT_ELEMENT_TO_DISPLAY;
+  let testScope;
 
-  function pretendEscapeWasPressed () {
-    triggerKeyPress(ESCAPE_KEY_CODE)
-  }
+  const triggerKeyPress = (keyCode) => {
+    const e = document.createEvent('Events');
+    e.initEvent('keydown', true, true, window, 1);
+    e.keyCode = keyCode;
+    document.dispatchEvent(e);
+  };
 
-  function pretendEverythingButEscapeWasPressed () {
-    var keyCode = 256
+  const pretendEverythingButEscapeWasPressed = () => {
+    let keyCode = 256;
     while (keyCode >= 0) {
-      keyCode--
+      keyCode -= 1;
       if (keyCode !== ESCAPE_KEY_CODE) {
-        triggerKeyPress(keyCode)
+        triggerKeyPress(keyCode);
       }
     }
-  }
+  };
+  const pretendEscapeWasPressed = () => {
+    triggerKeyPress(ESCAPE_KEY_CODE);
+  };
 
-  function triggerKeyPress (keyCode) {
-    var e = document.createEvent('Events')
-    e.initEvent('keydown', true, true, window, 1)
-    e.keyCode = keyCode
-    document.dispatchEvent(e)
-  }
+  beforeEach(() => {
+    $DEFAULT_ELEMENT_TO_DISPLAY = utils.generateDomElementFromStringAndAppendText('<div id="added-to-dialog">', 'Dialog message');
+    testScope = {};
+  });
 
-  var ESCAPE_KEY_CODE = 27
-
-  beforeEach(function () {
-    $DEFAULT_ELEMENT_TO_DISPLAY = utils.generateDomElementFromStringAndAppendText('<div id="added-to-dialog">', 'Dialog message')
-    testScope = {}
-  })
-
-  afterEach(function () {
+  afterEach(() => {
     if (testScope.dialogControl) {
-      testScope.dialogControl.closeDialog()
+      testScope.dialogControl.closeDialog();
     }
-  })
+  });
 
-  function openDefaultDialog () {
-    testScope.closeCallback = mock.fn()
-    testScope.dialogControl = dialog.displayDialog($DEFAULT_ELEMENT_TO_DISPLAY)
-    testScope.dialogControl.addCloseHandler(testScope.closeCallback)
+  function openDefaultDialog() {
+    testScope.closeCallback = mock.fn();
+    testScope.dialogControl = dialog.displayDialog($DEFAULT_ELEMENT_TO_DISPLAY);
+    testScope.dialogControl.addCloseHandler(testScope.closeCallback);
   }
 
-  describe('When open', function () {
-    beforeEach(function () {
-      assume(document.querySelector('#hmrc-timeout-overlay')).toBeNull()
-      assume(document.querySelector('#hmrc-timeout-dialog')).toBeNull()
+  describe('When open', () => {
+    beforeEach(() => {
+      assume(document.querySelector('#hmrc-timeout-overlay')).toBeNull();
+      assume(document.querySelector('#hmrc-timeout-dialog')).toBeNull();
 
-      openDefaultDialog()
-    })
+      openDefaultDialog();
+    });
 
-    it('calling close should remove the elements', function () {
-      assume(document.querySelector('#hmrc-timeout-overlay.hmrc-timeout-overlay')).not.toBeNull()
-      assume(document.querySelector('#hmrc-timeout-dialog.hmrc-timeout-dialog')).not.toBeNull()
+    it('calling close should remove the elements', () => {
+      assume(document.querySelector('#hmrc-timeout-overlay.hmrc-timeout-overlay')).not.toBeNull();
+      assume(document.querySelector('#hmrc-timeout-dialog.hmrc-timeout-dialog')).not.toBeNull();
 
-      testScope.dialogControl.closeDialog()
+      testScope.dialogControl.closeDialog();
 
-      expect(document.querySelector('#hmrc-timeout-overlay')).toBeNull()
-      expect(document.querySelector('#hmrc-timeout-dialog')).toBeNull()
-      expect(testScope.closeCallback).not.toHaveBeenCalled()
-    })
+      expect(document.querySelector('#hmrc-timeout-overlay')).toBeNull();
+      expect(document.querySelector('#hmrc-timeout-dialog')).toBeNull();
+      expect(testScope.closeCallback).not.toHaveBeenCalled();
+    });
 
-    it('should be added to the dom with correct attributes', function () {
-      var $overlay = document.querySelector('#hmrc-timeout-overlay')
-      var $dialog = document.querySelector('#hmrc-timeout-dialog')
+    it('should be added to the dom with correct attributes', () => {
+      const $overlay = document.querySelector('#hmrc-timeout-overlay');
+      const $dialog = document.querySelector('#hmrc-timeout-dialog');
 
-      expect($overlay).not.toBeNull()
-      expect($overlay.classList).toContain('hmrc-timeout-overlay')
-      expect($dialog).not.toBeNull()
-      expect($dialog.classList).toContain('hmrc-timeout-dialog')
-      expect($dialog.attributes.getNamedItem('role').value).toEqual('dialog')
-      expect($dialog.attributes.getNamedItem('tabindex').value).toEqual('-1')
-    })
+      expect($overlay).not.toBeNull();
+      expect($overlay.classList).toContain('hmrc-timeout-overlay');
+      expect($dialog).not.toBeNull();
+      expect($dialog.classList).toContain('hmrc-timeout-dialog');
+      expect($dialog.attributes.getNamedItem('role').value).toEqual('dialog');
+      expect($dialog.attributes.getNamedItem('tabindex').value).toEqual('-1');
+    });
 
-    it('should be attached to the end of the body', function () {
-      var $lastElement = document.querySelector('body').lastElementChild
-      var $secondToLastElement = $lastElement.previousElementSibling
+    it('should be attached to the end of the body', () => {
+      const $lastElement = document.querySelector('body').lastElementChild;
+      const $secondToLastElement = $lastElement.previousElementSibling;
 
-      expect($lastElement.id).toEqual('hmrc-timeout-overlay')
-      expect($secondToLastElement.id).toEqual('hmrc-timeout-dialog')
-    })
+      expect($lastElement.id).toEqual('hmrc-timeout-overlay');
+      expect($secondToLastElement.id).toEqual('hmrc-timeout-dialog');
+    });
 
-    // it('should contain provided element', function () {
-    //   expect(document.querySelector('#timeout-dialog')).toContainElement($DEFAULT_ELEMENT_TO_DISPLAY)
-    // })
+    it('should hide when escape is pressed', () => {
+      assume(testScope.closeCallback).not.toHaveBeenCalled();
 
-    it('should hide when escape is pressed', function () {
-      assume(testScope.closeCallback).not.toHaveBeenCalled()
+      pretendEscapeWasPressed();
 
-      pretendEscapeWasPressed()
+      expect(testScope.closeCallback).toHaveBeenCalled();
+      expect(document.querySelector('#hmrc-timeout-overlay')).toBeNull();
+      expect(document.querySelector('#hmrc-timeout-dialog')).toBeNull();
+    });
 
-      expect(testScope.closeCallback).toHaveBeenCalled()
-      expect(document.querySelector('#hmrc-timeout-overlay')).toBeNull()
-      expect(document.querySelector('#hmrc-timeout-dialog')).toBeNull()
-    })
+    it('should only call callback once when escape is pressed many times', () => {
+      assume(testScope.closeCallback).not.toHaveBeenCalled();
 
-    it('should only call callback once when escape is pressed many times', function () {
-      assume(testScope.closeCallback).not.toHaveBeenCalled()
+      pretendEscapeWasPressed();
+      pretendEscapeWasPressed();
+      pretendEscapeWasPressed();
+      pretendEscapeWasPressed();
+      pretendEscapeWasPressed();
 
-      pretendEscapeWasPressed()
-      pretendEscapeWasPressed()
-      pretendEscapeWasPressed()
-      pretendEscapeWasPressed()
-      pretendEscapeWasPressed()
+      expect(testScope.closeCallback.mock.calls.length).toEqual(1);
+    });
 
-      expect(testScope.closeCallback.mock.calls.length).toEqual(1)
-    })
+    it('should only call callback once when escape is pressed after closeDialog was called', () => {
+      assume(testScope.closeCallback).not.toHaveBeenCalled();
 
-    it('should only call callback once when escape is pressed after closeDialog was called', function () {
-      assume(testScope.closeCallback).not.toHaveBeenCalled()
+      testScope.dialogControl.closeDialog();
 
-      testScope.dialogControl.closeDialog()
+      pretendEscapeWasPressed();
 
-      pretendEscapeWasPressed()
+      expect(testScope.closeCallback).not.toHaveBeenCalled();
+    });
 
-      expect(testScope.closeCallback).not.toHaveBeenCalled()
-    })
+    it('should hide when escape is pressed', () => {
+      pretendEverythingButEscapeWasPressed();
 
-    it('should hide when escape is pressed', function () {
-      pretendEverythingButEscapeWasPressed()
+      expect(document.querySelector('#hmrc-timeout-dialog')).not.toBeNull();
+      expect(document.querySelector('#hmrc-timeout-overlay')).not.toBeNull();
+      expect(testScope.closeCallback).not.toHaveBeenCalled();
+    });
 
-      expect(document.querySelector('#hmrc-timeout-dialog')).not.toBeNull()
-      expect(document.querySelector('#hmrc-timeout-overlay')).not.toBeNull()
-      expect(testScope.closeCallback).not.toHaveBeenCalled()
-    })
+    it('should specify no background scroll', () => {
+      expect(document.querySelector('html').classList).toContain('noScroll');
+    });
 
-    it('should specify no background scroll', function () {
-      expect(document.querySelector('html').classList).toContain('noScroll')
-    })
+    it('should remove no background scroll when closed with escape key', () => {
+      pretendEscapeWasPressed();
 
-    it('should remove no background scroll when closed with escape key', function () {
-      pretendEscapeWasPressed()
+      expect(document.querySelector('html').classList).not.toContain('noScroll');
+    });
 
-      expect(document.querySelector('html').classList).not.toContain('noScroll')
-    })
+    it('should remove no background scroll when closed with control function', () => {
+      testScope.dialogControl.closeDialog();
 
-    it('should remove no background scroll when closed with control function', function () {
-      testScope.dialogControl.closeDialog()
+      expect(document.querySelector('html').classList).not.toContain('noScroll');
+    });
+  });
 
-      expect(document.querySelector('html').classList).not.toContain('noScroll')
-    })
-  })
+  it('should not remove noScroll class if it was set before opening', () => {
+    document.querySelector('html').classList.add('noScroll');
 
-  it('should not remove noScroll class if it was set before opening', function () {
-    document.querySelector('html').classList.add('noScroll')
+    openDefaultDialog();
+    pretendEscapeWasPressed();
 
-    openDefaultDialog()
-    pretendEscapeWasPressed()
+    expect(document.querySelector('html').classList).toContain('noScroll');
 
-    expect(document.querySelector('html').classList).toContain('noScroll')
+    document.querySelector('html').classList.remove('noScroll'); // to cleanup before the next test
+  });
 
-    document.querySelector('html').classList.remove('noScroll') // to cleanup before the next test
-  })
+  it('should open with specified element', () => {
+    const $root = utils.generateDomElementFromStringAndAppendText('<div id="my-custom-elem">', 'abcdef');
 
-  it('should open with specified element', function () {
-    const $root = utils.generateDomElementFromStringAndAppendText('<div id="my-custom-elem">', 'abcdef')
+    testScope.dialogControl = dialog.displayDialog($root);
 
-    testScope.dialogControl = dialog.displayDialog($root)
+    const $dialogElem = document.querySelector('#hmrc-timeout-dialog');
 
-    let $dialogElem = document.querySelector('#hmrc-timeout-dialog')
+    expect($dialogElem.querySelector('#my-custom-elem')).toBe($root);
+  });
+  it('should not error when escape is pressed and no callback is provided', () => {
+    testScope.dialogControl = dialog.displayDialog($DEFAULT_ELEMENT_TO_DISPLAY);
 
-    expect($dialogElem.querySelector('#my-custom-elem')).toBe($root)
-  })
-  it('should not error when escape is pressed and no callback is provided', function () {
-    testScope.dialogControl = dialog.displayDialog($DEFAULT_ELEMENT_TO_DISPLAY)
+    expect(pretendEscapeWasPressed).not.toThrow();
 
-    expect(pretendEscapeWasPressed).not.toThrow()
+    expect(document.querySelector('#hmrc-timeout-dialog')).toBeNull();
+    expect(document.querySelector('#hmrc-timeout-overlay')).toBeNull();
+  });
 
-    expect(document.querySelector('#hmrc-timeout-dialog')).toBeNull()
-    expect(document.querySelector('#hmrc-timeout-overlay')).toBeNull()
-  })
-
-  describe('Manipulating page elements for dialog', function () {
-    beforeEach(function () {
-      const arr = testScope.elementsCreatedForThisTest = []
+  describe('Manipulating page elements for dialog', () => {
+    beforeEach(() => {
+      const arr = [];
+      testScope.elementsCreatedForThisTest = arr;
 
       if (!document.querySelector('#skiplink-container')) {
-        arr.push(utils.generateDomElementFromString('<div id=skiplink-container>'))
+        arr.push(utils.generateDomElementFromString('<div id=skiplink-container>'));
       }
       if (!document.querySelector('#global-cookie-message')) {
-        arr.push(utils.generateDomElementFromString('<div id=global-cookie-message>'))
+        arr.push(utils.generateDomElementFromString('<div id=global-cookie-message>'));
       }
       if (!document.querySelector('body>header')) {
-        arr.push(utils.generateDomElementFromString('<header>'))
+        arr.push(utils.generateDomElementFromString('<header>'));
       }
       if (!document.querySelector('main[role=main]')) {
-        arr.push(utils.generateDomElementFromString('<main role="main">'))
+        arr.push(utils.generateDomElementFromString('<main role="main">'));
       }
       if (!document.querySelector('body>footer')) {
-        arr.push(utils.generateDomElementFromString('<footer>'))
+        arr.push(utils.generateDomElementFromString('<footer>'));
       }
-      arr.forEach($elem => document.body.appendChild($elem))
-    })
-    afterEach(function () {
-      testScope.elementsCreatedForThisTest.forEach(function ($elem) {
-        document.body.removeChild($elem)
-      })
-    })
+      arr.forEach(($elem) => document.body.appendChild($elem));
+    });
+    afterEach(() => {
+      testScope.elementsCreatedForThisTest.forEach(($elem) => {
+        document.body.removeChild($elem);
+      });
+    });
 
-    it('should set aria-hidden when dialog is open', function () {
-      var selectors = [
+    it('should set aria-hidden when dialog is open', () => {
+      const selectors = [
         '#skiplink-container',
         'body>header',
         '#global-cookie-message',
         'main[role=main]',
-        'body>footer'
-      ]
-      selectors.forEach(function (selector) {
-        assume(document.querySelectorAll(selector).length).toBe(1)
-        assume(document.querySelector(selector).attributes.getNamedItem('aria-hidden')).toBeNull()
-      })
+        'body>footer',
+      ];
+      selectors.forEach((selector) => {
+        assume(document.querySelectorAll(selector).length).toBe(1);
+        assume(document.querySelector(selector).attributes.getNamedItem('aria-hidden')).toBeNull();
+      });
 
-      openDefaultDialog()
+      openDefaultDialog();
 
-      selectors.forEach(function (selector) {
-        expect(document.querySelector(selector).attributes.getNamedItem('aria-hidden').value).toEqual('true')
-      })
-    })
+      selectors.forEach((selector) => {
+        expect(document.querySelector(selector).attributes.getNamedItem('aria-hidden').value).toEqual('true');
+      });
+    });
 
-    it('should reset to previous values when closed', function () {
-      assume(testScope.elementsCreatedForThisTest.length).toBeGreaterThanOrEqual(3)
-      testScope.elementsCreatedForThisTest[0].setAttribute('aria-hidden', 'abcd')
-      testScope.elementsCreatedForThisTest[1].setAttribute('aria-hidden', 'efgh')
-      assume(testScope.elementsCreatedForThisTest[2].attributes.getNamedItem('aria-hidden')).toBeNull()
+    it('should reset to previous values when closed', () => {
+      assume(testScope.elementsCreatedForThisTest.length).toBeGreaterThanOrEqual(3);
+      testScope.elementsCreatedForThisTest[0].setAttribute('aria-hidden', 'abcd');
+      testScope.elementsCreatedForThisTest[1].setAttribute('aria-hidden', 'efgh');
+      assume(testScope.elementsCreatedForThisTest[2].attributes.getNamedItem('aria-hidden')).toBeNull();
 
-      openDefaultDialog()
+      openDefaultDialog();
 
-      expect(testScope.elementsCreatedForThisTest[0].attributes.getNamedItem('aria-hidden').value).toEqual('true')
-      expect(testScope.elementsCreatedForThisTest[1].attributes.getNamedItem('aria-hidden').value).toEqual('true')
-      expect(testScope.elementsCreatedForThisTest[2].attributes.getNamedItem('aria-hidden').value).toEqual('true')
+      expect(testScope.elementsCreatedForThisTest[0].attributes.getNamedItem('aria-hidden').value).toEqual('true');
+      expect(testScope.elementsCreatedForThisTest[1].attributes.getNamedItem('aria-hidden').value).toEqual('true');
+      expect(testScope.elementsCreatedForThisTest[2].attributes.getNamedItem('aria-hidden').value).toEqual('true');
 
-      pretendEscapeWasPressed()
+      pretendEscapeWasPressed();
 
-      expect(testScope.elementsCreatedForThisTest[0].attributes.getNamedItem('aria-hidden').value).toEqual('abcd')
-      expect(testScope.elementsCreatedForThisTest[1].attributes.getNamedItem('aria-hidden').value).toEqual('efgh')
-      expect(testScope.elementsCreatedForThisTest[2].attributes.getNamedItem('aria-hidden')).toBeNull()
-    })
+      expect(testScope.elementsCreatedForThisTest[0].attributes.getNamedItem('aria-hidden').value).toEqual('abcd');
+      expect(testScope.elementsCreatedForThisTest[1].attributes.getNamedItem('aria-hidden').value).toEqual('efgh');
+      expect(testScope.elementsCreatedForThisTest[2].attributes.getNamedItem('aria-hidden')).toBeNull();
+    });
 
-    it('should allow aria-labelledby to be set, reset and removed', function () {
-      openDefaultDialog()
-      var $dialog = document.querySelector('#hmrc-timeout-dialog')
+    it('should allow aria-labelledby to be set, reset and removed', () => {
+      openDefaultDialog();
+      const $dialog = document.querySelector('#hmrc-timeout-dialog');
 
-      expect($dialog.attributes.getNamedItem('aria-labelledby')).toBeNull()
+      expect($dialog.attributes.getNamedItem('aria-labelledby')).toBeNull();
 
-      testScope.dialogControl.setAriaLabelledBy('element-id')
+      testScope.dialogControl.setAriaLabelledBy('element-id');
 
-      expect($dialog.attributes.getNamedItem('aria-labelledby').value).toEqual('element-id')
+      expect($dialog.attributes.getNamedItem('aria-labelledby').value).toEqual('element-id');
 
-      testScope.dialogControl.setAriaLabelledBy('something-else')
+      testScope.dialogControl.setAriaLabelledBy('something-else');
 
-      expect($dialog.attributes.getNamedItem('aria-labelledby').value).toEqual('something-else')
+      expect($dialog.attributes.getNamedItem('aria-labelledby').value).toEqual('something-else');
 
-      testScope.dialogControl.setAriaLabelledBy()
+      testScope.dialogControl.setAriaLabelledBy();
 
-      expect($dialog.attributes.getNamedItem('aria-labelledby')).toBeNull()
-    })
+      expect($dialog.attributes.getNamedItem('aria-labelledby')).toBeNull();
+    });
 
-    describe('Focus control', function () {
-      function expeectActiveElementToHaveId (id) {
-        expect(document.activeElement.id || document.activeElement.outerHTML).toEqual(id)
+    describe('Focus control', () => {
+      function expeectActiveElementToHaveId(id) {
+        expect(document.activeElement.id || document.activeElement.outerHTML).toEqual(id);
       }
 
-      function appendToBody ($elem) {
-        testScope.elementsCreatedForThisTest.push($elem)
-        document.body.appendChild($elem)
-        return $elem
+      function appendToBody($elem) {
+        testScope.elementsCreatedForThisTest.push($elem);
+        document.body.appendChild($elem);
+        return $elem;
       }
 
-      beforeEach(function () {
-        const $focusElem = appendToBody(utils.generateDomElementFromStringAndAppendText('<a href=#>', 'abc'))
-        $focusElem.setAttribute('id', 'the-element-with-the-focus')
-        $focusElem.focus()
-        appendToBody(utils.generateDomElementFromStringAndAppendText('<input>')).setAttribute('id', 'different-elem')
-        appendToBody(utils.generateDomElementFromStringAndAppendText('<button>', 'abc'))
-        appendToBody(utils.generateDomElementFromStringAndAppendText('<textarea>', 'abc'))
-        appendToBody(utils.generateDomElementFromStringAndAppendText('<div tabindex="-1">', 'abc'))
-        appendToBody(utils.generateDomElementFromStringAndAppendText('<div tabindex="10">', 'def'))
-      })
+      beforeEach(() => {
+        const $focusElem = appendToBody(utils.generateDomElementFromStringAndAppendText('<a href=#>', 'abc'));
+        $focusElem.setAttribute('id', 'the-element-with-the-focus');
+        $focusElem.focus();
+        appendToBody(utils.generateDomElementFromStringAndAppendText('<input>')).setAttribute('id', 'different-elem');
+        appendToBody(utils.generateDomElementFromStringAndAppendText('<button>', 'abc'));
+        appendToBody(utils.generateDomElementFromStringAndAppendText('<textarea>', 'abc'));
+        appendToBody(utils.generateDomElementFromStringAndAppendText('<div tabindex="-1">', 'abc'));
+        appendToBody(utils.generateDomElementFromStringAndAppendText('<div tabindex="10">', 'def'));
+      });
 
-      it('should take focus when opening', function () {
-        openDefaultDialog()
+      it('should take focus when opening', () => {
+        openDefaultDialog();
 
-        expeectActiveElementToHaveId('hmrc-timeout-dialog')
-      })
+        expeectActiveElementToHaveId('hmrc-timeout-dialog');
+      });
 
-      it('should return the focus when closed', function () {
-        document.querySelector('#the-element-with-the-focus').focus()
-        expeectActiveElementToHaveId('the-element-with-the-focus')
+      it('should return the focus when closed', () => {
+        document.querySelector('#the-element-with-the-focus').focus();
+        expeectActiveElementToHaveId('the-element-with-the-focus');
 
-        openDefaultDialog()
-        testScope.dialogControl.closeDialog()
+        openDefaultDialog();
+        testScope.dialogControl.closeDialog();
 
-        expeectActiveElementToHaveId('the-element-with-the-focus')
+        expeectActiveElementToHaveId('the-element-with-the-focus');
 
-        document.querySelector('#different-elem').focus()
+        document.querySelector('#different-elem').focus();
 
-        openDefaultDialog()
-        pretendEscapeWasPressed()
+        openDefaultDialog();
+        pretendEscapeWasPressed();
 
-        expeectActiveElementToHaveId('different-elem')
-      })
+        expeectActiveElementToHaveId('different-elem');
+      });
 
-      it('should not allow focus to move outside the dialog', function () {
-        openDefaultDialog()
+      it('should not allow focus to move outside the dialog', () => {
+        openDefaultDialog();
 
-        appendToBody(utils.generateDomElementFromStringAndAppendText('<a href=#>', 'this was added after dialog open')).setAttribute('id', 'added-after-open')
+        appendToBody(utils.generateDomElementFromStringAndAppendText('<a href=#>', 'this was added after dialog open')).setAttribute('id', 'added-after-open');
 
-        testScope.elementsCreatedForThisTest.forEach(function ($elem) {
-          $elem.focus()
-          expeectActiveElementToHaveId('hmrc-timeout-dialog')
-        })
-      })
+        testScope.elementsCreatedForThisTest.forEach(($elem) => {
+          $elem.focus();
+          expeectActiveElementToHaveId('hmrc-timeout-dialog');
+        });
+      });
 
-      it('should allow focus to move outside the dialog after closing', function () {
-        openDefaultDialog()
-        testScope.dialogControl.closeDialog()
+      it('should allow focus to move outside the dialog after closing', () => {
+        openDefaultDialog();
+        testScope.dialogControl.closeDialog();
 
-        document.querySelector('#the-element-with-the-focus').focus()
-        expeectActiveElementToHaveId('the-element-with-the-focus')
+        document.querySelector('#the-element-with-the-focus').focus();
+        expeectActiveElementToHaveId('the-element-with-the-focus');
 
-        document.querySelector('#different-elem').focus()
-        expeectActiveElementToHaveId('different-elem')
-      })
+        document.querySelector('#different-elem').focus();
+        expeectActiveElementToHaveId('different-elem');
+      });
 
-      it('should allow focus to move inside the dialog', function () {
-        expeectActiveElementToHaveId('the-element-with-the-focus')
+      it('should allow focus to move inside the dialog', () => {
+        expeectActiveElementToHaveId('the-element-with-the-focus');
 
-        testScope.dialogControl = dialog.displayDialog(utils.generateDomElementFromString('<div><a href=# id="button-a">Button A</a><a href=# id="button-b">Button B</a></div>'))
+        testScope.dialogControl = dialog.displayDialog(utils.generateDomElementFromString('<div><a href=# id="button-a">Button A</a><a href=# id="button-b">Button B</a></div>'));
 
-        document.querySelector('#button-a').focus()
-        expeectActiveElementToHaveId('button-a')
+        document.querySelector('#button-a').focus();
+        expeectActiveElementToHaveId('button-a');
 
-        document.querySelector('#button-b').focus()
-        expeectActiveElementToHaveId('button-b')
+        document.querySelector('#button-b').focus();
+        expeectActiveElementToHaveId('button-b');
 
-        testScope.dialogControl.closeDialog()
+        testScope.dialogControl.closeDialog();
 
-        expeectActiveElementToHaveId('the-element-with-the-focus')
-      })
-    })
-  })
+        expeectActiveElementToHaveId('the-element-with-the-focus');
+      });
+    });
+  });
 
-  describe('Zoom and Scroll on Mobile', function () {
-    function simulateTouchmoveWithNumberOfFingers (n) {
-      return triggerTouchmoveEventWith('touches', n)
-    }
-
-    function simulateNumberOfChangedTouches (n) {
-      return triggerTouchmoveEventWith('changedTouches', n)
-    }
-
-    function triggerTouchmoveEventWith (arrayName, arrayLength) {
-      var arr = []
-      for (var i = 0; i < arrayLength; i++) {
-        arr.push({})
+  describe('Zoom and Scroll on Mobile', () => {
+    function triggerTouchmoveEventWith(arrayName, arrayLength) {
+      const arr = [];
+      for (let i = 0; i < arrayLength; i += 1) {
+        arr.push({});
       }
-      var e = document.createEvent('Events')
-      e.initEvent('touchmove', true, true)
-      e[arrayName] = arr
-      e.preventDefault = mock.fn()
-      document.dispatchEvent(e)
-      return e
+      const e = document.createEvent('Events');
+      e.initEvent('touchmove', true, true);
+      e[arrayName] = arr;
+      e.preventDefault = mock.fn();
+      document.dispatchEvent(e);
+      return e;
     }
 
-    beforeEach(function () {
-      assume(document.querySelector('#hmrc-timeout-dialog')).toBeNull()
+    function simulateTouchmoveWithNumberOfFingers(n) {
+      return triggerTouchmoveEventWith('touches', n);
+    }
+
+    function simulateNumberOfChangedTouches(n) {
+      return triggerTouchmoveEventWith('changedTouches', n);
+    }
+
+    beforeEach(() => {
+      assume(document.querySelector('#hmrc-timeout-dialog')).toBeNull();
       expect.extend({
-        toHaveHadDefaultPrevented: function (received) {
-          var result = {}
-          var passMessage = ['Expected', received.type, 'event']
-          result.pass = received.preventDefault.mock.calls.length > 0
+        toHaveHadDefaultPrevented(received) {
+          const result = {};
+          const passMessage = ['Expected', received.type, 'event'];
+          result.pass = received.preventDefault.mock.calls.length > 0;
           if (result.pass) {
-            passMessage.push('not', 'to have had default prevented')
+            passMessage.push('not', 'to have had default prevented');
           } else {
-            passMessage.push('to have had default prevented, but it wasn\'t prevented')
+            passMessage.push('to have had default prevented, but it wasn\'t prevented');
           }
-          result.message = () => passMessage.join(' ')
-          return result
-        }
-      })
-    })
-    it('should allow all combinations before dialog is open', function () {
-      expect(simulateTouchmoveWithNumberOfFingers(1)).not.toHaveHadDefaultPrevented()
-      expect(simulateTouchmoveWithNumberOfFingers(2)).not.toHaveHadDefaultPrevented()
-      expect(simulateTouchmoveWithNumberOfFingers(3)).not.toHaveHadDefaultPrevented()
-      expect(simulateTouchmoveWithNumberOfFingers(4)).not.toHaveHadDefaultPrevented()
-      expect(simulateTouchmoveWithNumberOfFingers(5)).not.toHaveHadDefaultPrevented()
-      expect(simulateNumberOfChangedTouches(1)).not.toHaveHadDefaultPrevented()
-      expect(simulateNumberOfChangedTouches(2)).not.toHaveHadDefaultPrevented()
-      expect(simulateNumberOfChangedTouches(3)).not.toHaveHadDefaultPrevented()
-      expect(simulateNumberOfChangedTouches(4)).not.toHaveHadDefaultPrevented()
-      expect(simulateNumberOfChangedTouches(5)).not.toHaveHadDefaultPrevented()
-    })
-    it('should disallow scroll while dialog is open', function () {
-      openDefaultDialog()
+          result.message = () => passMessage.join(' ');
+          return result;
+        },
+      });
+    });
+    it('should allow all combinations before dialog is open', () => {
+      expect(simulateTouchmoveWithNumberOfFingers(1)).not.toHaveHadDefaultPrevented();
+      expect(simulateTouchmoveWithNumberOfFingers(2)).not.toHaveHadDefaultPrevented();
+      expect(simulateTouchmoveWithNumberOfFingers(3)).not.toHaveHadDefaultPrevented();
+      expect(simulateTouchmoveWithNumberOfFingers(4)).not.toHaveHadDefaultPrevented();
+      expect(simulateTouchmoveWithNumberOfFingers(5)).not.toHaveHadDefaultPrevented();
+      expect(simulateNumberOfChangedTouches(1)).not.toHaveHadDefaultPrevented();
+      expect(simulateNumberOfChangedTouches(2)).not.toHaveHadDefaultPrevented();
+      expect(simulateNumberOfChangedTouches(3)).not.toHaveHadDefaultPrevented();
+      expect(simulateNumberOfChangedTouches(4)).not.toHaveHadDefaultPrevented();
+      expect(simulateNumberOfChangedTouches(5)).not.toHaveHadDefaultPrevented();
+    });
+    it('should disallow scroll while dialog is open', () => {
+      openDefaultDialog();
 
-      expect(simulateTouchmoveWithNumberOfFingers(1)).toHaveHadDefaultPrevented()
-      expect(simulateNumberOfChangedTouches(1)).toHaveHadDefaultPrevented()
-    })
-    it('should allow pinch scroll while dialog is open', function () {
-      openDefaultDialog()
+      expect(simulateTouchmoveWithNumberOfFingers(1)).toHaveHadDefaultPrevented();
+      expect(simulateNumberOfChangedTouches(1)).toHaveHadDefaultPrevented();
+    });
+    it('should allow pinch scroll while dialog is open', () => {
+      openDefaultDialog();
 
-      expect(simulateTouchmoveWithNumberOfFingers(2)).not.toHaveHadDefaultPrevented()
-      expect(simulateNumberOfChangedTouches(2)).not.toHaveHadDefaultPrevented()
-    })
-    it('should allow other multifinger touches while dialog is open', function () {
-      openDefaultDialog()
+      expect(simulateTouchmoveWithNumberOfFingers(2)).not.toHaveHadDefaultPrevented();
+      expect(simulateNumberOfChangedTouches(2)).not.toHaveHadDefaultPrevented();
+    });
+    it('should allow other multifinger touches while dialog is open', () => {
+      openDefaultDialog();
 
-      expect(simulateTouchmoveWithNumberOfFingers(3)).not.toHaveHadDefaultPrevented()
-      expect(simulateTouchmoveWithNumberOfFingers(4)).not.toHaveHadDefaultPrevented()
-      expect(simulateTouchmoveWithNumberOfFingers(5)).not.toHaveHadDefaultPrevented()
-      expect(simulateNumberOfChangedTouches(3)).not.toHaveHadDefaultPrevented()
-      expect(simulateNumberOfChangedTouches(4)).not.toHaveHadDefaultPrevented()
-      expect(simulateNumberOfChangedTouches(5)).not.toHaveHadDefaultPrevented()
-    })
-    it('should allow all combinations after dialog is closed', function () {
-      expect(simulateTouchmoveWithNumberOfFingers(1)).not.toHaveHadDefaultPrevented()
-      expect(simulateTouchmoveWithNumberOfFingers(2)).not.toHaveHadDefaultPrevented()
+      expect(simulateTouchmoveWithNumberOfFingers(3)).not.toHaveHadDefaultPrevented();
+      expect(simulateTouchmoveWithNumberOfFingers(4)).not.toHaveHadDefaultPrevented();
+      expect(simulateTouchmoveWithNumberOfFingers(5)).not.toHaveHadDefaultPrevented();
+      expect(simulateNumberOfChangedTouches(3)).not.toHaveHadDefaultPrevented();
+      expect(simulateNumberOfChangedTouches(4)).not.toHaveHadDefaultPrevented();
+      expect(simulateNumberOfChangedTouches(5)).not.toHaveHadDefaultPrevented();
+    });
+    it('should allow all combinations after dialog is closed', () => {
+      expect(simulateTouchmoveWithNumberOfFingers(1)).not.toHaveHadDefaultPrevented();
+      expect(simulateTouchmoveWithNumberOfFingers(2)).not.toHaveHadDefaultPrevented();
 
-      openDefaultDialog()
-      testScope.dialogControl.closeDialog()
+      openDefaultDialog();
+      testScope.dialogControl.closeDialog();
 
-      expect(simulateTouchmoveWithNumberOfFingers(1)).not.toHaveHadDefaultPrevented()
-      expect(simulateTouchmoveWithNumberOfFingers(2)).not.toHaveHadDefaultPrevented()
-      expect(simulateTouchmoveWithNumberOfFingers(3)).not.toHaveHadDefaultPrevented()
-      expect(simulateTouchmoveWithNumberOfFingers(4)).not.toHaveHadDefaultPrevented()
-      expect(simulateTouchmoveWithNumberOfFingers(5)).not.toHaveHadDefaultPrevented()
-      expect(simulateNumberOfChangedTouches(1)).not.toHaveHadDefaultPrevented()
-      expect(simulateNumberOfChangedTouches(2)).not.toHaveHadDefaultPrevented()
-      expect(simulateNumberOfChangedTouches(3)).not.toHaveHadDefaultPrevented()
-      expect(simulateNumberOfChangedTouches(4)).not.toHaveHadDefaultPrevented()
-      expect(simulateNumberOfChangedTouches(5)).not.toHaveHadDefaultPrevented()
-    })
-  })
-})
+      expect(simulateTouchmoveWithNumberOfFingers(1)).not.toHaveHadDefaultPrevented();
+      expect(simulateTouchmoveWithNumberOfFingers(2)).not.toHaveHadDefaultPrevented();
+      expect(simulateTouchmoveWithNumberOfFingers(3)).not.toHaveHadDefaultPrevented();
+      expect(simulateTouchmoveWithNumberOfFingers(4)).not.toHaveHadDefaultPrevented();
+      expect(simulateTouchmoveWithNumberOfFingers(5)).not.toHaveHadDefaultPrevented();
+      expect(simulateNumberOfChangedTouches(1)).not.toHaveHadDefaultPrevented();
+      expect(simulateNumberOfChangedTouches(2)).not.toHaveHadDefaultPrevented();
+      expect(simulateNumberOfChangedTouches(3)).not.toHaveHadDefaultPrevented();
+      expect(simulateNumberOfChangedTouches(4)).not.toHaveHadDefaultPrevented();
+      expect(simulateNumberOfChangedTouches(5)).not.toHaveHadDefaultPrevented();
+    });
+  });
+});

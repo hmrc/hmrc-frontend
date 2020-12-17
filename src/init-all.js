@@ -1,1 +1,1 @@
-window.HMRCFrontend.initAll()
+window.HMRCFrontend.initAll();

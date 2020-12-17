@@ -1,13 +1,11 @@
-function ValidateInput ($module) {
+function ValidateInput() {
 }
 
-ValidateInput.int = function (stringToValidate) {
-  var parsedInt = parseInt(stringToValidate, 10)
-  return isNaN(parsedInt) ? undefined : parsedInt
-}
+ValidateInput.int = (stringToValidate) => {
+  const parsedInt = parseInt(stringToValidate, 10);
+  return Number.isNaN(parsedInt) ? undefined : parsedInt;
+};
 
-ValidateInput.string = function (stringToValidate) {
-  return stringToValidate && (('' + stringToValidate) || undefined)
-}
+ValidateInput.string = (stringToValidate) => stringToValidate && ((`${stringToValidate}`) || undefined);
 
-export default ValidateInput
+export default ValidateInput;

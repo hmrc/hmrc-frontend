@@ -1,19 +1,20 @@
 /* eslint-env jest */
 
-const request = require('request')
+const request = require('request');
 // const cheerio = require('cheerio')
 
 // const lib = require('../../lib/file-helper')
 
-const configPaths = require('../../config/paths.json')
-const PORT = configPaths.ports.test
+const configPaths = require('../../config/paths.json');
+
+const PORT = configPaths.ports.test;
 
 const requestParamsHomepage = {
   url: `http://localhost:${PORT}/`,
   headers: {
-    'Content-Type': 'text/plain'
-  }
-}
+    'Content-Type': 'text/plain',
+  },
+};
 /*
 const requestParamsExampleAllComponents = {
   url: `http://localhost:${PORT}/examples/all-components`,
@@ -66,19 +67,19 @@ const requestParamsExampleTypography = {
 
 describe('frontend app', () => {
   describe('homepage', () => {
-    it('should resolve with a http status code of 200', done => {
+    it('should resolve with a http status code of 200', (done) => {
       request.get(requestParamsHomepage, (err, res) => {
-        expect(res.statusCode).toEqual(200)
-        done(err)
-      })
-    })
+        expect(res.statusCode).toEqual(200);
+        done(err);
+      });
+    });
 
-    it('should resolve with a ‘Content-Type’ header of "text/html"', done => {
+    it('should resolve with a ‘Content-Type’ header of "text/html"', (done) => {
       request.get(requestParamsHomepage, (err, res) => {
-        expect(res.headers['content-type']).toContain('text/html')
-        done(err)
-      })
-    })
+        expect(res.headers['content-type']).toContain('text/html');
+        done(err);
+      });
+    });
     /*
     it('should display the list of components', done => {
       request.get(requestParamsHomepage, (err, res) => {
@@ -88,7 +89,7 @@ describe('frontend app', () => {
         done(err)
       })
     }) */
-  })
+  });
 
 /*
   describe('all components examples', () => {
@@ -153,4 +154,4 @@ describe('frontend app', () => {
       })
     })
   }) */
-})
+});
