@@ -64,7 +64,45 @@ params:
   type: string
   required: false
   description: Either "en" for english or "cy" for welsh.
-
+- name: displayHmrcBanner
+  type: boolean
+  required: false
+  description: Display the HMRC banner or not
+- name: userResearch
+  type: object
+  required: false
+  description: User research banner parameters. If not supplied, the user research banner will not be displayed.
+  params:
+    - name: url
+      type: string
+      required: true
+      description: The URL the user research banner should link to
+- name: phaseBanner
+  type: object
+  required: false
+  description: Phase banner parameters. If not supplied, the phase banner will not be displayed.
+  params:
+    - name: text
+      type: string
+      required: true
+      description: If `html` is set, this is not required. Text to use within the phase banner. If `html` is provided, the `text` argument will be ignored.
+    - name: html
+      type: string
+      required: true
+      description: If `text` is set, this is not required. HTML to use within the phase banner. If `html` is provided, the `text` argument will be ignored.
+    - name: tag
+      type: object
+      required: false
+      description: Options for the tag component.
+      isComponent: true
+    - name: classes
+      type: string
+      required: false
+      description: Classes to add to the phase banner container.
+    - name: attributes
+      type: object
+      required: false
+      description: HTML attributes (for example data attributes) to add to the phase banner container.
 previewLayout: full-width
 accessibilityCriteria: |
   Text and links in the Header must:
@@ -89,7 +127,13 @@ examples:
 - name: default
   description: The standard header as used on information pages on GOV.UK
   data:
-    {}
+    userResearch:
+      url: '/sign-up-for-user-research'
+    phaseBanner:
+      tag:
+        text: alpha
+      html: This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    displayHmrcBanner: true
 
 - name: with service name
   description: If your service is more than a few pages long, you can help users understand where they are by adding the service name.

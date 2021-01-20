@@ -1,0 +1,27 @@
+<div class="hmrc-user-research-banner" data-module="hmrc-user-research-banner">
+  <div class="hmrc-user-research-banner__container govuk-width-container">
+    <div class="hmrc-user-research-banner__text">
+        <div class="hmrc-user-research-banner__title govuk-!-font-weight-bold">
+          {% if params.language == 'cy' %}
+            Helpwch i wella gwasanaethau CThEM
+          {% else %}
+            Help improve HMRC services
+          {% endif %}
+        </div>
+        <a class="govuk-link hmrc-user-research-banner__link" href="{{ params.url }}" target="_blank">
+          {% if params.language == 'cy' %}
+            Cofrestrwch i gymryd rhan mewn ymchwil defnyddwyr (yn agor tab newydd)
+          {% else %}
+            Sign up to take part in user research (opens in new tab)
+          {% endif %}
+        </a>
+    </div>
+    <button class="govuk-link hmrc-user-research-banner__close">
+      {% if params.language == 'cy' %}
+        Dim diolch
+      {% else %}
+        No thanks
+      {% endif %}
+    </button>
+  </div>
+</div>

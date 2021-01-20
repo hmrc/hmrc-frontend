@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.26.0] - 2021-02-19
+
+## Added
+
+- HMRC user research banner
+
 ## [1.25.0] - 2021-02-17
 
 ## Updated

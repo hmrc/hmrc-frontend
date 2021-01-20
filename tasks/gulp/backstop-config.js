@@ -76,6 +76,11 @@ module.exports = ({ host, port }) => ({
       url: `http://${host}:${port}/components/timeout-dialog/preview`,
       delay: 2000,
     },
+    {
+      label: 'HMRC User Research Banner',
+      url: `http://${host}:${port}/components/user-research-banner/preview`,
+      delay: 2000,
+    },
   ],
   paths: {
     bitmaps_reference: 'backstop_data/bitmaps_reference',
