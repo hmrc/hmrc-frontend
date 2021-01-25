@@ -98,6 +98,7 @@ gulp.task('build:package', gulp.series(
   'copy-check-compatibility',
   'js:compile',
   'scss:compile',
+  'compile-and-copy-assets',
   'update-assets-version',
   'copy:README',
   'copy:packageJson'
