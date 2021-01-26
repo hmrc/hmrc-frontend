@@ -1,5 +1,5 @@
 /* eslint-env jest */
-const { getCurrentBreakpoint } = require('../breakpoints');
+import { getCurrentBreakpoint } from '../breakpoints';
 
 describe('getCurrentBreakpoint', () => {
   it('returns the descriptor of the current breakpoint based on window.innerWidth', () => {

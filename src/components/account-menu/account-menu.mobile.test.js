@@ -3,11 +3,10 @@
  */
 
 /* eslint-env jest */
-
-const devices = require('puppeteer/DeviceDescriptors');
+import devices from 'puppeteer/DeviceDescriptors';
+import configPaths from '../../../config/paths.json';
 
 const iPhone = devices['iPhone 6'];
-const configPaths = require('../../../config/paths.json');
 
 const PORT = configPaths.ports.test;
 

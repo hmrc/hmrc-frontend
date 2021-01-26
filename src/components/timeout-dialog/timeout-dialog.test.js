@@ -1,11 +1,8 @@
 /* eslint-env jest */
-const mock = require('jest-mock');
+import mock from 'jest-mock';
+import TimeoutDialog from './timeout-dialog';
 
-const TimeoutDialog = require('../../../public/components/timeout-dialog/timeout-dialog');
-
-const { dialog } = TimeoutDialog;
-const { redirectHelper } = TimeoutDialog;
-const { utils } = TimeoutDialog;
+const { dialog, redirectHelper, utils } = TimeoutDialog;
 
 const getElemText = (elem) => {
   if (!elem) {

@@ -40,3 +40,4 @@ __tests__/govuk-frontend
 __tests__/hmrc-frontend
 backstop_data/bitmaps_test/*
 backstop_data/html_report/*
+

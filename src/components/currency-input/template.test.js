@@ -1,8 +1,7 @@
 /* eslint-env jest */
 
-const axe = require('../../../lib/axe-helper');
-
-const { render, getExamples, htmlWithClassName } = require('../../../lib/jest-helpers');
+import axe from '../../../lib/axe-helper';
+import { render, getExamples, htmlWithClassName } from '../../../lib/jest-helpers';
 
 const examples = getExamples('currency-input');
 

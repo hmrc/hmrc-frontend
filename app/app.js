@@ -1,12 +1,12 @@
 const express = require('express');
-
-const app = express();
 const nunjucks = require('nunjucks');
 const path = require('path');
-
 const helperFunctions = require('../lib/helper-functions');
 const fileHelper = require('../lib/file-helper');
 const configPaths = require('../config/paths.json');
+const pkg = require('../package.json');
+
+const app = express();
 
 // Set up views
 const appViews = [
@@ -45,17 +45,12 @@ module.exports = (options) => {
     next();
   });
 
-  // Set up middleware to serve static assets
-  app.use('/public', express.static(configPaths.public));
-
   app.use('/govuk-frontend', express.static(configPaths.govukFrontend));
 
-  // serve html5-shiv from node modules
-  app.use('/vendor/html5-shiv/', express.static('node_modules/html5shiv/dist/'));
   app.use(
     '/assets',
-    express.static(path.join(configPaths.src)),
-    express.static(path.join(configPaths.govukFrontend, 'govuk', 'assets')),
+    express.static(path.join(configPaths.dist)),
+    express.static(path.join(configPaths.dist, 'govuk')),
   );
 
   // Define routes
@@ -67,6 +62,7 @@ module.exports = (options) => {
     app.get('/', (req, res) => {
       res.render('index', {
         componentsDirectory: components,
+        hmrcFrontendVersion: pkg.version,
       });
     });
   })();
@@ -118,8 +114,9 @@ module.exports = (options) => {
 
     try {
       res.locals.componentView = env.renderString(
-        `{% from '${componentDirectory}/macro.njk' import ${macroName} %}
-      {{ ${macroName}(${macroParameters}) }}`,
+        `
+{% from '${componentDirectory}/macro.njk' import ${macroName} %}
+{{ ${macroName}(${macroParameters}) }}`,
       );
     } catch (err) {
       res.locals.componentView = null;
@@ -130,9 +127,9 @@ module.exports = (options) => {
       bodyClasses = 'app-iframe-in-component-preview';
     }
 
-    Object.assign(globalData, { bodyClasses, previewLayout });
-
-    res.render(`${type}-preview`, globalData);
+    res.render(`${type}-preview`, {
+      ...globalData, bodyClasses, previewLayout, hmrcFrontendVersion: pkg.version,
+    });
   });
 
   app.get('/robots.txt', (req, res) => {

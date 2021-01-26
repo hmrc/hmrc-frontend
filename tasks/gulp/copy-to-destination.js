@@ -1,50 +1,17 @@
-const gulp = require('gulp')
-const postcss = require('gulp-postcss')
-const autoprefixer = require('autoprefixer')
-const filter = require('gulp-filter')
-const postcss1 = require('postcss-scss')
-const taskArguments = require('./task-arguments')
-const configPaths = require('../../config/paths.json')
-
-const scssFiles = filter([`${configPaths.src}**/*.scss`], { restore: true })
-
-gulp.task('copy-files', () => gulp.src([
-  `${configPaths.src}**/*`,
-  '!**/.DS_Store',
-  '!**/*.test.js',
-  `!${configPaths.src}govuk-prototype-kit.config.json`,
-  `!${configPaths.components}**/README.njk`,
-  `!${configPaths.components}**/*.{yml,yaml}`,
-  `!${configPaths.components}**/example.njk`,
-  `!${configPaths.components}**/__snapshots__/**`,
-  `!${configPaths.components}**/__snapshots__/`
-])
-  .pipe(scssFiles)
-  .pipe(postcss([
-    autoprefixer
-  ], { syntax: postcss1 }))
-  .pipe(scssFiles.restore)
-  .pipe(gulp.dest(`${taskArguments.destination}/hmrc/`)))
-
-gulp.task('copy-govuk-config', () => gulp.src([`${configPaths.src}govuk-prototype-kit.config.json`])
-  .pipe(gulp.dest(`${taskArguments.destination}/`)))
-
-gulp.task('copy-check-compatibility', () => gulp.src(['check-compatibility.js'])
-  .pipe(gulp.dest(`${taskArguments.destination}/`)))
-
-gulp.task('copy-dist-component-files', () => gulp.src([
-  'components/*/images/*'
-], { cwd: `${configPaths.src}/**` })
-  .pipe(gulp.dest(`${taskArguments.destination}/`)))
+const gulp = require('gulp');
+const destinationPath = require('./destination-path');
 
 gulp.task('copy-govuk-fonts', () => gulp.src([
-  'node_modules/govuk-frontend/govuk/assets/fonts/*'
+  'node_modules/govuk-frontend/govuk/assets/fonts/*',
 ])
-  .pipe(gulp.dest(`${taskArguments.destination}/fonts`)))
+  .pipe(gulp.dest(`${destinationPath}/govuk/fonts`)));
 
 gulp.task('copy-govuk-images', () => gulp.src([
-  'node_modules/govuk-frontend/govuk/assets/images/*'
+  'node_modules/govuk-frontend/govuk/assets/images/*',
 ])
-  .pipe(gulp.dest(`${taskArguments.destination}/images`)))
+  .pipe(gulp.dest(`${destinationPath}/govuk/images`)));
 
-gulp.task('copy-dist-files', gulp.series('copy-dist-component-files', 'copy-govuk-fonts', 'copy-govuk-images'))
+gulp.task('copy-html5shiv', () => gulp.src([
+  'node_modules/html5shiv/dist/html5shiv.min.js',
+])
+  .pipe(gulp.dest(`${destinationPath}/vendor`)));
