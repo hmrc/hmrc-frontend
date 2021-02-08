@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.24.0] - 2021-02-08
+
+## Added
+
+- Compiled assets now included in NPM package.
+- Refactored gulp pipeline
+
 ## [1.23.1] - 2020-12-11
 
 ## Security
