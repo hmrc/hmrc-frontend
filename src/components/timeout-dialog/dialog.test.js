@@ -1,8 +1,7 @@
 /* eslint-env jest */
-const mock = require('jest-mock');
-const expect = require('expect');
-const dialog = require('../../../public/components/timeout-dialog/dialog');
-const utils = require('../../../public/components/timeout-dialog/utils');
+import mock from 'jest-mock';
+import dialog from './dialog';
+import utils from './utils';
 
 describe('Dialog', () => {
   const assume = expect;

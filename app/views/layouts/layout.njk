@@ -1,1 +1,18 @@
-{% extends "_generic.njk" %}
+{% extends "govuk/template.njk" %}
+
+{% block pageTitle %}HMRC Frontend{% endblock %}
+
+{% block head %}
+  {% include 'includes/head.html' %}
+  {% block styles %}{% endblock %}
+{% endblock %}
+
+{# Turn the header and footer off #}
+{% block skipLink %}{% endblock %}
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block bodyEnd %}
+  {% include "includes/scripts.html" %}
+  {% block scripts %}{% endblock %}
+{% endblock %}

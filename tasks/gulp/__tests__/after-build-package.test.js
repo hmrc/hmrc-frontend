@@ -3,9 +3,9 @@
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
-
 const sass = require('node-sass');
 const recursive = require('recursive-readdir');
+const pkg = require('../../../package.json');
 
 const configPaths = require('../../../config/paths.json');
 
@@ -46,6 +46,28 @@ describe('package/', () => {
         'govuk-prototype-kit.config.json',
         'package.json',
         'README.md',
+        'hmrc/govuk/fonts/bold-affa96571d-v2.woff',
+        'hmrc/govuk/fonts/bold-b542beb274-v2.woff2',
+        'hmrc/govuk/fonts/light-94a07e06a1-v2.woff2',
+        'hmrc/govuk/fonts/light-f591b13f7d-v2.woff',
+        'hmrc/govuk/images/favicon.ico',
+        'hmrc/govuk/images/govuk-apple-touch-icon-152x152.png',
+        'hmrc/govuk/images/govuk-apple-touch-icon-167x167.png',
+        'hmrc/govuk/images/govuk-apple-touch-icon-180x180.png',
+        'hmrc/govuk/images/govuk-apple-touch-icon.png',
+        'hmrc/govuk/images/govuk-crest-2x.png',
+        'hmrc/govuk/images/govuk-crest.png',
+        'hmrc/govuk/images/govuk-logotype-crown.png',
+        'hmrc/govuk/images/govuk-mask-icon.svg',
+        'hmrc/govuk/images/govuk-opengraph-image.png',
+        `hmrc/hmrc-frontend-${pkg.version}.min.css`,
+        `hmrc/hmrc-frontend-${pkg.version}.min.js`,
+        `hmrc/hmrc-frontend-ie8-${pkg.version}.min.css`,
+        `hmrc/maps/hmrc-frontend-${pkg.version}.min.css.map`,
+        `hmrc/maps/hmrc-frontend-${pkg.version}.min.js.map`,
+        `hmrc/maps/hmrc-frontend-ie8-${pkg.version}.min.css.map`,
+        'hmrc/vendor/html5shiv.min.js',
+        'hmrc/VERSION.txt',
       ];
 
       return recursive(configPaths.src, srcFilesToIgnore).then(

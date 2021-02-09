@@ -2,8 +2,7 @@
  * @jest-environment ./lib/puppeteer/environment.js
  */
 /* eslint-env jest */
-
-const configPaths = require('../../../config/paths.json');
+import configPaths from '../../../config/paths.json';
 
 const PORT = configPaths.ports.test;
 

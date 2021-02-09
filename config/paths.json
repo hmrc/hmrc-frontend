@@ -5,11 +5,11 @@
   "config": "config/",
   "dist": "dist/",
   "package": "package/",
-  "public": "public/",
   "src": "src/",
   "components": "src/components/",
   "govukFrontend": "node_modules/govuk-frontend",
   "packageTest": "__tests__/packageTest",
+  "baseName": "hmrc-frontend",
   "ports": {
     "app": 3000,
     "test": 8888

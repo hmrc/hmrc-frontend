@@ -1,4 +1,4 @@
-{% extends "./layout.njk" %}
+{% extends "layout.njk" %}
 
 {% block content %}
   <h1 class="govuk-heading-xl">
@@ -9,7 +9,6 @@
 
     <div class="govuk-grid-column-one-half">
       <h2 class="govuk-heading-m">Components</h2>
-
       <ul class="govuk-list">
         {% for componentName in componentsDirectory | sort %}
           <li><a href="/components/{{ componentName }}/preview" class="govuk-link">{{ componentName | replace("-", " ") | capitalize }}</a></li>

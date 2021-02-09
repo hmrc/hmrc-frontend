@@ -1,6 +1,6 @@
 /* eslint-env jest */
 
-const { render, getExamples } = require('../../../lib/jest-helpers');
+import { render, getExamples } from '../../../lib/jest-helpers';
 
 const examples = getExamples('internal-header');
 

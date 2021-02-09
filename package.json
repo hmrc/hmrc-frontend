@@ -1,19 +1,19 @@
 {
   "name": "hmrc-frontend",
-  "version": "1.23.1",
+  "version": "1.24.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
+    "test:build:package": "jest tasks/gulp/__tests__/after-build-package.test.js",
+    "test:build:dist": "jest tasks/gulp/__tests__/after-build-dist.test.js",
     "build:package": "gulp build:package --destination 'package' && npm run test:build:package",
     "build:dist": "gulp build:dist --destination 'dist' && npm run test:build:dist",
     "build": "npm run build:dist && npm run build:package",
     "lint": "stylelint 'src/**/*.scss' && eslint .",
     "lint:fix": "stylelint 'src/**/*.scss' && eslint --fix .",
-    "test": "gulp compile-and-copy-assets && jest src && npm run lint",
+    "test": "npm run build:dist && jest src && npm run lint",
     "test:update-snapshots": "jest src -u",
     "test:compatibility": "jest __tests__/check-compatibility.test.js",
-    "test:build:package": "jest tasks/gulp/__tests__/after-build-package.test.js",
-    "test:build:dist": "jest tasks/gulp/__tests__/after-build-dist.test.js",
     "test:backstop": "gulp backstop:test",
     "test:backstop-approve": "gulp backstop:approve",
     "preinstall": "node check-compatibility.js"
@@ -37,10 +37,12 @@
   },
   "homepage": "https://github.com/hmrc/hmrc-frontend#readme",
   "dependencies": {
-    "govuk-frontend": "^3.9.1"
+    "govuk-frontend": "^3.10.2"
   },
   "devDependencies": {
     "autoprefixer": "^9.6.1",
+    "@babel/preset-env": "^7.12.11",
+    "rollup-plugin-babel": "^4.4.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "backstopjs": "^5.0.6",
     "chalk": "^4.1.0",
@@ -50,17 +52,14 @@
     "eslint": "^7.15.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "expect": "^26.6.2",
     "express": "^4.17.1",
     "gulp": "^4.0.2",
     "gulp-better-rollup": "^3.4.0",
     "gulp-eol": "^0.2.0",
     "gulp-filter": "^5.1.0",
-    "gulp-if": "^2.0.2",
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
-    "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify-es": "^2.0.0",
@@ -89,7 +88,6 @@
     "stylelint": "^13.6.1",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-scss": "^3.16.0",
-    "vinyl-paths": "^2.1.0",
     "yargs": "^15.3.1"
   },
   "browserslist": [
@@ -98,13 +96,6 @@
     "ie 9",
     "iOS 9"
   ],
-  "standard": {
-    "ignore": [
-      "/dist/**/*.js",
-      "/package/**/*.js",
-      "/src/vendor/polyfills/**/*.js"
-    ]
-  },
   "jest": {
     "setupFilesAfterEnv": [
       "./config/jest-setup.js"

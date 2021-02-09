@@ -1,8 +1,8 @@
 /* eslint-env jest */
 
-const axe = require('../../../lib/axe-helper');
+import axe from '../../../lib/axe-helper';
 
-const { render, getExamples } = require('../../../lib/jest-helpers');
+import { render, getExamples } from '../../../lib/jest-helpers';
 
 const examples = getExamples('page-heading');
 
