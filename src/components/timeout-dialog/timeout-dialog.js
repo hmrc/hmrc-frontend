@@ -1,17 +1,10 @@
-import '../../vendor/polyfills/Array/prototype/forEach';
-import '../../vendor/polyfills/Object/assign';
-import '../../vendor/polyfills/Object/keys';
-import '../../vendor/polyfills/Date/now';
-
 import dialog from './dialog';
 import ValidateInput from './validate-input';
 import RedirectHelper from './redirectHelper';
 import utils from './utils';
 
 // TODO: rewruite this to follow govuk-frontend's protoytpe module pattern
-
 function TimeoutDialog($module) {
-  let options = {};
   let settings = {};
   const cleanupFunctions = [];
   let currentTimer;
@@ -53,28 +46,29 @@ function TimeoutDialog($module) {
       },
     };
 
-    options = {
+    const options = {
       timeout: validate.int(lookupData('data-timeout')),
       countdown: validate.int(lookupData('data-countdown')),
       keepAliveUrl: validate.string(lookupData('data-keep-alive-url')),
       signOutUrl: validate.string(lookupData('data-sign-out-url')),
       timeoutUrl: validate.string(lookupData('data-timeout-url')),
-      title: validate.string(lookupData('data-title')),
-      message: validate.string(lookupData('data-message')),
+      title: validate.string(lookupData('data-title')) || localisedDefaults.title,
+      message: validate.string(lookupData('data-message')) || localisedDefaults.message,
       messageSuffix: validate.string(lookupData('data-message-suffix')),
       keepAliveButtonText: validate.string(
         lookupData('data-keep-alive-button-text'),
-      ),
+      ) || localisedDefaults.keepAliveButtonText,
       signOutButtonText: validate.string(
         lookupData('data-sign-out-button-text'),
-      ),
+      ) || localisedDefaults.signOutButtonText,
+      properties: localisedDefaults.properties,
     };
 
     // Default timeoutUrl to signOutUrl if not set
     options.timeoutUrl = options.timeoutUrl || options.signOutUrl;
 
     validateInput(options);
-    settings = mergeOptionsWithDefaults(options, localisedDefaults);
+    settings = options;
     setupDialogTimer();
   }
 
@@ -82,11 +76,12 @@ function TimeoutDialog($module) {
     const requiredConfig = ['timeout', 'countdown', 'keepAliveUrl', 'signOutUrl'];
     const missingRequiredConfig = [];
 
-    requiredConfig.forEach((item) => {
-      if (!config[item]) {
-        missingRequiredConfig.push(`data-${item.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}`);
+    for (let i = 0; i < requiredConfig.length; i += 1) {
+      const required = requiredConfig[i];
+      if (!config[required]) {
+        missingRequiredConfig.push(`data-${required.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}`);
       }
-    });
+    }
 
     if (missingRequiredConfig.length > 0) {
       throw new Error(
@@ -95,30 +90,10 @@ function TimeoutDialog($module) {
     }
   };
 
-  const mergeOptionsWithDefaults = (theOptions, localisedDefaults) => {
-    const clone = { ...theOptions };
-
-    Object.keys(localisedDefaults).forEach((key) => {
-      if (typeof clone[key] === 'object') {
-        clone[key] = mergeOptionsWithDefaults(
-          theOptions[key],
-          localisedDefaults[key],
-        );
-      }
-      if (clone[key] === undefined || clone[key] === '') {
-        clone[key] = localisedDefaults[key];
-      }
-    });
-
-    return clone;
-  };
-
   const setupDialogTimer = () => {
     settings.signout_time = getDateNow() + settings.timeout * 1000;
 
-    const timeout = window.setTimeout(() => {
-      setupDialog();
-    }, (settings.timeout - settings.countdown) * 1000);
+    const timeout = window.setTimeout(setupDialog, (settings.timeout - settings.countdown) * 1000);
 
     cleanupFunctions.push(() => {
       window.clearTimeout(timeout);
@@ -271,7 +246,7 @@ function TimeoutDialog($module) {
     });
   };
 
-  const getDateNow = () => Date.now();
+  const getDateNow = () => new Date().getTime();
 
   const signOut = () => {
     RedirectHelper.redirectToUrl(settings.signOutUrl);

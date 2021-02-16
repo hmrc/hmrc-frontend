@@ -80,7 +80,7 @@ describe('/components/timeout-dialog', () => {
       currentDateTime: 1554196031049, // the time these tests were written
       // - this can change but it's best not to write randomness into tests
     };
-    mock.spyOn(Date, 'now').mockImplementation(() => testScope.currentDateTime);
+    mock.spyOn(Date.prototype, 'getTime').mockImplementation(() => testScope.currentDateTime);
     mock.spyOn(utils, 'ajaxGet').mockImplementation(() => {
     });
     mock.spyOn(redirectHelper, 'redirectToUrl').mockImplementation(() => {

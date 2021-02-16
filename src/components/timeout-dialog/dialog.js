@@ -62,7 +62,9 @@ function displayDialog($elementToDisplay) {
     }
   };
   const closeAndInform = () => {
-    closeCallbacks.forEach((fn) => { fn(); });
+    for (let i = 0; i < closeCallbacks.length; i += 1) {
+      closeCallbacks[i]();
+    }
     close();
   };
   const setupKeydownHandler = () => {
