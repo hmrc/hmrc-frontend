@@ -68,7 +68,7 @@ params:
   type: boolean
   required: false
   description: Display the HMRC banner or not
-- name: userResearch
+- name: userResearchBanner
   type: object
   required: false
   description: User research banner parameters. If not supplied, the user research banner will not be displayed.
@@ -127,7 +127,7 @@ examples:
 - name: default
   description: The standard header as used on information pages on GOV.UK
   data:
-    userResearch:
+    userResearchBanner:
       url: '/sign-up-for-user-research'
     phaseBanner:
       tag:
