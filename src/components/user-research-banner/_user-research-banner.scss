@@ -1,0 +1,58 @@
+@import "node_modules/govuk-frontend/govuk/helpers/typography";
+
+@mixin hmrc-white-link() {
+  color: govuk-colour("white");
+
+  &:link,
+  &:hover,
+  &:visited {
+    color: govuk-colour("white");
+  }
+
+  &:active,
+  &:focus {
+    color: govuk-colour("black");
+  }
+}
+
+.hmrc-user-research-banner {
+  display: none;
+  position: relative;
+  color: govuk-colour("white");
+  background-color: $govuk-brand-colour;
+  box-sizing: border-box;
+
+  @include govuk-responsive-padding(6, "top");
+  @include govuk-responsive-padding(6, "bottom");
+  @include govuk-font($size: 19);
+
+  &__container {
+    position: relative;
+  }
+
+  &__title {
+    @include govuk-responsive-margin(1, "bottom");
+  }
+
+  &__link {
+    @include hmrc-white-link();
+  }
+
+  &--show {
+    display: block;
+  }
+
+  &__close {
+    @include hmrc-white-link();
+    @include govuk-responsive-margin(2, "top");
+
+    outline: 0;
+    border: 0;
+    background: none;
+    text-decoration: underline;
+    box-shadow: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: inherit;
+  }
+}

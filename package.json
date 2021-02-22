@@ -1,6 +1,6 @@
 {
   "name": "hmrc-frontend",
-  "version": "1.25.0",
+  "version": "1.26.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
@@ -10,7 +10,7 @@
     "build:dist": "gulp build:dist --destination 'dist' && npm run test:build:dist",
     "build": "npm run build:dist && npm run build:package",
     "lint": "stylelint 'src/**/*.scss' && eslint .",
-    "lint:fix": "stylelint 'src/**/*.scss' && eslint --fix .",
+    "lint:fix": "stylelint 'src/**/*.scss' --fix && eslint --fix .",
     "test": "npm run build:dist && jest src && npm run lint",
     "test:update-snapshots": "jest src -u",
     "test:compatibility": "jest __tests__/check-compatibility.test.js",
@@ -72,6 +72,7 @@
     "js-yaml": "^3.14.1",
     "merge-stream": "^1.0.1",
     "mkdirp": "^1.0.4",
+    "mockdate": "^3.0.2",
     "node-sass": "^5.0.0",
     "nodemon": "^2.0.3",
     "nunjucks": "^3.2.1",

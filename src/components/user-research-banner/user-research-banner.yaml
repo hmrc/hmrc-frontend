@@ -1,0 +1,22 @@
+params:
+- name: url
+  type: string
+  required: true
+  description: The url to link to from the user research banner
+- name: language
+  type: string
+  required: false
+  description: Either "en" for English or "cy" for Welsh
+
+previewLayout: full-width
+
+examples:
+- name: default
+  description: The standard user research banner
+  data:
+    url: 'https://www.example.com/user-research'
+    language: en
+- name: welsh
+  description: The standard user research banner for Welsh
+  data:
+    language: cy

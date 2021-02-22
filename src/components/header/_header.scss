@@ -52,3 +52,9 @@
     }
   }
 }
+
+// Shift user research banner up 10px to compensate for govuk header border
+// only when adjacent to govuk header
+.hmrc-header + .hmrc-user-research-banner {
+  top: -10px;
+}
