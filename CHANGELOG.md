@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.27.0] - 2021-03-04
+
+## Added
+
+- HMRC character count
+
 ## [1.26.2] - 2021-02-25
 
 ## Fixed

@@ -1,0 +1,25 @@
+@import "../../../../govuk-frontend/govuk/base";
+@import "../../../../govuk-frontend/govuk/components/error-message/index";
+@import "../../../../govuk-frontend/govuk/components/hint/index";
+@import "../../../../govuk-frontend/govuk/components/label/index";
+@import "../../../../govuk-frontend/govuk/components/textarea/index";
+
+.hmrc-character-count {
+  @include govuk-responsive-margin(6, "bottom");
+
+  .govuk-form-group,
+  .govuk-textarea {
+    margin-bottom: govuk-spacing(1);
+  }
+}
+
+.hmrc-character-count__message {
+  @include govuk-font($size: false, $tabular: true);
+
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.hmrc-character-count__message--disabled {
+  visibility: hidden;
+}
