@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.26.1] - 2021-02-23
+
+## Fixed
+
+- Issue with node_modules reference in the hmrcUserResearchBanner,
+causing problems in frontend microservices using the hmrc-frontend webjar.
+
 ## [1.26.0] - 2021-02-19
 
 ## Added
