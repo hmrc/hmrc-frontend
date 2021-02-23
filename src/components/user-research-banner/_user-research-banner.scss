@@ -1,4 +1,4 @@
-@import "node_modules/govuk-frontend/govuk/helpers/typography";
+@import "../../../../govuk-frontend/govuk/helpers/typography";
 
 @mixin hmrc-white-link() {
   color: govuk-colour("white");

@@ -23,6 +23,13 @@ You can:
 
 ## Before you create a pull request
 
+### Ensure there are no reference to node_modules in SCSS files
+
+In production, styles from hmrc-frontend are imported via a webjar. If services compile their own
+CSS and reference the SCSS files directly, any references to govuk-frontend modules starting with `node_modules/govuk-frontend`
+will not work. Instead, you must use a relative path starting with `../../../../govuk-frontend`
+ to reference these modules as shown [here](src/components/currency-input/_currency-input.scss)
+
 ### Use EditorConfig
 
 To make sure code is consistent, HMRC Frontend uses [EditorConfig](http://editorconfig.org).
