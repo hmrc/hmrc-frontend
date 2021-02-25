@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.26.2] - 2021-02-25
+
+## Fixed
+
+- User research banner Welsh example missed url field
+
 ## [1.26.1] - 2021-02-23
 
 ## Fixed
