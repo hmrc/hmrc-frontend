@@ -7,6 +7,9 @@ import 'govuk-frontend/govuk/vendor/polyfills/Element/prototype/classList';
 // with the change to support Welsh language messages. At the moment, there is no ability to pass
 // in custom messages to the component for the dynamic count. If GDS release a version supporting
 // custom dynamic count messages, this version should be removed.
+// Linting is disabled to keep aligned with govuk-frontend
+
+/* eslint-disable */
 
 function CharacterCount($module) {
   this.$module = $module;
@@ -22,11 +25,11 @@ CharacterCount.prototype.defaults = {
 };
 
 // Initialize component
-CharacterCount.prototype.init = function init() {
+CharacterCount.prototype.init = function () {
   // Check for module
-  const { $module } = this;
-  const { $textarea } = this;
-  const { $countMessage } = this;
+  var $module = this.$module;
+  var $textarea = this.$textarea;
+  var $countMessage = this.$countMessage;
 
   if (!$textarea || !$countMessage) {
     return;
@@ -69,19 +72,19 @@ CharacterCount.prototype.init = function init() {
   this.sync();
 };
 
-CharacterCount.prototype.sync = function sync() {
+CharacterCount.prototype.sync = function () {
   this.bindChangeEvents();
   this.updateCountMessage();
 };
 
 // Read data attributes
-CharacterCount.prototype.getDataset = function getDataset(element) {
-  const dataset = {};
-  const { attributes } = element;
+CharacterCount.prototype.getDataset = function (element) {
+  var dataset = {};
+  var attributes = element.attributes;
   if (attributes) {
-    for (let i = 0; i < attributes.length; i += 1) {
-      const attribute = attributes[i];
-      const match = attribute.name.match(/^data-(.+)/);
+    for (let i = 0; i < attributes.length; i++) {
+      var attribute = attributes[i];
+      var match = attribute.name.match(/^data-(.+)/);
       if (match) {
         dataset[match[1]] = attribute.value;
       }
@@ -91,10 +94,10 @@ CharacterCount.prototype.getDataset = function getDataset(element) {
 };
 
 // Counts characters or words in text
-CharacterCount.prototype.count = function count(text) {
-  let length;
+CharacterCount.prototype.count = function (text) {
+  var length;
   if (this.options.maxwords) {
-    const tokens = text.match(/\S+/g) || []; // Matches consecutive non-whitespace chars
+    var tokens = text.match(/\S+/g) || []; // Matches consecutive non-whitespace chars
     length = tokens.length;
   } else {
     length = text.length;
@@ -103,8 +106,8 @@ CharacterCount.prototype.count = function count(text) {
 };
 
 // Bind input propertychange to the elements and update based on the change
-CharacterCount.prototype.bindChangeEvents = function bindChangeEvents() {
-  const { $textarea } = this;
+CharacterCount.prototype.bindChangeEvents = function () {
+  var $textarea = this.$textarea;
   $textarea.addEventListener('keyup', this.checkIfValueChanged.bind(this));
 
   // Bind focus/blur events to start/stop polling
@@ -115,7 +118,7 @@ CharacterCount.prototype.bindChangeEvents = function bindChangeEvents() {
 // Speech recognition software such as Dragon NaturallySpeaking will modify the
 // fields by directly changing its `value`. These changes don't trigger events
 // in JavaScript, so we need to poll to handle when and if they occur.
-CharacterCount.prototype.checkIfValueChanged = function checkIfValueChanged() {
+CharacterCount.prototype.checkIfValueChanged = function () {
   if (!this.$textarea.oldValue) this.$textarea.oldValue = '';
   if (this.$textarea.value !== this.$textarea.oldValue) {
     this.$textarea.oldValue = this.$textarea.value;
@@ -124,19 +127,19 @@ CharacterCount.prototype.checkIfValueChanged = function checkIfValueChanged() {
 };
 
 // Update message box
-CharacterCount.prototype.updateCountMessage = function updateCountMessage() {
-  const countElement = this.$textarea;
-  const { options } = this;
-  const countMessage = this.$countMessage;
+CharacterCount.prototype.updateCountMessage = function () {
+  var countElement = this.$textarea;
+  var options = this.options;
+  var countMessage = this.$countMessage;
 
   // Determine the remaining number of characters/words
-  const currentLength = this.count(countElement.value);
-  const { maxLength } = this;
-  const remainingNumber = maxLength - currentLength;
+  var currentLength = this.count(countElement.value)
+  var maxLength = this.maxLength
+  var remainingNumber = maxLength - currentLength
 
   // Set threshold if presented in options
-  const thresholdPercent = options.threshold ? options.threshold : 0;
-  const thresholdValue = (maxLength * thresholdPercent) / 100;
+  var thresholdPercent = options.threshold ? options.threshold : 0;
+  var thresholdValue = (maxLength * thresholdPercent) / 100;
   if (thresholdValue > currentLength) {
     countMessage.classList.add('hmrc-character-count__message--disabled');
     // Ensure threshold is hidden for users of assistive technologies
@@ -159,11 +162,11 @@ CharacterCount.prototype.updateCountMessage = function updateCountMessage() {
   }
 
   // Update message
-  const isWelsh = this.options.language === 'cy';
-  let charVerb;
-  let charNoun;
+  var isWelsh = this.options.language === 'cy';
+  var charVerb;
+  var charNoun;
 
-  const charStartMessage = isWelsh ? 'Mae gennych ' : 'You have ';
+  var charStartMessage = isWelsh ? 'Mae gennych ' : 'You have ';
 
   if (options.maxwords) {
     if ((remainingNumber === -1 || remainingNumber === 1)) {
@@ -185,15 +188,15 @@ CharacterCount.prototype.updateCountMessage = function updateCountMessage() {
 
   const displayNumber = Math.abs(remainingNumber);
 
-  countMessage.innerHTML = `${charStartMessage + displayNumber} ${charNoun} ${charVerb}`;
+  countMessage.innerHTML = charStartMessage + displayNumber + ' ' + charNoun + ' ' + charVerb;
 };
 
-CharacterCount.prototype.handleFocus = function handleFocus() {
+CharacterCount.prototype.handleFocus = function () {
   // Check if value changed on focus
   this.valueChecker = setInterval(this.checkIfValueChanged.bind(this), 1000);
 };
 
-CharacterCount.prototype.handleBlur = function handleBlur() {
+CharacterCount.prototype.handleBlur = function () {
   // Cancel value checking on blur
   clearInterval(this.valueChecker);
 };
