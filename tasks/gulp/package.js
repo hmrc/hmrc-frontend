@@ -14,6 +14,10 @@ gulp.task('copy:README', () => gulp
   .src(`${configPaths.src}../README.md`)
   .pipe(gulp.dest(configPaths.package)));
 
+gulp.task('copy:LICENSE', () => gulp
+  .src(`${configPaths.src}../LICENSE`)
+  .pipe(gulp.dest(configPaths.package)));
+
 gulp.task('copy:packageJson', (done) => {
   const requiredKeys = [
     'name',
@@ -28,6 +32,7 @@ gulp.task('copy:packageJson', (done) => {
     'homepage',
     'dependencies',
     'scripts',
+    'license',
   ];
 
   Object.keys(packageFile).forEach((key) => {

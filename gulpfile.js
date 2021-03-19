@@ -35,6 +35,7 @@ gulp.task('build:package', gulp.series(
   'js:compile-all-govuk-and-hmrc',
   'update-assets-version',
   'copy:README',
+  'copy:LICENSE',
   'copy:packageJson',
 ));
 

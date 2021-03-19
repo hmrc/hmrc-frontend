@@ -46,6 +46,7 @@ describe('package/', () => {
         'govuk-prototype-kit.config.json',
         'package.json',
         'README.md',
+        'LICENSE',
         'hmrc/govuk/fonts/bold-affa96571d-v2.woff',
         'hmrc/govuk/fonts/bold-b542beb274-v2.woff2',
         'hmrc/govuk/fonts/light-94a07e06a1-v2.woff2',
@@ -99,6 +100,16 @@ describe('package/', () => {
       .then((contents) => {
         // Look for H1 matching 'GOV.UK Frontend' from existing README
         expect(contents).toMatch(/^# HMRC Frontend/);
+      }).catch((error) => {
+        throw error;
+      }));
+  });
+
+  describe('LICENSE', () => {
+    it('is added', () => readFile(path.join(configPaths.package, 'LICENSE'), 'utf8')
+      .then((contents) => {
+        // Look for H1 matching 'GOV.UK Frontend' from existing README
+        expect(contents).toMatch(/^ {33}Apache License/);
       }).catch((error) => {
         throw error;
       }));
