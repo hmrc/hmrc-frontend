@@ -109,7 +109,7 @@ describe('package/', () => {
     it('is added', () => readFile(path.join(configPaths.package, 'LICENSE'), 'utf8')
       .then((contents) => {
         // Look for H1 matching 'GOV.UK Frontend' from existing README
-        expect(contents).toMatch(/^                                 Apache License/);
+        expect(contents).toMatch(/^ {33}Apache License/);
       }).catch((error) => {
         throw error;
       }));
