@@ -1,8 +1,6 @@
-'use strict'
-
-const gulp = require('gulp')
-const taskArguments = require('./task-arguments')
-const del = require('del')
+const gulp = require('gulp');
+const del = require('del');
+const { argv } = require('yargs');
 
 // Clean task for a specified folder --------------------
 // Removes all old files, except for package.json
@@ -10,16 +8,15 @@ const del = require('del')
 // ------------------------------------------------------
 
 gulp.task('clean', () => {
-  const destination = taskArguments.destination
+  const { destination } = argv;
 
   if (destination === 'package') {
     return del([
       `${destination}/**`,
-      `!${destination}`
-    ])
-  } else {
-    return del([
-      `${destination}/**/*`
-    ])
+      `!${destination}`,
+    ]);
   }
-})
+  return del([
+    `${destination}/**/*`,
+  ]);
+});

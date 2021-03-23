@@ -5,7 +5,77 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## [Unreleased]
+
+## [1.28.0] - 2021-03-19
+
+## Fixed
+
+- Package was missing LICENSE
+
+## [1.27.0] - 2021-03-04
+
+## Added
+
+- HMRC character count
+
+## [1.26.2] - 2021-02-25
+
+## Fixed
+
+- User research banner Welsh example missed url field
+
+## [1.26.1] - 2021-02-23
+
+## Fixed
+
+- Issue with node_modules reference in the hmrcUserResearchBanner,
+causing problems in frontend microservices using the hmrc-frontend webjar.
+
+## [1.26.0] - 2021-02-19
+
+## Added
+
+- HMRC user research banner
+
+## [1.25.0] - 2021-02-17
+
+## Updated
+
+- Update govuk-frontend to v3.11.0
+
+## [1.24.0] - 2021-02-08
+
+## Added
+
+- Compiled assets now included in NPM package.
+- Refactored gulp pipeline
+
+## [1.23.1] - 2020-12-11
+
+## Security
+
+- Bumped ini to v1.3.5
+
+## [1.23.0] - 2020-12-09
+
+## Changed
+
+- serviceId added for configuring contact-frontend for consistency with
+contact-frontend documentation, serviceCode deprecated
+
+## Fixed
+
+- Fixed colour contrast for focused sign out link in gov.uk header not meeting accessibility standards
+
+## [1.22.0] - 2020-12-02
+
+### Fixed
+
+- Accessibility issue with hmrcHeader when displayHmrcBanner set to true. Previously this
+component defined two top-level 'banner' landmarks failing accessibility tests. On advice from the 
+HMRC accessibility team, the HMRC banner has been moved inside HEADER so that screen-reader users read the
+banner as part of the overall header and can skip to the main content more easily. 
 
 ## [1.21.0] - 2020-11-23
 

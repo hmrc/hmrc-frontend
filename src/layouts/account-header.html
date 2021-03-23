@@ -4,8 +4,6 @@
 {% from "../components/account-menu/macro.njk" import hmrcAccountMenu %}
 
 {% block header %}
-  {% include "includes/cookie-banner.html" %}
-
   {{ hmrcHeader({
     homepageUrl: hmrcAccountHeader.homepageUrl,
     serviceName: hmrcAccountHeader.serviceName or serviceName,

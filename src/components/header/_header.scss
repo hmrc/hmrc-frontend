@@ -18,7 +18,7 @@
     }
 
     &:focus {
-      color: #0B0C0C;
+      color: #0b0c0c;
     }
   }
 
@@ -51,4 +51,10 @@
       color: govuk-colour("dark-grey");
     }
   }
+}
+
+// Shift user research banner up 10px to compensate for govuk header border
+// only when adjacent to govuk header
+.hmrc-header + .hmrc-user-research-banner {
+  top: -10px;
 }

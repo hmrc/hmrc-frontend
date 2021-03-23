@@ -1,5 +1,5 @@
 /* eslint-env jest */
 
-const { toHaveNoViolations } = require('jest-axe')
+const { toHaveNoViolations } = require('jest-axe');
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);

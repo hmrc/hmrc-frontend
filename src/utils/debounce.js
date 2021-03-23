@@ -2,24 +2,25 @@
 // be triggered. The function will be called after it stops being called for
 // N milliseconds. If `immediate` is passed, trigger the function on the
 // leading edge, instead of the trailing.
-export function debounce (func, wait, immediate) {
-  var timeout
 
-  return function () {
-    var context = this
-    var args = arguments
+// eslint-disable-next-line  import/prefer-default-export
+export function debounce(func, wait, immediate) {
+  let timeout;
 
-    var later = function () {
-      timeout = null
-      if (!immediate) func.apply(context, args)
-    }
+  return (...theParams) => {
+    const context = this;
 
-    var callNow = immediate && !timeout
+    const later = () => {
+      timeout = null;
+      if (!immediate) func.apply(context, theParams);
+    };
 
-    clearTimeout(timeout)
+    const callNow = immediate && !timeout;
 
-    timeout = setTimeout(later, wait)
+    clearTimeout(timeout);
 
-    if (callNow) func.apply(context, args)
-  }
+    timeout = setTimeout(later, wait);
+
+    if (callNow) func.apply(context, theParams);
+  };
 }

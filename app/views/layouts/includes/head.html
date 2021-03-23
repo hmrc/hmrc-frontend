@@ -1,2 +1,9 @@
-<!--[if lte IE 8]><link href="/public/app-ie8.css" rel="stylesheet" type="text/css" /><![endif]-->
-<!--[if gt IE 8]><!--><link href="/public/app.css" media="all" rel="stylesheet" type="text/css" /><!--<![endif]-->
+<!--[if !IE 8]><!-->
+<link rel="stylesheet" href="/assets/hmrc-frontend-{{ hmrcFrontendVersion }}.min.css">
+<!--<![endif]-->
+<!--[if IE 8]>
+<link rel="stylesheet" href="/assets/hmrc-frontend-{{ hmrcFrontendVersion }}-ie8.min.css">
+<![endif]-->
+<!--[if lt IE 9]>
+<script src="/assets/vendor/html5shiv.min.js"></script>
+<![endif]-->

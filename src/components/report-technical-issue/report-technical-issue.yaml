@@ -1,8 +1,12 @@
 params:
+  - name: serviceId
+    type: string
+    required: false
+    description: The service identifier passed to contact-frontend. It is automatically url-encoded.
   - name: serviceCode
     type: string
-    required: true
-    description: The URL-friendly service name which is passed to Contact Frontend.
+    required: false
+    description: (DEPRECATED) The service identifier passed to contact-frontend. It is automatically url-encoded.
   - name: language
     type: string
     required: false
@@ -22,36 +26,45 @@ params:
 examples:
 - name: default
   data:
-    serviceCode: the-url-safe-service-name
+    serviceId: the-url-safe-service-id
+    language: "en"
+- name: with-deprecated-service-code
+  data:
+    serviceCode: the-url-safe-service-code
+    language: "en"
+- name: with-service-id-and-service-code
+  data:
+    serviceCode: the-url-safe-service-code
+    serviceId: the-url-safe-service-id
     language: "en"
 - name: welsh
   data:
-    serviceCode: the-url-safe-service-name
+    serviceId: the-url-safe-service-id
     language: "cy"
 - name: with-classes
   data:
-    serviceCode: the-url-safe-service-name
+    serviceId: the-url-safe-service-id
     classes: govuk-!-font-weight-bold my-custom-class
     language: "cy"
 - name: with-local-base-url
   data:
-    serviceCode: my-local-service
+    serviceId: my-local-service
     baseUrl: http://localhost:9250
 - name: with-production-base-url
   data:
-    serviceCode: my-production-service
+    serviceId: my-production-service
     baseUrl: https://www.tax.service.gov.uk
 - name: with-no-base-url
   data:
-    serviceCode: my-generic-service
-- name: with-non-url-safe-service-name
+    serviceId: my-generic-service
+- name: with-non-url-safe-service-id
   data:
-    serviceCode: Build & Deploy
-- name: with-redirect-url
+    serviceId: Build & Deploy
+- name: with-referrer-url
   data:
-    serviceCode: pay
+    serviceId: pay
     referrerUrl: https://www.tax.service.gov.uk/pay?abc=def
-- name: with-local-redirect-url
+- name: with-local-referrer-url
   data:
-    serviceCode: pay
+    serviceId: pay
     referrerUrl: http://localhost:9123/my-service

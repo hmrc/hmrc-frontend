@@ -1,56 +1,17 @@
-'use strict'
+const gulp = require('gulp');
+const destinationPath = require('./destination-path');
 
-const gulp = require('gulp')
-const configPaths = require('../../config/paths.json')
-const postcss = require('gulp-postcss')
-const autoprefixer = require('autoprefixer')
-const taskArguments = require('./task-arguments')
-const filter = require('gulp-filter')
+gulp.task('copy-govuk-fonts', () => gulp.src([
+  'node_modules/govuk-frontend/govuk/assets/fonts/*',
+])
+  .pipe(gulp.dest(`${destinationPath}/govuk/fonts`)));
 
-let scssFiles = filter([configPaths.src + '**/*.scss'], {restore: true})
+gulp.task('copy-govuk-images', () => gulp.src([
+  'node_modules/govuk-frontend/govuk/assets/images/*',
+])
+  .pipe(gulp.dest(`${destinationPath}/govuk/images`)));
 
-gulp.task('copy-files', () => {
-  return gulp.src([
-    configPaths.src + '**/*',
-    '!**/.DS_Store',
-    '!**/*.test.js',
-    '!' + configPaths.src + 'govuk-prototype-kit.config.json',
-    '!' + configPaths.components + '**/README.njk',
-    '!' + configPaths.components + '**/*.{yml,yaml}',
-    '!' + configPaths.components + '**/example.njk',
-    '!' + configPaths.components + '**/__snapshots__/**',
-    '!' + configPaths.components + '**/__snapshots__/'
-  ])
-    .pipe(scssFiles)
-    .pipe(postcss([
-      autoprefixer
-    ], {syntax: require('postcss-scss')}))
-    .pipe(scssFiles.restore)
-    .pipe(gulp.dest(taskArguments.destination + '/hmrc/'))
-})
-
-gulp.task('copy-govuk-config', () => {
-  return gulp.src([configPaths.src + 'govuk-prototype-kit.config.json'])
-    .pipe(gulp.dest(taskArguments.destination + '/'))
-})
-
-gulp.task('copy-check-compatibility', () => {
-  return gulp.src(['check-compatibility.js'])
-    .pipe(gulp.dest(taskArguments.destination + '/'))
-})
-
-gulp.task('copy-dist-component-files', () => {
-  return gulp.src([
-    'components/*/images/*'
-  ], {cwd: configPaths.src + '/**'})
-    .pipe(gulp.dest(taskArguments.destination + '/'))
-})
-
-gulp.task('copy-dist-fonts', () => {
-  return gulp.src([
-    'node_modules/govuk-frontend/govuk/assets/fonts/*'
-  ])
-    .pipe(gulp.dest(taskArguments.destination + '/fonts'))
-})
-
-gulp.task('copy-dist-files', gulp.series('copy-dist-component-files', 'copy-dist-fonts'))
+gulp.task('copy-html5shiv', () => gulp.src([
+  'node_modules/html5shiv/dist/html5shiv.min.js',
+])
+  .pipe(gulp.dest(`${destinationPath}/vendor`)));

@@ -1,0 +1,51 @@
+{% set language = params.language | default('en') %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/hint/macro.njk" import govukHint %}
+
+<div class="hmrc-character-count" data-module="hmrc-character-count" data-language="{{ language }}"
+{%- if params.maxlength %} data-maxlength="{{ params.maxlength }}"{% endif %}
+{%- if params.threshold %} data-threshold="{{ params.threshold }}"{% endif %}
+{%- if params.maxwords %} data-maxwords="{{ params.maxwords }}"{% endif %}>
+  {{ govukTextarea({
+    id: params.id,
+    name: params.name,
+    describedBy: params.id + '-info',
+    rows: params.rows,
+    spellcheck: params.spellcheck,
+    value: params.value,
+    formGroup: params.formGroup,
+    classes: 'hmrc-js-character-count' + (' govuk-textarea--error' if params.errorMessage) + (' ' + params.classes if params.classes),
+    label: {
+      html: params.label.html,
+      text: params.label.text,
+      classes: params.label.classes,
+      isPageHeading: params.label.isPageHeading,
+      attributes: params.label.attributes,
+      for: params.id
+    },
+    hint: params.hint,
+    errorMessage: params.errorMessage,
+    attributes: params.attributes
+  }) }}
+  {% if language === 'cy' %}
+      {{ govukHint({
+        text: 'Gallwch nodi hyd at ' + (params.maxlength or params.maxwords) + (' o eiriau' if params.maxwords else ' o gymeriadau'),
+        id: params.id + '-info',
+        classes: 'hmrc-character-count__message' + (' ' + params.countMessage.classes if params.countMessage.classes),
+        attributes: {
+          'aria-live': 'polite'
+        }
+      }) }}
+  {% else %}
+      {{ govukHint({
+        text: 'You can enter up to ' + (params.maxlength or params.maxwords) + (' words' if params.maxwords else ' characters'),
+        id: params.id + '-info',
+        classes: 'hmrc-character-count__message' + (' ' + params.countMessage.classes if params.countMessage.classes),
+        attributes: {
+          'aria-live': 'polite'
+        }
+      }) }}
+  {% endif %}
+</div>
+
+

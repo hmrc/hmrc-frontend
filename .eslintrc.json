@@ -1,0 +1,68 @@
+{
+  "extends": [
+    "airbnb-base"
+  ],
+  "root": true,
+  "env": {
+    "browser": true
+  },
+  "ignorePatterns": [
+    "src/vendor/polyfills/**/*",
+    "backstop_data/**/*",
+    "sassdoc/**/*",
+    "package/**/*",
+    "public/**/*",
+    "dist/**/*"
+  ],
+  "rules": {
+    "import/prefer-default-export": "off"
+  },
+  "overrides": [
+    {
+      "files": [
+        "tasks/gulp/**/*",
+        "app/app.js",
+        "lib/puppeteer/**/*",
+        "lib/jest-helpers.js",
+        "lib/axe-helper.js",
+        "lib/file-helper.js",
+        "config/jest-setup.js"
+      ],
+      "rules": {
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            "devDependencies": true
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "lib/puppeteer/**/*"
+      ],
+      "rules": {
+        "no-underscore-dangle": "off"
+      }
+    },
+    {
+      "files": [
+        "tasks/gulp/**/*",
+        "check-compatibility.js",
+        "start.js",
+        "lib/puppeteer/**/*"
+      ],
+      "rules": {
+        "no-console": "off"
+      }
+    },
+    {
+      "files": [
+        "src/components/timeout-dialog/timeout-dialog.js"
+      ],
+      "rules": {
+        "no-use-before-define": "off"
+      }
+    }
+  ]
+}
