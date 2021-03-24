@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.29.0] - 2021-03-24
+
+## Fixed
+
+- Added a class to Report Technical Issue to help with browser testing
+
 ## [1.28.0] - 2021-03-19
 
 ## Fixed
