@@ -1,7 +1,7 @@
 {% set language %}{% if params.language == 'cy' %}cy{% else %}en{% endif %}{% endset %}
 {% set serviceId = params.serviceId or params.serviceCode %}
 <a lang="{{ language }}" hreflang="{{ language }}"
-  class="govuk-link {{ params.classes }}"
+  class="govuk-link hmrc-report-technical-issue {{ params.classes }}"
   target="_blank"
   href="{{ params.baseUrl }}/contact/problem_reports_nonjs?newTab=true{% if serviceId %}&amp;service={{ serviceId | urlencode }}{% endif %}{% if params.referrerUrl %}&amp;referrerUrl={{ params.referrerUrl | urlencode }}{% endif %}"
 >{% if params.language == 'cy' %}A yw’r dudalen hon yn gweithio’n iawn? (yn agor mewn tab newydd){% else %}Is this page not working properly? (opens in new tab){% endif %}</a>
