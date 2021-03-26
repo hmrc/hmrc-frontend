@@ -1,0 +1,46 @@
+@import "../../../../govuk-frontend/govuk/core/typography";
+
+.hmrc-timeline {
+  $border-width: 5px;
+
+  border-left: $border-width solid govuk-colour("blue");
+  margin: 0;
+  margin-bottom: govuk-spacing(6);
+  padding: 0;
+
+  &__event {
+    @include govuk-responsive-padding(6, "bottom");
+
+    padding-left: govuk-spacing(4) - $border-width;
+    position: relative;
+    list-style: none;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+
+  &__event-title {
+    @include govuk-responsive-margin(1, "bottom");
+
+    @extend %govuk-heading-m;
+
+    &::before {
+      background-color: govuk-colour("blue");
+      content: "";
+      height: $border-width;
+      position: absolute;
+      left: 0;
+      top: 0.5em;
+      width: (govuk-spacing(4) * 0.6) - $border-width;
+    }
+  }
+
+  &__event-meta {
+    @include govuk-font($size: 19);
+    @include govuk-text-colour;
+    @include govuk-responsive-margin(3, "bottom");
+
+    display: block;
+  }
+}

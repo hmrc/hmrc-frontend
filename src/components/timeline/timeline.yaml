@@ -1,0 +1,75 @@
+params:
+  - events:
+    type: array
+    required: true
+    description: the list of events in the timeline
+    params:
+      - title:
+        type: string
+        required: true
+        description: the name of the event
+
+      - datetime:
+        type: string
+        required: false
+        description: the machine readable date added to the datetime attribute in the time element
+
+      - time:
+        type: string
+        required: true
+        description: the human readable date
+
+      - content:
+        type: string
+        required: true
+        description: the description of the timeline event
+  - headingLevel:
+    type: integer
+    required: false
+    description: allows customisation of the heading level.
+
+examples:
+- name: default
+  description: A default example.
+  data:
+    events: []
+
+- name: custom-header-level
+  description: Events with custom header levels.
+  data:
+    headingLevel: 3
+    events:
+      - title: 'event one'
+        datetime: '2020-07-14'
+        time: '14 July 2020'
+        content: '<p class="govuk-body">exampleContent1</p>'
+
+- name: no-datetime-event
+  description: An example with no datetime.
+  data:
+    events:
+      - title: 'event one'
+        time: '15 July 2020'
+        content: '<p class="govuk-body">singleExampleContent1</p>'
+
+- name: single-event
+  description: An example with a single event.
+  data:
+    events:
+      - title: 'event one'
+        datetime: '2020-07-15'
+        time: '15 July 2020'
+        content: '<p class="govuk-body">singleExampleContent1</p>'
+
+- name: multiple-events
+  description: An example with multiple events.
+  data:
+    events:
+      - title: 'event one'
+        datetime: '2020-07-20'
+        time: '20 July 2020'
+        content: '<p class="govuk-body">exampleContent1</p>'
+      - title: 'event two'
+        datetime: '2020-07-21'
+        time: '21 July 2020'
+        content: '<p class="govuk-body">exampleContent2</p>'
