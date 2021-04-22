@@ -30,3 +30,10 @@ examples:
     messageSuffix : "there is a suffix for the message"
     keepAliveButtonText: "keepAliveButtonText"
     signOutButtonText: "signOutButtonText"
+  visualRegressionTests:
+    backstopScenarioOptions:
+      delay: 10000
+
+visualRegressionTests:
+  backstopScenarioOptions:
+    delay: 2000

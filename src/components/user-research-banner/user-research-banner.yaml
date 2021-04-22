@@ -21,3 +21,7 @@ examples:
   data:
     url: 'https://www.example.com/user-research'
     language: cy
+
+visualRegressionTests:
+  backstopScenarioOptions:
+    delay: 2000

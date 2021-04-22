@@ -103,7 +103,7 @@ module.exports = (options) => {
     const globalData = (type === 'layout' && exampleConfig.data) || {};
 
     if (!exampleConfig) {
-      next();
+      return next();
     }
 
     // Construct and evaluate the component with the data for this example
@@ -127,7 +127,7 @@ module.exports = (options) => {
       bodyClasses = 'app-iframe-in-component-preview';
     }
 
-    res.render(`${type}-preview`, {
+    return res.render(`${type}-preview`, {
       ...globalData, bodyClasses, previewLayout, hmrcFrontendVersion: pkg.version,
     });
   });

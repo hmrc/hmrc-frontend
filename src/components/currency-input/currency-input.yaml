@@ -48,3 +48,8 @@ examples:
       text: test-label
     id: input-example
     name: test-name
+
+visualRegressionTests:
+  alternateStates:
+    focused:
+      clickSelector: .govuk-label

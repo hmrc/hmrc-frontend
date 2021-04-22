@@ -59,7 +59,6 @@ examples:
           href: '/components/account-header/with-service-name/preview'
         cy:
           href: '/components/account-header/welsh-with-service-name/preview'
-      serviceName: 'My service'
       homepageUrl: '/the-homepage'
       serviceUrl: '/the-service'
       containerClasses: 'the-header-container-classes govuk-width-container'

@@ -1,0 +1,26 @@
+{
+  "definitions": {
+    "backstopScenarioOptions": {
+      "type": "object"
+    }
+  },
+
+  "type": "object",
+
+  "properties": {
+    "backstopScenarioOptions": {
+      "$ref": "#/definitions/backstopScenarioOptions"
+    },
+    "alternateStates": {
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "$ref": "#/definitions/backstopScenarioOptions"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+
+  "additionalProperties": false
+}

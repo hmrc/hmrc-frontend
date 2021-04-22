@@ -1,4 +1,59 @@
-module.exports = ({ host, port }) => ({
+const Ajv = require('ajv');
+
+const ajv = new Ajv({ allErrors: true });
+
+const configMatchesAllowedSchema = ajv.compile(require('./visual-regression-testing-config-schema.json'));
+
+const validateConfig = (component, { visualRegressionTests: config = {} }) => {
+  if (!configMatchesAllowedSchema(config)) {
+    throw Error(`Invalid visualRegressionTests config within ${component}.yaml, see JSON schema`);
+  }
+
+  return {
+    ...config,
+    ...(config.alternateStates && { alternateStates: Object.entries(config.alternateStates) }),
+  };
+};
+
+const backstopScenarioDefaults = {};
+
+const buildScenarioList = (host, port, components) => components.flatMap(({
+  componentsPath,
+  componentsConfig,
+}) => {
+  const {
+    alternateStates: componentsAlternateStates = [],
+    backstopScenarioOptions: componentsBackstopScenarioOptions,
+  } = validateConfig(componentsPath, componentsConfig);
+
+  return componentsConfig.examples.flatMap((examplesConfig) => {
+    const {
+      examplesPath = examplesConfig.name.replace(/ /g, '-'),
+      alternateStates: examplesAlternateStates = componentsAlternateStates,
+      backstopScenarioOptions: examplesBackstopScenarioOptions,
+    } = validateConfig(componentsPath, examplesConfig);
+
+    const scenarioForThisExample = {
+      ...backstopScenarioDefaults,
+      label: `${componentsPath} (${examplesConfig.name} example)`,
+      url: `http://${host}:${port}/components/${componentsPath}/${examplesPath}/preview`,
+      ...componentsBackstopScenarioOptions,
+      ...examplesBackstopScenarioOptions,
+    };
+
+    const scenariosForAlternateStates = examplesAlternateStates.map(
+      ([alternateState, alternateStateBackstopScenarioOptions]) => ({
+        ...scenarioForThisExample,
+        label: `${scenarioForThisExample.label} (${alternateState})`,
+        ...alternateStateBackstopScenarioOptions,
+      }),
+    );
+
+    return [scenarioForThisExample, ...scenariosForAlternateStates];
+  });
+});
+
+module.exports = ({ host, port, components }) => ({
   id: 'backstop_default',
   viewports: [
     {
@@ -14,79 +69,7 @@ module.exports = ({ host, port }) => ({
   ],
   onBeforeScript: 'puppet/onBefore.js',
   onReadyScript: 'puppet/onReady.js',
-  scenarios: [
-    {
-      label: 'HMRC Account Header',
-      url: `http://${host}:${port}/components/account-header/preview`,
-    },
-    {
-      label: 'HMRC Account Menu',
-      url: `http://${host}:${port}/components/account-menu/preview`,
-    },
-    {
-      label: 'HMRC Add to a list',
-      url: `http://${host}:${port}/components/add-to-a-list/preview`,
-    },
-    {
-      label: 'HMRC Banner',
-      url: `http://${host}:${port}/components/banner/preview`,
-    },
-    {
-      label: 'HMRC Currency Input',
-      url: `http://${host}:${port}/components/currency-input/preview`,
-    },
-    {
-      label: 'HMRC Currency Input (Focus)',
-      url: `http://${host}:${port}/components/currency-input/preview`,
-      clickSelector: '.govuk-label',
-    },
-    {
-      label: 'HMRC Header',
-      url: `http://${host}:${port}/components/header/preview`,
-    },
-    {
-      label: 'HMRC Internal Header',
-      url: `http://${host}:${port}/components/internal-header/preview`,
-      /* Internal header uses system-defined font so can
-      vary between platforms (allowing 1% variance) */
-      misMatchThreshold: 1,
-    },
-    {
-      label: 'HMRC Language Select',
-      url: `http://${host}:${port}/components/language-select/preview`,
-    },
-    {
-      label: 'HMRC New Tab Link',
-      url: `http://${host}:${port}/components/new-tab-link/preview`,
-    },
-    {
-      label: 'HMRC Notification Badge',
-      url: `http://${host}:${port}/components/notification-badge/preview`,
-    },
-    {
-      label: 'HMRC Page Heading',
-      url: `http://${host}:${port}/components/page-heading/preview`,
-    },
-    {
-      label: 'HMRC Report Technical Issue',
-      url: `http://${host}:${port}/components/report-technical-issue/preview`,
-    },
-    {
-      label: 'HMRC Timeout Dialog',
-      url: `http://${host}:${port}/components/timeout-dialog/preview`,
-      delay: 2000,
-    },
-    {
-      label: 'HMRC User Research Banner',
-      url: `http://${host}:${port}/components/user-research-banner/preview`,
-      delay: 2000,
-    },
-    {
-      label: 'HMRC Character Count',
-      url: `http://${host}:${port}/components/character-count/preview`,
-      delay: 2000,
-    },
-  ],
+  scenarios: buildScenarioList(host, port, components),
   paths: {
     bitmaps_reference: 'backstop_data/bitmaps_reference',
     bitmaps_test: 'backstop_data/bitmaps_test',
