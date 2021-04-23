@@ -1,7 +1,11 @@
 {
+  "title": "Component Visual Regression Test Config",
+  "description": "Can be provided in component yaml definitions at the top level or on a specific example to adjust behaviour of tests.",
+
   "definitions": {
     "backstopScenarioOptions": {
-      "type": "object"
+      "type": "object",
+      "description": "Refer to backstop documentation on advanced scenarios https://github.com/garris/BackstopJS/blob/master/README.md#advanced-scenarios"
     }
   },
 
@@ -18,6 +22,26 @@
           "$ref": "#/definitions/backstopScenarioOptions"
         }
       },
+      "examples": [
+        {
+          "focused": {
+            "clickSelector": ".my-input"
+          }
+        },
+        {
+          "hovered": {
+            "hoverSelector": ".my-tooltip"
+          }
+        },
+        {
+          "keyPressSelectors": [
+            {
+              "selector": ".my-auto-complete",
+              "keyPress": "United K"
+            }
+          ]
+        }
+      ],
       "additionalProperties": false
     }
   },
