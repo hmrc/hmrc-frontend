@@ -6,12 +6,12 @@ const examples = getExamples('add-to-a-list');
 
 const getTableItems = ($) => {
   const $rows = $('.hmrc-add-to-a-list__contents');
-  const $changeLinks = $('span.hmrc-add-to-a-list__change', $rows);
-  const $removeLinks = $('span.hmrc-add-to-a-list__remove', $rows);
+  const $changeLinks = $('.hmrc-add-to-a-list__change', $rows);
+  const $removeLinks = $('.hmrc-add-to-a-list__remove', $rows);
 
   const listItems = {};
   listItems.identifiers = [];
-  $('span.hmrc-add-to-a-list__identifier', $rows).each((index, element) => {
+  $('.hmrc-add-to-a-list__identifier', $rows).each((index, element) => {
     listItems.identifiers.push($(element).text().trim());
   });
   listItems.changeLinkText = $changeLinks.find('[aria-hidden="true"]').eq(0).text().trim();
@@ -23,6 +23,14 @@ const getTableItems = ($) => {
 };
 
 describe('Add to a list', () => {
+  it('should be rendered using a structure accessible for JAWS users', () => {
+    // https://github.com/hmrc/design-patterns/issues/31#issuecomment-799628620
+
+    const $ = render('add-to-a-list', examples['multiple-specific-items']);
+
+    expect($('.hmrc-add-to-a-list').first().html()).toMatchSnapshot();
+  });
+
   describe('by default', () => {
     const $ = render('add-to-a-list', examples.default);
     const $heading = $('h1');
@@ -107,9 +115,9 @@ describe('Add to a list', () => {
     });
 
     it('Contains a list of 2 directors', () => {
-      const $identifiers = $('span.hmrc-add-to-a-list__identifier', $rows);
-      const $changeLinks = $('span.hmrc-add-to-a-list__change .govuk-visually-hidden', $rows);
-      const $removeLinks = $('span.hmrc-add-to-a-list__remove .govuk-visually-hidden', $rows);
+      const $identifiers = $('.hmrc-add-to-a-list__identifier', $rows);
+      const $changeLinks = $('.hmrc-add-to-a-list__change .govuk-visually-hidden', $rows);
+      const $removeLinks = $('.hmrc-add-to-a-list__remove .govuk-visually-hidden', $rows);
 
       expect($rows.length).toBe(2);
       expect($identifiers.eq(0).text()).toContain('Director One');
@@ -147,9 +155,9 @@ describe('Add to a list', () => {
     });
 
     it('Contains a list of 2 items', () => {
-      const $identifiers = $('span.hmrc-add-to-a-list__identifier', $rows);
-      const $changeLinks = $('span.hmrc-add-to-a-list__change .govuk-visually-hidden', $rows);
-      const $removeLinks = $('span.hmrc-add-to-a-list__remove .govuk-visually-hidden', $rows);
+      const $identifiers = $('.hmrc-add-to-a-list__identifier', $rows);
+      const $changeLinks = $('.hmrc-add-to-a-list__change .govuk-visually-hidden', $rows);
+      const $removeLinks = $('.hmrc-add-to-a-list__remove .govuk-visually-hidden', $rows);
 
       expect($rows.length).toBe(2);
       expect($identifiers.eq(0).text()).toContain('Eitem un');

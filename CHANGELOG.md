@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.31.0 - 2021-04-27
+
+### Fixed
+
+- Accessibility issue with hmrcAddToAList (
+  see [comment from Adam Liptrot on github issue 31 describing problem and solution](https://github.com/hmrc/design-patterns/issues/31#issuecomment-799628620))
+  . Previously JAWS list items dialog would announce action labels as well as the item identifier when describing a list
+  item. Following this change only the actual identifier for the row will be announced.
+
 ## [1.30.1] - 2021-04-27
 
 ### Fixed
