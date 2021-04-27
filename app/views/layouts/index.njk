@@ -9,11 +9,18 @@
 
     <div class="govuk-grid-column-one-half">
       <h2 class="govuk-heading-m">Components</h2>
-      <ul class="govuk-list">
+      <dl class="govuk-list">
         {% for componentName in componentsDirectory | sort %}
-          <li><a href="/components/{{ componentName }}/preview" class="govuk-link">{{ componentName | replace("-", " ") | capitalize }}</a></li>
+          <dt><a href="/components/{{ componentName }}/preview" class="govuk-link">{{ componentName | replace("-", " ") | capitalize }}</a></dt>
+          <dd>
+            <ul class="govuk-list">
+              {% for exampleName in componentName | componentExamples %}
+                <li><a href="/components/{{ componentName }}/{{ exampleName }}/preview" class="govuk-link">{{ exampleName | replace("-", " ") | capitalize }} example</a></li>
+              {% endfor %}
+            </ul>
+          </dd>
         {% endfor %}
-      </ul>
+      </dl>
     </div>
   </div>
 {% endblock %}

@@ -32,6 +32,13 @@ module.exports = (options) => {
     ...nunjucksOptions, // merge any additional options and overwrite defaults above.
   });
 
+  env.addFilter(
+    'componentExamples',
+    (component) => fileHelper.getComponentData(component).examples.map(
+      (example) => example.name.replace(/ /g, '-'),
+    ),
+  );
+
   // Set view engine
   app.set('view engine', 'njk');
 
