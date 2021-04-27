@@ -65,8 +65,98 @@ result of a known change to the component, the reference images can be updated b
 npm run test:backstop-approve
 ```
 
-If any changes are needed to the backstop configuration, for example to test on different device types or add to the
- list of scenarios, these can be made by editing the file `tasks/gulp/backstop-config.js`
+All examples of components will be checked by backstop. You can adjust the backstop configuration for a component or a
+specific example of a component by adding options under the `visualRegressionTests` key to the yaml configuration for
+the component or example.
+
+For example to introduce a delay before a screenshot is taken for all examples of a component:
+
+```yaml
+examples:
+ - name: welsh-language
+   data:
+    language: "cy"
+    timeout: 70
+    countdown: 68
+    keepAliveUrl: "?abc=def"
+    signOutUrl: "?ghi=jkl"
+
+visualRegressionTests:
+ backstopScenarioOptions:
+  delay: 2000
+```
+
+Or just for a specific example:
+
+```yaml
+examples:
+ - name: welsh-language
+   data:
+    language: "cy"
+    timeout: 70
+    countdown: 68
+    keepAliveUrl: "?abc=def"
+    signOutUrl: "?ghi=jkl"
+   visualRegressionTests:
+    backstopScenarioOptions:
+     delay: 2000
+```
+
+You can also capture examples of components in different states.
+
+For example, an input with a focused state:
+
+```yaml
+examples:
+ - name: default
+   description: A text input
+   data:
+    label:
+     text: test-label
+    id: input-example
+    name: test-name
+ - name: invalid
+   description: A text input with an error
+   data:
+    label:
+     text: test-label
+    id: input-example
+    name: test-name
+    errorMessage: Please enter the correct value
+
+visualRegressionTests:
+ alternateStates:
+  focused:
+   clickSelector: .govuk-label
+```
+
+The configuration above would result in 4 backstop checks being run. One for each example: default, and invalid; and one
+for each example in each alternate state - so in this case: default when focused, and invalid when focused.
+
+Alternate states on a specific example will override any supplied at the component level:
+
+```yaml
+examples:
+ - name: default
+   description: A text input
+   data:
+    label:
+     text: test-label
+    id: input-example
+    name: test-name
+   visualRegressionTests:
+    alternateStates: [ ]
+
+visualRegressionTests:
+ alternateStates:
+  focused:
+   clickSelector: .govuk-label
+```
+
+The configuration above would result in an alternate focused state for all examples except the default which overrides
+the alternate states with an empty list.
+
+For more general backstop configuration take a look at [tasks/gulp/backstop-config.js]()
 
 #### Test for compatibility
 The code you contribute must be accessible. This means it works on every browser or device your users may use to access it.

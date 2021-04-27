@@ -43,3 +43,7 @@ examples:
   data:
     serviceName: Service Name
     serviceUrl: '/components/internal-header/with-service-name/preview'
+
+visualRegressionTests:
+  backstopScenarioOptions:
+    misMatchThreshold: 1

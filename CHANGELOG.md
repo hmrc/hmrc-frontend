@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.30.1] - 2021-04-27
+
+### Fixed
+
+- Increased visual regression testing coverage to include all component examples
+
 ## [1.30.0] - 2021-03-25
 
 ### Added
@@ -15,7 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.29.0] - 2021-03-24
 
-## Fixed
+### Fixed
 
 - Added a class to Report Technical Issue to help with browser testing
 
