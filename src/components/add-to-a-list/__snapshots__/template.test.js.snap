@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add to a list should be rendered using a structure accessible for JAWS users 1`] = `
+
+<div class="hmrc-add-to-a-list__contents">
+  <dt class="hmrc-add-to-a-list__identifier hmrc-add-to-a-list__identifier--light">
+    Director One
+  </dt>
+  <dd class="hmrc-add-to-a-list__change">
+    <a class="govuk-link"
+       href="#change-item-1"
+    >
+      <span aria-hidden="true">
+        Change
+      </span>
+      <span class="govuk-visually-hidden">
+        Change Director One
+      </span>
+    </a>
+  </dd>
+  <dd class="hmrc-add-to-a-list__remove">
+    <a class="govuk-link"
+       href="#remove-item-1"
+    >
+      <span aria-hidden="true">
+        Remove
+      </span>
+      <span class="govuk-visually-hidden">
+        Remove Director One from the list
+      </span>
+    </a>
+  </dd>
+</div>
+<div class="hmrc-add-to-a-list__contents">
+  <dt class="hmrc-add-to-a-list__identifier hmrc-add-to-a-list__identifier--light">
+    Director Two
+  </dt>
+  <dd class="hmrc-add-to-a-list__change">
+    <a class="govuk-link"
+       href="#change-item-2"
+    >
+      <span aria-hidden="true">
+        Change
+      </span>
+      <span class="govuk-visually-hidden">
+        Change Director Two
+      </span>
+    </a>
+  </dd>
+  <dd class="hmrc-add-to-a-list__remove">
+    <a class="govuk-link"
+       href="#remove-item-2"
+    >
+      <span aria-hidden="true">
+        Remove
+      </span>
+      <span class="govuk-visually-hidden">
+        Remove Director Two from the list
+      </span>
+    </a>
+  </dd>
+</div>
+
+`;

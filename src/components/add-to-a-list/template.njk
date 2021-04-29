@@ -37,31 +37,31 @@
 {%- endif -%}
 </h1>
 <div class="govuk-form-group">
-  <ul class="hmrc-add-to-a-list hmrc-add-to-a-list--{{ params.itemSize | default('short') }}">
+  <dl class="hmrc-add-to-a-list hmrc-add-to-a-list--{{ params.itemSize | default('short') }}">
     {# loop through items in  the itemList #}
     {% for item in params.itemList %}
-    <li class="hmrc-add-to-a-list__contents">
-      <span class="hmrc-add-to-a-list__identifier hmrc-add-to-a-list__identifier--light">
+    <div class="hmrc-add-to-a-list__contents">
+      <dt class="hmrc-add-to-a-list__identifier hmrc-add-to-a-list__identifier--light">
         {{ item.name }}
-      </span>
-      <span class="hmrc-add-to-a-list__change">
+      </dt>
+      <dd class="hmrc-add-to-a-list__change">
         <a class="govuk-link" href="{{ item.changeUrl }}">
           <span aria-hidden="true">{{messages.change}}</span>
           <span class="govuk-visually-hidden">{{messages.change}} {{ item.name }}</span>
         </a>
-      </span>
-      <span class="hmrc-add-to-a-list__remove">
+      </dd>
+      <dd class="hmrc-add-to-a-list__remove">
         <a class="govuk-link" href="{{ item.removeUrl }}">
           <span aria-hidden="true">{{messages.remove}}</span>
           <span class="govuk-visually-hidden">{{messages.aria.before}} {{ item.name }} {{messages.aria.after}}</span>
         </a>
-      </span>
-    </li>
+      </dd>
+    </div>
     {% else %}
       {# empty list stuff goes here #}
     {% endfor %}
     {# end loop #}
-  </ul>
+  </dl>
 </div>
 <form method="post" action="{{ params.formAction }}">
   {{ govukRadios({
