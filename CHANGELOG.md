@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.32.0] - 2021-04-29
+
+## Fixed
+
+- Allowing the initialization of multiple character counts on a single page when using `initAll`
+
 ## 1.31.0 - 2021-04-27
 
 ### Fixed
