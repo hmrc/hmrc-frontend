@@ -1,3 +1,5 @@
+import '../../vendor/polyfills/Number/prototype/isNaN';
+
 function ValidateInput() {
 }
 

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.33.0] - 2021-05-04
+
+## Fixed
+
+- Fix timeout dialog on IE by adding polyfill for Number.isNaN
+
 ## [1.32.0] - 2021-04-29
 
 ## Fixed
