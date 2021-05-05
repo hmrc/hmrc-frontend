@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [1.33.0] - 2021-05-04
+## [1.33.1] - 2021-05-05
+
+## Fixed
+
+- Security vulnerabilities
+
+## [1.33.0] - 2021-05-05
 
 ## Fixed
 
