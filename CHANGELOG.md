@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.34.0] - 2021-05-05
+
+## Changed
+
+- URL for report-technical-issue component updated to point to new contact-frontend endpoint /contact/report-technical-problem
+
 ## [1.33.1] - 2021-05-05
 
 ## Fixed
