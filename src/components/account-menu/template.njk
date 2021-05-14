@@ -9,9 +9,9 @@
     </span>
   </a>
 
-  <a href="#" class="hmrc-account-menu__link hmrc-account-menu__link--menu js-hidden js-visible" tabindex="-1" aria-hidden="true" aria-expanded="false">
+  <button class="hmrc-account-menu__link hmrc-account-menu__link--menu hmrc-account-menu__account-menu js-hidden js-visible" tabindex="-1" aria-hidden="true" aria-expanded="false">
     {% if language == 'cy' %}Dewislen y cyfrif{% else %}Account menu{% endif %}
-  </a>
+  </button>
 
   <ul class="hmrc-account-menu__main js-hidden">
     <li class="hmrc-account-menu__link--back hidden" aria-hidden="true">
@@ -36,9 +36,9 @@
     </li>
 
     <li>
-      <a href="#subnav-your-account" id="account-menu__main-2" class="hmrc-account-menu__link hmrc-account-icon hmrc-account-menu__link--more" aria-haspopup="true" aria-owns="subnav-your-account">
+      <button id="account-menu__main-2" class="hmrc-account-menu__link hmrc-account-icon hmrc-account-menu__link--more hmrc-account-menu__your-account" aria-haspopup="true" aria-owns="subnav-your-account">
         {% if language == 'cy' %}Eich cyfrif{% else %}Your account{% endif %}
-      </a>
+      </button>
 
       <div class="hmrc-subnav" id="subnav-your-account" role="navigation" aria-labelledby="account-menu__main-2" aria-label="Your account">
         <div class="govuk-grid-column-one-third hmrc-subnav__section">
@@ -47,7 +47,7 @@
           </p>
 
           <div>
-            <a href="{{ params.paperlessSettings.href | default('#') }}">
+            <a href="{{ params.paperlessSettings.href | default('#') }}" class="hmrc-subnav__paperless">
               {% if language == 'cy' %}Rheoli'ch gosodiadau di-bapur{% else %}Manage your paperless settings{% endif %}
             </a>
           </div>
@@ -59,7 +59,7 @@
           </p>
 
           <div>
-            <a href="{{ params.personalDetails.href | default('#') }}">
+            <a href="{{ params.personalDetails.href | default('#') }}" class="hmrc-subnav__personal">
               {% if language == 'cy' %}Rheoli'ch manylion personol{% else %}Manage your personal details{% endif %}
             </a>
           </div>
@@ -68,9 +68,7 @@
     </li>
 
     <li>
-      <a href="{{ params.signOut.href | default('#') }}" class="hmrc-account-menu__link">
-        {% if language == 'cy' %}Allgofnodi{% else %}Sign out{% endif %}
-      </a>
+      <a href="{{ params.signOut.href | default('#') }}" class="hmrc-account-menu__link hmrc-account-menu__sign-out">{% if language == 'cy' %}Allgofnodi{% else %}Sign out{% endif %}</a>
     </li>
   </ul>
 </nav>

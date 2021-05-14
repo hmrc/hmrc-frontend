@@ -1,4 +1,3 @@
-import '../../vendor/polyfills/Element/prototype/dataset';
 import { debounce } from '../../utils/debounce';
 import { getCurrentBreakpoint } from '../../utils/breakpoints';
 
@@ -19,11 +18,8 @@ AccountMenu.prototype.init = function init() {
   this.setup();
 
   this.$showSubnavLink.addEventListener('click', this.eventHandlers.showSubnavLinkClick.bind(this));
-  this.$showSubnavLink.addEventListener('focusout', this.eventHandlers.showSubnavLinkFocusOut.bind(this));
-  this.$showSubnavLink.addEventListener('focusin', this.eventHandlers.showSubnavLinkFocusIn.bind(this));
   this.$backLink.addEventListener('click', this.eventHandlers.backLinkClick.bind(this));
   this.$subNav.addEventListener('focusout', this.eventHandlers.subNavFocusOut.bind(this));
-  this.$subNav.addEventListener('focusin', this.eventHandlers.subNavFocusIn.bind(this));
   this.$showNavLinkMobile.addEventListener('click', this.eventHandlers.showNavLinkMobileClick.bind(this));
 
   window.addEventListener('resize', debounce(this.reinstantiate.bind(this)));
@@ -44,7 +40,6 @@ AccountMenu.prototype.eventHandlers = {
     event.stopPropagation();
 
     if (isSmall(window)) {
-      // TODO: remove redundant check - showSubnavLink appears only when subnav is not expanded
       if (!event.currentTarget.classList.contains('hmrc-account-menu__link--more-expanded')) {
         this.hideMainNavMobile(event.currentTarget);
         this.showSubnavMobile(event.currentTarget);
@@ -55,33 +50,22 @@ AccountMenu.prototype.eventHandlers = {
       this.showSubnavDesktop();
     }
   },
-  showSubnavLinkFocusOut(event) {
-    if (!isSmall(window)) {
-      this.$module.querySelector(event.target.hash).dataset.subMenuTimer = setTimeout(() => {}, 0);
-    }
-  },
-  showSubnavLinkFocusIn(event) {
-    if (!isSmall(window)) {
-      clearTimeout(this.$module.querySelector(event.target.hash).dataset.subMenuTimer);
-    }
-  },
   backLinkClick(event) {
     event.preventDefault();
 
-    // TODO: remove redundant check - backlink appears only when subnav is open
-    if (this.$mainNav.classList.contains('hmrc-subnav-is-open')) {
-      this.hideSubnavMobile();
-      this.showMainNavMobile();
-    }
+    this.hideSubnavMobile();
+    this.showMainNavMobile();
   },
   subNavFocusOut(event) {
-    if (!isSmall(window)) {
-      // eslint-disable-next-line no-param-reassign
-      event.currentTarget.dataset.subMenuTimer = setTimeout(this.hideSubnavDesktop.bind(this), 0);
+    const { relatedTarget } = event;
+
+    // Element.closest is polyfilled for IE by govuk-frontend: https://github.com/alphagov/govuk-frontend/blob/4b5ed0ada3b64722ae2074dfa0db5d4d3a45cb79/src/govuk/vendor/polyfills/Element/prototype/closest.js
+    const isInSubNav = relatedTarget && relatedTarget.closest('.hmrc-subnav') !== null;
+    const isOnShowSubNavLink = relatedTarget && relatedTarget.closest('#account-menu__main-2') !== null;
+
+    if (!isSmall(window) && !isInSubNav && !isOnShowSubNavLink) {
+      this.hideSubnavDesktop();
     }
-  },
-  subNavFocusIn(event) {
-    clearTimeout(event.currentTarget.dataset.subMenuTimer);
   },
   showNavLinkMobileClick(event) {
     event.preventDefault();
@@ -101,7 +85,7 @@ AccountMenu.prototype.setup = function setup() {
   this.$subNav.setAttribute('aria-hidden', 'true');
   this.$subNav.setAttribute('tabindex', '-1');
 
-  this.$showSubnavLink.setAttribute('aria-controls', this.$showSubnavLink.hash.substr(1));
+  this.$showSubnavLink.setAttribute('aria-controls', 'subnav-your-account');
   this.$showSubnavLink.setAttribute('aria-expanded', 'false');
 
   if (isSmall(window)) {
@@ -123,22 +107,15 @@ AccountMenu.prototype.setup = function setup() {
 };
 
 AccountMenu.prototype.showSubnavDesktop = function showSubnavDesktop() {
-  const self = this;
-
   this.$module.classList.add('hmrc-subnav-is-open');
 
   this.$mainNav.classList.add('hmrc-subnav-is-open');
 
   this.$subNav.classList.add('hmrc-subnav-reveal');
   this.$subNav.setAttribute('aria-hidden', 'false');
-  this.$subNav.setAttribute('aria-expanded', 'true');
 
   const subNavHeight = this.$subNav.offsetHeight;
   this.$module.style.marginBottom = `${subNavHeight}px`;
-
-  setTimeout(() => {
-    self.$subNav.focus();
-  }, 500);
 
   this.$showSubnavLink.classList.add('hmrc-account-menu__link--more-expanded');
   this.$showSubnavLink.setAttribute('aria-expanded', 'true');
@@ -151,7 +128,6 @@ AccountMenu.prototype.hideSubnavDesktop = function hideSubnavDesktop() {
 
   this.$subNav.classList.remove('hmrc-subnav-reveal');
   this.$subNav.setAttribute('aria-hidden', 'true');
-  this.$subNav.setAttribute('aria-expanded', 'false');
 
   this.$showSubnavLink.classList.remove('hmrc-account-menu__link--more-expanded');
   this.$showSubnavLink.setAttribute('aria-expanded', 'false');
@@ -160,10 +136,8 @@ AccountMenu.prototype.hideSubnavDesktop = function hideSubnavDesktop() {
 };
 
 AccountMenu.prototype.showMainNavMobile = function showMainNavMobile() {
-  // TODO: shall we add main-nav-is-open to `nav`????
   this.$mainNav.classList.remove('js-hidden');
   this.$mainNav.classList.add('main-nav-is-open');
-  this.$mainNav.setAttribute('aria-expanded', 'true');
 
   this.$showNavLinkMobile.setAttribute('aria-expanded', 'true');
   this.$showNavLinkMobile.classList.add('hmrc-account-home--account--is-open');
@@ -171,7 +145,6 @@ AccountMenu.prototype.showMainNavMobile = function showMainNavMobile() {
 
 AccountMenu.prototype.hideMainNavMobile = function hideMainNavMobile(element) {
   this.$mainNav.classList.remove('main-nav-is-open');
-  this.$mainNav.setAttribute('aria-expanded', 'false');
 
   if (element.classList.contains('hmrc-account-menu__link--menu')) {
     this.$mainNav.classList.remove('hmrc-subnav-is-open');
@@ -193,7 +166,6 @@ AccountMenu.prototype.showSubnavMobile = function showSubnavMobile(element) {
   this.$subNav.classList.remove('js-hidden');
   this.$subNav.classList.add('hmrc-subnav-reveal');
   this.$subNav.setAttribute('aria-hidden', 'false');
-  this.$subNav.setAttribute('aria-expanded', 'true');
 
   this.$showSubnavLink.classList.add('hmrc-account-menu__link--more-expanded');
   this.$showSubnavLink.setAttribute('aria-expanded', 'true');
@@ -204,7 +176,6 @@ AccountMenu.prototype.showSubnavMobile = function showSubnavMobile(element) {
 
   element.parentNode.classList.add('active-subnav-parent');
 
-  // TODO: modernise the following and polyfill it for IE8
   const $elementSiblings = element.parentNode.parentNode.children;
   for (let i = 0; i < $elementSiblings.length; i += 1) {
     const sibling = $elementSiblings[i];
@@ -223,7 +194,6 @@ AccountMenu.prototype.hideSubnavMobile = function hideSubnavMobile() {
   this.$subNav.classList.add('js-hidden');
   this.$subNav.classList.remove('hmrc-subnav-reveal');
   this.$subNav.setAttribute('aria-hidden', 'true');
-  this.$subNav.setAttribute('aria-expanded', 'false');
 
   this.$showSubnavLink.classList.remove('hmrc-account-menu__link--more-expanded');
   this.$showSubnavLink.setAttribute('aria-expanded', 'false');
@@ -234,7 +204,6 @@ AccountMenu.prototype.hideSubnavMobile = function hideSubnavMobile() {
 
   this.$showSubnavLink.parentNode.classList.remove('active-subnav-parent');
 
-  // TODO: modernise the following and polyfill it for IE8
   const $backLinkSiblings = this.$backLink.parentNode.parentNode.children;
   for (let i = 0; i < $backLinkSiblings.length; i += 1) {
     const sibling = $backLinkSiblings[i];

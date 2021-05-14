@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.35.0] - 2021-05-13
+
+## Fixed
+
+- Fixed accessibility issues reported by DAC with the [hmrcAccountMenu](src/components/account-menu/README.md)
+component.
+
 ## [1.34.0] - 2021-05-05
 
 ## Changed

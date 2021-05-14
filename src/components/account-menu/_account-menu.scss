@@ -2,6 +2,7 @@
 @import "../../../../govuk-frontend/govuk/tools/all";
 @import "../../../../govuk-frontend/govuk/helpers/all";
 @import "../../../../govuk-frontend/govuk/vendor/sass-mq";
+@import "../../../../govuk-frontend/govuk/helpers/typography";
 
 // previously provided by govuk-template, no equivalent in govuk-frontend
 .hidden {
@@ -103,6 +104,13 @@ $hmrc-transition-type: "all";
   }
 }
 
+.hmrc-account-menu__your-account {
+  font-family: $govuk-font-family;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
 .is-smaller .hmrc-account-menu__link {
   padding-left: 10px;
   color: govuk-colour("black");
@@ -145,9 +153,12 @@ $hmrc-transition-type: "all";
 }
 
 .hmrc-account-menu__link--menu {
+  font-family: $govuk-font-family;
   padding: 12px 20px 8px 0;
   float: right;
+  border: none;
   border-bottom: 4px solid transparent;
+  background-color: inherit;
 }
 
 .hmrc-account-menu__link--active,
