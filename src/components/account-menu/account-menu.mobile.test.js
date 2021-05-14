@@ -31,9 +31,11 @@ describe('When the page is loaded on mobile', () => {
   const mobileMenuLink = '.hmrc-account-menu__link--menu';
   const mobileSubMenu = '.hmrc-account-menu__main';
   const mobileBack = '.hmrc-account-menu__link--back';
-  const mobileBackLink = '.hmrc-account-menu__link--back a';
+  const checkProgress = '.hmrc-account-menu__check-progress';
+  const messages = '.hmrc-account-menu__messages';
+  const signOut = '.hmrc-account-menu__sign-out';
+
   const yourAccountLink = '#account-menu__main-2';
-  const subnavItems = '.hmrc-account-menu__main .hmrc-account-menu__link';
 
   it('should show the mobile version of the navigation', async () => {
     await page.goto(`${baseUrl}/components/account-menu/default/preview`);
@@ -41,166 +43,191 @@ describe('When the page is loaded on mobile', () => {
     const navClasses = await page.$eval(nav, (el) => el.className);
     expect(navClasses).toContain('is-smaller');
 
-    const mobileMenuLinkIsHidden = await page.$eval(mobileMenuLink, (el) => el.getAttribute('aria-hidden'));
-    expect(mobileMenuLinkIsHidden).toBe('false');
+    const mobileMenuLinkIsHidden = await page.$eval(mobileMenuLink, (el) => el.hasAttribute('hidden'));
+    expect(mobileMenuLinkIsHidden).toEqual(false);
 
-    const mobileMenuLinkIsFocusable = await page.$eval(mobileMenuLink, (el) => !el.getAttribute('tabindex'));
-    expect(mobileMenuLinkIsFocusable).toBeTruthy();
-
-    const mobileMenuLinkClasses = await page.$eval(mobileMenuLink, (el) => el.className);
-    expect(mobileMenuLinkClasses).toContain('js-visible');
-    expect(mobileMenuLinkClasses).not.toContain('js-hidden');
-
-    const mobileSubMenuClasses = await page.$eval(mobileSubMenu, (el) => el.className);
-    expect(mobileSubMenuClasses).toContain('js-hidden');
-
-    const mobileBackIsHidden = await page.$eval(mobileBack, (el) => el.getAttribute('aria-hidden'));
-    expect(mobileBackIsHidden).toBe('true');
-
-    const mobileBackLinkIsFocussable = await page.$eval(mobileBackLink, (el) => !el.getAttribute('tabindex'));
-    expect(mobileBackLinkIsFocussable).toBeFalsy();
+    const mobileBackIsHidden = await page.$eval(mobileBack, (el) => el.hasAttribute('hidden'));
+    expect(mobileBackIsHidden).toEqual(true);
   });
 
-  it('should show the sub nav when account menu is clicked', async () => {
-    await page.goto(accountMenuUrl);
+  describe('When the "Account menu" link is clicked', () => {
+    it('should show the menu', async () => {
+      await page.goto(accountMenuUrl);
+      await page.click(mobileMenuLink);
 
-    await page.click(mobileMenuLink);
+      const navClasses = await page.$eval(nav, (el) => el.className);
+      expect(navClasses).toContain('main-nav-is-open');
+    });
 
-    const mobileMenuLinkClasses = await page.$eval(mobileMenuLink, (el) => el.className);
-    expect(mobileMenuLinkClasses).toContain('account-home--account--is-open');
+    it('should maintain focus on the "Account menu" link', async () => {
+      await page.goto(accountMenuUrl);
+      await page.click(mobileMenuLink);
 
-    const mobileMenuLinkIsExpanded = await page.$eval(mobileMenuLink, (el) => el.getAttribute('aria-expanded'));
-    expect(mobileMenuLinkIsExpanded).toBe('true');
+      const classOfFocusedElement = await page.evaluate(() => document.activeElement.className);
 
-    const mobileSubMenuClasses = await page.$eval(mobileSubMenu, (el) => el.className);
-    expect(mobileSubMenuClasses).toContain('main-nav-is-open');
+      expect(classOfFocusedElement).toContain('hmrc-account-menu__link--menu');
+    });
 
-    const mobileSubMenuIsExpanded = await page.$eval(mobileSubMenu, (el) => el.getAttribute('aria-expanded'));
-    expect(mobileSubMenuIsExpanded).toBe('true');
+    it('should not add a hidden attribute to the "Your Account" link', async () => {
+      await page.goto(accountMenuUrl);
+      await page.click(mobileMenuLink);
 
-    const yourAccountLinkIsExpanded = await page.$eval(yourAccountLink, (el) => el.getAttribute('aria-expanded'));
-    expect(yourAccountLinkIsExpanded).toBe('false');
-  });
+      const yourAccountAriaHidden = await page.$eval(yourAccountLink, (el) => el.hasAttribute('hidden'));
+      expect(yourAccountAriaHidden).toEqual(false);
+    });
 
-  it('should not add an aria-hidden attribute to the Your Account link', async () => {
-    await page.goto(accountMenuUrl);
+    it('should set aria-expanded to true on the "Account menu" link', async () => {
+      await page.goto(accountMenuUrl);
+      await page.click(mobileMenuLink);
 
-    await page.click(mobileMenuLink);
+      const mobileMenuLinkIsExpanded = await page.$eval(mobileMenuLink, (el) => el.getAttribute('aria-expanded'));
+      expect(mobileMenuLinkIsExpanded).toBe('true');
+    });
 
-    const yourAccountAriaHidden = await page.$eval(yourAccountLink, (el) => el.getAttribute('aria-hidden'));
-    expect(yourAccountAriaHidden).toBeNull();
-  });
+    it('should not set aria-expanded on the menu itself', async () => {
+      await page.goto(accountMenuUrl);
+      await page.click(mobileMenuLink);
 
-  it('should reveal the Your Account subnav when clicked', async () => {
-    await page.goto(accountMenuUrl);
+      const mobileSubMenuIsExpanded = await page.$eval(mobileSubMenu, (el) => el.getAttribute('aria-expanded'));
+      expect(mobileSubMenuIsExpanded).toBeNull();
+    });
 
-    await page.click(mobileMenuLink);
-    await page.click(yourAccountLink);
+    it('should have aria-expanded equal to false on the "Your account" link', async () => {
+      await page.goto(accountMenuUrl);
+      await page.click(mobileMenuLink);
 
-    const navClasses = await page.$eval(nav, (el) => el.className);
-    expect(navClasses).toContain('subnav-is-open');
-
-    const mobileSubMenuClasses = await page.$eval(mobileSubMenu, (el) => el.className);
-    expect(mobileSubMenuClasses).toContain('subnav-is-open');
-
-    const yourAccountLinkIsExpanded = await page.$eval(yourAccountLink, (el) => el.getAttribute('aria-expanded'));
-    expect(yourAccountLinkIsExpanded).toBe('true');
-
-    const yourAccountLinkParentClasses = await page
-      .$eval(yourAccountLink, (el) => el.parentElement.className);
-    expect(yourAccountLinkParentClasses).toContain('active-subnav-parent');
-
-    const mobileBackClasses = await page.$eval(mobileBack, (el) => el.className);
-    expect(mobileBackClasses).not.toContain('hidden');
-
-    const mobileBackIsHidden = await page.$eval(mobileBack, (el) => el.getAttribute('aria-hidden'));
-    expect(mobileBackIsHidden).toBe('false');
-
-    const mobileBackLinkIsFocussable = await page.$eval(mobileBackLink, (el) => !el.getAttribute('tabindex'));
-    expect(mobileBackLinkIsFocussable).toBeTruthy();
-
-    const subnavItemsParentsClasses = await page
-      .$$eval(subnavItems, (els) => els.map((el) => el.parentElement.className));
-    subnavItemsParentsClasses.forEach((subnavItemsParentClasses) => {
-      if ([mobileBack.substr(1), 'active-subnav-parent'].includes(subnavItemsParentClasses)) {
-        expect(subnavItemsParentClasses).not.toContain('hidden');
-      } else {
-        expect(subnavItemsParentClasses).toContain('hidden');
-      }
+      const yourAccountLinkIsExpanded = await page.$eval(yourAccountLink, (el) => el.getAttribute('aria-expanded'));
+      expect(yourAccountLinkIsExpanded).toBe('false');
     });
   });
 
-  it('should close the Your Account navigation when clicking back', async () => {
-    await page.goto(accountMenuUrl);
+  describe('When the "Your account" link is clicked', () => {
+    it('should reveal the "Your Account" sub nav', async () => {
+      await page.goto(accountMenuUrl);
+      await page.click(mobileMenuLink);
+      await page.click(yourAccountLink);
 
-    await page.click(mobileMenuLink);
-    await page.click(yourAccountLink);
-    await page.click(`${mobileBack} a`);
+      const navClasses = await page.$eval(nav, (el) => el.className);
+      expect(navClasses).toContain('subnav-is-open');
 
-    const navClasses = await page.$eval(nav, (el) => el.className);
-    expect(navClasses).not.toContain('hmrc-subnav-is-open');
+      const mobileBackIsHidden = await page.$eval(mobileBack, (el) => el.hasAttribute('hidden'));
+      expect(mobileBackIsHidden).toEqual(false);
+    });
 
-    const mobileSubMenuClasses = await page.$eval(mobileSubMenu, (el) => el.className);
-    expect(mobileSubMenuClasses).toContain('main-nav-is-open');
-    expect(mobileSubMenuClasses).not.toContain('hmrc-subnav-is-open');
+    it('should hide the other navigation items', async () => {
+      await page.goto(accountMenuUrl);
+      await page.click(mobileMenuLink);
+      await page.click(yourAccountLink);
 
-    const mobileBackClasses = await page.$eval(mobileBack, (el) => el.className);
-    expect(mobileBackClasses).toContain('hidden');
+      const messagesIsHidden = await page.$eval(messages, (el) => el.hasAttribute('hidden'));
+      expect(messagesIsHidden).toEqual(true);
+      const checkProgressIsHidden = await page.$eval(checkProgress, (el) => el.hasAttribute('hidden'));
+      expect(checkProgressIsHidden).toEqual(true);
+      const signOutIsHidden = await page.$eval(signOut, (el) => el.hasAttribute('hidden'));
+      expect(signOutIsHidden).toEqual(true);
+    });
 
-    const mobileBackIsHidden = await page.$eval(mobileBack, (el) => el.getAttribute('aria-hidden'));
-    expect(mobileBackIsHidden).toBe('true');
+    it('should set aria-expanded to true on the "Your account" link', async () => {
+      await page.goto(accountMenuUrl);
+      await page.click(mobileMenuLink);
+      await page.click(yourAccountLink);
 
-    const mobileBackLinkIsFocussable = await page.$eval(mobileBackLink, (el) => !el.getAttribute('tabindex'));
-    expect(mobileBackLinkIsFocussable).toBeFalsy();
+      const yourAccountLinkIsExpanded = await page.$eval(yourAccountLink, (el) => el.getAttribute('aria-expanded'));
+      expect(yourAccountLinkIsExpanded).toBe('true');
+    });
 
-    const subnavItemsHidden = await page.$$eval(subnavItems, (els) => els.filter((el) => el.parentElement.className === 'hidden').length);
-    expect(subnavItemsHidden).toBe(0);
+    it('should not set the aria-expanded attribute on the "Your account" sub nav itself', async () => {
+      await page.goto(accountMenuUrl);
+      await page.click(mobileMenuLink);
+      await page.click(yourAccountLink);
+
+      const subNavAriaExpanded = await page.evaluate(() => document.getElementById('subnav-your-account').getAttribute('aria-expanded'));
+      expect(subNavAriaExpanded).toBeNull();
+    });
   });
 
-  it('should not add aria-hidden to the Your Account link when clicking back', async () => {
-    await page.goto(accountMenuUrl);
+  describe('When the Back link is clicked', () => {
+    it('should close the "Your Account" sub nav', async () => {
+      await page.goto(accountMenuUrl);
+      await page.click(mobileMenuLink);
+      await page.click(yourAccountLink);
+      await page.click(`${mobileBack} a`);
 
-    await page.click(mobileMenuLink);
-    await page.click(yourAccountLink);
-    await page.click(`${mobileBack} a`);
+      const navClasses = await page.$eval(nav, (el) => el.className);
+      expect(navClasses).toContain('main-nav-is-open');
+      expect(navClasses).not.toContain('hmrc-subnav-is-open');
+    });
 
-    const yourAccountAriaHidden = await page.$eval(yourAccountLink, (el) => el.getAttribute('aria-hidden'));
-    expect(yourAccountAriaHidden).toBeNull();
+    it('should hide the "Back" link', async () => {
+      await page.goto(accountMenuUrl);
+      await page.click(mobileMenuLink);
+      await page.click(yourAccountLink);
+      await page.click(`${mobileBack} a`);
+
+      const mobileBackHidden = await page.$eval(mobileBack, (el) => el.hasAttribute('hidden'));
+      expect(mobileBackHidden).toEqual(true);
+    });
+
+    it('should show the other navigation items', async () => {
+      await page.goto(accountMenuUrl);
+      await page.click(mobileMenuLink);
+      await page.click(yourAccountLink);
+      await page.click(`${mobileBack} a`);
+
+      const messagesIsHidden = await page.$eval(messages, (el) => el.hasAttribute('hidden'));
+      expect(messagesIsHidden).toEqual(false);
+      const checkProgressIsHidden = await page.$eval(checkProgress, (el) => el.hasAttribute('hidden'));
+      expect(checkProgressIsHidden).toEqual(false);
+      const signOutIsHidden = await page.$eval(signOut, (el) => el.hasAttribute('hidden'));
+      expect(signOutIsHidden).toEqual(false);
+    });
+
+    it('should not add hidden to the "Your Account" link', async () => {
+      await page.goto(accountMenuUrl);
+      await page.click(mobileMenuLink);
+      await page.click(yourAccountLink);
+      await page.click(`${mobileBack} a`);
+
+      const yourAccountHidden = await page.$eval(yourAccountLink, (el) => el.hasAttribute('hidden'));
+      expect(yourAccountHidden).toEqual(false);
+    });
   });
 
-  it('should close the Your Account navigation when window resize crosses a breakpoint', async () => {
-    await page.goto(accountMenuUrl);
+  describe('When the window is resized after opening the menu', () => {
+    it('should close the "Your Account" navigation when window resize crosses a breakpoint', async () => {
+      await page.goto(accountMenuUrl);
 
-    await page.click(mobileMenuLink);
-    // Set width to > tablet breakpoint
-    const { height } = await page.viewport();
-    await page.setViewport({ height, width: 643 });
+      await page.click(mobileMenuLink);
+      // Set width to > tablet breakpoint
+      const { height } = await page.viewport();
+      await page.setViewport({ height, width: 643 });
 
-    const mobileSubMenuClasses = await page.$eval(mobileSubMenu, (el) => el.className);
-    expect(mobileSubMenuClasses).not.toContain('main-nav-is-open');
-  });
+      const navClasses = await page.$eval(nav, (el) => el.className);
+      expect(navClasses).not.toContain('main-nav-is-open');
+    });
 
-  it('should NOT close the Your Account navigation when window resizes without crossing a breakpoint', async () => {
-    await page.goto(accountMenuUrl);
+    it('should NOT close the Your Account navigation when window resizes without crossing a breakpoint', async () => {
+      await page.goto(accountMenuUrl);
 
-    await page.click(mobileMenuLink);
-    // Set width to different mobile width
-    const { height, width } = await page.viewport();
-    await page.setViewport({ height, width: width + 10 });
+      await page.click(mobileMenuLink);
+      // Set width to different mobile width
+      const { height, width } = await page.viewport();
+      await page.setViewport({ height, width: width + 10 });
 
-    const mobileSubMenuClasses = await page.$eval(mobileSubMenu, (el) => el.className);
-    expect(mobileSubMenuClasses).toContain('main-nav-is-open');
-  });
+      const navClasses = await page.$eval(nav, (el) => el.className);
+      expect(navClasses).toContain('main-nav-is-open');
+    });
 
-  it('should NOT close the Your Account navigation when window resizes vertically', async () => {
-    await page.goto(accountMenuUrl);
+    it('should NOT close the Your Account navigation when window resizes vertically', async () => {
+      await page.goto(accountMenuUrl);
 
-    await page.click(mobileMenuLink);
-    // Change height
-    const { height, width } = await page.viewport();
-    await page.setViewport({ height: height + 10, width });
+      await page.click(mobileMenuLink);
+      // Change height
+      const { height, width } = await page.viewport();
+      await page.setViewport({ height: height + 10, width });
 
-    const mobileSubMenuClasses = await page.$eval(mobileSubMenu, (el) => el.className);
-    expect(mobileSubMenuClasses).toContain('main-nav-is-open');
+      const navClasses = await page.$eval(nav, (el) => el.className);
+      expect(navClasses).toContain('main-nav-is-open');
+    });
   });
 });

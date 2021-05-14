@@ -2,20 +2,7 @@
 @import "../../../../govuk-frontend/govuk/tools/all";
 @import "../../../../govuk-frontend/govuk/helpers/all";
 @import "../../../../govuk-frontend/govuk/vendor/sass-mq";
-
-// previously provided by govuk-template, no equivalent in govuk-frontend
-.hidden {
-  display: none;
-  visibility: hidden;
-}
-
-// dirty, dirty, dirty
-// Necessary as there's a specicifity problem on the <li>'s in the mobile menu
-.hidden,
-.no-js .js-visible,
-.js .js-hidden {
-  display: none !important;
-}
+@import "../../../../govuk-frontend/govuk/helpers/typography";
 
 $hmrc-account-menu-grey-1: #4a4a4a;
 $hmrc-account-menu-yellow-1: #ffbf47;
@@ -41,6 +28,10 @@ $hmrc-transition-type: "all";
 .hmrc-account-menu {
   @include govuk-font(16);
   @include govuk-clearfix;
+
+  [hidden] {
+    display: none !important;
+  }
 
   position: relative;
   z-index: 0;
@@ -103,6 +94,13 @@ $hmrc-transition-type: "all";
   }
 }
 
+.hmrc-account-menu__your-account {
+  font-family: $govuk-font-family;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
 .is-smaller .hmrc-account-menu__link {
   padding-left: 10px;
   color: govuk-colour("black");
@@ -145,9 +143,12 @@ $hmrc-transition-type: "all";
 }
 
 .hmrc-account-menu__link--menu {
+  font-family: $govuk-font-family;
   padding: 12px 20px 8px 0;
   float: right;
+  border: none;
   border-bottom: 4px solid transparent;
+  background-color: inherit;
 }
 
 .hmrc-account-menu__link--active,
@@ -167,6 +168,44 @@ $hmrc-transition-type: "all";
   }
 }
 
+.hmrc-account-menu.is-smaller.main-nav-is-open,
+.hmrc-account-menu.is-smaller.hmrc-subnav-is-open {
+  .hmrc-account-menu__main {
+    position: relative;
+    border-top: 1px solid govuk-colour("mid-grey");
+
+    &::before,
+    &::after {
+      content: " ";
+      position: absolute;
+      right: 4px;
+      bottom: 100%;
+      width: 0;
+      height: 0;
+      border: solid transparent;
+      pointer-events: none;
+    }
+
+    &::before {
+      right: 3px;
+      border-width: 7px;
+      border-bottom-color: govuk-colour("mid-grey");
+    }
+
+    &::after {
+      margin-left: -6px;
+      border-width: 6px;
+      border-bottom-color: $govuk-body-background-colour;
+    }
+  }
+}
+
+.hmrc-account-menu.is-smaller.hmrc-subnav-is-open {
+  .hmrc-account-menu__your-account {
+    border-bottom: 0;
+  }
+}
+
 .is-smaller {
   .hmrc-account-menu__main {
     padding: 0;
@@ -174,43 +213,12 @@ $hmrc-transition-type: "all";
     clear: both;
     background-color: govuk-colour("light-grey");
 
-    &.main-nav-is-open,
-    &.hmrc-subnav-is-open {
-      position: relative;
-      border-top: 1px solid govuk-colour("mid-grey");
-
-      &::before,
-      &::after {
-        content: " ";
-        position: absolute;
-        right: 4px;
-        bottom: 100%;
-        width: 0;
-        height: 0;
-        border: solid transparent;
-        pointer-events: none;
-      }
-
-      &::before {
-        right: 3px;
-        border-width: 7px;
-        border-bottom-color: govuk-colour("mid-grey");
-      }
-
-      &::after {
-        margin-left: -6px;
-        border-width: 6px;
-        border-bottom-color: $govuk-body-background-colour;
-      }
-    }
-
     li {
       display: block;
       overflow: hidden;
       border-bottom: 1px solid govuk-colour("mid-grey");
 
-      &:last-child,
-      &.active-subnav-parent {
+      &:last-child {
         border-bottom: 0;
       }
     }
@@ -250,7 +258,6 @@ $hmrc-transition-type: "all";
   @include govuk-font(16);
   @include govuk-clearfix;
 
-  display: none;
   position: absolute;
   z-index: -1;
   top: -61px;
@@ -258,7 +265,6 @@ $hmrc-transition-type: "all";
   width: 100%;
   border-bottom: 1px solid govuk-colour("mid-grey");
   outline: none;
-  //transition: margin .3s ease-in-out;
   background-color: govuk-colour("light-grey");
 
   p {
@@ -278,8 +284,7 @@ $hmrc-transition-type: "all";
     }
   }
 
-  &.hmrc-subnav-reveal {
-    display: block;
+  &:not([hidden]) {
     top: 48px;
   }
 }
@@ -293,10 +298,6 @@ $hmrc-transition-type: "all";
   transition: none;
   border-bottom: 0;
   outline: none;
-
-  &.hmrc-subnav-reveal {
-    display: block;
-  }
 }
 
 .hmrc-subnav .hmrc-subnav__section {
@@ -379,9 +380,7 @@ $hmrc-transition-type: "all";
   }
 }
 
-.js-enabled .hmrc-account-home--account--is-open,
-.js-enabled .is-smaller .hmrc-account-menu__link--more-expanded,
-.js-enabled .hmrc-account-menu__link--more {
+.js-enabled .is-smaller .hmrc-account-menu__link[aria-expanded='true'] {
   background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-down.svg");
   background-position: right 4px center;
   background-size: 12px;
@@ -407,7 +406,7 @@ $hmrc-transition-type: "all";
     content: none;
   }
 
-  &.hmrc-account-menu__link--more-expanded {
+  &.hmrc-account-menu__link[aria-expanded="true"] {
     &::before,
     &::after {
       content: " ";
@@ -434,66 +433,7 @@ $hmrc-transition-type: "all";
   }
 }
 
-.is-smaller .hmrc-account-menu__link--more-expanded {
-  display: none;
-}
-
-.no-js {
-  .hmrc-account-menu__main {
-    li {
-      display: inline;
-    }
-  }
-
-  .hmrc-subnav {
-    position: static;
-  }
-}
-
-$hmrc-banner-blue: #005ea5;
-
-.hmrc-full-width-banner {
-  display: block;
-  position: relative;
-  z-index: 999;
-  color: govuk-colour("white");
-  background-color: $hmrc-banner-blue;
-}
-
-.hmrc-full-width-banner__container {
-  position: relative;
-  padding: 20px 0.78947em;
-}
-
-.hmrc-full-width-banner a {
-  color: govuk-colour("white");
-}
-
-.hmrc-full-width-banner__title {
-  margin-bottom: 5px;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.hmrc-full-width-banner__close {
-  position: absolute;
-  top: 20px;
-  right: 15px;
-  color: govuk-colour("white");
-  font-size: 14px;
-}
-
-@include mq(tablet) {
-  .hmrc-full-width-banner__close {
-    right: 35px;
-  }
-
-  .hmrc-full-width-banner__container {
-    padding: 20px 30px 10px;
-  }
-}
-
-.js-hidden {
+body:not(.js-enabled) .hmrc-account-menu__main {
   display: none;
 }
 /* stylelint-enable no-descending-specificity */
