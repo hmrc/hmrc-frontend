@@ -36,11 +36,11 @@
     </li>
 
     <li>
-      <button id="account-menu__main-2" class="hmrc-account-menu__link hmrc-account-icon hmrc-account-menu__link--more hmrc-account-menu__your-account" aria-haspopup="true" aria-owns="subnav-your-account">
+      <button id="account-menu__main-2" class="hmrc-account-menu__link hmrc-account-icon hmrc-account-menu__link--more hmrc-account-menu__your-account" aria-expanded="false">
         {% if language == 'cy' %}Eich cyfrif{% else %}Your account{% endif %}
       </button>
 
-      <div class="hmrc-subnav" id="subnav-your-account" role="navigation" aria-labelledby="account-menu__main-2" aria-label="Your account">
+      <div class="hmrc-subnav" id="subnav-your-account" role="navigation" aria-label="Your account">
         <div class="govuk-grid-column-one-third hmrc-subnav__section">
           <p class="hmrc-subnav__section__heading">
             {% if language == 'cy' %}Gosodiadau di-bapur{% else %}Paperless settings{% endif %}

@@ -36,8 +36,8 @@ AccountMenu.prototype.reinstantiate = function reinstantiate(resizeEvent) {
 
 AccountMenu.prototype.eventHandlers = {
   showSubnavLinkClick(event) {
-    event.preventDefault();
-    event.stopPropagation();
+    // event.preventDefault();
+    // event.stopPropagation();
 
     if (isSmall(window)) {
       if (!event.currentTarget.classList.contains('hmrc-account-menu__link--more-expanded')) {
@@ -85,8 +85,8 @@ AccountMenu.prototype.setup = function setup() {
   this.$subNav.setAttribute('aria-hidden', 'true');
   this.$subNav.setAttribute('tabindex', '-1');
 
-  this.$showSubnavLink.setAttribute('aria-controls', 'subnav-your-account');
-  this.$showSubnavLink.setAttribute('aria-expanded', 'false');
+  // this.$showSubnavLink.setAttribute('aria-controls', 'subnav-your-account');
+  // this.$showSubnavLink.setAttribute('aria-expanded', 'false');
 
   if (isSmall(window)) {
     this.$module.classList.add('is-smaller');
@@ -107,32 +107,37 @@ AccountMenu.prototype.setup = function setup() {
 };
 
 AccountMenu.prototype.showSubnavDesktop = function showSubnavDesktop() {
-  this.$module.classList.add('hmrc-subnav-is-open');
-
+  // this.$module.classList.add('hmrc-subnav-is-open');
+  //
   this.$mainNav.classList.add('hmrc-subnav-is-open');
-
-  this.$subNav.classList.add('hmrc-subnav-reveal');
+  //
+  // this.$subNav.classList.add('hmrc-subnav-reveal');
   this.$subNav.setAttribute('aria-hidden', 'false');
+  //
+  // const subNavHeight = this.$subNav.offsetHeight;
+  // this.$module.style.marginBottom = `${subNavHeight}px`;
 
-  const subNavHeight = this.$subNav.offsetHeight;
-  this.$module.style.marginBottom = `${subNavHeight}px`;
+  // trying this:
+  this.$subNav.setAttribute('hidden', false);
 
   this.$showSubnavLink.classList.add('hmrc-account-menu__link--more-expanded');
   this.$showSubnavLink.setAttribute('aria-expanded', 'true');
 };
 
 AccountMenu.prototype.hideSubnavDesktop = function hideSubnavDesktop() {
-  this.$module.classList.remove('main-nav-is-open', 'hmrc-subnav-is-open');
-
+  // this.$module.classList.remove('main-nav-is-open', 'hmrc-subnav-is-open');
+  //
   this.$mainNav.classList.remove('hmrc-subnav-is-open');
-
-  this.$subNav.classList.remove('hmrc-subnav-reveal');
+  //
+  // this.$subNav.classList.remove('hmrc-subnav-reveal');
   this.$subNav.setAttribute('aria-hidden', 'true');
+
+  this.$subNav.setAttribute('hidden', true);
 
   this.$showSubnavLink.classList.remove('hmrc-account-menu__link--more-expanded');
   this.$showSubnavLink.setAttribute('aria-expanded', 'false');
 
-  this.$module.style.marginBottom = this.$moduleBottomMargin;
+  // this.$module.style.marginBottom = this.$moduleBottomMargin;
 };
 
 AccountMenu.prototype.showMainNavMobile = function showMainNavMobile() {

@@ -190,29 +190,29 @@ $hmrc-transition-type: "all";
       position: relative;
       border-top: 1px solid govuk-colour("mid-grey");
 
-      &::before,
-      &::after {
-        content: " ";
-        position: absolute;
-        right: 4px;
-        bottom: 100%;
-        width: 0;
-        height: 0;
-        border: solid transparent;
-        pointer-events: none;
-      }
-
-      &::before {
-        right: 3px;
-        border-width: 7px;
-        border-bottom-color: govuk-colour("mid-grey");
-      }
-
-      &::after {
-        margin-left: -6px;
-        border-width: 6px;
-        border-bottom-color: $govuk-body-background-colour;
-      }
+      //&::before,
+      //&::after {
+      //  content: " ";
+      //  position: absolute;
+      //  right: 4px;
+      //  bottom: 100%;
+      //  width: 0;
+      //  height: 0;
+      //  border: solid transparent;
+      //  pointer-events: none;
+      //}
+      //
+      //&::before {
+      //  right: 3px;
+      //  border-width: 7px;
+      //  border-bottom-color: govuk-colour("mid-grey");
+      //}
+      //
+      //&::after {
+      //  margin-left: -6px;
+      //  border-width: 6px;
+      //  border-bottom-color: $govuk-body-background-colour;
+      //}
     }
 
     li {
@@ -413,36 +413,36 @@ $hmrc-transition-type: "all";
     background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-down.png");
   }
 
-  &::before,
-  &::after {
-    content: none;
-  }
-
-  &.hmrc-account-menu__link--more-expanded {
-    &::before,
-    &::after {
-      content: " ";
-      position: absolute;
-      right: 14px;
-      bottom: -5px;
-      width: 0;
-      height: 0;
-      border: solid transparent;
-      pointer-events: none;
-    }
-
-    &::before {
-      right: 13px;
-      border-width: 7px;
-      border-bottom-color: govuk-colour("mid-grey");
-    }
-
-    &::after {
-      margin-left: -6px;
-      border-width: 6px;
-      border-bottom-color: govuk-colour("light-grey");
-    }
-  }
+  //&::before,
+  //&::after {
+  //  content: none;
+  //}
+  //
+  //&.hmrc-account-menu__link--more-expanded {
+  //  &::before,
+  //  &::after {
+  //    content: " ";
+  //    position: absolute;
+  //    right: 14px;
+  //    bottom: -5px;
+  //    width: 0;
+  //    height: 0;
+  //    border: solid transparent;
+  //    pointer-events: none;
+  //  }
+  //
+  //  &::before {
+  //    right: 13px;
+  //    border-width: 7px;
+  //    border-bottom-color: govuk-colour("mid-grey");
+  //  }
+  //
+  //  &::after {
+  //    margin-left: -6px;
+  //    border-width: 6px;
+  //    border-bottom-color: govuk-colour("light-grey");
+  //  }
+  // }
 }
 
 .is-smaller .hmrc-account-menu__link--more-expanded {
