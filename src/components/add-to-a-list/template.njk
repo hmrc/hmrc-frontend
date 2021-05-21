@@ -63,7 +63,7 @@
     {# end loop #}
   </dl>
 </div>
-<form method="post" action="{{ params.formAction }}">
+<form method="post" novalidate action="{{ params.formAction }}">
   {{ govukRadios({
     classes: "govuk-radios--inline",
     idPrefix: "add-another",
