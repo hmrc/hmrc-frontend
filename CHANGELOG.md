@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.35.2] - 2021-05-24
+
+## Fixed
+
+- Corrected add-to-a-list continue messages to Continue (consistent capitalization)
+
 ## [1.35.1] - 2021-05-19
 
 ## Changed
