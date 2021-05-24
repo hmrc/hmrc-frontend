@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.35.1] - 2021-05-19
+
+## Changed
+
+- Added novalidate to Add To A List in order to match the standard for forms
+
 ## [1.35.0] - 2021-05-19
 
 ## Changed
