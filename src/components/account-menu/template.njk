@@ -9,18 +9,18 @@
     </span>
   </a>
 
-  <button class="hmrc-account-menu__link hmrc-account-menu__link--menu hmrc-account-menu__account-menu js-hidden js-visible" tabindex="-1" aria-hidden="true" aria-expanded="false">
+  <button class="hmrc-account-menu__link hmrc-account-menu__link--menu hmrc-account-menu__account-menu" hidden="hidden" aria-expanded="false">
     {% if language == 'cy' %}Dewislen y cyfrif{% else %}Account menu{% endif %}
   </button>
 
-  <ul class="hmrc-account-menu__main js-hidden">
-    <li class="hmrc-account-menu__link--back hidden" aria-hidden="true">
-      <a href="#" tabindex="-1" class="hmrc-account-menu__link">
+  <ul class="hmrc-account-menu__main">
+    <li class="hmrc-account-menu__link--back" hidden="hidden">
+      <a href="#" class="hmrc-account-menu__link">
         {% if language == 'cy' %}Yn ôl{% else %}Back{% endif %}
       </a>
     </li>
 
-    <li>
+    <li class="hmrc-account-menu__messages">
       <a href="{{ params.messages.href | default('#') }}" class="hmrc-account-menu__link{% if params.messages.active %} hmrc-account-menu__link--active{% endif %}">
         {% if language == 'cy' %}Negeseuon{% else %}Messages{% endif %}
         {% if params.messages.messageCount -%}
@@ -29,18 +29,18 @@
       </a>
     </li>
 
-    <li>
+    <li class="hmrc-account-menu__check-progress">
       <a href="{{ params.checkProgress.href | default('#') }}" class="hmrc-account-menu__link{% if params.checkProgress.active %} hmrc-account-menu__link--active{% endif %}">
         {% if language == 'cy' %}Gwirio cynnydd{% else %}Check progress{% endif %}
       </a>
     </li>
 
-    <li>
-      <button id="account-menu__main-2" class="hmrc-account-menu__link hmrc-account-icon hmrc-account-menu__link--more hmrc-account-menu__your-account" aria-expanded="false">
+    <li class="hmrc-account-menu__your-account">
+      <button id="account-menu__main-2" class="hmrc-account-menu__link hmrc-account-icon hmrc-account-menu__link--more hmrc-account-menu__your-account" aria-haspopup="true" aria-owns="subnav-your-account" aria-controls="subnav-your-account" aria-expanded="false">
         {% if language == 'cy' %}Eich cyfrif{% else %}Your account{% endif %}
       </button>
 
-      <div class="hmrc-subnav" id="subnav-your-account" role="navigation" aria-label="Your account">
+      <div class="hmrc-subnav" id="subnav-your-account" role="navigation" aria-labelledby="account-menu__main-2" aria-label="Your account" hidden="hidden">
         <div class="govuk-grid-column-one-third hmrc-subnav__section">
           <p class="hmrc-subnav__section__heading">
             {% if language == 'cy' %}Gosodiadau di-bapur{% else %}Paperless settings{% endif %}
@@ -67,8 +67,9 @@
       </div>
     </li>
 
-    <li>
-      <a href="{{ params.signOut.href | default('#') }}" class="hmrc-account-menu__link hmrc-account-menu__sign-out">{% if language == 'cy' %}Allgofnodi{% else %}Sign out{% endif %}</a>
+    <li class="hmrc-account-menu__sign-out">
+      <a href="{{ params.signOut.href | default('#') }}" class="hmrc-account-menu__link">
+        {% if language == 'cy' %}Allgofnodi{% else %}Sign out{% endif %}</a>
     </li>
   </ul>
 </nav>

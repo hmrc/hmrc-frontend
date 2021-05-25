@@ -60,6 +60,10 @@ around focusing.
    there is an [example](https://www.w3.org/WAI/GL/wiki/Using_the_WAI-ARIA_aria-expanded_state_to_mark_expandable_and_collapsible_regions)
    that demonstrates focusing on expanded content.
 
+The removal of the 'Your account' link on mobile was causing issues on iOS voiceover in shifting focus to 'Personal details'
+
+Removed focusout
+
 ## References
 
 * [aria-expanded](https://www.w3.org/TR/wai-aria-1.1/#aria-expanded)

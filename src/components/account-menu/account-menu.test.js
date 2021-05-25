@@ -30,34 +30,30 @@ describe('/components/account-menu', () => {
       await page.goto(accountMenuUrl);
 
       const classList = await page.evaluate(() => document.getElementById('subnav-your-account').className);
-      const ariaHidden = await page.evaluate(() => document.getElementById('subnav-your-account').getAttribute('aria-hidden'));
+      const ariaHidden = await page.evaluate(() => document.getElementById('subnav-your-account').hasAttribute('hidden'));
       const ariaExpanded = await page.evaluate(() => document.getElementById('account-menu__main-2').getAttribute('aria-expanded'));
 
       expect(classList).not.toContain('hmrc-subnav-reveal');
-      expect(ariaHidden).toBe('true');
+      expect(ariaHidden).toEqual(true);
       expect(ariaExpanded).toBe('false');
     });
 
     it('Should have all mobile elements hidden', async () => {
       await page.goto(accountMenuUrl);
 
-      const classList = await page.evaluate(() => document.getElementsByClassName('hmrc-account-menu__link--menu')[0].className);
-      const ariaHidden = await page.evaluate(() => document.getElementsByClassName('hmrc-account-menu__link--menu')[0].getAttribute('aria-hidden'));
+      const ariaHidden = await page.evaluate(() => document.getElementsByClassName('hmrc-account-menu__link--menu')[0].hasAttribute('hidden'));
       const ariaExpanded = await page.evaluate(() => document.getElementsByClassName('hmrc-account-menu__link--menu')[0].getAttribute('aria-expanded'));
 
-      expect(classList).toContain('js-hidden');
-      expect(ariaHidden).toBe('true');
+      expect(ariaHidden).toEqual(true);
       expect(ariaExpanded).toBe('false');
     });
 
     it('Should have the mobile "back" menu item hidden', async () => {
       await page.goto(accountMenuUrl);
 
-      const classList = await page.evaluate(() => document.getElementsByClassName('hmrc-account-menu__link--back')[0].className);
-      const ariaHidden = await page.evaluate(() => document.getElementsByClassName('hmrc-account-menu__link--back')[0].getAttribute('aria-hidden'));
+      const hidden = await page.evaluate(() => document.getElementsByClassName('hmrc-account-menu__link--back')[0].hasAttribute('hidden'));
 
-      expect(classList).toContain('hidden');
-      expect(ariaHidden).toBe('true');
+      expect(hidden).toEqual(true);
     });
 
     it('should not have an aria-expanded attribute on the sub nav', async () => {
@@ -78,19 +74,17 @@ describe('/components/account-menu', () => {
       await page.goto(accountMenuUrl);
       await clickYourAccountOnce();
 
-      const classList = await page.evaluate(() => document.getElementById('subnav-your-account').className);
-      const ariaHidden = await page.evaluate(() => document.getElementById('subnav-your-account').getAttribute('aria-hidden'));
+      const ariaHidden = await page.evaluate(() => document.getElementById('subnav-your-account').hasAttribute('hidden'));
 
-      expect(classList).toContain('hmrc-subnav-reveal');
-      expect(ariaHidden).toBe('false');
+      expect(ariaHidden).toBe(false);
     });
 
-    it('should not have an aria-hidden attribute on the Your Account link', async () => {
+    it('should not have a hidden attribute on the Your Account link', async () => {
       await page.goto(accountMenuUrl);
       await clickYourAccountOnce();
 
-      const yourAccountAriaHidden = await page.$eval(yourAccountLinkSelector, (el) => el.getAttribute('aria-hidden'));
-      expect(yourAccountAriaHidden).toBeNull();
+      const yourAccountHidden = await page.$eval(yourAccountLinkSelector, (el) => el.hasAttribute('hidden'));
+      expect(yourAccountHidden).toEqual(false);
     });
 
     it('should set aria-expanded to true on the Your Account link', async () => {
@@ -129,32 +123,18 @@ describe('/components/account-menu', () => {
       expect(idOfFocusedElement).toBe('account-menu__main-2');
     });
 
-    it('should hide the subnav when focus moves away', async () => {
-      await page.goto(accountMenuUrl);
-      await clickYourAccountOnce();
-      await page.click('.hmrc-subnav__paperless');
-
-      const ariaHiddenBefore = await page.evaluate(() => document.getElementById('subnav-your-account').getAttribute('aria-hidden'));
-      expect(ariaHiddenBefore).toBe('false');
-
-      await page.focus('.hmrc-account-menu__sign-out');
-
-      const ariaHiddenAfter = await page.evaluate(() => document.getElementById('subnav-your-account').getAttribute('aria-hidden'));
-      expect(ariaHiddenAfter).toBe('true');
-    });
-
     it('not should hide the subnav when tabbing between items in the subnav', async () => {
       await page.goto(accountMenuUrl);
       await clickYourAccountOnce();
       await page.click('.hmrc-subnav__paperless');
 
-      const ariaHiddenBefore = await page.evaluate(() => document.getElementById('subnav-your-account').getAttribute('aria-hidden'));
-      expect(ariaHiddenBefore).toBe('false');
+      const ariaHiddenBefore = await page.evaluate(() => document.getElementById('subnav-your-account').hasAttribute('hidden'));
+      expect(ariaHiddenBefore).toEqual(false);
 
       await page.click('.hmrc-subnav__personal');
 
-      const ariaHiddenAfter = await page.evaluate(() => document.getElementById('subnav-your-account').getAttribute('aria-hidden'));
-      expect(ariaHiddenAfter).toBe('false');
+      const ariaHiddenAfter = await page.evaluate(() => document.getElementById('subnav-your-account').hasAttribute('hidden'));
+      expect(ariaHiddenAfter).toEqual(false);
     });
 
     it('should hide the subnav when clicking on the Your account link', async () => {
@@ -162,14 +142,14 @@ describe('/components/account-menu', () => {
       await clickYourAccountOnce();
       await page.focus('.hmrc-subnav__paperless');
 
-      const ariaHiddenBefore = await page.evaluate(() => document.getElementById('subnav-your-account').getAttribute('aria-hidden'));
-      expect(ariaHiddenBefore).toBe('false');
+      const ariaHiddenBefore = await page.evaluate(() => document.getElementById('subnav-your-account').hasAttribute('hidden'));
+      expect(ariaHiddenBefore).toEqual(false);
 
       await page.focus('#account-menu__main-2');
       await page.click('#account-menu__main-2');
 
-      const ariaHiddenAfter = await page.evaluate(() => document.getElementById('subnav-your-account').getAttribute('aria-hidden'));
-      expect(ariaHiddenAfter).toBe('true');
+      const ariaHiddenAfter = await page.evaluate(() => document.getElementById('subnav-your-account').hasAttribute('hidden'));
+      expect(ariaHiddenAfter).toEqual(true);
     });
   });
 
@@ -184,11 +164,9 @@ describe('/components/account-menu', () => {
       await page.goto(accountMenuUrl);
       await clickYourAccountTwice();
 
-      const classList = await page.evaluate(() => document.getElementById('subnav-your-account').className);
-      const ariaHidden = await page.evaluate(() => document.getElementById('subnav-your-account').getAttribute('aria-hidden'));
+      const ariaHidden = await page.evaluate(() => document.getElementById('subnav-your-account').hasAttribute('hidden'));
 
-      expect(classList).not.toContain('hmrc-subnav-reveal');
-      expect(ariaHidden).toBe('true');
+      expect(ariaHidden).toBe(true);
     });
 
     it('should set aria-expanded to false on the Your Account link', async () => {
@@ -200,12 +178,12 @@ describe('/components/account-menu', () => {
       expect(ariaExpanded).toBe('false');
     });
 
-    it('should not have an aria-hidden attribute on the Your Account link', async () => {
+    it('should not have a hidden attribute on the Your Account link', async () => {
       await page.goto(accountMenuUrl);
       await clickYourAccountTwice();
 
-      const yourAccountAriaHidden = await page.$eval(yourAccountLinkSelector, (el) => el.getAttribute('aria-hidden'));
-      expect(yourAccountAriaHidden).toBeNull();
+      const yourAccountAriaHidden = await page.$eval(yourAccountLinkSelector, (el) => el.hasAttribute('hidden'));
+      expect(yourAccountAriaHidden).toEqual(false);
     });
 
     it('should not have an aria-expanded attribute on the sub nav', async () => {
