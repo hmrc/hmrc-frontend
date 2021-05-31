@@ -1,0 +1,34 @@
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+<section aria-labelledby="{{ params.labelledby }}">
+  <header class="govuk-caption-xl hmrc-caption-xl">
+    <span id="{{ params.labelledby }}" aria-hidden="true">
+      {{ params.section }}
+    </span>
+    <span id="{{ params.describedBy }}" class="govuk-visually-hidden">
+      {{ params.context }}
+    </span>
+  </header>
+  {% call govukFieldset({
+    attributes: params.attributes['data-attribute'],
+    classes: params.classes,
+    context: params.context,
+    contextId: params.contextId,
+    describedBy: params.describedBy,
+    html: params.html,
+    role: params.role,
+    legend: {
+      classes: params.legend.classes,
+      html: params.legend.html,
+      isPageHeading: true,
+      text: params.legend.text
+    }
+  }) %}
+  {% if caller %}
+    {#- if statement allows usage of `call` to be optional -#}
+    {{ caller() }}
+  {% elseif params.html %}
+    {{ params.html | safe }}
+  {% endif %}
+  {% endcall %}
+</section>

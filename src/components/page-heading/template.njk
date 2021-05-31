@@ -1,6 +1,30 @@
+{% from "govuk/components/label/macro.njk" import govukLabel %}
+
 <header class="hmrc-page-heading">
-  <h1 class="govuk-heading-xl">{{ params.text }}</h1>
+  {%- if params.legend -%}
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+      <h1 class="govuk-fieldset__heading">
+        {{ params.text }}
+      </h1>
+    </legend>
+  {%- elif params.label -%}
+    {{ govukLabel({
+        html: params.label.html,
+        text: params.label.text,
+        classes: params.label.classes,
+        isPageHeading: params.label.isPageHeading,
+        attributes: params.label.attributes,
+        for: params.id
+    }) | indent(2) | trim }}
+  {%- else -%}
+    <h1 class="govuk-heading-xl">
+      {{ params.text }}
+    </h1>
+  {%- endif -%}
   {%- if params.section -%}
-    <p class="govuk-caption-xl hmrc-caption-xl"><span class="govuk-visually-hidden">This section is </span>{{ params.section }}</p>
+    <p class="govuk-caption-xl hmrc-caption-xl">
+      <span aria-hidden="true">{{ params.section }}</span>
+      <span class="govuk-visually-hidden">{{ params.context }}</span>
+    </p>
   {%- endif -%}
 </header>

@@ -1,0 +1,102 @@
+params:
+  - name: attributes
+    type: object
+    required: false
+    description: HTML attributes (for example data attributes) to add to the fieldset container.
+  - name: caller
+    type: nunjucks-block
+    required: false
+    description: Not strictly a parameter but [Nunjucks code convention](https://mozilla.github.io/nunjucks/templating.html#call). Using a `call` block enables you to call a macro with all the text inside the tag. This is helpful if you want to pass a lot of content into a macro. To use it, you will need to wrap the entire fielset component in a `call` block.
+  - name: classes
+    type: string
+    required: true
+    description: Classes to add to the fieldset container.
+  - name: context
+    type: string
+    required: true
+    description: Visually-hidden context for screen readers, this expands on `params.section`.
+  - name: contextId
+    type: string
+    required: true
+    description: The visually-hidden section sub-heading.
+  - name: describedBy
+    type: string
+    required: true
+    description: One or more element IDs to add to the `aria-describedby` attribute, used to provide additional descriptive information for screenreader users.
+  - name: html
+    type: string
+    required: false
+    description: HTML to use/render within the fieldset element.
+  - name: labelledby
+    type: string
+    required: true
+    description: Provides an accessible name for the containing section element.
+  - name: legend
+    type: object
+    required: false
+    description: Options for the legend.
+    params:
+    - name: text
+      type: string
+      required: true
+      description: If `html` is set, this is not required. Text to use within the legend. If `html` is provided, the `text` argument will be ignored.
+    - name: html
+      type: string
+      required: true
+      description: If `text` is set, this is not required. HTML to use within the legend. If `html` is provided, the `text` argument will be ignored.
+    - name: classes
+      type: string
+      required: false
+      description: Classes to add to the legend.
+    - name: isPageHeading
+      type: boolean
+      required: false
+      description: Whether the legend also acts as the heading for the page.
+  - name: role
+    type: string
+    required: false
+    description: Optional ARIA role attribute.
+  - name: section
+    type: string
+    required: true
+    description: The sub-heading content above the page heading.
+  - name: sectionId
+    type: string
+    required: true
+    description: Identifier for the section wrapper.
+  - name: text
+    type: string
+    required: true
+    description: The page heading content.
+  - name: visualId
+    type: string
+    required: true
+    description: The visual section sub-heading.
+
+examples:
+  - name: default
+    data:
+      context: "This section is Personal details"
+      contextId: "context-id"
+      describedBy: "context-id"
+      html: |
+        <div class="govuk-body">
+          <p>This is some content to put inside the fieldset</p>
+        </div>
+      labelledby: "short-id"
+      legend:
+        classes: "govuk-label--xl"
+        isPageHeading: true
+        text: "What is your name?"
+      section: "Personal details"
+  - name: escape
+    hidden: true
+    data:
+      attributes:
+        data-attribute: "some-custom-value"
+      classes: "app-fieldset--custom-modifier"
+      legend:
+        html: "What is <b>your</b> name?"
+        isPageHeading: true
+        text: "What is <b>your</b> name?"
+      role: "group"

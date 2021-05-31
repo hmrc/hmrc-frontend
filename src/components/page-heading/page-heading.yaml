@@ -1,8 +1,53 @@
+params:
+  - name: context
+    type: string
+    required: false
+    description: Visually-hidden context for screen readers, this expands on `params.section`.
+  - name: legend
+    type: boolean
+    required: false
+    description: Whether the heading is also a `legend`.
+  - name: section
+    type: string
+    required: true
+    description: The sub-heading content above the page heading.
+  - name: text
+    type: string
+    required: true
+    description: The page heading content.
+
 examples:
 - name: default
   data:
     text: "What is your name?"
+- name: legend-as-heading
+  data:
+    legend: true
+    text: "What is your name?"
+- name: label-as-heading
+  data:
+    id: "label-id"
+    label:
+      classes: "govuk-label--xl"
+      isPageHeading: true
+      text: "What is your name?"
+- name: label-as-heading-with-section
+  data:
+    context: "This section is Personal details"
+    id: "label-id"
+    section: "Personal details"
+    label:
+      classes: "govuk-label--xl"
+      isPageHeading: true
+      text: "What is your name?"
 - name: with-section
   data:
-    text: "What is your name?"
+    context: "This section is Personal details"
     section: "Personal details"
+    text: "What is your name?"
+- name: with-section-and-legend
+  data:
+    context: "This section is Personal details"
+    legend: true
+    section: "Personal details"
+    text: "What is your name?"
