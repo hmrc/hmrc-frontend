@@ -5,6 +5,7 @@
   "config": "config/",
   "dist": "dist/",
   "package": "package/",
+  "webjar": "webjar/",
   "src": "src/",
   "components": "src/components/",
   "govukFrontend": "node_modules/govuk-frontend",

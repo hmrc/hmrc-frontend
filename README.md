@@ -67,6 +67,41 @@ Automatic fixing is available for a number of the code style rules we apply.  To
 automatically fix the issues it can fix run `npm run lint:fix` - that will show you any remaining
 issues after the tool has fixed what it can for you.
 
+### WebJar publishing
+
+In order to make hmrc-frontend assets easy to consume in Play-framework-based microservices,
+the npm `build:webjar` task builds a Play-compatible webjar, which is then
+published to HMRC's open artefact repository by an internal deployment process. Previously this was
+accomplished manually by adding to https://www.webjars.org. This webjar is a dependency of
+[hmrc/play-frontend-hmrc](https://www.github.com/play-frontend-hmrc), which is the library used to 
+implement the govuk-frontend design system in HMRC frontend microservices.
+
+When testing changes in conjunction with play-frontend-hmrc,
+it's possible to publish the webjar locally as follows. You will need to install [Maven](https://maven.apache.org/install.html)
+and replace `X.Y.Z` below with the actual version number from [package.json](package.json)
+```bash
+npm run build:webjar
+cd webjar-dist
+mvn install:install-file -Dfile=hmrc-frontend-X.Y.Z.jar -DpomFile=hmrc-frontend-X.Y.Z.pom
+```
+
+Then in play-frontend-hmrc, reference the hmrc-frontend webjar in your LibDependencies.scala file as follows:
+
+```sbt
+"uk.gov.hmrc.webjars" % "hmrc-frontend" % "X.Y.Z"
+```
+
+and configure your resolvers to look in your local Maven repository:
+
+```sbt
+resolvers += Resolver.mavenLocal
+```
+
+Further documentation on the webjar mechanism can be found:
+
+* https://www.webjars.org/documentation
+* https://www.playframework.com/documentation/2.8.x/AssetsOverview
+
 ## License
 
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").

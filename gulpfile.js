@@ -10,6 +10,7 @@ require('./tasks/gulp/asset-version.js');
 require('./tasks/gulp/backstop.js');
 require('./tasks/gulp/package.js');
 require('./tasks/gulp/dist.js');
+require('./tasks/gulp/webjar.js');
 
 gulp.task('copy-dist-files', gulp.series(
   'copy-hmrc-images',
@@ -37,6 +38,16 @@ gulp.task('build:package', gulp.series(
   'copy:README',
   'copy:LICENSE',
   'copy:packageJson',
+));
+
+gulp.task('build:webjar', gulp.series(
+  'build:package',
+  'clean-webjar',
+  'copy-webjar-package-files',
+  'create-pom-directory',
+  'create-pom',
+  'create-jar',
+  'copy-pom',
 ));
 
 gulp.task('build:dist', gulp.series(

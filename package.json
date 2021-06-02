@@ -5,9 +5,11 @@
   "scripts": {
     "start": "gulp dev",
     "test:build:package": "jest tasks/gulp/__tests__/after-build-package.test.js",
+    "test:build:webjar": "jest tasks/gulp/__tests__/after-build-webjar.test.js",
     "test:build:dist": "jest tasks/gulp/__tests__/after-build-dist.test.js",
     "build:package": "gulp build:package --destination 'package' && npm run test:build:package",
     "build:dist": "gulp build:dist --destination 'dist' && npm run test:build:dist",
+    "build:webjar": "gulp build:webjar --destination 'package' && npm run test:build:webjar",
     "build": "npm run build:dist && npm run build:package",
     "lint": "stylelint 'src/**/*.scss' && eslint .",
     "lint:fix": "stylelint 'src/**/*.scss' --fix && eslint --fix .",
@@ -41,6 +43,7 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.12.11",
+    "adm-zip": "^0.5.5",
     "ajv": "^6.12.2",
     "autoprefixer": "^9.6.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
