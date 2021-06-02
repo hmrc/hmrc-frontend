@@ -214,3 +214,49 @@ All work on GOV.UK should [use progressive enhancement](https://www.gov.uk/servi
 Services on GOV.UK are for the benefit of all users. This means you must build a service that’s as inclusive as possible.
 
 [Accessibility guidance on GOV.UK](https://www.gov.uk/service-manual/helping-people-to-use-your-service/making-your-service-accessible-an-introduction).
+
+### Code Style (Linting)
+
+We use tools to ensure the style of our SCSS and JS is consistent.  The code is checked when the tests
+run on the build server.  If you are contributing SCSS or JS you'll probably be running
+the tests using `npm test` - this includes the code style checks.
+
+To run the code style checks independently you can run `npm run lint`.
+
+Automatic fixing is available for a number of the code style rules we apply.  To let the tool
+automatically fix the issues it can fix run `npm run lint:fix` - that will show you any remaining
+issues after the tool has fixed what it can for you.
+
+### WebJar publishing
+
+In order to make the hmrc-frontend assets easy to consume in a JVM environment,
+the npm `build:webjar` task builds a JVM compatible webjar. This webjar is published to HMRC's open
+artefact repository by an internal automated deployment process and is a dependency of
+[hmrc/play-frontend-hmrc](https://www.github.com/hmrc/play-frontend-hmrc).
+
+When testing changes in conjunction with `play-frontend-hmrc` and consuming frontend microservices,
+it's possible to publish the hmrc-frontend webjar locally as follows. You will need Java and [Maven](https://maven.apache.org/install.html)
+installed.
+
+```bash
+npm run build:package
+npm run build:webjar
+npm run publish-local:webjar
+```
+
+You can then reference the webjar in the `LibDependencies.scala` file in `play-frontend-hmrc` as follows:
+
+```sbt
+"uk.gov.hmrc.webjars" % "hmrc-frontend" % "X.Y.Z"
+```
+
+You will also need to configure your `build.sbt` resolvers to look in your local Maven repository:
+
+```sbt
+resolvers += Resolver.mavenLocal
+```
+
+Further documentation on the webjar mechanism can be found:
+
+* https://www.webjars.org/documentation
+* https://www.playframework.com/documentation/2.8.x/AssetsOverview
