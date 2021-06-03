@@ -43,4 +43,6 @@ backstop_data/html_report/*
 
 webjar/
 webjar-dist/
+govuk-webjar/
+govuk-webjar-dist/
 

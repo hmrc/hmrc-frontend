@@ -3,12 +3,12 @@ const { readFile } = require('fs').promises;
 const { existsSync } = require('fs');
 const AdmZip = require('adm-zip');
 const packagePackageJson = require('../../../package/package.json');
-const getFiles = require('../get-files');
+const getFiles = require('./get-files');
 
 const parser = new DOMParser();
 
 const getPomField = async (xpath) => {
-  const pom = await readFile('webjar/META-INF/resources/maven/uk.gov.hmrc.webjars/hmrc-frontend/pom.xml', 'utf8');
+  const pom = await readFile('webjar/META-INF/maven/uk.gov.hmrc.webjars/hmrc-frontend/pom.xml', 'utf8');
 
   const dom = parser.parseFromString(pom, 'application/xml');
 
@@ -19,10 +19,12 @@ describe('webjar/', () => {
   const cwd = process.cwd();
 
   it('should copy the contents of the package directory into webjar/META-INF/resources/webjars/hmrc-frontend/X.Y.Z', async () => {
-    const webjarFiles = await getFiles('webjar/META-INF/resources/webjars/hmrc-frontend/1.35.2');
+    const { version } = packagePackageJson;
+
+    const webjarFiles = await getFiles(`webjar/META-INF/resources/webjars/hmrc-frontend/${version}`);
     const packageFiles = await getFiles('package');
 
-    const relativeWebjarFiles = webjarFiles.map((file) => file.replace(`${cwd}/webjar/META-INF/resources/webjars/hmrc-frontend/1.35.2`, ''));
+    const relativeWebjarFiles = webjarFiles.map((file) => file.replace(`${cwd}/webjar/META-INF/resources/webjars/hmrc-frontend/${version}`, ''));
     const relativePackageFiles = packageFiles.map((file) => file.replace(`${cwd}/package`, ''));
 
     expect(relativeWebjarFiles).toEqual(relativePackageFiles);
@@ -41,7 +43,9 @@ describe('webjar/', () => {
   });
 
   it('should generate a jar file containing the correct files', async () => {
-    const zip = new AdmZip('./webjar-dist/hmrc-frontend-1.35.2.jar');
+    const { version } = packagePackageJson;
+
+    const zip = new AdmZip(`./webjar-dist/hmrc-frontend-${version}.jar`);
     const zipEntries = zip.getEntries().map((entry) => entry.entryName).filter((path) => !path.endsWith('/')).sort();
     const webjarFiles = await getFiles('webjar');
 

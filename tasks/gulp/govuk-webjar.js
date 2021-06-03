@@ -1,8 +1,11 @@
 const { series } = require('gulp');
 const fs = require('fs');
 
-const artifactId = 'hmrc-frontend';
 const groupId = 'uk.gov.hmrc.webjars';
+const artifactId = 'govuk-frontend';
+const webjarPath = 'govuk-webjar';
+const webjarDistPath = 'govuk-webjar-dist';
+const packagePath = 'node_modules/govuk-frontend';
 
 const {
   getPackageJson,
@@ -17,19 +20,16 @@ const {
   {
     groupId,
     artifactId,
-    webjarPath: 'webjar',
-    webjarDistPath: 'webjar-dist',
-    packagePath: 'package',
+    webjarPath,
+    webjarDistPath,
+    packagePath,
   },
 );
 
 const createPom = (cb) => {
-  const { version, dependencies: { 'govuk-frontend': govukFrontendVersion } } = getPackageJson();
-  const githubUrl = 'https://www.github.com/hmrc/hmrc-frontend';
+  const { version } = getPackageJson();
+  const githubUrl = 'https://www.github.com/alphagov/govuk-frontend';
   const githubConnection = `${githubUrl}.git`;
-  const govukFrontendArtifactId = 'govuk-frontend';
-
-  const sanitisedGovukFrontendVersion = govukFrontendVersion.replace(/[~^]/, '');
 
   const pom = `<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -53,17 +53,9 @@ const createPom = (cb) => {
         <developerConnection>${githubConnection}</developerConnection>
         <tag>v${version}</tag>
     </scm>
-
-    <dependencies>
-        <dependency>
-            <groupId>${groupId}</groupId>
-            <artifactId>${govukFrontendArtifactId}</artifactId>
-            <version>${sanitisedGovukFrontendVersion}</version>
-        </dependency>
-    </dependencies>
 </project>`;
 
-  fs.writeFileSync(`${pomPath}`, pom);
+  fs.writeFileSync(pomPath, pom);
   cb();
 };
 
@@ -71,4 +63,4 @@ const buildWebjar = series(
   clean, copyWebjarPackageFiles, createPomDirectory, createPom, createJar, copyPom,
 );
 
-module.exports = { buildWebjar, publishLocalWebjar };
+module.exports = { buildGovukWebjar: buildWebjar, publishLocalGovukWebjar: publishLocalWebjar };
