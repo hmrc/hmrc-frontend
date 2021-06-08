@@ -11,6 +11,8 @@
     "backstop_data/**/*",
     "sassdoc/**/*",
     "package/**/*",
+    "webjar/**/*",
+    "webjar-dist/**/*",
     "public/**/*",
     "dist/**/*"
   ],

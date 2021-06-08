@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## Changed
+
+- Added task to build and publish a webjar for Scala libraries and microservices
+
 ## [1.35.2] - 2021-05-24
 
 ## Fixed
