@@ -11,6 +11,7 @@ describe('webjar/', () => {
   let packagePackageJson;
 
   const cwd = process.cwd();
+  const jarPath = './webjar-dist/uk/gov/hmrc/webjars/hmrc-frontend/';
 
   beforeAll(() => {
     packagePackageJson = JSON.parse(readFileSync('package/package.json', 'utf8'));
@@ -31,19 +32,31 @@ describe('webjar/', () => {
   it('should generate a jar file with the correct name', () => {
     const { version } = packagePackageJson;
 
-    expect(existsSync(`./webjar-dist/hmrc-frontend-${version}.jar`)).toEqual(true);
+    expect(existsSync(`${jarPath}/${version}/hmrc-frontend-${version}.jar`)).toEqual(true);
   });
 
   it('should generate a pom file with the correct name', () => {
     const { version } = packagePackageJson;
 
-    expect(existsSync(`./webjar-dist/hmrc-frontend-${version}.pom`)).toEqual(true);
+    expect(existsSync(`${jarPath}/${version}/hmrc-frontend-${version}.pom`)).toEqual(true);
+  });
+
+  it('should generate a pom hash file with the correct name', () => {
+    const { version } = packagePackageJson;
+
+    expect(existsSync(`${jarPath}/${version}/hmrc-frontend-${version}.pom.sha1`)).toEqual(true);
+  });
+
+  it('should generate a jar hash file with the correct name', () => {
+    const { version } = packagePackageJson;
+
+    expect(existsSync(`${jarPath}/${version}/hmrc-frontend-${version}.jar.sha1`)).toEqual(true);
   });
 
   it('should generate a jar file containing the correct files', async () => {
     const { version } = packagePackageJson;
 
-    const zip = new AdmZip(`./webjar-dist/hmrc-frontend-${version}.jar`);
+    const zip = new AdmZip(`${jarPath}/${version}/hmrc-frontend-${version}.jar`);
     const zipEntries = zip.getEntries().map((entry) => entry.entryName).filter((path) => !path.endsWith('/')).sort();
     const webjarFiles = await getFiles('webjar');
 
@@ -53,6 +66,12 @@ describe('webjar/', () => {
   });
 
   it('should generate a POM file', async () => {
+    const groupId = await getHmrcPomField('/project/groupId');
+
+    expect(groupId).toEqual('uk.gov.hmrc.webjars');
+  });
+
+  it('should generate a POM hash file', async () => {
     const groupId = await getHmrcPomField('/project/groupId');
 
     expect(groupId).toEqual('uk.gov.hmrc.webjars');

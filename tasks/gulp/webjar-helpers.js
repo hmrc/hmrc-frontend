@@ -1,8 +1,10 @@
 const { src, series, dest } = require('gulp');
-const fs = require('fs');
+const {
+  existsSync, copyFileSync, readFileSync, writeFileSync, mkdirSync,
+} = require('fs');
 const del = require('del');
-const rename = require('gulp-rename');
 const { exec } = require('child_process');
+const crypto = require('crypto');
 
 const groupId = 'uk.gov.hmrc.webjars';
 
@@ -12,7 +14,13 @@ const webJarHelpers = ({
   const mavenPath = `${webjarPath}/META-INF/maven/${groupId}/${artifactId}`;
   const pomPath = `${mavenPath}/pom.xml`;
 
-  const getPackageJson = () => JSON.parse(fs.readFileSync(`${packagePath}/package.json`, 'utf8'));
+  const getPackageJson = () => JSON.parse(readFileSync(`${packagePath}/package.json`, 'utf8'));
+
+  const getArtifactDirectory = () => {
+    const { version } = getPackageJson();
+
+    return `${webjarDistPath}/${groupId.replace(/\./g, '/')}/${artifactId}/${version}`;
+  };
 
   const clean = () => del([
     webjarPath,
@@ -34,24 +42,43 @@ const webJarHelpers = ({
       .pipe(dest(`${webjarPath}/META-INF/resources/webjars/${artifactId}/${version}/`));
   };
 
-  const createJar = () => {
+  const createArtifactDirectory = async () => {
+    const artifactPath = getArtifactDirectory();
+
+    if (!existsSync(artifactPath)) {
+      mkdirSync(artifactPath, { recursive: true });
+    }
+  };
+
+  const getArtifactPathPrefix = () => {
     const { version } = getPackageJson();
 
-    if (!fs.existsSync(webjarDistPath)) {
-      fs.mkdirSync(webjarDistPath);
-    }
-
-    return exec(`jar cMf ${webjarDistPath}/${artifactId}-${version}.jar -C ${webjarPath} .`);
+    return `${getArtifactDirectory()}/${artifactId}-${version}`;
   };
 
-  const createPomDirectory = (cb) => {
-    if (!fs.existsSync(mavenPath)) {
-      fs.mkdirSync(mavenPath, { recursive: true });
-    }
-    cb();
+  const getJarArtifactPath = () => `${getArtifactPathPrefix()}.jar`;
+
+  const createJar = () => exec(`jar cMf ${getJarArtifactPath()} -C ${webjarPath} .`);
+
+  const createShaFile = (path) => {
+    const fileBuffer = readFileSync(path);
+    const hashSum = crypto.createHash('sha1');
+    hashSum.update(fileBuffer);
+
+    writeFileSync(`${path}.sha1`, hashSum.digest('hex'));
   };
 
-  const createPom = (cb) => {
+  const createJarSha = async () => {
+    createShaFile(getJarArtifactPath());
+  };
+
+  const createPomDirectory = async () => {
+    if (!existsSync(mavenPath)) {
+      mkdirSync(mavenPath, { recursive: true });
+    }
+  };
+
+  const createPom = async () => {
     const { version, dependencies = {} } = getPackageJson();
 
     const githubConnection = `${githubUrl}.git`;
@@ -93,28 +120,32 @@ const webJarHelpers = ({
     </dependencies>
 </project>`;
 
-    fs.writeFileSync(`${pomPath}`, pom);
-
-    cb();
+    writeFileSync(pomPath, pom);
   };
 
-  const copyPom = () => {
-    const { version } = getPackageJson();
+  const getPomArtifactPath = () => `${getArtifactPathPrefix()}.pom`;
 
-    return src(pomPath)
-      .pipe(rename(`${artifactId}-${version}.pom`))
-      .pipe(dest(`${webjarDistPath}/`));
+  const copyPom = async () => {
+    copyFileSync(pomPath, getPomArtifactPath());
+  };
+
+  const createPomSha = async () => {
+    createShaFile(getPomArtifactPath());
   };
 
   const buildWebjar = series(
-    clean, copyWebjarPackageFiles, createPomDirectory, createPom, createJar, copyPom,
+    clean,
+    copyWebjarPackageFiles,
+    createPomDirectory,
+    createPom,
+    createArtifactDirectory,
+    createJar,
+    createJarSha,
+    copyPom,
+    createPomSha,
   );
 
-  const publishLocalWebjar = () => {
-    const { version } = getPackageJson();
-
-    return exec(`mvn install:install-file -Dfile=${webjarDistPath}/${artifactId}-${version}.jar -DpomFile=${webjarDistPath}/${artifactId}-${version}.pom`);
-  };
+  const publishLocalWebjar = () => exec(`mvn install:install-file -Dfile=${getJarArtifactPath()} -DpomFile=${getPomArtifactPath()}`);
 
   return {
     buildWebjar,
