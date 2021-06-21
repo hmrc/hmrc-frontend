@@ -174,6 +174,26 @@ HMRC Frontend follows [the same standards as GOV.UK](https://github.com/alphagov
 #### Squash related commits
 Squash multiple commits into one to make reviewing code easier.
 
+#### Keep a record of decisions
+
+We are using MADRs to record significant decisions in this service. To find out more
+visit [MADR](https://github.com/adr/madr)
+
+See our [decision log](docs/adr/index.md) for a list of past decisions.
+
+##### How to prepare a new decision
+
+1. Copy [template.md](docs/adr/template.md) as NNNN-title-of-decision.md, and fill
+in the fields. Do not feel you have to fill in all the fields, only fill in fields
+that are strictly necessary. Some decisions will merit more detail than others.
+
+1. To re-generate the [listing page for previous decisions](docs/adr/index.md) 
+   so it includes the new decision, run:
+
+    ```shell script
+    npm run docs:generate-decision-log-listing
+    ```
+
 ## Create a pull request
 
 ### Use the template

@@ -20,7 +20,8 @@
     "test:compatibility": "jest __tests__/check-compatibility.test.js",
     "test:backstop": "gulp backstopTest",
     "test:backstop-approve": "gulp backstop:approve",
-    "preinstall": "node check-compatibility.js"
+    "preinstall": "node check-compatibility.js",
+    "docs:generate-decision-log-listing": "adr-log -d ./docs/adr -i ./docs/adr/index.md -e template.md"
   },
   "repository": {
     "type": "git",
@@ -46,6 +47,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.12.11",
     "adm-zip": "^0.5.5",
+    "adr-log": "^2.2.0",
     "ajv": "^6.12.2",
     "autoprefixer": "^9.6.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
