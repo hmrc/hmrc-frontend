@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.37.1] - 2021-06-29
+
+## Fixed
+
+- Issue with webjar publishing due to missing md5 file
+
 ## [1.37.0] - 2021-06-29
 
 ## Changed

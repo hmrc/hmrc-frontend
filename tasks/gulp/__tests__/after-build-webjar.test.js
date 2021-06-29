@@ -47,10 +47,22 @@ describe('webjar/', () => {
     expect(existsSync(`${jarPath}/${version}/hmrc-frontend-${version}.pom.sha1`)).toEqual(true);
   });
 
+  it('should generate a pom md5 file with the correct name', () => {
+    const { version } = packagePackageJson;
+
+    expect(existsSync(`${jarPath}/${version}/hmrc-frontend-${version}.pom.md5`)).toEqual(true);
+  });
+
   it('should generate a jar hash file with the correct name', () => {
     const { version } = packagePackageJson;
 
     expect(existsSync(`${jarPath}/${version}/hmrc-frontend-${version}.jar.sha1`)).toEqual(true);
+  });
+
+  it('should generate a jar md5 file with the correct name', () => {
+    const { version } = packagePackageJson;
+
+    expect(existsSync(`${jarPath}/${version}/hmrc-frontend-${version}.jar.md5`)).toEqual(true);
   });
 
   it('should generate a jar file containing the correct files', async () => {

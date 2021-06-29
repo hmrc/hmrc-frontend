@@ -60,16 +60,20 @@ const webJarHelpers = ({
 
   const createJar = () => exec(`jar cMf ${getJarArtifactPath()} -C ${webjarPath} .`);
 
-  const createShaFile = (path) => {
+  const createChecksumFile = (path, algorithm) => {
     const fileBuffer = readFileSync(path);
-    const hashSum = crypto.createHash('sha1');
+    const hashSum = crypto.createHash(algorithm);
     hashSum.update(fileBuffer);
 
-    writeFileSync(`${path}.sha1`, hashSum.digest('hex'));
+    writeFileSync(`${path}.${algorithm}`, hashSum.digest('hex'));
   };
 
   const createJarSha = async () => {
-    createShaFile(getJarArtifactPath());
+    createChecksumFile(getJarArtifactPath(), 'sha1');
+  };
+
+  const createJarMd5 = async () => {
+    createChecksumFile(getJarArtifactPath(), 'md5');
   };
 
   const createPomDirectory = async () => {
@@ -130,7 +134,11 @@ const webJarHelpers = ({
   };
 
   const createPomSha = async () => {
-    createShaFile(getPomArtifactPath());
+    createChecksumFile(getPomArtifactPath(), 'sha1');
+  };
+
+  const createPomMd5 = async () => {
+    createChecksumFile(getPomArtifactPath(), 'md5');
   };
 
   const buildWebjar = series(
@@ -141,8 +149,10 @@ const webJarHelpers = ({
     createArtifactDirectory,
     createJar,
     createJarSha,
+    createJarMd5,
     copyPom,
     createPomSha,
+    createPomMd5,
   );
 
   const publishLocalWebjar = () => exec(`mvn install:install-file -Dfile=${getJarArtifactPath()} -DpomFile=${getPomArtifactPath()}`);
