@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.0] - 2021-07-12
+
+## Changed
+
+- Supply Javascript modules uncompiled to allow additional flexibility for bundling
+  by third-party consumers.
+
 ## [1.38.0] - 2021-07-05
 
 ### Fixed
