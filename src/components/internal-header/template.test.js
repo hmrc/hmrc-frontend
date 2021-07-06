@@ -12,6 +12,22 @@ describe('Internal Header', () => {
 
       expect($serviceName.html()).toBeNull();
     });
+
+    it('should have the English text', () => {
+      const $ = render('internal-header', examples.default);
+      const $logoLink = $('.hmrc-internal-header__logo-link');
+
+      expect($logoLink.text().trim()).toEqual('HM Revenue & Customs');
+    });
+  });
+
+  describe('with Welsh language specified', () => {
+    it('should have the Welsh text', () => {
+      const $ = render('internal-header', examples.welsh);
+      const $logoLink = $('.hmrc-internal-header__logo-link');
+
+      expect($logoLink.text().trim()).toEqual('Cyllid a Thollau EM');
+    });
   });
 
   describe('With a Service Name', () => {

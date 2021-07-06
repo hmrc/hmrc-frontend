@@ -1,7 +1,11 @@
 <header role="banner" class="hmrc-internal-header">
     <div class="hmrc-internal-header__logo">
         <a href="{{ params.homepageUrl | default('/') }}" class="hmrc-internal-header__logo-link">
-            HM Revenue &amp; Customs
+            {% if params.language == 'cy' %}
+                Cyllid a Thollau EM
+            {% else %}
+                HM Revenue &amp; Customs
+            {% endif %}
         </a>
     </div>
 

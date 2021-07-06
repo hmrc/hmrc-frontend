@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.38.0] - 2021-07-05
+
+### Fixed
+
+- Added Welsh translation for Internal Banner
+
 ## [1.37.1] - 2021-06-29
 
 ## Fixed
