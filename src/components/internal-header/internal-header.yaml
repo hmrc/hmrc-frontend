@@ -12,6 +12,10 @@ params:
   type: string
   required: false
   description: Url for the service name anchor.
+- name: language
+  type: string
+  required: false
+  description: Either "en" for English or "cy" for Welsh
 
 accessibilityCriteria:
   Text and links in the Header must:
@@ -36,8 +40,11 @@ examples:
 - name: default
   description: The standard header
   data:
-    {}
-
+    language: en
+- name: welsh
+  description: The standard Welsh banner
+  data:
+    language: cy
 - name: with-service-name
   description: If your service is more than a few pages long, you can help users understand where they are by adding the service name.
   data:
