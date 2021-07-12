@@ -11,10 +11,7 @@ const configPaths = require('../../config/paths.json');
 const destinationPath = require('./destination-path');
 const pkg = require('../../package.json');
 
-gulp.task('js:compile-hmrc', () => gulp.src([
-  `${configPaths.src}**/*.js`,
-  `!${configPaths.src}**/*.test.js`,
-])
+gulp.task('js:compile-hmrc', () => gulp.src([`${configPaths.src}all.js`])
   .pipe(rollup({
     plugins: [
       babel(),
