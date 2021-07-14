@@ -1,6 +1,6 @@
 {
   "name": "hmrc-frontend",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
@@ -101,10 +101,7 @@
     "yargs": "^15.3.1"
   },
   "browserslist": [
-    "last 2 versions",
-    "ie 8",
-    "ie 9",
-    "iOS 9"
+    "last 1 Chrome version"
   ],
   "jest": {
     "setupFilesAfterEnv": [

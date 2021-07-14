@@ -1,8 +1,10 @@
 /* eslint-env jest */
 import mock from 'jest-mock';
+import util from 'util';
 import TimeoutDialog from './timeout-dialog';
 
 const { dialog, redirectHelper, utils } = TimeoutDialog;
+const nextTick = util.promisify(setImmediate);
 
 const getElemText = (elem) => {
   if (!elem) {
@@ -434,7 +436,7 @@ describe('/components/timeout-dialog', () => {
   });
 
   describe('Countdown timer', () => {
-    it('should countdown minutes and then seconds in english', () => {
+    it('should countdown minutes and then seconds in english', async () => {
       setupDialog({
         'data-timeout': 130,
         'data-countdown': 120,
@@ -475,6 +477,7 @@ describe('/components/timeout-dialog', () => {
       expect(getAudibleCountText()).toEqual('time: 20 seconds.');
       pretendSecondsHavePassed(1);
 
+      await nextTick();
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('timeout');
       expect(getVisualCountText()).toEqual('time: -1 seconds.');
       expect(getAudibleCountText()).toEqual('time: 20 seconds.');
@@ -483,7 +486,7 @@ describe('/components/timeout-dialog', () => {
       expect(getVisualCountText()).toEqual('time: -2 seconds.');
       expect(getAudibleCountText()).toEqual('time: 20 seconds.');
     });
-    it('should default redirectToUrl to data-sign-out-url if data-timeout-url is not set', () => {
+    it('should default redirectToUrl to data-sign-out-url if data-timeout-url is not set', async () => {
       setupDialog({
         'data-timeout': 130,
         'data-countdown': 120,
@@ -491,8 +494,44 @@ describe('/components/timeout-dialog', () => {
         'data-sign-out-url': 'logout',
       });
       pretendSecondsHavePassed(131);
+      await nextTick();
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout');
     });
+
+    it('should not redirect the user to the signOut if the user hasn\'t been timed out', async () => {
+      setupDialog({
+        'data-timeout': 130,
+        'data-countdown': 120,
+        'data-message': 'time:',
+        'data-sign-out-url': 'logout',
+        'data-session-url': '/contact-frontend/hmrc-frontend/session',
+      });
+      jest.spyOn(utils, 'getSession').mockReturnValue(Promise.resolve({
+        secondsRemaining: 100,
+      }));
+
+      pretendSecondsHavePassed(131);
+
+      await nextTick();
+      expect(redirectHelper.redirectToUrl).not.toHaveBeenCalledWith('logout');
+      expect(utils.getSession).toHaveBeenCalledWith('/contact-frontend/hmrc-frontend/session');
+    });
+
+    it('should redirect the user to the signOut if the sessionUrl has not been supplied', async () => {
+      setupDialog({
+        'data-timeout': 130,
+        'data-countdown': 120,
+        'data-message': 'time:',
+        'data-sign-out-url': 'logout',
+      });
+      utils.getSession.mockRestore();
+
+      pretendSecondsHavePassed(131);
+
+      await nextTick();
+      expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout');
+    });
+
     it('should have an audio countdown which counts the last minute in 20 second decrements', () => {
       setupDialog({
         'data-timeout': 70,
@@ -534,7 +573,7 @@ describe('/components/timeout-dialog', () => {
       expect(getVisualCountText()).toEqual('time: 19 seconds.');
       expect(getAudibleCountText()).toEqual('time: 20 seconds.');
     });
-    it('should countdown minutes and then seconds in welsh', () => {
+    it('should countdown minutes and then seconds in welsh', async () => {
       setLanguageToWelsh();
       setupDialog({
         'data-timeout': 130,
@@ -575,6 +614,8 @@ describe('/components/timeout-dialog', () => {
       expect(getVisualCountText()).toEqual('Welsh, time: 0 eiliad.');
       expect(getAudibleCountText()).toEqual('Welsh, time: 20 eiliad.');
       pretendSecondsHavePassed(1);
+
+      await nextTick();
 
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('timeout');
       expect(getVisualCountText()).toEqual('Welsh, time: -1 eiliad.');
@@ -654,7 +695,7 @@ describe('/components/timeout-dialog', () => {
       expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 998);
     });
 
-    it('should countdown minutes and then seconds in welsh', () => {
+    it('should countdown minutes and then seconds in welsh', async () => {
       setupDialog({
         'data-timeout': 130,
         'data-countdown': 50,
@@ -680,6 +721,8 @@ describe('/components/timeout-dialog', () => {
 
       expect(getVisualCountText()).toEqual('Remaining time is 1 second.');
       expect(getAudibleCountText()).toEqual(lowestAudibleCount);
+
+      await nextTick();
       expect(redirectHelper.redirectToUrl).not.toHaveBeenCalled();
 
       pretendSecondsHavePassed(1);
@@ -688,6 +731,7 @@ describe('/components/timeout-dialog', () => {
       expect(getAudibleCountText()).toEqual(lowestAudibleCount);
       pretendSecondsHavePassed(1);
 
+      await nextTick();
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('timeout');
       expect(getVisualCountText()).toEqual('Remaining time is -1 seconds.');
       expect(getAudibleCountText()).toEqual(lowestAudibleCount);

@@ -50,6 +50,31 @@ const utils = {
     xhr.send();
     return xhr;
   },
+
+  getSession(sessionUrl) {
+    if (sessionUrl === undefined) {
+      return Promise.resolve({
+        secondsRemaining: 0,
+      });
+    }
+
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', sessionUrl, true);
+      xhr.withCredentials = true;
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState > 3) {
+          if (xhr.status === 200) {
+            resolve(JSON.parse(xhr.responseText));
+          } else {
+            reject(new Error(`An error occurred fetching session status with HTTP status ${xhr.status} and response: ${xhr.responseText}`));
+          }
+        }
+      };
+      xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+      xhr.send();
+    });
+  },
 };
 
 export default utils;

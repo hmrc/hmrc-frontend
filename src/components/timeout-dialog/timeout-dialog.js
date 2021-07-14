@@ -68,6 +68,7 @@ function TimeoutDialog($module) {
       signOutButtonText: validate.string(
         lookupData('data-sign-out-button-text'),
       ),
+      sessionUrl: validate.string(lookupData('data-session-url')),
     };
 
     // Default timeoutUrl to signOutUrl if not set
@@ -113,12 +114,12 @@ function TimeoutDialog($module) {
     return clone;
   };
 
-  const setupDialogTimer = () => {
-    settings.signout_time = getDateNow() + settings.timeout * 1000;
+  const setupDialogTimer = (timeoutDurationInSeconds = settings.timeout) => {
+    settings.signout_time = getDateNow() + timeoutDurationInSeconds * 1000;
 
     const timeout = window.setTimeout(() => {
       setupDialog();
-    }, (settings.timeout - settings.countdown) * 1000);
+    }, (timeoutDurationInSeconds - settings.countdown) * 1000);
 
     cleanupFunctions.push(() => {
       window.clearTimeout(timeout);
@@ -254,6 +255,7 @@ function TimeoutDialog($module) {
 
     const runUpdate = () => {
       const counter = getSecondsRemaining();
+
       updateCountdown(counter);
       if (counter <= 0) {
         timeout();
@@ -277,8 +279,14 @@ function TimeoutDialog($module) {
     RedirectHelper.redirectToUrl(settings.signOutUrl);
   };
 
-  const timeout = () => {
-    RedirectHelper.redirectToUrl(settings.timeoutUrl);
+  const timeout = async () => {
+    const { secondsRemaining } = await utils.getSession(settings.sessionUrl);
+    if (secondsRemaining <= 0) {
+      RedirectHelper.redirectToUrl(settings.timeoutUrl);
+    } else {
+      cleanup();
+      setupDialogTimer(secondsRemaining);
+    }
   };
 
   const cleanup = () => {
