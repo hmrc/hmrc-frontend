@@ -46,7 +46,7 @@ html {
 }
 
 .hmrc-timeout-dialog__message {
-  @include govuk-font(19);
+  @include govuk-font($size: 19);
 
   line-height: 1.31579;
 }
@@ -66,10 +66,13 @@ html {
 }
 
 .hmrc-timeout-dialog__link {
+  @include govuk-font($size: 24);
+
   display: inline-block;
-  font-size: 19px;
 
   @include govuk-media-query($from: tablet) {
+    @include govuk-font($size: 19);
+
     position: relative;
     top: 2px;
     padding: 0.526315em 0.789473em 0.263157em;
