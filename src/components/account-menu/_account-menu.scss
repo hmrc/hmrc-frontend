@@ -39,7 +39,7 @@ $hmrc-transition-type: "all";
 }
 
 .hmrc-account-menu {
-  @include govuk-font(16);
+  @include govuk-font($size: 16);
   @include govuk-clearfix;
 
   position: relative;
@@ -247,7 +247,7 @@ $hmrc-transition-type: "all";
 }
 
 .hmrc-subnav {
-  @include govuk-font(16);
+  @include govuk-font($size: 16);
   @include govuk-clearfix;
 
   display: none;
@@ -262,7 +262,7 @@ $hmrc-transition-type: "all";
   background-color: govuk-colour("light-grey");
 
   p {
-    @include govuk-font(16);
+    @include govuk-font($size: 16);
   }
 
   a {
@@ -470,17 +470,19 @@ $hmrc-banner-blue: #005ea5;
 }
 
 .hmrc-full-width-banner__title {
+  @include govuk-font($size: 19);
+
   margin-bottom: 5px;
-  font-size: 18px;
   font-weight: 600;
 }
 
 .hmrc-full-width-banner__close {
+  @include govuk-font($size: 14);
+
   position: absolute;
   top: 20px;
   right: 15px;
   color: govuk-colour("white");
-  font-size: 14px;
 }
 
 @include mq(tablet) {
