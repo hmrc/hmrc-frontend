@@ -263,8 +263,8 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(780);
     });
 
-    it('should not show heading', () => {
-      expect(testScope.latestDialog$element.querySelector('h1')).toBeNull();
+    it('should show the default heading wording', () => {
+      expect(getElemText(testScope.latestDialog$element.querySelector('h1'))).toEqual('You’re about to be signed out');
     });
 
     it('should show message', () => {

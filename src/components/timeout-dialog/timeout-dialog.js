@@ -41,7 +41,7 @@ function TimeoutDialog($module) {
         second: 'eiliad',
       },
     } : {
-      title: undefined,
+      title: 'You’re about to be signed out',
       message: 'For your security, we will sign you out in',
       keepAliveButtonText: 'Stay signed in',
       signOutButtonText: 'Sign out',
