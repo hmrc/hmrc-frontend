@@ -216,8 +216,8 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(780);
     });
 
-    it('should not show heading', () => {
-      expect(testScope.latestDialog$element.querySelector('h1.push--top')).toBeNull();
+    it('should show the default heading wording', () => {
+      expect(getElemText(testScope.latestDialog$element.querySelector('h1.push--top'))).toEqual('Rydych ar fin cael eich allgofnodi');
     });
 
     it('should show message', () => {
