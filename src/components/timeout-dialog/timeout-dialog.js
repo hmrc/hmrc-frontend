@@ -138,7 +138,7 @@ function TimeoutDialog($module) {
 
     if (settings.title) {
       const $tmp = utils.generateDomElementFromStringAndAppendText(
-        '<h1 class="govuk-heading-m push--top">',
+        '<h1 id="hmrc-timeout-heading" class="govuk-heading-m push--top">',
         settings.title,
       );
       $element.appendChild($tmp);
@@ -187,7 +187,7 @@ function TimeoutDialog($module) {
 
     dialogControl.addCloseHandler(keepAliveAndClose);
 
-    dialogControl.setAriaLabelledBy('hmrc-timeout-message');
+    dialogControl.setAriaLabelledBy('hmrc-timeout-heading hmrc-timeout-message');
 
     startCountdown($countdownElement, $audibleMessage);
   };

@@ -127,7 +127,7 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(1);
 
       expect(dialog.displayDialog).toHaveBeenCalled();
-      expect(testScope.latestDialogControl.setAriaLabelledBy).toHaveBeenCalledWith('hmrc-timeout-message');
+      expect(testScope.latestDialogControl.setAriaLabelledBy).toHaveBeenCalledWith('hmrc-timeout-heading hmrc-timeout-message');
     });
   });
 
