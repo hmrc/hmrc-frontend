@@ -30,7 +30,7 @@ function TimeoutDialog($module) {
     }
 
     const localisedDefaults = validate.string(lookupData('data-language')) === 'cy' ? {
-      title: undefined,
+      title: 'Rydych ar fin cael eich allgofnodi',
       message: 'Er eich diogelwch, byddwn yn eich allgofnodi cyn pen',
       keepAliveButtonText: 'Parhau i fod wedi’ch mewngofnodi',
       signOutButtonText: 'Allgofnodi',
@@ -41,7 +41,7 @@ function TimeoutDialog($module) {
         second: 'eiliad',
       },
     } : {
-      title: undefined,
+      title: 'You’re about to be signed out',
       message: 'For your security, we will sign you out in',
       keepAliveButtonText: 'Stay signed in',
       signOutButtonText: 'Sign out',
@@ -138,7 +138,7 @@ function TimeoutDialog($module) {
 
     if (settings.title) {
       const $tmp = utils.generateDomElementFromStringAndAppendText(
-        '<h1 class="govuk-heading-m push--top">',
+        '<h1 id="hmrc-timeout-heading" class="govuk-heading-m push--top">',
         settings.title,
       );
       $element.appendChild($tmp);
@@ -187,7 +187,7 @@ function TimeoutDialog($module) {
 
     dialogControl.addCloseHandler(keepAliveAndClose);
 
-    dialogControl.setAriaLabelledBy('hmrc-timeout-message');
+    dialogControl.setAriaLabelledBy('hmrc-timeout-heading hmrc-timeout-message');
 
     startCountdown($countdownElement, $audibleMessage);
   };

@@ -7,9 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.1.0] - 2021-08-04
+
+### Changed
+
+- Added default heading wording for timeout dialog and added heading to ariaLabelledBy
+
 ## [2.0.0] - 2021-07-12
 
-## Changed
+### Changed
 
 - Supply Javascript modules uncompiled to allow additional flexibility for bundling
   by third-party consumers.
@@ -22,61 +28,61 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.37.1] - 2021-06-29
 
-## Fixed
+### Fixed
 
 - Issue with webjar publishing due to missing md5 file
 
 ## [1.37.0] - 2021-06-29
 
-## Changed
+### Changed
 
 - Upgrade to govuk-frontend v3.13.0
 
 ## [1.36.0] - 2021-06-11
 
-## Changed
+### Changed
 
 - Build and publish a webjar for Scala libraries and microservices
 
 ## [1.35.2] - 2021-05-24
 
-## Fixed
+### Fixed
 
 - Corrected add-to-a-list continue messages to Continue (consistent capitalization)
 
 ## [1.35.1] - 2021-05-19
 
-## Changed
+### Changed
 
 - Added novalidate to Add To A List in order to match the standard for forms
 
 ## [1.35.0] - 2021-05-19
 
-## Changed
+### Changed
 
 - Uplift to govuk-frontend v3.12.0
 
 ## [1.34.0] - 2021-05-05
 
-## Changed
+### Changed
 
 - URL for report-technical-issue component updated to point to new contact-frontend endpoint /contact/report-technical-problem
 
 ## [1.33.1] - 2021-05-05
 
-## Fixed
+### Fixed
 
 - Security vulnerabilities
 
 ## [1.33.0] - 2021-05-05
 
-## Fixed
+### Fixed
 
 - Fix timeout dialog on IE by adding polyfill for Number.isNaN
 
 ## [1.32.0] - 2021-04-29
 
-## Fixed
+### Fixed
 
 - Allowing the initialization of multiple character counts on a single page when using `initAll`
 
