@@ -32,6 +32,14 @@ module.exports = (options) => {
     ...nunjucksOptions, // merge any additional options and overwrite defaults above.
   });
 
+  // Get the list of examples for a component from within a template
+  env.addFilter(
+    'componentExamples',
+    (component) => fileHelper.getComponentData(component).examples.map(
+      (example) => example.name.replace(/ /g, '-'),
+    ),
+  );
+
   // Set view engine
   app.set('view engine', 'njk');
 
@@ -75,15 +83,10 @@ module.exports = (options) => {
   });
 
   // Component 'README' page
-  app.get('/components/:component', (req, res, next) => {
-    // make variables available to nunjucks template
-    res.locals.componentPath = req.params.component;
-    res.render('component', (error, html) => {
-      if (error) {
-        next(error);
-      } else {
-        res.send(html);
-      }
+  app.get('/components/:component([a-zA-Z-]+)', (req, res) => {
+    res.render('component', {
+      hmrcFrontendVersion: pkg.version,
+      componentReadme: fileHelper.getComponentReadme(req.params.component),
     });
   });
 
