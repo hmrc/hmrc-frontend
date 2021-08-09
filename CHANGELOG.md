@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.1.1] - 2021-08-05
+
+### Changed
+
+- Added links to examples under components on the listing page when running the local dev server
+
 ## [2.1.0] - 2021-08-04
 
 ### Changed
