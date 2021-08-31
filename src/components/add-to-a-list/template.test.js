@@ -5,13 +5,13 @@ import { render, getExamples } from '../../../lib/jest-helpers';
 const examples = getExamples('add-to-a-list');
 
 const getTableItems = ($) => {
-  const $rows = $('.hmrc-add-to-a-list__contents');
-  const $changeLinks = $('.hmrc-add-to-a-list__change', $rows);
-  const $removeLinks = $('.hmrc-add-to-a-list__remove', $rows);
+  const $rows = $('.hmrc-list-with-actions__contents');
+  const $changeLinks = $('.hmrc-list-with-actions__action:first-of-type', $rows);
+  const $removeLinks = $('.hmrc-list-with-actions__action:last-of-type', $rows);
 
   const listItems = {};
   listItems.identifiers = [];
-  $('.hmrc-add-to-a-list__identifier', $rows).each((index, element) => {
+  $('.hmrc-list-with-actions__identifier', $rows).each((index, element) => {
     listItems.identifiers.push($(element).text().trim());
   });
   listItems.changeLinkText = $changeLinks.find('[aria-hidden="true"]').eq(0).text().trim();
@@ -28,7 +28,7 @@ describe('Add to a list', () => {
 
     const $ = render('add-to-a-list', examples['multiple-specific-items']);
 
-    expect($('.hmrc-add-to-a-list').first().html()).toMatchSnapshot();
+    expect($('.hmrc-list-with-actions').first().html()).toMatchSnapshot();
   });
 
   describe('by default', () => {
@@ -61,7 +61,7 @@ describe('Add to a list', () => {
   describe('with one item', () => {
     const $ = render('add-to-a-list', examples['single-generic-item']);
     const $heading = $('h1');
-    const $rows = $('.hmrc-add-to-a-list__contents');
+    const $rows = $('.hmrc-list-with-actions__contents');
 
     it('has the correct text for 1 item', () => {
       expect($heading.text()).toBe('You have added 1 item');
@@ -82,7 +82,7 @@ describe('Add to a list', () => {
   describe('with one item in welsh', () => {
     const $ = render('add-to-a-list', examples['single-generic-welsh-item']);
     const $heading = $('h1');
-    const $rows = $('.hmrc-add-to-a-list__contents');
+    const $rows = $('.hmrc-list-with-actions__contents');
 
     it('Has the correct singular welsh heading', () => {
       expect($heading.text()).toBe('Rydych wedi ychwanegu 1 eitem');
@@ -103,7 +103,7 @@ describe('Add to a list', () => {
   describe('with two named items', () => {
     const $ = render('add-to-a-list', examples['multiple-specific-items']);
     const $heading = $('h1');
-    const $rows = $('.hmrc-add-to-a-list__contents');
+    const $rows = $('.hmrc-list-with-actions__contents');
     const $legend = $('fieldset legend');
     const $form = $('form');
     it('Uses "directors" as the plural item name', () => {
@@ -115,9 +115,9 @@ describe('Add to a list', () => {
     });
 
     it('Contains a list of 2 directors', () => {
-      const $identifiers = $('.hmrc-add-to-a-list__identifier', $rows);
-      const $changeLinks = $('.hmrc-add-to-a-list__change .govuk-visually-hidden', $rows);
-      const $removeLinks = $('.hmrc-add-to-a-list__remove .govuk-visually-hidden', $rows);
+      const $identifiers = $('.hmrc-list-with-actions__identifier', $rows);
+      const $changeLinks = $('.hmrc-list-with-actions__action:first-of-type .govuk-visually-hidden', $rows);
+      const $removeLinks = $('.hmrc-list-with-actions__action:last-of-type .govuk-visually-hidden', $rows);
 
       expect($rows.length).toBe(2);
       expect($identifiers.eq(0).text()).toContain('Director One');
@@ -141,9 +141,9 @@ describe('Add to a list', () => {
   });
 
   describe('with two unnamed items in Welsh', () => {
-    const $ = render('add-to-a-list', examples['mutltiple-generic-welsh-items']);
+    const $ = render('add-to-a-list', examples['multiple-generic-welsh-items']);
     const $heading = $('h1');
-    const $rows = $('.hmrc-add-to-a-list__contents');
+    const $rows = $('.hmrc-list-with-actions__contents');
     const $legend = $('fieldset legend');
     const $form = $('form');
     it('Uses "o eitemau" as the plural item name', () => {
@@ -155,9 +155,9 @@ describe('Add to a list', () => {
     });
 
     it('Contains a list of 2 items', () => {
-      const $identifiers = $('.hmrc-add-to-a-list__identifier', $rows);
-      const $changeLinks = $('.hmrc-add-to-a-list__change .govuk-visually-hidden', $rows);
-      const $removeLinks = $('.hmrc-add-to-a-list__remove .govuk-visually-hidden', $rows);
+      const $identifiers = $('.hmrc-list-with-actions__identifier', $rows);
+      const $changeLinks = $('.hmrc-list-with-actions__action:first-of-type .govuk-visually-hidden', $rows);
+      const $removeLinks = $('.hmrc-list-with-actions__action:last-of-type .govuk-visually-hidden', $rows);
 
       expect($rows.length).toBe(2);
       expect($identifiers.eq(0).text()).toContain('Eitem un');

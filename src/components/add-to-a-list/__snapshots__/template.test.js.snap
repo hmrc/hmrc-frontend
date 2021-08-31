@@ -2,11 +2,11 @@
 
 exports[`Add to a list should be rendered using a structure accessible for JAWS users 1`] = `
 
-<div class="hmrc-add-to-a-list__contents">
-  <dt class="hmrc-add-to-a-list__identifier hmrc-add-to-a-list__identifier--light">
+<div class="hmrc-list-with-actions__contents">
+  <dt class="hmrc-list-with-actions__identifier">
     Director One
   </dt>
-  <dd class="hmrc-add-to-a-list__change">
+  <dd class="hmrc-list-with-actions__action">
     <a class="govuk-link"
        href="#change-item-1"
     >
@@ -18,7 +18,7 @@ exports[`Add to a list should be rendered using a structure accessible for JAWS 
       </span>
     </a>
   </dd>
-  <dd class="hmrc-add-to-a-list__remove">
+  <dd class="hmrc-list-with-actions__action">
     <a class="govuk-link"
        href="#remove-item-1"
     >
@@ -31,11 +31,11 @@ exports[`Add to a list should be rendered using a structure accessible for JAWS 
     </a>
   </dd>
 </div>
-<div class="hmrc-add-to-a-list__contents">
-  <dt class="hmrc-add-to-a-list__identifier hmrc-add-to-a-list__identifier--light">
+<div class="hmrc-list-with-actions__contents">
+  <dt class="hmrc-list-with-actions__identifier">
     Director Two
   </dt>
-  <dd class="hmrc-add-to-a-list__change">
+  <dd class="hmrc-list-with-actions__action">
     <a class="govuk-link"
        href="#change-item-2"
     >
@@ -47,7 +47,7 @@ exports[`Add to a list should be rendered using a structure accessible for JAWS 
       </span>
     </a>
   </dd>
-  <dd class="hmrc-add-to-a-list__remove">
+  <dd class="hmrc-list-with-actions__action">
     <a class="govuk-link"
        href="#remove-item-2"
     >

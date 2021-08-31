@@ -1,0 +1,90 @@
+params:
+  - itemSize:
+    type: string
+    required: false
+    default: short
+    description: 'short or long, used to choose the correct css classes for the first column text'
+  - itemList:
+    type: array
+    required: true
+    description: the list of items being added to
+    params:
+      - name:
+        type: string
+        required: true
+        description: the identifier for this item
+      - name: actions
+        type: array
+        required: true
+        description: Array of action item objects
+        params:
+          - name: href
+            type: string
+            required: true
+            description: The value of the link href attribute for an action item
+          - name: text
+            type: string
+            required: true
+            description: If `html` is set, this is not required. Text to use within each action item. If `html` is provided, the `text` argument will be ignored.
+          - name: html
+            type: string
+            required: true
+            description: If `text` is set, this is not required. HTML to use within the each action item. If `html` is provided, the `text` argument will be ignored.
+          - name: visuallyHiddenText
+            type: string
+            required: false
+            description: Actions rely on context from the surrounding content so may require additional accessible text, text supplied to this option becomes the only accessible content for the action link. Use `html` for more complicated scenarios.
+          - name: classes
+            type: string
+            required: false
+            description: Classes to add to the action item.
+          - name: attributes
+            type: object
+            required: false
+            description: HTML attributes (for example data attributes) to add to the action item.
+examples:
+- name: default
+  description: A list with a multiple items
+  data:
+    itemList:
+        - name: Sydney Russell
+          actions:
+            - href: '#c1url'
+              text: Change
+              visuallyHiddenText: Change Sydney Russell
+            - href: '#r1url'
+              text: Remove
+              visuallyHiddenText: Remove Sydney Russell from the list
+        - name: Michael Cain
+          actions:
+            - href: '#c2url'
+              text: Change
+              visuallyHiddenText: Change Michael Cain
+            - href: '#r2url'
+              text: Remove
+              visuallyHiddenText: Remove Michael Cain from the list
+- name: multiple-items-welsh
+  description: A list with a multiple items using Welsh language
+  data:
+    language: 'cy'
+    itemList:
+      - name: Sydney Russell
+        actions:
+          - href: '#c1url'
+            text: Newid
+            visuallyHiddenText: Newid Sydney Russell
+          - href: '#r1url'
+            text: Dileu
+            visuallyHiddenText: Dileu’r Sydney Russell o’r rhestr
+      - name: Michael Cain
+        actions:
+          - href: '#c2url'
+            text: Newid
+            visuallyHiddenText: Newid Michael Cain
+          - href: '#r2url'
+            text: Dileu
+            visuallyHiddenText: Dileu’r Michael Cain o’r rhestr
+- name: empty-list
+  description: An empty list
+  data:
+    itemlist: []
