@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.3.0] - 2021-09-03
+
+### Added
+
+- hmrcListWithActions component
+
 ## [2.2.2] - 2021-09-03
 
 ### Fixed

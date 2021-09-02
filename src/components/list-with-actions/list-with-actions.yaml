@@ -1,18 +1,25 @@
 params:
-  - itemSize:
+  - name: classes
     type: string
     required: false
-    default: short
-    description: 'short or long, used to choose the correct css classes for the first column text'
-  - itemList:
+    description: Classes to add to the container.
+  - name: attributes
+    type: object
+    required: false
+    description: HTML attributes (for example data attributes) to add to the container.
+  - items:
     type: array
     required: true
     description: the list of items being added to
     params:
-      - name:
+      - name: name.text
         type: string
         required: true
-        description: the identifier for this item
+        description: If `html` is set, this is not required. Text to use within the each name. If `html` is provided, the `text` argument will be ignored.
+      - name: name.html
+        type: string
+        required: true
+        description: If `text` is set, this is not required. HTML to use within the each name. If `html` is provided, the `text` argument will be ignored.
       - name: actions
         type: array
         required: true
@@ -46,45 +53,288 @@ examples:
 - name: default
   description: A list with a multiple items
   data:
-    itemList:
-        - name: Sydney Russell
-          actions:
-            - href: '#c1url'
-              text: Change
-              visuallyHiddenText: Change Sydney Russell
-            - href: '#r1url'
-              text: Remove
-              visuallyHiddenText: Remove Sydney Russell from the list
-        - name: Michael Cain
-          actions:
-            - href: '#c2url'
-              text: Change
-              visuallyHiddenText: Change Michael Cain
-            - href: '#r2url'
-              text: Remove
-              visuallyHiddenText: Remove Michael Cain from the list
-- name: multiple-items-welsh
-  description: A list with a multiple items using Welsh language
-  data:
-    language: 'cy'
-    itemList:
-      - name: Sydney Russell
+    items:
+      - name:
+          text: Sydney Russell
         actions:
           - href: '#c1url'
-            text: Newid
-            visuallyHiddenText: Newid Sydney Russell
+            text: Change
+            visuallyHiddenText: Change Sydney Russell
           - href: '#r1url'
-            text: Dileu
-            visuallyHiddenText: Dileu’r Sydney Russell o’r rhestr
-      - name: Michael Cain
+            text: Remove
+            visuallyHiddenText: Remove Sydney Russell from the list
+      - name:
+          text: Michael Cain
         actions:
           - href: '#c2url'
-            text: Newid
-            visuallyHiddenText: Newid Michael Cain
+            text: Change
+            visuallyHiddenText: Change Michael Cain
           - href: '#r2url'
-            text: Dileu
-            visuallyHiddenText: Dileu’r Michael Cain o’r rhestr
-- name: empty-list
+            text: Remove
+            visuallyHiddenText: Remove Michael Cain from the list
+- name: empty list
   description: An empty list
   data:
-    itemlist: []
+    items: []
+- name: no actions
+  data:
+    items:
+      - name:
+          text: Fred Bloggs
+      - name:
+          text: Eric Taylor
+      - name:
+          html: |
+            <p class="govuk-body">
+              James Smith
+            </p>
+            <p class="govuk-body">
+              email@email.com
+            </p>
+- name: with actions
+  data:
+    items:
+      - name:
+          text: Oranges
+        actions:
+          - href: '#'
+            text: Edit
+            visuallyHiddenText: Edit Oranges
+          - href: '#'
+            text: Delete
+            visuallyHiddenText: Delete Oranges
+      - name:
+          text: Apples
+        actions:
+          - href: '#'
+            text: Change
+            visuallyHiddenText: Change Apples
+      - name:
+          text: Pears
+        actions:
+          - href: '#'
+            text: Edit
+            visuallyHiddenText: Edit Pears
+          - href: '#'
+            text: Change
+            visuallyHiddenText: Change Pears
+- name: custom class
+  data:
+    classes: app-custom-class
+    items:
+      - name:
+          text: Oranges
+      - name:
+          text: Apples
+      - name:
+          text: Pears
+- name: extreme
+  data:
+    items:
+      - name:
+          text: Barnaby Marmaduke Aloysius Benjy Cobweb Dartagnan Egbert Felix Gaspar Humbert Ignatius Jayden Kasper Leroy Maximilian Neddy Obiajulu Pepin Quilliam Rosencrantz Sexton Teddy Upwood Vivatma Wayland Xylon Yardley Zachary Usansky
+        actions:
+          - href: '#'
+            text: Buy
+          - href: '#'
+            text: Use
+          - href: '#'
+            text: Break
+          - href: '#'
+            text: Fix
+          - href: '#'
+            text: Trash
+          - href: '#'
+            text: Change
+          - href: '#'
+            text: Mail
+          - href: '#'
+            text: Upgrade
+          - href: '#'
+            text: Charge
+          - href: '#'
+            text: Point
+          - href: '#'
+            text: Coom
+          - href: '#'
+            text: Press
+          - href: '#'
+            text: Snap
+          - href: '#'
+            text: Work
+          - href: '#'
+            text: Quick
+          - href: '#'
+            text: Erase
+      - name:
+          html: |
+            <a class="govuk-link" href="https://cs.wikipedia.org/wiki/Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch">https://cs.wikipedia.org/wiki/Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch</a>
+        actions:
+          - href: '#'
+            text: Change
+            visuallyHiddenText: Change long website address
+      - name:
+          html: |
+            <a class="govuk-link" href="mailto:webmaster@llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch.com">webmaster@llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch.com</a>
+        actions:
+          - href: '#'
+            text: Change
+            visuallyHiddenText: Change long email address
+      - name:
+          html: |
+            <p class="govuk-body" style="white-space: nowrap;">michelle.longish.name@example.com</p>
+        actions:
+          - href: '#'
+            text: Change
+            visuallyHiddenText: Change no wrapping allowed
+      - name:
+          html: |
+            <p class="govuk-body">Pneumonoultramicroscopicsilicovolcanoconiosis is a word coined by the president of the National Puzzlers’ League as a synonym for the disease known as silicosis. It is the longest word in the English language published in a dictionary, the Oxford English Dictionary, which defines it as "an artificial long word said to mean a lung disease caused by inhaling very fine ash and sand dust."</p>
+            <p class="govuk-body">Silicosis is a form of occupational lung disease caused by inhalation of crystalline silica dust, and is marked by inflammation and scarring in the form of nodular lesions in the upper lobes of the lungs. It is a type of pneumoconiosis.</p>
+        actions:
+          - href: '#'
+            text: Write
+          - href: '#'
+            text: Cut
+          - href: '#'
+            text: Paste
+          - href: '#'
+            text: Save
+          - href: '#'
+            text: Load
+          - href: '#'
+            text: Check
+          - href: '#'
+            text: Quick
+          - href: '#'
+            text: Rewrite
+          - href: '#'
+            text: Plug
+          - href: '#'
+            text: Play
+          - href: '#'
+            text: Burn
+          - href: '#'
+            text: Rip
+          - href: '#'
+            text: Drag and drop
+          - href: '#'
+            text: Zip
+          - href: '#'
+            text: Unzip
+          - href: '#'
+            text: Lock
+          - href: '#'
+            text: Fill
+          - href: '#'
+            text: Curl
+          - href: '#'
+            text: Find
+          - href: '#'
+            text: View
+      - name:
+          text: The Great Gatsby
+        actions:
+          - href: '#'
+            text: Code
+          - href: '#'
+            text: Jam
+          - href: '#'
+            text: Unlock
+          - href: '#'
+            text: Surf
+          - href: '#'
+            text: Scroll
+          - href: '#'
+            text: Pose
+          - href: '#'
+            text: Click
+          - href: '#'
+            text: Cross
+          - href: '#'
+            text: Crack
+          - href: '#'
+            text: Twitch
+          - href: '#'
+            text: Update
+          - href: '#'
+            text: Name
+          - href: '#'
+            text: Read
+          - href: '#'
+            text: Tune
+          - href: '#'
+            text: Print
+          - href: '#'
+            text: Scan
+          - href: '#'
+            text: Send
+          - href: '#'
+            text: Fax
+          - href: '#'
+            text: Rename
+          - href: '#'
+            text: Touch
+          - href: '#'
+            text: Bring
+          - href: '#'
+            text: Pay
+          - href: '#'
+            text: Watch
+          - href: '#'
+            text: Turn
+          - href: '#'
+            text: Leave
+          - href: '#'
+            text: Stop
+          - href: '#'
+            text: Format
+- name: attributes
+  data:
+    items:
+      - name:
+          text: Sydney Russell
+    attributes:
+      data-attribute-1: value-1
+      data-attribute-2: value-2
+- name: name with html
+  data:
+    items:
+      - name:
+          html: <span>email@email.com</span>
+- name: actions href
+  data:
+    items:
+      - name:
+          text: Sydney Russell
+        actions:
+          - href: https://www.gov.uk
+            text: Go to GOV.UK
+- name: actions with html
+  data:
+    items:
+      - name:
+          text: Sydney Russell
+        actions:
+          - html: Edit<span class="visually-hidden"> name</span>
+            href: "#"
+- name: actions with attributes
+  data:
+    items:
+      - name:
+          text: Sydney Russell
+        actions:
+          - text: Edit
+            href: '#'
+            attributes:
+              data-test-attribute: value
+              data-test-attribute-2: value-2
+- name: actions with classes
+  data:
+    items:
+      - name:
+          text: Sydney Russell
+        actions:
+          - text: Edit
+            href: '#'
+            classes: govuk-link--no-visited-state

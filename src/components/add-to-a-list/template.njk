@@ -29,9 +29,9 @@
     no: 'No'
   } %}
 {% endif %}
-{% set itemList = [] %}
+{% set items = [] %}
 {% for item in params.itemList %}
-  {% set itemList = (itemList.push({ name: item.name, actions: [{
+  {% set items = (items.push({ name: { text: item.name }, actions: [{
     text: messages.change,
     visuallyHiddenText: messages.change + ' ' +item.name,
     href: item.changeUrl
@@ -39,8 +39,15 @@
     text: messages.remove,
     visuallyHiddenText: messages.aria.before + ' ' + item.name + ' ' + messages.aria.after,
     href: item.removeUrl
-  }] }), itemList) %}
+  }] }), items) %}
 {% endfor %}
+
+{%- set listWithActionsClasses = '' -%}
+{% if params.itemSize == 'long' %}
+  {% set listWithActionsClasses = 'hmrc-list-with-actions--long' %}
+{% else %}
+  {% set listWithActionsClasses = 'hmrc-list-with-actions--short' %}
+{% endif -%}
 
 <h1 class="govuk-heading-xl">{%- if params.itemList | length === 0 -%}
   {{ messages.emptyList }}
@@ -52,7 +59,7 @@
 {%- endif -%}
 </h1>
 <div class="govuk-form-group">
-  {{ hmrcListWithActions({ itemType: params.itemSize, itemList: itemList }) }}
+  {{ hmrcListWithActions({ items: items, classes: listWithActionsClasses }) }}
 </div>
 <form method="post" novalidate action="{{ params.formAction }}">
   {{ govukRadios({
