@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.2.2] - 2021-09-03
+
+### Fixed
+
+- Security vulnerabilities
+
 ## [2.2.1] - 2021-08-19
 
 ### Fixed
