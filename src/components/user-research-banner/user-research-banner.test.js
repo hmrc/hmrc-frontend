@@ -66,7 +66,7 @@ describe('/components/user-research-banner', () => {
       expect(cookies[0].name).toEqual('mdtpurr');
       expect(cookies[0].value).toEqual('suppress_for_all_services');
       expect(cookies[0].expires).toBeGreaterThanOrEqual(earliestExpectedExpiry);
-      expect(cookies[0].expires).toBeGreaterThanOrEqual(latestExpectedExpiry);
+      expect(cookies[0].expires).toBeLessThanOrEqual(latestExpectedExpiry);
     });
   });
 });
