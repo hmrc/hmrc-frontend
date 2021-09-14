@@ -500,7 +500,7 @@ array now treated as the same as navigation not being specified at all)
 This is a bootstrap release created for our CI pipeline to start building from.
 Nothing meaningful was released.
 
-[Unreleased]: https://github.com/hmrc/hmrc-frontend/compare/v0.5.0...master
+[Unreleased]: https://github.com/hmrc/hmrc-frontend/compare/v0.5.0...main
 [0.5.0]: https://github.com/hmrc/hmrc-frontend/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/hmrc/hmrc-frontend/compare/v0.3.1...v0.4.0
 [0.3.1]: https://github.com/hmrc/hmrc-frontend/compare/v0.3.0...v0.3.1

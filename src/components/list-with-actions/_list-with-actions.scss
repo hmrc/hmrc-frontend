@@ -38,11 +38,9 @@
 .hmrc-list-with-actions__actions {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   flex-wrap: wrap;
 
   @include govuk-media-query($from: desktop) {
-    justify-content: flex-end;
     flex-direction: row;
   }
 }
@@ -53,7 +51,6 @@
 
   @include govuk-media-query($from: desktop) {
     margin-bottom: 0;
-    justify-content: flex-end;
     flex-direction: row;
   }
 }

@@ -34,7 +34,8 @@ will not work. Instead, you must use a relative path starting with `../../../../
 
 To make sure code is consistent, HMRC Frontend uses [EditorConfig](http://editorconfig.org).
 
-You can [install a plugin](http://editorconfig.org/#download) for your editor or manually enforce the rules listed in [.editorconfig](https://github.com/hmrc/hmrc-frontend/blob/master/.editorconfig).
+You can [install a plugin](http://editorconfig.org/#download) for your editor or manually enforce the 
+rules listed in [.editorconfig](.editorconfig).
 
 ### Lint the code
 
@@ -179,7 +180,7 @@ You can find out more about designing for different browsers and devices.
 HMRC Frontend follows the guidelines in [keepachangelog.com](http://keepachangelog.com/).
 
 #### Write good commits
-HMRC Frontend follows [the same standards as GOV.UK](https://github.com/alphagov/styleguides/blob/master/git.md).
+HMRC Frontend follows [the same standards as GOV.UK](https://gds-way.cloudapps.digital/).
 
 #### Squash related commits
 Squash multiple commits into one to make reviewing code easier.

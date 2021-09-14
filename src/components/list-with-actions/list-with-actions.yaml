@@ -175,7 +175,7 @@ examples:
             visuallyHiddenText: Change long website address
       - name:
           html: |
-            <a class="govuk-link" href="mailto:webmaster@llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch.com">webmaster@llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch.com</a>
+            <a class="govuk-link" href="mailto:info@llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch.com">webmaster@llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch.com</a>
         actions:
           - href: '#'
             text: Change

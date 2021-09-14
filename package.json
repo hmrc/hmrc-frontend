@@ -1,6 +1,5 @@
 {
   "name": "hmrc-frontend",
-  "version": "2.2.2",
   "version": "2.3.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
