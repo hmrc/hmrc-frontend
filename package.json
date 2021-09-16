@@ -15,7 +15,7 @@
     "build": "npm run build:dist && npm run build:package",
     "lint": "stylelint 'src/**/*.scss' && eslint .",
     "lint:fix": "stylelint 'src/**/*.scss' --fix && eslint --fix .",
-    "test": "npm run build:dist && jest src && npm run lint",
+    "test": "npm run build:dist && jest src --runInBand --detectOpenHandles && npm run lint",
     "test:update-snapshots": "jest src -u",
     "test:compatibility": "jest __tests__/check-compatibility.test.js",
     "test:backstop": "gulp backstopTest",
