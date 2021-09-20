@@ -132,4 +132,14 @@ describe('List with actions', () => {
       });
     });
   });
+
+  describe('empty list', () => {
+    it('renders no content', async () => {
+      const $ = render('list-with-actions', examples['empty list']);
+
+      const $component = $('.hmrc-list-with-actions');
+
+      expect($component).toHaveLength(0);
+    });
+  });
 });
