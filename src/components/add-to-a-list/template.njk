@@ -1,5 +1,7 @@
 {% from "govuk/components/button/macro.njk" import govukButton with context %}
 {% from "govuk/components/radios/macro.njk" import govukRadios with context %}
+{% from "../list-with-actions/macro.njk" import hmrcListWithActions with context %}
+
 {% if params.language == 'cy' %}
     {% set messages = {
     itemTypeDefault: {singular: 'eitem', plural: 'o eitemau'},
@@ -27,6 +29,26 @@
     no: 'No'
   } %}
 {% endif %}
+{% set items = [] %}
+{% for item in params.itemList %}
+  {% set items = (items.push({ name: { text: item.name }, actions: [{
+    text: messages.change,
+    visuallyHiddenText: messages.change + ' ' +item.name,
+    href: item.changeUrl
+  }, {
+    text: messages.remove,
+    visuallyHiddenText: messages.aria.before + ' ' + item.name + ' ' + messages.aria.after,
+    href: item.removeUrl
+  }] }), items) %}
+{% endfor %}
+
+{%- set listWithActionsClasses = '' -%}
+{% if params.itemSize == 'long' %}
+  {% set listWithActionsClasses = 'hmrc-list-with-actions--long' %}
+{% else %}
+  {% set listWithActionsClasses = 'hmrc-list-with-actions--short' %}
+{% endif -%}
+
 <h1 class="govuk-heading-xl">{%- if params.itemList | length === 0 -%}
   {{ messages.emptyList }}
 {%- else -%}
@@ -37,31 +59,7 @@
 {%- endif -%}
 </h1>
 <div class="govuk-form-group">
-  <dl class="hmrc-add-to-a-list hmrc-add-to-a-list--{{ params.itemSize | default('short') }}">
-    {# loop through items in  the itemList #}
-    {% for item in params.itemList %}
-    <div class="hmrc-add-to-a-list__contents">
-      <dt class="hmrc-add-to-a-list__identifier hmrc-add-to-a-list__identifier--light">
-        {{ item.name }}
-      </dt>
-      <dd class="hmrc-add-to-a-list__change">
-        <a class="govuk-link" href="{{ item.changeUrl }}">
-          <span aria-hidden="true">{{messages.change}}</span>
-          <span class="govuk-visually-hidden">{{messages.change}} {{ item.name }}</span>
-        </a>
-      </dd>
-      <dd class="hmrc-add-to-a-list__remove">
-        <a class="govuk-link" href="{{ item.removeUrl }}">
-          <span aria-hidden="true">{{messages.remove}}</span>
-          <span class="govuk-visually-hidden">{{messages.aria.before}} {{ item.name }} {{messages.aria.after}}</span>
-        </a>
-      </dd>
-    </div>
-    {% else %}
-      {# empty list stuff goes here #}
-    {% endfor %}
-    {# end loop #}
-  </dl>
+  {{ hmrcListWithActions({ items: items, classes: listWithActionsClasses }) }}
 </div>
 <form method="post" novalidate action="{{ params.formAction }}">
   {{ govukRadios({

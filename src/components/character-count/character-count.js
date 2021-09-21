@@ -3,7 +3,7 @@ import 'govuk-frontend/govuk/vendor/polyfills/Event'; // addEventListener and ev
 import 'govuk-frontend/govuk/vendor/polyfills/Element/prototype/classList';
 
 // This CharacterCount is a direct copy from govuk-frontend:
-// https://github.com/alphagov/govuk-frontend/blob/master/src/govuk/components/character-count/character-count.js
+// https://github.com/alphagov/govuk-frontend/blob/main/src/govuk/components/character-count/character-count.js
 // with the change to support Welsh language messages. At the moment, there is no ability to pass
 // in custom messages to the component for the dynamic count. If GDS release a version supporting
 // custom dynamic count messages, this version should be removed.

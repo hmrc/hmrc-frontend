@@ -34,11 +34,21 @@ will not work. Instead, you must use a relative path starting with `../../../../
 
 To make sure code is consistent, HMRC Frontend uses [EditorConfig](http://editorconfig.org).
 
-You can [install a plugin](http://editorconfig.org/#download) for your editor or manually enforce the rules listed in [.editorconfig](https://github.com/hmrc/hmrc-frontend/blob/master/.editorconfig).
+You can [install a plugin](http://editorconfig.org/#download) for your editor or manually enforce the 
+rules listed in [.editorconfig](.editorconfig).
 
 ### Lint the code
 
-HMRC Frontend follows the [JavaScript Standard Style](http://standardjs.com).
+hmrc-frontend follows the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript). To lint 
+and autofix your code,
+
+```shell script
+npm run lint:fix
+```
+
+The above command will show you any remaining issues after the tool has fixed what it can for you.
+
+The build server also checks the code when running the tests.
 
 ### Test your code
 
@@ -58,7 +68,7 @@ consistent with CI. To run the tests,
 npm run test:backstop
 ```
 
-On completion, Backstop will emit the results as an HTML report in backstop_data/hmrc_report  If a failure is the
+On completion, Backstop will emit the results as an HTML report in `/backstop_data/hmrc_report`.  If a failure is the
 result of a known change to the component, the reference images can be updated by running,
 
 ```shell script
@@ -159,7 +169,8 @@ the alternate states with an empty list.
 For more general backstop configuration take a look at [tasks/gulp/backstop-config.js]()
 
 #### Test for compatibility
-The code you contribute must be accessible. This means it works on every browser or device your users may use to access it.
+The code you contribute must be accessible. This means it works on every browser or device your users 
+may use to access it.
 
 You can find out more about designing for different browsers and devices.
 
@@ -169,7 +180,7 @@ You can find out more about designing for different browsers and devices.
 HMRC Frontend follows the guidelines in [keepachangelog.com](http://keepachangelog.com/).
 
 #### Write good commits
-HMRC Frontend follows [the same standards as GOV.UK](https://github.com/alphagov/styleguides/blob/master/git.md).
+HMRC Frontend follows [the same standards as GOV.UK](https://gds-way.cloudapps.digital/).
 
 #### Squash related commits
 Squash multiple commits into one to make reviewing code easier.
@@ -196,10 +207,6 @@ that are strictly necessary. Some decisions will merit more detail than others.
 
 ## Create a pull request
 
-### Use the template
-
-Follow the steps in the [pull request template](https://github.com/hmrc/assets-frontend/blob/master/.github/PULL_REQUEST_TEMPLATE.md).
-
 ### Links and closing issues
 
 Search for existing issues relating to your pull request and [link them together](https://github.com/blog/957-introducing-issue-mentions).
@@ -210,20 +217,12 @@ If your pull request closes an issue follow ‘[Closing issues using keywords ](
 
 HMRC Frontend uses [semantic versioning](https://semver.org/). Build and release tools bump versions of the project.
 
-### Releases
-
-The contributor and the Service Design Tools team together:
-
-* decide the best time to do pre-production and production releases
-* validate the impact once the release reaches pre-production and production
-
-The Service Design Tools team will deploy or schedule the release into the relevant pre-production and production environments.
-
 ## Frontend principles
 
 ### Used across the tax platform
 
-HMRC Frontend contains code for features used on several HMRC services. Code used only in one service should not be in HMRC Frontend.
+HMRC Frontend contains code for features used on several HMRC services. Code used only in one service should not 
+be in HMRC Frontend.
 
 ### Progressive enhancement
 
@@ -235,18 +234,6 @@ Services on GOV.UK are for the benefit of all users. This means you must build a
 
 [Accessibility guidance on GOV.UK](https://www.gov.uk/service-manual/helping-people-to-use-your-service/making-your-service-accessible-an-introduction).
 
-### Code Style (Linting)
-
-We use tools to ensure the style of our SCSS and JS is consistent.  The code is checked when the tests
-run on the build server.  If you are contributing SCSS or JS you'll probably be running
-the tests using `npm test` - this includes the code style checks.
-
-To run the code style checks independently you can run `npm run lint`.
-
-Automatic fixing is available for a number of the code style rules we apply.  To let the tool
-automatically fix the issues it can fix run `npm run lint:fix` - that will show you any remaining
-issues after the tool has fixed what it can for you.
-
 ### WebJar publishing
 
 In order to make the hmrc-frontend assets easy to consume in a JVM environment,
@@ -255,10 +242,10 @@ artefact repository by an internal automated deployment process and is a depende
 [hmrc/play-frontend-hmrc](https://www.github.com/hmrc/play-frontend-hmrc).
 
 When testing changes in conjunction with `play-frontend-hmrc` and consuming frontend microservices,
-it's possible to publish the hmrc-frontend webjar locally as follows. You will need Java and [Maven](https://maven.apache.org/install.html)
-installed.
+it's possible to publish the hmrc-frontend webjar locally as follows. You will need Java 
+and [Maven](https://maven.apache.org/install.html) installed.
 
-```bash
+```shell script
 npm run build:package
 npm run build:webjar
 npm run publish-local:webjar

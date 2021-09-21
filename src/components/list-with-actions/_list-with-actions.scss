@@ -1,0 +1,60 @@
+@import "../../../../govuk-frontend/govuk/settings/all";
+@import "../../../../govuk-frontend/govuk/tools/all";
+@import "../../../../govuk-frontend/govuk/helpers/all";
+
+.hmrc-list-with-actions {
+  @include govuk-font($size: 19);
+}
+
+// Kept for backward compatibility with add-to-a-list
+.hmrc-list-with-actions--short {
+  @include govuk-media-query($from: desktop) {
+    .hmrc-list-with-actions__name {
+      width: 30%;
+    }
+  }
+}
+
+// Kept for backward compatibility with add-to-a-list
+.hmrc-list-with-actions--long {
+  @include govuk-media-query($from: desktop) {
+    .hmrc-list-with-actions__name {
+      width: 50%;
+    }
+  }
+}
+
+.hmrc-list-with-actions__item {
+  display: flex;
+  justify-content: space-between;
+  padding: govuk-spacing(3) 0;
+  border-bottom: 1px solid $govuk-border-colour;
+}
+
+.hmrc-list-with-actions__name {
+  font-weight: normal;
+}
+
+.hmrc-list-with-actions__actions {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  @include govuk-media-query($from: desktop) {
+    flex-direction: row;
+  }
+}
+
+.hmrc-list-with-actions__action {
+  margin-bottom: govuk-spacing(2);
+  text-align: right;
+
+  @include govuk-media-query($from: desktop) {
+    margin-bottom: 0;
+    flex-direction: row;
+  }
+}
+
+.hmrc-list-with-actions__action:last-of-type {
+  margin-bottom: 0;
+}

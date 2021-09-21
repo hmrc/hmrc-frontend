@@ -1,0 +1,33 @@
+{%- macro _actionLink(action) %}
+  <a class="govuk-link {%- if action.classes %} {{ action.classes }}{% endif %}" href="{{ action.href }}" {%- for attribute, value in action.attributes %} {{attribute}}="{{value}}"{% endfor %}>
+    {% if action.html %}
+      {{ action.html | safe }}
+    {% else %}
+      {%- if action.visuallyHiddenText -%}
+        <span aria-hidden="true">{{ action.text }}</span>
+        <span class="govuk-visually-hidden">{{ action.visuallyHiddenText }}</span>
+      {% else %}
+        {{ action.text }}
+      {% endif -%}
+    {% endif %}
+  </a>
+{% endmacro -%}
+
+{% if params.items.length > 0 %}
+<dl class="hmrc-list-with-actions {%- if params.classes %} {{ params.classes }}{% endif %}"{% for attribute, value in params.attributes %} {{attribute}}="{{value}}"{% endfor %}>
+  {% for item in params.items %}
+  <div class="hmrc-list-with-actions__item">
+    <dt class="hmrc-list-with-actions__name">
+      {{ item.name.html | safe if item.name.html else item.name.text }}
+    </dt>
+    <div class="hmrc-list-with-actions__actions">
+      {% for action in item.actions %}
+        <dd class="hmrc-list-with-actions__action">
+          {{ _actionLink(action) | indent(6) | trim }}
+        </dd>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</dl>
+{% endif -%}

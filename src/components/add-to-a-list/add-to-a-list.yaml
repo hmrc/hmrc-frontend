@@ -89,7 +89,7 @@ examples:
     hintText: You must tell us about all your directors
     formAction: '#add-director'
 
-- name: mutltiple-generic-welsh-items
+- name: multiple-generic-welsh-items
   description: A list with a single unnamed item using Welsh language
   data:
     language: 'cy'

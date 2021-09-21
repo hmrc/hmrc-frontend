@@ -2,11 +2,14 @@
 
 HMRC Frontend contains the code and documentation for patterns specifically designed for HMRC.
 
-[GOV.UK Frontend](https://github.com/alphagov/govuk-frontend) and the [GOV.UK Design System](https://design-system.service.gov.uk/) contains the code and documentation for design patterns designed to be used by all government departments.
+[GOV.UK Frontend](https://github.com/alphagov/govuk-frontend) and the 
+[GOV.UK Design System](https://design-system.service.gov.uk/) contains the code and documentation for 
+design patterns designed to be used by all government departments.
 
 The two sets of code and documentation are separate but used together.
 
-See [HMRC Design Patterns](https://design.tax.service.gov.uk/hmrc-design-patterns/) for examples of what the design patterns look like and guidance on how to use them in your service.
+See [HMRC Design Patterns](https://design.tax.service.gov.uk/hmrc-design-patterns/) for examples 
+of what the design patterns look like and guidance on how to use them in your service.
 
 ## Quick Start
 
@@ -15,13 +18,14 @@ See [HMRC Design Patterns](https://design.tax.service.gov.uk/hmrc-design-pattern
 * [Node.js](https://nodejs.org/en/) `>= 10.12.0`
 * [npm](https://www.npmjs.com/) `>= 6.4.1`
 
-To install more than one version of Node.js, it may be easier to use a node version manager like [nvm](https://github.com/creationix/nvm) or [n](https://github.com/tj/n).
+To install more than one version of Node.js, it may be easier to use a node version manager 
+like [nvm](https://github.com/creationix/nvm) or [n](https://github.com/tj/n).
 
 ### How to install
 
 Clone this repository and install its dependencies.
 
-```bash
+```shell script
 git clone https://github.com/hmrc/hmrc-frontend.git
 cd hmrc-frontend
 npm install
@@ -30,7 +34,7 @@ npm install
 ### How to run
 
 1. Run `npm start`
-2. Components are available at http://localhost:3000
+2. Components are available at [http://localhost:3000]()
 
 ## Using HMRC Frontend locally
 
