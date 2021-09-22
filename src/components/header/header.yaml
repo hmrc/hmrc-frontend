@@ -103,6 +103,10 @@ params:
       type: object
       required: false
       description: HTML attributes (for example data attributes) to add to the phase banner container.
+- name: additionalBannersBlock
+  type: string
+  required: false
+  description: Additional banners to be appended into header
 previewLayout: full-width
 accessibilityCriteria: |
   Text and links in the Header must:
@@ -298,3 +302,10 @@ examples:
         href: "/components/header/with-hmrc-banner-english/preview"
       cy:
         href: "/components/header/with-hmrc-banner-welsh/preview"
+
+- name: with additional banner
+  data:
+    serviceName: Service with HMRC Banner and an additional one
+    language: en
+    displayHmrcBanner: true
+    additionalBannersBlock: "<div class=\"custom-banner\">for example an attorney banner</div>"
