@@ -298,3 +298,8 @@ examples:
         href: "/components/header/with-hmrc-banner-english/preview"
       cy:
         href: "/components/header/with-hmrc-banner-welsh/preview"
+
+
+- name: with service name but no service link
+  data:
+    serviceName: Service Name

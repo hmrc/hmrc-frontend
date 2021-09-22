@@ -14,7 +14,7 @@ if (!knownPrototypeKitNames.includes(consumerPackageJson.name)) {
 }
 
 const compatibility = {
-  2.3: {
+  2.4: {
     'prototype-kit': ['9.14', '9.13', '9.12', '9.11', '9.10', '9.9', '9.8', '9.7', '9.6', '9.5', '9.4', '9.3', '9.2', '9.1', '9.0'],
   },
   1.38: {

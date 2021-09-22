@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.4.0] - 2021-09-22
+
+### Changed
+
+- In hmrcHeader, render service name in a span rather than a link if no serviceUrl is supplied. See related
+  govuk-frontend issue: https://github.com/alphagov/govuk-frontend/issues/1826
+
 ## [2.3.0] - 2021-09-03
 
 ### Added
