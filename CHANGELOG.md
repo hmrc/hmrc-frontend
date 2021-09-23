@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.5.0] - 2021-09-23
+
+### Changed
+
+- added additionalBannersBlock to header component
+
 ## [2.4.0] - 2021-09-22
 
 ### Changed

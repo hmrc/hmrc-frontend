@@ -3,6 +3,7 @@
  */
 /* eslint-env jest */
 
+import { html } from 'cheerio/lib/static';
 import axe from '../../../lib/axe-helper';
 
 import { render, getExamples } from '../../../lib/jest-helpers';
@@ -219,6 +220,13 @@ describe('header', () => {
     it('should have Welsh text when specified', () => {
       const $ = render('banner', examples['with hmrc banner welsh']);
       expect($('.hmrc-banner > .hmrc-organisation-logo > p.govuk-body-s').text().trim()).toEqual('Cyllid a Thollau EM');
+    });
+  });
+
+  describe('additional banners block', () => {
+    it('renders correctly in the right place when passed html', () => {
+      const $ = render('header', examples['with additional banner']);
+      expect(html($('header > :last-child'))).toEqual('<div class="custom-banner govuk-body">for example an attorney banner</div>');
     });
   });
 });
