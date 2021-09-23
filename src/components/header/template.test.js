@@ -82,8 +82,25 @@ describe('header', () => {
       const $ = render('header', examples['with service name']);
 
       const $component = $('.govuk-header');
-      const $serviceName = $component.find('.govuk-header__link--service-name');
+      const $serviceName = $component.find('.hmrc-header__service-name');
+      expect($serviceName.hasClass('hmrc-header__service-name--linked')).toBeTruthy();
       expect($serviceName.text().trim()).toEqual('Service Name');
+    });
+
+    it('renders service name as a span when no url is specified', () => {
+      const $ = render('header', examples['with service name but no service link']);
+
+      const $component = $('.govuk-header');
+      const $serviceName = $component.find('.hmrc-header__service-name');
+      expect($serviceName[0].tagName).toEqual('span');
+    });
+
+    it('renders service name without the linked modifier when no url is specified', () => {
+      const $ = render('header', examples['with service name but no service link']);
+
+      const $component = $('.govuk-header');
+      const $serviceName = $component.find('.hmrc-header__service-name');
+      expect($serviceName.hasClass('hmrc-header__service-name--linked')).toBeFalsy();
     });
   });
 

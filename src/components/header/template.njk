@@ -61,9 +61,10 @@
       {% if params.serviceName or params.navigation | length or params.signOutHref or params.languageToggle %}
       <div class="govuk-header__content">
       {% if params.serviceName %}
-      <a href="{{ params.serviceUrl }}" class="govuk-header__link govuk-header__link--service-name">
-        {{ params.serviceName }}
-      </a>
+        {% set serviceNameTag = 'a' if params.serviceUrl else 'span' %}
+        <{{ serviceNameTag }} {% if (serviceNameTag == 'a') %}href="{{ params.serviceUrl }}" {% endif %} class="hmrc-header__service-name {% if (serviceNameTag == 'a') %}hmrc-header__service-name--linked{% endif %}">
+          {{ params.serviceName }}
+        </{{ serviceNameTag }}>
       {% endif %}
       {% if params.navigation | length %}
       <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
