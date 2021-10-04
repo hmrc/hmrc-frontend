@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.7.0] - 2021-10-06
+
+### Changed
+
+- Accessibility fixes to prevent users of some screen readers navigating outside an open timeout dialog.
+
 ## [2.6.0] - 2021-10-05
 
 ### Changed
