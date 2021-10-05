@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.6.0] - 2021-10-05
+
+### Changed
+
+- added `rel="noopener noreferrer"` to `report-technical-issue` to protect against reverse tabnapping
+
 ## [2.5.0] - 2021-09-23
 
 ### Changed
