@@ -58,11 +58,11 @@ describe('Report Technical Issue', () => {
     expect($component.attr('href')).toEqual('/contact/report-technical-problem?newTab=true&service=the-url-safe-service-id');
   });
 
-  it('shouldn\'t specify any rel attributes so that referrer data is passed through', () => {
+  it('specify rel attributes as "noreferrer noopener" to prevent reverse tabnapping vulnerability', () => {
     const $ = render('report-technical-issue', examples.default);
 
     const $component = $('.govuk-link');
-    expect($component.attr('rel')).toEqual(undefined);
+    expect($component.attr('rel')).toEqual('noreferrer noopener');
   });
 
   it('renders link with custom classes', () => {
