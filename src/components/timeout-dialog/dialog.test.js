@@ -75,6 +75,7 @@ describe('Dialog', () => {
       expect($dialog.classList).toContain('hmrc-timeout-dialog');
       expect($dialog.attributes.getNamedItem('role').value).toEqual('dialog');
       expect($dialog.attributes.getNamedItem('tabindex').value).toEqual('-1');
+      expect($dialog.attributes.getNamedItem('aria-modal').value).toEqual('true');
     });
 
     it('should be attached to the end of the body', () => {
@@ -190,6 +191,15 @@ describe('Dialog', () => {
       }
       if (!document.querySelector('body>footer')) {
         arr.push(utils.generateDomElementFromString('<footer>'));
+      }
+      if (!document.querySelector('body>.govuk-width-container')) {
+        arr.push(utils.generateDomElementFromString('<div class="govuk-width-container">'));
+      }
+      if (!document.querySelector('.cbanner-govuk-cookie-banner')) {
+        arr.push(utils.generateDomElementFromString('<div class="cbanner-govuk-cookie-banner">'));
+      }
+      if (!document.querySelector('body>.govuk-skip-link')) {
+        arr.push(utils.generateDomElementFromString('<a class="govuk-skip-link" href="#content">'));
       }
       arr.forEach(($elem) => document.body.appendChild($elem));
     });

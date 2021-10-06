@@ -2,7 +2,7 @@ import utils from './utils';
 import { nodeListForEach } from '../../common';
 
 function displayDialog($elementToDisplay) {
-  const $dialog = utils.generateDomElementFromString('<div id="hmrc-timeout-dialog" tabindex="-1" role="dialog" class="hmrc-timeout-dialog">');
+  const $dialog = utils.generateDomElementFromString('<div id="hmrc-timeout-dialog" tabindex="-1" role="dialog" aria-modal="true" class="hmrc-timeout-dialog">');
   const $overlay = utils.generateDomElementFromString('<div id="hmrc-timeout-overlay" class="hmrc-timeout-overlay">');
   const $preparedElementToDisplay = typeof $elementToDisplay === 'string' ? utils.generateDomElementFromString($elementToDisplay) : $elementToDisplay;
   const resetElementsFunctionList = [];
@@ -53,6 +53,9 @@ function displayDialog($elementToDisplay) {
     '#global-cookie-message',
     'main[role=main]',
     'body > footer',
+    'body > .govuk-skip-link',
+    '.cbanner-govuk-cookie-banner',
+    'body > .govuk-width-container',
   ];
   const elements = document.querySelectorAll(selectors.join(', '));
   const close = () => {
