@@ -78,7 +78,7 @@ describe('Pagination', () => {
     const $listItems = $('li.hmrc-pagination__page');
 
     it('should show the maximum number of items', () => {
-      expect($listItems.length).toBe(9);
+      expect($listItems.length).toBe(9); //this is hardcoded so will fail
     });
   });
 
@@ -88,18 +88,21 @@ describe('Pagination', () => {
     const $listDots = $('li.hmrc-pagination__item--dots');
 
     it('should have the active page in the centre', () => {
-      expect(parseInt($listItems.eq(1).text())).toBe(6);
+      expect(parseInt($listItems.eq(1).text())).toBe(6); //these were hardcoded so will fail
       expect(parseInt($listItems.eq(7).text())).toBe(12);
       expect($listItems.eq(4).attr('class')).toContain('hmrc-pagination__item--active');
     });
 
     it('should be truncated on either side of the shown pages, and show the first and last page', () => {
-      expect(parseInt($listItems.eq(0).text())).toBe(1);
+      expect(parseInt($listItems.eq(0).text())).toBe(1); //these were hardcoded so will fail
       expect(parseInt($listItems.eq(9).text())).toBe(20);
       expect($listDots.length).toBe(2);
     });
 
-    it.skip('check if its even or odd');
+    it('should have more pages ahead of the active page than before if the total number of pages is odd', () => {
+      expect(($listItems.length - 2) % 2).toBe(1); //used -2 to exclude the first and last pages
+      expect();
+    });
   });
 
 

@@ -4,7 +4,7 @@
   {% set middlePagesStart = params.page - middlePagesEachSide %}
   {% set middlePagesEnd = params.page + middlePagesEachSide %}
 
-  {% if params.maxLength % 2 == 0 %}
+  {% if (middlePagesEnd + 2) === params.items | length %}
     {% set middlePagesEnd = middlePagesEnd + 1 %}
   {% endif %}
 
@@ -22,12 +22,13 @@
       {% set middlePagesEnd = params.page + middlePagesEachSide %}
   {% endif %}
 
-  {{ middlePagesStart }}
-  {{ middlePagesEnd }}
-
-  {% if (middlePagesEnd + 2) === params.items | length %}
+  {% if params.maxLength % 2 == 0 %}
     {% set middlePagesEnd = middlePagesEnd + 1 %}
   {% endif %}
+
+  {{ middlePagesStart }}
+  {{ middlePagesEnd }}
+  {{ middlePagesEachSide }}
 
   {% set firstPage = params.items | first %}
   {% set lastPage = params.items | last %}
