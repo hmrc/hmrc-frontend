@@ -1,0 +1,79 @@
+  {# Calculate middle pages #}
+  {% set middlePagesEachSide = ((params.maxLength - 1) / 2) | round(0,"floor") %}
+  
+  {% set middlePagesStart = params.page - middlePagesEachSide %}
+  {% set middlePagesEnd = params.page + middlePagesEachSide %}
+
+  {% if params.maxLength % 2 == 0 %}
+    {% set middlePagesEnd = middlePagesEnd + 1 %}
+  {% endif %}
+
+  {% if (params.page - middlePagesEachSide) <= 1 %}
+      <p>firstif</p>
+      {% set middlePagesStart = 1 %}
+      {% set middlePagesEnd = params.maxLength - 1 %}
+  {% elif (params.page + middlePagesEachSide) >= params.items | length %}
+      <p>secondif</p>
+      {% set middlePagesStart = params.items | length - params.maxLength + 1 %}
+      {% set middlePagesEnd = params.items | length %}
+  {% else %}
+      <p>lastone</p>
+      {% set middlePagesStart = params.page - middlePagesEachSide %}
+      {% set middlePagesEnd = params.page + middlePagesEachSide %}
+  {% endif %}
+
+  {{ middlePagesStart }}
+  {{ middlePagesEnd }}
+
+  {% if (middlePagesEnd + 2) === params.items | length %}
+    {% set middlePagesEnd = middlePagesEnd + 1 %}
+  {% endif %}
+
+  {% set firstPage = params.items | first %}
+  {% set lastPage = params.items | last %}
+  
+{% if params.items | length !== 0 %}
+  <nav class="hmrc-pagination">
+  <ul class="hmrc-pagination__list">
+
+  {# Previous Button #}
+  {% if params.page != 1 %}<li class="hmrc-pagination__item  hmrc-pagination__item--prev"><a class="hmrc-pagination__link" href="previous">Previous</a></li>{% endif %}
+
+  {# First page and truncation #}
+  {% if middlePagesStart !== firstPage and params.page >= 5 %}
+    <li class="hmrc-pagination__item hmrc-pagination__page">
+      <a href="{{ firstPage.href }}" class="hmrc-pagination__link">{{ firstPage.text | safe }}</a>
+    </li>
+    <li class="hmrc-pagination__item hmrc-pagination__item--dots">...</li>
+  {% else %}
+    <li class="hmrc-pagination__item hmrc-pagination__page">
+      <a href="{{ firstPage.href }}" class="hmrc-pagination__link">{{ firstPage.text | safe }}</a>
+    </li>
+  {% endif %}
+
+  {# Main pages #}
+  {% for item in params.items -%}
+    {% if loop.index >= middlePagesStart and loop.index <= middlePagesEnd %}
+      {% set isActiveItem = loop.index == params.page %}
+      <li class="hmrc-pagination__item hmrc-pagination__page {% if isActiveItem %} govuk-!-font-weight-bold hmrc-pagination__item--active {% endif %}">{% if not isActiveItem %}<a class="hmrc-pagination__link" href="{{ item.href | urlencode }}">{% endif %} {{ item.text | safe }} {% if not isActiveItem %}</a>{% endif %}</li>
+    {% endif %}
+  {%- endfor %}
+
+  {# Last page and truncation #}
+  {% if middlePagesEnd !== lastPage and params.page < 16 %}
+    <li class="hmrc-pagination__item hmrc-pagination__item--dots">...</li>
+    <li class="hmrc-pagination__item hmrc-pagination__page">
+      <a href="{{ lastPage.href }}" class="hmrc-pagination__link">{{ lastPage.text | safe }}</a>
+    </li>
+  {% elif params.page == 16 %}
+    <li class="hmrc-pagination__item hmrc-pagination__page">
+      <a href="{{ lastPage.href }}" class="hmrc-pagination__link">{{ lastPage.text | safe }}</a>
+    </li>
+  {% endif %}
+
+  {# Next button #}
+  {% if params.page != params.items | length %}<li class="hmrc-pagination__item  hmrc-pagination__item--next"><a class="hmrc-pagination__link" href="next">Next</a></li>{% endif %}
+  </ul>
+  </nav>
+
+  {% endif %}

@@ -1,0 +1,125 @@
+examples:
+- name: default
+  data:
+    items: []
+    page: 1
+
+- name: single-item
+  data:
+    items:
+      - text: '1'
+        href: 'page-one'
+    previous:
+      - text: 'Previous'
+        href: 'previous'
+    next:
+      - text: 'Next'
+        href: 'next'
+    page: 1
+    maxLength: 1
+
+- name: multiple-items
+  data:
+    items:
+      - text: '1'
+        href: 'page-one'
+      - text: '2'
+        href: 'page-two'
+      - text: '3'
+        href: 'page-three'
+    previous:
+      - text: 'Previous'
+        href: 'previous'
+    next:
+      - text: 'Next'
+        href: 'next'
+    page: 2
+    maxLength: 3
+
+- name: first-item-active
+  data:
+    items:
+      - text: '1'
+        href: 'page-one'
+      - text: '2'
+        href: 'page-two'
+      - text: '3'
+        href: 'page-three'
+    previous:
+      - text: 'Previous'
+        href: 'previous'
+    next:
+      - text: 'Next'
+        href: 'next'
+    page: 1
+    maxLength: 3
+
+- name: last-item-active
+  data:
+    items:
+      - text: '1'
+        href: 'page-one'
+      - text: '2'
+        href: 'page-two'
+      - text: '3'
+        href: 'page-three'
+    previous:
+      - text: 'Previous'
+        href: 'previous'
+    next:
+      - text: 'Next'
+        href: 'next'
+    page: 3
+    maxLength: 3
+
+- name: multiple-items-truncated
+  data:
+    items:
+      - text: '1'
+        href: 'page-one'
+      - text: '2'
+        href: 'page-two'
+      - text: '3'
+        href: 'page-three'
+      - text: '4'
+        href: 'page-four'
+      - text: '5'
+        href: 'page-five'
+      - text: '6'
+        href: 'page-six'
+      - text: '7'
+        href: 'page-seven'
+      - text: '8'
+        href: 'page-eight'
+      - text: '9'
+        href: 'page-nine'
+      - text: '10'
+        href: 'page-ten'
+      - text: '11'
+        href: 'page-one'
+      - text: '12'
+        href: 'page-two'
+      - text: '13'
+        href: 'page-three'
+      - text: '14'
+        href: 'page-four'
+      - text: '15'
+        href: 'page-five'
+      - text: '16'
+        href: 'page-six'
+      - text: '17'
+        href: 'page-seven'
+      - text: '18'
+        href: 'page-eight'
+      - text: '19'
+        href: 'page-nine'
+      - text: '20'
+        href: 'page-ten'
+    previous:
+      - text: 'Previous'
+        href: 'previous'
+    next:
+      - text: 'Next'
+        href: 'next'
+    page: 12
+    maxLength: 13
