@@ -42,7 +42,7 @@ describe('Pagination', () => {
   describe('with two items', () => {
     const $ = render('pagination', examples['multiple-items']);
     const $listItemsLink = $('a.hmrc-pagination__link');
-    const $listItemActive = $('li.hmrc-pagination__item--active')
+    const $listItemActive = $('li.hmrc-pagination__item--active');
 
     it('has a link with an href, and no more than 1 link for each item', () => {
       expect($listItemsLink.eq(1).attr('href')).toEqual('page-one');
@@ -69,41 +69,56 @@ describe('Pagination', () => {
     const $listItemNext = $('li.hmrc-pagination__item--next');
 
     it('does not have a next button if the last page is active', () => {
-      expect($listItemNext.get(0)).toBeUndefined(); 
+      expect($listItemNext.get(0)).toBeUndefined();
     });
   });
 
   describe('when the amount of items is greater than the maximum length', () => {
     const $ = render('pagination', examples['multiple-items-truncated']);
     const $listItems = $('li.hmrc-pagination__page');
-
-    it('should show the maximum number of items', () => {
-      expect($listItems.length).toBe(9); //this is hardcoded so will fail
-    });
-  });
-
-  describe('the active page is shown in the centre of pagination', () => {
-    const $ = render('pagination', examples['multiple-items-truncated']);
-    const $listItems = $('li.hmrc-pagination__page');
     const $listDots = $('li.hmrc-pagination__item--dots');
 
+    it('should show the maximum number of items', () => {
+      expect($listItems.length).toBe(11);
+    });
+
     it('should have the active page in the centre', () => {
-      expect(parseInt($listItems.eq(1).text())).toBe(6); //these were hardcoded so will fail
-      expect(parseInt($listItems.eq(7).text())).toBe(12);
-      expect($listItems.eq(4).attr('class')).toContain('hmrc-pagination__item--active');
+      expect($listItems.eq(1).text().trim()).toBe('8');
+      expect(parseInt($listItems.eq($listItems.length - 2).text(), 10)).toBe(16);
+      expect($listItems.eq(Math.floor($listItems.length / 2)).attr('class')).toContain('hmrc-pagination__item--active');
     });
 
     it('should be truncated on either side of the shown pages, and show the first and last page', () => {
-      expect(parseInt($listItems.eq(0).text())).toBe(1); //these were hardcoded so will fail
-      expect(parseInt($listItems.eq(9).text())).toBe(20);
+      expect(parseInt($listItems.eq(0).text(), 10)).toBe(1);
+      expect(parseInt($listItems.eq($listItems.length - 1).text(), 10)).toBe(20);
       expect($listDots.length).toBe(2);
-    });
-
-    it('should have more pages ahead of the active page than before if the total number of pages is odd', () => {
-      expect(($listItems.length - 2) % 2).toBe(1); //used -2 to exclude the first and last pages
-      expect();
     });
   });
 
+  describe('when the maximum number of items is odd', () => {
+    const $ = render('pagination', examples['multiple-items-truncated']);
+    const $listItems = $('li.hmrc-pagination__page');
+    const $activeItem = $('.hmrc-pagination__item--active');
 
+    it('should have the same amount of pages shown before and after the active page', () => {
+      expect($listItems.index($activeItem)).toBe(5);
+    });
+  });
+
+  describe('when the maximum number of items is even', () => {
+    const $ = render('pagination', examples['multiple-items-truncated']);
+    const $listItems = $('li.hmrc-pagination__page');
+    const $activeItem = $('.hmrc-pagination__item--active');
+
+    it('should have one extra page ahead of the active page than before', () => {
+      expect($listItems.index($activeItem)).toBe(5);
+    });
+  });
+
+  describe('when the active page is near the start', () => {
+    const $ = render('pagination', examples['multiple-items-truncated']);
+    const $listItems = $('li.hmrc-pagination__page');
+
+    it.todo('should show the page number rather than the elipses');
+  });
 });
