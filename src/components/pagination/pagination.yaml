@@ -16,7 +16,7 @@ examples:
       - text: 'Next'
         href: 'next'
     page: 1
-    maxLength: 5
+    maxLength: 2
 
 - name: multiple-items
   data:
@@ -185,7 +185,7 @@ examples:
     next:
       - text: 'Next'
         href: 'next'
-    page: 5
+    page: 4
     maxLength: 7
 
 - name: active-near-end
@@ -217,5 +217,5 @@ examples:
     next:
       - text: 'Next'
         href: 'next'
-    page: 5
+    page: 7
     maxLength: 7
