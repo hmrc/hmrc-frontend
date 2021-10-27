@@ -121,7 +121,18 @@ describe('Pagination', () => {
     const $listDots = $('li.hmrc-pagination__item--dots');
 
     it('should show the page number rather than the ellipses', () => {
-      expect($listItems.eq(0).text().trim()).toBe('1');
+      expect($listItems.eq(1).text().trim()).toBe('2');
+      expect($listDots.length).toBe(1);
+    });
+  });
+
+  describe('when the active page is near the end', () => {
+    const $ = render('pagination', examples['active-near-end']);
+    const $listItems = $('li.hmrc-pagination__page');
+    const $listDots = $('li.hmrc-pagination__item--dots');
+
+    it('should show the page number rather than the ellipses', () => {
+      expect($listItems.eq(-2).text().trim()).toBe('9');
       expect($listDots.length).toBe(1);
     });
   });

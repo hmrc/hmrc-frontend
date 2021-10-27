@@ -12,21 +12,40 @@
   {% set middlePagesEachSide = (params.maxLength - 1) / 2 %}
 
   {% if (params.page - middlePagesEachSide) <= 1 %}
-      {% set middlePagesStart = 1 %}
-      {% set middlePagesEnd = params.maxLength + 1 %}
+      {% set middlePagesStart = 1 | round(0, "floor") %}
+      {% set middlePagesEnd = params.maxLength + 1 | round(0, "floor") %}
   {% elif (params.page + middlePagesEachSide) >= totalPages %}
-      {% set middlePagesStart = totalPages - params.maxLength + 1 %}
-      {% set middlePagesEnd = totalPages %}
+      {% set middlePagesStart = totalPages - params.maxLength + 1 | round(0, "floor") %}
+      {% set middlePagesEnd = totalPages | round(0, "floor") %}
   {% else %}
-      {% set middlePagesStart = params.page - middlePagesEachSide %}
-      {% set middlePagesEnd = params.page + middlePagesEachSide %}
+      {% set middlePagesStart = params.page - middlePagesEachSide | round(0, "floor") %}
+      {% set middlePagesEnd = params.page + middlePagesEachSide | round(0, "floor") %}
   {% endif %}
 
   {% if params.maxLength % 2 == 0 %}
     {% set middlePagesEnd = middlePagesEnd + 1 %}
   {% endif %}
 
+  {# show start truncation #}
+  {% if params.page > 4 %}
+    {% set showTruncationStart = true %}
+    {% if middlePagesStart <= 3 %}
+      {% set showTruncationStart = false %}
+      {% set middlePagesStart = 1 %}
+    {% endif %}
+  {% endif %}
+
+  {# show end truncation #}
+  {% if middlePagesEnd + 1 !== lastPageNum and params.page < totalPages - 3 %}
+    {% set showTruncationEnd = true %}
+    {% if totalPages - middlePagesEnd <= 2 %}
+      {% set showTruncationEnd = false %}
+      {% set middlePagesEnd = middlePagesEnd + (totalPages - middlePagesEnd) %}
+    {% endif %}
+  {% endif %}
+
   <aside>
+    <span>Total pages - {{ totalPages }}</span>
     <span>Middle start - {{ middlePagesStart }}</span>
     <span>Middle pages end - {{ middlePagesEnd }}</span>
     <span>Middle pages each side - {{ middlePagesEachSide }}</span>
@@ -46,7 +65,7 @@
     </li>
   {% endif %}
 
-  {% if params.page > 4 %}
+  {% if showTruncationStart %}
     <li class="hmrc-pagination__item hmrc-pagination__item--dots">...</li>
   {% endif %}
 
@@ -59,7 +78,7 @@
   {%- endfor %}
 
   {# Last page and truncation #}
-  {% if middlePagesEnd + 1 !== lastPageNum and params.page < totalPages - 3 %}
+  {% if showTruncationEnd %}
     <li class="hmrc-pagination__item hmrc-pagination__item--dots">&hellip;</li>
   {% endif %}
 
