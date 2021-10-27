@@ -1,3 +1,4 @@
+$govuk-global-styles: false;
 @import "../../../../govuk-frontend/govuk/core/typography";
 
 .hmrc-pagination {
@@ -40,7 +41,7 @@
   .hmrc-pagination__item--dots {
     font-weight: bold;
     height: 25px;
-    padding: govuk-spacing(1) govuk-spacing(2);
+    padding: govuk-spacing(1);
     text-align: center;
   }
 
@@ -69,8 +70,8 @@
   }
 
   .hmrc-pagination__link {
-    @include govuk-link-common;
-    @include govuk-link-style-default;
+    // @include govuk-link-common;
+    // @include govuk-link-style-default;
 
     display: block;
     padding: govuk-spacing(1);
@@ -88,6 +89,12 @@
     }
 
     &:focus {
+      color: govuk-colour("black");
+    }
+  }
+
+  .hmrc-pagination__link--active {
+    &:link {
       color: govuk-colour("black");
     }
   }

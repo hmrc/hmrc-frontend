@@ -24,7 +24,7 @@ describe('Pagination', () => {
   describe('with one item', () => {
     const $ = render('pagination', examples['single-item']);
     const $pagination = $('ul.hmrc-pagination__list');
-    const $listItems = $('li.hmrc-pagination__item');
+    const $listItems = $('span.hmrc-pagination__item');
 
     it('renders a pagination component with an unordered list', () => {
       expect($pagination.get(0).tagName).toEqual('ul');
@@ -42,7 +42,7 @@ describe('Pagination', () => {
   describe('with two items', () => {
     const $ = render('pagination', examples['multiple-items']);
     const $listItemsLink = $('a.hmrc-pagination__link');
-    const $listItemActive = $('li.hmrc-pagination__item--active');
+    const $listItemActive = $('span.hmrc-pagination__item--active');
 
     it('has a link with an href, and no more than 1 link for each item', () => {
       expect($listItemsLink.eq(1).attr('href')).toEqual('page-one');
@@ -57,7 +57,7 @@ describe('Pagination', () => {
 
   describe('first item active', () => {
     const $ = render('pagination', examples['first-item-active']);
-    const $listItemPrev = $('li.hmrc-pagination__item--prev');
+    const $listItemPrev = $('span.hmrc-pagination__item--prev');
 
     it('does not have a previous button if the first page is active', () => {
       expect($listItemPrev.get(0)).toBeUndefined();
@@ -66,7 +66,7 @@ describe('Pagination', () => {
 
   describe('last item active', () => {
     const $ = render('pagination', examples['last-item-active']);
-    const $listItemNext = $('li.hmrc-pagination__item--next');
+    const $listItemNext = $('span.hmrc-pagination__item--next');
 
     it('does not have a next button if the last page is active', () => {
       expect($listItemNext.get(0)).toBeUndefined();
@@ -75,8 +75,8 @@ describe('Pagination', () => {
 
   describe('when the amount of items is greater than the maximum length', () => {
     const $ = render('pagination', examples['multiple-items-truncated']);
-    const $listItems = $('li.hmrc-pagination__page');
-    const $listDots = $('li.hmrc-pagination__item--dots');
+    const $listItems = $('span.hmrc-pagination__page');
+    const $listDots = $('span.hmrc-pagination__item--dots');
 
     it('should show the maximum number of items', () => {
       expect($listItems.length).toBe(11);
@@ -97,7 +97,7 @@ describe('Pagination', () => {
 
   describe('when the maximum number of items is odd', () => {
     const $ = render('pagination', examples['multiple-items-truncated']);
-    const $listItems = $('li.hmrc-pagination__page');
+    const $listItems = $('span.hmrc-pagination__page');
     const $activeItem = $('.hmrc-pagination__item--active');
 
     it('should have the same amount of pages shown before and after the active page', () => {
@@ -107,7 +107,7 @@ describe('Pagination', () => {
 
   describe('when the maximum number of items is even', () => {
     const $ = render('pagination', examples['even-maxLength']);
-    const $listItems = $('li.hmrc-pagination__page');
+    const $listItems = $('span.hmrc-pagination__page');
     const $activeItem = $('.hmrc-pagination__item--active');
 
     it('should have one extra page ahead of the active page than before', () => {
@@ -117,8 +117,8 @@ describe('Pagination', () => {
 
   describe('when the active page is near the start', () => {
     const $ = render('pagination', examples['active-near-beginning']);
-    const $listItems = $('li.hmrc-pagination__page');
-    const $listDots = $('li.hmrc-pagination__item--dots');
+    const $listItems = $('span.hmrc-pagination__page');
+    const $listDots = $('span.hmrc-pagination__item--dots');
 
     it('should show the page number rather than the ellipses', () => {
       expect($listItems.eq(0).text().trim()).toBe('1');
