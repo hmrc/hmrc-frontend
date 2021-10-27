@@ -1,12 +1,12 @@
   {% set totalPages = params.items | length %}
 
-  {% set firstPage = params.items | first %}
-  {% set lastPage = params.items | last %}
+  {% set firstPageObj = params.items | first %}
+  {% set lastPageObj = params.items | last %}
 
-  {% set firstPage = firstPage.text %}
-  {% set firstPageNum = firstPage | int %}
-  {% set lastPage = lastPage.text %}
-  {% set lastPageNum = lastPage | int %}
+  {% set firstPageText = firstPageObj.text %}
+  {% set firstPageNum = firstPageText | int %}
+  {% set lastPageText = lastPageObj.text %}
+  {% set lastPageNum = lastPageText | int %}
 
   {# Calculate middle pages #}
   {% set middlePagesEachSide = (params.maxLength - 1) / 2 %}
@@ -33,44 +33,44 @@
   </aside>
 
 {% if totalPages !== 0 %}
-  <nav class="hmrc-pagination">
+  <nav class="hmrc-pagination" aria-label="Search results pagination">
   <ul class="hmrc-pagination__list">
 
   {# Previous Button #}
-  {% if params.page != 1 %}<li class="hmrc-pagination__item  hmrc-pagination__item--prev"><a class="hmrc-pagination__link" href="previous">Previous</a></li>{% endif %}
+  {% if params.page != 1 %}<span class="hmrc-pagination__item  hmrc-pagination__item--prev"><a class="hmrc-pagination__link" href="previous"><span aria-hidden="true">Previous</span><span class="govuk-visually-hidden">Previous page</span></a></span>{% endif %}
 
   {# First page and truncation #}
   {% if middlePagesStart !== firstPageNum and params.page > 3 %}
-    <li class="hmrc-pagination__item hmrc-pagination__page">
-      <a href="{{ firstPage.href }}" class="hmrc-pagination__link">{{ firstPage | safe }}</a>
-    </li>
+    <span class="hmrc-pagination__item hmrc-pagination__page">
+      <a href="{{ firstPageObj.href }}" class="hmrc-pagination__link">{{ firstPageText | safe }}</a>
+    </span>
   {% endif %}
 
   {% if params.page > 4 %}
-    <li class="hmrc-pagination__item hmrc-pagination__item--dots">...</li>
+    <span class="hmrc-pagination__item hmrc-pagination__item--dots">&hellip;</span>
   {% endif %}
 
   {# Main pages #}
   {% for item in params.items -%}
     {% if loop.index >= middlePagesStart and loop.index <= middlePagesEnd %}
       {% set isActiveItem = loop.index == params.page %}
-      <li class="hmrc-pagination__item hmrc-pagination__page {% if isActiveItem %} govuk-!-font-weight-bold hmrc-pagination__item--active {% endif %}">{% if not isActiveItem %}<a class="hmrc-pagination__link" href="{{ item.href | urlencode }}">{% endif %} {{ item.text | safe }} {% if not isActiveItem %}</a>{% endif %}</li>
+      <span class="hmrc-pagination__item hmrc-pagination__page {% if isActiveItem %} govuk-!-font-weight-bold hmrc-pagination__item--active{% endif %}"{% if isActiveItem %}aria-current="page"{% endif %}><a class="hmrc-pagination__link {% if isActiveItem %}hmrc-pagination__link--active{% endif %}" href="{{ item.href | urlencode }}">{{ item.text | safe }}</a></span>
     {% endif %}
   {%- endfor %}
 
   {# Last page and truncation #}
   {% if middlePagesEnd + 1 !== lastPageNum and params.page < totalPages - 3 %}
-    <li class="hmrc-pagination__item hmrc-pagination__item--dots">&hellip;</li>
+    <span class="hmrc-pagination__item hmrc-pagination__item--dots">&hellip;</span>
   {% endif %}
 
   {% if middlePagesEnd !== lastPageNum and params.page < totalPages - 2 %}
-    <li class="hmrc-pagination__item hmrc-pagination__page">
-      <a href="{{ lastPage.href }}" class="hmrc-pagination__link">{{ lastPage | safe }}</a>
-    </li>
+    <span class="hmrc-pagination__item hmrc-pagination__page">
+      <a href="{{ lastPageObj.href }}" class="hmrc-pagination__link">{{ lastPageText | safe }}</a>
+    </span>
   {% endif %}
 
   {# Next button #}
-  {% if params.page != totalPages %}<li class="hmrc-pagination__item  hmrc-pagination__item--next"><a class="hmrc-pagination__link" href="next">Next</a></li>{% endif %}
+  {% if params.page != totalPages %}<span class="hmrc-pagination__item  hmrc-pagination__item--next"><a class="hmrc-pagination__link" href="next"><span aria-hidden="true">Next</span><span class="govuk-visually-hidden">Next page</span></a></span>{% endif %}
   </ul>
   </nav>
 
