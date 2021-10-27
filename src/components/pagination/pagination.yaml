@@ -179,6 +179,12 @@ examples:
         href: 'page-nine'
       - text: '10'
         href: 'page-ten'
+      - text: '11'
+        href: 'page-ten'
+      - text: '12'
+        href: 'page-ten'
+      - text: '13'
+        href: 'page-ten'
     previous:
       - text: 'Previous'
         href: 'previous'
