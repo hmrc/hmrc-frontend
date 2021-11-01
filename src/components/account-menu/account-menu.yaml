@@ -51,6 +51,10 @@ params:
     type: string
     required: false
     description: "The url of the your-profile page in the personal tax account. Defaults to #."
+  - name: active
+    type: string
+    required: false
+    description: Flag to mark the Your profile item as active or not.
 - name: signOut
   type: string
   required: false
@@ -106,25 +110,9 @@ examples:
       href: "#messages"
     checkProgress:
       href: "#check-progress"
-    paperlessSettings:
-      href: "#paperless-settings"
-    personalDetails:
-      href: "#personal-details"
-    signOut:
-      href: "#sign-out"
-      
-- name: with-profile-link
-  description: New profile link
-  data:
-    accountHome:
-      href: "#account-home"
-      active: true
-    messages:
-      href: "#messages"
-    checkProgress:
-      href: "#check-progress"
     yourProfile:
       href: "#your-profile"
     signOut:
       href: "#sign-out"
+      
 
