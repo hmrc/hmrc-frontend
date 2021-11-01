@@ -1,3 +1,4 @@
+  {# Get page numbers #}
   {% set totalPages = params.items | length %}
 
   {% set firstPageObj = params.items | first %}
@@ -44,12 +45,12 @@
     {% endif %}
   {% endif %}
 
-  <aside>
+  {# <aside>
     <span>Total pages - {{ totalPages }}</span>
     <span>Middle start - {{ middlePagesStart }}</span>
     <span>Middle pages end - {{ middlePagesEnd }}</span>
     <span>Middle pages each side - {{ middlePagesEachSide }}</span>
-  </aside>
+  </aside> #}
 
 {% if totalPages !== 0 %}
   <nav class="hmrc-pagination" aria-label="Search results pagination">
@@ -73,7 +74,7 @@
   {% for item in params.items -%}
     {% if loop.index >= middlePagesStart and loop.index <= middlePagesEnd %}
       {% set isActiveItem = loop.index == params.page %}
-      <span class="hmrc-pagination__item hmrc-pagination__page {% if isActiveItem %} govuk-!-font-weight-bold hmrc-pagination__item--active{% endif %}"{% if isActiveItem %}aria-current="page"{% endif %}><a class="hmrc-pagination__link {% if isActiveItem %}hmrc-pagination__link--active{% endif %}" href="{{ item.href | urlencode }}">{{ item.text | safe }}</a></span>
+      <span class="hmrc-pagination__item hmrc-pagination__page {% if isActiveItem %}hmrc-pagination__item--active{% endif %}"{% if isActiveItem %}aria-current="page"{% endif %}><a class="hmrc-pagination__link {% if isActiveItem %}hmrc-pagination__link--active{% endif %}" href="{{ item.href | urlencode }}">{{ item.text | safe }}</a></span>
     {% endif %}
   {%- endfor %}
 
@@ -89,7 +90,7 @@
   {% endif %}
 
   {# Next button #}
-  {% if params.page != totalPages %}<span class="hmrc-pagination__item  hmrc-pagination__item--next"><a class="hmrc-pagination__link" href="next"><span aria-hidden="true">Next</span><span class="govuk-visually-hidden">Next page</span></a></span>{% endif %}
+  {% if params.page != totalPages %}<span class="hmrc-pagination__item hmrc-pagination__item--next"><a class="hmrc-pagination__link" href="next"><span aria-hidden="true">Next</span><span class="govuk-visually-hidden">Next page</span></a></span>{% endif %}
   </ul>
   </nav>
 

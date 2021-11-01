@@ -50,7 +50,7 @@ describe('Pagination', () => {
     });
 
     it('has an active item', () => {
-      expect($listItemActive.eq(0).attr('class')).toContain('govuk-!-font-weight-bold');
+      expect($listItemActive.eq(0).attr('class')).toContain('hmrc-pagination__item--active');
       expect($listItemActive.eq(0).attr('href')).toBeUndefined();
     });
   });
@@ -111,7 +111,7 @@ describe('Pagination', () => {
     const $activeItem = $('.hmrc-pagination__item--active');
 
     it('should have one extra page ahead of the active page than before', () => {
-      expect($listItems.index($activeItem)).toBe(3);
+      expect($listItems.index($activeItem)).toBe(4);
     });
   });
 
@@ -128,8 +128,8 @@ describe('Pagination', () => {
 
   describe('when the active page is near the end', () => {
     const $ = render('pagination', examples['active-near-end']);
-    const $listItems = $('li.hmrc-pagination__page');
-    const $listDots = $('li.hmrc-pagination__item--dots');
+    const $listItems = $('span.hmrc-pagination__page');
+    const $listDots = $('span.hmrc-pagination__item--dots');
 
     it('should show the page number rather than the ellipses', () => {
       expect($listItems.eq(-2).text().trim()).toBe('9');

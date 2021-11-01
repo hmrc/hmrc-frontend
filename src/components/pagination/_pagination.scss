@@ -2,6 +2,9 @@ $govuk-global-styles: false;
 @import "../../../../govuk-frontend/govuk/core/typography";
 
 .hmrc-pagination {
+  margin-top: 15px;
+  margin-bottom: 10px;
+
   @include govuk-media-query($from: desktop) {
     margin-left: - govuk-spacing(1);
     margin-right: - govuk-spacing(1);
@@ -41,8 +44,11 @@ $govuk-global-styles: false;
   .hmrc-pagination__item--dots {
     font-weight: bold;
     height: 25px;
-    padding: govuk-spacing(1);
     text-align: center;
+  }
+
+  .hmrc-pagination__item--dots {
+    padding: govuk-spacing(1) govuk-spacing(2);
   }
 
   .hmrc-pagination__item--prev .hmrc-pagination__link::before,
