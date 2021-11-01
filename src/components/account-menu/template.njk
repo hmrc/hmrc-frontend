@@ -36,35 +36,9 @@
     </li>
 
     <li>
-      <a href="#subnav-your-account" id="account-menu__main-2" class="hmrc-account-menu__link hmrc-account-icon hmrc-account-menu__link--more" aria-haspopup="true" aria-owns="subnav-your-account">
-        {% if language == 'cy' %}Eich cyfrif{% else %}Your account{% endif %}
+      <a href="{{ params.yourProfile.href | default('#') }}" class="hmrc-account-menu__link{% if params.yourProfile.active %} hmrc-account-menu__link--active{% endif %}">
+        {% if language == 'cy' %}Eich proffil{% else %}Your profile{% endif %}
       </a>
-
-      <div class="hmrc-subnav" id="subnav-your-account" role="navigation" aria-labelledby="account-menu__main-2" aria-label="Your account">
-        <div class="govuk-grid-column-one-third hmrc-subnav__section">
-          <p class="hmrc-subnav__section__heading">
-            {% if language == 'cy' %}Gosodiadau di-bapur{% else %}Paperless settings{% endif %}
-          </p>
-
-          <div>
-            <a href="{{ params.paperlessSettings.href | default('#') }}">
-              {% if language == 'cy' %}Rheoli'ch gosodiadau di-bapur{% else %}Manage your paperless settings{% endif %}
-            </a>
-          </div>
-        </div>
-
-        <div class="govuk-grid-column-one-third hmrc-subnav__section">
-          <p class="hmrc-subnav__section__heading">
-            {% if language == 'cy' %}Manylion personol{% else %}Personal details{% endif %}
-          </p>
-
-          <div>
-            <a href="{{ params.personalDetails.href | default('#') }}">
-              {% if language == 'cy' %}Rheoli'ch manylion personol{% else %}Manage your personal details{% endif %}
-            </a>
-          </div>
-        </div>
-      </div>
     </li>
 
     <li>
