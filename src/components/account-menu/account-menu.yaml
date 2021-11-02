@@ -1,5 +1,5 @@
 params:
-- name: accounmtHoe
+- name: accountHome
   type: object
   required: false
   description: The Account home menu item.
