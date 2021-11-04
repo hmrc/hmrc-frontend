@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.0.0] - 2021-11-01
+
+### Changed
+
+- Account menu now has a "yourProfile" link, and we've removed the "paperless" and "personal details" links. This is to
+  match the current implementation by PTA.
+
 ## [2.7.0] - 2021-10-06
 
 ### Changed

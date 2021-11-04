@@ -21,16 +21,14 @@ describe('Account Menu', () => {
       const $accountHomeLink = $nav.find('a:contains("Account home")');
       const $messagesLink = $nav.find('a:contains("Messages")');
       const $progressLink = $nav.find('a:contains("Check progress")');
-      const $paperlessLink = $nav.find('a:contains("paperless settings")');
-      const $detailsLink = $nav.find('a:contains("personal details")');
+      const $yourProfileLink = $nav.find('a:contains("Your profile")');
       const $signOutLink = $nav.find('a:contains("Sign out")');
 
       expect($nav).not.toBeNull();
       expect($accountHomeLink.attr('href')).toEqual('#');
       expect($messagesLink.attr('href')).toEqual('#');
       expect($progressLink.attr('href')).toEqual('#');
-      expect($paperlessLink.attr('href')).toEqual('#');
-      expect($detailsLink.attr('href')).toEqual('#');
+      expect($yourProfileLink.attr('href')).toEqual('#');
       expect($signOutLink.attr('href')).toEqual('#');
     });
 
@@ -42,15 +40,13 @@ describe('Account Menu', () => {
       const $accountHomeLink = $nav.find('a:contains("Account home")');
       const $messagesLink = $nav.find('a:contains("Messages")');
       const $progressLink = $nav.find('a:contains("Check progress")');
-      const $paperlessLink = $nav.find('a:contains("paperless settings")');
-      const $detailsLink = $nav.find('a:contains("personal details")');
+      const $yourProfileLink = $nav.find('a:contains("Your profile")');
       const $signOutLink = $nav.find('a:contains("Sign out")');
 
       expect($accountHomeLink.attr('href')).toEqual(example.accountHome.href);
       expect($messagesLink.attr('href')).toEqual(example.messages.href);
       expect($progressLink.attr('href')).toEqual(example.checkProgress.href);
-      expect($paperlessLink.attr('href')).toEqual(example.paperlessSettings.href);
-      expect($detailsLink.attr('href')).toEqual(example.personalDetails.href);
+      expect($yourProfileLink.attr('href')).toEqual(example.yourProfile.href);
       expect($signOutLink.attr('href')).toEqual(example.signOut.href);
     });
 

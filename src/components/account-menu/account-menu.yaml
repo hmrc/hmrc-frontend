@@ -42,24 +42,19 @@ params:
     type: string
     required: false
     description: Flag to mark the Check progress item as active or not.
-- name: paperlessSettings
+- name: yourProfile
   type: object
   required: false
-  description: The Manage your paperless settings submenu item.
+  description: The Your profile item.
   params:
   - name: href
     type: string
     required: false
-    description: "The url of the Manage your paperless settings submenu item. Defaults to #."
-- name: personalDetails
-  type: string
-  required: false
-  description: The Manage your personal details submenu item.
-  params:
-  - name: href
+    description: "The url of the your-profile page in the personal tax account. Defaults to #."
+  - name: active
     type: string
     required: false
-    description: "The url of the Manage your personal details submenu item. Defaults to #."
+    description: Flag to mark the Your profile item as active or not.
 - name: signOut
   type: string
   required: false
@@ -115,9 +110,9 @@ examples:
       href: "#messages"
     checkProgress:
       href: "#check-progress"
-    paperlessSettings:
-      href: "#paperless-settings"
-    personalDetails:
-      href: "#personal-details"
+    yourProfile:
+      href: "#your-profile"
     signOut:
       href: "#sign-out"
+      
+
