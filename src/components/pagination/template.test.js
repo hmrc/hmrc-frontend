@@ -75,65 +75,43 @@ describe('Pagination', () => {
 
   describe('when the amount of items is greater than the maximum length', () => {
     const $ = render('pagination', examples['multiple-items-truncated']);
-    const $listItems = $('span.hmrc-pagination__page');
+    const $listItems = $('span.hmrc-pagination__item');
     const $listDots = $('span.hmrc-pagination__item--dots');
 
     it('should show the maximum number of items', () => {
-      expect($listItems.length).toBe(11);
+      expect($listItems.length).toBe(15);
     });
 
     it('should have the active page in the centre', () => {
-      expect($listItems.eq(1).text().trim()).toBe('8');
-      expect($listItems.eq($listItems.length - 2).text().trim()).toBe('16');
+      expect($listItems.eq(3).text().trim()).toBe('8');
+      expect($listItems.eq($listItems.length - 4).text().trim()).toBe('16');
       expect($listItems.eq(Math.floor($listItems.length / 2)).attr('class')).toContain('hmrc-pagination__item--active');
     });
 
     it('should be truncated on either side of the shown pages, and show the first and last page', () => {
-      expect($listItems.eq(0).text().trim()).toBe('1');
-      expect($listItems.eq(10).text().trim()).toBe('20');
+      expect($listItems.eq(1).text().trim()).toBe('1');
+      expect($listItems.eq($listItems.length - 2).text().trim()).toBe('20');
       expect($listDots.length).toBe(2);
     });
   });
 
   describe('when the maximum number of items is odd', () => {
     const $ = render('pagination', examples['multiple-items-truncated']);
-    const $listItems = $('span.hmrc-pagination__page');
+    const $listItems = $('span.hmrc-pagination__item');
     const $activeItem = $('.hmrc-pagination__item--active');
 
     it('should have the same amount of pages shown before and after the active page', () => {
-      expect($listItems.index($activeItem)).toBe(5);
+      expect($listItems.index($activeItem)).toBe(7);
     });
   });
 
   describe('when the maximum number of items is even', () => {
     const $ = render('pagination', examples['even-maxLength']);
-    const $listItems = $('span.hmrc-pagination__page');
+    const $listItems = $('span.hmrc-pagination__item');
     const $activeItem = $('.hmrc-pagination__item--active');
 
     it('should have one extra page ahead of the active page than before', () => {
-      expect($listItems.index($activeItem)).toBe(4);
-    });
-  });
-
-  describe('when the active page is near the start', () => {
-    const $ = render('pagination', examples['active-near-beginning']);
-    const $listItems = $('span.hmrc-pagination__page');
-    const $listDots = $('span.hmrc-pagination__item--dots');
-
-    it('should show the page number rather than the ellipses', () => {
-      expect($listItems.eq(1).text().trim()).toBe('2');
-      expect($listDots.length).toBe(1);
-    });
-  });
-
-  describe('when the active page is near the end', () => {
-    const $ = render('pagination', examples['active-near-end']);
-    const $listItems = $('span.hmrc-pagination__page');
-    const $listDots = $('span.hmrc-pagination__item--dots');
-
-    it('should show the page number rather than the ellipses', () => {
-      expect($listItems.eq(-2).text().trim()).toBe('9');
-      expect($listDots.length).toBe(1);
+      expect($listItems.index($activeItem)).toBe(5);
     });
   });
 });
