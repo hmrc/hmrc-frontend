@@ -1,5 +1,4 @@
 /* eslint-env jest */
-import mock from 'jest-mock';
 import TimeoutDialog from './timeout-dialog';
 
 const { dialog, redirectHelper, utils } = TimeoutDialog;
@@ -80,23 +79,23 @@ describe('/components/timeout-dialog', () => {
       currentDateTime: 1554196031049, // the time these tests were written
       // - this can change but it's best not to write randomness into tests
     };
-    mock.spyOn(Date, 'now').mockImplementation(() => testScope.currentDateTime);
-    mock.spyOn(utils, 'ajaxGet').mockImplementation(() => {
+    jest.spyOn(Date, 'now').mockImplementation(() => testScope.currentDateTime);
+    jest.spyOn(utils, 'ajaxGet').mockImplementation(() => {
     });
-    mock.spyOn(redirectHelper, 'redirectToUrl').mockImplementation(() => {
+    jest.spyOn(redirectHelper, 'redirectToUrl').mockImplementation(() => {
     });
-    mock.spyOn(dialog, 'displayDialog').mockImplementation(($elementToDisplay) => {
+    jest.spyOn(dialog, 'displayDialog').mockImplementation(($elementToDisplay) => {
       testScope.latestDialog$element = $elementToDisplay;
       testScope.latestDialogControl = {
-        closeDialog: mock.fn(),
-        setAriaLabelledBy: mock.fn(),
-        addCloseHandler: mock.fn().mockImplementation((fn) => {
+        closeDialog: jest.fn(),
+        setAriaLabelledBy: jest.fn(),
+        addCloseHandler: jest.fn().mockImplementation((fn) => {
           testScope.latestDialogCloseCallback = fn;
         }),
       };
       return testScope.latestDialogControl;
     });
-    jest.useFakeTimers();
+    jest.useFakeTimers('legacy');
     testScope.minimumValidConfig = {
       'data-timeout': 900,
       'data-countdown': 120,
@@ -236,7 +235,7 @@ describe('/components/timeout-dialog', () => {
   });
 
   it('should AJAX call the configured URL', () => {
-    mock.spyOn(utils, 'ajaxGet').mockImplementation(() => {
+    jest.spyOn(utils, 'ajaxGet').mockImplementation(() => {
     });
 
     setupDialog({
@@ -739,9 +738,9 @@ describe('/components/timeout-dialog', () => {
         testScope.timeoutFirstRun = true;
         jest.clearAllTimers();
 
-        mock.spyOn(window, 'clearTimeout').mockImplementation(() => {
+        jest.spyOn(window, 'clearTimeout').mockImplementation(() => {
         });
-        mock.spyOn(window, 'setTimeout').mockImplementation((fn) => {
+        jest.spyOn(window, 'setTimeout').mockImplementation((fn) => {
           if (testScope.timeoutFirstRun) {
             testScope.timeoutFirstRun = false;
             fn();

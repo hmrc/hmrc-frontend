@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.1.1] - 2021-11-09
+
+### Changed
+
+- Updated dependencies based on output of npm audit where relevant
+
 ## [3.1.0] - 2021-11-08
 
 ### Changed
