@@ -1,5 +1,4 @@
 /* eslint-env jest */
-import mock from 'jest-mock';
 import dialog from './dialog';
 import utils from './utils';
 
@@ -41,7 +40,7 @@ describe('Dialog', () => {
   });
 
   function openDefaultDialog() {
-    testScope.closeCallback = mock.fn();
+    testScope.closeCallback = jest.fn();
     testScope.dialogControl = dialog.displayDialog($DEFAULT_ELEMENT_TO_DISPLAY);
     testScope.dialogControl.addCloseHandler(testScope.closeCallback);
   }
@@ -361,7 +360,7 @@ describe('Dialog', () => {
       const e = document.createEvent('Events');
       e.initEvent('touchmove', true, true);
       e[arrayName] = arr;
-      e.preventDefault = mock.fn();
+      e.preventDefault = jest.fn();
       document.dispatchEvent(e);
       return e;
     }
