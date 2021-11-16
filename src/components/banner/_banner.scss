@@ -1,17 +1,20 @@
 .hmrc-banner {
   position: relative;
-  padding: 10px 0 8px;
+  padding: 10px 0 6px;
 }
 
 .hmrc-organisation-logo {
-  padding: 5px 35px;
+  margin: 0 35px 0 0;
+  padding: 5px 0 5px 5px;
+  border-left: 2px solid govuk-organisation-colour("hm-revenue-customs");
 
-  svg {
-    border-left: 2px solid govuk-organisation-colour("hm-revenue-customs");
-    background-size: auto 26px;
+  svg, img {
+    vertical-align: middle;
   }
 
-  span {
-    margin: 2px 0 0;
+  p {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 0;
   }
 }
