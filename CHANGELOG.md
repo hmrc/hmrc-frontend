@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.2.0] - 2021-11-17
+
+### Changed
+
+- Updated HMRC banner to use SVG logo and tweaked vertical alignment
+
 ## [3.1.1] - 2021-11-09
 
 ### Changed
