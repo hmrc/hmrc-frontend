@@ -4,6 +4,10 @@ params:
   required: false
   description: Either "en" for English or "cy" for Welsh
 previewLayout: full-width
+- name: assetsPath
+  type: string
+  required: false
+  description: The public path for the assets folder. If not provided it defaults to /assets
 
 examples:
 - name: default
