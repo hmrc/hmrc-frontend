@@ -27,14 +27,10 @@
 .hmrc-internal-header__logo-link {
   display: table;
 
-  &::before {
-    content: "";
-    display: table-cell;
-    width: 52px;
+  img {
+    width: 32px;
     height: 32px;
-    background: url("#{$hmrc-assets-path}components/internal-header/images/hmrc-crown-logo_black.svg") no-repeat;
-    background-size: 32px 32px;
-    background-position-x: 10px;
+    padding: 0 10px 0 10px;
   }
 
   &:link,
@@ -65,4 +61,10 @@
   @include govuk-media-query(desktop) {
     font-size: 24px;
   }
+}
+
+p {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 0 0 0;
 }
