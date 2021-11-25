@@ -27,6 +27,11 @@
 .hmrc-internal-header__logo-link {
   display: table;
 
+  svg {
+    vertical-align: middle;
+    padding-bottom: 3px;
+  }
+
   img {
     width: 32px;
     height: 32px;
