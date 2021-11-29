@@ -27,12 +27,6 @@
 .hmrc-internal-header__logo-link {
   display: table;
 
-  p {
-    display: inline-block;
-    vertical-align: top;
-    margin: 0 0 0 0;
-  }
-
   svg {
     vertical-align: top;
   }
@@ -50,6 +44,12 @@
     line-height: 32px;
     text-decoration: none;
   }
+}
+
+.hmrc-internal-header__logo-text {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 0 0 0;
 }
 
 .hmrc-internal-header__service-name {
