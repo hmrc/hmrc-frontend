@@ -28,6 +28,7 @@
   display: table;
 
   svg {
+    float: left;
     vertical-align: top;
   }
 
@@ -47,7 +48,6 @@
 }
 
 .hmrc-internal-header__logo-text {
-  display: inline-block;
   vertical-align: top;
   margin: 0 0 0 0;
 }
