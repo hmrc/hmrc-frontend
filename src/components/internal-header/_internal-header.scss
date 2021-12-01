@@ -27,14 +27,17 @@
 .hmrc-internal-header__logo-link {
   display: table;
 
-  &::before {
-    content: "";
-    display: table-cell;
-    width: 52px;
+  svg {
+    float: left;
+    vertical-align: top;
+  }
+
+  img {
+    float: left;
+    vertical-align: top;
+    width: 32px;
     height: 32px;
-    background: url("#{$hmrc-assets-path}components/internal-header/images/hmrc-crown-logo_black.svg") no-repeat;
-    background-size: 32px 32px;
-    background-position-x: 10px;
+    padding: 0 10px 0 10px;
   }
 
   &:link,
@@ -44,6 +47,11 @@
     line-height: 32px;
     text-decoration: none;
   }
+}
+
+.hmrc-internal-header__logo-text {
+  vertical-align: top;
+  margin: 0 0 0 0;
 }
 
 .hmrc-internal-header__service-name {
