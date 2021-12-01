@@ -41,6 +41,14 @@
       </a>
     </li>
 
+    {% if params.businessTaxAccount %}
+      <li>
+        <a href="{{ params.businessTaxAccount.href | default('#') }}" class="hmrc-account-menu__link{% if params.businessTaxAccount.active %} hmrc-account-menu__link--active{% endif %}">
+          {% if language == 'cy' %}Cyfrif treth busnes{% else %}Business tax account{% endif %}
+        </a>
+      </li>
+    {% endif %}
+
     <li>
       <a href="{{ params.signOut.href | default('#') }}" class="hmrc-account-menu__link">
         {% if language == 'cy' %}Allgofnodi{% else %}Sign out{% endif %}

@@ -55,6 +55,19 @@ params:
     type: string
     required: false
     description: Flag to mark the Your profile item as active or not.
+- name: businessTaxAccount
+  type: object
+  required: false
+  description: The Business Tax Account item.
+  params:
+  - name: href
+    type: string
+    required: false
+    description: "The url of the business-tax-account page in the personal tax account. Defaults to #."
+  - name: active
+    type: string
+    required: false
+    description: Flag to mark the Business tax account as active or not.
 - name: signOut
   type: string
   required: false
@@ -94,6 +107,12 @@ examples:
   data:
     {}
 
+- name: with-business-tax-account-link
+  description: If the business tax account link has been added to the account menu.
+  data:
+    businessTaxAccount:
+      href: "#business-tax-account"
+
 - name: with-unread-messages
   description: If you need to show the user they have unread messages.
   data:
@@ -114,5 +133,5 @@ examples:
       href: "#your-profile"
     signOut:
       href: "#sign-out"
-      
+
 

@@ -32,6 +32,27 @@ describe('Account Menu', () => {
       expect($signOutLink.attr('href')).toEqual('#');
     });
 
+    it('render menu with the business tax account link visible', () => {
+      const example = examples['with-business-tax-account-link'];
+      const $ = render('account-menu', example);
+
+      const $nav = $('[data-module="hmrc-account-menu"]');
+      const $accountHomeLink = $nav.find('a:contains("Account home")');
+      const $messagesLink = $nav.find('a:contains("Messages")');
+      const $progressLink = $nav.find('a:contains("Check progress")');
+      const $yourProfileLink = $nav.find('a:contains("Your profile")');
+      const $businessTaxAccountLink = $nav.find('a:contains("Business tax account")');
+      const $signOutLink = $nav.find('a:contains("Sign out")');
+
+      expect($nav).not.toBeNull();
+      expect($accountHomeLink.attr('href')).toEqual('#');
+      expect($messagesLink.attr('href')).toEqual('#');
+      expect($progressLink.attr('href')).toEqual('#');
+      expect($yourProfileLink.attr('href')).toEqual('#');
+      expect($businessTaxAccountLink.attr('href')).toEqual('#business-tax-account');
+      expect($signOutLink.attr('href')).toEqual('#');
+    });
+
     it('renders custom hrefs', () => {
       const example = examples['with-navigation-urls'];
       const $ = render('account-menu', example);
