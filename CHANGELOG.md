@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.3.0] - 2021-12-01
+
+### Changed
+
+- Updated Internal Header to use inline SVG
+
 ## [3.2.0] - 2021-11-17
 
 ### Changed
