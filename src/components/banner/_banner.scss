@@ -3,10 +3,18 @@
   padding: 10px 0 6px;
 }
 
+@media (forced-colors: active) {
+  svg {
+    forced-color-adjust: none;
+    color: canvastext;
+  }
+}
+
 .hmrc-organisation-logo {
   margin: 0 35px 0 0;
   padding: 4px 0 4px 5px;
   border-left: 2px solid govuk-organisation-colour("hm-revenue-customs");
+  color: govuk-colour("black");
 
   svg,
   img {

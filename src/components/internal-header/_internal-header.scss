@@ -12,10 +12,18 @@
   }
 }
 
+@media (forced-colors: active) {
+  svg {
+    forced-color-adjust: none;
+    color: canvastext;
+  }
+}
+
 .hmrc-internal-header__logo {
   min-width: 275px;
   margin-bottom: govuk-spacing(2);
   border-left: 2px solid govuk-organisation-colour("hm-revenue-customs");
+  
 
   @include govuk-media-query(desktop) {
     display: table-cell;
