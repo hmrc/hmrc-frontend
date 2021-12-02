@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.4.0] - 2021-12-1
+
+###Changed
+
+- Added optional business tax account link to account menu
+
 ## [3.3.0] - 2021-12-01
 
 ### Changed
@@ -15,7 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [3.2.0] - 2021-11-17
 
-### Changed
+###Changed
 
 - Updated HMRC banner to use SVG logo and tweaked vertical alignment
 
