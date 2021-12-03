@@ -18,19 +18,19 @@
 }
 
 .hmrc-internal-header__logo {
+  margin-bottom: govuk-spacing(2);
   border-left: 2px solid govuk-organisation-colour("hm-revenue-customs");
-  padding-right: govuk-spacing(8);
 
   @include govuk-media-query(desktop) {
     width: 33.33%;
     padding-right: $govuk-gutter-half;
     float: left;
     vertical-align: top;
+    margin-bottom: 0;
   }
 }
 
 .hmrc-internal-header__logo-link {
-  display: table;
 
   svg {
     float: left;
