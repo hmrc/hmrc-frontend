@@ -200,6 +200,7 @@ examples:
     navigation:
       - title: Services and information
         columns: 2
+        width: two-thirds
         items:
           - href: '/browse/benefits'
             text: Benefits
@@ -234,6 +235,7 @@ examples:
           - href: '/browse/working'
             text: Working, jobs and pensions
       - title: Departments and policy
+        width: one-third
         items:
           - href: '/government/how-government-works'
             text: How government works
