@@ -170,6 +170,7 @@ examples:
     navigation:
       - title: Two column list
         columns: 2
+        width: two-thirds
         items:
           - href: '#1'
             text: Navigation item 1
@@ -184,6 +185,7 @@ examples:
           - href: '#6'
             text: Navigation item 6
       - title: Single column list
+        width: one-third
         items:
           - href: '#1'
             text: Navigation item 1
@@ -265,6 +267,7 @@ examples:
     navigation:
       - title: Single column list 1
         columns: 1
+        width: one-third
         items:
           - href: '#1'
             text: Navigation item 1
@@ -280,6 +283,7 @@ examples:
             text: Navigation item 6
       - title: Single column list 2
         columns: 1
+        width: one-third
         items:
           - href: '#1'
             text: Navigation item 1
@@ -295,6 +299,7 @@ examples:
             text: Navigation item 6
       - title: Single column list 3
         columns: 1
+        width: one-third
         items:
           - href: '#1'
             text: Navigation item 1
