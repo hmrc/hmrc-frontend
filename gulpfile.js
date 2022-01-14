@@ -1,15 +1,15 @@
 const { series, parallel } = require('gulp');
 const nodemon = require('nodemon');
 
-require('./tasks/gulp/clean.js');
-require('./tasks/gulp/compile-js.js');
-require('./tasks/gulp/compile-scss.js');
-require('./tasks/gulp/watch.js');
-require('./tasks/gulp/copy-to-destination.js');
-require('./tasks/gulp/asset-version.js');
-require('./tasks/gulp/backstop.js');
-require('./tasks/gulp/package.js');
-require('./tasks/gulp/dist.js');
+require('./tasks/gulp/clean');
+require('./tasks/gulp/compile-js');
+require('./tasks/gulp/compile-scss');
+require('./tasks/gulp/watch');
+require('./tasks/gulp/copy-to-destination');
+require('./tasks/gulp/asset-version');
+require('./tasks/gulp/backstop');
+require('./tasks/gulp/package');
+require('./tasks/gulp/dist');
 
 const { publishLocalWebjar, buildWebjar } = require('./tasks/gulp/webjar');
 
@@ -52,7 +52,7 @@ const buildDist = series(
 const backstopTest = series(buildDist, 'backstop-test');
 
 const startNodemon = () => nodemon({
-  script: 'app/start.js',
+  script: 'app/start',
 });
 
 const dev = series(buildDist, parallel(startNodemon, 'watch'));
