@@ -23,7 +23,6 @@
 
   @include govuk-media-query(desktop) {
     width: 33.33%;
-    padding-right: $govuk-gutter-half;
     float: left;
     vertical-align: top;
     margin-bottom: 0;
@@ -54,6 +53,7 @@
 }
 
 .hmrc-internal-header__logo-text {
+  display: flex;
   vertical-align: top;
   margin: 0 0 0 0;
 }
