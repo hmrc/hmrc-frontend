@@ -25,6 +25,10 @@
 }
 
 .hmrc-internal-header__logo-link {
+  @include govuk-link-common;
+  @include govuk-link-style-default;
+  @include govuk-link-print-friendly;
+
   display: table;
 
   svg {
@@ -61,6 +65,10 @@
 }
 
 .hmrc-internal-header__link {
+  @include govuk-link-common;
+  @include govuk-link-style-default;
+  @include govuk-link-print-friendly;
+
   font-size: 20px;
   font-weight: bold;
   text-decoration: none;
