@@ -2,7 +2,7 @@
   @include govuk-font($size: 19);
 
   box-sizing: border-box;
-  padding: govuk-spacing(4) govuk-spacing(3);
+  padding: govuk-spacing(4) 0;
   border-bottom: 10px solid govuk-organisation-colour("hm-revenue-customs");
 
   @include govuk-media-query(desktop) {
