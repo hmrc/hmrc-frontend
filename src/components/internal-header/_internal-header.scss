@@ -2,7 +2,7 @@
   @include govuk-font($size: 19);
 
   box-sizing: border-box;
-  padding: govuk-spacing(4) govuk-spacing(3);
+  padding: govuk-spacing(4) 0;
   border-bottom: 10px solid govuk-organisation-colour("hm-revenue-customs");
 
   @include govuk-media-query(desktop) {
@@ -12,21 +12,24 @@
   }
 }
 
+.hmrc-internal-header__logo,
+.hmrc-internal-header__service-name {
+  box-sizing: border-box;
+}
+
 .hmrc-internal-header__logo {
-  min-width: 275px;
   margin-bottom: govuk-spacing(2);
   border-left: 2px solid govuk-organisation-colour("hm-revenue-customs");
 
   @include govuk-media-query(desktop) {
-    display: table-cell;
     width: 33.33%;
+    float: left;
+    vertical-align: top;
     margin-bottom: 0;
   }
 }
 
 .hmrc-internal-header__logo-link {
-  display: table;
-
   svg {
     float: left;
     vertical-align: top;
@@ -50,13 +53,16 @@
 }
 
 .hmrc-internal-header__logo-text {
+  display: flex;
   vertical-align: top;
   margin: 0 0 0 0;
 }
 
 .hmrc-internal-header__service-name {
-  @include govuk-media-query(desktop) {
-    display: table-cell;
+  @include govuk-media-query ($from: desktop) {
+    width: 66.66%;
+    padding-left: $govuk-gutter-half;
+    float: left;
   }
 }
 
