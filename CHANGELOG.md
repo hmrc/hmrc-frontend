@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.1.0] - 2022-01-10
+
+### Changed
+
+- Added a width constraint to the internal header
+- Added the GOV.UK focus link styles to links in the internal header
+
+### Fixed
+
+- Removed the ID from SVG HMRC logo in the internal header to fix integration tests
+
 ## [4.0.0] - 2022-01-10
 
 ### Changed
