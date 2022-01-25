@@ -7,21 +7,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.0.0] - 2022-01-10
+
+### Changed
+
+- Updated the govuk-frontend version to v4.0.0
+
 ## [3.4.0] - 2021-12-1
 
-###Changed
+### Changed
 
 - Added optional business tax account link to account menu
 
 ## [3.3.0] - 2021-12-01
 
-### Changed
+### Changed
 
 - Updated Internal Header to use inline SVG
 
 ## [3.2.0] - 2021-11-17
 
-###Changed
+### Changed
 
 - Updated HMRC banner to use SVG logo and tweaked vertical alignment
 
