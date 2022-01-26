@@ -12,11 +12,11 @@ exports[`Currency input when it includes a hint renders the hint 1`] = `
 
 exports[`Currency input when it includes an error message renders the error message 1`] = `
 
-<span id="input-with-error-error"
-      class="govuk-error-message"
+<p id="input-with-error-error"
+   class="govuk-error-message"
 >
   Error message
-</span>
+</p>
 
 `;
 

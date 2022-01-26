@@ -46,6 +46,10 @@ params:
     type: integer
     required: false
     description: Amount of columns to display items in navigation section of the footer.
+  - name: width
+    type: string
+    required: false
+    description: Width of each navigation section in the footer. Defaults to full width. You can pass any design system grid width here, for example, 'one-third'; 'two-thirds'; 'one-half'.
   - name: items
     type: array
     required: false
@@ -166,6 +170,7 @@ examples:
     navigation:
       - title: Two column list
         columns: 2
+        width: two-thirds
         items:
           - href: '#1'
             text: Navigation item 1
@@ -180,6 +185,7 @@ examples:
           - href: '#6'
             text: Navigation item 6
       - title: Single column list
+        width: one-third
         items:
           - href: '#1'
             text: Navigation item 1
@@ -194,6 +200,7 @@ examples:
     navigation:
       - title: Services and information
         columns: 2
+        width: two-thirds
         items:
           - href: '/browse/benefits'
             text: Benefits
@@ -228,6 +235,7 @@ examples:
           - href: '/browse/working'
             text: Working, jobs and pensions
       - title: Departments and policy
+        width: one-third
         items:
           - href: '/government/how-government-works'
             text: How government works
@@ -261,6 +269,7 @@ examples:
     navigation:
       - title: Single column list 1
         columns: 1
+        width: one-third
         items:
           - href: '#1'
             text: Navigation item 1
@@ -276,6 +285,7 @@ examples:
             text: Navigation item 6
       - title: Single column list 2
         columns: 1
+        width: one-third
         items:
           - href: '#1'
             text: Navigation item 1
@@ -291,6 +301,7 @@ examples:
             text: Navigation item 6
       - title: Single column list 3
         columns: 1
+        width: one-third
         items:
           - href: '#1'
             text: Navigation item 1
