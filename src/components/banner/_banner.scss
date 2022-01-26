@@ -4,9 +4,11 @@
 }
 
 @media (forced-colors: active) {
-  svg {
-    forced-color-adjust: none;
-    color: canvastext;
+  .hmrc-organisation-logo {
+    svg {
+      forced-color-adjust: none;
+      color: canvastext;
+    }
   }
 }
 
