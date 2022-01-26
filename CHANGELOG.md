@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [4.1.0] - 2022-01-10
+## [4.1.1] - 2022-01-26
+
+### Fixed
+
+- Fixed colours on banner and header logo when browser is in high contrast mode
+
+## [4.1.0] - 2022-01-25
 
 ### Changed
 
