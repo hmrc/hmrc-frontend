@@ -1,3 +1,17 @@
+params:
+- name: language
+  type: string
+  required: false
+  description: Either "en" for English or "cy" for Welsh
+- name: text
+  type: string
+  required: true
+  description: The text content that will be displayed in the h1 element
+- name: text
+  type: string
+  required: false
+  description: The text content that will be displayed in the subsection caption if provided
+
 examples:
 - name: default
   data:
@@ -6,3 +20,8 @@ examples:
   data:
     text: "What is your name?"
     section: "Personal details"
+- name: with-section-welsh
+  data:
+    language: cy
+    text: "Beth yw dy enw?"
+    section: "Manylion personol"
