@@ -45,5 +45,16 @@ describe('Page Heading', () => {
       expect($component.find('p').text().trim()).toEqual('This section is Personal details');
       expect($component.find('span.govuk-visually-hidden').text()).toEqual('This section is ');
     });
+
+    it('renders a header with a section subheading in welsh', () => {
+      const $ = render('page-heading', examples['with-section-welsh']);
+
+      const $component = $('.hmrc-page-heading');
+
+      expect($component.children().length).toEqual(2);
+      expect($component.children().get(1).tagName).toEqual('p');
+      expect($component.find('p').text().trim()).toEqual('Teitl yr adran hon yw Manylion personol');
+      expect($component.find('span.govuk-visually-hidden').text()).toEqual('Teitl yr adran hon yw ');
+    });
   });
 });

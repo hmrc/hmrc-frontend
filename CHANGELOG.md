@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.2.0] - 2022-01-27
+
+### Changed
+
+- Added welsh translation to the page-heading components section subheading
+
 ## [4.1.1] - 2022-01-26
 
 ### Fixed
