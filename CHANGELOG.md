@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.3.1] - 2022-01-27
+
+### Fixed
+
+- Fixed missing language params in page-heading yaml
+
 ## [4.3.0] - 2022-01-27
 
 ### Fixed

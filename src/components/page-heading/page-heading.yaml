@@ -15,13 +15,15 @@ params:
 examples:
 - name: default
   data:
+    language: "en"
     text: "What is your name?"
 - name: with-section
   data:
+    language: "en"
     text: "What is your name?"
     section: "Personal details"
 - name: with-section-welsh
   data:
-    language: cy
+    language: "cy"
     text: "Beth yw dy enw?"
     section: "Manylion personol"
