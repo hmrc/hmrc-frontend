@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.3.0] - 2022-01-27
+
+### Fixed
+
+- Fixed formatting issue with header navigation classes having trailing space
+
 ## [4.2.0] - 2022-01-27
 
 ### Changed
