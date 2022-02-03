@@ -4,7 +4,7 @@
   {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 
 <header role="banner">
-  <div class="govuk-header hmrc-header {{ params.classes if params.classes }} {{ 'hmrc-header--with-additional-navigation' if params.signOutHref or params.languageToggle }}" data-module="header"
+  <div class="govuk-header hmrc-header {{ params.classes if params.classes }} {{ 'hmrc-header--with-additional-navigation' if params.signOutHref or params.languageToggle }}" data-module="govuk-header"
           {%- for attribute, value in params.attributes %} {{attribute}}="{{value}}"{% endfor %}>
     <div class="govuk-header__container {{ params.containerClasses | default('govuk-width-container') }}">
       <div class="govuk-header__logo">

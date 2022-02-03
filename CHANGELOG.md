@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.4.0] - 2022-02-03
+
+### Fixed
+
+- Fixed mobile dropdown behaviour of hmrc header with navigation items
+
 ## [4.3.0] - 2022-01-27
 
 ### Fixed

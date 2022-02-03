@@ -236,6 +236,27 @@ examples:
       - href: '#3'
         text: Navigation item 3
 
+- name: full width with navigation and menu open on mobile
+  data:
+    containerClasses: govuk-header__container--full-width
+    navigationClasses: govuk-header__navigation--end
+    productName: Product Name
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+  visualRegressionTests:
+    backstopScenarioOptions:
+      viewports:
+        - label: phone
+          width: 320
+          height: 480
+      clickSelector: ".govuk-header__menu-button"
+
 - name: navigation item with html
   data:
     serviceName: Service Name
