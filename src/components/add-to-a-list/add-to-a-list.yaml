@@ -101,3 +101,50 @@ examples:
         changeUrl: '#c2url'
         removeUrl: '#r2url'
     formAction: '#addItem'
+
+- name: multiple-long-items-at-default-item-size
+  data:
+    itemType:
+      singular: director
+      plural: directors
+    itemList:
+      - name: Director One
+        changeUrl: '#change-item-1'
+        removeUrl: '#remove-item-1'
+      - name: Barnaby Marmaduke Aloysius Benjy Cobweb Dartagnan Egbert Felix Gaspar Humbert Ignatius Jayden Kasper Leroy Maximilian Neddy Obiajulu Pepin Quilliam Rosencrantz Sexton Teddy Upwood Vivatma Wayland Xylon Yardley Zachary Usansky
+        changeUrl: '#change-item-2'
+        removeUrl: '#remove-item-2'
+    hintText: You must tell us about all your directors
+    formAction: '#add-director'
+
+- name: multiple-long-items-at-short-item-size
+  data:
+    itemType:
+      singular: director
+      plural: directors
+    itemSize: short
+    itemList:
+      - name: Director One
+        changeUrl: '#change-item-1'
+        removeUrl: '#remove-item-1'
+      - name: Barnaby Marmaduke Aloysius Benjy Cobweb Dartagnan Egbert Felix Gaspar Humbert Ignatius Jayden Kasper Leroy Maximilian Neddy Obiajulu Pepin Quilliam Rosencrantz Sexton Teddy Upwood Vivatma Wayland Xylon Yardley Zachary Usansky
+        changeUrl: '#change-item-2'
+        removeUrl: '#remove-item-2'
+    hintText: You must tell us about all your directors
+    formAction: '#add-director'
+
+- name: multiple-long-items-at-long-item-size
+  data:
+    itemType:
+      singular: director
+      plural: directors
+    itemSize: long
+    itemList:
+      - name: Director One
+        changeUrl: '#change-item-1'
+        removeUrl: '#remove-item-1'
+      - name: Barnaby Marmaduke Aloysius Benjy Cobweb Dartagnan Egbert Felix Gaspar Humbert Ignatius Jayden Kasper Leroy Maximilian Neddy Obiajulu Pepin Quilliam Rosencrantz Sexton Teddy Upwood Vivatma Wayland Xylon Yardley Zachary Usansky
+        changeUrl: '#change-item-2'
+        removeUrl: '#remove-item-2'
+    hintText: You must tell us about all your directors
+    formAction: '#add-director'
