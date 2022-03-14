@@ -35,7 +35,7 @@ params:
   - name: href
     type: string
     required: false
-    description: Url of the navigation item anchor. Both `href` and `text` attributes for navigation items need to be provided to create an item.
+    description: Url of the navigation item anchor.
   - name: active
     type: boolean
     required: false
@@ -269,6 +269,26 @@ examples:
         html: <em>Navigation item 2</em>
       - href: '#3'
         html: <em>Navigation item 3</em>
+
+- name: navigation item with text without link
+  data:
+    serviceName: Service Name
+    serviceUrl: '/components/header'
+    navigation:
+      - text: Navigation item 1
+      - text: Navigation item 2
+      - text: Navigation item 3
+
+- name: navigation item with html without link
+  hidden: true
+  data:
+    serviceName: Service Name
+    serviceUrl: '/components/header'
+    navigation:
+      - html: <em>Navigation item 1</em>
+        active: true
+      - html: <em>Navigation item 2</em>
+      - html: <em>Navigation item 3</em>
 
 - name: sign out link
   data:
