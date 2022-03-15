@@ -7,14 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.7.0] - 2022-03-15
+
+### Changed
+
+- Removed exemptions no longer needed for LDS from repository.yaml
+
 ## [4.6.0] - 2022-03-14
 
 ### Changed
 
 - Updated hmrc header to allow header navigation items without links, and changed how fallback logo is reached 
   (in line with govuk-frontend header)
-
-
+  
 ## [4.5.0] - 2022-02-09
 
 ### Changed
