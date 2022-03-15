@@ -139,6 +139,20 @@ describe('header', () => {
       expect($navigationLink.html()).toContain('<em>Nav item</em>');
     });
 
+    it('renders navigation item with text without a link', () => {
+      const $ = render('header', examples['navigation item with text without link']);
+
+      const $navigationItem = $('.govuk-header__navigation-item');
+      expect($navigationItem.html().trim()).toEqual('Navigation item 1');
+    });
+
+    it('renders navigation item with html without a link', () => {
+      const $ = render('header', examples['navigation item with html without link']);
+
+      const $navigationItem = $('.govuk-header__navigation-item');
+      expect($navigationItem.html()).toContain('<em>Navigation item 1</em>');
+    });
+
     it('renders navigation item anchor with attributes', () => {
       const $ = render('header', {
         navigation: [
@@ -157,6 +171,7 @@ describe('header', () => {
       expect($navigationLink.attr('data-attribute')).toEqual('my-attribute');
       expect($navigationLink.attr('data-attribute-2')).toEqual('my-attribute-2');
     });
+
     it('renders navigation the same with different empty values', () => {
       function overrideItemList(navigation) {
         const params = { ...examples.default };
@@ -195,13 +210,8 @@ describe('header', () => {
     describe('fallback PNG', () => {
       const $fallbackImage = $('.govuk-header__logotype-crown-fallback-image');
 
-      it('uses the <image> tag which is a valid SVG element', () => {
-        expect($fallbackImage[0].tagName).toEqual('image');
-      });
-
-      it('sets a blank xlink:href to prevent IE from downloading both the SVG and the PNG', () => {
-        // Cheerio converts xhref to href - https://github.com/cheeriojs/cheerio/issues/1101
-        expect($fallbackImage.attr('href')).toEqual('');
+      it('is invisible to modern browsers', () => {
+        expect($fallbackImage.length).toEqual(0);
       });
     });
   });
