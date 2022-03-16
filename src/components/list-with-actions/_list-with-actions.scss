@@ -4,22 +4,35 @@
 
 .hmrc-list-with-actions {
   @include govuk-font($size: 19);
-}
 
-// Kept for backward compatibility with add-to-a-list
-.hmrc-list-with-actions--short {
   @include govuk-media-query($from: desktop) {
+    .hmrc-summary-list__key {
+      width: 50%;
+    }
+
+    .hmrc-summary-list__actions {
+      width: 50%;
+    }
+
     .hmrc-list-with-actions__name {
-      width: 30%;
+      width: 50%;
     }
   }
 }
 
 // Kept for backward compatibility with add-to-a-list
-.hmrc-list-with-actions--long {
+.hmrc-list-with-actions--short {
   @include govuk-media-query($from: desktop) {
+    .hmrc-summary-list__key {
+      width: 30%;
+    }
+
+    .hmrc-summary-list__actions {
+      width: 70%;
+    }
+
     .hmrc-list-with-actions__name {
-      width: 50%;
+      width: 30%;
     }
   }
 }

@@ -2,67 +2,71 @@
 
 exports[`Add to a list should be rendered using a structure accessible for JAWS users 1`] = `
 
-<div class="hmrc-list-with-actions__item">
-  <dt class="hmrc-list-with-actions__name">
+<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key govuk-!-font-weight-regular hmrc-summary-list__key">
     Director One
   </dt>
-  <div class="hmrc-list-with-actions__actions">
-    <dd class="hmrc-list-with-actions__action">
-      <a class="govuk-link"
-         href="#change-item-1"
-      >
-        <span aria-hidden="true">
-          Change
-        </span>
-        <span class="govuk-visually-hidden">
-          Change Director One
-        </span>
-      </a>
-    </dd>
-    <dd class="hmrc-list-with-actions__action">
-      <a class="govuk-link"
-         href="#remove-item-1"
-      >
-        <span aria-hidden="true">
-          Remove
-        </span>
-        <span class="govuk-visually-hidden">
-          Remove Director One from the list
-        </span>
-      </a>
-    </dd>
-  </div>
+  <dd class="govuk-summary-list__actions hmrc-summary-list__actions">
+    <ul class="govuk-summary-list__actions-list">
+      <li class="govuk-summary-list__actions-list-item">
+        <a class="govuk-link"
+           href="#change-item-1"
+        >
+          <span aria-hidden="true">
+            Change
+          </span>
+          <span class="govuk-visually-hidden">
+            Change Director One
+          </span>
+        </a>
+      </li>
+      <li class="govuk-summary-list__actions-list-item">
+        <a class="govuk-link"
+           href="#remove-item-1"
+        >
+          <span aria-hidden="true">
+            Remove
+          </span>
+          <span class="govuk-visually-hidden">
+            Remove Director One from the list
+          </span>
+        </a>
+      </li>
+    </ul>
+  </dd>
 </div>
-<div class="hmrc-list-with-actions__item">
-  <dt class="hmrc-list-with-actions__name">
+<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key govuk-!-font-weight-regular hmrc-summary-list__key">
     Director Two
   </dt>
-  <div class="hmrc-list-with-actions__actions">
-    <dd class="hmrc-list-with-actions__action">
-      <a class="govuk-link"
-         href="#change-item-2"
-      >
-        <span aria-hidden="true">
-          Change
-        </span>
-        <span class="govuk-visually-hidden">
-          Change Director Two
-        </span>
-      </a>
-    </dd>
-    <dd class="hmrc-list-with-actions__action">
-      <a class="govuk-link"
-         href="#remove-item-2"
-      >
-        <span aria-hidden="true">
-          Remove
-        </span>
-        <span class="govuk-visually-hidden">
-          Remove Director Two from the list
-        </span>
-      </a>
-    </dd>
-  </div>
+  <dd class="govuk-summary-list__actions hmrc-summary-list__actions">
+    <ul class="govuk-summary-list__actions-list">
+      <li class="govuk-summary-list__actions-list-item">
+        <a class="govuk-link"
+           href="#change-item-2"
+        >
+          <span aria-hidden="true">
+            Change
+          </span>
+          <span class="govuk-visually-hidden">
+            Change Director Two
+          </span>
+        </a>
+      </li>
+      <li class="govuk-summary-list__actions-list-item">
+        <a class="govuk-link"
+           href="#remove-item-2"
+        >
+          <span aria-hidden="true">
+            Remove
+          </span>
+          <span class="govuk-visually-hidden">
+            Remove Director Two from the list
+          </span>
+        </a>
+      </li>
+    </ul>
+  </dd>
 </div>
 
 `;

@@ -68,11 +68,26 @@ consistent with CI. To run the tests,
 npm run test:backstop
 ```
 
+#### Caveat
+If you're running a Linux OS you may need to configure the `BACKSTOP_TEST_HOST` environment variable for the docker container used by BackstopJS.
+To do this and run the BackstopJS tests in one command, you can run the following command
+
+```shell
+env BACKSTOP_TEST_HOST={your local machines ip address} npm run test:backstop 
+```
+
 On completion, Backstop will emit the results as an HTML report in `/backstop_data/hmrc_report`.  If a failure is the
 result of a known change to the component, the reference images can be updated by running,
 
 ```shell script
 npm run test:backstop-approve
+```
+
+NOTE: If you run into a problem where some of your visual regression tests are failing due to unrelated changes, for instance on screens you may not have touched or updated.
+You may want to delete the `node_modules` folder from the root of the project and then re-run command
+
+```shell
+npm install
 ```
 
 All examples of components will be checked by backstop. You can adjust the backstop configuration for a component or a
