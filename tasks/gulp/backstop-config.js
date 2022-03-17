@@ -86,4 +86,9 @@ module.exports = ({ host, port, components }) => ({
   asyncCompareLimit: 50,
   debug: false,
   debugWindow: false,
+  misMatchThreshold: 0,
+  resembleOutputOptions: {
+    ignoreAntialiasing: true,
+    usePreciseMatching: true,
+  },
 });

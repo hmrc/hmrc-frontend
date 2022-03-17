@@ -1,7 +1,5 @@
 .hmrc-language-select {
-  @include govuk-typography-responsive($size: 16);
-  @include govuk-link-common;
-  @include govuk-link-style-text;
+  @include govuk-font($size: 16);
   @include govuk-clearfix;
 }
 
