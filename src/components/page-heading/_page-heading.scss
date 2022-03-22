@@ -1,18 +1,21 @@
 .hmrc-page-heading {
   display: table;
   width: 100%;
-  margin-top: govuk-em(60, 32);
-  margin-bottom: govuk-em(30, 32);
   padding-top: 8px;
   clear: both;
   table-layout: fixed;
 
+  .hmrc-caption {
+    display: table-header-group;
+  }
+}
+
+.hmrc-page-heading--with-margin {
+  margin-top: govuk-em(60, 32);
+  margin-bottom: govuk-em(30, 32);
+
   @include govuk-media-query($from: tablet) {
     margin-top: govuk-em(90, 48);
     margin-bottom: govuk-em(60, 48);
-  }
-
-  .hmrc-caption-xl {
-    display: table-header-group;
   }
 }

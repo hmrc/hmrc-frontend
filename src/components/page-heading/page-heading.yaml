@@ -11,11 +11,27 @@ params:
   type: string
   required: false
   description: The text content that will be displayed in the subsection caption if provided
+- name: headingClasses
+  type: string
+  required: false
+  description: Custom css styling for the h1 element
+- name: captionClasses
+  type: string
+  required: false
+  description: Custom css styling for the subsection caption if provided
+- name: classes
+  type: string
+  required: false
+  description: Custom css styling for the header element
 
 examples:
 - name: default
   data:
     text: "What is your name?"
+- name: header-with-custom-css
+  data:
+    text: "What is your name?"
+    classes: hmrc-page-heading--with-margin
 - name: with-section
   data:
     text: "What is your name?"
@@ -25,3 +41,14 @@ examples:
     language: cy
     text: "Beth yw dy enw?"
     section: "Manylion personol"
+- name: with-custom-heading-css
+  data:
+    language: en
+    text: "What is your name?"
+    headingClasses: govuk-heading-xl custom-heading-css
+- name: with-section-and-custom-caption-css
+  data:
+    language: en
+    text: "What is your name?"
+    section: "Personal details"
+    captionClasses: govuk-caption-xl custom-caption-css
