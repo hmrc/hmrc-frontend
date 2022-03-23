@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.8.0] - 2022-03-17
+
+### Changed
+
+- resolving some issues reported by npm audit:
+  - updated backstop (visual regression testing, so that's what's caused the slight difference in some text rendering and updated backstop screenshots)
+  - update standard (linter)
+  - updated node-sass
+- removed extraneous underline that could appear in language select in hmrc-header
+
 ## [4.7.0] - 2022-03-15
 
 ### Changed
