@@ -63,3 +63,120 @@ examples:
       serviceUrl: '/the-service'
       containerClasses: 'the-header-container-classes govuk-width-container'
       classes: 'the-header-classes'
+
+- name: link-states-on-desktop
+  data:
+    hmrcAccountHeader:
+      serviceName: 'My Service'
+      displayHmrcBanner: true
+      accountHome:
+        href: '/account/home'
+        active: true
+      messages:
+        href: '/messages/href'
+        messageCount: '30'
+      checkProgress:
+        href: '/checkProgress'
+      paperlessSettings:
+        href: '/paperless/settings'
+      personalDetails:
+        href: '/personalDetails'
+      signOut:
+        href: '?signOut=true'
+      language: 'en'
+      languageToggle:
+        en:
+          href: '/components/account-header/with-service-name/preview'
+        cy:
+          href: '/components/account-header/welsh-with-service-name/preview'
+      homepageUrl: '/the-homepage'
+      serviceUrl: '/the-service'
+      containerClasses: 'the-header-container-classes govuk-width-container'
+      classes: 'the-header-classes'
+  visualRegressionTests:
+    backstopScenarioOptions:
+      viewports:
+        - label: tablet
+          width: 1024
+          height: 768
+    alternateStates:
+      account-menu-account-home-hovered:
+        beforeTakingScreenshot:
+          - hover: ".hmrc-account-menu__link--home"
+      account-menu-account-home-focused:
+        beforeTakingScreenshot:
+          - focus: ".hmrc-account-menu__link--home"
+      account-menu-messages-hovered:
+        beforeTakingScreenshot:
+          - hover: ".hmrc-account-menu__link[href='/messages/href']"
+      account-menu-messages-focused:
+        beforeTakingScreenshot:
+          - focus: ".hmrc-account-menu__link[href='/messages/href']"
+      language-select-current-lang-focused-and-alternate-lang-hovered:
+        beforeTakingScreenshot:
+          - focus: ".hmrc-language-select a[lang='en']"
+          - hover: ".hmrc-language-select a[lang='cy']"
+      language-select-alternate-lang-focused-and-current-lang-hovered:
+        beforeTakingScreenshot:
+          - focus: ".hmrc-language-select a[lang='cy']"
+          - hover: ".hmrc-language-select a[lang='en']"
+
+- name: link-states-on-mobile
+  data:
+    hmrcAccountHeader:
+      serviceName: 'My Service'
+      displayHmrcBanner: true
+      accountHome:
+        href: '/account/home'
+        active: true
+      messages:
+        href: '/messages/href'
+        messageCount: '30'
+      checkProgress:
+        href: '/checkProgress'
+      paperlessSettings:
+        href: '/paperless/settings'
+      personalDetails:
+        href: '/personalDetails'
+      signOut:
+        href: '?signOut=true'
+      language: 'en'
+      languageToggle:
+        en:
+          href: '/components/account-header/with-service-name/preview'
+        cy:
+          href: '/components/account-header/welsh-with-service-name/preview'
+      homepageUrl: '/the-homepage'
+      serviceUrl: '/the-service'
+      containerClasses: 'the-header-container-classes govuk-width-container'
+      classes: 'the-header-classes'
+  visualRegressionTests:
+    backstopScenarioOptions:
+      viewports:
+        - label: phone
+          width: 320
+          height: 480
+    alternateStates:
+      account-menu-account-home-hovered:
+        beforeTakingScreenshot:
+          - hover: ".hmrc-account-menu__link--home"
+      account-menu-account-home-focused:
+        beforeTakingScreenshot:
+          - focus: ".hmrc-account-menu__link--home"
+      account-menu-dropdown-hovered:
+        beforeTakingScreenshot:
+          - hover: ".hmrc-account-menu__link[aria-expanded='false']"
+      account-menu-dropdown-focused:
+        beforeTakingScreenshot:
+          - focus: ".hmrc-account-menu__link[aria-expanded='false']"
+      account-menu-dropdown-open:
+        beforeTakingScreenshot:
+          - click: ".hmrc-account-menu__link[aria-expanded='false']"
+      account-menu-dropdown-open-messages-hovered:
+        beforeTakingScreenshot:
+          - click: ".hmrc-account-menu__link[aria-expanded='false']"
+          - hover: ".hmrc-account-menu__link[href='/messages/href']"
+      account-menu-dropdown-open-messages-focused:
+        beforeTakingScreenshot:
+          - click: ".hmrc-account-menu__link[aria-expanded='false']"
+          - focus: ".hmrc-account-menu__link[href='/messages/href']"
