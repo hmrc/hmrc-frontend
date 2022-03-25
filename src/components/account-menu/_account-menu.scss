@@ -84,28 +84,28 @@ $hmrc-transition-type: "all";
 
   &:hover,
   &:focus {
+    outline: none;
     border-bottom-width: 4px;
     border-bottom-style: solid;
-    color: govuk-colour("light-blue");
-  }
-
-  &:hover {
-    border-bottom-color: govuk-colour("light-grey");
+    color: $govuk-link-hover-colour;
+    border-bottom-color: $govuk-link-hover-colour;
   }
 
   &:focus {
-    border-bottom-color: $govuk-focus-colour;
-    background-color: transparent;
+    background-color: $govuk-focus-colour;
+    color: $govuk-focus-text-colour;
+  }
+
+  .hmrc-notification-badge {
+    // otherwise the line height is slightly larger than the menu items and we
+    // get a small gap under menu items without a notification badge.
+    line-height: inherit;
   }
 }
 
 .is-smaller .hmrc-account-menu__link {
   padding-left: 10px;
   color: govuk-colour("black");
-
-  &:hover {
-    color: govuk-colour("black");
-  }
 }
 
 .hmrc-account-menu__link--home {
@@ -117,27 +117,6 @@ $hmrc-transition-type: "all";
 .is-smaller .hmrc-account-menu__link--home,
 .is-smaller .hmrc-account-menu__link--menu {
   padding-left: 0;
-
-  &:hover {
-    border-bottom-color: transparent;
-  }
-
-  &:focus {
-    border-bottom-color: $hmrc-account-menu-yellow-1;
-    color: govuk-colour("light-blue");
-  }
-
-  &.hmrc-account-menu__link--active {
-    &:hover {
-      border-bottom-color: $govuk-brand-colour;
-      color: govuk-colour("black");
-    }
-
-    &:focus {
-      border-bottom-color: $hmrc-account-menu-yellow-1;
-      color: govuk-colour("light-blue");
-    }
-  }
 }
 
 .hmrc-account-menu__link--menu {
@@ -211,6 +190,7 @@ $hmrc-transition-type: "all";
 
     .hmrc-account-menu__link {
       border-bottom: 0;
+      display: block;
 
       &:hover {
         border-bottom: 0;
