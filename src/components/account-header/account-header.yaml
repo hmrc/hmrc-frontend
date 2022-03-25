@@ -47,10 +47,6 @@ examples:
         messageCount: '30'
       checkProgress:
         href: '/checkProgress'
-      paperlessSettings:
-        href: '/paperless/settings'
-      personalDetails:
-        href: '/personalDetails'
       signOut:
         href: '?signOut=true'
       language: 'en'
@@ -77,10 +73,6 @@ examples:
         messageCount: '30'
       checkProgress:
         href: '/checkProgress'
-      paperlessSettings:
-        href: '/paperless/settings'
-      personalDetails:
-        href: '/personalDetails'
       signOut:
         href: '?signOut=true'
       language: 'en'
@@ -134,10 +126,6 @@ examples:
         messageCount: '30'
       checkProgress:
         href: '/checkProgress'
-      paperlessSettings:
-        href: '/paperless/settings'
-      personalDetails:
-        href: '/personalDetails'
       signOut:
         href: '?signOut=true'
       language: 'en'
@@ -177,6 +165,50 @@ examples:
           - click: ".hmrc-account-menu__link[aria-expanded='false']"
           - hover: ".hmrc-account-menu__link[href='/messages/href']"
       account-menu-dropdown-open-messages-focused:
+        beforeTakingScreenshot:
+          - click: ".hmrc-account-menu__link[aria-expanded='false']"
+          - focus: ".hmrc-account-menu__link[href='/messages/href']"
+
+- name: link-states-on-mobile-with-dropdown-link-active
+  data:
+    hmrcAccountHeader:
+      serviceName: 'My Service'
+      displayHmrcBanner: true
+      accountHome:
+        href: '/account/home'
+      messages:
+        href: '/messages/href'
+        messageCount: '30'
+        active: true
+      checkProgress:
+        href: '/checkProgress'
+      signOut:
+        href: '?signOut=true'
+      language: 'en'
+      languageToggle:
+        en:
+          href: '/components/account-header/with-service-name/preview'
+        cy:
+          href: '/components/account-header/welsh-with-service-name/preview'
+      homepageUrl: '/the-homepage'
+      serviceUrl: '/the-service'
+      containerClasses: 'the-header-container-classes govuk-width-container'
+      classes: 'the-header-classes'
+  visualRegressionTests:
+    backstopScenarioOptions:
+      viewports:
+        - label: phone
+          width: 320
+          height: 480
+    alternateStates:
+      account-menu-dropdown-open:
+        beforeTakingScreenshot:
+          - click: ".hmrc-account-menu__link[aria-expanded='false']"
+      account-menu-dropdown-open-active-link-hovered:
+        beforeTakingScreenshot:
+          - click: ".hmrc-account-menu__link[aria-expanded='false']"
+          - hover: ".hmrc-account-menu__link[href='/messages/href']"
+      account-menu-dropdown-open-active-link-focused:
         beforeTakingScreenshot:
           - click: ".hmrc-account-menu__link[aria-expanded='false']"
           - focus: ".hmrc-account-menu__link[href='/messages/href']"
