@@ -31,13 +31,11 @@ $govuk-header-link-underline-thickness: 3px;
     .govuk-list {
       margin-bottom: 0;
 
-      a {
-        color: govuk-colour("white");
+      a:not(.govuk-header__link) {
+        @include govuk-font($size: 16, $weight: "bold");
 
-        &:not(.govuk-header__link) {
-          color: govuk-colour("mid-grey");
-          text-decoration: none;
-        }
+        color: govuk-colour("mid-grey");
+        text-decoration: none;
       }
     }
 
