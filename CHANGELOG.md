@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.9.0] - 2022-03-25
+
+### Changed
+
+- hmrcAccountMenu link styles changed to improve contrast to meet accessibility requirements
+- hmrcHeader link styles for language switcher changed to improve contrast to meet accessibility requirements
+
 ## [4.8.0] - 2022-03-17
 
 ### Changed
