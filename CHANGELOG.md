@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [4.9.1] - 2022-03-25
+
+### Changed
+
+- Removed padding around page-heading component
+  - Added ability to add headingClasses for h1 element
+  - Added ability to add captionClasses subsection element
+  
 ## [4.9.0] - 2022-03-25
 
 ### Changed
