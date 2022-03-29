@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.0.0] - 2022-03-28
+
+### Changed
+
+- Updated list-with-actions component to use govuk summary list under the hood
+
 ## [4.9.1] - 2022-03-25
 
 ### Changed

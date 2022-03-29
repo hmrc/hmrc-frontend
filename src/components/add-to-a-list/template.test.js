@@ -5,13 +5,13 @@ import { render, getExamples } from '../../../lib/jest-helpers';
 const examples = getExamples('add-to-a-list');
 
 const getTableItems = ($) => {
-  const $rows = $('.hmrc-list-with-actions__item');
-  const $changeLinks = $('.hmrc-list-with-actions__action:first-of-type', $rows);
-  const $removeLinks = $('.hmrc-list-with-actions__action:last-of-type', $rows);
+  const $rows = $('.hmrc-list-with-actions');
+  const $changeLinks = $('.govuk-summary-list__actions-list-item:first-of-type', $rows);
+  const $removeLinks = $('.govuk-summary-list__actions-list-item:last-of-type', $rows);
 
   const listItems = {};
   listItems.identifiers = [];
-  $('.hmrc-list-with-actions__name', $rows).each((index, element) => {
+  $('.govuk-summary-list__key', $rows).each((index, element) => {
     listItems.identifiers.push($(element).text().trim());
   });
   listItems.changeLinkText = $changeLinks.find('[aria-hidden="true"]').eq(0).text().trim();
@@ -61,7 +61,7 @@ describe('Add to a list', () => {
   describe('with one item', () => {
     const $ = render('add-to-a-list', examples['single-generic-item']);
     const $heading = $('h1');
-    const $rows = $('.hmrc-list-with-actions__item');
+    const $rows = $('.govuk-summary-list__row');
 
     it('has the correct text for 1 item', () => {
       expect($heading.text()).toBe('You have added 1 item');
@@ -82,7 +82,7 @@ describe('Add to a list', () => {
   describe('with one item in welsh', () => {
     const $ = render('add-to-a-list', examples['single-generic-welsh-item']);
     const $heading = $('h1');
-    const $rows = $('.hmrc-list-with-actions__item');
+    const $rows = $('.hmrc-list-with-actions');
 
     it('Has the correct singular welsh heading', () => {
       expect($heading.text()).toBe('Rydych wedi ychwanegu 1 eitem');
@@ -103,7 +103,7 @@ describe('Add to a list', () => {
   describe('with two named items', () => {
     const $ = render('add-to-a-list', examples['multiple-specific-items']);
     const $heading = $('h1');
-    const $rows = $('.hmrc-list-with-actions__item');
+    const $rows = $('.hmrc-list-with-actions');
     const $legend = $('fieldset legend');
     const $form = $('form');
     it('Uses "directors" as the plural item name', () => {
@@ -115,11 +115,11 @@ describe('Add to a list', () => {
     });
 
     it('Contains a list of 2 directors', () => {
-      const $identifiers = $('.hmrc-list-with-actions__name', $rows);
-      const $changeLinks = $('.hmrc-list-with-actions__action:first-of-type .govuk-visually-hidden', $rows);
-      const $removeLinks = $('.hmrc-list-with-actions__action:last-of-type .govuk-visually-hidden', $rows);
+      const $identifiers = $('.govuk-summary-list__key', $rows);
+      const $changeLinks = $('.govuk-summary-list__actions-list-item:first-of-type .govuk-visually-hidden', $rows);
+      const $removeLinks = $('.govuk-summary-list__actions-list-item:last-of-type .govuk-visually-hidden', $rows);
 
-      expect($rows.length).toBe(2);
+      expect($rows.children().length).toBe(2);
       expect($identifiers.eq(0).text()).toContain('Director One');
       expect($changeLinks.eq(0).text()).toContain('Change Director One');
       // TODO: add test for the change url
@@ -143,7 +143,7 @@ describe('Add to a list', () => {
   describe('with two unnamed items in Welsh', () => {
     const $ = render('add-to-a-list', examples['multiple-generic-welsh-items']);
     const $heading = $('h1');
-    const $rows = $('.hmrc-list-with-actions__item');
+    const $rows = $('.hmrc-list-with-actions');
     const $legend = $('fieldset legend');
     const $form = $('form');
     it('Uses "o eitemau" as the plural item name', () => {
@@ -155,11 +155,11 @@ describe('Add to a list', () => {
     });
 
     it('Contains a list of 2 items', () => {
-      const $identifiers = $('.hmrc-list-with-actions__name', $rows);
-      const $changeLinks = $('.hmrc-list-with-actions__action:first-of-type .govuk-visually-hidden', $rows);
-      const $removeLinks = $('.hmrc-list-with-actions__action:last-of-type .govuk-visually-hidden', $rows);
+      const $identifiers = $('.govuk-summary-list__key', $rows);
+      const $changeLinks = $('.govuk-summary-list__actions-list-item:first-of-type .govuk-visually-hidden', $rows);
+      const $removeLinks = $('.govuk-summary-list__actions-list-item:last-of-type .govuk-visually-hidden', $rows);
 
-      expect($rows.length).toBe(2);
+      expect($rows.children().length).toBe(2);
       expect($identifiers.eq(0).text()).toContain('Eitem un');
       expect($changeLinks.eq(0).text()).toContain('Newid Eitem un');
       // TODO: add test for the change url

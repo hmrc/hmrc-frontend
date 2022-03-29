@@ -49,7 +49,7 @@ describe('List with actions', () => {
         const $ = render('list-with-actions', examples.default);
 
         const $component = $('.hmrc-list-with-actions');
-        const $name = $component.find('.hmrc-list-with-actions__item:first-child .hmrc-list-with-actions__name');
+        const $name = $component.find('.govuk-summary-list__row:first-child .govuk-summary-list__key');
 
         expect($name.html().trim()).toBe('Sydney Russell');
       });
@@ -58,7 +58,7 @@ describe('List with actions', () => {
         const $ = render('list-with-actions', examples['name with html']);
 
         const $component = $('.hmrc-list-with-actions');
-        const $name = $component.find('dt.hmrc-list-with-actions__name');
+        const $name = $component.find('dt.govuk-summary-list__key');
 
         expect($name.html().trim()).toBe('<span>email@email.com</span>');
       });
@@ -69,7 +69,7 @@ describe('List with actions', () => {
         const $ = render('list-with-actions', examples['actions href']);
 
         const $component = $('.hmrc-list-with-actions');
-        const $actionLink = $component.find('.hmrc-list-with-actions__action > a');
+        const $actionLink = $component.find('.govuk-summary-list__actions > a');
 
         expect($actionLink.attr('href')).toBe('https://www.gov.uk');
       });
@@ -78,16 +78,16 @@ describe('List with actions', () => {
         const $ = render('list-with-actions', examples['with actions']);
 
         const $component = $('.hmrc-list-with-actions');
-        const $actionLink = $component.find('.hmrc-list-with-actions__item:last-child .hmrc-list-with-actions__action:last-child span[aria-hidden]');
+        const $actionLink = $component.find('.govuk-summary-list__row:last-child .govuk-summary-list__actions :last-child span[aria-hidden]');
 
-        expect($actionLink.text().trim()).toBe('Change');
+        expect($actionLink.text().trim()).toBe('EditChange');
       });
 
       it('renders html', async () => {
         const $ = render('list-with-actions', examples['actions with html']);
 
         const $component = $('.hmrc-list-with-actions');
-        const $actionLink = $component.find('.hmrc-list-with-actions__action > a');
+        const $actionLink = $component.find('.govuk-summary-list__actions  > a');
 
         expect($actionLink.html().trim()).toBe('Edit<span class="visually-hidden"> name</span>');
       });
@@ -96,15 +96,15 @@ describe('List with actions', () => {
         const $ = render('list-with-actions', examples['with actions']);
 
         const $component = $('.hmrc-list-with-actions');
-        const $actionLink = $component.find('.hmrc-list-with-actions__item:last-child .hmrc-list-with-actions__action:last-child span.govuk-visually-hidden');
-        expect($actionLink.text().trim()).toBe('Change Pears');
+        const $actionLink = $component.find('.govuk-summary-list__row:last-child .govuk-summary-list__actions :last-child span.govuk-visually-hidden');
+        expect($actionLink.text().trim()).toBe('Edit PearsChange Pears');
       });
 
       it('renders attributes', async () => {
         const $ = render('list-with-actions', examples['actions with attributes']);
 
         const $component = $('.hmrc-list-with-actions');
-        const $actionLink = $component.find('.hmrc-list-with-actions__action > a');
+        const $actionLink = $component.find('.govuk-summary-list__actions  > a');
 
         expect($actionLink.attr('data-test-attribute')).toEqual('value');
         expect($actionLink.attr('data-test-attribute-2')).toEqual('value-2');
@@ -114,7 +114,7 @@ describe('List with actions', () => {
         const $ = render('list-with-actions', examples['actions with classes']);
 
         const $component = $('.hmrc-list-with-actions');
-        const $action = $component.find('.hmrc-list-with-actions__action > a');
+        const $action = $component.find('.govuk-summary-list__actions  > a');
 
         expect($action.hasClass('govuk-link--no-visited-state')).toBeTruthy();
       });
@@ -123,12 +123,25 @@ describe('List with actions', () => {
         const $ = render('list-with-actions', examples.default);
 
         const $component = $('.hmrc-list-with-actions');
-        const $item = $component.find('.hmrc-list-with-actions__item:last-child');
-        const $actions = $item.find('.hmrc-list-with-actions__action > a > span[aria-hidden]');
+        const $item = $component.find('.govuk-summary-list__row:last-child');
+        const $actions = $item.find('.govuk-summary-list__actions-list > li > a > span[aria-hidden]');
 
         expect($actions.length).toBe(2);
         expect($actions.eq(0).text()).toBe('Change');
         expect($actions.eq(1).text()).toBe('Remove');
+      });
+
+      it('renders some actions', async () => {
+        const $ = render('list-with-actions', examples['with some actions']);
+
+        const $component = $('.hmrc-list-with-actions');
+
+        expect($component.children().length).toBe(3);
+
+        const $noActions = $component.find('.govuk-summary-list__row--no-actions');
+
+        expect($noActions.children().length).toBe(1);
+        expect($noActions.eq(0).text().trim()).toBe('Apples');
       });
     });
   });

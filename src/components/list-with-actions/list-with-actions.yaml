@@ -118,6 +118,26 @@ examples:
           - href: '#'
             text: Change
             visuallyHiddenText: Change Pears
+- name: with some actions
+  data:
+    items:
+      - name:
+          text: Oranges
+        actions:
+          - href: '#'
+            text: Edit
+            visuallyHiddenText: Edit Oranges
+          - href: '#'
+            text: Delete
+            visuallyHiddenText: Delete Oranges
+      - name:
+          text: Apples
+      - name:
+          text: Pears
+        actions:
+          - href: '#'
+            text: Eat
+            visuallyHiddenText: Eat Pears
 - name: custom class
   data:
     classes: app-custom-class
