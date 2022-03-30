@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.0.1] - 2022-03-30
+
+### Added
+
+- Expanded examples for list-with-actions component to add custom css for items and actions
+
 ## [5.0.0] - 2022-03-28
 
 ### Changed
