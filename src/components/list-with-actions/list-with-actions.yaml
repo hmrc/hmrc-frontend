@@ -20,6 +20,10 @@ params:
         type: string
         required: true
         description: If `text` is set, this is not required. HTML to use within the each name. If `html` is provided, the `text` argument will be ignored.
+      - name: classes
+        type: string
+        required: false
+        description: Classes added to the item row
       - name: actions
         type: array
         required: true
@@ -103,6 +107,8 @@ examples:
           - href: '#'
             text: Delete
             visuallyHiddenText: Delete Oranges
+            classes: custom-css-for-action
+        classes: custom-css-for-item
       - name:
           text: Apples
         actions:
