@@ -144,6 +144,9 @@ examples:
           - href: '#'
             text: Eat
             visuallyHiddenText: Eat Pears
+      - name:
+          text: Bananas
+        actions: []
 - name: custom class
   data:
     classes: app-custom-class
