@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.0.2] - 2022-03-31
+
+### Added
+
+- Fixed bug with the list-with-actions component which could not handle an empty array set on the actions
+
 ## [5.0.1] - 2022-03-30
 
 ### Added

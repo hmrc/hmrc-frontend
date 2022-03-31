@@ -136,12 +136,13 @@ describe('List with actions', () => {
 
         const $component = $('.hmrc-list-with-actions');
 
-        expect($component.children().length).toBe(3);
+        expect($component.children().length).toBe(4);
 
         const $noActions = $component.find('.govuk-summary-list__row--no-actions');
 
-        expect($noActions.children().length).toBe(1);
+        expect($noActions.children().length).toBe(2);
         expect($noActions.eq(0).text().trim()).toBe('Apples');
+        expect($noActions.eq(1).text().trim()).toBe('Bananas');
       });
     });
   });
