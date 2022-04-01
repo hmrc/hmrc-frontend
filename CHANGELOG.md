@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.0.3] - 2022-04-04
+
+### Added
+
+- Fixed Welsh translation of "opens in a new tab" in new-tab-link component
+
+
 ## [5.0.2] - 2022-03-31
 
 ### Added
