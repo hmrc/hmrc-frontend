@@ -46,7 +46,7 @@ describe('New Tab Link', () => {
 
       const labelText = $('.govuk-link').text().trim();
 
-      expect(labelText).toEqual('my link TEXT (yn agor ffenestr neu dab newydd)');
+      expect(labelText).toEqual('my link TEXT (yn agor tab newydd)');
     });
 
     it('renders link with custom classes', () => {
