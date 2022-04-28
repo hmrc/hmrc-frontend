@@ -21,7 +21,7 @@ describe('Account Menu', () => {
       const $accountHomeLink = $nav.find('a:contains("Account home")');
       const $messagesLink = $nav.find('a:contains("Messages")');
       const $progressLink = $nav.find('a:contains("Check progress")');
-      const $yourProfileLink = $nav.find('a:contains("Your profile")');
+      const $yourProfileLink = $nav.find('a:contains("Profile and settings")');
       const $signOutLink = $nav.find('a:contains("Sign out")');
 
       expect($nav).not.toBeNull();
@@ -40,7 +40,7 @@ describe('Account Menu', () => {
       const $accountHomeLink = $nav.find('a:contains("Account home")');
       const $messagesLink = $nav.find('a:contains("Messages")');
       const $progressLink = $nav.find('a:contains("Check progress")');
-      const $yourProfileLink = $nav.find('a:contains("Your profile")');
+      const $yourProfileLink = $nav.find('a:contains("Profile and settings")');
       const $businessTaxAccountLink = $nav.find('a:contains("Business tax account")');
       const $signOutLink = $nav.find('a:contains("Sign out")');
 
@@ -61,7 +61,7 @@ describe('Account Menu', () => {
       const $accountHomeLink = $nav.find('a:contains("Account home")');
       const $messagesLink = $nav.find('a:contains("Messages")');
       const $progressLink = $nav.find('a:contains("Check progress")');
-      const $yourProfileLink = $nav.find('a:contains("Your profile")');
+      const $yourProfileLink = $nav.find('a:contains("Profile and settings")');
       const $signOutLink = $nav.find('a:contains("Sign out")');
 
       expect($accountHomeLink.attr('href')).toEqual(example.accountHome.href);
