@@ -21,7 +21,8 @@
     "test:backstop": "gulp backstopTest",
     "test:backstop-approve": "gulp backstop:approve",
     "preinstall": "node check-compatibility.js",
-    "docs:generate-decision-log-listing": "adr-log -d ./docs/adr -i ./docs/adr/index.md -e template.md"
+    "docs:generate-decision-log-listing": "adr-log -d ./docs/adr -i ./docs/adr/index.md -e template.md",
+    "audit": "better-npm-audit audit"
   },
   "repository": {
     "type": "git",
@@ -45,6 +46,7 @@
     "govuk-frontend": "^4.0.1"
   },
   "devDependencies": {
+    "better-npm-audit": "^3.7.3",
     "@babel/preset-env": "^7.12.11",
     "adm-zip": "^0.5.5",
     "adr-log": "^2.2.0",
