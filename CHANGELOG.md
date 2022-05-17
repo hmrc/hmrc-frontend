@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.0.5] - 2022-05-17
+
+### Changed
+
+- Updated `user-research-banner` to have a `<h2>` header, rather than `<div>`, following accessibility audits
+
 ## [5.0.4] - 2022-04-04
 
 ### Changed
