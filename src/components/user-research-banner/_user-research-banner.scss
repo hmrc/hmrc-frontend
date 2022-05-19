@@ -32,6 +32,8 @@
 
   &__title {
     @include govuk-responsive-margin(1, "bottom");
+
+    color: govuk-colour("white");
   }
 
   &__link {
