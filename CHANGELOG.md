@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.0.6] - 2022-05-19
+
+### Changed
+
+- Updated `user-research-banner`, we've added extra visually-hidden text to the "No thanks" button to help users of
+  assistive technology more easily understand the purpose of the button and what will happen when it's used.
+
 ## [5.0.5] - 2022-05-17
 
 ### Changed
