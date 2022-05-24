@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.2.0] - 2022-05-26
+
+### Changed
+
+- Updated the `character-count` to match the changes made to the match version `govuk-frontend` v4.1.0 
+
 ## [5.1.0] - 2022-05-22
 
 ### Changed
