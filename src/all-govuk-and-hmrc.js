@@ -1,4 +1,4 @@
-import GOVUKFrontend from 'govuk-frontend';
+import GOVUKFrontend from 'govuk-frontend/govuk/all';
 import HMRCFrontend from './all';
 
 window.GOVUKFrontend = GOVUKFrontend;
