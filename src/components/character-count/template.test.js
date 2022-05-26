@@ -134,13 +134,6 @@ describe('Character count', () => {
       const $countMessage = $('.hmrc-character-count__message');
       expect($countMessage.hasClass('app-custom-count-message')).toBeTruthy();
     });
-
-    it('renders with aria live set to polite', () => {
-      const $ = render('character-count', examples.default);
-
-      const $countMessage = $('.hmrc-character-count__message');
-      expect($countMessage.attr('aria-live')).toEqual('polite');
-    });
   });
 
   describe('count message Welsh', () => {

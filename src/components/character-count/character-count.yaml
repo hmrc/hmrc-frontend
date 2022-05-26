@@ -281,6 +281,23 @@ examples:
       maxlength: 10
       label:
         text: Can you provide more detail?
+  - name: with id with special characters
+    data:
+      id: user1.profile[address]
+      name: address
+      maxlength: 10
+      label:
+        text: Full address
+  - name: with textarea maxlength attribute
+    hidden: true
+    data:
+      id: maxlength-should-be-removed
+      name: address
+      maxlength: 10
+      attributes:
+        maxlength: 10
+      label:
+        text: Full address
 
 visualRegressionTests:
   backstopScenarioOptions:

@@ -31,19 +31,13 @@
       {{ govukHint({
         text: 'Gallwch nodi hyd at ' + (params.maxlength or params.maxwords) + (' o eiriau' if params.maxwords else ' o gymeriadau'),
         id: params.id + '-info',
-        classes: 'hmrc-character-count__message' + (' ' + params.countMessage.classes if params.countMessage.classes),
-        attributes: {
-          'aria-live': 'polite'
-        }
+        classes: 'hmrc-character-count__message' + (' ' + params.countMessage.classes if params.countMessage.classes)
       }) }}
   {% else %}
       {{ govukHint({
         text: 'You can enter up to ' + (params.maxlength or params.maxwords) + (' words' if params.maxwords else ' characters'),
         id: params.id + '-info',
-        classes: 'hmrc-character-count__message' + (' ' + params.countMessage.classes if params.countMessage.classes),
-        attributes: {
-          'aria-live': 'polite'
-        }
+        classes: 'hmrc-character-count__message' + (' ' + params.countMessage.classes if params.countMessage.classes)
       }) }}
   {% endif %}
 </div>
