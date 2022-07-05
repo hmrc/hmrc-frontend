@@ -43,7 +43,7 @@
   },
   "homepage": "https://github.com/hmrc/hmrc-frontend#readme",
   "dependencies": {
-    "govuk-frontend": "^4.1.0"
+    "govuk-frontend": "^4.2.0"
   },
   "devDependencies": {
     "better-npm-audit": "^3.7.3",
