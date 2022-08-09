@@ -15,6 +15,7 @@ function TimeoutDialog($module) {
   let settings = {};
   const cleanupFunctions = [];
   let currentTimer;
+  const sessionActivityChannel = window.BroadcastChannel && new window.BroadcastChannel('hmrc-timeout-dialog');
 
   cleanupFunctions.push(() => {
     if (currentTimer) {
@@ -76,7 +77,25 @@ function TimeoutDialog($module) {
     validateInput(options);
     settings = mergeOptionsWithDefaults(options, localisedDefaults);
     setupDialogTimer();
+    broadcastSessionActivity();
+    listenForSessionActivityAndResetDialogTimer();
   }
+
+  const broadcastSessionActivity = () => {
+    if (sessionActivityChannel) {
+      sessionActivityChannel.postMessage(getDateNow());
+    }
+  };
+
+  const listenForSessionActivityAndResetDialogTimer = () => {
+    if (sessionActivityChannel) {
+      sessionActivityChannel.onmessage = (event) => {
+        const timeOfActivity = event.data;
+        cleanup();
+        setupDialogTimer(timeOfActivity);
+      };
+    }
+  };
 
   const validateInput = (config) => {
     const requiredConfig = ['timeout', 'countdown', 'keepAliveUrl', 'signOutUrl'];
@@ -113,8 +132,8 @@ function TimeoutDialog($module) {
     return clone;
   };
 
-  const setupDialogTimer = () => {
-    settings.signout_time = getDateNow() + settings.timeout * 1000;
+  const setupDialogTimer = (dateNow = getDateNow()) => {
+    settings.signout_time = dateNow + settings.timeout * 1000;
 
     const timeout = window.setTimeout(() => {
       setupDialog();
@@ -268,6 +287,7 @@ function TimeoutDialog($module) {
     cleanup();
     setupDialogTimer();
     utils.ajaxGet(settings.keepAliveUrl, () => {
+      broadcastSessionActivity();
     });
   };
 
