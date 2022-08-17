@@ -55,6 +55,10 @@ The build server also checks the code when running the tests.
 #### Unit tests
 Run tests to make sure they pass. If the existing tests do not apply to your code, write new ones.
 
+```shell script
+npm run test
+```
+
 #### Visual regression tests
 We are using [backstopJS](https://github.com/garris/BackstopJS) to perform visual regression testing. This renders 
 each page of the app in a headless Chrome browser and compares against known references. The reference images
