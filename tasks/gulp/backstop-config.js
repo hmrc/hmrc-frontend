@@ -90,7 +90,8 @@ module.exports = ({ host, port, components }) => ({
   misMatchThreshold: 0,
   dockerCommandTemplate: 'docker run --rm -it --network host --mount type=bind,source="{cwd}",target=/src backstopjs/backstopjs:{version} {backstopCommand} {args}',
   // workaround for Apple Silicon
-  // dockerCommandTemplate: 'docker run --rm -it --network host --mount type=bind,source="{cwd}",target=/src dockerman33/backstopjs:5.4.4 {backstopCommand} {args}',
+  // dockerCommandTemplate: 'docker run --rm -it --network host --mount type=bind,source="{cwd}",
+  // target=/src dockerman33/backstopjs:5.4.4 {backstopCommand} {args}',
   resembleOutputOptions: {
     ignoreAntialiasing: true,
     usePreciseMatching: true,
