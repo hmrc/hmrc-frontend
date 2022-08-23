@@ -52,7 +52,7 @@
     "ajv": "^6.12.2",
     "autoprefixer": "^9.6.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "backstopjs": "^6.0.4",
+    "backstopjs": "^6.1.1",
     "better-npm-audit": "^3.7.3",
     "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.10",
