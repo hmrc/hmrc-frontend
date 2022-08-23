@@ -4,5 +4,6 @@
   "1070415": "nth-check - devDependency, no risk given our usage",
   "1081699": "terser - devDependency, no risk given our usage",
   "1081884": "glob-parent - devDependency, no risk given our usage",
-  "1083176": "scss-tokenizer - devDependency, no risk given our usage"
+  "1083176": "scss-tokenizer - devDependency, no risk given our usage",
+  "1070022": "node-fetch - devDependency, no risk given our usage"
 }
