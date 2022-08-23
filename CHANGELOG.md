@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.5.0] - 2022-08-22
+
+### Changed
+
+- Updated [CONTRIBUTING.md](CONTRIBUTING.md) to document workaround for backstop.js testing on Apple Silicon
+
 ## [5.4.0] - 2022-08-17
 
 ### Changed
