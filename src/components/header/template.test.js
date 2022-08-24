@@ -58,6 +58,14 @@ describe('header', () => {
     expect($container.hasClass('app-width-container')).toBeTruthy();
   });
 
+  it('button for showing and hiding menu should contain hidden attribute', () => {
+    const $ = render('header', examples['navigation item with html']);
+
+    const $component = $('.govuk-header__menu-button');
+
+    expect($component.attr('hidden')).toBeTruthy();
+  });
+
   it('renders home page URL', () => {
     const $ = render('header', {
       homepageUrl: '/',
