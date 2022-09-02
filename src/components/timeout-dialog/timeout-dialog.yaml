@@ -5,6 +5,7 @@ examples:
     countdown: 74
     keepAliveUrl: "?abc=def"
     signOutUrl: "?ghi=jkl"
+    synchroniseTabs: true
 - name: long-delay-with-title
   data:
     title: "Example Timeout Dialog"
@@ -12,6 +13,7 @@ examples:
     countdown: 690
     keepAliveUrl: "?abc=def"
     signOutUrl: "?ghi=jkl"
+    synchroniseTabs: false
 - name: welsh-language
   data:
     language: "cy"
@@ -19,6 +21,7 @@ examples:
     countdown: 68
     keepAliveUrl: "?abc=def"
     signOutUrl: "?ghi=jkl"
+    synchroniseTabs: false
 - name: all-options-set
   data:
     timeout: 100
@@ -30,6 +33,7 @@ examples:
     messageSuffix : "there is a suffix for the message"
     keepAliveButtonText: "keepAliveButtonText"
     signOutButtonText: "signOutButtonText"
+    synchroniseTabs: false
   visualRegressionTests:
     backstopScenarioOptions:
       delay: 10000

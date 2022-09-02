@@ -3,6 +3,7 @@ import TimeoutDialog from './components/timeout-dialog/timeout-dialog';
 import UserResearchBanner from './components/user-research-banner/user-research-banner';
 import CharacterCount from './components/character-count/character-count';
 import { nodeListForEach } from './common';
+import SessionActivityService from './components/timeout-dialog/session-activity-service';
 
 function initAll() {
   const $AccountMenuSelector = '[data-module="hmrc-account-menu"]';
@@ -10,9 +11,12 @@ function initAll() {
     new AccountMenu($AccountMenuSelector).init();
   }
 
+  const sessionActivityService = new SessionActivityService(window.BroadcastChannel);
+  sessionActivityService.logActivity();
+
   const $TimeoutDialog = document.querySelector('meta[name="hmrc-timeout-dialog"]');
   if ($TimeoutDialog) {
-    new TimeoutDialog($TimeoutDialog).init();
+    new TimeoutDialog($TimeoutDialog, sessionActivityService).init();
   }
 
   const $UserResearchBanner = document.querySelector('[data-module="hmrc-user-research-banner"]');

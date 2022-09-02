@@ -8,6 +8,8 @@ ValidateInput.int = (stringToValidate) => {
   return Number.isNaN(parsedInt) ? undefined : parsedInt;
 };
 
-ValidateInput.string = (stringToValidate) => stringToValidate && ((`${stringToValidate}`) || undefined);
+ValidateInput.string = (stringToValidate) => (typeof stringToValidate === 'string' ? stringToValidate : undefined);
+
+ValidateInput.boolean = (stringToValidate) => String(stringToValidate).toLowerCase() === 'true';
 
 export default ValidateInput;
