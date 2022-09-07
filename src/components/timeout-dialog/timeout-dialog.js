@@ -8,13 +8,14 @@ import ValidateInput from './validate-input';
 import RedirectHelper from './redirectHelper';
 import utils from './utils';
 
-// TODO: rewruite this to follow govuk-frontend's protoytpe module pattern
+// TODO: rewrite this to follow govuk-frontend prototype module pattern
 
-function TimeoutDialog($module) {
+function TimeoutDialog($module, $sessionActivityService) {
   let options = {};
   let settings = {};
   const cleanupFunctions = [];
   let currentTimer;
+  const sessionActivityService = $sessionActivityService;
 
   cleanupFunctions.push(() => {
     if (currentTimer) {
@@ -68,6 +69,9 @@ function TimeoutDialog($module) {
       signOutButtonText: validate.string(
         lookupData('data-sign-out-button-text'),
       ),
+      synchroniseTabs: validate.boolean(
+        lookupData('data-synchronise-tabs') || false,
+      ),
     };
 
     // Default timeoutUrl to signOutUrl if not set
@@ -76,7 +80,22 @@ function TimeoutDialog($module) {
     validateInput(options);
     settings = mergeOptionsWithDefaults(options, localisedDefaults);
     setupDialogTimer();
+    listenForSessionActivityAndResetDialogTimer();
   }
+
+  const broadcastSessionActivity = () => {
+    sessionActivityService.logActivity();
+  };
+
+  const listenForSessionActivityAndResetDialogTimer = () => {
+    if (settings.synchroniseTabs) {
+      sessionActivityService.onActivity((event) => {
+        const timeOfActivity = event.timestamp;
+        cleanup();
+        setupDialogTimer(timeOfActivity);
+      });
+    }
+  };
 
   const validateInput = (config) => {
     const requiredConfig = ['timeout', 'countdown', 'keepAliveUrl', 'signOutUrl'];
@@ -113,12 +132,14 @@ function TimeoutDialog($module) {
     return clone;
   };
 
-  const setupDialogTimer = () => {
-    settings.signout_time = getDateNow() + settings.timeout * 1000;
+  const setupDialogTimer = (timeOfLastActivity = getDateNow()) => {
+    const signoutTime = timeOfLastActivity + settings.timeout * 1000;
 
+    const delta = getDateNow() - timeOfLastActivity;
+    const secondsUntilTimeoutDialog = settings.timeout - settings.countdown;
     const timeout = window.setTimeout(() => {
-      setupDialog();
-    }, (settings.timeout - settings.countdown) * 1000);
+      setupDialog(signoutTime);
+    }, (secondsUntilTimeoutDialog * 1000) - delta);
 
     cleanupFunctions.push(() => {
       window.clearTimeout(timeout);
@@ -133,7 +154,7 @@ function TimeoutDialog($module) {
     return $wrapper;
   };
 
-  const setupDialog = () => {
+  const setupDialog = (signoutTime) => {
     const $element = utils.generateDomElementFromString('<div>');
 
     if (settings.title) {
@@ -189,14 +210,9 @@ function TimeoutDialog($module) {
 
     dialogControl.setAriaLabelledBy('hmrc-timeout-heading hmrc-timeout-message');
 
-    startCountdown($countdownElement, $audibleMessage);
-  };
+    const getMillisecondsRemaining = () => signoutTime - getDateNow();
+    const getSecondsRemaining = () => Math.round(getMillisecondsRemaining() / 1000);
 
-  const getMillisecondsRemaining = () => settings.signout_time - getDateNow();
-
-  const getSecondsRemaining = () => Math.round(getMillisecondsRemaining() / 1000);
-
-  const startCountdown = ($countdownElement, $screenReaderCountdownElement) => {
     const getHumanText = (counter) => {
       let minutes; let
         visibleMessage;
@@ -240,7 +256,7 @@ function TimeoutDialog($module) {
       const audibleHumanText = getAudibleHumanText(counter);
 
       updateTextIfChanged($countdownElement, visibleMessage);
-      updateTextIfChanged($screenReaderCountdownElement, audibleHumanText);
+      updateTextIfChanged($audibleMessage, audibleHumanText);
     };
 
     const getNextTimeout = () => {
@@ -267,8 +283,8 @@ function TimeoutDialog($module) {
   const keepAliveAndClose = () => {
     cleanup();
     setupDialogTimer();
-    utils.ajaxGet(settings.keepAliveUrl, () => {
-    });
+    utils.ajaxGet(settings.keepAliveUrl, () => {});
+    broadcastSessionActivity();
   };
 
   const getDateNow = () => Date.now();

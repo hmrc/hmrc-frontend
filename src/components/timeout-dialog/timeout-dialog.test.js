@@ -1,7 +1,10 @@
 /* eslint-env jest */
 import TimeoutDialog from './timeout-dialog';
+import SessionActivityService from './session-activity-service';
 
 const { dialog, redirectHelper, utils } = TimeoutDialog;
+
+jest.mock('./session-activity-service');
 
 const getElemText = (elem) => {
   if (!elem) {
@@ -34,6 +37,12 @@ describe('/components/timeout-dialog', () => {
   const audibleCountSelector = '.screenreader-content.govuk-visually-hidden[aria-live=assertive]';
   const visualCountSelector = '[aria-hidden=true]';
 
+  SessionActivityService.mockImplementation(() => ({
+    logActivity: jest.fn(),
+    onActivity: jest.fn(),
+  }));
+  const mockSessionActivityService = new SessionActivityService();
+
   function pretendSecondsHavePassed(numberOfSeconds) {
     const millis = numberOfSeconds * 1000;
     testScope.currentDateTime += millis;
@@ -47,7 +56,7 @@ describe('/components/timeout-dialog', () => {
     testScope.latestDialogCloseCallback();
   }
 
-  function setupDialog(partialConfig) {
+  function setupDialog(partialConfig, sessionActivityService = mockSessionActivityService) {
     const $TimeoutDialog = document.createElement('meta');
     $TimeoutDialog.setAttribute('name', 'hmrc-timeout-dialog');
 
@@ -57,12 +66,16 @@ describe('/components/timeout-dialog', () => {
       $TimeoutDialog.setAttribute(item, config[item]);
     });
 
-    testScope.timeoutDialogControl = new TimeoutDialog($TimeoutDialog);
+    testScope.timeoutDialogControl = new TimeoutDialog($TimeoutDialog, sessionActivityService);
     testScope.timeoutDialogControl.init();
   }
 
   function setLanguageToWelsh() {
     testScope.minimumValidConfig['data-language'] = 'cy';
+  }
+
+  function setSynchroniseTabs(trueOrFalse) {
+    testScope.minimumValidConfig['data-synchronise-tabs'] = trueOrFalse;
   }
 
   function getVisualCountText() {
@@ -77,7 +90,7 @@ describe('/components/timeout-dialog', () => {
     assume = expect;
     testScope = {
       currentDateTime: 1554196031049, // the time these tests were written
-      // - this can change but it's best not to write randomness into tests
+      // - this can change, but it's best not to write randomness into tests
     };
     jest.spyOn(Date, 'now').mockImplementation(() => testScope.currentDateTime);
     jest.spyOn(utils, 'ajaxGet').mockImplementation(() => {
@@ -112,6 +125,7 @@ describe('/components/timeout-dialog', () => {
     dialog.displayDialog.mockReset();
     utils.ajaxGet.mockReset();
     redirectHelper.redirectToUrl.mockReset();
+    mockSessionActivityService.onActivity.mockReset();
     jest.clearAllTimers();
   });
 
@@ -208,6 +222,7 @@ describe('/components/timeout-dialog', () => {
       expect(utils.ajaxGet.mock.calls.length).toEqual(1);
     });
   });
+
   describe('the default welsh options', () => {
     beforeEach(() => {
       setLanguageToWelsh();
@@ -789,6 +804,49 @@ describe('/components/timeout-dialog', () => {
 
       pretendSecondsHavePassed(1);
       expect(setterSpy).toHaveBeenCalled();
+    });
+  });
+
+  describe('timeout broadcast feature switch enabled', () => {
+    beforeEach(() => {
+      setSynchroniseTabs('true');
+      setupDialog();
+    });
+    it('should extend the session based on the timestamp of any user activity within the configured time', () => {
+      pretendSecondsHavePassed(770);
+
+      // call the registered callback, to indicate user activity
+      expect(mockSessionActivityService.onActivity).toHaveBeenCalled();
+      const callback = mockSessionActivityService.onActivity.mock.calls[0][0];
+      callback({ timestamp: Date.now() - 1000 });
+
+      expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 779000);
+
+      pretendSecondsHavePassed(20);
+      expect(dialog.displayDialog).not.toHaveBeenCalled();
+    });
+    it('should broadcast activity to other tabs when the user chooses to extend their session', () => {
+      pretendSecondsHavePassed(781);
+
+      expect(testScope.latestDialogControl.closeDialog).not.toHaveBeenCalled();
+
+      clickElem(testScope.latestDialog$element.querySelector('#hmrc-timeout-keep-signin-btn'));
+
+      expect(mockSessionActivityService.logActivity).toHaveBeenCalled();
+    });
+  });
+
+  describe('timeout broadcast feature switch disabled', () => {
+    beforeEach(() => {
+      setSynchroniseTabs('false');
+      setupDialog();
+    });
+    it('should show dialog, as no callback is registered on the session activity service', () => {
+      expect(mockSessionActivityService.onActivity).not.toHaveBeenCalled();
+
+      pretendSecondsHavePassed(780);
+
+      expect(dialog.displayDialog).toHaveBeenCalled();
     });
   });
 });

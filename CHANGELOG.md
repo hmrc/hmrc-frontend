@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.6.0] - 2022-09-07
+
+### Changed
+
+- Update timeout dialogs to use a BroadcastChannel to synchronise timeouts
+
 ## [5.5.0] - 2022-08-31
 
 ### Changed
