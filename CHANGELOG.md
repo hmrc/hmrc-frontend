@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.7.0] - 2022-09-12
+
+### Changed
+
+- Update timeout dialogs examples with synchronisation
+
 ## [5.6.0] - 2022-09-07
 
 ### Changed

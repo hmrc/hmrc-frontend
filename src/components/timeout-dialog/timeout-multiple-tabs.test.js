@@ -26,8 +26,8 @@ beforeAll(async () => {
 describe('multiple tabs open with synchronise tabs feature switch enabled', () => {
   it('should keep other tabs alive when the user chooses to extend their session', async () => {
     // open 2 pages with the timeout dialog component
-    await page1.goto(`${baseUrl}/components/timeout-dialog/default/preview`);
-    await page2.goto(`${baseUrl}/components/timeout-dialog/default/preview`);
+    await page1.goto(`${baseUrl}/components/timeout-dialog/synchronise-tabs/preview`);
+    await page2.goto(`${baseUrl}/components/timeout-dialog/synchronise-tabs/preview`);
 
     // ensure the timeout dialog is displaying on both pages
     await page1.waitForSelector('.hmrc-timeout-dialog__countdown');
@@ -43,8 +43,8 @@ describe('multiple tabs open with synchronise tabs feature switch enabled', () =
 
   it('should keep other tabs alive when the user navigates to a page on another tab', async () => {
     // open 2 pages with the timeout dialog component
-    await page1.goto(`${baseUrl}/components/timeout-dialog/default/preview`);
-    await page2.goto(`${baseUrl}/components/timeout-dialog/default/preview`);
+    await page1.goto(`${baseUrl}/components/timeout-dialog/synchronise-tabs/preview`);
+    await page2.goto(`${baseUrl}/components/timeout-dialog/synchronise-tabs/preview`);
 
     // ensure the timeout dialog is displaying on both pages
     await page1.waitForSelector('.hmrc-timeout-dialog__countdown');
@@ -64,7 +64,7 @@ describe('multiple tabs open with synchronise tabs feature switch enabled', () =
 
   it('should not prevent other tabs from timing out if they do not have the feature flag enabled', async () => {
     // open page with the timeout dialog component with feature flag enabled
-    await page1.goto(`${baseUrl}/components/timeout-dialog/default/preview`);
+    await page1.goto(`${baseUrl}/components/timeout-dialog/synchronise-tabs/preview`);
     // open page with the timeout dialog component and feature flag disabled
     await page2.goto(`${baseUrl}/components/timeout-dialog/welsh-language/preview`);
 
