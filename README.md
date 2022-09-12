@@ -29,11 +29,12 @@ Clone this repository and install its dependencies.
 git clone https://github.com/hmrc/hmrc-frontend.git
 cd hmrc-frontend
 npm install
+npm run install:allowed-scripts --no-ignore-scripts
 ```
 
 ### How to run
 
-1. Run `npm start`
+1. Run `npm start --no-ignore-scripts`
 2. Components are available at [http://localhost:3000]()
 
 ## Using HMRC Frontend locally

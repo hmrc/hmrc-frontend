@@ -22,7 +22,8 @@
     "test:backstop-approve": "gulp backstop:approve",
     "preinstall": "node check-compatibility.js",
     "docs:generate-decision-log-listing": "adr-log -d ./docs/adr -i ./docs/adr/index.md -e template.md",
-    "audit": "better-npm-audit audit"
+    "audit": "better-npm-audit audit",
+    "install:allowed-scripts": "cd ./node_modules/node-sass && npm run install --no-ignore-scripts"
   },
   "repository": {
     "type": "git",
