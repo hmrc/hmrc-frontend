@@ -5,7 +5,7 @@ examples:
     countdown: 74
     keepAliveUrl: "?abc=def"
     signOutUrl: "?ghi=jkl"
-    synchroniseTabs: true
+    synchroniseTabs: false
 - name: long-delay-with-title
   data:
     title: "Example Timeout Dialog"
@@ -37,6 +37,13 @@ examples:
   visualRegressionTests:
     backstopScenarioOptions:
       delay: 10000
+- name: synchronise-tabs
+  data:
+    timeout: 75
+    countdown: 74
+    keepAliveUrl: "?abc=def"
+    signOutUrl: "?ghi=jkl"
+    synchroniseTabs: true
 
 visualRegressionTests:
   backstopScenarioOptions:
