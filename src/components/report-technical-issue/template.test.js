@@ -58,13 +58,6 @@ describe('Report Technical Issue', () => {
     expect($component.attr('href')).toEqual('/contact/report-technical-problem?newTab=true&service=the-url-safe-service-id');
   });
 
-  it('specify rel attributes as "noreferrer noopener" to prevent reverse tabnapping vulnerability', () => {
-    const $ = render('report-technical-issue', examples.default);
-
-    const $component = $('.govuk-link');
-    expect($component.attr('rel')).toEqual('noreferrer noopener');
-  });
-
   it('renders link with custom classes', () => {
     const $ = render('report-technical-issue', examples['with-classes']);
 
@@ -117,5 +110,19 @@ describe('Report Technical Issue', () => {
     const $ = render('report-technical-issue', examples['with-local-referrer-url']);
 
     expect($('.govuk-link').attr('href')).toEqual('/contact/report-technical-problem?newTab=true&service=pay&referrerUrl=http%3A%2F%2Flocalhost%3A9123%2Fmy-service');
+  });
+
+  it('should include a rel="noreferrer noopener" attribute if the referrerUrl is explicitly passed', () => {
+    const $ = render('report-technical-issue', examples['with-local-referrer-url']);
+
+    const $component = $('.govuk-link');
+    expect($component.attr('rel')).toEqual('noreferrer noopener');
+  });
+
+  it('should not include a rel="noreferrer noopener" attribute if the referrerUrl is not explicitly passed', () => {
+    const $ = render('report-technical-issue', examples.default);
+
+    const $component = $('.govuk-link');
+    expect($component.attr('rel')).toBeFalsy();
   });
 });
