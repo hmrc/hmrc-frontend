@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.7.1] - 2022-09-15
+
+### Changed
+
+- Update report technical issue component to have an optional rel attribute based on the presence of a referrer url
+
 ## [5.7.0] - 2022-09-12
 
 ### Changed
