@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.8.0] - 2022-09-16
+
+### Changed
+
+- Added dependency on the `alphagov` package `accessible-autocomplete`
+- Added `accessible-autocomplete` CSS and JS to the package and dist for the build
+
 ## [5.7.1] - 2022-09-15
 
 ### Changed

@@ -47,6 +47,8 @@ describe('package/', () => {
         'package.json',
         'README.md',
         'LICENSE',
+        'hmrc/accessible-autocomplete/accessible-autocomplete.min.css',
+        'hmrc/accessible-autocomplete/accessible-autocomplete.min.js',
         'hmrc/govuk/fonts/bold-affa96571d-v2.woff',
         'hmrc/govuk/fonts/bold-b542beb274-v2.woff2',
         'hmrc/govuk/fonts/light-94a07e06a1-v2.woff2',

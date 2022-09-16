@@ -18,6 +18,8 @@ const copyDistFiles = series(
   'copy-govuk-images',
   'copy-govuk-fonts',
   'copy-html5shiv',
+  'copy-accessible-autocomplete-js',
+  'copy-accessible-autocomplete-css',
 );
 
 const copyPackageFiles = series(
@@ -27,6 +29,8 @@ const copyPackageFiles = series(
   'copy-html5shiv',
   'copy-govuk-config',
   'copy-check-compatibility',
+  'copy-accessible-autocomplete-js',
+  'copy-accessible-autocomplete-css',
 );
 
 const buildPackage = series(
