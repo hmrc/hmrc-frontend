@@ -87,13 +87,18 @@ const webJarHelpers = ({
 
     const githubConnection = `${githubUrl}.git`;
 
-    const entryToDependency = ([name, dependencyVersion]) => {
-      const sanitisedDependencyVersion = dependencyVersion.replace(/[~^]/, '');
-      return `<dependency>
+    const entriesToDependencies = () => {
+      const entryToDependency = ([name, dependencyVersion]) => {
+        const sanitisedDependencyVersion = dependencyVersion.replace(/[~^]/, '');
+        return `<dependency>
             <groupId>org.webjars.npm</groupId>
             <artifactId>${name}</artifactId>
             <version>${sanitisedDependencyVersion}</version>
         </dependency>`;
+      };
+
+      const entriesAsDependencies = Object.entries(dependencies).map(entryToDependency);
+      return entriesAsDependencies.toString().split(',').join('\n\t');
     };
 
     const pom = `<?xml version="1.0" encoding="UTF-8"?>
@@ -120,7 +125,7 @@ const webJarHelpers = ({
     </scm>
 
     <dependencies>
-        ${Object.entries(dependencies).map(entryToDependency)}
+        ${entriesToDependencies()}
     </dependencies>
 </project>`;
 

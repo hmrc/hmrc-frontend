@@ -66,3 +66,20 @@ gulp.task('scss:compile-all-govuk-and-hmrc', () => {
 
   return merge(compile, compileOldIe);
 });
+
+gulp.task('scss:compile-accessible-autocomplete', () => gulp.src(`${configPaths.src}accessible-autocomplete.scss`)
+  .pipe(plumber(errorHandler))
+  .pipe(sourcemaps.init())
+  .pipe(sass({
+    includePaths: ['node_modules'],
+  }))
+// minify css add vendor prefixes and normalize to compiled css
+  .pipe(postcss([
+    autoprefixer,
+    cssnano,
+  ]))
+  .pipe(rename({
+    basename: `accessible-autocomplete-${pkg.version}`,
+  }))
+  .pipe(sourcemaps.write('./maps'))
+  .pipe(gulp.dest(destinationPath)));

@@ -33,8 +33,10 @@ const buildPackage = series(
   'clean',
   copyPackageFiles,
   'scss:compile-all-govuk-and-hmrc',
+  'scss:compile-accessible-autocomplete',
   'js:compile-hmrc',
   'js:compile-all-govuk-and-hmrc',
+  'js:compile-accessible-autocomplete',
   'update-assets-version',
   'copy:README',
   'copy:LICENSE',
@@ -45,7 +47,9 @@ const buildDist = series(
   'clean',
   copyDistFiles,
   'scss:compile-all-govuk-and-hmrc',
+  'scss:compile-accessible-autocomplete',
   'js:compile-all-govuk-and-hmrc',
+  'js:compile-accessible-autocomplete',
   'update-assets-version',
 );
 
