@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.10.0] - 2022-09-26
+
+### Added
+
+- Add new [back-link-helper](src/components/back-link-helper) to provide a common way to make Back links mimic the browser Back button
+
 ## [5.9.0] - 2022-09-23
 
 ### Changed
