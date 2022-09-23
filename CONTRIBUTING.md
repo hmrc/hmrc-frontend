@@ -23,6 +23,17 @@ You can:
 
 ## Before you create a pull request
 
+### Adding or updating NPM dependencies
+
+To minimise the security risk from accidentally installing a compromised package, you should:
+- Use the `--ignore-scripts` parameter when installing to prevent the package from executing scripts during installation. This can't be configured automatically in the repo because it would disable our ability to run any scripts (even the top-level ones in the project)
+- Run `npm run audit` post installation to check for vulnerabilities after installing before running a build or test using it
+
+  > **Note**
+  > Deliberately compromised packages tend to be quickly removed from NPM once they are discovered, but a removed package might be present in a cache somewhere so for safety we should always run this check.
+
+- Carefully consider if new dependencies are really needed, and try to avoid adding them whenever possible
+
 ### Ensure there are no reference to node_modules in SCSS files
 
 In production, styles from hmrc-frontend are imported via a webjar. If services compile their own
