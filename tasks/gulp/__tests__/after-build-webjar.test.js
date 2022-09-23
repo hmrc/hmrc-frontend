@@ -118,13 +118,13 @@ describe('webjar/', () => {
   });
 
   it('should have the correct govuk-frontend groupId', async () => {
-    const govukFrontendGroupId = await getHmrcPomField('/project/dependencies/dependency/groupId');
+    const govukFrontendGroupId = await getHmrcPomField('/project/dependencies/dependency[1]/groupId');
 
     expect(govukFrontendGroupId).toEqual('org.webjars.npm');
   });
 
   it('should have the correct govuk-frontend artifactId', async () => {
-    const govukFrontendArtifactId = await getHmrcPomField('/project/dependencies/dependency/artifactId');
+    const govukFrontendArtifactId = await getHmrcPomField('/project/dependencies/dependency[1]/artifactId');
 
     expect(govukFrontendArtifactId).toEqual('govuk-frontend');
   });
@@ -133,8 +133,29 @@ describe('webjar/', () => {
     const expectedGovUkVersion = packagePackageJson.dependencies['govuk-frontend']
       .replace(/[^~]/, '');
 
-    const govukFrontendVersion = await getHmrcPomField('/project/dependencies/dependency/version');
+    const govukFrontendVersion = await getHmrcPomField('/project/dependencies/dependency[1]/version');
 
     expect(govukFrontendVersion).toEqual(expectedGovUkVersion);
+  });
+
+  it('should have the correct accessible-autocompleted groupId', async () => {
+    const govukFrontendGroupId = await getHmrcPomField('/project/dependencies/dependency[2]/groupId');
+
+    expect(govukFrontendGroupId).toEqual('org.webjars.npm');
+  });
+
+  it('should have the correct accessible-autocomplete artifactId', async () => {
+    const accessibleAutocomplete = await getHmrcPomField('/project/dependencies/dependency[2]/artifactId');
+
+    expect(accessibleAutocomplete).toEqual('accessible-autocomplete');
+  });
+
+  it('should have the correct accessible-autocomplete version, ignoring any ~ or ^ qualifiers', async () => {
+    const expectedAutocompleteVersion = packagePackageJson.dependencies['accessible-autocomplete']
+      .replace(/[^~]/, '');
+
+    const autocompleteVersion = await getHmrcPomField('/project/dependencies/dependency[2]/version');
+
+    expect(autocompleteVersion).toEqual(expectedAutocompleteVersion);
   });
 });

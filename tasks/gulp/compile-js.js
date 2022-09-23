@@ -56,3 +56,25 @@ gulp.task('js:compile-all-govuk-and-hmrc', () => gulp.src([
   .pipe(eol())
   .pipe(sourcemaps.write('./maps'))
   .pipe(gulp.dest(destinationPath)));
+
+gulp.task('js:compile-accessible-autocomplete', () => gulp.src([`${configPaths.src}accessible-autocomplete.js`])
+  .pipe(rollup({
+    plugins: [
+      babel(),
+      resolve(),
+      commonjs(),
+    ],
+  }, {
+    name: 'HMRCAccessibleAutocomplete',
+    // Legacy mode is required for IE8 support
+    legacy: true,
+    // UMD allows the published bundle to work in CommonJS and in the browser.
+    format: 'umd',
+  }))
+  .pipe(
+    rename({
+      basename: `accessible-autocomplete-${pkg.version}`,
+    }),
+  )
+  .pipe(eol())
+  .pipe(gulp.dest(destinationPath)));
