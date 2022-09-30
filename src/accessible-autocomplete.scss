@@ -1,1 +1,9 @@
+@import "../../govuk-frontend/govuk/settings/all";
+@import "../../govuk-frontend/govuk/tools/all";
+@import "../../govuk-frontend/govuk/helpers/all";
 @import "../../accessible-autocomplete/dist/accessible-autocomplete.min";
+
+.autocomplete__wrapper,
+.autocomplete__input {
+  @include govuk-font($size: 19);
+}

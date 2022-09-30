@@ -1,0 +1,128 @@
+params:
+  - name: select
+    type: string
+    required: true
+    description: The select element.
+  - name: id
+    type: string
+    required: true
+    description: The id and for of the input.
+  - name: errorMessage
+    type: string
+    required: false
+    description: Options for the error message component. The error message component will not display if you use a falsy value for `errorMessage`, for example `false` or `null`.
+  - name: hint
+    type: object
+    required: false
+    description: Options for the hint component.
+  - name: describedBy
+    type: string
+    required: false
+    description: One or more element IDs to add to the `aria-describedby` attribute, used to provide additional descriptive information for screenreader users.
+
+examples:
+  - name: default
+    description:
+    data:
+      label:
+        text: Select country
+      id: location-picker
+      select: |
+        <select id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
+          <option value="fr">France</option>
+          <option value="de">Germany</option>
+          <option value="gb">United Kingdom</option>
+        </select>
+  - name: without-optional-data-attributes
+    description:
+    data:
+      label:
+        text: Select country
+      id: location-picker
+      select: |
+        <select id="location-picker" data-module="hmrc-accessible-autocomplete">
+          <option value="fr">France</option>
+          <option value="de">Germany</option>
+          <option value="gb">United Kingdom</option>
+        </select>
+  - name: with-default-value
+    description:
+    data:
+      label:
+        text: Select country
+      id: location-picker
+      select: |
+        <select id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="Germany" data-module="hmrc-accessible-autocomplete">
+          <option value=""></option>
+          <option value="fr">France</option>
+          <option value="de">Germany</option>
+          <option value="gb">United Kingdom</option>
+        </select>
+  - name: with-empty-default-value
+    description:
+    data:
+      label:
+        text: Select country
+      id: location-picker
+      select: |
+        <select id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
+          <option value=""></option>
+          <option value="fr">France</option>
+          <option value="de">Germany</option>
+          <option value="gb">United Kingdom</option>
+        </select>
+  - name: with-show-all-values
+    description:
+    data:
+      label:
+        text: Select country
+      id: location-picker
+      select: |
+        <select id="location-picker" data-show-all-values="true" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
+          <option value=""></option>
+          <option value="fr">France</option>
+          <option value="de">Germany</option>
+          <option value="gb">United Kingdom</option>
+        </select>
+  - name: with-autoselect-on
+    description:
+    data:
+      label:
+        text: Select country
+      id: location-picker
+      select: |
+        <select id="location-picker" data-show-all-values="false" data-auto-select="true" data-default-value="" data-module="hmrc-accessible-autocomplete">
+          <option value="fr">France</option>
+          <option value="de">Germany</option>
+          <option value="gb">United Kingdom</option>
+        </select>
+  - name: with-label-and-hint
+    description:
+    data:
+      label:
+        text: Select country
+      hint:
+        text: "Please select a country"
+      id: location-picker
+      select: |
+        <select id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
+          <option value="fr">France</option>
+          <option value="de">Germany</option>
+          <option value="gb">United Kingdom</option>
+        </select>
+  - name: with-label-and-hint-and-error
+    description:
+    data:
+      label:
+        text: Select country
+      hint:
+        text: "Please select a country"
+      errorMessage: "An error occured"
+      id: location-picker
+      select: |
+        <select id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
+          <option value="fr">France</option>
+          <option value="de">Germany</option>
+          <option value="gb">United Kingdom</option>
+        </select>
+
