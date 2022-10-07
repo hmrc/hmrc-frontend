@@ -7,12 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.11.1] - 2022-10-06
+
+### Fixed
+
+- Stopped the accessible-autocomplete css from including the GDS Transport webfonts because we assume they will already be loaded
+
 ## [5.11.0] - 2022-09-29
 
 ### Added
 
 - Added way to automatically enhance a select element into an [accessible-autocomplete](src/components/accessible-autocomplete) using the `data-module="hmrc-accessible-autocomplete"` data attribute, more details in the [accessible-autocomplete readme](src/components/accessible-autocomplete/README.md)
-
 
 ## [5.10.0] - 2022-09-26
 
