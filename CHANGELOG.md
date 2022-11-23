@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.11.3] - 2022-11-23
+
+### Fixed
+
+- fixed font ghosting issue in the accessible-autocomplete component
+
 ## [5.11.2] - 2022-10-06
 
 ### Fixed
