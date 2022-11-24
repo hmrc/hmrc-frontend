@@ -115,6 +115,24 @@ describe('enhanceSelectElement on the select element provided', () => {
     expect(selectedOption).toBe('France');
   });
 
+  it('should display hint text in correct font family when autoselect is on and user has partially inputted a matched item', async () => {
+    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-autoselect-on/preview`);
+
+    const input = await page.$('#location-picker');
+    await input.click();
+    await page.waitForSelector('#location-picker');
+    // eslint-disable-next-line no-param-reassign,no-return-assign
+    await page.$eval('#location-picker', (el) => el.value = 'Fr');
+    await page.waitForSelector('.autocomplete__hint');
+    const { hintFontFamily, hintValue } = await page.evaluate(() => {
+      const fontFamily = window.getComputedStyle(document.querySelector('input')).font;
+      const { value } = document.querySelector('.autocomplete__hint');
+      return { hintFontFamily: fontFamily, hintValue: value };
+    });
+    expect(hintFontFamily).toContain('GDS Transport');
+    expect(hintValue).toEqual('France');
+  });
+
   it('should not highlight first found option when autoselect is false', async () => {
     await page.goto(`${baseUrl}/components/accessible-autocomplete/default/preview`);
 

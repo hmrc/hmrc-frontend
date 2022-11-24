@@ -96,6 +96,12 @@ examples:
           <option value="de">Germany</option>
           <option value="gb">United Kingdom</option>
         </select>
+    visualRegressionTests:
+      alternateStates:
+        showingAutoSelectHint:
+          keyPressSelectors:
+            - selector: "#location-picker"
+              keyPress: "Fr"
   - name: with-label-and-hint
     description:
     data:
@@ -125,4 +131,3 @@ examples:
           <option value="de">Germany</option>
           <option value="gb">United Kingdom</option>
         </select>
-
