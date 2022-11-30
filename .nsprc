@@ -6,5 +6,6 @@
   "1081884": "glob-parent - devDependency, no risk given our usage",
   "1083176": "scss-tokenizer - devDependency, no risk given our usage",
   "1084495": "node-fetch - devDependency, no risk given our usage",
-  "1084765": "minimatch - devDependency, no risk given our usage"
+  "1084765": "minimatch - devDependency, no risk given our usage",
+  "1085054": "decode-uri-component - devDependency, no risk given our usage"
 }
