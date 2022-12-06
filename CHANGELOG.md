@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.14.0] - 2022-12-06
+
+### Fixed
+
+- fixed bug with timeout-dialog that could cause an early timeout after the first or second timeout warning was 
+dismissed
+
 ## [5.13.0] - 2022-11-30
 
 ### Changed

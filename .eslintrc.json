@@ -28,7 +28,8 @@
         "lib/jest-helpers.js",
         "lib/axe-helper.js",
         "lib/file-helper.js",
-        "config/jest-setup.js"
+        "config/jest-setup.js",
+        "**/test-helpers/**/*"
       ],
       "rules": {
         "import/no-extraneous-dependencies": [

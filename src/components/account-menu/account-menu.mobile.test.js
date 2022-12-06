@@ -3,10 +3,7 @@
  */
 
 /* eslint-env jest */
-import devices from 'puppeteer/DeviceDescriptors';
 import configPaths from '../../../config/paths.json';
-
-const iPhone = devices['iPhone 6'];
 
 const PORT = configPaths.ports.test;
 
@@ -18,7 +15,11 @@ beforeAll(async () => {
   // eslint-disable-next-line no-underscore-dangle
   browser = global.__BROWSER__;
   page = await browser.newPage();
-  await page.emulate(iPhone);
+  await page.setViewport({
+    width: 640,
+    height: 480,
+    deviceScaleFactor: 1,
+  });
 });
 
 afterAll(async () => {

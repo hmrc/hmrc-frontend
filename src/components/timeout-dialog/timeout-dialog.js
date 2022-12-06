@@ -17,12 +17,6 @@ function TimeoutDialog($module, $sessionActivityService) {
   let currentTimer;
   const sessionActivityService = $sessionActivityService;
 
-  cleanupFunctions.push(() => {
-    if (currentTimer) {
-      window.clearTimeout(currentTimer);
-    }
-  });
-
   function init() {
     const validate = ValidateInput;
 
@@ -143,6 +137,9 @@ function TimeoutDialog($module, $sessionActivityService) {
 
     cleanupFunctions.push(() => {
       window.clearTimeout(timeout);
+      if (currentTimer) {
+        window.clearTimeout(currentTimer);
+      }
     });
   };
 
