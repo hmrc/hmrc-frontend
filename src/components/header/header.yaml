@@ -19,6 +19,10 @@ params:
   type: string
   required: false
   description: Url for the service name anchor.
+- name: menuButtonText
+  type: string
+  required: false
+  description: The text for the mobile navigation menu toggle button.
 - name: navigation
   type: array
   required: false
@@ -147,6 +151,20 @@ examples:
 
 - name: with navigation
   data:
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+      - href: '#4'
+        text: Navigation item 4
+
+- name: with navigation and custom menu toggle button text
+  data:
+    menuButtonText: "Custom Menu Label"
     navigation:
       - href: '#1'
         text: Navigation item 1
