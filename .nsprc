@@ -1,5 +1,4 @@
 {
-  "1067342": "minimist - devDependency, no risk given our usage",
   "1070012": "postcss - devDependency, no risk given our usage",
   "1070415": "nth-check - devDependency, no risk given our usage",
   "1081699": "terser - devDependency, no risk given our usage",
@@ -7,5 +6,6 @@
   "1083176": "scss-tokenizer - devDependency, no risk given our usage",
   "1085117": "node-fetch - devDependency, no risk given our usage",
   "1084765": "minimatch - devDependency, no risk given our usage",
-  "1085062": "decode-uri-component - devDependency, no risk given our usage"
+  "1085062": "decode-uri-component - devDependency, no risk given our usage",
+  "1085135": "qs - devDependency, no risk given our usage"
 }
