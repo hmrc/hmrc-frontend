@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.16.0] - 2022-12-20
+
+### Changed
+
+- Harmonise wording of new tab links
+
 ## [5.15.0] - 2022-12-19
 
 ### Changed

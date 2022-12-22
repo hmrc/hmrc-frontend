@@ -5,4 +5,4 @@
   {% if params.referrerUrl %} rel="noreferrer noopener"{% endif %}
   target="_blank"
   href="{{ params.baseUrl }}/contact/report-technical-problem?newTab=true{% if serviceId %}&amp;service={{ serviceId | urlencode }}{% endif %}{% if params.referrerUrl %}&amp;referrerUrl={{ params.referrerUrl | urlencode }}{% endif %}"
->{% if params.language == 'cy' %}A yw’r dudalen hon yn gweithio’n iawn? (yn agor mewn tab newydd){% else %}Is this page not working properly? (opens in new tab){% endif %}</a>
+>{% if params.language == 'cy' %}A yw’r dudalen hon yn gweithio’n iawn? (yn agor tab newydd){% else %}Is this page not working properly? (opens in new tab){% endif %}</a>

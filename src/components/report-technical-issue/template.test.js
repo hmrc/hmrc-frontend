@@ -73,7 +73,7 @@ describe('Report Technical Issue', () => {
 
     expect($component.attr('hreflang')).toEqual('cy');
     expect($component.attr('lang')).toEqual('cy');
-    expect($component.text()).toEqual('A yw’r dudalen hon yn gweithio’n iawn? (yn agor mewn tab newydd)');
+    expect($component.text()).toEqual('A yw’r dudalen hon yn gweithio’n iawn? (yn agor tab newydd)');
   });
 
   it('should default to no Base URL', () => {
