@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.17.0] - 2023-01-03
+
+### Changed
+
+- Updated the `footer` component to include the `govuk-!-display-none-print` for improved accessibility
+
 ## [5.16.0] - 2022-12-20
 
 ### Changed
