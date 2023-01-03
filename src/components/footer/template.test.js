@@ -163,6 +163,14 @@ describe('footer', () => {
       expect($lastHeading.text()).toEqual('Single column list');
     });
 
+    it('includes styling for display: none in print mode', () => {
+      const $ = render('footer', examples['with navigation']);
+
+      const $component = $('.govuk-footer');
+      const $section = $component.find('.govuk-footer__section');
+      expect($section.hasClass('govuk-!-display-none-print')).toBe(true);
+    });
+
     it('renders lists of links', () => {
       const $ = render('footer', examples['with navigation']);
 
