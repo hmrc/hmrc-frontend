@@ -103,6 +103,14 @@ describe('footer', () => {
       expect($firstItem.text()).toContain('Item 1');
     });
 
+    it('includes styling for display: none in print mode', () => {
+      const $ = render('footer', examples['with meta']);
+
+      const $component = $('.govuk-footer');
+      const $list = $component.find('ul.govuk-footer__inline-list');
+      expect($list.hasClass('govuk-!-display-none-print')).toBe(true);
+    });
+
     it('renders custom meta text', () => {
       const $ = render('footer', examples['with custom meta']);
 
