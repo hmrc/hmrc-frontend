@@ -7,5 +7,7 @@
   "1085117": "node-fetch - devDependency, no risk given our usage",
   "1084765": "minimatch - devDependency, no risk given our usage",
   "1085062": "decode-uri-component - devDependency, no risk given our usage",
-  "1085135": "qs - devDependency, no risk given our usage"
+  "1085135": "qs - devDependency, no risk given our usage",
+  "1085309": "json5 - devDependency, no risk given our usage",
+  "1085310": "json5 - devDependency, no risk given our usage"
 }
