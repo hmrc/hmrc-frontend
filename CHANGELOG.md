@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.21.0] - 2023-02-09
+
+### Changed
+
+- Updated the `header` component to localise `Menu` text and aria-hidden based on language parameter
+
+
 ## [5.20.0] - 2023-01-13
 
 ### Changed

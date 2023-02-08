@@ -192,6 +192,21 @@ describe('header', () => {
       expect(outputs[0]).toEqual(outputs[1]);
       expect(outputs[0]).toEqual(outputs[2]);
     });
+
+    it('renders navigation with aria-label in English if passed no language', () => {
+      const $ = render('header', examples['with navigation']);
+
+      const $navigation = $('.govuk-header__navigation');
+      expect($navigation.attr('aria-label')).toEqual('Top Level Navigation');
+    });
+
+    it('renders navigation with aria-label in Welsh when specified', () => {
+      const $ = render('header', examples['with navigation welsh']);
+
+      const $navigation = $('.govuk-header__navigation');
+      expect($navigation.attr('aria-label')).toEqual('Gwelywio Lefel Uchaf');
+    });
+
     describe('menu button', () => {
       it('has an explicit type="button" so it does not act as a submit button', () => {
         const $ = render('header', examples['with navigation']);
@@ -200,6 +215,34 @@ describe('header', () => {
 
         expect($button.attr('type')).toEqual('button');
       });
+    });
+
+    it('should have English text as default', () => {
+      const $ = render('header', examples['with navigation']);
+
+      const $button = $('.govuk-header__menu-button');
+      expect($button.text()).toEqual('Menu');
+    });
+
+    it('should have Welsh text when specified', () => {
+      const $ = render('header', examples['with navigation welsh']);
+
+      const $button = $('.govuk-header__menu-button');
+      expect($button.text()).toEqual('Dewislen');
+    });
+
+    it('should have aria-label in English if passed no language', () => {
+      const $ = render('header', examples['with navigation']);
+
+      const $button = $('.govuk-header__menu-button');
+      expect($button.attr('aria-label')).toEqual('Show or hide Top Level Navigation');
+    });
+
+    it('should have aria-label in Welsh when specified', () => {
+      const $ = render('header', examples['with navigation welsh']);
+
+      const $button = $('.govuk-header__menu-button');
+      expect($button.attr('aria-label')).toEqual('Dangos neu guddio\'r Gwelywio Lefel Uchaf');
     });
   });
 
