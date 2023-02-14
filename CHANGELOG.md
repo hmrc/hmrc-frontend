@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.22.0] - 2023-02-16
+
+### Changed
+
+- Updated the `character-count` component to delegate to the `govuk-frontend` component, which now supports custom text
+allowing internationalization
+
+
 ## [5.21.0] - 2023-02-09
 
 ### Changed

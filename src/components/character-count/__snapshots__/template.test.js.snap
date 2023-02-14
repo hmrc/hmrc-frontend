@@ -8,7 +8,7 @@ exports[`Character count when it includes a hint renders with hint 1`] = `
   Don't include personal or financial information, eg your National Insurance number or credit card details.
 </div>
 <div id="with-hint-info"
-     class="govuk-hint hmrc-character-count__message"
+     class="govuk-hint govuk-character-count__message"
 >
   You can enter up to 10 characters
 </div>

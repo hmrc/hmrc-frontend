@@ -1,6 +1,5 @@
 import AccountMenu from './components/account-menu/account-menu';
 import BackLinkHelper from './components/back-link-helper/back-link-helper';
-import CharacterCount from './components/character-count/character-count';
 import TimeoutDialog from './components/timeout-dialog/timeout-dialog';
 import UserResearchBanner from './components/user-research-banner/user-research-banner';
 import { nodeListForEach } from './common';
@@ -29,11 +28,6 @@ function initAll() {
   nodeListForEach($BackLinks, ($BackLink) => {
     new BackLinkHelper($BackLink, window, document).init();
   });
-
-  const $CharacterCounts = document.querySelectorAll('[data-module="hmrc-character-count"]');
-  nodeListForEach($CharacterCounts, ($CharacterCount) => {
-    new CharacterCount($CharacterCount).init();
-  });
 }
 
 export default {
@@ -41,7 +35,6 @@ export default {
   AccountMenu,
   TimeoutDialog,
   UserResearchBanner,
-  CharacterCount,
   BackLinkHelper,
 
 };
