@@ -242,7 +242,7 @@ describe('header', () => {
       const $ = render('header', examples['with navigation welsh']);
 
       const $button = $('.govuk-header__menu-button');
-      expect($button.attr('aria-label')).toEqual('Dangos neu guddio\'r Gwelywio Lefel Uchaf');
+      expect($button.attr('aria-label')).toEqual('Dangos neu guddio’r Gwelywio Lefel Uchaf');
     });
   });
 

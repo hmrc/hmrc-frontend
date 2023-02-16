@@ -1,45 +1,61 @@
 {% set language = params.language | default('en') %}
-{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-{% from "govuk/components/hint/macro.njk" import govukHint %}
+{% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
 
-<div class="hmrc-character-count" data-module="hmrc-character-count" data-language="{{ language }}"
-{%- if params.maxlength %} data-maxlength="{{ params.maxlength }}"{% endif %}
-{%- if params.threshold %} data-threshold="{{ params.threshold }}"{% endif %}
-{%- if params.maxwords %} data-maxwords="{{ params.maxwords }}"{% endif %}>
-  {{ govukTextarea({
-    id: params.id,
-    name: params.name,
-    describedBy: params.id + '-info',
-    rows: params.rows,
-    spellcheck: params.spellcheck,
-    value: params.value,
-    formGroup: params.formGroup,
-    classes: 'hmrc-js-character-count' + (' govuk-textarea--error' if params.errorMessage) + (' ' + params.classes if params.classes),
-    label: {
-      html: params.label.html,
-      text: params.label.text,
-      classes: params.label.classes,
-      isPageHeading: params.label.isPageHeading,
-      attributes: params.label.attributes,
-      for: params.id
-    },
-    hint: params.hint,
-    errorMessage: params.errorMessage,
-    attributes: params.attributes
-  }) }}
-  {% if language === 'cy' %}
-      {{ govukHint({
-        text: 'Gallwch nodi hyd at ' + (params.maxlength or params.maxwords) + (' o eiriau' if params.maxwords else ' o gymeriadau'),
-        id: params.id + '-info',
-        classes: 'hmrc-character-count__message' + (' ' + params.countMessage.classes if params.countMessage.classes)
-      }) }}
-  {% else %}
-      {{ govukHint({
-        text: 'You can enter up to ' + (params.maxlength or params.maxwords) + (' words' if params.maxwords else ' characters'),
-        id: params.id + '-info',
-        classes: 'hmrc-character-count__message' + (' ' + params.countMessage.classes if params.countMessage.classes)
-      }) }}
-  {% endif %}
-</div>
-
-
+{% if language === 'cy' %}
+  {{ govukCharacterCount({
+      name: params.name,
+      id: params.id,
+      rows: params.rows,
+      value: params.value,
+      maxlength: params.maxlength,
+      maxwords: params.maxwords,
+      threshold: params.threshold,
+      label: params.label,
+      hint: params.hint,
+      errorMessage: params.errorMessage,
+      formGroup: params.formGroup,
+      classes: params.classes,
+      attributes: params.attributes,
+      spellcheck: params.spellcheck,
+      countMessage: params.countMessage,
+      textareaDescriptionText: 'Gallwch nodi hyd at ' + (params.maxlength or params.maxwords) + (' o eiriau' if params.maxwords else ' o gymeriadau'),
+      charactersUnderLimitText: {
+       other: 'Mae gennych %{count} o gymeriadau yn weddill',
+       one: 'Mae gennych 1 cymeriad yn weddill'
+      },
+      charactersAtLimitText: 'Mae gennych 0 o gymeriadau yn weddill',
+      charactersOverLimitText: {
+       other: 'Mae gennych %{count} o gymeriadau yn ormod',
+       one: 'Mae gennych 1 cymeriad yn ormod'
+      },
+      wordsUnderLimitText: {
+       other: 'Mae gennych %{count} o eiriau yn weddill',
+       one: 'Mae gennych 1 gair yn weddill'
+      },
+      wordsAtLimitText: 'Mae gennych 0 o eiriau yn weddill',
+      wordsOverLimitText: {
+       other: 'Mae gennych %{count} o eiriau yn ormod',
+       one: 'Mae gennych 1 gair yn ormod'
+      }
+    })
+  }}
+{% else %}
+  {{ govukCharacterCount({
+      name: params.name,
+      id: params.id,
+      rows: params.rows,
+      value: params.value,
+      maxlength: params.maxlength,
+      maxwords: params.maxwords,
+      threshold: params.threshold,
+      label: params.label,
+      hint: params.hint,
+      errorMessage: params.errorMessage,
+      formGroup: params.formGroup,
+      classes: params.classes,
+      attributes: params.attributes,
+      spellcheck: params.spellcheck,
+      countMessage: params.countMessage
+    })
+  }}
+{% endif %}
