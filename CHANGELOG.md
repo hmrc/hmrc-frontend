@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.23.0] - 2023-02-17
+
+### Changed
+
+- Corrected logic of setting `textareaDescriptionText` in `character-count` component
+
+
 ## [5.22.0] - 2023-02-16
 
 ### Changed

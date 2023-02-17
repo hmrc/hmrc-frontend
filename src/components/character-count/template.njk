@@ -18,7 +18,7 @@
       attributes: params.attributes,
       spellcheck: params.spellcheck,
       countMessage: params.countMessage,
-      textareaDescriptionText: 'Gallwch nodi hyd at ' + (params.maxlength or params.maxwords) + (' o eiriau' if params.maxwords else ' o gymeriadau'),
+      textareaDescriptionText: ('Gallwch nodi hyd at ' + params.maxwords + ' o eiriau' if params.maxwords else 'Gallwch nodi hyd at ' + params.maxlength + ' o gymeriadau'),
       charactersUnderLimitText: {
        other: 'Mae gennych %{count} o gymeriadau yn weddill',
        one: 'Mae gennych 1 cymeriad yn weddill'
