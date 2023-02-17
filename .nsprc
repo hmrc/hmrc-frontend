@@ -1,4 +1,5 @@
 {
+  "GHSA-rc47-6667-2j5j": "http-cache-semantics - devDependency, no risk given our usage",
   "GHSA-566m-qj78-rww5": "postcss - devDependency, no risk given our usage",
   "GHSA-rp65-9cf3-cjxr": "nth-check - devDependency, no risk given our usage",
   "GHSA-4wf5-vphf-c2xc": "terser - devDependency, no risk given our usage",

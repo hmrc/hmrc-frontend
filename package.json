@@ -1,6 +1,6 @@
 {
   "name": "hmrc-frontend",
-  "version": "5.22.0",
+  "version": "5.23.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
@@ -43,8 +43,8 @@
   },
   "homepage": "https://github.com/hmrc/hmrc-frontend#readme",
   "dependencies": {
-    "govuk-frontend": "^4.4.1",
-    "accessible-autocomplete": "^2.0.4"
+    "accessible-autocomplete": "^2.0.4",
+    "govuk-frontend": "^4.5.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.18.10",
