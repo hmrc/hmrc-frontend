@@ -21,6 +21,12 @@ examples:
   data:
     url: 'https://www.example.com/user-research'
     language: cy
+- name: hide-close-button
+  description: the user research banner without the close button
+  data:
+    url: 'https://www.example.com/user-research'
+    language: en
+    hideCloseButton: true
 
 visualRegressionTests:
   backstopScenarioOptions:

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.25.0] - 2023-02-27
+
+### Changed
+
+- Updated the `user research banner` with new content and added ability to not show close button
+
 ## [5.24.0] - 2023-02-20
 
 ### Changed
@@ -79,7 +85,7 @@ allowing internationalization
 
 ### Fixed
 
-- fixed bug with timeout-dialog that could cause an early timeout after the first or second timeout warning was 
+- fixed bug with timeout-dialog that could cause an early timeout after the first or second timeout warning was
 dismissed
 
 ## [5.13.0] - 2022-11-30
@@ -179,7 +185,7 @@ dismissed
 
 ### Changed
 
-- Updated the `character-count` to match the changes made to the match version `govuk-frontend` v4.1.0 
+- Updated the `character-count` to match the changes made to the match version `govuk-frontend` v4.1.0
 
 ## [5.1.0] - 2022-05-22
 
@@ -237,7 +243,7 @@ dismissed
 - Removed padding around page-heading component
   - Added ability to add headingClasses for h1 element
   - Added ability to add captionClasses subsection element
-  
+
 ## [4.9.0] - 2022-03-25
 
 ### Changed
@@ -265,9 +271,9 @@ dismissed
 
 ### Changed
 
-- Updated hmrc header to allow header navigation items without links, and changed how fallback logo is reached 
+- Updated hmrc header to allow header navigation items without links, and changed how fallback logo is reached
   (in line with govuk-frontend header)
-  
+
 ## [4.5.0] - 2022-02-09
 
 ### Changed
