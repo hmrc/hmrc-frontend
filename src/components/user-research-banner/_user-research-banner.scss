@@ -1,19 +1,6 @@
+@import "../../../../govuk-frontend/govuk/helpers/links";
 @import "../../../../govuk-frontend/govuk/helpers/typography";
-
-@mixin hmrc-white-link() {
-  color: govuk-colour("white");
-
-  &:link,
-  &:hover,
-  &:visited {
-    color: govuk-colour("white");
-  }
-
-  &:active,
-  &:focus {
-    color: govuk-colour("black");
-  }
-}
+@import "../../../../govuk-frontend/govuk/utilities/clearfix";
 
 .hmrc-user-research-banner {
   display: none;
@@ -22,12 +9,24 @@
   background-color: $govuk-brand-colour;
   box-sizing: border-box;
 
+  @include govuk-clearfix;
   @include govuk-responsive-padding(6, "top");
   @include govuk-responsive-padding(6, "bottom");
   @include govuk-font($size: 19);
 
   &__container {
     position: relative;
+
+    @include govuk-media-query($from: tablet) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__text {
+    float: left;
+    margin-bottom: govuk-spacing(3);
   }
 
   &__title {
@@ -37,24 +36,16 @@
   }
 
   &__link {
-    @include hmrc-white-link();
+    @include govuk-link-common;
+    @include govuk-link-style-inverse;
+  }
+
+  &__close {
+    float: right;
+    margin-bottom: 0;
   }
 
   &--show {
     display: block;
-  }
-
-  &__close {
-    @include hmrc-white-link();
-    @include govuk-responsive-margin(2, "top");
-
-    outline: 0;
-    border: 0;
-    background: none;
-    text-decoration: underline;
-    box-shadow: none;
-    padding: 0;
-    cursor: pointer;
-    font-size: inherit;
   }
 }
