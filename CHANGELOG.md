@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Added missing hideCloseButton paramter to user-research-banner.yaml
+
 ## [5.25.0] - 2023-02-27
 
 ### Changed

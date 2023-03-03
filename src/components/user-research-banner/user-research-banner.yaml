@@ -7,6 +7,10 @@ params:
   type: string
   required: false
   description: Either "en" for English or "cy" for Welsh
+- name: hideCloseButton
+  type: boolean
+  required: false
+  description: Optional field to enable or disable the close banner button.
 
 previewLayout: full-width
 
