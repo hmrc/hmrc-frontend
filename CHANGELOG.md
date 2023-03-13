@@ -7,9 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.26.0] - 2023-03-14
+
 ### Changed
 
-- Added missing hideCloseButton paramter to user-research-banner.yaml
+- Integrated with GOVUK Prototype Kit v13
+- Fixed Puppeteer deprecations
+- Added missing hideCloseButton parameter to user-research-banner.yaml
+- Bumped minor versions of some dependencies
 
 ## [5.25.0] - 2023-02-27
 
