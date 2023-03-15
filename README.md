@@ -19,7 +19,7 @@ of what the design patterns look like and guidance on how to use them in your se
 * [npm](https://www.npmjs.com/) `>= 6.4.1`
 
 To install more than one version of Node.js, it may be easier to use a node version manager 
-like [nvm](https://github.com/creationix/nvm) or [n](https://github.com/tj/n).
+like [nvm](https://github.com/nvm-sh/nvm) or [n](https://github.com/tj/n).
 
 ### How to install
 
