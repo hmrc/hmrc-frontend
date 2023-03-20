@@ -9,5 +9,6 @@
   "GHSA-f8q6-p94x-37v3": "minimatch - devDependency, no risk given our usage",
   "GHSA-w573-4hg7-7wgq": "decode-uri-component - devDependency, no risk given our usage",
   "GHSA-hrpp-h998-j3pp": "qs - devDependency, no risk given our usage",
-  "GHSA-9c47-m6qq-7p4h": "json5 - devDependency, no risk given our usage"
+  "GHSA-9c47-m6qq-7p4h": "json5 - devDependency, no risk given our usage",
+  "GHSA-p8p7-x288-28g6": "request: devDependency, no risk given our usage"
 }
