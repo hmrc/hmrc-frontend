@@ -1,4 +1,8 @@
-{% extends "layout.html" %}
+{% if 'v13.' in releaseVersion %}
+  {% extends "layouts/main.html" %}
+{% else %}
+  {% extends "layout.html" %}
+{% endif %}
 
 {% from "../components/header/macro.njk" import hmrcHeader %}
 {% from "../components/account-menu/macro.njk" import hmrcAccountMenu %}
