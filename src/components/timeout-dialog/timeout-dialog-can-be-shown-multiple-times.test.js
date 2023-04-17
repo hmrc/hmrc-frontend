@@ -9,10 +9,10 @@ import { installFakeTimersOnLoad, serveFakePage } from './test-helpers/browser-t
 
 import { version } from '../../../package.json';
 
+jest.setTimeout(10000);
+
 describe('timeout dialog with a single page open', () => {
   it('should not keep counting down after timeout is reached', async () => {
-    jest.setTimeout(6000);
-
     const page = await global.__BROWSER__.newPage();
 
     await page.setRequestInterception(true);

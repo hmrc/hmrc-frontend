@@ -266,12 +266,13 @@ function TimeoutDialog($module, $sessionActivityService) {
     };
 
     const runUpdate = () => {
-      const counter = getSecondsRemaining();
+      const counter = Math.max(getSecondsRemaining(), 0);
       updateCountdown(counter);
-      if (counter <= 0) {
+      if (counter === 0) {
         timeout();
+      } else {
+        currentTimer = window.setTimeout(runUpdate, getNextTimeout());
       }
-      currentTimer = window.setTimeout(runUpdate, getNextTimeout());
     };
 
     runUpdate();

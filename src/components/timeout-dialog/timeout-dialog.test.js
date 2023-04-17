@@ -490,11 +490,11 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(1);
 
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('timeout');
-      expect(getVisualCountText()).toEqual('time: -1 seconds.');
+      expect(getVisualCountText()).toEqual('time: 0 seconds.');
       expect(getAudibleCountText()).toEqual('time: 20 seconds.');
       pretendSecondsHavePassed(1);
 
-      expect(getVisualCountText()).toEqual('time: -2 seconds.');
+      expect(getVisualCountText()).toEqual('time: 0 seconds.');
       expect(getAudibleCountText()).toEqual('time: 20 seconds.');
     });
     it('should default redirectToUrl to data-sign-out-url if data-timeout-url is not set', () => {
@@ -591,11 +591,11 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(1);
 
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('timeout');
-      expect(getVisualCountText()).toEqual('Welsh, time: -1 eiliad.');
+      expect(getVisualCountText()).toEqual('Welsh, time: 0 eiliad.');
       expect(getAudibleCountText()).toEqual('Welsh, time: 20 eiliad.');
       pretendSecondsHavePassed(1);
 
-      expect(getVisualCountText()).toEqual('Welsh, time: -2 eiliad.');
+      expect(getVisualCountText()).toEqual('Welsh, time: 0 eiliad.');
       expect(getAudibleCountText()).toEqual('Welsh, time: 20 eiliad.');
     });
 
@@ -703,11 +703,11 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(1);
 
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('timeout');
-      expect(getVisualCountText()).toEqual('Remaining time is -1 seconds.');
+      expect(getVisualCountText()).toEqual('Remaining time is 0 seconds.');
       expect(getAudibleCountText()).toEqual(lowestAudibleCount);
       pretendSecondsHavePassed(1);
 
-      expect(getVisualCountText()).toEqual('Remaining time is -2 seconds.');
+      expect(getVisualCountText()).toEqual('Remaining time is 0 seconds.');
       expect(getAudibleCountText()).toEqual(lowestAudibleCount);
     });
   });
