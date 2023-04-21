@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.28.0] - 2023-04-20
+
+### Fixed
+
+- Updated timeout-dialog to fix bug. If user timed out and the timeout redirection took longer than a second then it
+  would get canceled and user would stay on page while the timeout dialog counted down into negative numbers.
+
 ## [5.27.0] - 2023-03-20
 
 ### Changed
