@@ -1,14 +1,7 @@
 {
-  "GHSA-rc47-6667-2j5j": "http-cache-semantics - devDependency, no risk given our usage",
   "GHSA-566m-qj78-rww5": "postcss - devDependency, no risk given our usage",
   "GHSA-rp65-9cf3-cjxr": "nth-check - devDependency, no risk given our usage",
-  "GHSA-4wf5-vphf-c2xc": "terser - devDependency, no risk given our usage",
   "GHSA-ww39-953v-wcq6": "glob-parent - devDependency, no risk given our usage",
-  "GHSA-7mwh-4pqv-wmr8": "scss-tokenizer - devDependency, no risk given our usage",
-  "GHSA-r683-j2x4-v87g": "node-fetch - devDependency, no risk given our usage",
-  "GHSA-f8q6-p94x-37v3": "minimatch - devDependency, no risk given our usage",
-  "GHSA-w573-4hg7-7wgq": "decode-uri-component - devDependency, no risk given our usage",
-  "GHSA-hrpp-h998-j3pp": "qs - devDependency, no risk given our usage",
-  "GHSA-9c47-m6qq-7p4h": "json5 - devDependency, no risk given our usage",
-  "GHSA-p8p7-x288-28g6": "request: devDependency, no risk given our usage"
+  "GHSA-p8p7-x288-28g6": "request: devDependency, no risk given our usage",
+  "GHSA-x77j-w7wf-fjmw": "nunjucks: devDependency, no risk given our usage"
 }
