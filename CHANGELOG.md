@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.31.0] - 2023-05-02
+
+### Changed
+
+- Add empty alt attribute to logo IE8 fallback PNG in the HMRC `header` template
+
 ## [5.30.0] - 2023-04-24
 
 ### Changed
