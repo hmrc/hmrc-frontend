@@ -4,6 +4,7 @@
 
 /* eslint-env jest */
 /* eslint-disable no-underscore-dangle */
+/* eslint-disable no-promise-executor-return */
 
 import { installFakeTimersOnLoad, serveFakePage } from './test-helpers/browser-tests';
 

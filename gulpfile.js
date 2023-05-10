@@ -26,7 +26,6 @@ const copyPackageFiles = series(
   'copy-govuk-images',
   'copy-html5shiv',
   'copy-govuk-config',
-  'copy-check-compatibility',
 );
 
 const buildPackage = series(

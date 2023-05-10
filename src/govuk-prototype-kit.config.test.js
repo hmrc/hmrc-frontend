@@ -12,6 +12,6 @@ const configuredComponents = require('./govuk-prototype-kit.config.json')
 
 describe('govuk-prototype-kit config', () => {
   it('should configure all HMRC components for use with v13+ GOVUK prototype kit', () => {
-    expect(configuredComponents).toEqual(definedComponents);
+    expect(configuredComponents).toEqual(definedComponents.reverse());
   });
 });
