@@ -62,9 +62,6 @@ gulp.task('copy:packageJson', (done) => {
 gulp.task('copy-govuk-config', () => gulp.src([`${configPaths.src}govuk-prototype-kit.config.json`])
   .pipe(gulp.dest(configPaths.package)));
 
-gulp.task('copy-check-compatibility', () => gulp.src(['check-compatibility.js'])
-  .pipe(gulp.dest(configPaths.package)));
-
 gulp.task('copy-package-sources', () => gulp.src([
   `${configPaths.src}**/*`,
   '!**/.DS_Store',
