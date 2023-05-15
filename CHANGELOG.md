@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.33.0] - 2023-05-15
+
+### Changed
+
+- Version bump due to publishing issues
+
 ## [5.32.0] - 2023-05-10
 
 ### Changed
