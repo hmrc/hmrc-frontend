@@ -68,3 +68,11 @@ examples:
   data:
     serviceId: pay
     referrerUrl: http://localhost:9123/my-service
+  visualRegressionTests:
+    alternateStates:
+      hovered:
+        beforeTakingScreenshot:
+          - hover: ".govuk-link"
+      focused:
+        beforeTakingScreenshot:
+          - focus: ".govuk-link"
