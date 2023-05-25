@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+## [5.34.0] - 2023-05-25
+
+### Changed
+
+- Increasing test coverage before enabling new gov.uk link styles
 
 ## [5.33.0] - 2023-05-15
 

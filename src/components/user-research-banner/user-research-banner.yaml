@@ -20,6 +20,14 @@ examples:
   data:
     url: 'https://www.example.com/user-research'
     language: en
+  visualRegressionTests:
+    alternateStates:
+      hovered:
+        beforeTakingScreenshot:
+          - hover: ".govuk-link"
+      focused:
+        beforeTakingScreenshot:
+          - focus: ".govuk-link"
 - name: welsh
   description: The standard user research banner for Welsh
   data:
