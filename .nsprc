@@ -1,7 +1,7 @@
 {
   "GHSA-566m-qj78-rww5": "postcss - devDependency, no risk given our usage",
+  "GHSA-hwj9-h5mp-3pm3": "postcss - devDependency, no risk given our usage",
   "GHSA-rp65-9cf3-cjxr": "nth-check - devDependency, no risk given our usage",
   "GHSA-ww39-953v-wcq6": "glob-parent - devDependency, no risk given our usage",
-  "GHSA-p8p7-x288-28g6": "request: devDependency, no risk given our usage",
-  "GHSA-x77j-w7wf-fjmw": "nunjucks: devDependency, no risk given our usage"
+  "GHSA-p8p7-x288-28g6": "request: devDependency, no risk given our usage"
 }
