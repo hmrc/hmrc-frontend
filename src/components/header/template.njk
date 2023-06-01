@@ -103,13 +103,13 @@
       {% endif %}
     </div>
   </div>
-  {% if params.userResearchBanner %}
-    {{ hmrcUserResearchBanner({language: params.language, url: params.userResearchBanner.url }) }}
-  {% endif %}
   {% if params.phaseBanner %}
     <div class="govuk-width-container">
       {{ govukPhaseBanner(params.phaseBanner) }}
     </div>
+  {% endif %}
+  {% if params.userResearchBanner %}
+      {{ hmrcUserResearchBanner({language: params.language, url: params.userResearchBanner.url }) }}
   {% endif %}
   {% if params.displayHmrcBanner %}
     <div class="govuk-width-container">
