@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.36.0] - 2023-06-01
+
+### Changed
+
+- Updated the position of the user research banner in the header component to comply with design system guidance
+
 ## [5.35.0] - 2023-05-30
 
 ### Changed
