@@ -3,6 +3,7 @@
     .govuk-summary-list__row {
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
     }
 
     .govuk-summary-list__key {

@@ -144,39 +144,47 @@ params:
     type: object
     required: false
     description: HTML attributes (for example data attributes) to add to the container.
-
+previewLayout: 'summary-list/example'
+type: 'layout'
 examples:
-  - name: long key with classes
-    hidden: true
+  - name: long key
     data:
-      rows:
-        - key:
-            text: Name
-            classes: govuk-summary-list--long-key
-          value:
-            text: Firstname Lastname
-  - name: default
+      params:
+        classes: govuk-summary-list--long-key
+        rows:
+          - key:
+              html: <div class="govuk-form-group govuk-form-group--error"><label class="govuk-label govuk-!-font-weight-bold" for="select-error">receipt3.jpg</label><p id="select-error-error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> Select a file</p><input class="govuk-file-upload govuk-file-upload--error" id="select-error" name="select-error" type="file" aria-describedby="select-error-error"></div>
+            value:
+              text: Firstname Lastname
+            actions:
+              items:
+                - href: test
+                  text: Remove
+                  visuallyHiddenText: receipt3.jpg
+  - name: long key with no actions
     data:
-      rows:
-        - key:
-            text: Name
-          value:
-            text: Firstname Lastname
-        - key:
-            text: Date of birth
-          value:
-            text: 13/08/1980
-        - key:
-            text: Contact information
-          value:
-            html: |
-              <p class="govuk-body">
-                email@email.com
-              </p>
-              <p class="govuk-body">
-                Address line 1<br>
-                Address line 2<br>
-                Address line 3<br>
-                Address line 4<br>
-                Address line 5
-              </p>
+      params:
+        classes: govuk-summary-list--long-key
+        rows:
+          - key:
+              text: Name
+            value:
+              text: Firstname Lastname
+          - key:
+              text: Date of birth
+            value:
+              text: 13/08/1980
+          - key:
+              text: Contact information
+            value:
+              html: |
+                <p class="govuk-body">
+                  email@email.com
+                </p>
+                <p class="govuk-body">
+                  Address line 1<br>
+                  Address line 2<br>
+                  Address line 3<br>
+                  Address line 4<br>
+                  Address line 5
+                </p>

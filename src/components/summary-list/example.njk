@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% block content %}
+
+{{ govukSummaryList(params) }}
+
+{% endblock %}
+
