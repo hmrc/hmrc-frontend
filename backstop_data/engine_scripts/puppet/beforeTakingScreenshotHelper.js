@@ -17,7 +17,7 @@ module.exports = async (page, { beforeTakingScreenshot }) => {
     await page.press(key);
 
   allowedPageActions.waitFor = async selector =>
-    await page.waitFor(selector);
+    await page.waitForSelector(selector);
 
   if (beforeTakingScreenshot) {
     for (const step of beforeTakingScreenshot) {

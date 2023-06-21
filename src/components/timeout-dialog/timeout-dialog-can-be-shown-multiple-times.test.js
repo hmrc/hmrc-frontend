@@ -4,12 +4,56 @@
 
 /* eslint-env jest */
 /* eslint-disable no-underscore-dangle */
+/* eslint-disable no-promise-executor-return */
 
 import { installFakeTimersOnLoad, serveFakePage } from './test-helpers/browser-tests';
 
 import { version } from '../../../package.json';
 
+jest.setTimeout(10000);
+
 describe('timeout dialog with a single page open', () => {
+  it('should not keep counting down after timeout is reached', async () => {
+    const page = await global.__BROWSER__.newPage();
+
+    await page.setRequestInterception(true);
+
+    page.on('request', (req) => {
+      if (req.url() === 'http://localhost:8888/timeout-reached') {
+        // simulate timeout page that's slower to respond that the 1-second tick of countdown timer
+        setTimeout(() => req.respond({
+          contentType: 'text/plain',
+          body: 'timeout page reached',
+        }), 2000);
+      } else if (req.url() === 'http://localhost:8888/') {
+        // subject of test needs to have a short timeout because we have to use real timers
+        req.respond({
+          contentType: 'text/html',
+          body: `
+            <meta name="hmrc-timeout-dialog"
+              content="hmrc-timeout-dialog"
+              data-timeout="2"
+              data-countdown="1"
+              data-keep-alive-url="?keepalive"
+              data-sign-out-url="/timeout-reached"
+              data-synchronise-tabs="true"/>
+            <link rel="stylesheet" href="/assets/hmrc-frontend-${version}.min.css">
+            <script src="/assets/hmrc-frontend-${version}.min.js"></script>
+          `,
+        });
+      } else {
+        req.continue();
+      }
+    });
+
+    await page.goto('http://localhost:8888/');
+
+    // now we need to wait until the slow timeout page should have loaded
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+
+    expect(await page.content()).toContain('timeout page reached');
+  });
+
   it('should allow you to choose to continue your session more than once on the same page', async () => {
     const page = await global.__BROWSER__.newPage();
 

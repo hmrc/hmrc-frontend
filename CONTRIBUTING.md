@@ -207,6 +207,10 @@ may use to access it.
 
 You can find out more about designing for different browsers and devices.
 
+### Make new components available in the GOVUK prototype kit
+If you've added a new component, you should register its nunjucks macro in [govuk-prototype-kit.config.json](src/govuk-prototype-kit.config.json)
+so that it's automatically available for users of the (v13+) GOVUK prototype kit (users of older prototype kits can still import it manually).
+
 ### Write documentation
 
 #### Keep a CHANGELOG

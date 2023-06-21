@@ -6,10 +6,82 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+## [5.37.0] - 2023-05-30
 
 ### Changed
 
-- Added missing hideCloseButton paramter to user-research-banner.yaml
+- Enabling new gov.uk link styles
+
+
+## [5.36.0] - 2023-06-01
+
+### Changed
+
+- Updated the position of the user research banner in the header component to comply with design system guidance
+
+## [5.35.0] - 2023-05-30
+
+### Changed
+
+- Updated npm audit information
+
+## [5.34.0] - 2023-05-25
+
+### Changed
+
+- Increasing test coverage before enabling new gov.uk link styles
+
+## [5.33.0] - 2023-05-15
+
+### Changed
+
+- Version bump due to publishing issues
+
+## [5.32.0] - 2023-05-10
+
+### Changed
+
+- Removed unused check and test scripts, updated dependencies
+
+## [5.31.0] - 2023-05-02
+
+### Changed
+
+- Add empty alt attribute to logo IE8 fallback PNG in the HMRC `header` template
+
+## [5.30.0] - 2023-04-24
+
+### Changed
+
+- Updated npm audit information
+
+## [5.29.0] - 2023-04-24
+
+### Changed
+
+- Updated the [govuk-frontend version to v4.6.0](https://github.com/alphagov/govuk-frontend/releases/tag/v4.6.0)
+
+## [5.28.0] - 2023-04-20
+
+### Fixed
+
+- Updated timeout-dialog to fix bug. If user timed out and the timeout redirection took longer than a second then it
+  would get canceled and user would stay on page while the timeout dialog counted down into negative numbers.
+
+## [5.27.0] - 2023-03-20
+
+### Changed
+
+- Updated npm audit information
+
+## [5.26.0] - 2023-03-14
+
+### Changed
+
+- Integrated with GOVUK Prototype Kit v13
+- Fixed Puppeteer deprecations
+- Added missing hideCloseButton parameter to user-research-banner.yaml
+- Bumped minor versions of some dependencies
 
 ## [5.25.0] - 2023-02-27
 

@@ -4,14 +4,98 @@
     "/hmrc/components/banner/images",
     "/hmrc/components/internal-header/images"
   ],
-  "nunjucksPaths": [
-    "/"
-  ],
   "sass": [
     "/hmrc/_prototype-kit.scss"
   ],
   "scripts": [
     "/hmrc/all.js",
     "/hmrc/init-all.js"
+  ],
+  "importNunjucksMacrosInto": [
+    "/hmrc/templates/account-header.html"
+  ],
+  "templates": [
+    {
+      "name": "Blank page with Account Header",
+      "path": "/hmrc/templates/account-header.html",
+      "type": "nunjucks"
+    }
+  ],
+  "nunjucksPaths": [
+    "/"
+  ],
+  "nunjucksMacros": [
+    {
+      "macroName": "hmrcAccessibleAutocomplete",
+      "importFrom": "hmrc/components/accessible-autocomplete/macro.njk"
+    },
+    {
+      "macroName": "hmrcAccountMenu",
+      "importFrom": "hmrc/components/account-menu/macro.njk"
+    },
+    {
+      "macroName": "hmrcAddToAList",
+      "importFrom": "hmrc/components/add-to-a-list/macro.njk"
+    },
+    {
+      "macroName": "hmrcBanner",
+      "importFrom": "hmrc/components/banner/macro.njk"
+    },
+    {
+      "macroName": "hmrcCharacterCount",
+      "importFrom": "hmrc/components/character-count/macro.njk"
+    },
+    {
+      "macroName": "hmrcCurrencyInput",
+      "importFrom": "hmrc/components/currency-input/macro.njk"
+    },
+    {
+      "macroName": "hmrcFooter",
+      "importFrom": "hmrc/components/footer/macro.njk"
+    },
+    {
+      "macroName": "hmrcHeader",
+      "importFrom": "hmrc/components/header/macro.njk"
+    },
+    {
+      "macroName": "hmrcInternalHeader",
+      "importFrom": "hmrc/components/internal-header/macro.njk"
+    },
+    {
+      "macroName": "hmrcLanguageSelect",
+      "importFrom": "hmrc/components/language-select/macro.njk"
+    },
+    {
+      "macroName": "hmrcListWithActions",
+      "importFrom": "hmrc/components/list-with-actions/macro.njk"
+    },
+    {
+      "macroName": "hmrcNewTabLink",
+      "importFrom": "hmrc/components/new-tab-link/macro.njk"
+    },
+    {
+      "macroName": "hmrcNotificationBadge",
+      "importFrom": "hmrc/components/notification-badge/macro.njk"
+    },
+    {
+      "macroName": "hmrcPageHeading",
+      "importFrom": "hmrc/components/page-heading/macro.njk"
+    },
+    {
+      "macroName": "hmrcReportTechnicalIssue",
+      "importFrom": "hmrc/components/report-technical-issue/macro.njk"
+    },
+    {
+      "macroName": "hmrcTimeline",
+      "importFrom": "hmrc/components/timeline/macro.njk"
+    },
+    {
+      "macroName": "hmrcTimeoutDialog",
+      "importFrom": "hmrc/components/timeout-dialog/macro.njk"
+    },
+    {
+      "macroName": "hmrcUserResearchBanner",
+      "importFrom": "hmrc/components/user-research-banner/macro.njk"
+    }
   ]
 }
