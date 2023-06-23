@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [5.38.0] - 2023-06-21
+
+### Added
+- Added new modifier class to GOV.UK Summary List for longer keys
 ## [5.37.0] - 2023-05-30
 
 ### Changed
