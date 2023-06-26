@@ -1,4 +1,5 @@
 {
+  "GHSA-c2qf-rxjj-qqgw": "semver - devDependency, no risk given our usage",
   "GHSA-566m-qj78-rww5": "postcss - devDependency, no risk given our usage",
   "GHSA-hwj9-h5mp-3pm3": "postcss - devDependency, no risk given our usage",
   "GHSA-rp65-9cf3-cjxr": "nth-check - devDependency, no risk given our usage",

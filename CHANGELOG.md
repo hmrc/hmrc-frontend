@@ -7,16 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.39.0] - 2023-06-26
+
+### Changed
+
+- Updated npm audit exclusions
+
 ## [5.38.0] - 2023-06-21
 
 ### Added
 - Added new modifier class to GOV.UK Summary List for longer keys
+
 ## [5.37.0] - 2023-05-30
 
 ### Changed
 
 - Enabling new gov.uk link styles
-
 
 ## [5.36.0] - 2023-06-01
 
