@@ -1,0 +1,4 @@
+
+body:not(.js-enabled) a[data-module="hmrc-back-link"][href="#"] {
+  display: none;
+}
