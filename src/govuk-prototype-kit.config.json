@@ -1,4 +1,10 @@
 {
+  "pluginDependencies": [
+    {
+      "packageName": "govuk-frontend",
+      "minVersion": "4.7.0"
+    }
+  ],
   "assets": [
     "/hmrc/components/account-menu/images",
     "/hmrc/components/banner/images",
