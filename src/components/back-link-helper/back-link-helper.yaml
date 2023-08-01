@@ -1,0 +1,57 @@
+params:
+  - name: text
+    type: string
+    required: false
+    description: Text to use within the back link component. If `html` is provided, the `text` option will be ignored. Defaults to 'Back'.
+  - name: html
+    type: string
+    required: false
+    description: HTML to use within the back link component. If `html` is provided, the `text` option will be ignored. Defaults to 'Back'.
+  - name: href
+    type: string
+    required: true
+    description: The value of the link's `href` attribute.
+  - name: classes
+    type: string
+    required: false
+    description: Classes to add to the anchor tag.
+  - name: attributes
+    type: object
+    required: false
+    description: HTML attributes (for example data attributes) to add to the anchor tag.
+
+previewLayout: 'back-link-helper/example'
+type: 'layout'
+
+examples:
+  - name: default
+  - name: with custom text
+    data:
+      params:
+        text: Back to home
+  - name: with custom href
+    data:
+      params:
+        href: /
+  - name: JavaScript back link
+    data:
+      params:
+        attributes:
+          data-module: hmrc-back-link
+  - name: JavaScript back link with JS disabled
+    data:
+      params:
+        html: |
+          <script>document.body.classList.remove('js-enabled');</script>
+          <div>This back link should be hidden since JS is disabled</div>
+        attributes:
+          data-module: hmrc-back-link
+  - name: JavaScript back link with JS disabled but with fallback href
+    data:
+      params:
+        href: /
+        html: |
+          <script>document.body.classList.remove('js-enabled');</script>
+          <div>This back link should be visible even though JS is disabled</div>
+        attributes:
+          data-module: hmrc-back-link
