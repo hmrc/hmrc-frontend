@@ -23,6 +23,21 @@ You can:
 
 ## Before you create a pull request
 
+### Run `npm install` and make sure you've updated the version number
+
+Running the following will:
+- make sure any changes to your package.json are reflected in your package-lock.json
+- make sure pre-commit hooks are installed and deps needed to run their checks are available
+- bump the version number in your package.json and package-lock.json
+
+> **Warning:**
+> Make sure you commit the changes!
+
+```
+npm install
+npm version minor
+```
+
 ### Adding or updating NPM dependencies
 
 To minimise the security risk from accidentally installing a compromised package, you should:

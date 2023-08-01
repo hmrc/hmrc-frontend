@@ -1,6 +1,6 @@
 {
   "name": "hmrc-frontend",
-  "version": "5.42.0",
+  "version": "5.43.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
@@ -20,7 +20,8 @@
     "test:backstop": "gulp backstopTest",
     "test:backstop-approve": "gulp backstop:approve",
     "docs:generate-decision-log-listing": "adr-log -d ./docs/adr -i ./docs/adr/index.md -e template.md",
-    "audit": "better-npm-audit audit"
+    "audit": "better-npm-audit audit",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -75,6 +76,7 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify-es": "^3.0.0",
     "html5shiv": "^3.7.3",
+    "husky": "^8.0.3",
     "jest": "^27.5.1",
     "jest-axe": "^3.5.0",
     "jest-environment-node": "^26.6.2",
@@ -123,11 +125,5 @@
     "testRunner": "jest-jasmine2",
     "globalSetup": "./lib/puppeteer/setup.js",
     "globalTeardown": "./lib/puppeteer/teardown.js"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm test"
-    }
   }
 }

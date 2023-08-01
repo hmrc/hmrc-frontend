@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm run lint
+
+node lib/update-govuk-prototype-kit-config.js
+
+git add src/govuk-prototype-kit.config.json
