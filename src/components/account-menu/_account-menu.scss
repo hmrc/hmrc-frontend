@@ -13,6 +13,7 @@
 // Necessary as there's a specificity problem on the <li>'s in the mobile menu
 .hidden,
 .no-js .js-visible,
+.js-enabled .js-hidden,
 .js .js-hidden {
   display: none !important;
 }
@@ -117,6 +118,10 @@ $hmrc-transition-type: "all";
 .is-smaller .hmrc-account-menu__link--home,
 .is-smaller .hmrc-account-menu__link--menu {
   padding-left: 0;
+}
+
+body:not(.js-enabled) .hmrc-account-menu__link--menu {
+  display: none;
 }
 
 .hmrc-account-menu__link--menu {
@@ -344,7 +349,4 @@ $hmrc-banner-blue: #005ea5;
   }
 }
 
-.js-hidden {
-  display: none;
-}
 /* stylelint-enable no-descending-specificity */
