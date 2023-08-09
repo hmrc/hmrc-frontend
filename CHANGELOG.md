@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.45.0] - 2023-08-09
+
+### Changed
+
+- Removed `accessible-autocomplete` from webjars included in `hmrc-frontend` webjar dependencies
+
+## [5.44.0] - 2023-08-03
+
+### Changed
+
+- always show Account Menu nav buttons if JS is disabled
+
+## [5.43.0] - 2023-08-01
+
+### Changed
+
+- Add pluginDependencies to `govuk-prototype-kit.config.json`
+
+## [5.42.0] - 2023-08-01
+
+### Changed
+
+- hide JS backlink when JS is disabled
+
 ## [5.41.0] - 2023-07-17
 
 ### Changed
