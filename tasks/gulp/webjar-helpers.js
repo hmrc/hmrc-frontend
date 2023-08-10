@@ -8,6 +8,8 @@ const crypto = require('crypto');
 
 const groupId = 'uk.gov.hmrc.webjars';
 
+const webjarsToPackage = ['govuk-frontend'];
+
 const webJarHelpers = ({
   artifactId, webjarPath, webjarDistPath, packagePath, githubUrl,
 }) => {
@@ -97,7 +99,10 @@ const webJarHelpers = ({
         </dependency>`;
       };
 
-      const entriesAsDependencies = Object.entries(dependencies).map(entryToDependency);
+      const entriesToIncludeInWebjar = Object.entries(dependencies).filter(
+        ([entryName]) => webjarsToPackage.includes(entryName),
+      );
+      const entriesAsDependencies = entriesToIncludeInWebjar.map(entryToDependency);
       return entriesAsDependencies.toString().split(',').join('\n\t');
     };
 
