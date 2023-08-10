@@ -19,6 +19,16 @@ module.exports = async (page, { beforeTakingScreenshot }) => {
   allowedPageActions.waitFor = async selector =>
     await page.waitForSelector(selector);
 
+  allowedPageActions.setRefererSameDomain = async refererIsSameDomain => {
+    if(refererIsSameDomain) {
+      const pageUrl = page.url();
+      await page.goto(pageUrl, {
+        referer: pageUrl,
+        referrerPolicy: 'origin'
+      });
+    }
+  }
+
   if (beforeTakingScreenshot) {
     for (const step of beforeTakingScreenshot) {
       const [action, params] = Object.entries(step)[0];

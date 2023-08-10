@@ -2,3 +2,7 @@
 body:not(.js-enabled) a[data-module="hmrc-back-link"][href="#"] {
   display: none;
 }
+
+.hmrc-hidden-backlink {
+  display: none;
+}

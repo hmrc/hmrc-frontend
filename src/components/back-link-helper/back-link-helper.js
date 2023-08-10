@@ -10,20 +10,22 @@ BackLinkHelper.prototype.init = function init() {
     // store referrer value to cater for IE
     const docReferrer = this.document.referrer;
 
-    // prevent resubmit warning
-    if (this.window.history.replaceState && typeof this.window.history.replaceState === 'function') {
-      this.window.history.replaceState(null, null, this.window.location.href);
-    }
+    // hide the backlink if the referrer is on a different domain or the referrer is not set
+    if (docReferrer === '' || docReferrer.indexOf(this.window.location.host) === -1) {
+      this.$module.classList.add('hmrc-hidden-backlink');
+    } else {
+      // prevent resubmit warning
+      if (this.window.history.replaceState && typeof this.window.history.replaceState === 'function') {
+        this.window.history.replaceState(null, null, this.window.location.href);
+      }
 
-    // handle 'Back' click, dependent upon presence of referrer & no host change
-    this.$module.addEventListener('click', (event) => {
-      event.preventDefault();
-      if (this.window.history.back && typeof this.window.history.back === 'function') {
-        if (docReferrer !== '' && docReferrer.indexOf(this.window.location.host) !== -1) {
+      this.$module.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (this.window.history.back && typeof this.window.history.back === 'function') {
           this.window.history.back();
         }
-      }
-    });
+      });
+    }
   }
 };
 

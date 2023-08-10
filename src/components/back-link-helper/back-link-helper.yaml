@@ -33,12 +33,24 @@ examples:
     data:
       params:
         href: /
-  - name: JavaScript back link
+  - name: JavaScript back link hidden when referrer is on different domain
+    data:
+      params:
+        html: |
+          <script>Object.defineProperty(document, "referrer", {get : function(){ return "http://somewhere-else.com"; }});</script>
+          <div>This back link should be hidden since the referrer is different from the host</div>
+        attributes:
+          data-module: hmrc-back-link
+  - name: JavaScript back link visible when referrer is on the same domain
     data:
       params:
         attributes:
           data-module: hmrc-back-link
-  - name: JavaScript back link with JS disabled
+    visualRegressionTests:
+      backstopScenarioOptions:
+        beforeTakingScreenshot:
+          - setRefererSameDomain: true
+  - name: JavaScript back link hidden when JS disabled
     data:
       params:
         html: |
@@ -46,7 +58,7 @@ examples:
           <div>This back link should be hidden since JS is disabled</div>
         attributes:
           data-module: hmrc-back-link
-  - name: JavaScript back link with JS disabled but with fallback href
+  - name: JavaScript back link visible when JS disabled but with fallback href
     data:
       params:
         href: /
@@ -55,3 +67,7 @@ examples:
           <div>This back link should be visible even though JS is disabled</div>
         attributes:
           data-module: hmrc-back-link
+    visualRegressionTests:
+      backstopScenarioOptions:
+        beforeTakingScreenshot:
+          - setRefererSameDomain: true

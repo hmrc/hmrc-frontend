@@ -26,18 +26,42 @@ describe('/components/back-link-helper', () => {
   }
 
   describe('When a JS-enabled back link is included on a page', () => {
+    it('should be hidden when referrer is on a different domain', async () => {
+      await page.goto(backLinkExampleUrl('JavaScript-back-link-hidden-when-referrer-is-on-different-domain'), {
+        referer: 'http://somewhere-else.com',
+      });
+      expect(await linkDisplayStyle()).toBe('none');
+    });
+
+    it('should be hidden when referrer is empty', async () => {
+      await page.goto(backLinkExampleUrl('JavaScript-back-link-hidden-when-referrer-is-on-different-domain'), {
+        referer: '',
+      });
+      expect(await linkDisplayStyle()).toBe('none');
+    });
+
     it('should be visible when JS is enabled', async () => {
-      await page.goto(backLinkExampleUrl('JavaScript-back-link'));
+      await page.goto(baseUrl);
+
+      const aRef = await page.$('a ::-p-text(Javascript back link visible when referrer is on the same domain example)');
+      await aRef.click();
+      await page.waitForNavigation();
+
       expect(await linkDisplayStyle()).not.toBe('none');
     });
 
     it('should be hidden when JS is disabled', async () => {
-      await page.goto(backLinkExampleUrl('JavaScript-back-link-with-JS-disabled'));
+      await page.goto(backLinkExampleUrl('JavaScript-back-link-hidden-when-JS-disabled'));
       expect(await linkDisplayStyle()).toBe('none');
     });
 
     it('should be visible when JS is disabled but a fallback href is provided', async () => {
-      await page.goto(backLinkExampleUrl('JavaScript-back-link-with-JS-disabled-but-with-fallback-href'));
+      await page.goto(baseUrl);
+
+      const aRef = await page.$('a ::-p-text(Javascript back link visible when js disabled but with fallback href example)');
+      await aRef.click();
+      await page.waitForNavigation();
+
       expect(await linkDisplayStyle()).not.toBe('none');
     });
   });
