@@ -19,6 +19,9 @@ describe('/components/back-link-helper', () => {
 
   const mockAnchorTag = {
     addEventListener: jest.fn(),
+    classList: {
+      add: jest.fn(),
+    },
   };
 
   const mockEvent = {
@@ -48,7 +51,7 @@ describe('/components/back-link-helper', () => {
     });
 
     it('does not throw if window.history.replaceState is not implemented', () => {
-      const ancientBrowser = { history: {} };
+      const ancientBrowser = { history: {}, location: { host: 'https://tax.service.gov.uk' } };
       const sut = new BackLinkHelper(mockAnchorTag, ancientBrowser, mockDocument);
       expect(() => sut.init()).not.toThrow();
     });
@@ -68,28 +71,22 @@ describe('/components/back-link-helper', () => {
       expect(mockWindow.history.back).toHaveBeenCalled();
     });
 
-    it('does not call window.history.back() if document referer is empty', () => {
+    it('adds .hmrc-hidden-backlink class to backlink when document referer is empty', () => {
       const sut = new BackLinkHelper(mockAnchorTag, mockWindow, { referrer: '' });
       sut.init();
 
-      const callbackFn = mockAnchorTag.addEventListener.mock.calls[0][1];
-      callbackFn(mockEvent);
-
-      expect(mockWindow.history.back).not.toHaveBeenCalled();
+      expect(mockAnchorTag.classList.add.mock.calls[0][0]).toBe('hmrc-hidden-backlink');
     });
 
-    it('does not call window.history.back() if document referer is on a different domain', () => {
+    it('adds .hmrc-hidden-backlink class to backlink if document referer is on a different domain', () => {
       const sut = new BackLinkHelper(mockAnchorTag, mockWindow, { referrer: 'https://some.other.site/some/referrer' });
       sut.init();
 
-      const callbackFn = mockAnchorTag.addEventListener.mock.calls[0][1];
-      callbackFn(mockEvent);
-
-      expect(mockWindow.history.back).not.toHaveBeenCalled();
+      expect(mockAnchorTag.classList.add.mock.calls[0][0]).toBe('hmrc-hidden-backlink');
     });
 
     it('does not throw if window.history.back() is not implemented', () => {
-      const ancientBrowser = { history: {} };
+      const ancientBrowser = { history: {}, location: { host: 'https://tax.service.gov.uk' } };
       const sut = new BackLinkHelper(mockAnchorTag, ancientBrowser, mockDocument);
       sut.init();
 

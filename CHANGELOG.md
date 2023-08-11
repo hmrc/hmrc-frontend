@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.46.0] - 2023-08-10
+
+### Changed
+
+- Ensure that the backlink element is hidden if the referrer is empty or on a different domain
+
 ## [5.45.0] - 2023-08-09
 
 ### Changed
