@@ -17,7 +17,7 @@
     "lint:fix": "stylelint 'src/**/*.scss' --fix && eslint --fix .",
     "test": "npm run build:dist && jest src --runInBand --detectOpenHandles && npm run lint",
     "test:update-snapshots": "jest src -u",
-    "test:backstop": "gulp backstopTest",
+    "test:backstop": "env SELENIUM_REMOTE_URL=http://localhost:4444 gulp backstopTest",
     "test:backstop-approve": "gulp backstop:approve",
     "docs:generate-decision-log-listing": "adr-log -d ./docs/adr -i ./docs/adr/index.md -e template.md",
     "audit": "better-npm-audit audit",
@@ -42,8 +42,9 @@
   },
   "homepage": "https://github.com/hmrc/hmrc-frontend#readme",
   "dependencies": {
+    "accessible-autocomplete": "^2.0.4",
     "govuk-frontend": "^4.7.0",
-    "accessible-autocomplete": "^2.0.4"
+    "playwright": "^1.37.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.21.5",

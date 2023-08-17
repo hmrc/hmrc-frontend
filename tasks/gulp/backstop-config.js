@@ -78,9 +78,9 @@ module.exports = ({ host, port, components }) => ({
     ci_report: 'backstop_data/ci_report',
   },
   report: ['browser'],
-  engine: 'puppeteer',
+  engine: 'playwright',
   engineOptions: {
-    args: ['--no-sandbox'],
+    browser: 'chromium',
   },
   // if running locally, and either stage hangs, try reducing these limits
   asyncCaptureLimit: 5,

@@ -10,8 +10,8 @@ const configPaths = require('../../config/paths.json');
 const backstopConfig = require('./backstop-config');
 
 const port = configPaths.ports.test;
-const docker = !process.env.CI;
-const defaultHost = docker ? 'host.docker.internal' : 'localhost';
+const docker = false;
+const defaultHost = 'localhost';
 const host = process.env.BACKSTOP_TEST_HOST || defaultHost;
 const components = glob.sync('src/components/*/*.yaml').map((componentsConfig) => ({
   componentsPath: path.basename(componentsConfig, '.yaml'),
