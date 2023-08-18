@@ -1,4 +1,12 @@
 {
+  "meta": {
+    "description": "HMRC Frontend contains the code and documentation for patterns specifically designed for HMRC.",
+    "urls": {
+      "documentation": "https://design.tax.service.gov.uk/hmrc-design-patterns/",
+      "releaseNotes": "https://github.com/hmrc/hmrc-frontend/releases/tag/v{{version}}",
+      "versionHistory": "https://github.com/hmrc/hmrc-frontend/releases"
+    }
+  },
   "pluginDependencies": [
     {
       "packageName": "govuk-frontend",
