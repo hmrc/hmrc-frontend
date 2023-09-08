@@ -336,6 +336,35 @@ describe('/components/timeout-dialog', () => {
     });
   });
 
+  describe('display the sign out link', () => {
+    it('should not show sign out button when disable-sign-out-button parameter is set', () => {
+      setupDialog({
+        'data-title': 'my custom TITLE',
+        'data-message': 'MY custom message',
+        'data-message-suffix': 'My message suffix.',
+        'data-keep-alive-button-text': 'KEEP alive',
+        'disable-sign-out-button': true,
+      });
+
+      pretendSecondsHavePassed(780);
+
+      expect(testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-link')).toBeNull();
+    });
+
+    it('should show sign out button when disable-sign-out-button parameter is unset', () => {
+      setupDialog({
+        'data-title': 'my custom TITLE',
+        'data-message': 'MY custom message',
+        'data-message-suffix': 'My message suffix.',
+        'data-keep-alive-button-text': 'KEEP alive',
+      });
+
+      pretendSecondsHavePassed(780);
+
+      expect(testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-link')).not.toBeNull();
+    });
+  });
+
   describe('Restarting countdown on close', () => {
     it('should restart with default settings', () => {
       setupDialog({ 'data-message': 'time:' });

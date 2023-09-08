@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.47.0] - 2023-09-08
+
+### Changed
+
+- Provides option to not display the 'Sign out' link on the timeout-dialog component
+
 ## [5.46.0] - 2023-08-10
 
 ### Changed
