@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.48.0] - 2023-09-15
+
+### Changed
+
+- Apply more targeted CSS fix for JS-disabled Account Menu
+
 ## [5.47.0] - 2023-09-15
 
 ### Changed
