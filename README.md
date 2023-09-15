@@ -15,8 +15,8 @@ of what the design patterns look like and guidance on how to use them in your se
 
 ### Requirements
 
-* [Node.js](https://nodejs.org/en/) `>= 10.12.0`
-* [npm](https://www.npmjs.com/) `>= 6.4.1`
+* [Node.js](https://nodejs.org/en/) `>= 14.18.0`
+* [npm](https://www.npmjs.com/) `>= 6.14.15`
 
 To install more than one version of Node.js, it may be easier to use a node version manager 
 like [nvm](https://github.com/nvm-sh/nvm) or [n](https://github.com/tj/n).
