@@ -11,9 +11,9 @@
 
 // dirty, dirty, dirty
 // Necessary as there's a specificity problem on the <li>'s in the mobile menu
+// Note: these are relied on by teams not using the account menu, so handle with care
 .hidden,
 .no-js .js-visible,
-.js-enabled .js-hidden,
 .js .js-hidden {
   display: none !important;
 }
@@ -120,8 +120,14 @@ $hmrc-transition-type: "all";
   padding-left: 0;
 }
 
-body:not(.js-enabled) .hmrc-account-menu__link--menu {
-  display: none;
+body:not(.js-enabled) {
+  .hmrc-account-menu__main {
+    display: inline;
+  }
+
+  .hmrc-account-menu__link--menu {
+    display: none;
+  }
 }
 
 .hmrc-account-menu__link--menu {
@@ -347,6 +353,11 @@ $hmrc-banner-blue: #005ea5;
   .hmrc-full-width-banner__container {
     padding: 20px 30px 10px;
   }
+}
+
+// Note: this is relied on by teams not using the account menu, so handle with care
+.js-hidden {
+  display: none;
 }
 
 /* stylelint-enable no-descending-specificity */
