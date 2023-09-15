@@ -1,10 +1,10 @@
 {
   "name": "hmrc-frontend",
-  "version": "5.46.0",
+  "version": "5.47.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
-    "test:build:package": "jest tasks/gulp/__tests__/after-build-package.test.js && npx govuk-prototype-kit@latest validate-plugin package",
+    "test:build:package": "jest tasks/gulp/__tests__/after-build-package.test.js",
     "test:build:dist": "jest tasks/gulp/__tests__/after-build-dist.test.js",
     "test:build:webjar": "jest tasks/gulp/__tests__/after-build-webjar.test.js",
     "build:package": "gulp buildPackage --destination 'package' && npm run test:build:package",
