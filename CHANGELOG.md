@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Add utility class to stuff when javascript is disabled
+- Add utility class to hide stuff when javascript is disabled
 
 ## [5.48.0] - 2023-09-15
 
