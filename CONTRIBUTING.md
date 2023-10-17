@@ -112,10 +112,8 @@ To do this and run the BackstopJS tests in one command, you can run the followin
     env BACKSTOP_TEST_HOST={your local machines ip address} npm run test:backstop 
     ```
 
-
-* If you're running on a Mac with Apple Silicon (eg. M1 processor), you should uncomment the workarounds in [`backstop-config.js`](tasks/gulp/backstop-config.js)
-to use a compatible version of backstop/chromium, to work around [this known issue](https://github.com/garris/BackstopJS/issues/1300).
-
+* If backstop tests hang, you should try lowering `asyncCaptureLimit` and/or `asyncCompareLimit` in [`backstop-config.js`](tasks/gulp/backstop-config.js).
+The tests will take longer to run, but might no longer hang.
 
 * If you run into a problem where some of your visual regression tests are failing due to unrelated changes (for instance on screens you may not have touched or updated),
 you may want to delete the `node_modules` folder from the root of the project and then re-run command.
