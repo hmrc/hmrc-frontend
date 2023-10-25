@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.51.0] - 2023-10-24
+
+### Changed
+
+- Modify the account header template to incorporate the main layout from the prototype kit. This adjustment aims to resolve an issue related to displaying and using the template within the v13 prototype kit
+
 ## [5.50.0] - 2023-10-16
 
 ### Changed
