@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.52.0] - 2023-11-01
+
+### Changed
+
+- Modify the timeout dialog to take in an optional parameter to not display a sign out link.
+
 ## [5.51.0] - 2023-10-24
 
 ### Changed

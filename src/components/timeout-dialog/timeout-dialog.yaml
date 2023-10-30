@@ -48,6 +48,7 @@ examples:
     keepAliveButtonText: "keepAliveButtonText"
     signOutButtonText: "signOutButtonText"
     synchroniseTabs: false
+    hideSignOutLink: false
   visualRegressionTests:
     backstopScenarioOptions:
       delay: 10000
@@ -58,6 +59,13 @@ examples:
     keepAliveUrl: "?abc=def"
     signOutUrl: "?ghi=jkl"
     synchroniseTabs: true
+- name: hide-sign-out-link
+  data:
+    timeout: 75
+    countdown: 74
+    keepAliveUrl: "?abc=def"
+    signOutUrl: "?ghi=jkl"
+    hideSignOutLink: true
 
 visualRegressionTests:
   backstopScenarioOptions:
