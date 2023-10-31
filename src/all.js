@@ -4,12 +4,18 @@ import TimeoutDialog from './components/timeout-dialog/timeout-dialog';
 import UserResearchBanner from './components/user-research-banner/user-research-banner';
 import { nodeListForEach } from './common';
 import SessionActivityService from './components/timeout-dialog/session-activity-service';
+import HmrcPrintLink from './components/hmrc-print-link/hmrc-print-link';
 
 function initAll() {
   const $AccountMenuSelector = '[data-module="hmrc-account-menu"]';
   if (document.querySelector($AccountMenuSelector)) {
     new AccountMenu($AccountMenuSelector).init();
   }
+
+  const $HmrcPrintLinks = document.querySelectorAll('a[data-module="hmrc-print-link"]');
+  nodeListForEach($HmrcPrintLinks, ($HmrcPrintLink) => {
+    new HmrcPrintLink($HmrcPrintLink, window).init();
+  });
 
   const sessionActivityService = new SessionActivityService(window.BroadcastChannel);
   sessionActivityService.logActivity();
