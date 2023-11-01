@@ -48,7 +48,10 @@ examples:
     keepAliveButtonText: "keepAliveButtonText"
     signOutButtonText: "signOutButtonText"
     synchroniseTabs: false
-    hideSignOutLink: false
+    hideSignOutButton: false
+#   hideSignOutButton is experimental, please don't use in HMRC. without testing. Added at request of non-HMRC service,
+#   where a service only has an anonymous session, so no explicit log in action has been taken, and you might want to
+#   have no early sign out link rather along with the than a link saying something like [abandon attempt]
   visualRegressionTests:
     backstopScenarioOptions:
       delay: 10000
@@ -65,7 +68,7 @@ examples:
     countdown: 74
     keepAliveUrl: "?abc=def"
     signOutUrl: "?ghi=jkl"
-    hideSignOutLink: true
+    hideSignOutButton: true
 
 visualRegressionTests:
   backstopScenarioOptions:

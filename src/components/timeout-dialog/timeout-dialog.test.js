@@ -336,14 +336,14 @@ describe('/components/timeout-dialog', () => {
     });
   });
 
-  describe('display the sign out link', () => {
-    it('should not show sign out button when data-hide-sign-out-link parameter is set', () => {
+  describe('display the sign out button', () => {
+    it('should not show sign out button when data-hide-sign-out-button parameter is set', () => {
       setupDialog({
         'data-title': 'my custom TITLE',
         'data-message': 'MY custom message',
         'data-message-suffix': 'My message suffix.',
         'data-keep-alive-button-text': 'KEEP alive',
-        'data-hide-sign-out-link': true,
+        'data-hide-sign-out-button': true,
       });
 
       pretendSecondsHavePassed(780);
@@ -351,7 +351,7 @@ describe('/components/timeout-dialog', () => {
       expect(testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-link')).toBeNull();
     });
 
-    it('should show sign out button when disable-sign-out-button parameter is unset', () => {
+    it('should show sign out button by default', () => {
       setupDialog({
         'data-title': 'my custom TITLE',
         'data-message': 'MY custom message',
