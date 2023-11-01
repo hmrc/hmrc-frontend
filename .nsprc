@@ -8,5 +8,6 @@
   "GHSA-rp65-9cf3-cjxr": "nth-check - devDependency, no risk given our usage",
   "GHSA-ww39-953v-wcq6": "glob-parent - devDependency, no risk given our usage",
   "GHSA-p8p7-x288-28g6": "request: devDependency, no risk given our usage",
-  "GHSA-72xf-g2v4-qvf3": "tough-cookie: devDependency, no risk given our usage"
+  "GHSA-72xf-g2v4-qvf3": "tough-cookie: devDependency, no risk given our usage",
+  "GHSA-x9w5-v3q2-3rhw": "browserify-sign: devDependency, no risk given our usage"
 }
