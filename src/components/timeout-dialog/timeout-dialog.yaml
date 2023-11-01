@@ -62,7 +62,7 @@ examples:
     keepAliveUrl: "?abc=def"
     signOutUrl: "?ghi=jkl"
     synchroniseTabs: true
-- name: hide-sign-out-link
+- name: hide-sign-out-button
   data:
     timeout: 75
     countdown: 74
