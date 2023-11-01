@@ -66,6 +66,9 @@ function TimeoutDialog($module, $sessionActivityService) {
       synchroniseTabs: validate.boolean(
         lookupData('data-synchronise-tabs') || false,
       ),
+      hideSignOutButton: validate.boolean(
+        lookupData('data-hide-sign-out-button') || false,
+      ),
     };
 
     // Default timeoutUrl to signOutUrl if not set
@@ -182,20 +185,23 @@ function TimeoutDialog($module, $sessionActivityService) {
       '<button id="hmrc-timeout-keep-signin-btn" class="govuk-button">',
       settings.keepAliveButtonText,
     );
-    const $signOutButton = utils.generateDomElementFromStringAndAppendText(
-      '<a id="hmrc-timeout-sign-out-link" class="govuk-link hmrc-timeout-dialog__link">',
-      settings.signOutButtonText,
-    );
-
-    $staySignedInButton.addEventListener('click', keepAliveAndClose);
-    $signOutButton.addEventListener('click', signOut);
-    $signOutButton.setAttribute('href', settings.signOutUrl);
 
     $element.appendChild($visualMessge);
     $element.appendChild($audibleMessage);
     $element.appendChild($staySignedInButton);
+    $staySignedInButton.addEventListener('click', keepAliveAndClose);
     $element.appendChild(document.createTextNode(' '));
-    $element.appendChild(wrapLink($signOutButton));
+
+    if (!settings.hideSignOutButton) {
+      const $signOutButton = utils.generateDomElementFromStringAndAppendText(
+        '<a id="hmrc-timeout-sign-out-link" class="govuk-link hmrc-timeout-dialog__link">',
+        settings.signOutButtonText,
+      );
+      $signOutButton.addEventListener('click', signOut);
+      $signOutButton.setAttribute('href', settings.signOutUrl);
+
+      $element.appendChild(wrapLink($signOutButton));
+    }
 
     const dialogControl = dialog.displayDialog($element);
 

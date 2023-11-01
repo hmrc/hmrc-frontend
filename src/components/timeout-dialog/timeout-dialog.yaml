@@ -48,6 +48,8 @@ examples:
     keepAliveButtonText: "keepAliveButtonText"
     signOutButtonText: "signOutButtonText"
     synchroniseTabs: false
+    hideSignOutButton: false
+#   hideSignOutButton is experimental, please don't use in HMRC services without testing with your users. See Github issues/316
   visualRegressionTests:
     backstopScenarioOptions:
       delay: 10000
@@ -58,6 +60,13 @@ examples:
     keepAliveUrl: "?abc=def"
     signOutUrl: "?ghi=jkl"
     synchroniseTabs: true
+- name: hide-sign-out-button
+  data:
+    timeout: 75
+    countdown: 74
+    keepAliveUrl: "?abc=def"
+    signOutUrl: "?ghi=jkl"
+    hideSignOutButton: true
 
 visualRegressionTests:
   backstopScenarioOptions:

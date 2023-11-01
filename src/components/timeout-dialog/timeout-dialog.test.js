@@ -191,14 +191,14 @@ describe('/components/timeout-dialog', () => {
       expect(testScope.latestDialog$element.querySelector('button#hmrc-timeout-keep-signin-btn.govuk-button').parentNode).not.toBe(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link').parentNode);
     });
 
-    it('should redirect to signout url when signout is clicked', () => {
+    it('should redirect to sign out url when sign out is clicked', () => {
       assume(redirectHelper.redirectToUrl).not.toHaveBeenCalled();
 
       clickElem(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link'));
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('/sign-out');
     });
 
-    it('should use the signout url on the signout link', () => {
+    it('should use the sign out url on the sign out link', () => {
       const $signoutLink = testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-link');
       expect($signoutLink.attributes.getNamedItem('href').value).toEqual('/sign-out');
     });
@@ -326,13 +326,42 @@ describe('/components/timeout-dialog', () => {
       expect(getElemText(testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-link'))).toEqual('sign OUT');
     });
 
-    it('should redirect to default signout url when signout is clicked', () => {
+    it('should redirect to default sign out url when sign out is clicked', () => {
       assume(redirectHelper.redirectToUrl).not.toHaveBeenCalled();
 
       expect(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link')).not.toBeNull();
 
       clickElem(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link'));
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('/mySignOutUrl.html');
+    });
+  });
+
+  describe('display the sign out button', () => {
+    it('should not show sign out button when data-hide-sign-out-button parameter is set', () => {
+      setupDialog({
+        'data-title': 'my custom TITLE',
+        'data-message': 'MY custom message',
+        'data-message-suffix': 'My message suffix.',
+        'data-keep-alive-button-text': 'KEEP alive',
+        'data-hide-sign-out-button': true,
+      });
+
+      pretendSecondsHavePassed(780);
+
+      expect(testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-link')).toBeNull();
+    });
+
+    it('should show sign out button by default', () => {
+      setupDialog({
+        'data-title': 'my custom TITLE',
+        'data-message': 'MY custom message',
+        'data-message-suffix': 'My message suffix.',
+        'data-keep-alive-button-text': 'KEEP alive',
+      });
+
+      pretendSecondsHavePassed(780);
+
+      expect(testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-link')).not.toBeNull();
     });
   });
 
