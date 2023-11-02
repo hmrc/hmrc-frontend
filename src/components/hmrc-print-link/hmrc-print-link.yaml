@@ -1,0 +1,7 @@
+params: []
+
+previewLayout: 'hmrc-print-link/example'
+type: 'layout'
+
+examples:
+  - name: default

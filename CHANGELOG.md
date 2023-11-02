@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.54.0] - 2023-11-02
+
+### Changed
+
+- Provided a data attribute to allow links to call window.print without services having to write any custom javascript
+
 ## [5.53.0] - 2023-11-01
 
 ### Changed
