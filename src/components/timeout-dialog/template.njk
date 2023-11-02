@@ -12,5 +12,5 @@
       data-message-suffix="{{ params.messageSuffix }}"
       data-keep-alive-button-text="{{ params.keepAliveButtonText }}"
       data-sign-out-button-text="{{ params.signOutButtonText }}"
-      data-synchronise-tabs="{{ params.synchroniseTabs }}"
-      data-hide-sign-out-button="{{ params.hideSignOutButton }}"/>
+      data-synchronise-tabs="{{ params.synchroniseTabs | default(false) }}"
+      data-hide-sign-out-button="{{ params.hideSignOutButton | default(false) }}"/>
