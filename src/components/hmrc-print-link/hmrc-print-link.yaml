@@ -1,16 +1,4 @@
-params:
-  - name: id
-    type: string
-    required: false
-    description: id to use within the govuk button component.
-  - name: text
-    type: string
-    required: false
-    description: Text to use within the govuk button component.
-  - name: attributes
-    type: object
-    required: false
-    description: HTML attributes (for example data attributes) to add to the anchor tag.
+params: []
 
 previewLayout: 'hmrc-print-link/example'
 type: 'layout'
