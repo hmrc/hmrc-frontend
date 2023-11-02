@@ -196,14 +196,14 @@ describe('header', () => {
       const $ = render('header', examples['with navigation']);
 
       const $navigation = $('.govuk-header__navigation');
-      expect($navigation.attr('aria-label')).toEqual('Top Level Navigation');
+      expect($navigation.attr('aria-label')).toEqual('Top Level Menu');
     });
 
     it('renders navigation with aria-label in Welsh when specified', () => {
       const $ = render('header', examples['with navigation welsh']);
 
       const $navigation = $('.govuk-header__navigation');
-      expect($navigation.attr('aria-label')).toEqual('Gwelywio Lefel Uchaf');
+      expect($navigation.attr('aria-label')).toEqual('Dewislen Lefel Uchaf');
     });
 
     describe('menu button', () => {
@@ -234,14 +234,14 @@ describe('header', () => {
       const $ = render('header', examples['with navigation']);
 
       const $button = $('.govuk-header__menu-button');
-      expect($button.attr('aria-label')).toEqual('Show or hide Top Level Navigation');
+      expect($button.attr('aria-label')).toEqual('Show or hide Top Level Menu');
     });
 
     it('should have aria-label in Welsh when specified', () => {
       const $ = render('header', examples['with navigation welsh']);
 
       const $button = $('.govuk-header__menu-button');
-      expect($button.attr('aria-label')).toEqual('Dangos neu guddio’r Gwelywio Lefel Uchaf');
+      expect($button.attr('aria-label')).toEqual('Dangos neu guddio’r Ddewislen Lefel Uchaf');
     });
   });
 

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.55.0] - 2023-11-02
+
+### Changed
+
+- Update aria-label on HMRC header nav/button, to be accessible to voice activation users
+
 ## [5.54.0] - 2023-11-02
 
 ### Changed

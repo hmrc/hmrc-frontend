@@ -59,8 +59,8 @@
         </{{ serviceNameTag }}>
       {% endif %}
       {% if params.navigation | length %}
-      <nav class="govuk-header__navigation" aria-label="{% if language == 'cy' %}Gwelywio Lefel Uchaf{% else %}Top Level Navigation{% endif %}">
-        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="{% if language == 'cy' %}Dangos neu guddio’r Gwelywio Lefel Uchaf{% else %}Show or hide Top Level Navigation{% endif %}" hidden>{% if language == 'cy' %}Dewislen{% else %}Menu{% endif %}</button>
+      <nav class="govuk-header__navigation" aria-label="{% if language == 'cy' %}Dewislen Lefel Uchaf{% else %}Top Level Menu{% endif %}">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="{% if language == 'cy' %}Dangos neu guddio’r Ddewislen Lefel Uchaf{% else %}Show or hide Top Level Menu{% endif %}" hidden>{% if language == 'cy' %}Dewislen{% else %}Menu{% endif %}</button>
         <ul id="navigation" class="govuk-header__navigation-list{{ (' ' + params.navigationClasses) if params.navigationClasses }}">
           {% for item in params.navigation %}
             {% if item.text or item.html %}
