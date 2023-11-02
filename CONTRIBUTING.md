@@ -310,7 +310,11 @@ You can then reference the webjar in the `LibDependencies.scala` file in `play-f
 You will also need to configure your `build.sbt` resolvers to look in your local Maven repository:
 
 ```sbt
-resolvers += Resolver.mavenLocal
+  .settings(
+    ...
+    resolvers += Resolver.mavenLocal,
+    ...
+  )
 ```
 
 Further documentation on the webjar mechanism can be found:
