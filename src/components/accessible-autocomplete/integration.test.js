@@ -149,4 +149,48 @@ describe('enhanceSelectElement on the select element provided', () => {
     expect(autocompleteFocused).toBeTruthy();
     expect(Object.keys(visibleElements).length).toEqual(0);
   });
+
+  // for some reason, there are 2 status elements, and content bounces between them as you type...
+  const isAssistiveStatusHintPopulated = () => document.querySelector('#location-picker__status--A').textContent.length > 0
+    || document.querySelector('#location-picker__status--B').textContent.length > 0;
+
+  it('should render status hint in Welsh when data-language is cy and there are multiple matching results', async () => {
+    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language/preview`);
+
+    const input = await page.$('#location-picker');
+    await input.click();
+
+    await page.keyboard.press('U');
+    await page.keyboard.press('n');
+
+    await page.waitForFunction(isAssistiveStatusHintPopulated);
+
+    const statusHint = await page.evaluate(() => {
+      const assistiveStatusHint = () => document.querySelector('#location-picker__status--A').textContent
+        + document.querySelector('#location-picker__status--B').textContent;
+      return assistiveStatusHint();
+    });
+
+    expect(statusHint.trim()).toEqual('2 o ganlyniad ar gael.');
+  });
+
+  it('should render status hint in Welsh when data-language is cy and there is a single matching result', async () => {
+    // await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language/preview`);
+    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language/preview`);
+
+    const input = await page.$('#location-picker');
+    await input.click();
+
+    await page.keyboard.press('F');
+
+    await page.waitForFunction(isAssistiveStatusHintPopulated);
+
+    const statusHint = await page.evaluate(() => {
+      const assistiveStatusHint = () => document.querySelector('#location-picker__status--A').textContent
+        + document.querySelector('#location-picker__status--B').textContent;
+      return assistiveStatusHint();
+    });
+
+    expect(statusHint.trim()).toEqual('1 canlyniad ar gael.');
+  });
 });

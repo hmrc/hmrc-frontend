@@ -30,7 +30,7 @@ AccessibleAutoComplete.prototype.init = function init() {
           result: (length === 1) ? 'canlyniad' : 'o ganlyniad',
           is: (length === 1) ? 'ar' : 'ar', // TODO remove this if it really doesn't vary
         };
-        return `<span>${length} ${words.result} ${words.is} gael. ${contentSelectedOption}</span>`;
+        return `${length} ${words.result} ${words.is} gael. ${contentSelectedOption}`;
       };
     }
 
