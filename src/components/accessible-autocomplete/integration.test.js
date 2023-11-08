@@ -195,7 +195,6 @@ describe('enhanceSelectElement on the select element provided', () => {
 
     await page.keyboard.press('U');
     await page.keyboard.press('n');
-
     await page.waitForFunction(isAssistiveStatusHintPopulated);
 
     const statusHint = await page.evaluate(() => {
@@ -216,7 +215,6 @@ describe('enhanceSelectElement on the select element provided', () => {
     await input.click();
 
     await page.keyboard.press('F');
-
     await page.waitForFunction(isAssistiveStatusHintPopulated);
 
     const statusHint = await page.evaluate(() => {
@@ -236,7 +234,6 @@ describe('enhanceSelectElement on the select element provided', () => {
     await input.click();
 
     await page.keyboard.press('Z');
-
     await page.waitForFunction(isAssistiveStatusHintPopulated);
 
     const statusHint = await page.evaluate(() => {
@@ -246,6 +243,21 @@ describe('enhanceSelectElement on the select element provided', () => {
     });
 
     expect(statusHint.trim()).toEqual('Dim canlyniadau chwilio');
+  });
+
+  it('should render "no results found" dropdown in Welsh when data-language is cy and there are no matching results', async () => {
+    // await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language/preview`);
+    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language/preview`);
+
+    const input = await page.$('#location-picker');
+    await input.click();
+
+    await page.keyboard.press('Z');
+    await page.waitForFunction(isAssistiveStatusHintPopulated);
+
+    const statusHint = await page.evaluate(() => document.querySelector('#location-picker__listbox').textContent);
+
+    expect(statusHint.trim()).toEqual('Dim canlyniadau wedi’u darganfod');
   });
 
   // eslint-disable-next-line max-len
