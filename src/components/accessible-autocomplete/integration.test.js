@@ -150,9 +150,42 @@ describe('enhanceSelectElement on the select element provided', () => {
     expect(Object.keys(visibleElements).length).toEqual(0);
   });
 
+  it('should render assistive hint in Welsh when data-language is cy', async () => {
+    // await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language/preview`);
+    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language/preview`);
+
+    const assistiveHint = await page.evaluate(() => document.querySelector('#location-picker__assistiveHint').textContent);
+
+    expect(assistiveHint.trim()).toEqual(
+      'Pan fydd canlyniadau awtogwblhau ar gael, defnyddiwch y saethau i fyny ac i lawr i’w hadolygu a phwyswch'
+      + ' y fysell ’enter’ i’w dewis. Gall defnyddwyr dyfeisiau cyffwrdd, archwilio drwy gyffwrdd â’r sgrin neu drwy sweipio.',
+    );
+  });
+
   // for some reason, there are 2 status elements, and content bounces between them as you type...
   const isAssistiveStatusHintPopulated = () => document.querySelector('#location-picker__status--A').textContent.length > 0
     || document.querySelector('#location-picker__status--B').textContent.length > 0;
+
+  it('should render minimum length hint in Welsh when minimum length is specified but not met', async () => {
+    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language-and-min-length/preview`);
+
+    const input = await page.$('#location-picker');
+    await input.click();
+
+    await page.keyboard.press('U');
+    await page.keyboard.press('n');
+
+    await page.waitForFunction(isAssistiveStatusHintPopulated);
+
+    const statusHint = await page.evaluate(() => {
+      // TODO DRY this up
+      const assistiveStatusHint = () => document.querySelector('#location-picker__status--A').textContent
+        + document.querySelector('#location-picker__status--B').textContent;
+      return assistiveStatusHint();
+    });
+
+    expect(statusHint.trim()).toEqual('Ysgrifennwch 3 neu fwy o gymeriadau am ganlyniadau');
+  });
 
   it('should render status hint in Welsh when data-language is cy and there are multiple matching results', async () => {
     await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language/preview`);
@@ -166,6 +199,7 @@ describe('enhanceSelectElement on the select element provided', () => {
     await page.waitForFunction(isAssistiveStatusHintPopulated);
 
     const statusHint = await page.evaluate(() => {
+      // TODO DRY this up
       const assistiveStatusHint = () => document.querySelector('#location-picker__status--A').textContent
         + document.querySelector('#location-picker__status--B').textContent;
       return assistiveStatusHint();
@@ -193,4 +227,27 @@ describe('enhanceSelectElement on the select element provided', () => {
 
     expect(statusHint.trim()).toEqual('1 canlyniad ar gael.');
   });
+
+  it('should render status hint in Welsh when data-language is cy and there are no matching results', async () => {
+    // await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language/preview`);
+    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language/preview`);
+
+    const input = await page.$('#location-picker');
+    await input.click();
+
+    await page.keyboard.press('Z');
+
+    await page.waitForFunction(isAssistiveStatusHintPopulated);
+
+    const statusHint = await page.evaluate(() => {
+      const assistiveStatusHint = () => document.querySelector('#location-picker__status--A').textContent
+        + document.querySelector('#location-picker__status--B').textContent;
+      return assistiveStatusHint();
+    });
+
+    expect(statusHint.trim()).toEqual('Dim canlyniadau chwilio');
+  });
+
+  // eslint-disable-next-line max-len
+  //       configurationOptions.tStatusSelectedOption = (selectedOption, length, index) => `Mae ${selectedOption} ${index + 1} o ${length} wedi’i amlygu`;
 });

@@ -135,10 +135,23 @@ examples:
     description:
     data:
       label:
-        text: Select country
+        text: Dewiswch wlad
       id: location-picker
       select: |
-        <select id="location-picker" data-language="cy" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
+        <select id="location-picker" data-language="cy" data-show-all-values="true" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
+          <option value="fr">France</option>
+          <option value="de">Germany</option>
+          <option value="gb">United Kingdom</option>
+          <option value="us">United States</option>
+        </select>
+  - name: with-welsh-language-and-min-length
+    description:
+    data:
+      label:
+        text: Dewiswch wlad
+      id: location-picker
+      select: |
+        <select id="location-picker" data-language="cy" data-min-length="3" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
           <option value="fr">France</option>
           <option value="de">Germany</option>
           <option value="gb">United Kingdom</option>

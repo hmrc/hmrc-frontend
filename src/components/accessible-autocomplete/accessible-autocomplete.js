@@ -9,12 +9,14 @@ AccessibleAutoComplete.prototype.init = function init() {
     const showAllValues = (this.$module.getAttribute('data-show-all-values') === 'true');
     const autoselect = (this.$module.getAttribute('data-auto-select') === 'true');
     const defaultValue = this.$module.getAttribute('data-default-value');
+    const minLength = this.$module.getAttribute('data-min-length');
 
     const configurationOptions = {
       selectElement: this.$module,
       showAllValues,
       autoselect,
       defaultValue,
+      minLength,
     };
 
     const language = this.$module.getAttribute('data-language') || 'en';

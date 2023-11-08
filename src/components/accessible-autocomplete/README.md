@@ -28,6 +28,12 @@ Type: Boolean
 Set to true to show all values when the user clicks the input.
 This is similar to a default dropdown, so the autocomplete is rendered with a dropdown arrow to convey this behaviour.
 
+### data-min-length
+Type: Int
+
+The number of characters the user must enter before any matches are shown.
+Defaults to zero.
+
 ### data-language
 Type: String
 
