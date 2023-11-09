@@ -218,6 +218,7 @@ describe('enhanceSelectElement on the select element provided', () => {
     await page.waitForFunction(isAssistiveStatusHintPopulated);
 
     const statusHint = await page.evaluate(() => {
+      // TODO DRY this up
       const assistiveStatusHint = () => document.querySelector('#location-picker__status--A').textContent
         + document.querySelector('#location-picker__status--B').textContent;
       return assistiveStatusHint();
@@ -237,6 +238,7 @@ describe('enhanceSelectElement on the select element provided', () => {
     await page.waitForFunction(isAssistiveStatusHintPopulated);
 
     const statusHint = await page.evaluate(() => {
+      // TODO DRY this up
       const assistiveStatusHint = () => document.querySelector('#location-picker__status--A').textContent
         + document.querySelector('#location-picker__status--B').textContent;
       return assistiveStatusHint();
@@ -260,6 +262,24 @@ describe('enhanceSelectElement on the select element provided', () => {
     expect(statusHint.trim()).toEqual('Dim canlyniadau wedi’u darganfod');
   });
 
-  // eslint-disable-next-line max-len
-  //       configurationOptions.tStatusSelectedOption = (selectedOption, length, index) => `Mae ${selectedOption} ${index + 1} o ${length} wedi’i amlygu`;
+  it('should render status hint in Welsh when data-language is cy and an item is selected', async () => {
+    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language-and-autoselect-on/preview`);
+
+    const input = await page.$('#location-picker');
+    await input.click();
+    await page.waitForSelector('#location-picker');
+    // eslint-disable-next-line no-param-reassign,no-return-assign
+    await page.$eval('#location-picker', (el) => el.value = 'Un');
+
+    await page.waitForFunction(isAssistiveStatusHintPopulated);
+
+    const statusHint = await page.evaluate(() => {
+      // TODO DRY this up
+      const assistiveStatusHint = () => document.querySelector('#location-picker__status--A').textContent
+        + document.querySelector('#location-picker__status--B').textContent;
+      return assistiveStatusHint();
+    });
+
+    expect(statusHint.trim()).toEqual('2 o ganlyniad ar gael. Mae United Kingdom 1 o 2 wedi’i amlygu');
+  });
 });
