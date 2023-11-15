@@ -7,9 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [5.56.0] - 2023-11-15
+## [5.57.0] - 2023-11-15
+
+### Changed
 
 - Fixed Welsh translation of HMRC and HM Revenue & Customs
+
+## [5.56.0] - 2023-11-09
+
+### Changed
+
+- Enable Welsh language support for accessible-autocomplete
 
 ## [5.55.0] - 2023-11-02
 

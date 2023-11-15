@@ -5,51 +5,42 @@ It also supports a `<label>` with hint and error message support for the `<selec
 
 The enhanceSelectElement will transform the `<select>` into an `<input>` with full accessibility support.
 
-## Parameters
+See [here](https://www.npmjs.com/package/accessible-autocomplete) for more information on the underlying accessible autocomplete component.
 
-```
-select
-id
-hint
-errorMessage
-describedBy
-```
+## Data attributes for the select element
 
-## Parameters for the select input
+### data-module
+Should always be set to value `hmrc-accessible-autocomplete` for this component to find the select and apply the `enhanceSelectElement` function to it.
 
-Look [here](https://www.npmjs.com/package/accessible-autocomplete) for more information on the attributes for the accessible autocomplete component.
+### data-default-value
+Type: String
 
-## id
-Should be the same as the id for this component
+Specify a value with which to prefill the autocomplete input.
 
-## data-default-value
-Type: string
-
-Specify a string to prefill the autocomplete with.
-
-## data-auto-select
+### data-auto-select
 Type: Boolean
 
 Set to true to highlight the first option when the user types in something and receives results. Pressing enter will select it.
 
-## data-show-all-values
+### data-show-all-values
 Type: Boolean
 
-If this is set to true, all values are shown when the user clicks the input. This is similar to a default dropdown, so the autocomplete is rendered with a dropdown arrow to convey this behaviour.
+Set to true to show all values when the user clicks the input.
+This is similar to a default dropdown, so the autocomplete is rendered with a dropdown arrow to convey this behaviour.
 
-## data-module
-Should always be set to value `hmrc-accessible-autocomplete` for this component to find the select and apply the enhanceSelectElement function to it.
+### data-min-length
+Type: Int
 
-### Data attributes for the select element
-```
-id
-data-default-value=""
-data-auto-select="false"
-data-show-all-values="false"
-data-module="hmrc-accessible-autocomplete"
-```
+The number of characters the user must enter before any matches are shown.
+Defaults to zero.
 
-### Example select input
+### data-language
+Type: String
+
+By default, English content for various states (eg. "No search results") is provided by the underlying accessible-autocomplete component.
+By setting this attribute to `cy`, the component will use the corresponding Welsh content.
+
+## Example select input
 
 ```
 <select id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
@@ -59,6 +50,6 @@ data-module="hmrc-accessible-autocomplete"
 </select>
 ```
 
-### License
+## License
 
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
