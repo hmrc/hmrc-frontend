@@ -26,7 +26,7 @@ describe('Internal Header', () => {
       const $ = render('internal-header', examples.welsh);
       const $logoLink = $('.hmrc-internal-header__logo-link');
 
-      expect($logoLink.text().trim()).toEqual('Cyllid a Thollau EM');
+      expect($logoLink.text().trim()).toEqual('Cyllid a Thollau EF');
     });
   });
 

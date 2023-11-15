@@ -25,7 +25,7 @@ describe('Internal Header', () => {
     });
     it('should have Welsh text when specified', () => {
       const $ = render('banner', examples.welsh);
-      expect($('.hmrc-banner > .hmrc-organisation-logo > p.govuk-body-s').text().trim()).toEqual('Cyllid a Thollau EM');
+      expect($('.hmrc-banner > .hmrc-organisation-logo > p.govuk-body-s').text().trim()).toEqual('Cyllid a Thollau EF');
     });
   });
 });
