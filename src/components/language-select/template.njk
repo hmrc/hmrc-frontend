@@ -1,5 +1,5 @@
 {% if params.language === 'en' %}
-  <nav class="hmrc-language-select" aria-label="Language switcher">
+  <nav class="hmrc-language-select govuk-!-display-none-print" aria-label="Language switcher">
     <ul class="hmrc-language-select__list">
       <li class="hmrc-language-select__list-item">
         <span aria-current="true">English</span>
@@ -20,7 +20,7 @@
 {% endif %}
 
 {% if params.language === 'cy' %}
-  <nav class="hmrc-language-select" aria-label="Switcher iaith">
+  <nav class="hmrc-language-select govuk-!-display-none-print" aria-label="Switcher iaith">
     <ul class="hmrc-language-select__list">
       <li class="hmrc-language-select__list-item">
         <a href="{{ params.en.href }}"

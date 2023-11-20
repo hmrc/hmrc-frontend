@@ -32,6 +32,8 @@ describe('New Tab Link', () => {
       expect($.text().trim().replace(/[\s,\n]+/g, ' ')).toEqual('English Newid yr iaith ir Gymraeg Cymraeg');
 
       expect($('.hmrc-language-select__list-item').find('[aria-current="true"]').eq(0).text()).toEqual('English');
+
+      expect($('.hmrc-language-select').attr('class')).toEqual('hmrc-language-select govuk-!-display-none-print');
     });
 
     it('renders a Welsh element as text and English as a link', () => {
@@ -51,6 +53,8 @@ describe('New Tab Link', () => {
       expect($.text().trim().replace(/[\s,\n]+/g, ' ')).toEqual('Change the language to English English Cymraeg');
 
       expect($('.hmrc-language-select__list-item').find('[aria-current="true"]').eq(0).text()).toEqual('Cymraeg');
+
+      expect($('.hmrc-language-select').attr('class')).toEqual('hmrc-language-select govuk-!-display-none-print');
     });
   });
 });

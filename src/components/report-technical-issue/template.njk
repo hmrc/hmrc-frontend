@@ -1,7 +1,7 @@
 {% set language %}{% if params.language == 'cy' %}cy{% else %}en{% endif %}{% endset %}
 {% set serviceId = params.serviceId or params.serviceCode %}
 <a lang="{{ language }}" hreflang="{{ language }}"
-  class="govuk-link hmrc-report-technical-issue {{ params.classes }}"
+  class="govuk-link hmrc-report-technical-issue govuk-!-display-none-print {{ params.classes }}"
   {% if params.referrerUrl %} rel="noreferrer noopener"{% endif %}
   target="_blank"
   href="{{ params.baseUrl }}/contact/report-technical-problem?newTab=true{% if serviceId %}&amp;service={{ serviceId | urlencode }}{% endif %}{% if params.referrerUrl %}&amp;referrerUrl={{ params.referrerUrl | urlencode }}{% endif %}"
