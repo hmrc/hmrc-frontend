@@ -58,6 +58,14 @@ describe('Report Technical Issue', () => {
     expect($component.attr('href')).toEqual('/contact/report-technical-problem?newTab=true&service=the-url-safe-service-id');
   });
 
+  it('renders link with fixed classes', () => {
+    const $ = render('report-technical-issue', {});
+
+    const $component = $('.govuk-link');
+
+    expect($component.attr('class')).toEqual('govuk-link hmrc-report-technical-issue govuk-!-display-none-print ');
+  });
+
   it('renders link with custom classes', () => {
     const $ = render('report-technical-issue', examples['with-classes']);
 
