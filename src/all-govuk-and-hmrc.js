@@ -1,8 +1,8 @@
-import GOVUKFrontend from 'govuk-frontend/govuk/all';
+import { initAll } from 'govuk-frontend/dist/govuk/govuk-frontend.min.js';
 import HMRCFrontend from './all';
 
-window.GOVUKFrontend = GOVUKFrontend;
+// window.GOVUKFrontend = GOVUKFrontend;
 window.HMRCFrontend = HMRCFrontend;
 
-GOVUKFrontend.initAll();
+initAll();
 HMRCFrontend.initAll();

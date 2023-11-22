@@ -1,8 +1,8 @@
 $govuk-global-styles: false;
 $hmrc-assets-path: "";
-$govuk-assets-path: "govuk/";
+$govuk-assets-path: "govuk/dist/";
 $govuk-new-link-styles: true;
 
-@import "../../govuk-frontend/govuk/all";
+@import "../../govuk-frontend/dist/govuk/all";
 @import "components/all";
 @import "hmrc-frontend-print-overrides";
