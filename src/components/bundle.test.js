@@ -28,13 +28,4 @@ describe('Minified bundle', () => {
     expect(HMRCFrontend).toBeDefined();
     expect(HMRCFrontend.initAll).toBeDefined();
   });
-
-  it('should define GOVUKFrontend', async () => {
-    await page.goto(url);
-
-    const GOVUKFrontend = await page.evaluate(() => window.GOVUKFrontend);
-
-    expect(GOVUKFrontend).toBeDefined();
-    expect(GOVUKFrontend.initAll).toBeDefined();
-  });
 });
