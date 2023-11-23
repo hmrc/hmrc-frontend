@@ -2,12 +2,12 @@ const gulp = require('gulp');
 const destinationPath = require('./destination-path');
 
 gulp.task('copy-govuk-fonts', () => gulp.src([
-  'node_modules/govuk-frontend/govuk/assets/fonts/*',
+  'node_modules/govuk-frontend/dist/govuk/assets/fonts/*',
 ])
   .pipe(gulp.dest(`${destinationPath}/govuk/fonts`)));
 
 gulp.task('copy-govuk-images', () => gulp.src([
-  'node_modules/govuk-frontend/govuk/assets/images/*',
+  'node_modules/govuk-frontend/dist/govuk/assets/images/*',
 ])
   .pipe(gulp.dest(`${destinationPath}/govuk/images`)));
 
