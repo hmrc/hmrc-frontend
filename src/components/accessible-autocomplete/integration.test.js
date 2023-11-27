@@ -195,7 +195,7 @@ describe('enhanceSelectElement on the select element provided', () => {
     await page.waitForFunction(isAssistiveStatusHintPopulated);
 
     const statusHint = await getStatusHint();
-    expect(statusHint.trim()).toEqual('2 o ganlyniad ar gael.');
+    expect(statusHint.trim()).toEqual('2 o ganlyniadau ar gael.');
   });
 
   it('should render status hint in Welsh when data-language is cy and there is a single matching result', async () => {
@@ -248,6 +248,6 @@ describe('enhanceSelectElement on the select element provided', () => {
     await page.waitForFunction(isAssistiveStatusHintPopulated);
 
     const statusHint = await getStatusHint();
-    expect(statusHint.trim()).toEqual('2 o ganlyniad ar gael. Mae United Kingdom 1 o 2 wedi’i amlygu');
+    expect(statusHint.trim()).toEqual('2 o ganlyniadau ar gael. Mae United Kingdom 1 o 2 wedi’i amlygu');
   });
 });
