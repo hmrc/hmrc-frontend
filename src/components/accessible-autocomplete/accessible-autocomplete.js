@@ -29,7 +29,7 @@ AccessibleAutoComplete.prototype.init = function init() {
       configurationOptions.tStatusNoResults = () => 'Dim canlyniadau chwilio';
       configurationOptions.tStatusSelectedOption = (selectedOption, length, index) => `Mae ${selectedOption} ${index + 1} o ${length} wedi’i amlygu`;
       configurationOptions.tStatusResults = (length, contentSelectedOption) => {
-        const resultOrResults = (length === 1) ? 'canlyniad' : 'o ganlyniad';
+        const resultOrResults = (length === 1) ? 'canlyniad' : 'o ganlyniadau';
         return `${length} ${resultOrResults} ar gael. ${contentSelectedOption}`;
       };
     }
