@@ -85,7 +85,7 @@ $hmrc-transition-type: "all";
 
   &:hover,
   &:focus {
-    outline: none;
+    outline: 3px solid rgba(0, 0, 0, 0);
     border-bottom-width: 4px;
     border-bottom-style: solid;
     color: $govuk-link-hover-colour;
@@ -225,7 +225,7 @@ body:not(.js-enabled) {
       padding: 12px 8px 8px;
 
       &:focus {
-        outline: none;
+        outline: 3px solid rgba(0, 0, 0, 0);
       }
     }
   }

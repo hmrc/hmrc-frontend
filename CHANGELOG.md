@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.60.0] - 2023-11-28
+
+### Changed
+
+- Added 3px border to focus on `account-menu` for accessibility
+
+## [5.59.0] - 2023-11-27
+
+### Changed
+
+- Fixed incorrect Welsh content in `accessible-autocomplete`
+
 ## [5.58.0] - 2023-11-20
 
 ### Changed
