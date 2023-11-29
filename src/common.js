@@ -4,6 +4,7 @@
  * See: https://github.com/imagitama/nodelist-foreach-polyfill
  */
 // eslint-disable-next-line consistent-return
+// TODO remove this and use NodeList.foreach instead
 function nodeListForEach(nodes, callback) {
   if (window.NodeList.prototype.forEach) {
     return nodes.forEach(callback);

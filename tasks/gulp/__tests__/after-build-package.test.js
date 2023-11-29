@@ -60,16 +60,12 @@ describe('package/', () => {
         'hmrc/govuk/images/govuk-apple-touch-icon.png',
         'hmrc/govuk/images/govuk-crest-2x.png',
         'hmrc/govuk/images/govuk-crest.png',
-        // 'hmrc/govuk/images/govuk-logotype-crown.png',
         'hmrc/govuk/images/govuk-mask-icon.svg',
         'hmrc/govuk/images/govuk-opengraph-image.png',
         `hmrc/hmrc-frontend-${pkg.version}.min.css`,
         `hmrc/hmrc-frontend-${pkg.version}.min.js`,
-        `hmrc/hmrc-frontend-ie8-${pkg.version}.min.css`,
         `hmrc/maps/hmrc-frontend-${pkg.version}.min.css.map`,
         `hmrc/maps/hmrc-frontend-${pkg.version}.min.js.map`,
-        `hmrc/maps/hmrc-frontend-ie8-${pkg.version}.min.css.map`,
-        'hmrc/vendor/html5shiv.min.js',
         'hmrc/VERSION.txt',
       ];
 
