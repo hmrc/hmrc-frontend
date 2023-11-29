@@ -7,11 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [5.60.0] - 2023-11-28
+## [5.60.0] - 2023-11-29
 
 ### Changed
 
-- Added 3px border to focus on `account-menu` for accessibility
+- Added 3px invisible border to focus on `account-menu` items, to be accessible to Windows High Contrast Mode users
 
 ## [5.59.0] - 2023-11-27
 
