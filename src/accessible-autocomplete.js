@@ -1,12 +1,13 @@
 import HMRCAccessibleAutocomplete from 'accessible-autocomplete';
-import { nodeListForEach } from './common';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'nodelist-foreach-polyfill';
 import AccessibleAutoComplete from './components/accessible-autocomplete/accessible-autocomplete';
 
 window.HMRCAccessibleAutocomplete = HMRCAccessibleAutocomplete;
 
 const $AccessibleAutocomplete = document.querySelectorAll('select[data-module="hmrc-accessible-autocomplete"]');
 if ($AccessibleAutocomplete) {
-  nodeListForEach($AccessibleAutocomplete, (selectElement) => {
+  $AccessibleAutocomplete.forEach((selectElement) => {
     new AccessibleAutoComplete(selectElement, window, document).init();
   });
 }

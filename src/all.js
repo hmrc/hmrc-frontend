@@ -1,8 +1,9 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'nodelist-foreach-polyfill';
 import AccountMenu from './components/account-menu/account-menu';
 import BackLinkHelper from './components/back-link-helper/back-link-helper';
 import TimeoutDialog from './components/timeout-dialog/timeout-dialog';
 import UserResearchBanner from './components/user-research-banner/user-research-banner';
-import { nodeListForEach } from './common';
 import SessionActivityService from './components/timeout-dialog/session-activity-service';
 import HmrcPrintLink from './components/hmrc-print-link/hmrc-print-link';
 
@@ -13,7 +14,7 @@ function initAll() {
   }
 
   const $HmrcPrintLinks = document.querySelectorAll('a[data-module="hmrc-print-link"]');
-  nodeListForEach($HmrcPrintLinks, ($HmrcPrintLink) => {
+  $HmrcPrintLinks.forEach(($HmrcPrintLink) => {
     new HmrcPrintLink($HmrcPrintLink, window).init();
   });
 
@@ -31,7 +32,7 @@ function initAll() {
   }
 
   const $BackLinks = document.querySelectorAll('[data-module="hmrc-back-link"]');
-  nodeListForEach($BackLinks, ($BackLink) => {
+  $BackLinks.forEach(($BackLink) => {
     new BackLinkHelper($BackLink, window, document).init();
   });
 }

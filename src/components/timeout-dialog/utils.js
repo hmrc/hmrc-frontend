@@ -1,6 +1,6 @@
-/* global ActiveXObject */
-
-import { nodeListForEach } from '../../common';
+/* global ActiveXObject */ // TODO this is IE specific
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'nodelist-foreach-polyfill';
 
 const { warn } = console;
 
@@ -23,12 +23,12 @@ const utils = {
 
   addClass(selector, className) {
     const elements = document.querySelectorAll(selector);
-    nodeListForEach(elements, (i) => { i.classList.add(className); });
+    elements.forEach((elem) => { elem.classList.add(className); });
   },
 
   removeClass(selector, className) {
     const elements = document.querySelectorAll(selector);
-    nodeListForEach(elements, (i) => { i.classList.remove(className); });
+    elements.forEach((elem) => { elem.classList.remove(className); });
   },
 
   removeElement($elem) {
