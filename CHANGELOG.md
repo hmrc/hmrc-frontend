@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.61.0] - 2023-12-04
+
+### Changed
+
+- Ensure `account-menu` links in `account-header` scale correctly with browser settings
+
 ## [5.60.0] - 2023-11-29
 
 ### Changed

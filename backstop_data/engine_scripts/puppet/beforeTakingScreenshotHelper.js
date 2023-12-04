@@ -29,6 +29,12 @@ module.exports = async (page, { beforeTakingScreenshot }) => {
     }
   }
 
+  allowedPageActions.increaseFontSizes = async fontSize => {
+    await page.evaluate((fontSize) => {
+      document.documentElement.style.fontSize = fontSize
+    }, fontSize);
+  }
+
   if (beforeTakingScreenshot) {
     for (const step of beforeTakingScreenshot) {
       const [action, params] = Object.entries(step)[0];
