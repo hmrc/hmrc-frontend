@@ -1,6 +1,6 @@
 {
   "name": "hmrc-frontend",
-  "version": "5.60.0",
+  "version": "5.61.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
