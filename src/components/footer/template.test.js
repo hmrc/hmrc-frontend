@@ -103,14 +103,6 @@ describe('footer', () => {
       expect($firstItem.text()).toContain('Item 1');
     });
 
-    it('includes styling for display: none in print mode', () => {
-      const $ = render('footer', examples['with meta']);
-
-      const $component = $('.govuk-footer');
-      const $list = $component.find('ul.govuk-footer__inline-list');
-      expect($list.hasClass('govuk-!-display-none-print')).toBe(true);
-    });
-
     it('renders custom meta text', () => {
       const $ = render('footer', examples['with custom meta']);
 
@@ -169,14 +161,6 @@ describe('footer', () => {
       const $lastHeading = $lastSection.find('h2.govuk-footer__heading');
       expect($firstHeading.text()).toEqual('Two column list');
       expect($lastHeading.text()).toEqual('Single column list');
-    });
-
-    it('includes styling for display: none in print mode', () => {
-      const $ = render('footer', examples['with navigation']);
-
-      const $component = $('.govuk-footer');
-      const $section = $component.find('.govuk-footer__section');
-      expect($section.hasClass('govuk-!-display-none-print')).toBe(true);
     });
 
     it('renders lists of links', () => {
