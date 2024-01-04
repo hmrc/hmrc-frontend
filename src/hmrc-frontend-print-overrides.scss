@@ -1,13 +1,10 @@
-@import "components/all";
-@import "../../govuk-frontend/govuk/all";
-
-.govuk-back-link,
-.govuk-summary-list__actions,
-.govuk-footer__section,
-.govuk-footer__inline-list,
-.hmrc-report-technical-issue,
-.hmrc-language-select {
-  @include govuk-media-query($media-type: print) {
+@media print {
+  .govuk-back-link,
+  .govuk-summary-list__actions,
+  .govuk-footer__section,
+  .govuk-footer__inline-list,
+  .hmrc-report-technical-issue,
+  .hmrc-language-select {
     display: none !important;
   }
 }
