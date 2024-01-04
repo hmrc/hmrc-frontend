@@ -1,0 +1,10 @@
+@media print {
+  .govuk-back-link,
+  .govuk-summary-list__actions,
+  .govuk-footer__section,
+  .govuk-footer__inline-list,
+  .hmrc-report-technical-issue,
+  .hmrc-language-select {
+    display: none !important;
+  }
+}

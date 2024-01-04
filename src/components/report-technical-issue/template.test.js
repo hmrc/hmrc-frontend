@@ -63,7 +63,7 @@ describe('Report Technical Issue', () => {
 
     const $component = $('.govuk-link');
 
-    expect($component.attr('class')).toEqual('govuk-link hmrc-report-technical-issue govuk-!-display-none-print ');
+    expect($component.attr('class')).toEqual('govuk-link hmrc-report-technical-issue ');
   });
 
   it('renders link with custom classes', () => {
@@ -71,7 +71,7 @@ describe('Report Technical Issue', () => {
 
     const $component = $('.govuk-link');
 
-    expect($component.attr('class')).toEqual('govuk-link hmrc-report-technical-issue govuk-!-display-none-print govuk-!-font-weight-bold my-custom-class');
+    expect($component.attr('class')).toEqual('govuk-link hmrc-report-technical-issue govuk-!-font-weight-bold my-custom-class');
   });
 
   it('should display in welsh', () => {

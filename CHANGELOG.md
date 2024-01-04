@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.62.0] - 2024-01-03
+
+### Changed
+
+- Added  in new `hmrc-frontend-print-overrides.scss`, which is *always included* and hides various components from print
+  view without any configuration from developers
+
 ## [5.61.0] - 2023-12-04
 
 ### Changed

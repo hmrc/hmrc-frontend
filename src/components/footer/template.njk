@@ -4,7 +4,7 @@
     {% if params.navigation | length %}
       <div class="govuk-footer__navigation">
         {% for nav in params.navigation %}
-          <div class="govuk-footer__section govuk-!-display-none-print govuk-grid-column-{{ nav.width | default('full') }}">
+          <div class="govuk-footer__section govuk-grid-column-{{ nav.width | default('full') }}">
             <h2 class="govuk-footer__heading govuk-heading-m">{{ nav.title }}</h2>
             {% if nav.items | length %}
               {% set listClasses %}
@@ -35,7 +35,7 @@
           {% set supportLinksDefaultText %}{% if params.language == "cy" %}Cysylltiadau cymorth{% else %}Support links{% endif %}{% endset %}
           <h2 class="govuk-visually-hidden">{{ params.meta.visuallyHiddenTitle | default(supportLinksDefaultText) }}</h2>
           {% if params.meta.items | length %}
-            <ul class="govuk-footer__inline-list govuk-!-display-none-print">
+            <ul class="govuk-footer__inline-list">
               {% for item in params.meta.items %}
                 <li class="govuk-footer__inline-list-item">
                   <a class="govuk-footer__link" href="{{ item.href }}"{% for attribute, value in item.attributes %} {{attribute}}="{{value}}"{% endfor %}>
