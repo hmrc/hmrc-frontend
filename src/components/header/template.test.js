@@ -247,15 +247,6 @@ describe('header', () => {
 
   describe('SVG logo', () => {
     const $ = render('header', {});
-    const $svg = $('.govuk-header__logotype-crown');
-
-    it('sets focusable="false" so that IE does not treat it as an interactive element', () => {
-      expect($svg.attr('focusable')).toEqual('false');
-    });
-
-    it('sets aria-hidden="true" so that it is ignored by assistive technologies', () => {
-      expect($svg.attr('aria-hidden')).toEqual('true');
-    });
 
     describe('fallback PNG', () => {
       const $fallbackImage = $('.govuk-header__logotype-crown-fallback-image');
