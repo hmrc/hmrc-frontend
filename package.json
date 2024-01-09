@@ -42,7 +42,7 @@
   },
   "homepage": "https://github.com/hmrc/hmrc-frontend#readme",
   "dependencies": {
-    "govuk-frontend": "^5.0.0-beta.1",
+    "govuk-frontend": "^5.0.0",
     "accessible-autocomplete": "^2.0.4"
   },
   "devDependencies": {
