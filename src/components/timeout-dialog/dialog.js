@@ -1,6 +1,4 @@
 import utils from './utils';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import 'nodelist-foreach-polyfill';
 
 function displayDialog($elementToDisplay) {
   const $dialog = utils.generateDomElementFromString('<div id="hmrc-timeout-dialog" tabindex="-1" role="dialog" aria-modal="true" class="hmrc-timeout-dialog">');

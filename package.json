@@ -1,6 +1,6 @@
 {
   "name": "hmrc-frontend",
-  "version": "6.0.1",
+  "version": "6.0.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
@@ -75,6 +75,7 @@
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify-es": "^3.0.0",
+    "html5shiv": "^3.7.3",
     "husky": "^8.0.3",
     "jest": "^27.5.1",
     "jest-axe": "^3.5.0",
@@ -103,8 +104,7 @@
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-scss": "^3.16.0",
-    "yargs": "^15.3.1",
-    "nodelist-foreach-polyfill": "^1.2.0"
+    "yargs": "^15.3.1"
   },
   "browserslist": [
     "last 2 versions",

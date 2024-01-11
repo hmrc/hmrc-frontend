@@ -1,6 +1,4 @@
 import HMRCAccessibleAutocomplete from 'accessible-autocomplete';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import 'nodelist-foreach-polyfill';
 import AccessibleAutoComplete from './components/accessible-autocomplete/accessible-autocomplete';
 
 window.HMRCAccessibleAutocomplete = HMRCAccessibleAutocomplete;

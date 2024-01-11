@@ -1,6 +1,5 @@
-/* global ActiveXObject */ // TODO this is IE specific
-// eslint-disable-next-line import/no-extraneous-dependencies
-import 'nodelist-foreach-polyfill';
+// TODO remove when decision is made by DIAS about removing the timeout dialog functionality for IE
+/* global ActiveXObject */
 
 const { warn } = console;
 
@@ -23,12 +22,12 @@ const utils = {
 
   addClass(selector, className) {
     const elements = document.querySelectorAll(selector);
-    elements.forEach((elem) => { elem.classList.add(className); });
+    elements.forEach((i) => { i.classList.add(className); });
   },
 
   removeClass(selector, className) {
     const elements = document.querySelectorAll(selector);
-    elements.forEach((elem) => { elem.classList.remove(className); });
+    elements.forEach((i) => { i.classList.remove(className); });
   },
 
   removeElement($elem) {

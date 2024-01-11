@@ -66,6 +66,7 @@ describe('package/', () => {
         `hmrc/hmrc-frontend-${pkg.version}.min.js`,
         `hmrc/maps/hmrc-frontend-${pkg.version}.min.css.map`,
         `hmrc/maps/hmrc-frontend-${pkg.version}.min.js.map`,
+        'hmrc/vendor/html5shiv.min.js',
         'hmrc/VERSION.txt',
       ];
 

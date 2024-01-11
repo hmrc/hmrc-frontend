@@ -1,5 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import 'nodelist-foreach-polyfill';
 import AccountMenu from './components/account-menu/account-menu';
 import BackLinkHelper from './components/back-link-helper/back-link-helper';
 import TimeoutDialog from './components/timeout-dialog/timeout-dialog';
