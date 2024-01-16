@@ -1,5 +1,4 @@
 import utils from './utils';
-import { nodeListForEach } from '../../common';
 
 function displayDialog($elementToDisplay) {
   const $dialog = utils.generateDomElementFromString('<div id="hmrc-timeout-dialog" tabindex="-1" role="dialog" aria-modal="true" class="hmrc-timeout-dialog">');
@@ -97,7 +96,7 @@ function displayDialog($elementToDisplay) {
     });
   };
 
-  nodeListForEach(elements, ($elem) => {
+  elements.forEach(($elem) => {
     const value = $elem.getAttribute('aria-hidden');
     $elem.setAttribute('aria-hidden', 'true');
     resetElementsFunctionList.push(() => {

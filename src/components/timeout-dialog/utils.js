@@ -1,6 +1,5 @@
+// TODO remove when decision is made by DIAS about removing the timeout dialog functionality for IE
 /* global ActiveXObject */
-
-import { nodeListForEach } from '../../common';
 
 const { warn } = console;
 
@@ -23,12 +22,12 @@ const utils = {
 
   addClass(selector, className) {
     const elements = document.querySelectorAll(selector);
-    nodeListForEach(elements, (i) => { i.classList.add(className); });
+    elements.forEach((i) => { i.classList.add(className); });
   },
 
   removeClass(selector, className) {
     const elements = document.querySelectorAll(selector);
-    nodeListForEach(elements, (i) => { i.classList.remove(className); });
+    elements.forEach((i) => { i.classList.remove(className); });
   },
 
   removeElement($elem) {

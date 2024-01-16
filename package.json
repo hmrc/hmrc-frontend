@@ -1,6 +1,6 @@
 {
   "name": "hmrc-frontend",
-  "version": "5.62.0",
+  "version": "6.0.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
@@ -42,7 +42,7 @@
   },
   "homepage": "https://github.com/hmrc/hmrc-frontend#readme",
   "dependencies": {
-    "govuk-frontend": "^4.7.0",
+    "govuk-frontend": "^5.0.0",
     "accessible-autocomplete": "^2.0.4"
   },
   "devDependencies": {
@@ -82,14 +82,12 @@
     "jest-environment-node": "^26.6.2",
     "jest-serializer-html": "^5.0.0",
     "js-yaml": "^3.14.1",
-    "merge-stream": "^2.0.0",
     "mkdirp": "^3.0.1",
     "mockdate": "^3.0.2",
     "node-fetch": "^3.3.1",
     "node-sass": "^7.0.1",
     "nodemon": "^2.0.22",
     "nunjucks": "^3.2.4",
-    "oldie": "^1.3.0",
     "postcss": "^8.0.0",
     "postcss-pseudo-classes": "^0.2.0",
     "postcss-scss": "^2.0.0",

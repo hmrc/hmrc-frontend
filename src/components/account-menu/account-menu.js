@@ -1,4 +1,3 @@
-import '../../vendor/polyfills/Element/prototype/dataset';
 import { debounce } from '../../utils/debounce';
 import { getCurrentBreakpoint } from '../../utils/breakpoints';
 

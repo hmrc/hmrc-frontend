@@ -1,7 +1,7 @@
-@import "../../../../govuk-frontend/govuk/settings/all";
-@import "../../../../govuk-frontend/govuk/tools/all";
-@import "../../../../govuk-frontend/govuk/helpers/all";
-@import "../../../../govuk-frontend/govuk/vendor/sass-mq";
+@import "../../../../govuk-frontend/dist/govuk/settings/all";
+@import "../../../../govuk-frontend/dist/govuk/tools/all";
+@import "../../../../govuk-frontend/dist/govuk/helpers/all";
+@import "../../../../govuk-frontend/dist/govuk/vendor/sass-mq";
 
 .hmrc-timeout-overlay {
   position: fixed;
@@ -37,11 +37,6 @@ html {
 
   @include govuk-media-query($from: tablet) {
     width: 435px;
-
-    @include govuk-if-ie8 {
-      margin-top: -128px;
-      margin-left: -227px;
-    }
   }
 }
 

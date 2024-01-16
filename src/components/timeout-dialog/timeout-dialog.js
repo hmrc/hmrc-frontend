@@ -1,8 +1,3 @@
-import '../../vendor/polyfills/Array/prototype/forEach';
-import '../../vendor/polyfills/Object/assign';
-import '../../vendor/polyfills/Object/keys';
-import '../../vendor/polyfills/Date/now';
-
 import dialog from './dialog';
 import ValidateInput from './validate-input';
 import RedirectHelper from './redirectHelper';

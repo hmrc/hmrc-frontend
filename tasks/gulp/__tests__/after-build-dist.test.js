@@ -12,12 +12,4 @@ describe('dist/', () => {
       expect(stylesheet).not.toMatch(/body:before{content:/);
     });
   });
-
-  describe(`hmrc-frontend-ie8-${version}.min.css`, () => {
-    const stylesheet = lib.readFileContents(path.join(configPaths.dist, `hmrc-frontend-ie8-${version}.min.css`));
-
-    it('should not contain current media query displayed on body element', () => {
-      expect(stylesheet).not.toMatch(/body:before{content:/);
-    });
-  });
 });

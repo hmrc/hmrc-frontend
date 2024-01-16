@@ -3,8 +3,6 @@ const sass = require('gulp-sass')(require('node-sass'));
 const plumber = require('gulp-plumber');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
-const merge = require('merge-stream');
-const oldie = require('oldie');
 const rename = require('gulp-rename');
 const cssnano = require('cssnano');
 const sourcemaps = require('gulp-sourcemaps');
@@ -20,52 +18,23 @@ const errorHandler = (error) => {
   this.emit('end');
 };
 
-gulp.task('scss:compile-all-govuk-and-hmrc', () => {
-  const compile = gulp.src(`${configPaths.src}all-govuk-and-hmrc.scss`)
-    .pipe(plumber(errorHandler))
-    .pipe(sourcemaps.init())
-    .pipe(sass({
-      includePaths: ['node_modules'],
-    }))
-    // minify css add vendor prefixes and normalize to compiled css
-    .pipe(postcss([
-      autoprefixer,
-      cssnano,
-    ]))
-    .pipe(rename({
-      basename: `${configPaths.baseName}-${pkg.version}`,
-      extname: '.min.css',
-    }))
-    .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest(destinationPath));
-
-  const compileOldIe = gulp.src(`${configPaths.src}all-govuk-and-hmrc-ie8.scss`)
-    .pipe(plumber(errorHandler))
-    .pipe(sourcemaps.init())
-    .pipe(sass({
-      includePaths: ['node_modules'],
-    }))
-    // minify css add vendor prefixes and normalize to compiled css
-    .pipe(postcss([
-      autoprefixer,
-      cssnano,
-      // transpile css for ie https://github.com/jonathantneal/oldie
-      oldie({
-        rgba: { filter: true },
-        rem: { disable: true },
-        unmq: { disable: true },
-        pseudo: { disable: true },
-      }),
-    ]))
-    .pipe(rename({
-      basename: `${configPaths.baseName}-ie8-${pkg.version}`,
-      extname: '.min.css',
-    }))
-    .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest(destinationPath));
-
-  return merge(compile, compileOldIe);
-});
+gulp.task('scss:compile-all-govuk-and-hmrc', () => gulp.src(`${configPaths.src}all-govuk-and-hmrc.scss`)
+  .pipe(plumber(errorHandler))
+  .pipe(sourcemaps.init())
+  .pipe(sass({
+    includePaths: ['node_modules'],
+  }))
+  // minify css add vendor prefixes and normalize to compiled css
+  .pipe(postcss([
+    autoprefixer,
+    cssnano,
+  ]))
+  .pipe(rename({
+    basename: `${configPaths.baseName}-${pkg.version}`,
+    extname: '.min.css',
+  }))
+  .pipe(sourcemaps.write('./maps'))
+  .pipe(gulp.dest(destinationPath)));
 
 gulp.task('scss:compile-accessible-autocomplete', () => gulp.src(`${configPaths.src}accessible-autocomplete.scss`)
   .pipe(plumber(errorHandler))

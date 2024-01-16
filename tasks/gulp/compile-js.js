@@ -20,8 +20,6 @@ gulp.task('js:compile-hmrc', () => gulp.src([`${configPaths.src}all.js`])
     ],
   }, {
     name: 'HMRCFrontend',
-    // Legacy mode is required for IE8 support
-    legacy: true,
     // UMD allows the published bundle to work in CommonJS and in the browser.
     format: 'umd',
   }))
@@ -39,14 +37,11 @@ gulp.task('js:compile-all-govuk-and-hmrc', () => gulp.src([
       commonjs(),
     ],
   }, {
-    legacy: true,
     // Using an immediately invoked function expression (IIFE) as the all-govuk-and-hmrc.js can
     // only be run in a browser
     format: 'iife',
   }))
-  .pipe(uglify({
-    ie8: true,
-  }))
+  .pipe(uglify())
   .pipe(
     rename({
       basename: `${configPaths.baseName}-${pkg.version}`,
@@ -66,8 +61,6 @@ gulp.task('js:compile-accessible-autocomplete', () => gulp.src([`${configPaths.s
     ],
   }, {
     name: 'HMRCAccessibleAutocomplete',
-    // Legacy mode is required for IE8 support
-    legacy: true,
     // UMD allows the published bundle to work in CommonJS and in the browser.
     format: 'umd',
   }))

@@ -13,4 +13,4 @@ Find out when to use the HMRC Internal header component in your service in [Desi
 Use options to customise the appearance, content and behaviour of a component when using a macro, for example, changing the text.
 
 ### Decision Log
-No support for IE8 - Thhis component is intended for internal HMRC services, there's no reason to support legacy browsers.
+No support for IE8 - This component is intended for internal HMRC services, there's no reason to support legacy browsers.

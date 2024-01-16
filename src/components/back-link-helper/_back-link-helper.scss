@@ -3,6 +3,10 @@ body:not(.js-enabled) a[data-module="hmrc-back-link"][href="#"] {
   display: none;
 }
 
+body:not(.govuk-frontend-supported) a[data-module="hmrc-back-link"][href="#"] {
+  display: none;
+}
+
 .hmrc-hidden-backlink {
   display: none;
 }

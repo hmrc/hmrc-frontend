@@ -1,7 +1,7 @@
-@import "../../../../govuk-frontend/govuk/settings/all";
-@import "../../../../govuk-frontend/govuk/tools/all";
-@import "../../../../govuk-frontend/govuk/helpers/all";
-@import "../../../../govuk-frontend/govuk/vendor/sass-mq";
+@import "../../../../govuk-frontend/dist/govuk/settings/all";
+@import "../../../../govuk-frontend/dist/govuk/tools/all";
+@import "../../../../govuk-frontend/dist/govuk/helpers/all";
+@import "../../../../govuk-frontend/dist/govuk/vendor/sass-mq";
 
 // previously provided by govuk-template, no equivalent in govuk-frontend
 .hidden {
@@ -33,10 +33,6 @@ $hmrc-transition-type: "all";
   background-image: url("data:image/svg+xml;base64,PHN2ZyBkYXRhLW5hbWU9IkxheWVyIDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaW5ZTWlkIj48dGl0bGU+aWNvbi1ob21lPC90aXRsZT48cGF0aCBkPSJNMTIgMkwxIDEyLjVoMy4xOXY5LjM4aDUuNDR2LTcuMTNoNC41djcuMTNoNS40NFYxMi41SDIzTDEyIDJ6Ii8+PC9zdmc+");
   background-position: left -1px;
   background-size: 19px;
-
-  @include govuk-if-ie8 {
-    background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-home.png");
-  }
 }
 
 .hmrc-account-menu {
@@ -218,10 +214,6 @@ body:not(.js-enabled) {
     background-position: 10px;
     background-size: 12px;
 
-    @include govuk-if-ie8 {
-      background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-left.png");
-    }
-
     .hmrc-account-menu__link {
       padding: 12px 8px 8px;
 
@@ -238,10 +230,6 @@ body:not(.js-enabled) {
   background-repeat: no-repeat;
   background-position: right 4px center;
   background-size: 12px;
-
-  @include govuk-if-ie8 {
-    background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-right.png");
-  }
 }
 
 .js-enabled .hmrc-account-home--account--is-open,
@@ -250,10 +238,6 @@ body:not(.js-enabled) {
   background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-down.svg");
   background-position: right 4px center;
   background-size: 12px;
-
-  @include govuk-if-ie8 {
-    background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-down.png");
-  }
 }
 
 .js-enabled .hmrc-account-menu__link--more {
@@ -262,10 +246,6 @@ body:not(.js-enabled) {
   background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-down.svg");
   background-position: right 14px center;
   background-size: 12px;
-
-  @include govuk-if-ie8 {
-    background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-down.png");
-  }
 
   &::before,
   &::after {
