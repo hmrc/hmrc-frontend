@@ -1,6 +1,6 @@
-{% from "dist/govuk/components/error-message/macro.njk" import govukErrorMessage -%}
-{% from "dist/govuk/components/hint/macro.njk" import govukHint %}
-{% from "dist/govuk/components/label/macro.njk" import govukLabel %}
+{% from "govuk/components/error-message/macro.njk" import govukErrorMessage -%}
+{% from "govuk/components/hint/macro.njk" import govukHint %}
+{% from "govuk/components/label/macro.njk" import govukLabel %}
 
 {% set describedBy = params.describedBy if params.describedBy else "" %}
 <div class="govuk-form-group {%- if params.errorMessage %} govuk-form-group--error{% endif %} {%- if params.formGroup.classes %} {{ params.formGroup.classes }}{% endif %}">

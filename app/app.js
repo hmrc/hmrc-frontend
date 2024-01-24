@@ -15,7 +15,7 @@ const appViews = [
   configPaths.components,
   configPaths.src,
   path.join(configPaths.src, 'layouts'),
-  configPaths.govukFrontend,
+  path.join(configPaths.govukFrontend, 'dist'),
 ];
 
 module.exports = (options) => {

@@ -46,7 +46,60 @@ npm install
 
 For use in frontend microservices running on MDTP, please refer to the [README](https://www.github.com/hmrc/play-frontend-hmrc)
  in play-frontend-hmrc.
-    
+
+## Explanations
+
+### Relative `@import`s and SASS load paths
+
+Our SASS needs to be compilable in three different contexts:
+
+1. Within the library itself
+2. Within the node_modules folder of prototypes
+3. Within the folder that webjar assets get extracted to in tax services
+
+[SASS load paths](https://sass-lang.com/documentation/at-rules/use/#load-paths) are folders that SASS will look in for
+paths you try to `@import` SASS files from.
+
+#### How will `@import "../../govuk-frontend";` be resolved in these different contexts?
+
+##### 1. Within the library itself during release and local development
+
+The govuk-frontend dependency will be located in the node_modules directory, so it will not exist
+at `../../govuk-frontend` relative to the SASS files in the `src/` directory.
+
+However, because we are doing the compilation ourselves, we can modify the SASS load paths - and so we
+add `node_modules` folder (where govuk-frontend will be located) via the "includePaths" option of the SASS library we
+use.
+
+Then, to resolve `@import "../../govuk-frontend";`, the SASS compiler will first try to find the file
+at `../../govuk-frontend` relative to the file doing the `@import`. Which won't be found, so then it will discard the
+relative parts of the path and try to locate it within any of the folders in the configured SASS load paths - which in
+this case will just be node_modules, and it will be found in `node_modules/govuk-frontend`.
+
+Which means you could (though only theoretically, as you will be prevented by automated tests) have any relative path
+prefix at the start of your `@imports` as long as the rest of the path is something that exists in the `node_modules`
+folder.
+
+##### 2. Within the node_modules folder of prototypes
+
+In this case, we aren't able to add to the SASS load paths, so the relative parts at the start of our `@import` paths
+matter.
+
+So [src/all-govuk-and-hmrc.scss](src/all-govuk-and-hmrc.scss) will be installed
+to `node_modules/hmrc-frontend/hmrc/all-govuk-and-hmrc.scss` and `@import`s of external dependencies from this file will
+need to traverse up two levels to get to the node_modules folder, so `@import "../../govuk-frontend";` will resolve
+to `node_modules/govuk-frontend`.
+
+We have
+an [automated test to ensure that we don't use an invalid relative path that would break this use case.](/tasks/gulp/__tests__/after-build-package.test.js#L140-L151)
+
+##### 3. Within the folder that webjar assets get extracted to in tax services
+
+The sbt-sassify plugin used by most tax services to compile SASS also has no way to add to the SASS load paths. Luckily,
+the subfolder structure that assets from webjars are extracted into matches what you'd find in node_modules, so the
+relative import paths that work for node_modules for prototypes will also work here (so long as you've got the
+govuk-frontend webjar in your project.)
+
 ## How to contribute
 
 ### Design patterns

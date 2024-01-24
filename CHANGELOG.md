@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.1.0] - 2024-01-24
+
+### Changed
+
+- Fixed issue preventing use of HMRC components that import GOV.UK components introduced in the last commit
+
+## [6.0.0] - 2024-01-16
+
+### Changed
+
+- Updated to work with govuk-frontend v5
+
 ## [5.62.0] - 2024-01-03
 
 ### Changed
