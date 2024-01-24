@@ -1,5 +1,5 @@
 {% set language = params.language | default('en') %}
-{% from "dist/govuk/components/character-count/macro.njk" import govukCharacterCount %}
+{% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
 
 {% if language === 'cy' %}
   {{ govukCharacterCount({

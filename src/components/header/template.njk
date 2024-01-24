@@ -1,7 +1,7 @@
 {% set language = params.language | default('en') %}
 {% from "../banner/macro.njk" import hmrcBanner %}
 {% from "../user-research-banner/macro.njk" import hmrcUserResearchBanner %}
-  {% from "dist/govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 
 <header role="banner">
   <div class="govuk-header hmrc-header {{ params.classes if params.classes }} {{ 'hmrc-header--with-additional-navigation' if params.signOutHref or params.languageToggle }}" data-module="govuk-header"
