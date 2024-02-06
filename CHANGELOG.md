@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.64.0] - 2024-02-08
+
+### Changed
+
+- Updated `govuk-frontend` to `v4.8.0`. Updated `header` to use new Tudor Crown logo with feature flag. Update `banner`
+  and `internal-header` to use new HMRC Crest with feature flag.
+
+## [5.63.0] - 2024-02-06
+
+### Changed
+
+- Test release updating `govuk-frontend` to `v4.8.0` and testing new Tudor Crown logo changes. Do not use this release.
+
 ## [5.62.0] - 2024-01-03
 
 ### Changed

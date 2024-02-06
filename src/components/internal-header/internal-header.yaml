@@ -20,6 +20,10 @@ params:
   type: string
   required: false
   description: The public path for the assets folder. If not provided it defaults to /assets
+- name: useDeprecatedCrown
+  type: boolean
+  required: false
+  description: A feature flag to use old St Edward’s Crown. If "false" or unset, defaults to the Tudor Crown
 
 accessibilityCriteria:
   Text and links in the Header must:
@@ -54,3 +58,8 @@ examples:
   data:
     serviceName: Service Name
     serviceUrl: '/components/internal-header/with-service-name/preview'
+- name: with-deprecated-crown
+  description: The internal header with the deprecated (St Edward’s Crown) logo
+  data:
+    language: en
+    useDeprecatedCrown: true
