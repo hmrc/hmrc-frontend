@@ -107,10 +107,10 @@ params:
   type: string
   required: false
   description: Additional banners to be appended into header
-- name: useDeprecatedCrown
+- name: useTudorCrown
   type: boolean
   required: false
-  description: A feature flag to use old St Edward’s Crown. If "false" or unset, defaults to the Tudor Crown
+  description: A feature flag to use the new Tudor Crown logo. If "false" or unset, defaults to the old St Edward’s Crown
 previewLayout: full-width
 accessibilityCriteria: |
   Text and links in the Header must:
@@ -413,8 +413,8 @@ examples:
     displayHmrcBanner: true
     additionalBannersBlock: "<div class=\"custom-banner govuk-body\">for example an attorney banner</div>"
 
-- name: with deprecated crown
-  description: The standard header with the deprecated St Edwards Crown Logo
+- name: with tudor crown
+  description: The standard header with the Tudor Crown logo
   data:
     userResearchBanner:
       url: '/sign-up-for-user-research'
@@ -423,4 +423,4 @@ examples:
         text: alpha
       html: This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
     displayHmrcBanner: true
-    useDeprecatedCrown: true
+    useTudorCrown: true
