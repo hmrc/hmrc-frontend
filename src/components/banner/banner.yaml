@@ -7,10 +7,10 @@ params:
   type: string
   required: false
   description: The public path for the assets folder. If not provided it defaults to /assets
-- name: useDeprecatedCrown
+- name: useTudorCrown
   type: boolean
   required: false
-  description: A feature flag to use old St Edward’s Crown. If "false" or unset, defaults to the Tudor Crown
+  description: A feature flag to use the new Tudor Crown logo. If "false" or unset, defaults to the old St Edward’s Crown
 previewLayout: full-width
 
 examples:
@@ -22,8 +22,8 @@ examples:
   description: The standard welsh banner
   data:
     language: cy
-- name: with-deprecated-crown
-  description: The standard banner with the deprecated (St Edward’s Crown) logo
+- name: with-tudor-crown
+  description: The standard banner with the new HMRC Crest with the Tudor crown
   data:
     language: en
-    useDeprecatedCrown: true
+    useTudorCrown: true
