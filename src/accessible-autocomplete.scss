@@ -1,9 +1,9 @@
 $govuk-include-default-font-face: false;
 
-@import "../../govuk-frontend/dist/govuk/settings/all";
-@import "../../govuk-frontend/dist/govuk/tools/all";
-@import "../../govuk-frontend/dist/govuk/helpers/all";
-@import "../../accessible-autocomplete/dist/accessible-autocomplete.min";
+@import "govuk-frontend/dist/govuk/settings/all";
+@import "govuk-frontend/dist/govuk/tools/all";
+@import "govuk-frontend/dist/govuk/helpers/all";
+@import "accessible-autocomplete/dist/accessible-autocomplete.min";
 
 .autocomplete__wrapper,
 .autocomplete__input,
