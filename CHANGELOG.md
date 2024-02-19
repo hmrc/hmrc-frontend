@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [5.67.0] - 2024-02-19
+
+### Changed
+
+- add useTudorCrown option to account-header layout for prototypes and the design-system
+
+## [5.66.0] - 2024-02-09
+
+### Changed
+
+- version number bumped to trigger release - no other changes
+
+## [5.65.0] - 2024-02-09
+
+### Changed
+
+- updated api for using the tudor crown to match govuk-frontend, and started passing through the value to child
+  components that need it
+
 ## [5.64.0] - 2024-02-08
 
 ### Changed
