@@ -216,3 +216,30 @@ examples:
         beforeTakingScreenshot:
           - click: ".hmrc-account-menu__link[aria-expanded='false']"
           - focus: ".hmrc-account-menu__link[href='/messages/href']"
+
+- name: all-available-options-with-tudor-crown
+  data:
+    hmrcAccountHeader:
+      serviceName: 'My Service'
+      displayHmrcBanner: true
+      accountHome:
+        href: '/account/home'
+        active: true
+      messages:
+        href: '/messages/href'
+        messageCount: '30'
+      checkProgress:
+        href: '/checkProgress'
+      signOut:
+        href: '?signOut=true'
+      language: 'en'
+      languageToggle:
+        en:
+          href: '/components/account-header/with-service-name/preview'
+        cy:
+          href: '/components/account-header/welsh-with-service-name/preview'
+      homepageUrl: '/the-homepage'
+      serviceUrl: '/the-service'
+      containerClasses: 'the-header-container-classes govuk-width-container'
+      classes: 'the-header-classes'
+      useTudorCrown: true
