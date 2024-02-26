@@ -110,7 +110,7 @@ params:
 - name: useTudorCrown
   type: boolean
   required: false
-  description: A feature flag to use the new Tudor Crown logo. If "false" or unset, defaults to the old St Edward’s Crown
+  description: A feature flag to use the new Tudor Crown logo. If unset, defaults to true
 previewLayout: full-width
 accessibilityCriteria: |
   Text and links in the Header must:
@@ -424,3 +424,29 @@ examples:
       html: This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
     displayHmrcBanner: true
     useTudorCrown: false
+
+- name: with params common to govuk header
+  description: With only the params common to govuk header
+  data:
+    homepageUrl: '#h1'
+    serviceName: Service name
+    serviceUrl: '#s1'
+    productName: Product
+    navigationClasses: nc1
+    containerClasses: cc1
+    classes: c1
+    navigation:
+      - href: '#n1'
+        text: Navigation item 1
+        active: true
+      - href: '#n2'
+        html: <strong>Navigation item 2</strong>
+      - href: '#n3'
+        text: Navigation item 3
+        attributes:
+          data-test-attribute-1: value-1
+          data-test-attribute-2: value-2
+      - href: '#n4'
+        text: Navigation item 4
+    attributes:
+      data-test-attribute-3: value-3

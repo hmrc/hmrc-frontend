@@ -10,7 +10,7 @@ params:
 - name: useTudorCrown
   type: boolean
   required: false
-  description: A feature flag to use the new Tudor Crown logo. If "false" or unset, defaults to the old St Edward’s Crown
+  description: A feature flag to use the new Tudor Crown logo. If unset, defaults to true
 previewLayout: full-width
 
 examples:
@@ -22,8 +22,8 @@ examples:
   description: The standard welsh banner
   data:
     language: cy
-- name: with-tudor-crown
-  description: The standard banner with the new HMRC Crest with the Tudor crown
+- name: with-st-edwards-crown
+  description: The standard banner with the old HMRC Crest
   data:
     language: en
-    useTudorCrown: true
+    useTudorCrown: false
