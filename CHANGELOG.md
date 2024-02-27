@@ -7,12 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [6.2.0] - 2024-02-23
+## [6.3.0] - 2024-02-27
 
 ### Changed
 
-- Tudor crown incorporated
+- Tudor crown incorporated, and now enabled by default
 - Updated govuk-frontend to v5.2.0
+- Location of banners in HMRC Header changed due to changes in GOV.UK Header
+- Updated npm audit exclusions
+
+## [6.2.0] - 2024-02-26
+
+### Changed
+
+- Updated npm audit exclusions
 
 ## [6.1.0] - 2024-01-24
 
