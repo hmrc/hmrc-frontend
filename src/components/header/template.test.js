@@ -21,7 +21,13 @@ describe('header', () => {
   it('passes accessibility tests', async () => {
     const $ = render('header', examples.default);
 
-    const results = await axe($.html());
+    const results = await axe($.html(), {
+      rules: {
+        // "all page content must be contained by landmarks"
+        // https://github.com/orgs/alphagov/projects/37/views/1?pane=issue&itemId=6672021
+        region: { enabled: false },
+      },
+    });
     expect(results).toHaveNoViolations();
   });
 
@@ -68,7 +74,13 @@ describe('header', () => {
     it('passes accessibility tests', async () => {
       const $ = render('header', examples['with navigation']);
 
-      const results = await axe($.html());
+      const results = await axe($.html(), {
+        rules: {
+          // "all page content must be contained by landmarks"
+          // https://github.com/orgs/alphagov/projects/37/views/1?pane=issue&itemId=6672021
+          region: { enabled: false },
+        },
+      });
       expect(results).toHaveNoViolations();
     });
 
@@ -168,7 +180,13 @@ describe('header', () => {
     it('passes accessibility tests when including the banner', async () => {
       const $ = render('header', examples['with hmrc banner english']);
 
-      const results = await axe($.html());
+      const results = await axe($.html(), {
+        rules: {
+          // "all page content must be contained by landmarks"
+          // https://github.com/orgs/alphagov/projects/37/views/1?pane=issue&itemId=6672021
+          region: { enabled: false },
+        },
+      });
       expect(results).toHaveNoViolations();
     });
     it('should have English text by default', () => {
@@ -184,7 +202,7 @@ describe('header', () => {
   describe('additional banners block', () => {
     it('renders correctly in the right place when passed html', () => {
       const $ = render('header', examples['with additional banner']);
-      expect($('header > :last-child').prop('outerHTML')).toEqual('<div class="custom-banner govuk-body">for example an attorney banner</div>');
+      expect($('body > :last-child').prop('outerHTML')).toEqual('<div class="custom-banner govuk-body">for example an attorney banner</div>');
     });
   });
 });
