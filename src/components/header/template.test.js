@@ -12,7 +12,6 @@ const examples = getExamples('header');
 describe('header', () => {
   it('should match the output of govuk header when none of the hmrc specific params are passed', async () => {
     const params = examples['with params common to govuk header'];
-
     const hmrcHeaderHtml = render('header', params)('body').html();
     const govukHeaderHtml = render('govuk/components/header', { ...params, classes: 'hmrc-header c1' })('body').html();
     expect(hmrcHeaderHtml).toEqual(govukHeaderHtml);

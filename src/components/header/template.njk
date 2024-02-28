@@ -118,7 +118,7 @@
     </div>
   {% endif %}
   </div>
-</header>
+</header>{# TODO can the above delegate to govukHeader()? #}
 {%- if params.phaseBanner %}
   <div class="govuk-width-container">
     {{ govukPhaseBanner(params.phaseBanner) }}
