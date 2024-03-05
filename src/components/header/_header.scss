@@ -53,33 +53,6 @@ $govuk-header-link-underline-thickness: 3px;
   }
 }
 
-.hmrc-header__service-name {
-  display: inline-block;
-  margin-bottom: govuk-spacing(2);
-
-  @include govuk-font($size: 24, $weight: bold);
-}
-
-.hmrc-header__service-name--linked {
-  @include govuk-typography-common;
-  @include govuk-link-style-inverse;
-
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-    text-decoration-thickness: $govuk-header-link-underline-thickness;
-
-    @if ($govuk-link-underline-offset) {
-      text-underline-offset: $govuk-link-underline-offset;
-    }
-  }
-
-  &:focus {
-    @include govuk-focused-text;
-  }
-}
-
 // Shift user research banner up 10px to compensate for govuk header border
 // only when adjacent to govuk header
 .hmrc-header + .hmrc-user-research-banner {
