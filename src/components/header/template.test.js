@@ -10,23 +10,24 @@ import { render, getExamples } from '../../../lib/jest-helpers';
 const examples = getExamples('header');
 
 describe('header', () => {
-  it('should match the output of govuk header when none of the hmrc specific params are passed', async () => {
+  it('should match the inner html output of govuk header when none of the hmrc specific params are passed', async () => {
     const params = examples['with params common to govuk header'];
-    const hmrcHeaderHtml = render('header', params)('body').html();
-    const govukHeaderHtml = render('govuk/components/header', { ...params, classes: 'hmrc-header c1' })('body').html();
+    const hmrcHeaderHtml = render('header', params)('.govuk-header').html();
+    const govukHeaderHtml = render('govuk/components/header', params)('.govuk-header').html();
     expect(hmrcHeaderHtml).toEqual(govukHeaderHtml);
+  });
+
+  it('has a role of `banner`', () => {
+    const $ = render('header', {});
+
+    const $component = $('header');
+    expect($component.attr('role')).toEqual('banner');
   });
 
   it('passes accessibility tests', async () => {
     const $ = render('header', examples.default);
 
-    const results = await axe($.html(), {
-      rules: {
-        // "all page content must be contained by landmarks"
-        // https://github.com/orgs/alphagov/projects/37/views/1?pane=issue&itemId=6672021
-        region: { enabled: false },
-      },
-    });
+    const results = await axe($.html());
     expect(results).toHaveNoViolations();
   });
 
@@ -73,13 +74,7 @@ describe('header', () => {
     it('passes accessibility tests', async () => {
       const $ = render('header', examples['with navigation']);
 
-      const results = await axe($.html(), {
-        rules: {
-          // "all page content must be contained by landmarks"
-          // https://github.com/orgs/alphagov/projects/37/views/1?pane=issue&itemId=6672021
-          region: { enabled: false },
-        },
-      });
+      const results = await axe($.html());
       expect(results).toHaveNoViolations();
     });
 
@@ -179,13 +174,7 @@ describe('header', () => {
     it('passes accessibility tests when including the banner', async () => {
       const $ = render('header', examples['with hmrc banner english']);
 
-      const results = await axe($.html(), {
-        rules: {
-          // "all page content must be contained by landmarks"
-          // https://github.com/orgs/alphagov/projects/37/views/1?pane=issue&itemId=6672021
-          region: { enabled: false },
-        },
-      });
+      const results = await axe($.html());
       expect(results).toHaveNoViolations();
     });
     it('should have English text by default', () => {
@@ -201,7 +190,7 @@ describe('header', () => {
   describe('additional banners block', () => {
     it('renders correctly in the right place when passed html', () => {
       const $ = render('header', examples['with additional banner']);
-      expect($('body > :last-child').prop('outerHTML')).toEqual('<div class="custom-banner govuk-body">for example an attorney banner</div>');
+      expect($('header > :last-child').prop('outerHTML')).toEqual('<div class="custom-banner govuk-body">for example an attorney banner</div>');
     });
   });
 });

@@ -39,7 +39,8 @@
 </svg>
 {% endset -%}
 
-<header class="govuk-header hmrc-header {%- if params.classes %} {{ params.classes }}{% endif %}{{ ' hmrc-header--with-additional-navigation' if params.signOutHref or params.languageToggle }}" role="banner" data-module="govuk-header"
+<header role="banner">
+<div class="govuk-header hmrc-header {%- if params.classes %} {{ params.classes }}{% endif %}{{ ' hmrc-header--with-additional-navigation' if params.signOutHref or params.languageToggle }}" data-module="govuk-header"
   {{- govukAttributes(params.attributes) }}>
   <div class="govuk-header__container {{ params.containerClasses | default("govuk-width-container", true) }}">
     <div class="govuk-header__logo">
@@ -118,7 +119,7 @@
     </div>
   {% endif %}
   </div>
-</header>{# TODO can the above delegate to govukHeader()? #}
+</div>
 {%- if params.phaseBanner %}
   <div class="govuk-width-container">
     {{ govukPhaseBanner(params.phaseBanner) }}
@@ -133,3 +134,4 @@
   </div>
 {% endif %}
 {{- params.additionalBannersBlock | safe }}
+</header>
