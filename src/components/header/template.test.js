@@ -10,11 +10,15 @@ import { render, getExamples } from '../../../lib/jest-helpers';
 const examples = getExamples('header');
 
 describe('header', () => {
+  function withoutHmrcHeaderClasses(text) {
+    return (text || '').trim().replace(/ hmrc-header__[a-z-]+/g, '');
+  }
+
   it('should match the inner html output of govuk header when none of the hmrc specific params are passed', async () => {
     const params = examples['with params common to govuk header'];
-    const hmrcHeaderHtml = render('header', params)('.govuk-header').html();
-    const govukHeaderHtml = render('govuk/components/header', params)('.govuk-header').html();
-    expect(hmrcHeaderHtml).toEqual(govukHeaderHtml);
+    const hmrcHeaderHtml = render('header', params)('.govuk-header').html().trim();
+    const govukHeaderHtml = render('govuk/components/header', params)('.govuk-header').html().trim();
+    expect(withoutHmrcHeaderClasses(hmrcHeaderHtml)).toEqual(govukHeaderHtml);
   });
 
   it('has a role of `banner`', () => {
@@ -22,6 +26,15 @@ describe('header', () => {
 
     const $component = $('header');
     expect($component.attr('role')).toEqual('banner');
+  });
+
+  it('renders classes', () => {
+    const $ = render('header', {
+      classes: 'app-header--custom-modifier',
+    });
+
+    const $component = $('.govuk-header');
+    expect($component.hasClass('app-header--custom-modifier')).toBeTruthy();
   });
 
   it('passes accessibility tests', async () => {
@@ -67,6 +80,33 @@ describe('header', () => {
       const $component = $('.govuk-header');
       const $productName = $component.find('.govuk-header__product-name');
       expect($productName.text().trim()).toEqual('Product Name');
+    });
+  });
+
+  describe('with service name', () => {
+    it('renders service name', () => {
+      const $ = render('header', examples['with service name']);
+
+      const $component = $('.govuk-header');
+      const $serviceName = $component.find('.hmrc-header__service-name');
+      expect($serviceName.hasClass('hmrc-header__service-name--linked')).toBeTruthy();
+      expect($serviceName.text().trim()).toEqual('Service Name');
+    });
+
+    it('renders service name as a span when no url is specified', () => {
+      const $ = render('header', examples['with service name but no service link']);
+
+      const $component = $('.govuk-header');
+      const $serviceName = $component.find('.hmrc-header__service-name');
+      expect($serviceName[0].tagName).toEqual('span');
+    });
+
+    it('renders service name without the linked modifier when no url is specified', () => {
+      const $ = render('header', examples['with service name but no service link']);
+
+      const $component = $('.govuk-header');
+      const $serviceName = $component.find('.hmrc-header__service-name');
+      expect($serviceName.hasClass('hmrc-header__service-name--linked')).toBeFalsy();
     });
   });
 
