@@ -10,11 +10,15 @@ import { render, getExamples } from '../../../lib/jest-helpers';
 const examples = getExamples('header');
 
 describe('header', () => {
-  it('passes accessibility tests', async () => {
-    const $ = render('header', examples.default);
+  function withoutHmrcHeaderClasses(text) {
+    return (text || '').trim().replace(/ hmrc-header__[a-z-]+/g, '');
+  }
 
-    const results = await axe($.html());
-    expect(results).toHaveNoViolations();
+  it('should match the inner html output of govuk header when none of the hmrc specific params are passed', async () => {
+    const params = examples['with params common to govuk header'];
+    const hmrcHeaderHtml = render('header', params)('.govuk-header').html().trim();
+    const govukHeaderHtml = render('govuk/components/header', params)('.govuk-header').html().trim();
+    expect(withoutHmrcHeaderClasses(hmrcHeaderHtml)).toEqual(govukHeaderHtml);
   });
 
   it('has a role of `banner`', () => {
@@ -24,19 +28,6 @@ describe('header', () => {
     expect($component.attr('role')).toEqual('banner');
   });
 
-  it('renders attributes correctly', () => {
-    const $ = render('header', {
-      attributes: {
-        'data-test-attribute': 'value',
-        'data-test-attribute-2': 'value-2',
-      },
-    });
-
-    const $component = $('.govuk-header');
-    expect($component.attr('data-test-attribute')).toEqual('value');
-    expect($component.attr('data-test-attribute-2')).toEqual('value-2');
-  });
-
   it('renders classes', () => {
     const $ = render('header', {
       classes: 'app-header--custom-modifier',
@@ -44,6 +35,13 @@ describe('header', () => {
 
     const $component = $('.govuk-header');
     expect($component.hasClass('app-header--custom-modifier')).toBeTruthy();
+  });
+
+  it('passes accessibility tests', async () => {
+    const $ = render('header', examples.default);
+
+    const results = await axe($.html());
+    expect(results).toHaveNoViolations();
   });
 
   it('renders custom container classes', () => {
@@ -192,75 +190,25 @@ describe('header', () => {
       expect(outputs[0]).toEqual(outputs[2]);
     });
 
-    it('renders navigation with aria-label in English if passed no language', () => {
-      const $ = render('header', examples['with navigation']);
-
-      const $navigation = $('.govuk-header__navigation');
-      expect($navigation.attr('aria-label')).toEqual('Top Level Menu');
-    });
-
-    it('renders navigation with aria-label in Welsh when specified', () => {
-      const $ = render('header', examples['with navigation welsh']);
-
-      const $navigation = $('.govuk-header__navigation');
-      expect($navigation.attr('aria-label')).toEqual('Dewislen Lefel Uchaf');
-    });
-
     describe('menu button', () => {
-      it('has an explicit type="button" so it does not act as a submit button', () => {
+      it('should have English text as default', () => {
         const $ = render('header', examples['with navigation']);
 
         const $button = $('.govuk-header__menu-button');
-
-        expect($button.attr('type')).toEqual('button');
+        expect($button.text().trim()).toEqual('Menu');
       });
-    });
 
-    it('should have English text as default', () => {
-      const $ = render('header', examples['with navigation']);
+      it('should have Welsh text when specified', () => {
+        const $ = render('header', examples['with navigation welsh']);
 
-      const $button = $('.govuk-header__menu-button');
-      expect($button.text()).toEqual('Menu');
-    });
-
-    it('should have Welsh text when specified', () => {
-      const $ = render('header', examples['with navigation welsh']);
-
-      const $button = $('.govuk-header__menu-button');
-      expect($button.text()).toEqual('Dewislen');
-    });
-
-    it('should have aria-label in English if passed no language', () => {
-      const $ = render('header', examples['with navigation']);
-
-      const $button = $('.govuk-header__menu-button');
-      expect($button.attr('aria-label')).toEqual('Show or hide Top Level Menu');
-    });
-
-    it('should have aria-label in Welsh when specified', () => {
-      const $ = render('header', examples['with navigation welsh']);
-
-      const $button = $('.govuk-header__menu-button');
-      expect($button.attr('aria-label')).toEqual('Dangos neu guddio’r Ddewislen Lefel Uchaf');
-    });
-  });
-
-  describe('SVG logo', () => {
-    const $ = render('header', {});
-    const $svg = $('.govuk-header__link > svg');
-
-    it('sets focusable="false" so that IE does not treat it as an interactive element', () => {
-      expect($svg.attr('focusable')).toEqual('false');
-    });
-
-    describe('fallback PNG', () => {
-      const $fallbackImage = $('.govuk-header__logotype-crown-fallback-image');
-
-      it('is invisible to modern browsers', () => {
-        expect($fallbackImage.length).toEqual(0);
+        const $button = $('.govuk-header__menu-button');
+        expect($button.text().trim()).toEqual('Dewislen');
       });
     });
   });
+
+  // TODO add tests for sign-out-links
+  // TODO add tests for language-select-links
 
   describe('HMRC banner', () => {
     it('passes accessibility tests when including the banner', async () => {

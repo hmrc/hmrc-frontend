@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.3.0] - 2024-02-27
+
+### Changed
+
+- Tudor crown incorporated, and now enabled by default
+- Updated govuk-frontend to v5.2.0
+- Updated npm audit exclusions
+
 ## [6.2.0] - 2024-02-26
 
 ### Changed
@@ -24,6 +32,38 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Updated to work with govuk-frontend v5
+
+## [5.67.0] - 2024-02-19
+
+### Changed
+
+- add useTudorCrown option to account-header layout for prototypes and the design-system
+
+## [5.66.0] - 2024-02-09
+
+### Changed
+
+- version number bumped to trigger release - no other changes
+
+## [5.65.0] - 2024-02-09
+
+### Changed
+
+- updated api for using the tudor crown to match govuk-frontend, and started passing through the value to child
+  components that need it
+
+## [5.64.0] - 2024-02-08
+
+### Changed
+
+- Updated `govuk-frontend` to `v4.8.0`. Updated `header` to use new Tudor Crown logo via feature flag. Update `banner`
+  and `internal-header` to use new HMRC Crest via feature flag.
+
+## [5.63.0] - 2024-02-06
+
+### Changed
+
+- Test release updating `govuk-frontend` to `v4.8.0` and testing new Tudor Crown logo changes. Do not use this release.
 
 ## [5.62.0] - 2024-01-03
 

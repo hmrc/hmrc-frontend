@@ -1,5 +1,7 @@
 /* eslint-env jest */
 
+/* eslint-disable max-len */
+
 import { render, getExamples } from '../../../lib/jest-helpers';
 
 const examples = getExamples('internal-header');
@@ -19,6 +21,12 @@ describe('Internal Header', () => {
 
       expect($logoLink.text().trim()).toEqual('HM Revenue & Customs');
     });
+
+    it('should have Tudor Crown logo ', () => {
+      const $ = render('internal-header', examples.default);
+
+      expect($('.hmrc-internal-header__logo-link > svg').html().trim()).toContain('<path class="cls-1" d="m28.5,16.6c');
+    });
   });
 
   describe('with Welsh language specified', () => {
@@ -27,6 +35,14 @@ describe('Internal Header', () => {
       const $logoLink = $('.hmrc-internal-header__logo-link');
 
       expect($logoLink.text().trim()).toEqual('Cyllid a Thollau EF');
+    });
+  });
+
+  describe('with St Edwards Crown logo specified', () => {
+    it('should have the correct SVG', () => {
+      const $ = render('internal-header', examples['with-st-edwards-crown']);
+
+      expect($('.hmrc-internal-header__logo-link > svg').html().trim()).toContain('<path d="M104.32,73.72,101,73.29c');
     });
   });
 
