@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.4.0] - 2024-03-11
+
+### Changed
+
+- Copied `manifest.json` from `govuk-frontend` into webjar. Removed `hmtl5shiv` from webjar.
+
 ## [6.3.0] - 2024-02-27
 
 ### Changed

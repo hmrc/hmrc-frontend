@@ -62,11 +62,11 @@ describe('package/', () => {
         'hmrc/govuk/images/govuk-icon-512.png',
         'hmrc/govuk/images/govuk-icon-mask.svg',
         'hmrc/govuk/images/govuk-opengraph-image.png',
+        'hmrc/govuk/manifest.json',
         `hmrc/hmrc-frontend-${pkg.version}.min.css`,
         `hmrc/hmrc-frontend-${pkg.version}.min.js`,
         `hmrc/maps/hmrc-frontend-${pkg.version}.min.css.map`,
         `hmrc/maps/hmrc-frontend-${pkg.version}.min.js.map`,
-        'hmrc/vendor/html5shiv.min.js',
         'hmrc/VERSION.txt',
       ];
 
