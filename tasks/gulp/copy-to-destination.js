@@ -11,7 +11,7 @@ gulp.task('copy-govuk-images', () => gulp.src([
 ])
   .pipe(gulp.dest(`${destinationPath}/govuk/images`)));
 
-gulp.task('copy-html5shiv', () => gulp.src([
-  'node_modules/html5shiv/dist/html5shiv.min.js',
+gulp.task('copy-govuk-manifest-json', () => gulp.src([
+  'node_modules/govuk-frontend/dist/govuk/assets/manifest.json',
 ])
-  .pipe(gulp.dest(`${destinationPath}/vendor`)));
+  .pipe(gulp.dest(`${destinationPath}/govuk`)));

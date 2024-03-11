@@ -17,15 +17,15 @@ const copyDistFiles = series(
   'copy-hmrc-images',
   'copy-govuk-images',
   'copy-govuk-fonts',
-  'copy-html5shiv',
+  'copy-govuk-manifest-json',
 );
 
 const copyPackageFiles = series(
   'copy-package-sources',
   'copy-govuk-fonts',
   'copy-govuk-images',
-  'copy-html5shiv',
   'copy-govuk-config',
+  'copy-govuk-manifest-json',
 );
 
 const buildPackage = series(
