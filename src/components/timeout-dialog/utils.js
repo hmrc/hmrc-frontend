@@ -1,4 +1,5 @@
-// TODO remove when decision is made by DIAS about removing the timeout dialog functionality for IE
+// TODO Remove the ActiveXObject code and test against Edge
+// Decision agreed with DIAS to remove the timeout dialog functionality for IE)
 /* global ActiveXObject */
 
 const { warn } = console;
