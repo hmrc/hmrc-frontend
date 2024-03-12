@@ -1,0 +1,52 @@
+name: hmrc-frontend dependency updates
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: "50 * * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set Up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run npm audit
+        run: npm audit --json > npm-audit-results.json
+
+      - name: Create Branch and npm audit fix if needed
+        run: |
+          if grep -q '"vulnerabilities":{}' npm-audit-results.json; then
+            echo "No vulnerabilities found. Skipping PR creation."
+          else        
+            git checkout -b npm-audit-update
+            npm audit fix
+            npm test
+            git commit -am "Automated npm changes"
+            git push origin npm-audit-update
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: "Auto-updates npm dependencies"
+          branch: npm-audit-update
+
+      - name: On Failure
+        if: failure()
+        run: |
+          echo "The tests failed. Take appropriate actions here. This on fail step needs updating :)"
