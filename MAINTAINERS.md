@@ -49,12 +49,18 @@ We use the following workflow for patch releases:
    `git checkout -b release/v4.5.1 tags/v4.5.0`
 2. Push release branch to github, eg.
    `git push -u origin release/v4.5.1`
-3. Create a feature branch off the release branch for the required changes, eg.
-   `git checkout -b PLATUI-999-my-critical-changes release/v4.5.1`
-4. Make and test the required changes on the feature branch
-5. Raise a PR *from the feature branch into the release branch* (to get the changes approved before building the new version)
-6. Once approved and merged, do a branch build of the release branch in Jenkins - this will build and tag the release, eg. v4.5.1
-7. Eventually, delete the release branch so that there's just the tag left behind
+3. Create a feature branch off the release branch, for the required changes, eg.
+   `git checkout -b PLATUI-999-my-critical-changes`
+4. Bump the patch version on your local feature branch
+   `npm version patch`
+5. Make and test the required changes on your local feature branch
+6. Once you're happy with your changes, push them up to GitHub
+   `git push -u origin PLATUI-999-my-critical-changes`
+7. Raise a PR *from the feature branch into the release branch* (to get the changes approved before building the new version), eg. using the GitHub CLI
+   `gh pr create -B release/v4.5.1`
+8. Once approved and merged, do a branch build of the release branch in Jenkins - this will build and tag the release, eg. v4.5.1,
+   and publish it to artifactory ready for consumption
+9. Eventually, delete the release branch so that there's just the tag left behind
 
 ## Keeping a record of decisions
 
