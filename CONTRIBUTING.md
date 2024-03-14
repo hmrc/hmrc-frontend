@@ -15,7 +15,9 @@ You can help with:
 
 Consider getting in touch before starting a significant piece of work.
 
-What you’re planning to do may already be in our backlog or others may already be working on it. It may have been proposed in the past and we may have decided it is out of scope. We may have suggestions or constraints which will affect the work you need to do.
+What you’re planning to do may already be in our backlog or others may already be working on it.
+It may have been proposed in the past and we may have decided it is out of scope.
+We may have suggestions or constraints which will affect the work you need to do.
 
 You can:
 * [create an issue](https://github.com/hmrc/assets-frontend/issues/new)
@@ -29,12 +31,17 @@ Running the following will:
 - make sure any changes to your package.json are reflected in your package-lock.json
 - make sure pre-commit hooks are installed and deps needed to run their checks are available
 - bump the version number in your package.json and package-lock.json
+- HMRC Frontend uses [semantic versioning](https://semver.org/) - if you've made any breaking changes,
+you should bump the major version, otherwise the minor version
 
-> **Warning:**
+> [!WARNING]
 > Make sure you commit the changes!
 
 ```
 npm install
+# for breaking changes:
+npm version major
+# for non-breaking changes:
 npm version minor
 ```
 
@@ -44,8 +51,8 @@ To minimise the security risk from accidentally installing a compromised package
 - Use the `--ignore-scripts` parameter when installing to prevent the package from executing scripts during installation. This can't be configured automatically in the repo because it would disable our ability to run any scripts (even the top-level ones in the project)
 - Run `npm run audit` post installation to check for vulnerabilities after installing before running a build or test using it
 
-  > **Note**
-  > Deliberately compromised packages tend to be quickly removed from NPM once they are discovered, but a removed package might be present in a cache somewhere so for safety we should always run this check.
+> [!NOTE]
+> Deliberately compromised packages tend to be quickly removed from NPM once they are discovered, but a removed package might be present in a cache somewhere so for safety we should always run this check.
 
 - Carefully consider if new dependencies are really needed, and try to avoid adding them whenever possible
 
@@ -218,7 +225,8 @@ For more general backstop configuration take a look at [tasks/gulp/backstop-conf
 The code you contribute must be accessible. This means it works on every browser or device your users 
 may use to access it.
 
-You can find out more about designing for different browsers and devices.
+You can find out more about designing for different browsers and devices in the
+[GOVUK Service Manual](https://www.gov.uk/service-manual/technology/designing-for-different-browsers-and-devices).
 
 ### Make new components available in the GOVUK prototype kit
 If you've added a new component, you should register its nunjucks macro in [govuk-prototype-kit.config.json](src/govuk-prototype-kit.config.json)
@@ -235,37 +243,13 @@ HMRC Frontend follows [the same standards as GOV.UK](https://gds-way.cloudapps.d
 #### Squash related commits
 Squash multiple commits into one to make reviewing code easier.
 
-#### Keep a record of decisions
-
-We are using MADRs to record significant decisions in this service. To find out more
-visit [MADR](https://github.com/adr/madr)
-
-See our [decision log](docs/adr/index.md) for a list of past decisions.
-
-##### How to prepare a new decision
-
-1. Copy [template.md](docs/adr/template.md) as NNNN-title-of-decision.md, and fill
-in the fields. Do not feel you have to fill in all the fields, only fill in fields
-that are strictly necessary. Some decisions will merit more detail than others.
-
-1. To re-generate the [listing page for previous decisions](docs/adr/index.md) 
-   so it includes the new decision, run:
-
-    ```shell script
-    npm run docs:generate-decision-log-listing
-    ```
-
 ## Create a pull request
 
 ### Links and closing issues
 
 Search for existing issues relating to your pull request and [link them together](https://github.com/blog/957-introducing-issue-mentions).
 
-If your pull request closes an issue follow ‘[Closing issues using keywords ](https://help.github.com/articles/closing-issues-via-commit-messages/)’.
-
-### Versions
-
-HMRC Frontend uses [semantic versioning](https://semver.org/). Build and release tools bump versions of the project.
+If your pull request closes an issue follow ‘[Closing issues using keywords](https://help.github.com/articles/closing-issues-via-commit-messages/)’.
 
 ## Frontend principles
 
@@ -283,41 +267,3 @@ All work on GOV.UK should [use progressive enhancement](https://www.gov.uk/servi
 Services on GOV.UK are for the benefit of all users. This means you must build a service that’s as inclusive as possible.
 
 [Accessibility guidance on GOV.UK](https://www.gov.uk/service-manual/helping-people-to-use-your-service/making-your-service-accessible-an-introduction).
-
-### WebJar publishing
-
-In order to make the hmrc-frontend assets easy to consume in a JVM environment,
-the npm `build:webjar` task builds a JVM compatible webjar. This webjar is published to HMRC's open
-artefact repository by an internal automated deployment process and is a dependency of
-[hmrc/play-frontend-hmrc](https://www.github.com/hmrc/play-frontend-hmrc).
-
-When testing changes in conjunction with `play-frontend-hmrc` and consuming frontend microservices,
-it's possible to publish the hmrc-frontend webjar locally as follows. You will need Java 
-and [Maven](https://maven.apache.org/install.html) installed.
-
-```shell script
-npm run build:package
-npm run build:webjar
-npm run publish-local:webjar
-```
-
-You can then reference the webjar in the `LibDependencies.scala` file in `play-frontend-hmrc` as follows:
-
-```sbt
-"uk.gov.hmrc.webjars" % "hmrc-frontend" % "X.Y.Z"
-```
-
-You will also need to configure your `build.sbt` resolvers to look in your local Maven repository:
-
-```sbt
-  .settings(
-    ...
-    resolvers += Resolver.mavenLocal,
-    ...
-  )
-```
-
-Further documentation on the webjar mechanism can be found:
-
-* https://www.webjars.org/documentation
-* https://www.playframework.com/documentation/2.8.x/AssetsOverview

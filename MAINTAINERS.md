@@ -1,0 +1,76 @@
+# Documentation for project maintainers (MDTP Platform UI team)
+
+## Publishing the hmrc-frontend WebJar locally
+
+In order to make the hmrc-frontend assets easy to consume in a JVM environment,
+the npm `build:webjar` task builds a JVM compatible webjar. This webjar is published to HMRC's open
+artefact repository by an internal automated deployment process and is a dependency of
+[hmrc/play-frontend-hmrc](https://www.github.com/hmrc/play-frontend-hmrc).
+
+When testing changes in conjunction with `play-frontend-hmrc` and consuming frontend microservices,
+it's possible to publish the hmrc-frontend webjar locally as follows. You will need Java
+and [Maven](https://maven.apache.org/install.html) installed.
+
+```shell script
+npm run build:package
+npm run build:webjar
+npm run publish-local:webjar
+```
+
+You can then reference the webjar in the `LibDependencies.scala` file in `play-frontend-hmrc` as follows:
+
+```sbt
+"uk.gov.hmrc.webjars" % "hmrc-frontend" % "X.Y.Z"
+```
+
+You will also need to configure your `build.sbt` resolvers to look in your local Maven repository:
+
+```sbt
+  .settings(
+    ...
+    resolvers += Resolver.mavenLocal,
+    ...
+  )
+```
+
+Further documentation on the webjar mechanism can be found:
+
+* https://www.webjars.org/documentation
+* https://www.playframework.com/documentation/2.8.x/AssetsOverview
+
+## Creating a patch release for an earlier version
+
+Occasionally, we need to release a patch to earlier major versions of the library, to fix critical issues
+or make mandatory changes for services on earlier versions that can't easily upgrade to the latest.
+An example of this was the mandated switch to use the Tudor Crown branding following the accession of King Charles III.
+
+We use the following workflow for patch releases:
+1. Create a release branch for the new version, eg.
+`git checkout -b release/v4.5.1`
+2. Create a feature branch for the required changes, eg.
+`git checkout -b PLATUI-9999-my-critical-changes`
+3. Make and test the required changes on the feature branch
+4. Raise a PR *from the feature branch into the release branch* (to get the changes approved before building the new version)
+5. Once approved and merged, do a branch build of the release branch in Jenkins - this will build and tag the release, eg. 4.5.1
+6. Eventually, delete the release branch so that there's just the tag left behind
+
+## Keeping a record of decisions
+
+We are using MADRs to record significant decisions in this service. To find out more
+visit [MADR](https://github.com/adr/madr)
+
+See our [decision log](docs/adr/index.md) for a list of past decisions.
+
+### How to prepare a new decision
+
+1. Copy [template.md](docs/adr/template.md) as NNNN-title-of-decision.md, and fill
+   in the fields. Do not feel you have to fill in all the fields, only fill in fields
+   that are strictly necessary. Some decisions will merit more detail than others.
+
+1. To re-generate the [listing page for previous decisions](docs/adr/index.md)
+   so it includes the new decision, run:
+
+    ```shell script
+    npm run docs:generate-decision-log-listing
+    ```
+

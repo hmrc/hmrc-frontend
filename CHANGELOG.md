@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.5.0] - 2024-03-14
+
+### Changed
+
+- Split out [MAINTAINERS info](MAINTAINERS.md) from general [CONTRIBUTING guide](CONTRIBUTING.md) 
+- Documented patch release process
+
 ## [6.4.0] - 2024-03-11
 
 ### Changed
