@@ -45,14 +45,16 @@ or make mandatory changes for services on earlier versions that can't easily upg
 An example of this was the mandated switch to use the Tudor Crown branding following the accession of King Charles III.
 
 We use the following workflow for patch releases:
-1. Create a release branch for the new version, eg.
-`git checkout -b release/v4.5.1`
-2. Create a feature branch for the required changes, eg.
-`git checkout -b PLATUI-9999-my-critical-changes`
-3. Make and test the required changes on the feature branch
-4. Raise a PR *from the feature branch into the release branch* (to get the changes approved before building the new version)
-5. Once approved and merged, do a branch build of the release branch in Jenkins - this will build and tag the release, eg. 4.5.1
-6. Eventually, delete the release branch so that there's just the tag left behind
+1. Create a release branch for the new version, based on the tag of the older version, eg.
+   `git checkout -b release/v4.5.1 tags/v4.5.0`
+2. Push release branch to github, eg.
+   `git push -u origin release/v4.5.1`
+3. Create a feature branch for the required changes, eg.
+   `git checkout -b PLATUI-999-my-critical-changes tags/v4.5.0`
+4. Make and test the required changes on the feature branch
+5. Raise a PR *from the feature branch into the release branch* (to get the changes approved before building the new version)
+6. Once approved and merged, do a branch build of the release branch in Jenkins - this will build and tag the release, eg. v4.5.1
+7. Eventually, delete the release branch so that there's just the tag left behind
 
 ## Keeping a record of decisions
 
