@@ -1,4 +1,4 @@
-# Documentation for project maintainers (MDTP Platform UI team)
+# Documentation for project maintainers (MDTP Platform UI and Design Resources teams)
 
 ## Publishing the hmrc-frontend WebJar locally
 
