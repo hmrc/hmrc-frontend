@@ -62,6 +62,25 @@ We use the following workflow for patch releases:
    and publish it to artifactory ready for consumption
 9. Eventually, delete the release branch so that there's just the tag left behind
 
+```mermaid
+    gitGraph LR:
+        commit tag:"4.5.0" id:"older release"
+        branch "release/4.5.1"
+        commit id:"branch off old tag"
+        branch feature/some-urgent-fix
+        commit id:"branch off release branch"
+        commit id:"make some changes"
+        commit id:"make more changes"
+        checkout "release/4.5.1"
+        merge "feature/some-urgent-fix" id:"PR to release branch"
+        commit tag:"4.5.1" id:"tagged by jenkins"
+        commit type:HIGHLIGHT id:"never merged back"
+        checkout main
+        commit tag:"5.0.0" id:"major release"
+        commit tag:"5.1.0" id:"minor release"
+        commit tag:"6.0.0" id:"latest"
+```
+
 ## Keeping a record of decisions
 
 We are using MADRs to record significant decisions in this service. To find out more
