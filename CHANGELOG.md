@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.6.0] - 2024-03-19
+
+### Changed
+
+- Added mermaid.js gitGraph visualisation of patch release process to [MAINTAINERS info](MAINTAINERS.md)
+
 ## [6.5.0] - 2024-03-14
 
 ### Changed
