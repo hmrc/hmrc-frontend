@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- version number bumped to trigger release - no other changes
+- Version number bumped to trigger release - no other changes
 
 ## [6.6.0] - 2024-03-19
 
