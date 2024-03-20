@@ -7,11 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.8.0] - 2024-03-20
+
+### Changed
+
+- Removed unused ActiveXObject references in line with dropping IE support
+
 ## [6.7.0] - 2024-03-19
 
 ### Changed
 
-- version number bumped to trigger release - no other changes
+- Version number bumped to trigger release - no other changes
 
 ## [6.6.0] - 2024-03-19
 

@@ -1,7 +1,3 @@
-// TODO Remove the ActiveXObject code and test against Edge
-// Decision agreed with DIAS to remove the timeout dialog functionality for IE)
-/* global ActiveXObject */
-
 const { warn } = console;
 
 const utils = {
@@ -41,7 +37,7 @@ const utils = {
   },
 
   ajaxGet(url, success) {
-    const xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    const xhr = new XMLHttpRequest();
     xhr.open('GET', url);
     xhr.onreadystatechange = () => {
       if (xhr.readyState > 3 && xhr.status === 200) success(xhr.responseText);
