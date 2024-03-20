@@ -48,6 +48,14 @@ params:
   type: string
   required: false
   description: Classes for the navigation section of the header.
+- name: menuButtonLabel
+  type: string
+  required: false
+  description: Text for the `aria-label` attribute of the button that opens the mobile navigation, if there is a mobile navigation menu.
+- name: menuButtonText
+  type: string
+  required: false
+  description: Text of the button that opens the mobile navigation menu, if there is a mobile navigation menu. There is no enforced character limit, but there is a limited display space so keep text as short as possible. By default, this is set to 'Menu'.
 - name: containerClasses
   type: string
   required: false
@@ -450,3 +458,19 @@ examples:
         text: Navigation item 4
     attributes:
       data-test-attribute-3: value-3
+
+- name: with custom menu button text and label
+  description: With the menuButtonText and menuButtonLabel parameters set
+  data:
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+      - href: '#4'
+        text: Navigation item 4
+    menuButtonText: 'Some custom button text'
+    menuButtonLabel: 'Some custom button aria label'
