@@ -88,8 +88,8 @@ describe('header', () => {
       const $ = render('header', examples['with service name']);
 
       const $component = $('.govuk-header');
-      const $serviceName = $component.find('.hmrc-header__service-name');
-      expect($serviceName.hasClass('hmrc-header__service-name--linked')).toBeTruthy();
+      const $serviceName = $component.find('.govuk-header__service-name');
+      expect($serviceName.hasClass('govuk-header__link')).toBeTruthy();
       expect($serviceName.text().trim()).toEqual('Service Name');
     });
 
@@ -97,7 +97,7 @@ describe('header', () => {
       const $ = render('header', examples['with service name but no service link']);
 
       const $component = $('.govuk-header');
-      const $serviceName = $component.find('.hmrc-header__service-name');
+      const $serviceName = $component.find('.govuk-header__service-name');
       expect($serviceName[0].tagName).toEqual('span');
     });
 
@@ -203,6 +203,14 @@ describe('header', () => {
 
         const $button = $('.govuk-header__menu-button');
         expect($button.text().trim()).toEqual('Dewislen');
+      });
+
+      it('should have custom text and aria-label when specified', () => {
+        const $ = render('header', examples['with custom menu button text and label']);
+
+        const $button = $('.govuk-header__menu-button');
+        expect($button.text().trim()).toEqual('Some custom button text');
+        expect($button.attr('aria-label').trim()).toEqual('Some custom button aria label');
       });
     });
   });
