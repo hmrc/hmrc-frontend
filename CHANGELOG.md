@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [6.8.0] - 2024-03-20
+## [6.8.0] - 2024-03-21
 
 ### Changed
 
-- Removed unused ActiveXObject references in line with dropping IE support
+- Added `menuButtonText` and `menuButtonLabel` params to `header` component in line with the `govuk-frontend` header
+- Removed `hmrc-header__service-name` and `hmrc-header__service-name--linked` from `header` component, to use only styles
+  from `govuk-frontend`
+- Updated `hmrc-header__service-name` and `hmrc-header__service-name--linked` (for services adding manually to other 
+  components)
 
 ## [6.7.0] - 2024-03-19
 
