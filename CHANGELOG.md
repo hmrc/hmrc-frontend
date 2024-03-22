@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.10.0] - 2024-03-25
+
+### Changed
+
+- Added welsh translation to the language toggle aria-label value in the header component
+
 ## [6.9.0] - 2024-03-21
 
 ### Changed
