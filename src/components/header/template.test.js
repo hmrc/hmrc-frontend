@@ -218,6 +218,20 @@ describe('header', () => {
   // TODO add tests for sign-out-links
   // TODO add tests for language-select-links
 
+  describe('Language Toggle', () => {
+    it('if english toggle is selected then default aria-label should be set to "Choose a language"', async () => {
+      const $ = render('header', examples['with language toggle english']);
+
+      expect($('.hmrc-language-select').attr('aria-label')).toEqual('Choose a language');
+    });
+
+    it('if welsh toggle is selected then default aria-label should be set to "Dewiswch iaith"', async () => {
+      const $ = render('header', examples['with language toggle welsh']);
+
+      expect($('.hmrc-language-select').attr('aria-label')).toEqual('Dewiswch iaith');
+    });
+  });
+
   describe('HMRC banner', () => {
     it('passes accessibility tests when including the banner', async () => {
       const $ = render('header', examples['with hmrc banner english']);
