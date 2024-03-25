@@ -190,6 +190,13 @@ describe('header', () => {
       expect(outputs[0]).toEqual(outputs[2]);
     });
 
+    it('renders navigation with a custom aria label', () => {
+      const $ = render('header', examples['with custom navigation text and labels']);
+
+      const $nav = $('.govuk-header__navigation');
+      expect($nav.attr('aria-label').trim()).toEqual('Custom navigation label');
+    });
+
     describe('menu button', () => {
       it('should have English text as default', () => {
         const $ = render('header', examples['with navigation']);
@@ -205,12 +212,12 @@ describe('header', () => {
         expect($button.text().trim()).toEqual('Dewislen');
       });
 
-      it('should have custom text and aria-label when specified', () => {
-        const $ = render('header', examples['with custom menu button text and label']);
+      it('should have custom text and labels when specified', () => {
+        const $ = render('header', examples['with custom navigation text and labels']);
 
         const $button = $('.govuk-header__menu-button');
-        expect($button.text().trim()).toEqual('Some custom button text');
-        expect($button.attr('aria-label').trim()).toEqual('Some custom button aria label');
+        expect($button.text().trim()).toEqual('Custom button text');
+        expect($button.attr('aria-label').trim()).toEqual('Custom button label');
       });
     });
   });

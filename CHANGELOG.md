@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.11.0] - 2024-03-25
+
+### Changed
+
+- Added `navigationLabel` param to `header` component in line with the `govuk-frontend` header
+
 ## [6.10.0] - 2024-03-25
 
 ### Changed
