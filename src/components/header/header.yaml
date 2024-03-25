@@ -48,6 +48,10 @@ params:
   type: string
   required: false
   description: Classes for the navigation section of the header.
+- name: navigationLabel
+  type: string
+  required: false
+  description: Text for the `aria-label` attribute of the navigation. Defaults to the same value as `menuButtonText`.
 - name: menuButtonLabel
   type: string
   required: false
@@ -459,8 +463,8 @@ examples:
     attributes:
       data-test-attribute-3: value-3
 
-- name: with custom menu button text and label
-  description: With the menuButtonText and menuButtonLabel parameters set
+- name: with custom navigation text and labels
+  description: With the menuButtonText, menuButtonLabel and navigationLabel parameters set
   data:
     navigation:
       - href: '#1'
@@ -472,5 +476,6 @@ examples:
         text: Navigation item 3
       - href: '#4'
         text: Navigation item 4
-    menuButtonText: 'Some custom button text'
-    menuButtonLabel: 'Some custom button aria label'
+    menuButtonText: 'Custom button text'
+    menuButtonLabel: 'Custom button label'
+    navigationLabel: 'Custom navigation label'
