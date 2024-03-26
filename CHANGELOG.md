@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.12.0] - 2024-03-26
+
+### Changed
+
+- Retain the back link even when the referrer is empty
+
 ## [6.11.0] - 2024-03-25
 
 ### Changed
