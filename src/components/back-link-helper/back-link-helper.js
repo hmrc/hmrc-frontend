@@ -5,13 +5,27 @@ function BackLinkHelper($module, window, document) {
 }
 
 BackLinkHelper.prototype.init = function init() {
+  const isReferrerExternal = () => {
+    // If there is no referrer, consider it on the same domain
+    if (!this.document.referrer) {
+      return false;
+    }
+
+    try {
+      const currentDomain = new URL(this.window.location.href).hostname;
+      const referrerDomain = new URL(this.document.referrer).hostname;
+
+      // Check if the referrer is not the same as the current domain
+      return currentDomain !== referrerDomain;
+    } catch (err) {
+      return false;
+    }
+  };
+
   // do nothing if History API is absent
   if (this.window.history) {
-    // store referrer value to cater for IE
-    const docReferrer = this.document.referrer;
-
-    // hide the backlink if the referrer is on a different domain or the referrer is not set
-    if (docReferrer === '' || docReferrer.indexOf(this.window.location.host) === -1) {
+    // hide the backlink if the referrer is on a different domain
+    if (isReferrerExternal()) {
       this.$module.classList.add('hmrc-hidden-backlink');
     } else {
       // prevent resubmit warning

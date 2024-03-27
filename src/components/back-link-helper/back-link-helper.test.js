@@ -71,11 +71,11 @@ describe('/components/back-link-helper', () => {
       expect(mockWindow.history.back).toHaveBeenCalled();
     });
 
-    it('adds .hmrc-hidden-backlink class to backlink when document referer is empty', () => {
+    it('does not add .hmrc-hidden-backlink class to backlink when document referer is empty', () => {
       const sut = new BackLinkHelper(mockAnchorTag, mockWindow, { referrer: '' });
       sut.init();
 
-      expect(mockAnchorTag.classList.add.mock.calls[0][0]).toBe('hmrc-hidden-backlink');
+      expect(mockAnchorTag.classList.add.mock.calls).toHaveLength(0);
     });
 
     it('adds .hmrc-hidden-backlink class to backlink if document referer is on a different domain', () => {
