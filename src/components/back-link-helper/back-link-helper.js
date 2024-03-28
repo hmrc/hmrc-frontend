@@ -5,27 +5,23 @@ function BackLinkHelper($module, window, document) {
 }
 
 BackLinkHelper.prototype.init = function init() {
-  const isReferrerExternal = () => {
-    // If there is no referrer, consider it on the same domain
-    if (!this.document.referrer) {
-      return false;
-    }
-
-    try {
-      const currentDomain = new URL(this.window.location.href).hostname;
-      const referrerDomain = new URL(this.document.referrer).hostname;
-
-      // Check if the referrer is not the same as the current domain
-      return currentDomain !== referrerDomain;
-    } catch (err) {
-      return false;
-    }
-  };
-
   // do nothing if History API is absent
   if (this.window.history) {
-    // hide the backlink if the referrer is on a different domain
-    if (isReferrerExternal()) {
+    // eslint-disable-next-line max-len
+    /* TODO: It remains unclear whether a check for the same domain is necessary for security reasons.
+       There may be user research suggesting considerations regarding the visibility of the
+       back link on refresh.
+       Currently, a page refresh sets the referer to empty, leading to the back link being hidden
+       under our existing logic.
+     */
+    // eslint-disable-next-line max-len
+    const referrerNotOnSameDomain = () => {
+      const referer = this.document.referrer;
+      return !referer || referer.indexOf(this.window.location.host) === -1;
+    };
+
+    // hide the backlink if the referrer is on a different domain or the referrer is not set
+    if (referrerNotOnSameDomain()) {
       this.$module.classList.add('hmrc-hidden-backlink');
     } else {
       // prevent resubmit warning
