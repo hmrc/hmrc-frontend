@@ -12,5 +12,5 @@
   "GHSA-p8p7-x288-28g6": "request: devDependency, no risk given our usage",
   "GHSA-72xf-g2v4-qvf3": "tough-cookie: devDependency, no risk given our usage",
   "GHSA-x9w5-v3q2-3rhw": "browserify-sign: devDependency, no risk given our usage",
-  "GHSA-rv95-896h-c2vc": "Express.js Open Redirect in malformed URLs"
+  "GHSA-rv95-896h-c2vc": "Express.js Open Redirect in malformed URLs, we only use it locally for previewing components - never publicly hosted so no risk given our usage"
 }
