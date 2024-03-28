@@ -75,6 +75,7 @@ $hmrc-transition-type: "all";
   line-height: 1.25;
   text-decoration: none;
   text-transform: none;
+  margin: 3px;
 
   &:visited {
     color: $hmrc-account-menu-grey-1;
@@ -83,6 +84,7 @@ $hmrc-transition-type: "all";
   &:hover,
   &:focus {
     outline: 3px solid rgba(0, 0, 0, 0);
+    margin: 3px;
     border-bottom-width: 4px;
     border-bottom-style: solid;
     color: $govuk-link-hover-colour;
@@ -216,6 +218,7 @@ body:not(.js-enabled) {
 
     .hmrc-account-menu__link {
       padding: 12px 8px 8px;
+      margin: 3px;
 
       &:focus {
         outline: 3px solid rgba(0, 0, 0, 0);
