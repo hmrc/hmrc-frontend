@@ -99,6 +99,10 @@ $hmrc-transition-type: "all";
     // get a small gap under menu items without a notification badge.
     line-height: inherit;
   }
+
+  &:not(.hmrc-account-menu__link--menu) {
+    outline-offset: -3px;
+  }
 }
 
 .is-smaller .hmrc-account-menu__link {
@@ -218,6 +222,7 @@ body:not(.js-enabled) {
       padding: 12px 8px 8px;
 
       &:focus {
+        outline-offset: -3px;
         outline: 3px solid rgba(0, 0, 0, 0);
       }
     }
