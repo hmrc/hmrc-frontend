@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.14.0] - 2024-04-01
+
+### Changed
+
+- Accessibility fix: ensure `outline` appears on `account-menu` submenu items in Windows High Contrast Mode using 
+  `outline-offset`
+
 ## [6.13.0] - 2024-03-27
 
 ### Changed
