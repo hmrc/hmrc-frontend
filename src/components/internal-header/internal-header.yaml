@@ -41,9 +41,6 @@ accessibilityCriteria:
   Images in the Header must:
   - be presentational when linked to from accompanying text (crown icon).
 
-  Landmarks and Roles in the Header should:
-  - have a role of `banner` at the root of the component (<header>) (https://www.w3.org/TR/wai-aria-1.1/#banner)
-
 examples:
 - name: default
   description: The standard header

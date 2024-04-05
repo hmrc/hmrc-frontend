@@ -39,7 +39,7 @@
 </svg>
 {% endset -%}
 
-<header role="banner">
+<header>
 <div class="govuk-header hmrc-header {%- if params.classes %} {{ params.classes }}{% endif %}{{ ' hmrc-header--with-additional-navigation' if params.signOutHref or params.languageToggle }}" data-module="govuk-header"
   {{- govukAttributes(params.attributes) }}>
   <div class="govuk-header__container {{ params.containerClasses | default("govuk-width-container", true) }}">
