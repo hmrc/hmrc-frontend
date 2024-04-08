@@ -21,13 +21,6 @@ describe('header', () => {
     expect(withoutHmrcHeaderClasses(hmrcHeaderHtml)).toEqual(govukHeaderHtml);
   });
 
-  it('has a role of `banner`', () => {
-    const $ = render('header', {});
-
-    const $component = $('header');
-    expect($component.attr('role')).toEqual('banner');
-  });
-
   it('renders classes', () => {
     const $ = render('header', {
       classes: 'app-header--custom-modifier',

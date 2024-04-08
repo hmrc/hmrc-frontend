@@ -185,8 +185,8 @@ describe('Dialog', () => {
       if (!document.querySelector('body>header')) {
         arr.push(utils.generateDomElementFromString('<header>'));
       }
-      if (!document.querySelector('main[role=main]')) {
-        arr.push(utils.generateDomElementFromString('<main role="main">'));
+      if (!document.querySelector('main')) {
+        arr.push(utils.generateDomElementFromString('<main>'));
       }
       if (!document.querySelector('body>footer')) {
         arr.push(utils.generateDomElementFromString('<footer>'));
@@ -213,7 +213,7 @@ describe('Dialog', () => {
         '#skiplink-container',
         'body>header',
         '#global-cookie-message',
-        'main[role=main]',
+        'main',
         'body>footer',
       ];
       selectors.forEach((selector) => {

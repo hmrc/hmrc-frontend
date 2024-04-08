@@ -50,7 +50,7 @@ function displayDialog($elementToDisplay) {
     '#skiplink-container',
     'body > header',
     '#global-cookie-message',
-    'main[role=main]',
+    'main',
     'body > footer',
     'body > .govuk-skip-link',
     '.cbanner-govuk-cookie-banner',

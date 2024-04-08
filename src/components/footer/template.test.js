@@ -28,13 +28,6 @@ describe('footer', () => {
     expect(results).toHaveNoViolations();
   });
 
-  it('entire component must have a role of `contentinfo`', () => {
-    const $ = render('footer', examples.default);
-
-    const $component = $('.govuk-footer');
-    expect($component.attr('role')).toEqual('contentinfo');
-  });
-
   it('renders attributes correctly', () => {
     const $ = render('footer', examples.attributes);
 
