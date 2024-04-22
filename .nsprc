@@ -1,4 +1,6 @@
 {
+  "GHSA-f5x3-32g6-xq36": "tar - devDependency, used in sass pipeline, no risk given our usage",
+  "GHSA-35jh-r3h4-6jhm": "lodash.template - devDependency, used to locally serve markdown, no risk given our usage",
   "GHSA-4gmj-3p3h-gm8h": "es5-ext - no risk given our usage - test coverage should catch",
   "GHSA-78xj-cgh5-2h22": "ip - devDependency, no risk given our usage",
   "GHSA-67hx-6x53-jw92": "@babel/traverse - devDependency, no risk given our usage",
