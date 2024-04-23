@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.17.0] - 2024-04-23
+
+### Changed
+
+- Marked the `currency-input` component as deprecated. This is because the `input` from `govuk-frontend` can now take in
+  a prefix, and this is the new pattern for HMRC currency inputs. See more details in
+- [currency-input/README.md](/src/components/currency-input/README.md). 
+
 ## [6.16.0] - 2024-04-22
 
 ### Changed

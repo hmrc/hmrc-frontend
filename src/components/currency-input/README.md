@@ -1,4 +1,15 @@
-# Currency Input
+# Currency Input: DEPRECATED
+
+## Deprecation notice ##
+
+This component is now deprecated in favour of `govuk-input` with `"£"` as a prefix:
+
+* https://design-system.service.gov.uk/components/text-input/#prefixes-and-suffixes
+* https://design.tax.service.gov.uk/hmrc-design-patterns/currency-input/
+
+This component will be removed in a future release of `hmrc-frontend`.
+
+## Description
 
 This macro generates an `<input>` and `<label>` for a currency input
 
