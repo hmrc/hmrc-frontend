@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.18.0] - 2024-05-23
+
+### Changed
+
+- Updated node version to latest lts release - lts/iron.
+
 ## [6.17.0] - 2024-04-23
 
 ### Changed
