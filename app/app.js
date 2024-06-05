@@ -1,6 +1,7 @@
 const express = require('express');
 const nunjucks = require('nunjucks');
 const path = require('path');
+const fs = require('fs');
 const helperFunctions = require('../lib/helper-functions');
 const fileHelper = require('../lib/file-helper');
 const configPaths = require('../config/paths.json');
@@ -43,13 +44,17 @@ module.exports = (options) => {
   // Set view engine
   app.set('view engine', 'njk');
 
-  // Disallow search index indexing
+  const govukFonts = fs.readdirSync(path.join(configPaths.govukFrontend, 'dist', 'govuk', 'assets', 'fonts'));
+
   app.use((req, res, next) => {
+    // Disallow search index indexing
     // none - Equivalent to noindex, nofollow
     // noindex - Do not show this page in search results and do not show a
     //   "Cached" link in search results.
     // nofollow - Do not follow the links on this page
     res.setHeader('X-Robots-Tag', 'none');
+    // Preload fonts to make VRT test more reliable
+    res.locals.govukFonts = govukFonts;
     next();
   });
 

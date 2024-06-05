@@ -3,3 +3,6 @@
 <script src="/assets/vendor/html5shiv.min.js"></script>
 <![endif]-->
 <link rel="stylesheet" href="/assets/accessible-autocomplete-{{ hmrcFrontendVersion }}.css">
+{% for font in govukFonts %}
+<link rel="preload" href="/assets/govuk/fonts/{{font}}" as="font" type="font/woff2" crossorigin>
+{% endfor %}
