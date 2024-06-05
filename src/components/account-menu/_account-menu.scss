@@ -64,7 +64,7 @@ $hmrc-transition-type: "all";
 }
 
 .hmrc-account-menu__link {
-  @include govuk-typography-responsive($size: 16);
+  @include govuk-font-size($size: 16);
 
   box-sizing: border-box;
   display: inline-block;
