@@ -323,7 +323,7 @@ $hmrc-banner-blue: #005ea5;
 }
 
 .hmrc-full-width-banner__close {
-  @include govuk-font($size: 14);
+  @include govuk-font($size: 16);
 
   position: absolute;
   top: 20px;
