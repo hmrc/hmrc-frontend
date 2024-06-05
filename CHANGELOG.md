@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.19.0] - 2024-06-05
+
+### Changed
+
+- Suppressed warnings when hmrc-frontend sass is compiled in prototypes
+
 ## [6.18.0] - 2024-05-23
 
 ### Changed
