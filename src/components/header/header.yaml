@@ -510,3 +510,77 @@ examples:
         href: "/components/header/with-language-toggle-english/preview"
       cy:
         href: "/components/header/with-language-toggle-welsh/preview"
+
+- name: with service name and custom navigation items and a sign out link
+  description: With the menuButtonText, menuButtonLabel and navigationLabel parameters set
+  data:
+    serviceName: Service name
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+      - href: '#4'
+        text: Navigation item 4
+    signOutHref: /sign-out
+
+- name: with service name and custom navigation items and language switching links
+  description: With the menuButtonText, menuButtonLabel and navigationLabel parameters set
+  data:
+    serviceName: Service name
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+      - href: '#4'
+        text: Navigation item 4
+    languageToggle:
+      en:
+        href: "/components/header/with-language-toggle-english/preview"
+      cy:
+        href: "/components/header/with-language-toggle-welsh/preview"
+
+- name: with service name link and custom navigation items and a sign out link
+  description: With the menuButtonText, menuButtonLabel and navigationLabel parameters set
+  data:
+    serviceName: Service name
+    serviceUrl: '#s1'
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+      - href: '#4'
+        text: Navigation item 4
+    signOutHref: /sign-out
+
+- name: with service name link and custom navigation items and language switching links
+  description: With the menuButtonText, menuButtonLabel and navigationLabel parameters set
+  data:
+    serviceName: Service name
+    serviceUrl: '#s1'
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+      - href: '#4'
+        text: Navigation item 4
+    languageToggle:
+      en:
+        href: "/components/header/with-language-toggle-english/preview"
+      cy:
+        href: "/components/header/with-language-toggle-welsh/preview"
