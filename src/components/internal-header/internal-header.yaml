@@ -60,3 +60,7 @@ examples:
   data:
     language: en
     useTudorCrown: false
+- name: with-service-name-and-no-service-url
+  description: With service name and no service url
+  data:
+    serviceName: Service Name

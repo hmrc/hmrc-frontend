@@ -46,13 +46,23 @@ describe('Internal Header', () => {
     });
   });
 
-  describe('With a Service Name', () => {
-    it('renders a service name', () => {
+  describe('With a Service Name and service URL', () => {
+    it('renders a service name with a link', () => {
       const $ = render('internal-header', examples['with-service-name']);
-      const $serviceNameLink = $('.hmrc-internal-header__link');
+      const $serviceNameLink = $('.hmrc-internal-header__service-name a');
 
       expect($serviceNameLink.text().trim()).toBe('Service Name');
       expect($serviceNameLink.attr('href')).toBe('/components/internal-header/with-service-name/preview');
+    });
+  });
+
+  describe('With a Service Name and no service URL', () => {
+    it('renders a service name without a link', () => {
+      const $ = render('internal-header', examples['with-service-name-and-no-service-url']);
+      const $serviceName = $('.hmrc-internal-header__service-name');
+
+      expect($serviceName.text().trim()).toBe('Service Name');
+      expect($serviceName.find('a').length).toBe(0);
     });
   });
 });

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.20.0] - 2024-06-20
+
+### Changed
+
+- Service URL is now an optional parameter for internal header
+
 ## [6.19.0] - 2024-06-05
 
 ### Changed
