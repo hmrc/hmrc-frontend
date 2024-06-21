@@ -75,7 +75,13 @@
 }
 
 .hmrc-internal-header__service-name {
+  @include govuk-typography-common;
+
+  font-size: 20px;
+  font-weight: bold;
+
   @include govuk-media-query ($from: desktop) {
+    font-size: 24px;
     width: 66.66%;
     padding-left: $govuk-gutter-half;
     float: left;
