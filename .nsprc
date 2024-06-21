@@ -7,12 +7,13 @@
   "GHSA-j8xg-fqg3-53r7": "word-wrap - devDependency, no risk given our usage",
   "GHSA-c2qf-rxjj-qqgw": "semver - devDependency, no risk given our usage",
   "GHSA-7fh5-64p2-3v2j": "postcss - devDependency, no risk given our usage",
-  "GHSA-566m-qj78-rww5": "postcss - devDependency, no risk given our usage",
-  "GHSA-hwj9-h5mp-3pm3": "postcss - devDependency, no risk given our usage",
   "GHSA-rp65-9cf3-cjxr": "nth-check - devDependency, no risk given our usage",
   "GHSA-ww39-953v-wcq6": "glob-parent - devDependency, no risk given our usage",
   "GHSA-p8p7-x288-28g6": "request: devDependency, no risk given our usage",
   "GHSA-72xf-g2v4-qvf3": "tough-cookie: devDependency, no risk given our usage",
   "GHSA-x9w5-v3q2-3rhw": "browserify-sign: devDependency, no risk given our usage",
-  "GHSA-rv95-896h-c2vc": "Express.js Open Redirect in malformed URLs, we only use it locally for previewing components - never publicly hosted so no risk given our usage"
+  "GHSA-rv95-896h-c2vc": "Express.js Open Redirect in malformed URLs, we only use it locally for previewing components - never publicly hosted so no risk given our usage",
+  "GHSA-3h5v-q93c-6h6q": "DoS possibility when handling requests with multiple headers, we're not at risk given our usage for automated testing requests we construct.",
+  "GHSA-2p57-rm9w-gvfp": "ip - devDependency, no risk given our usage",
+  "GHSA-grv7-fg5c-xmjg": "devDependency, should be no risk, but if we did hit an issue it would just result in long build we migth have to kill and fix."
 }
