@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.21.0] - 2024-06-21
+
+### Changed
+
+- Added autocomplete__option class to accessible-autocomplete.scss to address a bug where fonts were not resizing correctly
+
 ## [6.20.0] - 2024-06-20
 
 ### Changed
