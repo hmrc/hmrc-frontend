@@ -7,6 +7,7 @@ $govuk-include-default-font-face: false;
 
 .autocomplete__wrapper,
 .autocomplete__input,
+.autocomplete__option,
 .autocomplete__hint {
   @include govuk-font($size: 19);
 }

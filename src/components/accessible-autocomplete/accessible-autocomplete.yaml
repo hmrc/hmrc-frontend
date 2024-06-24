@@ -84,6 +84,12 @@ examples:
           <option value="de">Germany</option>
           <option value="gb">United Kingdom</option>
         </select>
+    visualRegressionTests:
+      alternateStates:
+        accessibility-autocomplete-with-large-font:
+          beforeTakingScreenshot:
+            - increaseFontSizes: 32px
+            - click: .autocomplete__input
   - name: with-autoselect-on
     description:
     data:
