@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.22.0] - 2024-06-25
+
+### Changed
+
+- Correctly set aria-label in account-menu when viewed in Welsh
+
 ## [6.21.0] - 2024-06-21
 
 ### Changed
