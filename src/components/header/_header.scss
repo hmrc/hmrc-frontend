@@ -1,10 +1,6 @@
 $govuk-header-link-underline-thickness: 3px;
 
 .hmrc-header.hmrc-header--with-additional-navigation {
-  .govuk-header__service-name {
-    float: left;
-  }
-
   .hmrc-sign-out-nav {
     float: right;
   }
@@ -37,6 +33,11 @@ $govuk-header-link-underline-thickness: 3px;
         color: govuk-colour("mid-grey");
         text-decoration: none;
       }
+    }
+
+    .govuk-header__navigation {
+      float: left;
+      margin-right: 15px;
     }
 
     .govuk-header__navigation-item {
