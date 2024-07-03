@@ -5,6 +5,10 @@ $govuk-header-link-underline-thickness: 3px;
     float: left;
   }
 
+  .govuk-header__navigation-list {
+    clear: left;
+  }
+
   .hmrc-sign-out-nav {
     float: right;
   }
