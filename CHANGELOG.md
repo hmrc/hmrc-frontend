@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.23.0] - 2024-07-04
+
+### Changed
+
+- Fixed styling in header component when there is a combination of navigation items and sign out or language switcher components
+
 ## [6.22.0] - 2024-06-25
 
 ### Changed

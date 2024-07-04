@@ -461,7 +461,6 @@ examples:
       data-test-attribute-3: value-3
 
 - name: with custom navigation text and labels
-  description: With the menuButtonText, menuButtonLabel and navigationLabel parameters set
   data:
     navigation:
       - href: '#1'
@@ -476,3 +475,149 @@ examples:
     menuButtonText: 'Custom button text'
     menuButtonLabel: 'Custom button label'
     navigationLabel: 'Custom navigation label'
+
+- name: with service name and one custom navigation item and a sign out link
+  data:
+    serviceName: Service name
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+    signOutHref: /sign-out
+
+- name: with custom navigation items and a sign out link
+  data:
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+      - href: '#4'
+        text: Navigation item 4
+    signOutHref: /sign-out
+
+- name: with service name and lots of custom navigation items and a sign out link
+  data:
+    serviceName: Service name
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+      - href: '#4'
+        text: Navigation item 4
+      - href: '#5'
+        text: Navigation item 5
+      - href: '#6'
+        text: Navigation item 6
+      - href: '#7'
+        text: Navigation item 7
+      - href: '#8'
+        text: Navigation item 8
+      - href: '#9'
+        text: Navigation item 9
+    signOutHref: /sign-out
+
+- name: with custom navigation items and language switching links
+  data:
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+      - href: '#4'
+        text: Navigation item 4
+    languageToggle:
+      en:
+        href: "/components/header/with-language-toggle-english/preview"
+      cy:
+        href: "/components/header/with-language-toggle-welsh/preview"
+
+- name: with service name and custom navigation items and a sign out link
+  data:
+    serviceName: Service name
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+      - href: '#4'
+        text: Navigation item 4
+    signOutHref: /sign-out
+  visualRegressionTests:
+    backstopScenarioOptions:
+      viewports:
+        - label: phone
+          width: 320
+          height: 480
+    alternateStates:
+      navigation-dropdown-open:
+        beforeTakingScreenshot:
+          - click: .govuk-header__menu-button
+
+- name: with service name and custom navigation items and language switching links
+  data:
+    serviceName: Service name
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+      - href: '#4'
+        text: Navigation item 4
+    languageToggle:
+      en:
+        href: "/components/header/with-language-toggle-english/preview"
+      cy:
+        href: "/components/header/with-language-toggle-welsh/preview"
+
+- name: with service name link and custom navigation items and a sign out link
+  data:
+    serviceName: Service name
+    serviceUrl: '#s1'
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+      - href: '#4'
+        text: Navigation item 4
+    signOutHref: /sign-out
+
+- name: with service name link and custom navigation items and language switching links
+  data:
+    serviceName: Service name
+    serviceUrl: '#s1'
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+      - href: '#4'
+        text: Navigation item 4
+    languageToggle:
+      en:
+        href: "/components/header/with-language-toggle-english/preview"
+      cy:
+        href: "/components/header/with-language-toggle-welsh/preview"
