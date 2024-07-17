@@ -1,9 +1,9 @@
 {% set language %}{% if params.language == 'cy' %}cy{% else %}en{% endif %}{% endset %}
 {% set serviceId = params.serviceId or params.serviceCode %}
 {% set urlParametersBuilder %}
-  {% if serviceId %}?service={{ serviceId | urlencode }}{% endif %}
+  {% if params.referrerUrl or serviceId %}?{% endif %}
+  {% if serviceId %}service={{ serviceId | urlencode }}{% endif %}
   {% if params.referrerUrl and serviceId %}&amp;{% endif %}
-  {% if params.referrerUrl and not serviceId %}?{% endif %}
   {% if params.referrerUrl %}referrerUrl={{ params.referrerUrl | urlencode }}{% endif %}
 {% endset %}
 <a lang="{{ language }}" hreflang="{{ language }}"
