@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.25.0] - 2024-07-17
+
+### Changed
+
+- Removed unused url parameter `newTab=true` from `report-technical-problem` component, to ease maintaining the component
+
 ## [6.24.0] - 2024-07-05
 
 ### Changed
