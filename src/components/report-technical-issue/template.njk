@@ -1,14 +1,8 @@
 {% set language %}{% if params.language == 'cy' %}cy{% else %}en{% endif %}{% endset %}
 {% set serviceId = params.serviceId or params.serviceCode %}
-{% set urlParametersBuilder %}
-  {% if params.referrerUrl or serviceId %}?{% endif %}
-  {% if serviceId %}service={{ serviceId | urlencode }}{% endif %}
-  {% if params.referrerUrl and serviceId %}&amp;{% endif %}
-  {% if params.referrerUrl %}referrerUrl={{ params.referrerUrl | urlencode }}{% endif %}
-{% endset %}
 <a lang="{{ language }}" hreflang="{{ language }}"
   class="govuk-link hmrc-report-technical-issue {{ params.classes }}"
   {% if params.referrerUrl %} rel="noreferrer noopener"{% endif %}
   target="_blank"
-  href="{{ params.baseUrl }}/contact/report-technical-problem{{urlParametersBuilder}}"
+  href="{{ params.baseUrl }}/contact/report-technical-problem{% if params.referrerUrl or serviceId %}?{% endif %}{% if serviceId %}service={{ serviceId | urlencode }}{% endif %}{% if params.referrerUrl and serviceId -%}&amp;{%- endif %}{% if params.referrerUrl %}referrerUrl={{ params.referrerUrl | urlencode }}{% endif %}"
 >{% if params.language == 'cy' %}A yw’r dudalen hon yn gweithio’n iawn? (yn agor tab newydd){% else %}Is this page not working properly? (opens in new tab){% endif %}</a>

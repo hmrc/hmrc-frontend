@@ -111,13 +111,13 @@ describe('Report Technical Issue', () => {
   it('should URL encode the referrer url', () => {
     const $ = render('report-technical-issue', examples['with-referrer-url']);
 
-    expect($('.govuk-link').attr('href')).toEqual('/contact/report-technical-problem?service=pay&amp;referrerUrl=https%3A%2F%2Fwww.tax.service.gov.uk%2Fpay%3Fabc%3Ddef');
+    expect($('.govuk-link').attr('href')).toEqual('/contact/report-technical-problem?service=pay&referrerUrl=https%3A%2F%2Fwww.tax.service.gov.uk%2Fpay%3Fabc%3Ddef');
   });
 
   it('should URL encode the local referrer url', () => {
     const $ = render('report-technical-issue', examples['with-local-referrer-url']);
 
-    expect($('.govuk-link').attr('href')).toEqual('/contact/report-technical-problem?service=pay&amp;referrerUrl=http%3A%2F%2Flocalhost%3A9123%2Fmy-service');
+    expect($('.govuk-link').attr('href')).toEqual('/contact/report-technical-problem?service=pay&referrerUrl=http%3A%2F%2Flocalhost%3A9123%2Fmy-service');
   });
 
   it('should include a rel="noreferrer noopener" attribute if the referrerUrl is explicitly passed', () => {

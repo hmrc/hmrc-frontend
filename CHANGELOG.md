@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.26.0] - 2024-07-18
+
+### Changed
+
+- Remove unit test reliance on hard-coded `amp;` encoding within `report-technical-problem` component
+- Inline the url string for `report-technical-problem`
+
 ## [6.25.0] - 2024-07-17
 
 ### Changed
