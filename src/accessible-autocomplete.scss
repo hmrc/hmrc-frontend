@@ -1,4 +1,5 @@
 $govuk-include-default-font-face: false;
+$govuk-new-typography-scale: true;
 
 @import "../../govuk-frontend/dist/govuk/settings/index";
 @import "../../govuk-frontend/dist/govuk/tools/index";
