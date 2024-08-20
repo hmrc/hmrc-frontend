@@ -1,6 +1,6 @@
 .hmrc-notification-badge {
-  @include govuk-font($size: 14);
-
+  font-size: 14px;
+  line-height: 17.5px;
   display: inline-block;
   min-width: 10px;
   padding: 1px 4px 0 4px;
