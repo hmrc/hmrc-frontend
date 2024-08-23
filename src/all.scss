@@ -1,4 +1,6 @@
 $govuk-global-styles: true;
+$govuk-new-link-styles: true !default;
+$govuk-new-organisation-colours: true !default;
 
 /// Path to the assets directory, with trailing slash.
 ///
@@ -11,6 +13,5 @@ $govuk-global-styles: true;
 
 $hmrc-assets-path: "./" !default;
 $govuk-assets-path: $hmrc-assets-path !default;
-$govuk-new-link-styles: true !default;
 
 @import "components/all";
