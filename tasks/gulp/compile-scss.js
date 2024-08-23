@@ -27,7 +27,7 @@ gulp.task('scss:compile-all-govuk-and-hmrc', () => gulp.src(`${configPaths.src}a
   // minify css add vendor prefixes and normalize to compiled css
   .pipe(postcss([
     autoprefixer,
-    // cssnano,
+    cssnano,
   ]))
   .pipe(rename({
     basename: `${configPaths.baseName}-${pkg.version}`,
