@@ -332,7 +332,7 @@ $hmrc-banner-blue: #005ea5;
   position: absolute;
   top: 20px;
   right: 15px;
-  color: #ffffff;
+  color: #fff;
 }
 
 @media print {
@@ -359,6 +359,7 @@ $hmrc-banner-blue: #005ea5;
   .hmrc-full-width-banner__close {
     right: 35px;
   }
+
   .hmrc-full-width-banner__container {
     padding: 20px 30px 10px;
   }
