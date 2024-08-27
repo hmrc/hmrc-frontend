@@ -323,12 +323,36 @@ $hmrc-banner-blue: #005ea5;
 }
 
 .hmrc-full-width-banner__close {
-  @include govuk-font($size: 14);
-
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.25;
   position: absolute;
   top: 20px;
   right: 15px;
-  color: govuk-colour("white");
+  color: #fff;
+}
+
+@media print {
+  .hmrc-full-width-banner__close {
+    font-family: sans-serif;
+  }
+}
+
+@media (min-width: 40.0625em) {
+  .hmrc-full-width-banner__close {
+    font-size: 0.875rem;
+    line-height: 1.42857;
+  }
+}
+
+@media print {
+  .hmrc-full-width-banner__close {
+    font-size: 12pt;
+    line-height: 1.2;
+  }
 }
 
 @include mq(tablet) {

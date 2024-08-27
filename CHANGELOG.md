@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.29.0] - 2024-08-20
+
+### Changed
+
+- Replaced deprecated govuk-font-size(14px) with fixed css
+
 ## [6.28.0] - 2024-08-21
 
 ### Changed
