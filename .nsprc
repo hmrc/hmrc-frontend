@@ -8,12 +8,15 @@
   "GHSA-c2qf-rxjj-qqgw": "semver - devDependency, no risk given our usage",
   "GHSA-7fh5-64p2-3v2j": "postcss - devDependency, no risk given our usage",
   "GHSA-rp65-9cf3-cjxr": "nth-check - devDependency, no risk given our usage",
-  "GHSA-ww39-953v-wcq6": "glob-parent - devDependency, no risk given our usage",
   "GHSA-p8p7-x288-28g6": "request: devDependency, no risk given our usage",
   "GHSA-72xf-g2v4-qvf3": "tough-cookie: devDependency, no risk given our usage",
   "GHSA-x9w5-v3q2-3rhw": "browserify-sign: devDependency, no risk given our usage",
   "GHSA-rv95-896h-c2vc": "Express.js Open Redirect in malformed URLs, we only use it locally for previewing components - never publicly hosted so no risk given our usage",
   "GHSA-3h5v-q93c-6h6q": "DoS possibility when handling requests with multiple headers, we're not at risk given our usage for automated testing requests we construct.",
   "GHSA-2p57-rm9w-gvfp": "ip - devDependency, no risk given our usage",
-  "GHSA-grv7-fg5c-xmjg": "devDependency, should be no risk, but if we did hit an issue it would just result in long build we migth have to kill and fix."
+  "GHSA-grv7-fg5c-xmjg": "devDependency, should be no risk, but if we did hit an issue it would just result in long build we might have to kill and fix.",
+  "GHSA-952p-6rrq-rcjv": "micromatch: used by stylelint, no risk given our usage",
+  "GHSA-f7q4-pwc6-w24p": "elliptic - devDependency, no risk given our usage",
+  "GHSA-977x-g7h5-7qgw": "elliptic - devDependency, no risk given our usage",
+  "GHSA-49q7-c7j4-3p7m": "elliptic - devDependency, no risk given our usage"
 }
