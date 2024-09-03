@@ -126,6 +126,7 @@ describe('/components/timeout-dialog', () => {
     utils.ajaxGet.mockReset();
     redirectHelper.redirectToUrl.mockReset();
     mockSessionActivityService.onActivity.mockReset();
+    mockSessionActivityService.logActivity.mockReset();
     jest.clearAllTimers();
   });
 
@@ -868,12 +869,27 @@ describe('/components/timeout-dialog', () => {
   describe('timeout broadcast feature switch disabled', () => {
     beforeEach(() => {
       setSynchroniseTabs('false');
-      setupDialog();
+      setupDialog({}, {});
     });
     it('should show dialog, as no callback is registered on the session activity service', () => {
       expect(mockSessionActivityService.onActivity).not.toHaveBeenCalled();
+      expect(mockSessionActivityService.logActivity).not.toHaveBeenCalled();
 
       pretendSecondsHavePassed(780);
+
+      expect(dialog.displayDialog).toHaveBeenCalled();
+    });
+
+    it('should not broadcast when clicked', () => {
+      expect(mockSessionActivityService.onActivity).not.toHaveBeenCalled();
+      expect(mockSessionActivityService.logActivity).not.toHaveBeenCalled();
+
+      pretendSecondsHavePassed(780);
+
+      clickElem(testScope.latestDialog$element.querySelector('#hmrc-timeout-keep-signin-btn'));
+
+      expect(mockSessionActivityService.onActivity).not.toHaveBeenCalled();
+      expect(mockSessionActivityService.logActivity).not.toHaveBeenCalled();
 
       expect(dialog.displayDialog).toHaveBeenCalled();
     });

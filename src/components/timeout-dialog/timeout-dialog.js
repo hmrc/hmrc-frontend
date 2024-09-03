@@ -76,7 +76,9 @@ function TimeoutDialog($module, $sessionActivityService) {
   }
 
   const broadcastSessionActivity = () => {
-    sessionActivityService.logActivity();
+    if (settings.synchroniseTabs) {
+      sessionActivityService.logActivity();
+    }
   };
 
   const listenForSessionActivityAndResetDialogTimer = () => {
