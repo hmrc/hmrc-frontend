@@ -1,24 +1,8 @@
-/**
- * @jest-environment ./lib/puppeteer/environment.js
- */
-/* eslint-env jest */
 import configPaths from '../../../config/paths.json';
 
-const PORT = configPaths.ports.test;
+const PORT = configPaths.ports.app;
 
-let browser;
-let page;
 const baseUrl = `http://localhost:${PORT}`;
-
-beforeAll(async () => {
-  // eslint-disable-next-line no-underscore-dangle
-  browser = global.__BROWSER__;
-  page = await browser.newPage();
-});
-
-afterAll(async () => {
-  await page.close();
-});
 
 describe('/components/account-menu', () => {
   const accountMenuUrl = `${baseUrl}/components/account-menu/default/preview`;

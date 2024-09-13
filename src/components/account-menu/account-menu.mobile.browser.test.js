@@ -1,29 +1,15 @@
-/**
- * @jest-environment ./lib/puppeteer/environment.js
- */
-
-/* eslint-env jest */
 import configPaths from '../../../config/paths.json';
 
-const PORT = configPaths.ports.test;
+const PORT = configPaths.ports.app;
 
-let browser;
-let page;
 const baseUrl = `http://localhost:${PORT}`;
 
-beforeAll(async () => {
-  // eslint-disable-next-line no-underscore-dangle
-  browser = global.__BROWSER__;
-  page = await browser.newPage();
+beforeEach(async () => {
   await page.setViewport({
     width: 640,
     height: 480,
     deviceScaleFactor: 1,
   });
-});
-
-afterAll(async () => {
-  await page.close();
 });
 
 describe('When the page is loaded on mobile', () => {

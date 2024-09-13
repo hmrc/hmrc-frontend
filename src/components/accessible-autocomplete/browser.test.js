@@ -1,22 +1,8 @@
-/**
- * @jest-environment ./lib/puppeteer/environment.js
- */
-
-/* eslint-env jest */
 import configPaths from '../../../config/paths.json';
 
-let browser;
-let page;
-
-const PORT = configPaths.ports.test;
+const PORT = configPaths.ports.app;
 
 const baseUrl = `http://localhost:${PORT}`;
-
-beforeAll(async () => {
-  // eslint-disable-next-line no-underscore-dangle
-  browser = global.__BROWSER__;
-  page = await browser.newPage();
-});
 
 describe('enhanceSelectElement on the select element provided', () => {
   it('should transform select element into input with default values', async () => {
