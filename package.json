@@ -42,12 +42,11 @@
   },
   "homepage": "https://github.com/hmrc/hmrc-frontend#readme",
   "dependencies": {
-    "govuk-frontend": "^5.6.0",
-    "accessible-autocomplete": "^2.0.4"
+    "accessible-autocomplete": "^2.0.4",
+    "govuk-frontend": "^5.6.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.21.5",
-    "@sinonjs/fake-timers": "^10.0.0",
     "adm-zip": "^0.5.5",
     "adr-log": "^2.2.0",
     "ajv": "^8.12.0",
@@ -55,7 +54,6 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "backstopjs": "^6.0.4",
     "better-npm-audit": "^3.7.3",
-    "browserify": "^17.0.0",
     "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.10",
     "cssnano": "^4.1.10",
