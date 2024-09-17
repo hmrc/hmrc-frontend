@@ -1,11 +1,7 @@
-import configPaths from '../../../config/paths.json';
-
-const PORT = configPaths.ports.app;
-
-const baseUrl = `http://localhost:${PORT}`;
+import { examplePreview } from '../../../lib/url-helpers';
 
 describe('/components/account-menu', () => {
-  const accountMenuUrl = `${baseUrl}/components/account-menu/default/preview`;
+  const accountMenuUrl = examplePreview('account-menu/default');
 
   // Default appearance of Account menu when a page is loaded
   describe('When a page with an account-menu is loaded', () => {

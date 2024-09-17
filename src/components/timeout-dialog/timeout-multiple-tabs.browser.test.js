@@ -1,18 +1,16 @@
 import 'expect-puppeteer';
 
-import { ports } from '../../../config/paths.json';
-
-const baseUrl = `http://localhost:${ports.app}`;
+import { examplePreview } from '../../../lib/url-helpers';
 
 describe('multiple tabs open with synchronise tabs feature switch enabled', () => {
   it('should keep other synchronised tabs alive when the user chooses to extend their session', async () => {
     const session = await browser.createIncognitoBrowserContext();
 
     const backgroundPage = await session.newPage();
-    await backgroundPage.goto(`${baseUrl}/components/timeout-dialog/synchronise-tabs/preview`);
+    await backgroundPage.goto(examplePreview('timeout-dialog/synchronise-tabs'));
 
     const foregroundPage = await session.newPage();
-    await foregroundPage.goto(`${baseUrl}/components/timeout-dialog/synchronise-tabs/preview`);
+    await foregroundPage.goto(examplePreview('timeout-dialog/synchronise-tabs'));
 
     await expect(foregroundPage).toMatchTextContent('about to be signed out', { timeout: 5000 });
     await expect(backgroundPage).toMatchTextContent('about to be signed out', { timeout: 5000 });
@@ -28,11 +26,11 @@ describe('multiple tabs open with synchronise tabs feature switch enabled', () =
     const session = await browser.createIncognitoBrowserContext();
 
     const backgroundPage = await session.newPage();
-    await backgroundPage.goto(`${baseUrl}/components/timeout-dialog/synchronise-tabs/preview`);
+    await backgroundPage.goto(examplePreview('timeout-dialog/synchronise-tabs'));
     await expect(backgroundPage).toMatchTextContent('about to be signed out', { timeout: 5000 });
 
     const foregroundPage = await session.newPage();
-    await foregroundPage.goto(`${baseUrl}/components/page-heading/default/preview`);
+    await foregroundPage.goto(examplePreview('page-heading/default'));
 
     await expect(backgroundPage).not.toMatchTextContent('about to be signed out');
 
@@ -43,11 +41,11 @@ describe('multiple tabs open with synchronise tabs feature switch enabled', () =
     const session = await browser.createIncognitoBrowserContext();
 
     const backgroundPageWithUnsyncedWarnings = await session.newPage();
-    await backgroundPageWithUnsyncedWarnings.goto(`${baseUrl}/components/timeout-dialog/timeout-warnings-not-synchronised/preview`);
+    await backgroundPageWithUnsyncedWarnings.goto(examplePreview('timeout-dialog/timeout-warnings-not-synchronised'));
     await expect(backgroundPageWithUnsyncedWarnings).toMatchTextContent('about to be signed out', { timeout: 5000 });
 
     const foregroundPage = await session.newPage();
-    await foregroundPage.goto(`${baseUrl}/components/timeout-dialog/synchronise-tabs/preview`);
+    await foregroundPage.goto(examplePreview('timeout-dialog/synchronise-tabs'));
 
     await expect(backgroundPageWithUnsyncedWarnings).toMatchTextContent('about to be signed out');
 

@@ -1,9 +1,7 @@
-import configPaths from '../../../config/paths.json';
+import { examplePreview } from '../../../lib/url-helpers';
 
 describe('/components/account-menu', () => {
-  const PORT = configPaths.ports.app;
-  const baseUrl = `http://localhost:${PORT}`;
-  const defaultAccountMenu = `${baseUrl}/components/account-menu/default/preview`;
+  const defaultAccountMenu = examplePreview('account-menu/default');
 
   async function displayStyle(selector) {
     return page.$eval(selector, (el) => window.getComputedStyle(el).display);

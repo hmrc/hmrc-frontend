@@ -1,8 +1,4 @@
-import configPaths from '../../../config/paths.json';
-
-const PORT = configPaths.ports.app;
-
-const baseUrl = `http://localhost:${PORT}`;
+import { examplePreview } from '../../../lib/url-helpers';
 
 beforeEach(async () => {
   await page.setViewport({
@@ -19,7 +15,7 @@ describe('When the page is loaded on mobile', () => {
   const mobileBackLink = '.hmrc-account-menu__link--back a';
 
   it('should show the mobile version of the navigation', async () => {
-    await page.goto(`${baseUrl}/components/account-menu/default/preview`);
+    await page.goto(examplePreview('account-menu/default'));
 
     const navClasses = await page.$eval(nav, (el) => el.className);
     expect(navClasses).toContain('is-smaller');

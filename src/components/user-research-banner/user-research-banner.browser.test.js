@@ -1,7 +1,7 @@
-const configPaths = require('../../../config/paths.json');
+const { examplePreview } = require('../../../lib/url-helpers');
 
 describe('/components/user-research-banner', () => {
-  const url = `http://localhost:${configPaths.ports.app}/components/user-research-banner/default/preview`;
+  const url = examplePreview('user-research-banner/default');
   const dayInSeconds = 24 * 60 * 60;
   const expiryTimeInSeconds = 28 * dayInSeconds;
 

@@ -1,12 +1,8 @@
-import configPaths from '../../../config/paths.json';
-
-const PORT = configPaths.ports.app;
-
-const baseUrl = `http://localhost:${PORT}`;
+import { examplePreview } from '../../../lib/url-helpers';
 
 describe('open print dialog', () => {
   it('should display print dialog when link is clicked', async () => {
-    await page.goto(`${baseUrl}/components/hmrc-print-link/default/preview`);
+    await page.goto(examplePreview('hmrc-print-link/default'));
     await page.evaluate(() => {
       window.print = () => {
         window.printDialogOpened = true;
