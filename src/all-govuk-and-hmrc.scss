@@ -2,6 +2,7 @@ $govuk-global-styles: false;
 $hmrc-assets-path: "";
 $govuk-assets-path: "govuk/";
 $govuk-new-link-styles: true;
+$govuk-new-typography-scale: true;
 
 @import "../../govuk-frontend/dist/govuk/all";
 @import "components/all";
