@@ -74,10 +74,6 @@ describe('/components/timeout-dialog', () => {
     testScope.minimumValidConfig['data-language'] = 'cy';
   }
 
-  function setSynchroniseTabs(trueOrFalse) {
-    testScope.minimumValidConfig['data-synchronise-tabs'] = trueOrFalse;
-  }
-
   function getVisualCountText() {
     return getElemText(testScope.latestDialog$element.querySelector(visualCountSelector));
   }
@@ -325,15 +321,6 @@ describe('/components/timeout-dialog', () => {
     it('should show sign out button', () => {
       expect(getElemText(testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-link'))).toEqual('sign OUT');
     });
-
-    it('should redirect to default sign out url when sign out is clicked', () => {
-      assume(redirectHelper.redirectToUrl).not.toHaveBeenCalled();
-
-      expect(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link')).not.toBeNull();
-
-      clickElem(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link'));
-      expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('/mySignOutUrl.html');
-    });
   });
 
   describe('display the sign out button', () => {
@@ -362,22 +349,6 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(780);
 
       expect(testScope.latestDialog$element.querySelector('a#hmrc-timeout-sign-out-link')).not.toBeNull();
-    });
-  });
-
-  describe('Restarting countdown on close', () => {
-    it('should restart with default settings', () => {
-      setupDialog({ 'data-message': 'time:' });
-
-      pretendSecondsHavePassed(880);
-      pretendDialogWasClosedWithoutButtonPress();
-      dialog.displayDialog.mockClear();
-      pretendSecondsHavePassed(880);
-
-      expect(dialog.displayDialog).toHaveBeenCalled();
-      const expected = 'time: 20 seconds.';
-      expect(getVisualCountText()).toEqual(expected);
-      expect(getAudibleCountText()).toEqual(expected);
     });
   });
 
@@ -454,28 +425,6 @@ describe('/components/timeout-dialog', () => {
     });
   });
 
-  describe('Cleanup', () => {
-    const MINIMUM_TIME_UNTIL_MODAL_DISPLAYED = 10;
-
-    it('should not display the dialog if cleanup has already been called', () => {
-      setupDialog({ 'data-timeout': 130, 'data-countdown': 120 });
-
-      testScope.timeoutDialogControl.cleanup();
-      pretendSecondsHavePassed(MINIMUM_TIME_UNTIL_MODAL_DISPLAYED);
-      expect(dialog.displayDialog).not.toHaveBeenCalled();
-    });
-
-    it('should remove dialog when cleanup is called', () => {
-      setupDialog({ 'data-timeout': 130, 'data-countdown': 120 });
-      pretendSecondsHavePassed(MINIMUM_TIME_UNTIL_MODAL_DISPLAYED);
-      assume(dialog.displayDialog).toHaveBeenCalled();
-
-      testScope.timeoutDialogControl.cleanup();
-
-      expect(testScope.latestDialogControl.closeDialog).toHaveBeenCalled();
-    });
-  });
-
   describe('Countdown timer', () => {
     it('should countdown minutes and then seconds in english', () => {
       setupDialog({
@@ -524,57 +473,6 @@ describe('/components/timeout-dialog', () => {
       pretendSecondsHavePassed(1);
 
       expect(getVisualCountText()).toEqual('time: 0 seconds.');
-      expect(getAudibleCountText()).toEqual('time: 20 seconds.');
-    });
-    it('should default redirectToUrl to data-sign-out-url if data-timeout-url is not set', () => {
-      setupDialog({
-        'data-timeout': 130,
-        'data-countdown': 120,
-        'data-message': 'time:',
-        'data-sign-out-url': 'logout',
-      });
-      pretendSecondsHavePassed(131);
-      expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('logout');
-    });
-    it('should have an audio countdown which counts the last minute in 20 second decrements', () => {
-      setupDialog({
-        'data-timeout': 70,
-        'data-countdown': 65,
-        'data-message': 'time:',
-        'data-sign-out-url': 'signout',
-        'data-timeout-url': 'timeout',
-      });
-
-      pretendSecondsHavePassed(10);
-      expect(getVisualCountText()).toEqual('time: 1 minute.');
-      expect(getAudibleCountText()).toEqual('time: 1 minute.');
-
-      pretendSecondsHavePassed(1);
-      expect(getVisualCountText()).toEqual('time: 59 seconds.');
-      expect(getAudibleCountText()).toEqual('time: 1 minute.');
-
-      pretendSecondsHavePassed(18);
-      expect(getVisualCountText()).toEqual('time: 41 seconds.');
-      expect(getAudibleCountText()).toEqual('time: 1 minute.');
-
-      pretendSecondsHavePassed(1);
-      expect(getVisualCountText()).toEqual('time: 40 seconds.');
-      expect(getAudibleCountText()).toEqual('time: 40 seconds.');
-
-      pretendSecondsHavePassed(1);
-      expect(getVisualCountText()).toEqual('time: 39 seconds.');
-      expect(getAudibleCountText()).toEqual('time: 40 seconds.');
-
-      pretendSecondsHavePassed(18);
-      expect(getVisualCountText()).toEqual('time: 21 seconds.');
-      expect(getAudibleCountText()).toEqual('time: 40 seconds.');
-
-      pretendSecondsHavePassed(1);
-      expect(getVisualCountText()).toEqual('time: 20 seconds.');
-      expect(getAudibleCountText()).toEqual('time: 20 seconds.');
-
-      pretendSecondsHavePassed(1);
-      expect(getVisualCountText()).toEqual('time: 19 seconds.');
       expect(getAudibleCountText()).toEqual('time: 20 seconds.');
     });
     it('should countdown minutes and then seconds in welsh', () => {
@@ -650,53 +548,6 @@ describe('/components/timeout-dialog', () => {
       expect(getAudibleCountText()).toEqual('time: 29 minutes.');
     });
 
-    it('should countdown properly when the starting time is not in a round number of minutes', () => {
-      setupDialog({
-        'data-timeout': 70,
-        'data-countdown': 68,
-        'data-message': 'Remaining time is',
-      });
-
-      window.setTimeout.mockClear();
-
-      pretendSecondsHavePassed(2.123);
-
-      expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 7877);
-    });
-
-    it('should countdown properly when the starting time is not in a round number of minutes', () => {
-      setupDialog({
-        'data-timeout': 300,
-        'data-countdown': 120,
-        'data-message': 'Remaining time is',
-      });
-
-      window.setTimeout.mockClear();
-
-      pretendSecondsHavePassed(180.4);
-
-      expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 59600);
-    });
-
-    it('should countdown properly when the the intervals aren\'t at perfect seconds', () => {
-      setupDialog({
-        'data-timeout': 70,
-        'data-countdown': 68,
-        'data-message': 'Remaining time is',
-      });
-
-      window.setTimeout.mockClear();
-
-      pretendSecondsHavePassed(12.123);
-
-      expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 877);
-
-      window.setTimeout.mockClear();
-      pretendSecondsHavePassed(0.879);
-
-      expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 998);
-    });
-
     it('should countdown minutes and then seconds in welsh', () => {
       setupDialog({
         'data-timeout': 130,
@@ -756,59 +607,6 @@ describe('/components/timeout-dialog', () => {
     });
   });
   describe('techy features', () => {
-    it('should not rely on timeout/interval accuracy for countdown', () => {
-      setupDialog({
-        'data-timeout': 80,
-        'data-countdown': 50,
-        'data-message': 'You will be timed out in',
-      });
-
-      pretendSecondsHavePassed(29);
-
-      assume(dialog.displayDialog).not.toHaveBeenCalled();
-      pretendSecondsHavePassed(1);
-
-      expect(dialog.displayDialog).toHaveBeenCalled();
-      expect(getVisualCountText()).toEqual('You will be timed out in 50 seconds.');
-      testScope.currentDateTime += 2 * 1000; // two seconds go by without any interval events
-      pretendSecondsHavePassed(1);
-
-      expect(dialog.displayDialog).toHaveBeenCalled();
-      expect(getVisualCountText()).toEqual('You will be timed out in 47 seconds.');
-    });
-    describe('Timeouts', () => {
-      beforeEach(() => {
-        testScope.intervalReturn = { 'data-message': 'this has been returned from a spy' };
-        testScope.timeoutFirstRun = true;
-        jest.clearAllTimers();
-
-        jest.spyOn(window, 'clearTimeout').mockImplementation(() => {
-        });
-        jest.spyOn(window, 'setTimeout').mockImplementation((fn) => {
-          if (testScope.timeoutFirstRun) {
-            testScope.timeoutFirstRun = false;
-            fn();
-            return undefined;
-          }
-          return testScope.intervalReturn;
-        });
-
-        setupDialog({ 'data-timeout': 130, 'data-countdown': 120 });
-        pretendSecondsHavePassed(30);
-        assume(window.setTimeout).toHaveBeenCalled();
-        assume(window.clearTimeout).not.toHaveBeenCalled();
-      });
-
-      it('should clearTimeout on cleanup', () => {
-        testScope.timeoutDialogControl.cleanup();
-        expect(window.clearTimeout).toHaveBeenCalledWith(testScope.intervalReturn);
-      });
-
-      it('should clearInterval on closeDialog', () => {
-        pretendDialogWasClosedWithoutButtonPress();
-        expect(window.clearTimeout).toHaveBeenCalledWith(testScope.intervalReturn);
-      });
-    });
     it('shouldn\'t regenerate audible countdown', () => {
       setupDialog({
         'data-timeout': 80,
@@ -833,49 +631,6 @@ describe('/components/timeout-dialog', () => {
 
       pretendSecondsHavePassed(1);
       expect(setterSpy).toHaveBeenCalled();
-    });
-  });
-
-  describe('timeout broadcast feature switch enabled', () => {
-    beforeEach(() => {
-      setSynchroniseTabs('true');
-      setupDialog();
-    });
-    it('should extend the session based on the timestamp of any user activity within the configured time', () => {
-      pretendSecondsHavePassed(770);
-
-      // call the registered callback, to indicate user activity
-      expect(mockSessionActivityService.onActivity).toHaveBeenCalled();
-      const callback = mockSessionActivityService.onActivity.mock.calls[0][0];
-      callback({ timestamp: Date.now() - 1000 });
-
-      expect(window.setTimeout).toHaveBeenCalledWith(expect.any(Function), 779000);
-
-      pretendSecondsHavePassed(20);
-      expect(dialog.displayDialog).not.toHaveBeenCalled();
-    });
-    it('should broadcast activity to other tabs when the user chooses to extend their session', () => {
-      pretendSecondsHavePassed(781);
-
-      expect(testScope.latestDialogControl.closeDialog).not.toHaveBeenCalled();
-
-      clickElem(testScope.latestDialog$element.querySelector('#hmrc-timeout-keep-signin-btn'));
-
-      expect(mockSessionActivityService.logActivity).toHaveBeenCalled();
-    });
-  });
-
-  describe('timeout broadcast feature switch disabled', () => {
-    beforeEach(() => {
-      setSynchroniseTabs('false');
-      setupDialog();
-    });
-    it('should show dialog, as no callback is registered on the session activity service', () => {
-      expect(mockSessionActivityService.onActivity).not.toHaveBeenCalled();
-
-      pretendSecondsHavePassed(780);
-
-      expect(dialog.displayDialog).toHaveBeenCalled();
     });
   });
 });

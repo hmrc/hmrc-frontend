@@ -1,13 +1,7 @@
-/**
- * @jest-environment ./lib/puppeteer/environment.js
- */
-/* eslint-env jest */
-
-const configPaths = require('../../../config/paths.json');
+const { examplePreview } = require('../../../lib/url-helpers');
 
 describe('/components/user-research-banner', () => {
-  let page;
-  const url = `http://localhost:${configPaths.ports.test}/components/user-research-banner/default/preview`;
+  const url = examplePreview('user-research-banner/default');
   const dayInSeconds = 24 * 60 * 60;
   const expiryTimeInSeconds = 28 * dayInSeconds;
 
@@ -15,21 +9,12 @@ describe('/components/user-research-banner', () => {
     (new Date().getTime() + (expiryTimeInSeconds * 1000)) / 1000,
   );
 
-  beforeAll(async () => {
-    // eslint-disable-next-line no-underscore-dangle
-    page = await global.__BROWSER__.newPage();
-  });
-
   beforeEach(async () => {
     await page.goto(url);
   });
 
   afterEach(async () => {
     await page.deleteCookie({ name: 'mdtpurr' });
-  });
-
-  afterAll(async () => {
-    await page.close();
   });
 
   describe('When a page with the user research banner is loaded', () => {

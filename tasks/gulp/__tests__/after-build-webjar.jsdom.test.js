@@ -1,4 +1,4 @@
-/* eslint-env jest */
+// we're using jest jsdom env to get access to DOMParser
 const fs = require('fs');
 const AdmZip = require('adm-zip');
 const getFiles = require('./get-files');

@@ -4,7 +4,15 @@
   ],
   "root": true,
   "env": {
-    "browser": true
+    "browser": true,
+    "jest": true
+  },
+  "globals": {
+    "page": true,
+    "browser": true,
+    "context": true,
+    "puppeteerConfig": true,
+    "jestPuppeteer": true
   },
   "ignorePatterns": [
     "src/vendor/polyfills/**/*",

@@ -4,7 +4,7 @@ const request = require('request');
 
 const configPaths = require('../../config/paths.json');
 
-const PORT = configPaths.ports.test;
+const PORT = configPaths.ports.app;
 
 const requestParamsHomepage = {
   url: `http://localhost:${PORT}/`,

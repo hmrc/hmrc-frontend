@@ -1,29 +1,11 @@
-/**
- * @jest-environment ./lib/puppeteer/environment.js
- */
+import { examplePreview } from '../../../lib/url-helpers';
 
-/* eslint-env jest */
-import configPaths from '../../../config/paths.json';
-
-const PORT = configPaths.ports.test;
-
-let browser;
-let page;
-const baseUrl = `http://localhost:${PORT}`;
-
-beforeAll(async () => {
-  // eslint-disable-next-line no-underscore-dangle
-  browser = global.__BROWSER__;
-  page = await browser.newPage();
+beforeEach(async () => {
   await page.setViewport({
     width: 640,
     height: 480,
     deviceScaleFactor: 1,
   });
-});
-
-afterAll(async () => {
-  await page.close();
 });
 
 describe('When the page is loaded on mobile', () => {
@@ -33,7 +15,7 @@ describe('When the page is loaded on mobile', () => {
   const mobileBackLink = '.hmrc-account-menu__link--back a';
 
   it('should show the mobile version of the navigation', async () => {
-    await page.goto(`${baseUrl}/components/account-menu/default/preview`);
+    await page.goto(examplePreview('account-menu/default'));
 
     const navClasses = await page.$eval(nav, (el) => el.className);
     expect(navClasses).toContain('is-smaller');

@@ -1,8 +1,17 @@
 {% extends "main.html" %}
 
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
 {% block content %}
 
-{{ govukBackLink(params) }}
+<!-- ensure there's a referer that's the same domain as current href or back link won't display -->
+<script type="text/javascript">
+Object.defineProperty(document, "referrer", {get : function(){ return window.location.href; }});
+</script>
+{{ govukBackLink({
+  attributes: {
+    "data-module": "hmrc-back-link"
+  }
+}) }}
 
 {% endblock %}

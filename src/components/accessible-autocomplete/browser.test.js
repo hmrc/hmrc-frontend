@@ -1,26 +1,8 @@
-/**
- * @jest-environment ./lib/puppeteer/environment.js
- */
-
-/* eslint-env jest */
-import configPaths from '../../../config/paths.json';
-
-let browser;
-let page;
-
-const PORT = configPaths.ports.test;
-
-const baseUrl = `http://localhost:${PORT}`;
-
-beforeAll(async () => {
-  // eslint-disable-next-line no-underscore-dangle
-  browser = global.__BROWSER__;
-  page = await browser.newPage();
-});
+import { examplePreview } from '../../../lib/url-helpers';
 
 describe('enhanceSelectElement on the select element provided', () => {
   it('should transform select element into input with default values', async () => {
-    await page.goto(`${baseUrl}/components/accessible-autocomplete/default/preview`);
+    await page.goto(examplePreview('accessible-autocomplete/default'));
 
     const autocompleteWrapper = await page.$('.autocomplete__wrapper');
     const autocompleteAttr = await page.$('input[autocomplete="off"]');
@@ -37,7 +19,7 @@ describe('enhanceSelectElement on the select element provided', () => {
   });
 
   it('should transform select element into input with default values when no optional data attributes are provided', async () => {
-    await page.goto(`${baseUrl}/components/accessible-autocomplete/without-optional-data-attributes/preview`);
+    await page.goto(examplePreview('accessible-autocomplete/without-optional-data-attributes'));
 
     const autocompleteWrapper = await page.$('.autocomplete__wrapper');
     const autocompleteAttr = await page.$('input[autocomplete="off"]');
@@ -54,21 +36,21 @@ describe('enhanceSelectElement on the select element provided', () => {
   });
 
   it('should have default value set to empty', async () => {
-    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-empty-default-value/preview`);
+    await page.goto(examplePreview('accessible-autocomplete/with-empty-default-value'));
 
     const selectDefaultValue = await page.$('.autocomplete__option');
     expect(selectDefaultValue).toBeFalsy();
   });
 
   it('should have set default value', async () => {
-    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-default-value/preview`);
+    await page.goto(examplePreview('accessible-autocomplete/with-default-value'));
 
     const selectDefaultValue = await page.evaluate(() => document.querySelector('.autocomplete__option').textContent);
     expect(selectDefaultValue).toMatch('Germany');
   });
 
   it('should present all options when showAllValues is true', async () => {
-    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-show-all-values/preview`);
+    await page.goto(examplePreview('accessible-autocomplete/with-show-all-values'));
 
     const input = await page.$('#location-picker');
     await input.click();
@@ -81,7 +63,7 @@ describe('enhanceSelectElement on the select element provided', () => {
   });
 
   it('should present one option when showAllValues is false', async () => {
-    await page.goto(`${baseUrl}/components/accessible-autocomplete/default/preview`);
+    await page.goto(examplePreview('accessible-autocomplete/default'));
 
     const input = await page.$('#location-picker');
     await input.click();
@@ -94,7 +76,7 @@ describe('enhanceSelectElement on the select element provided', () => {
   });
 
   it('should highlight first found option when autoselect is true', async () => {
-    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-autoselect-on/preview`);
+    await page.goto(examplePreview('accessible-autocomplete/with-autoselect-on'));
 
     const input = await page.$('#location-picker');
     await input.click();
@@ -115,7 +97,7 @@ describe('enhanceSelectElement on the select element provided', () => {
   });
 
   it('should display hint text in correct font family when autoselect is on and user has partially inputted a matched item', async () => {
-    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-autoselect-on/preview`);
+    await page.goto(examplePreview('accessible-autocomplete/with-autoselect-on'));
 
     const input = await page.$('#location-picker');
     await input.click();
@@ -132,7 +114,7 @@ describe('enhanceSelectElement on the select element provided', () => {
   });
 
   it('should not highlight first found option when autoselect is false', async () => {
-    await page.goto(`${baseUrl}/components/accessible-autocomplete/default/preview`);
+    await page.goto(examplePreview('accessible-autocomplete/default'));
 
     const input = await page.$('#location-picker');
     await input.click();
@@ -148,7 +130,7 @@ describe('enhanceSelectElement on the select element provided', () => {
   });
 
   it('should render assistive hint in Welsh when data-language is cy', async () => {
-    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language/preview`);
+    await page.goto(examplePreview('accessible-autocomplete/with-welsh-language'));
 
     const assistiveHint = await page.evaluate(() => document.querySelector('#location-picker__assistiveHint').textContent);
 
@@ -171,7 +153,7 @@ describe('enhanceSelectElement on the select element provided', () => {
   }
 
   it('should render minimum length hint in Welsh when minimum length is specified but not met', async () => {
-    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language-and-min-length/preview`);
+    await page.goto(examplePreview('accessible-autocomplete/with-welsh-language-and-min-length'));
 
     const input = await page.$('#location-picker');
     await input.click();
@@ -185,7 +167,7 @@ describe('enhanceSelectElement on the select element provided', () => {
   });
 
   it('should render status hint in Welsh when data-language is cy and there are multiple matching results', async () => {
-    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language/preview`);
+    await page.goto(examplePreview('accessible-autocomplete/with-welsh-language'));
 
     const input = await page.$('#location-picker');
     await input.click();
@@ -199,7 +181,7 @@ describe('enhanceSelectElement on the select element provided', () => {
   });
 
   it('should render status hint in Welsh when data-language is cy and there is a single matching result', async () => {
-    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language/preview`);
+    await page.goto(examplePreview('accessible-autocomplete/with-welsh-language'));
 
     const input = await page.$('#location-picker');
     await input.click();
@@ -212,7 +194,7 @@ describe('enhanceSelectElement on the select element provided', () => {
   });
 
   it('should render status hint in Welsh when data-language is cy and there are no matching results', async () => {
-    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language/preview`);
+    await page.goto(examplePreview('accessible-autocomplete/with-welsh-language'));
 
     const input = await page.$('#location-picker');
     await input.click();
@@ -225,7 +207,7 @@ describe('enhanceSelectElement on the select element provided', () => {
   });
 
   it('should render "no results found" dropdown in Welsh when data-language is cy and there are no matching results', async () => {
-    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language/preview`);
+    await page.goto(examplePreview('accessible-autocomplete/with-welsh-language'));
 
     const input = await page.$('#location-picker');
     await input.click();
@@ -238,7 +220,7 @@ describe('enhanceSelectElement on the select element provided', () => {
   });
 
   it('should render status hint in Welsh when data-language is cy and an item is selected', async () => {
-    await page.goto(`${baseUrl}/components/accessible-autocomplete/with-welsh-language-and-autoselect-on/preview`);
+    await page.goto(examplePreview('accessible-autocomplete/with-welsh-language-and-autoselect-on'));
 
     const input = await page.$('#location-picker');
     await input.click();

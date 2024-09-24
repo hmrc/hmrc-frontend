@@ -1,12 +1,12 @@
 {
   "name": "hmrc-frontend",
-  "version": "6.31.0",
+  "version": "6.32.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
     "test:build:package": "jest tasks/gulp/__tests__/after-build-package.test.js",
     "test:build:dist": "jest tasks/gulp/__tests__/after-build-dist.test.js",
-    "test:build:webjar": "jest tasks/gulp/__tests__/after-build-webjar.test.js",
+    "test:build:webjar": "jest tasks/gulp/__tests__/after-build-webjar.jsdom.test.js",
     "build:package": "gulp buildPackage --destination 'package' && npm run test:build:package",
     "build:dist": "gulp buildDist --destination 'dist' && npm run test:build:dist",
     "build:webjar": "gulp buildWebjar && npm run test:build:webjar",
@@ -15,7 +15,7 @@
     "build": "npm run build:dist && npm run build:package",
     "lint": "stylelint 'src/**/*.scss' && eslint .",
     "lint:fix": "stylelint 'src/**/*.scss' --fix && eslint --fix .",
-    "test": "npm run build:dist && jest src --runInBand --detectOpenHandles && npm run lint",
+    "test": "npm run build:dist && jest src && npm run lint",
     "test:update-snapshots": "jest src -u",
     "test:backstop": "gulp backstopTest",
     "test:backstop-approve": "gulp backstop:approve",
@@ -42,12 +42,11 @@
   },
   "homepage": "https://github.com/hmrc/hmrc-frontend#readme",
   "dependencies": {
-    "govuk-frontend": "^5.6.0",
-    "accessible-autocomplete": "^2.0.4"
+    "accessible-autocomplete": "^2.0.4",
+    "govuk-frontend": "^5.6.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.21.5",
-    "@sinonjs/fake-timers": "^10.0.0",
     "adm-zip": "^0.5.5",
     "adr-log": "^2.2.0",
     "ajv": "^8.12.0",
@@ -55,7 +54,6 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "backstopjs": "^6.0.4",
     "better-npm-audit": "^3.7.3",
-    "browserify": "^17.0.0",
     "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.10",
     "cssnano": "^4.1.10",
@@ -63,6 +61,7 @@
     "eslint": "^8.8.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
+    "expect-puppeteer": "^10.1.0",
     "express": "^4.18.1",
     "glob": "^10.2.3",
     "gulp": "^4.0.2",
@@ -77,9 +76,11 @@
     "gulp-uglify-es": "^3.0.0",
     "html5shiv": "^3.7.3",
     "husky": "^8.0.3",
-    "jest": "^27.5.1",
+    "jest": "^29.7.0",
     "jest-axe": "^3.5.0",
-    "jest-environment-node": "^26.6.2",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-environment-node": "^29.7.0",
+    "jest-puppeteer": "^10.1.0",
     "jest-serializer-html": "^5.0.0",
     "js-yaml": "^3.14.1",
     "mkdirp": "^3.0.1",
@@ -100,6 +101,7 @@
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
+    "sinon": "^18.0.1",
     "standard": "^17.0.0",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^20.0.0",
@@ -111,17 +113,5 @@
     "ie 8",
     "ie 9",
     "iOS 9"
-  ],
-  "jest": {
-    "setupFilesAfterEnv": [
-      "./config/jest-setup.js"
-    ],
-    "snapshotSerializers": [
-      "jest-serializer-html"
-    ],
-    "testEnvironment": "jsdom",
-    "testRunner": "jest-jasmine2",
-    "globalSetup": "./lib/puppeteer/setup.js",
-    "globalTeardown": "./lib/puppeteer/teardown.js"
-  }
+  ]
 }

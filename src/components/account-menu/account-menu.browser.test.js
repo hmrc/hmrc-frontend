@@ -1,27 +1,7 @@
-/**
- * @jest-environment ./lib/puppeteer/environment.js
- */
-/* eslint-env jest */
-import configPaths from '../../../config/paths.json';
-
-const PORT = configPaths.ports.test;
-
-let browser;
-let page;
-const baseUrl = `http://localhost:${PORT}`;
-
-beforeAll(async () => {
-  // eslint-disable-next-line no-underscore-dangle
-  browser = global.__BROWSER__;
-  page = await browser.newPage();
-});
-
-afterAll(async () => {
-  await page.close();
-});
+import { examplePreview } from '../../../lib/url-helpers';
 
 describe('/components/account-menu', () => {
-  const accountMenuUrl = `${baseUrl}/components/account-menu/default/preview`;
+  const accountMenuUrl = examplePreview('account-menu/default');
 
   // Default appearance of Account menu when a page is loaded
   describe('When a page with an account-menu is loaded', () => {
