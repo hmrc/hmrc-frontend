@@ -4,7 +4,7 @@ import { examplePreview } from '../../../lib/url-helpers';
 
 describe('multiple tabs open with synchronise tabs feature switch enabled', () => {
   it('should keep other synchronised tabs alive when the user chooses to extend their session', async () => {
-    const session = await browser.createIncognitoBrowserContext();
+    const session = await browser.createBrowserContext();
 
     const backgroundPage = await session.newPage();
     await backgroundPage.goto(examplePreview('timeout-dialog/synchronise-tabs'));
@@ -23,7 +23,7 @@ describe('multiple tabs open with synchronise tabs feature switch enabled', () =
   });
 
   it('should keep other synchronised tabs alive when the user navigates to a page on another tab', async () => {
-    const session = await browser.createIncognitoBrowserContext();
+    const session = await browser.createBrowserContext();
 
     const backgroundPage = await session.newPage();
     await backgroundPage.goto(examplePreview('timeout-dialog/synchronise-tabs'));
@@ -38,7 +38,7 @@ describe('multiple tabs open with synchronise tabs feature switch enabled', () =
   });
 
   it('should not prevent other unsynchronised tabs from timing out', async () => {
-    const session = await browser.createIncognitoBrowserContext();
+    const session = await browser.createBrowserContext();
 
     const backgroundPageWithUnsyncedWarnings = await session.newPage();
     await backgroundPageWithUnsyncedWarnings.goto(examplePreview('timeout-dialog/timeout-warnings-not-synchronised'));
