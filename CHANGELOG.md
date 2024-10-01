@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.33.0] - 2024-10-01
+
+### Changed
+
+- Contains only the changes from 6.32.0, because that release was never published, but was itself only updates to our tests.
+
+## [6.32.0] - 2024-09-24
+
+> [!CAUTION]
+> The release process for this job failed, so it was never published to npm
+
+### Changed
+
+- Updated some dev dependencies
+
 ## [6.31.0] - 2024-09-11
 
 ### Changed
