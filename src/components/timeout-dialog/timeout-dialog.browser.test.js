@@ -348,7 +348,7 @@ describe('/components/timeout-dialog', () => {
   });
 
   it('should incorporate a delay receiving session activity into new timeout countdown', async () => {
-    const session = await browser.createIncognitoBrowserContext();
+    const session = await browser.createBrowserContext();
     const background = await session.newPage();
     await renderTimeoutDialog(background, `
       data-timeout="20"
@@ -379,7 +379,7 @@ describe('/components/timeout-dialog', () => {
 
   // TODO because currently it would actually log you out straight away, this is an edge case
   it.skip('should keep using the current time remaining when it is greater than that calculated from received session activity', async () => {
-    const session = await browser.createIncognitoBrowserContext();
+    const session = await browser.createBrowserContext();
     const background = await session.newPage();
     await useFakeTimers(background, 25000);
     await render(background, withHmrcStylesAndScripts(`

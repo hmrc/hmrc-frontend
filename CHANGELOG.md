@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Updated some dev dependencies
+
+## [6.33.0] - 2024-10-01
+
+### Changed
+
 - Contains only the changes from 6.32.0, because that release was never published, but was itself only updates to our tests.
 
 ## [6.32.0] - 2024-09-24
