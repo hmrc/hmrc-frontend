@@ -2,7 +2,6 @@
   "GHSA-f5x3-32g6-xq36": "tar - devDependency, used in sass pipeline, no risk given our usage",
   "GHSA-35jh-r3h4-6jhm": "lodash.template - devDependency, used to locally serve markdown, no risk given our usage",
   "GHSA-4gmj-3p3h-gm8h": "es5-ext - no risk given our usage - test coverage should catch",
-  "GHSA-78xj-cgh5-2h22": "ip - devDependency, no risk given our usage",
   "GHSA-67hx-6x53-jw92": "@babel/traverse - devDependency, no risk given our usage",
   "GHSA-j8xg-fqg3-53r7": "word-wrap - devDependency, no risk given our usage",
   "GHSA-c2qf-rxjj-qqgw": "semver - devDependency, no risk given our usage",
@@ -10,13 +9,8 @@
   "GHSA-rp65-9cf3-cjxr": "nth-check - devDependency, no risk given our usage",
   "GHSA-p8p7-x288-28g6": "request: devDependency, no risk given our usage",
   "GHSA-72xf-g2v4-qvf3": "tough-cookie: devDependency, no risk given our usage",
-  "GHSA-x9w5-v3q2-3rhw": "browserify-sign: devDependency, no risk given our usage",
-  "GHSA-rv95-896h-c2vc": "Express.js Open Redirect in malformed URLs, we only use it locally for previewing components - never publicly hosted so no risk given our usage",
-  "GHSA-3h5v-q93c-6h6q": "DoS possibility when handling requests with multiple headers, we're not at risk given our usage for automated testing requests we construct.",
-  "GHSA-2p57-rm9w-gvfp": "ip - devDependency, no risk given our usage",
   "GHSA-grv7-fg5c-xmjg": "devDependency, should be no risk, but if we did hit an issue it would just result in long build we might have to kill and fix.",
   "GHSA-952p-6rrq-rcjv": "micromatch: used by stylelint, no risk given our usage",
-  "GHSA-f7q4-pwc6-w24p": "elliptic - devDependency, no risk given our usage",
-  "GHSA-977x-g7h5-7qgw": "elliptic - devDependency, no risk given our usage",
-  "GHSA-49q7-c7j4-3p7m": "elliptic - devDependency, no risk given our usage"
+  "GHSA-gcx4-mw62-g8wm": "rollup - we don't use import.meta.url to inject scripts dynamically, so we should be ok",
+  "GHSA-3h5v-q93c-6h6q": "backstopjs - won't impact us I think, and we can't upgrade past at the moment because of flakey tests."
 }
