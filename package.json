@@ -1,6 +1,6 @@
 {
   "name": "hmrc-frontend",
-  "version": "6.35.0",
+  "version": "6.36.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
@@ -46,6 +46,7 @@
     "govuk-frontend": "^5.7.1"
   },
   "devDependencies": {
+    "sass": "1.77.6",
     "@babel/preset-env": "^7.21.5",
     "adm-zip": "^0.5.5",
     "adr-log": "^2.2.0",

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.36.0] - 2024-10-22
+
+### Changed
+
+- Switched to compile our styles with dart-sass from node-sass
+
 ## [6.35.0] - 2024-10-16
 
 ### Changed
