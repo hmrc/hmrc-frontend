@@ -3,13 +3,13 @@
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
-const sass = require('node-sass');
+const nodeSass = require('node-sass');
+const dartSass = require('sass');
 const recursive = require('recursive-readdir');
 const pkg = require('../../../package.json');
 
 const configPaths = require('../../../config/paths.json');
 
-const sassRender = util.promisify(sass.render);
 const readFile = util.promisify(fs.readFile);
 
 describe('package/', () => {
@@ -136,17 +136,38 @@ describe('package/', () => {
       await fs.promises.symlink(path.join(projectRoot, configPaths.package), hmrcLink);
     };
 
-    it('should compile without throwing an exception', async () => {
+    it('should compile with dart-sass without throwing an exception', async () => {
       await createSymlinks();
       try {
         const allScssFile = path.join(configPaths.packageTest, 'hmrc-frontend/hmrc/all.scss');
-        await sassRender({ file: allScssFile });
+        dartSass.compile(allScssFile);
       } catch (e) {
         await removeSymLinksIfPresent();
         console.error(e.messageFormatted || e);
         throw e;
+      } finally {
+        await removeSymLinksIfPresent();
       }
-      await removeSymLinksIfPresent();
+    });
+
+    it('should compile with node-sass without throwing an exception or creating invalid css', async () => {
+      await createSymlinks();
+      try {
+        const calcStatementContainingSassVariableNameOutputLiterally = /calc\([^)]*\$[^)]+\)/i;
+        const allScssFile = path.join(configPaths.packageTest, 'hmrc-frontend/hmrc/all.scss');
+        const { css } = nodeSass.renderSync({ file: allScssFile });
+        // below, you can add checks to make sure we don't add something only compatible with
+        // dart-sass but which still compiles without exception when using node-sass just
+        // generating invalid css that will not render correctly for users. So far we just
+        // have one example of this from https://github.com/alphagov/govuk-frontend/issues/4782
+        expect(css.toString()).not.toMatch(calcStatementContainingSassVariableNameOutputLiterally);
+      } catch (e) {
+        await removeSymLinksIfPresent();
+        console.error(e.messageFormatted || e);
+        throw e;
+      } finally {
+        await removeSymLinksIfPresent();
+      }
     });
   });
 });
