@@ -12,5 +12,6 @@
   "GHSA-grv7-fg5c-xmjg": "devDependency, should be no risk, but if we did hit an issue it would just result in long build we might have to kill and fix.",
   "GHSA-952p-6rrq-rcjv": "micromatch: used by stylelint, no risk given our usage",
   "GHSA-gcx4-mw62-g8wm": "rollup - we don't use import.meta.url to inject scripts dynamically, so we should be ok",
-  "GHSA-3h5v-q93c-6h6q": "backstopjs - won't impact us I think, and we can't upgrade past at the moment because of flakey tests."
+  "GHSA-3h5v-q93c-6h6q": "backstopjs - won't impact us I think, and we can't upgrade past at the moment because of flakey tests.",
+  "GHSA-pxg6-pf52-xh8x": "cookie - this is transitive dep of express, which we just use locally and don't use to set cookies."
 }
