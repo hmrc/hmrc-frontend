@@ -38,6 +38,10 @@ html {
   @include govuk-media-query($from: tablet) {
     width: 435px;
   }
+
+  &:focus {
+    outline: $govuk-focus-width solid $govuk-focus-colour;
+  }
 }
 
 .hmrc-timeout-dialog__message {
