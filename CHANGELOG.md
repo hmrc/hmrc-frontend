@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.38.0] - 2024-11-07
+
+### Changed
+
+- Updated version of gulp to 5.0.0
+
 ## [6.37.0] - 2024-10-23
 
 ### Changed
