@@ -3,5 +3,5 @@ const configPaths = require('../../config/paths.json');
 
 gulp.task('copy-hmrc-images', () => gulp.src([
   'components/*/images/*',
-], { cwd: `${configPaths.src}`, encoding: false })
+], { cwd: `${configPaths.src}` })
   .pipe(gulp.dest(`${configPaths.dist}/components`)));

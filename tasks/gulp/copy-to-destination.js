@@ -8,10 +8,10 @@ gulp.task('copy-govuk-fonts', () => gulp.src([
 
 gulp.task('copy-govuk-images', () => gulp.src([
   'node_modules/govuk-frontend/dist/govuk/assets/images/*',
-], { encoding: false })
+])
   .pipe(gulp.dest(`${destinationPath}/govuk/images`)));
 
 gulp.task('copy-govuk-manifest-json', () => gulp.src([
   'node_modules/govuk-frontend/dist/govuk/assets/manifest.json',
-], { encoding: false })
+])
   .pipe(gulp.dest(`${destinationPath}/govuk`)));
