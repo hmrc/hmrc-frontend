@@ -40,7 +40,7 @@ const webJarHelpers = ({
   const copyWebjarPackageFiles = () => {
     const { version } = getPackageJson();
 
-    return src(`${packagePath}/**`)
+    return src(`${packagePath}/**`, { encoding: false })
       .pipe(dest(`${webjarPath}/META-INF/resources/webjars/${artifactId}/${version}/`));
   };
 
