@@ -3,7 +3,7 @@ const destinationPath = require('./destination-path');
 
 gulp.task('copy-govuk-fonts', () => gulp.src([
   'node_modules/govuk-frontend/dist/govuk/assets/fonts/*',
-])
+], { encoding: false })
   .pipe(gulp.dest(`${destinationPath}/govuk/fonts`)));
 
 gulp.task('copy-govuk-images', () => gulp.src([

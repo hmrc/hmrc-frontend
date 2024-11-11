@@ -8,9 +8,11 @@
 * [ADR-0004](0004-supply-uncompiled-javascript.md) - Supply un-compiled Javascript in NPM package
 * [ADR-0005](0005-use-better-npm-audit.md) - Use better-npm-audit for checking deps for security vulnerabilities
 * [ADR-0006](0006-provide-back-link-helper.md) - Provide a common back link helper
-* [ADR-0007](0007-add-print-stylesheet.md) - Add a print stylesheet
+* [ADR-0007](0007-add-print-stylesheet.md) - Add print stylesheet
 
 <!-- adrlogstop -->
+
+
 
 
 
