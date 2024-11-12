@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [6.38.0] - 2024-11-07
+## [6.39.0] - 2024-11-12
+
+### Changed
+
+- Fixed image copying broken during gulp 5.0.0 upgrade
+
+## [6.38.0] - 2024-11-11
 
 ### Changed
 
