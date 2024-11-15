@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.40.0] - 2024-11-12
+
+### Changed
+
+- Changed baseline of sign out link to match GOV.UK header logo, on mobile widths it matches service name
+
 ## [6.39.0] - 2024-11-12
 
 ### Changed
@@ -149,7 +155,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Marked the `currency-input` component as deprecated. This is because the `input` from `govuk-frontend` can now take in
   a prefix, and this is the new pattern for HMRC currency inputs. See more details in
-- [currency-input/README.md](/src/components/currency-input/README.md). 
+- [currency-input/README.md](/src/components/currency-input/README.md).
 
 ## [6.16.0] - 2024-04-22
 
@@ -167,7 +173,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Accessibility fix: ensure `outline` appears on `account-menu` submenu items in Windows High Contrast Mode using 
+- Accessibility fix: ensure `outline` appears on `account-menu` submenu items in Windows High Contrast Mode using
   `outline-offset`
 
 ## [6.13.0] - 2024-03-27
@@ -207,7 +213,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added `menuButtonText` and `menuButtonLabel` params to `header` component in line with the `govuk-frontend` header
 - Removed `hmrc-header__service-name` and `hmrc-header__service-name--linked` from `header` component, to use only styles
   from `govuk-frontend`
-- Updated `hmrc-header__service-name` and `hmrc-header__service-name--linked` (for services adding manually to other 
+- Updated `hmrc-header__service-name` and `hmrc-header__service-name--linked` (for services adding manually to other
   components)
 
 ## [6.7.0] - 2024-03-19
@@ -226,7 +232,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Split out [MAINTAINERS info](MAINTAINERS.md) from general [CONTRIBUTING guide](CONTRIBUTING.md) 
+- Split out [MAINTAINERS info](MAINTAINERS.md) from general [CONTRIBUTING guide](CONTRIBUTING.md)
 - Documented patch release process
 
 ## [6.4.0] - 2024-03-11
@@ -359,7 +365,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Modify the timeout dialog to take in an optional parameter to not display a sign out link. This feature was proposed by
-  DWP Access to Work as cross-Government request: https://github.com/hmrc/hmrc-frontend/issues/316 
+  DWP Access to Work as cross-Government request: https://github.com/hmrc/hmrc-frontend/issues/316
 
 ## [5.51.0] - 2023-10-24
 
