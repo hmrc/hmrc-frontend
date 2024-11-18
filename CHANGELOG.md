@@ -7,11 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [6.40.0] - 2024-11-18
+## [6.41.0] - 2024-11-18
 
 ### Changed
 
 - Bump accessibility-autocomplete to 3.0.1.
+  - [Slight visual changes](https://github.com/alphagov/accessible-autocomplete/pull/644/files#diff-b5dc5c55f19c3ef2cc4c68165fa12f8668c278b75b18d618de6bfc13885c24d5R38) introduced in 3.0.0.
 
 ## [6.40.0] - 2024-11-12
 
