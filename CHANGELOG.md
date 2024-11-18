@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.40.0] - 2024-11-13
+
+### Changed
+
+- Bump accessibility-autocomplete to 3.0.1.
+
 ## [6.39.0] - 2024-11-12
 
 ### Changed
