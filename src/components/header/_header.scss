@@ -16,8 +16,12 @@ $govuk-header-link-underline-thickness: 3px;
   .hmrc-sign-out-nav__link {
     color: govuk-colour("white");
     font-weight: bold;
-    line-height: 1.8em;
+    line-height: 1.64285;
     text-decoration: none;
+
+    @include govuk-media-query($from: desktop) {
+      line-height: 2.375;
+    }
 
     &:hover {
       text-decoration: underline;
