@@ -16,15 +16,13 @@ BackLinkHelper.prototype.init = function init() {
      */
     const referrerNotOnSameDomain = () => {
       const referer = this.document.referrer;
+      const noReferer = !referer || referer.indexOf(this.window.location.host) === -1;
 
       // Allows PEGA domains
-      const allowedDomains = ['maccount-np.hmrc.gov.uk', 'account.hmrc.gov.uk'];
-      const isAllowed = allowedDomains.some((e) => referer.includes(e));
+      const allowedDomains = ['maccount-np.hmrc.gov.uk', 'account.hmrc.gov.uk', 'https://catalogue.tax.service.gov.uk/'];
+      const isAllowed = (!noReferer) ? allowedDomains.some((e) => referer.includes(e)) : false;
 
-      const noReferer = !referer;
-      const sameDomain = referer.indexOf(this.window.location.host) === -1;
-
-      return (isAllowed) ? false : noReferer || sameDomain;
+      return (isAllowed) ? false : noReferer;
     };
 
     // hide the backlink if the referrer is on a different domain or the referrer is not set
