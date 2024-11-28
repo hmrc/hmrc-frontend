@@ -17,14 +17,14 @@ BackLinkHelper.prototype.init = function init() {
     const referrerNotOnSameDomain = () => {
       const referer = this.document.referrer;
 
-      // Whitelists PEGA domains
-      const whiteList = ['maccount-np.hmrc.gov.uk', 'account.hmrc.gov.uk'];
-      const isWhiteListed = whiteList.some((e) => referer.includes(e));
+      // Allows PEGA domains
+      const allowedDomains = ['maccount-np.hmrc.gov.uk', 'account.hmrc.gov.uk'];
+      const isAllowed = allowedDomains.some((e) => referer.includes(e));
 
       const noReferer = !referer;
       const sameDomain = referer.indexOf(this.window.location.host) === -1;
 
-      return (isWhiteListed) ? false : noReferer || sameDomain;
+      return (isAllowed) ? false : noReferer || sameDomain;
     };
 
     // hide the backlink if the referrer is on a different domain or the referrer is not set
