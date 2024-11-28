@@ -14,19 +14,20 @@ BackLinkHelper.prototype.init = function init() {
        Currently, a page refresh sets the referer to empty, leading to the back link being hidden
        under our existing logic.
      */
-    const referrerNotOnSameDomain = () => {
-      const referer = this.document.referrer;
-      const noReferer = !referer || referer.indexOf(this.window.location.host) === -1;
+    const invalidDomain = () => {
+      const ref = this.document.referrer;
+      const noRef = !ref;
+      const diffDom = ref.indexOf(this.window.location.host) === -1;
 
-      // Allows PEGA domains
-      const allowedDomains = ['maccount-np.hmrc.gov.uk', 'account.hmrc.gov.uk', 'https://catalogue.tax.service.gov.uk/'];
-      const isAllowed = (!noReferer) ? allowedDomains.some((e) => referer.includes(e)) : false;
+      // Allow PEGA domains
+      const allowList = ['maccount-np.hmrc.gov.uk', 'account.hmrc.gov.uk'];
+      const allowed = (diffDom && !noRef) ? allowList.some((e) => ref.includes(e)) : false;
 
-      return (isAllowed) ? false : noReferer;
+      return !allowed;
     };
 
     // hide the backlink if the referrer is on a different domain or the referrer is not set
-    if (referrerNotOnSameDomain()) {
+    if (invalidDomain()) {
       this.$module.classList.add('hmrc-hidden-backlink');
     } else {
       // prevent resubmit warning
