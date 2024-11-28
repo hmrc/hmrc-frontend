@@ -15,15 +15,16 @@ BackLinkHelper.prototype.init = function init() {
        under our existing logic.
      */
     const invalidDomain = () => {
-      const ref = this.document.referrer;
-      const noRef = !ref;
-      const diffDom = (ref) ? ref.indexOf(this.window.location.host) === -1 : false;
+      const ref = (this.document.referrer) ? this.document.referrer : false;
+      const diffDom = ref.indexOf(this.window.location.host) === -1;
 
       // Allow PEGA domains
-      const allowList = ['maccount-np.hmrc.gov.uk', 'account.hmrc.gov.uk'];
-      const allowed = (diffDom && !noRef) ? allowList.some((e) => ref.includes(e)) : false;
+      const allowList = ['maccount-np.hmrc.gov.uk', 'account.hmrc.gov.uk','http://localhost:3000'];
+      const allowed = allowList.some((e) => ref.includes(e));
 
-      return !allowed;
+      const isInvalid = (diffDom) ? !allowed : false;
+
+      return (ref) ? isInvalid : false;
     };
 
     // hide the backlink if the referrer is on a different domain or the referrer is not set
