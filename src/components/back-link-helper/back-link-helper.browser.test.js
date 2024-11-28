@@ -8,13 +8,22 @@ describe('/components/back-link-helper', () => {
   }
 
   describe('When a JS-enabled back link is included on a page', () => {
-    it('should be hidden when referrer is on a different domain', async () => {
+    it('should be hidden when referrer is on an invalid domain', async () => {
       await render(page, withHmrcStylesAndScripts(`
         <a href="#" class="govuk-back-link" data-module="hmrc-back-link">back</a>
       `), {
         referer: 'http://somewhere-else.com',
       });
       expect(await linkDisplayStyle()).toBe('none');
+    });
+
+    it('should be shown when referrer is on an allowed domain', async () => {
+      await render(page, withHmrcStylesAndScripts(`
+        <a href="#" class="govuk-back-link" data-module="hmrc-back-link">back</a>
+      `), {
+        referer: 'account.hmrc.gov.uk',
+      });
+      expect(await linkDisplayStyle()).not.toBe('none');
     });
 
     it('should be hidden when referrer is empty', async () => {
