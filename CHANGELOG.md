@@ -5,7 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+PLATUI-3378 version minor and changelog
+
 ## [Unreleased]
+
+## [6.42.0] - 2024-11-28
+
+### Changed
+
+Allowed pega domains in backlink
 
 ## [6.41.0] - 2024-11-18
 
