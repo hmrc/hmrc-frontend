@@ -13,18 +13,21 @@ BackLinkHelper.prototype.init = function init() {
        back link on refresh.
        Currently, a page refresh sets the referer to empty, leading to the back link being hidden
        under our existing logic.
-     */
+    */
     const referrerAllowList = ['account-np.hmrc.gov.uk', 'account.hmrc.gov.uk'];
     const shouldHideBackLink = () => {
-      const referrer = this.document.referrer;
-      if (!referrer) return true
-      const referredFromDifferentDomain = referrer.indexOf(this.window.location.host) === -1;
-      const referrerNotOnAllowList = !referrerAllowList.some((allowListedDomain) => referrer.includes(allowListedDomain));
-      return referredFromDifferentDomain && referrerNotOnAllowList
+      const referer = this.document.referrer;
+      if (!referer) return true;
+      const referredFromDifferentDomain = referer.indexOf(this.window.location.host) === -1;
+      const referrerNotOnAllowList = !referrerAllowList.some(
+        // eslint-disable-next-line comma-dangle
+        (allowListedDomain) => referer.includes(allowListedDomain)
+      );
+      return referredFromDifferentDomain && referrerNotOnAllowList;
     };
 
     // hide the backlink if the referrer is on a different domain or the referrer is not set
-    if (invalidDomain()) {
+    if (shouldHideBackLink()) {
       this.$module.classList.add('hmrc-hidden-backlink');
     } else {
       // prevent resubmit warning
