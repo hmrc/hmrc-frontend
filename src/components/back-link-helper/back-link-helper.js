@@ -16,7 +16,7 @@ BackLinkHelper.prototype.init = function init() {
      */
     const invalidDomain = () => {
       const ref = (this.document.referrer !== null) ? this.document.referrer : false;
-      const diffDom = ref.indexOf(this.window.location.host) === -1;
+      const diffDom = (ref) ? ref.indexOf(this.window.location.host) === -1 : false;
 
       // Allow PEGA domains
       const allowList = ['maccount-np.hmrc.gov.uk', 'account.hmrc.gov.uk'];
