@@ -15,11 +15,11 @@ BackLinkHelper.prototype.init = function init() {
        under our existing logic.
      */
     const invalidDomain = () => {
-      const ref = (this.document.referrer) ? this.document.referrer : false;
+      const ref = (this.document.referrer !== null) ? this.document.referrer : false;
       const diffDom = ref.indexOf(this.window.location.host) === -1;
 
       // Allow PEGA domains
-      const allowList = ['maccount-np.hmrc.gov.uk', 'account.hmrc.gov.uk','http://localhost:3000'];
+      const allowList = ['maccount-np.hmrc.gov.uk', 'account.hmrc.gov.uk'];
       const allowed = allowList.some((e) => ref.includes(e));
 
       const isInvalid = (diffDom) ? !allowed : false;
