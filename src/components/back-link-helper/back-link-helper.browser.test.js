@@ -21,7 +21,7 @@ describe('/components/back-link-helper', () => {
       await render(page, withHmrcStylesAndScripts(`
         <a href="#" class="govuk-back-link" data-module="hmrc-back-link">back</a>
       `), {
-        referer: 'account.hmrc.gov.uk',
+        referer: 'http://account.hmrc.gov.uk',
       });
       expect(await linkDisplayStyle()).not.toBe('none');
     });
