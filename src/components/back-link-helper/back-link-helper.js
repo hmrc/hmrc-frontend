@@ -19,7 +19,7 @@ BackLinkHelper.prototype.init = function init() {
       const diffDom = (ref) ? ref.indexOf(this.window.location.host) === -1 : false;
 
       // Allow PEGA domains
-      const allowList = ['maccount-np.hmrc.gov.uk', 'account.hmrc.gov.uk'];
+      const allowList = ['account-np.hmrc.gov.uk', 'account.hmrc.gov.uk'];
       const allowed = allowList.some((e) => ref.includes(e));
 
       const isInvalid = (diffDom) ? !allowed : false;
