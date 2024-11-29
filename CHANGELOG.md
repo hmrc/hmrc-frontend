@@ -11,7 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-Allowed pega domains in backlink
+- Added allowlist to backlink helper. When using the helper backlinks were hidden if the referrer was unavailable or on
+  a different domain, to enable handoff between pega services, other domains can now be allowlisted.
 
 ## [6.41.0] - 2024-11-18
 
