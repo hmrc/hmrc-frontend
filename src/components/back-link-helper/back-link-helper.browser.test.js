@@ -17,6 +17,15 @@ describe('/components/back-link-helper', () => {
       expect(await linkDisplayStyle()).toBe('none');
     });
 
+    it('should be shown when referrer is on a different domain, but the domain has been allowlisted', async () => {
+      await render(page, withHmrcStylesAndScripts(`
+        <a href="#" class="govuk-back-link" data-module="hmrc-back-link">back</a>
+      `), {
+        referer: 'http://account.hmrc.gov.uk',
+      });
+      expect(await linkDisplayStyle()).not.toBe('none');
+    });
+
     it('should be hidden when referrer is empty', async () => {
       await render(page, withHmrcStylesAndScripts(`
         <a href="#" class="govuk-back-link" data-module="hmrc-back-link">back</a>
