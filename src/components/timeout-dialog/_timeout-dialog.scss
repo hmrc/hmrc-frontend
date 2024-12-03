@@ -52,25 +52,13 @@ html {
   white-space: nowrap;
 }
 
-.hmrc-timeout-dialog__link-wrapper {
-  @include govuk-media-query($from: tablet) {
-    display: inline-block;
-    line-height: 2.5em;
-    vertical-align: baseline;
-  }
-}
-
 .hmrc-timeout-dialog__link {
   @include govuk-font($size: 24);
-
-  display: inline-block;
 
   @include govuk-media-query($from: tablet) {
     @include govuk-font($size: 19);
 
-    position: relative;
-    top: 2px;
-    padding: 0.526315em 0.789473em 0.263157em;
-    line-height: 1.5;
+    // Same padding as govuk-button
+    padding: (govuk-spacing(2) - $govuk-border-width-form-element) govuk-spacing(2) (govuk-spacing(2) - $govuk-border-width-form-element - ($govuk-border-width-form-element / 2));
   }
 }

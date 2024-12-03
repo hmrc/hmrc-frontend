@@ -141,14 +141,6 @@ function TimeoutDialog($module, $sessionActivityService) {
     });
   };
 
-  const wrapLink = ($elem) => {
-    const $wrapper = document.createElement('div');
-    $wrapper.classList.add('hmrc-timeout-dialog__link-wrapper');
-    $wrapper.appendChild($elem);
-
-    return $wrapper;
-  };
-
   const setupDialog = (signoutTime) => {
     const $element = utils.generateDomElementFromString('<div>');
 
@@ -181,9 +173,12 @@ function TimeoutDialog($module, $sessionActivityService) {
       settings.keepAliveButtonText,
     );
 
+    const $wrapper = document.createElement('div');
+    $wrapper.classList.add('govuk-button-group');
+    $wrapper.appendChild($staySignedInButton);
+
     $element.appendChild($visualMessge);
     $element.appendChild($audibleMessage);
-    $element.appendChild($staySignedInButton);
     $staySignedInButton.addEventListener('click', keepAliveAndClose);
     $element.appendChild(document.createTextNode(' '));
 
@@ -195,8 +190,10 @@ function TimeoutDialog($module, $sessionActivityService) {
       $signOutButton.addEventListener('click', signOut);
       $signOutButton.setAttribute('href', settings.signOutUrl);
 
-      $element.appendChild(wrapLink($signOutButton));
+      $wrapper.appendChild($signOutButton);
     }
+
+    $element.appendChild($wrapper);
 
     const dialogControl = dialog.displayDialog($element);
 
