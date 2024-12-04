@@ -11,3 +11,20 @@ $govuk-include-default-font-face: false;
 .autocomplete__hint {
   @include govuk-font($size: 19);
 }
+
+.autocomplete__dropdown-arrow-down {
+  z-index: 0;
+  pointer-events: none;
+}
+
+// the following is a bit more targeted, wouldn't work in ie11, and might be a bit brittle
+
+.govuk-form-group--error div:has(+ .govuk-select--error[data-module='hmrc-accessible-autocomplete']) > .autocomplete__wrapper .autocomplete__input {
+  border-color: #d4351c;
+}
+
+// the following is more compatible, and probably unlikely to style unintended stuff
+
+//.govuk-form-group--error .autocomplete__wrapper .autocomplete__input {
+//  border-color: #d4351c;
+//}
