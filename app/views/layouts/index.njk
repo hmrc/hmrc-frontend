@@ -11,7 +11,7 @@
       <p class="govuk-body">Follow the links under sub headings below to view examples of the components.</p>
       {% for componentName in componentsDirectory | sort %}
         <h3 class="govuk-heading-s">{{ componentName | replace("-", " ") | capitalize }}</h3>
-        <p class="govuk-body"><a href="/components/{{ componentName }}">View the readme</a>, or browse the examples:</p>
+        <p class="govuk-body"><a class="govuk-link" href="/components/{{ componentName }}">View the readme</a>, or browse the examples:</p>
         <ul class="govuk-list govuk-list--bullet">
           {% for exampleName in componentName | componentExamples %}
             <li><a href="/components/{{ componentName }}/{{ exampleName }}/preview" class="govuk-link">{{ exampleName | replace("-", " ") | capitalize }} example</a></li>
