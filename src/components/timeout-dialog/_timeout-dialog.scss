@@ -59,6 +59,6 @@ html {
     @include govuk-font($size: 19);
 
     // Same padding as govuk-button
-    padding: (govuk-spacing(2) - $govuk-border-width-form-element) govuk-spacing(2) (govuk-spacing(2) - $govuk-border-width-form-element - ($govuk-border-width-form-element / 2));
+    padding: (govuk-spacing(2) - $govuk-border-width-form-element) govuk-spacing(2) (govuk-spacing(2) - $govuk-border-width-form-element - calc($govuk-border-width-form-element / 2));
   }
 }
