@@ -261,7 +261,7 @@ describe('/components/timeout-dialog', () => {
       expect(page.url()).toMatch('/timeout-reached');
     });
 
-    function twentyTimes(value) { return Array.from({ length: 19 }, () => value); }
+    function nineteenTimes(value) { return Array.from({ length: 19 }, () => value); }
 
     it('should update the audible time remaining every 20 seconds', async () => {
       await renderTimeoutDialog(page, `
@@ -282,15 +282,15 @@ describe('/components/timeout-dialog', () => {
         .toBe('For your security, we will sign you out in 2 minutes.');
 
       expect(allAudibleMessagesDuringLastMinute.slice(0, 19)).toStrictEqual(
-        twentyTimes('For your security, we will sign you out in 1 minute.'),
+        nineteenTimes('For your security, we will sign you out in 1 minute.'),
       );
 
       expect(allAudibleMessagesDuringLastMinute.slice(20, 39)).toStrictEqual(
-        twentyTimes('For your security, we will sign you out in 40 seconds.'),
+        nineteenTimes('For your security, we will sign you out in 40 seconds.'),
       );
 
       expect(allAudibleMessagesDuringLastMinute.slice(40, 59)).toStrictEqual(
-        twentyTimes('For your security, we will sign you out in 20 seconds.'),
+        nineteenTimes('For your security, we will sign you out in 20 seconds.'),
       );
 
       await clockTickSeconds(page, 1);
