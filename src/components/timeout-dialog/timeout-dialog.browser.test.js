@@ -77,7 +77,7 @@ describe('/components/timeout-dialog', () => {
     `);
     await clockTickSeconds(page, 900);
     await page.waitForNavigation({ timeout: 500 });
-    expect(page.url()).toMatch('/timeout-reached');
+    await expect(page.url()).toMatch('/timeout-reached');
   });
 
   it('should not sign you out when the countdown runs out if you chose to stay signed in', async () => {
@@ -91,7 +91,7 @@ describe('/components/timeout-dialog', () => {
     await expect(page).toClick('button', { text: 'Stay signed in' });
     await clockTickSeconds(page, 1);
     await delay(500);
-    expect(page.url()).not.toMatch('/timeout-reached');
+    await expect(page.url()).not.toMatch('/timeout-reached');
     await expect(page).not.toShowTimeoutDialog();
   });
 
@@ -122,7 +122,7 @@ describe('/components/timeout-dialog', () => {
     await expect(page).toClick('button', { text: 'Stay signed in' });
     await clockTickSeconds(page, 900);
     await page.waitForNavigation({ timeout: 500 });
-    expect(page.url()).toMatch('/timeout-reached');
+    await expect(page.url()).toMatch('/timeout-reached');
   });
 
   it('should let you extend your session repeatedly', async () => {
@@ -141,7 +141,7 @@ describe('/components/timeout-dialog', () => {
     await expect(page.url()).not.toMatch('/timeout-reached');
     await clockTickSeconds(page, 900);
     await page.waitForNavigation({ timeout: 500 });
-    expect(page.url()).toMatch('/timeout-reached');
+    await expect(page.url()).toMatch('/timeout-reached');
   });
 
   it('should let you sign out early', async () => {
@@ -154,7 +154,7 @@ describe('/components/timeout-dialog', () => {
     await clockTickSeconds(page, 800);
     await expect(page).toClick('a', { text: 'Sign out' });
     await page.waitForNavigation({ timeout: 500 });
-    expect(page.url()).toMatch('/timeout-reached');
+    await expect(page.url()).toMatch('/timeout-reached');
   });
 
   it('should let you specify a separate timeout url', async () => {
@@ -178,7 +178,7 @@ describe('/components/timeout-dialog', () => {
     await clockTickSeconds(page, 800);
     await expect(page).toClick('a', { text: 'Sign out' });
     await page.waitForNavigation({ timeout: 500 });
-    expect(page.url()).toMatch('/signed-out-early');
+    await expect(page.url()).toMatch('/signed-out-early');
   });
 
   // TODO at the moment it doesn't, should we change test or implementation?
@@ -193,22 +193,19 @@ describe('/components/timeout-dialog', () => {
     `);
     await clockTickSeconds(page, 899);
     await page.setRequestInterception(true);
-    try {
-      page.once('request', (req) => {
-        setTimeout(() => req.respond({
-          contentType: 'text/plain',
-          body: 'simulate slow response to signing out',
-        }), 2000);
-      });
-      await page.evaluate(() => {
-        document.getElementById('hmrc-timeout-sign-out-link').click();
-        window.clock.tick(1000); // to reach timeout while sign out page is still loading
-      });
-      await page.waitForNavigation({ timeout: 500 });
-      expect(page.url()).toMatch('/signed-out-early');
-    } finally {
-      await page.setRequestInterception(false);
-    }
+    await page.once('request', (req) => {
+      setTimeout(() => req.respond({
+        contentType: 'text/plain',
+        body: 'simulate slow response to signing out',
+      }), 2000);
+      page.setRequestInterception(false);
+    });
+    await page.evaluate(() => {
+      document.getElementById('hmrc-timeout-sign-out-link').click();
+      window.clock.tick(1000); // to reach timeout while sign out page is still loading
+    });
+    await page.waitForNavigation({ timeout: 500 });
+    await expect(page.url()).toMatch('/signed-out-early');
   });
 
   function takeTextContentEachSecondForAMinute(page, selector) {
@@ -258,7 +255,7 @@ describe('/components/timeout-dialog', () => {
 
       await clockTickSeconds(page, 1);
       await page.waitForNavigation({ timeout: 500 });
-      expect(page.url()).toMatch('/timeout-reached');
+      await expect(page.url()).toMatch('/timeout-reached');
     });
 
     function nineteenTimes(value) { return Array.from({ length: 19 }, () => value); }
@@ -295,7 +292,7 @@ describe('/components/timeout-dialog', () => {
 
       await clockTickSeconds(page, 1);
       await page.waitForNavigation({ timeout: 500 });
-      expect(page.url()).toMatch('/timeout-reached');
+      await expect(page.url()).toMatch('/timeout-reached');
     });
   });
 
@@ -309,31 +306,28 @@ describe('/components/timeout-dialog', () => {
     let completeSlowTimeoutRequest;
     const slowTimeout = new Promise((resolve) => { completeSlowTimeoutRequest = resolve; });
     await page.setRequestInterception(true);
-    try {
-      page.once('request', (req) => {
-        slowTimeout.then(() => {
-          req.respond({
-            contentType: 'text/plain',
-            body: 'timeout page reached',
-          });
+    page.once('request', (req) => {
+      slowTimeout.then(() => {
+        req.respond({
+          contentType: 'text/plain',
+          body: 'timeout page reached',
         });
+        page.setRequestInterception(false);
       });
-      const [visibleMessage, audibleMessage] = await page.evaluate(() => {
-        window.clock.tick(10000); // bring up warning
-        window.clock.tick(30000); // overrun timeout by 20s, the redirect will hang until resolved
-        return [
-          document.querySelector('.hmrc-timeout-dialog__message').textContent,
-          document.querySelector('#hmrc-timeout-message').textContent,
-        ];
-      });
-      expect(visibleMessage).toBe('For your security, we will sign you out in 0 seconds.');
-      expect(audibleMessage).toBe('For your security, we will sign you out in 20 seconds.');
-      completeSlowTimeoutRequest();
-      await page.waitForNavigation({ timeout: 500 });
-      await expect(page).toMatchTextContent('timeout page reached');
-    } finally {
-      await page.setRequestInterception(false);
-    }
+    });
+    const [visibleMessage, audibleMessage] = await page.evaluate(() => {
+      window.clock.tick(10000); // bring up warning
+      window.clock.tick(30000); // overrun timeout by 20s, the redirect will hang until resolved
+      return [
+        document.querySelector('.hmrc-timeout-dialog__message').textContent,
+        document.querySelector('#hmrc-timeout-message').textContent,
+      ];
+    });
+    expect(visibleMessage).toBe('For your security, we will sign you out in 0 seconds.');
+    expect(audibleMessage).toBe('For your security, we will sign you out in 20 seconds.');
+    completeSlowTimeoutRequest();
+    await page.waitForNavigation({ timeout: 500 });
+    await expect(page).toMatchTextContent('timeout page reached');
   });
 
   it('should display the time remaining as a whole number of seconds', async () => {
@@ -410,6 +404,5 @@ describe('/components/timeout-dialog', () => {
     await expect(background).toShowTimeoutDialog();
     expect(await visualCountdownFrom(background))
       .toBe('For your security, we will sign you out in 10 seconds.');
-    await session.close();
   });
 });
