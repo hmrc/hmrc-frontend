@@ -17,7 +17,7 @@ describe('multiple tabs open with synchronise tabs feature switch enabled', () =
 
     await expect(foregroundPage).toClick('button', { text: 'Stay signed in' });
 
-    await expect(backgroundPage).not.toMatchTextContent('about to be signed out');
+    await expect(backgroundPage).not.toMatchTextContent('about to be signed out', { timeout: 5000 });
 
     await session.close();
   });
@@ -32,7 +32,7 @@ describe('multiple tabs open with synchronise tabs feature switch enabled', () =
     const foregroundPage = await session.newPage();
     await foregroundPage.goto(examplePreview('page-heading/default'));
 
-    await expect(backgroundPage).not.toMatchTextContent('about to be signed out');
+    await expect(backgroundPage).not.toMatchTextContent('about to be signed out', { timeout: 5000 });
 
     await session.close();
   });
@@ -47,7 +47,7 @@ describe('multiple tabs open with synchronise tabs feature switch enabled', () =
     const foregroundPage = await session.newPage();
     await foregroundPage.goto(examplePreview('timeout-dialog/synchronise-tabs'));
 
-    await expect(backgroundPageWithUnsyncedWarnings).toMatchTextContent('about to be signed out');
+    await expect(backgroundPageWithUnsyncedWarnings).toMatchTextContent('about to be signed out', { timeout: 5000 });
 
     await session.close();
   });

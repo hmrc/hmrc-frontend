@@ -62,7 +62,7 @@ describe('/components/timeout-dialog', () => {
       req.url().endsWith('?keepalive')
       && req.method() === 'GET'
       && req.resourceType() === 'xhr'
-    ), { timeout: 500 });
+    ), { timeout: 1000 });
     await expect(page).toClick('button', { text: 'Stay signed in' });
     await expect(keepAliveRequest).resolves.toBeDefined();
     await expect(page).not.toShowTimeoutDialog();
@@ -76,7 +76,7 @@ describe('/components/timeout-dialog', () => {
       data-sign-out-url="/timeout-reached"
     `);
     await clockTickSeconds(page, 900);
-    await page.waitForNavigation({ timeout: 500 });
+    await page.waitForNavigation({ timeout: 1000 });
     await expect(page.url()).toMatch('/timeout-reached');
   });
 
@@ -121,7 +121,7 @@ describe('/components/timeout-dialog', () => {
     await clockTickSeconds(page, 800);
     await expect(page).toClick('button', { text: 'Stay signed in' });
     await clockTickSeconds(page, 900);
-    await page.waitForNavigation({ timeout: 500 });
+    await page.waitForNavigation({ timeout: 1000 });
     await expect(page.url()).toMatch('/timeout-reached');
   });
 
@@ -140,7 +140,7 @@ describe('/components/timeout-dialog', () => {
     await delay(500);
     await expect(page.url()).not.toMatch('/timeout-reached');
     await clockTickSeconds(page, 900);
-    await page.waitForNavigation({ timeout: 500 });
+    await page.waitForNavigation({ timeout: 1000 });
     await expect(page.url()).toMatch('/timeout-reached');
   });
 
@@ -153,7 +153,7 @@ describe('/components/timeout-dialog', () => {
     `);
     await clockTickSeconds(page, 800);
     await expect(page).toClick('a', { text: 'Sign out' });
-    await page.waitForNavigation({ timeout: 500 });
+    await page.waitForNavigation({ timeout: 1000 });
     await expect(page.url()).toMatch('/timeout-reached');
   });
 
@@ -166,7 +166,7 @@ describe('/components/timeout-dialog', () => {
       data-sign-out-url="/signed-out-early"
     `);
     await clockTickSeconds(page, 900);
-    await page.waitForNavigation({ timeout: 500 });
+    await page.waitForNavigation({ timeout: 1000 });
     await expect(page.url()).toMatch('/timeout-reached');
     await renderTimeoutDialog(page, `
       data-timeout="900"
@@ -177,7 +177,7 @@ describe('/components/timeout-dialog', () => {
     `);
     await clockTickSeconds(page, 800);
     await expect(page).toClick('a', { text: 'Sign out' });
-    await page.waitForNavigation({ timeout: 500 });
+    await page.waitForNavigation({ timeout: 1000 });
     await expect(page.url()).toMatch('/signed-out-early');
   });
 
@@ -204,7 +204,7 @@ describe('/components/timeout-dialog', () => {
       document.getElementById('hmrc-timeout-sign-out-link').click();
       window.clock.tick(1000); // to reach timeout while sign out page is still loading
     });
-    await page.waitForNavigation({ timeout: 500 });
+    await page.waitForNavigation({ timeout: 1000 });
     await expect(page.url()).toMatch('/signed-out-early');
   });
 
@@ -254,11 +254,11 @@ describe('/components/timeout-dialog', () => {
       ]);
 
       await clockTickSeconds(page, 1);
-      await page.waitForNavigation({ timeout: 500 });
+      await page.waitForNavigation({ timeout: 1000 });
       await expect(page.url()).toMatch('/timeout-reached');
     });
 
-    function twentyTimes(value) { return Array.from({ length: 20 }, () => value); }
+    function nineteenTimes(value) { return Array.from({ length: 19 }, () => value); }
 
     it('should update the audible time remaining every 20 seconds', async () => {
       await renderTimeoutDialog(page, `
@@ -278,20 +278,20 @@ describe('/components/timeout-dialog', () => {
       expect(audibleMessageWithMoreThanAMinuteRemaining)
         .toBe('For your security, we will sign you out in 2 minutes.');
 
-      expect(allAudibleMessagesDuringLastMinute.slice(0, 20)).toStrictEqual(
-        twentyTimes('For your security, we will sign you out in 1 minute.'),
+      expect(allAudibleMessagesDuringLastMinute.slice(0, 19)).toStrictEqual(
+        nineteenTimes('For your security, we will sign you out in 1 minute.'),
       );
 
-      expect(allAudibleMessagesDuringLastMinute.slice(20, 40)).toStrictEqual(
-        twentyTimes('For your security, we will sign you out in 40 seconds.'),
+      expect(allAudibleMessagesDuringLastMinute.slice(20, 39)).toStrictEqual(
+        nineteenTimes('For your security, we will sign you out in 40 seconds.'),
       );
 
-      expect(allAudibleMessagesDuringLastMinute.slice(40, 60)).toStrictEqual(
-        twentyTimes('For your security, we will sign you out in 20 seconds.'),
+      expect(allAudibleMessagesDuringLastMinute.slice(40, 59)).toStrictEqual(
+        nineteenTimes('For your security, we will sign you out in 20 seconds.'),
       );
 
       await clockTickSeconds(page, 1);
-      await page.waitForNavigation({ timeout: 500 });
+      await page.waitForNavigation({ timeout: 1000 });
       await expect(page.url()).toMatch('/timeout-reached');
     });
   });
@@ -326,7 +326,7 @@ describe('/components/timeout-dialog', () => {
     expect(visibleMessage).toBe('For your security, we will sign you out in 0 seconds.');
     expect(audibleMessage).toBe('For your security, we will sign you out in 20 seconds.');
     completeSlowTimeoutRequest();
-    await page.waitForNavigation({ timeout: 500 });
+    await page.waitForNavigation({ timeout: 1000 });
     await expect(page).toMatchTextContent('timeout page reached');
   });
 

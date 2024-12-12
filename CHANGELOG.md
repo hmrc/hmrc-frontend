@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.43.0] - 2024-12-12
+
+### Changed
+
+- Changes to `timeout-dialog` tests to reduce discrepancies between hardware when timing out actions
+
 ## [6.42.0] - 2024-11-28
 
 ### Changed
