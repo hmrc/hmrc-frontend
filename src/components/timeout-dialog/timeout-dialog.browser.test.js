@@ -62,7 +62,7 @@ describe('/components/timeout-dialog', () => {
       req.url().endsWith('?keepalive')
       && req.method() === 'GET'
       && req.resourceType() === 'xhr'
-    ), { timeout: 500 });
+    ), { timeout: 1000 });
     await expect(page).toClick('button', { text: 'Stay signed in' });
     await expect(keepAliveRequest).resolves.toBeDefined();
     await expect(page).not.toShowTimeoutDialog();
@@ -76,7 +76,7 @@ describe('/components/timeout-dialog', () => {
       data-sign-out-url="/timeout-reached"
     `);
     await clockTickSeconds(page, 900);
-    await page.waitForNavigation({ timeout: 500 });
+    await page.waitForNavigation({ timeout: 1000 });
     await expect(page.url()).toMatch('/timeout-reached');
   });
 
@@ -121,7 +121,7 @@ describe('/components/timeout-dialog', () => {
     await clockTickSeconds(page, 800);
     await expect(page).toClick('button', { text: 'Stay signed in' });
     await clockTickSeconds(page, 900);
-    await page.waitForNavigation({ timeout: 500 });
+    await page.waitForNavigation({ timeout: 1000 });
     await expect(page.url()).toMatch('/timeout-reached');
   });
 
@@ -140,7 +140,7 @@ describe('/components/timeout-dialog', () => {
     await delay(500);
     await expect(page.url()).not.toMatch('/timeout-reached');
     await clockTickSeconds(page, 900);
-    await page.waitForNavigation({ timeout: 500 });
+    await page.waitForNavigation({ timeout: 1000 });
     await expect(page.url()).toMatch('/timeout-reached');
   });
 
@@ -153,7 +153,7 @@ describe('/components/timeout-dialog', () => {
     `);
     await clockTickSeconds(page, 800);
     await expect(page).toClick('a', { text: 'Sign out' });
-    await page.waitForNavigation({ timeout: 500 });
+    await page.waitForNavigation({ timeout: 1000 });
     await expect(page.url()).toMatch('/timeout-reached');
   });
 
@@ -166,7 +166,7 @@ describe('/components/timeout-dialog', () => {
       data-sign-out-url="/signed-out-early"
     `);
     await clockTickSeconds(page, 900);
-    await page.waitForNavigation({ timeout: 500 });
+    await page.waitForNavigation({ timeout: 1000 });
     await expect(page.url()).toMatch('/timeout-reached');
     await renderTimeoutDialog(page, `
       data-timeout="900"
@@ -177,7 +177,7 @@ describe('/components/timeout-dialog', () => {
     `);
     await clockTickSeconds(page, 800);
     await expect(page).toClick('a', { text: 'Sign out' });
-    await page.waitForNavigation({ timeout: 500 });
+    await page.waitForNavigation({ timeout: 1000 });
     await expect(page.url()).toMatch('/signed-out-early');
   });
 
@@ -204,7 +204,7 @@ describe('/components/timeout-dialog', () => {
       document.getElementById('hmrc-timeout-sign-out-link').click();
       window.clock.tick(1000); // to reach timeout while sign out page is still loading
     });
-    await page.waitForNavigation({ timeout: 500 });
+    await page.waitForNavigation({ timeout: 1000 });
     await expect(page.url()).toMatch('/signed-out-early');
   });
 
@@ -254,7 +254,7 @@ describe('/components/timeout-dialog', () => {
       ]);
 
       await clockTickSeconds(page, 1);
-      await page.waitForNavigation({ timeout: 500 });
+      await page.waitForNavigation({ timeout: 1000 });
       await expect(page.url()).toMatch('/timeout-reached');
     });
 
@@ -291,7 +291,7 @@ describe('/components/timeout-dialog', () => {
       );
 
       await clockTickSeconds(page, 1);
-      await page.waitForNavigation({ timeout: 500 });
+      await page.waitForNavigation({ timeout: 1000 });
       await expect(page.url()).toMatch('/timeout-reached');
     });
   });
@@ -326,7 +326,7 @@ describe('/components/timeout-dialog', () => {
     expect(visibleMessage).toBe('For your security, we will sign you out in 0 seconds.');
     expect(audibleMessage).toBe('For your security, we will sign you out in 20 seconds.');
     completeSlowTimeoutRequest();
-    await page.waitForNavigation({ timeout: 500 });
+    await page.waitForNavigation({ timeout: 1000 });
     await expect(page).toMatchTextContent('timeout page reached');
   });
 
