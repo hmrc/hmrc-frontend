@@ -90,7 +90,7 @@ describe('/components/timeout-dialog', () => {
     await clockTickSeconds(page, 899);
     await expect(page).toClick('button', { text: 'Stay signed in' });
     await clockTickSeconds(page, 1);
-    await delay(500);
+    await delay(1000);
     await expect(page.url()).not.toMatch('/timeout-reached');
     await expect(page).not.toShowTimeoutDialog();
   });
@@ -137,7 +137,7 @@ describe('/components/timeout-dialog', () => {
     await clockTickSeconds(page, 800);
     await expect(page).toClick('button', { text: 'Stay signed in' });
     await clockTickSeconds(page, 100);
-    await delay(500);
+    await delay(1000);
     await expect(page.url()).not.toMatch('/timeout-reached');
     await clockTickSeconds(page, 900);
     await page.waitForNavigation({ timeout: 1000 });
