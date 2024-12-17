@@ -63,6 +63,7 @@ const dev = series(buildDist, parallel(startNodemon, 'watch'));
 // FIXME: fix named tasks above to export rather than using gulp.task, to avoid globally registering
 // tasks unnecessarily
 // See: https://gulpjs.com/docs/en/getting-started/creating-tasks
+// Test
 module.exports = {
   buildPackage,
   buildDist,
