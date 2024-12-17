@@ -71,27 +71,6 @@ describe('/components/back-link-helper', () => {
       expect(mockWindow.history.back).toHaveBeenCalled();
     });
 
-    it('adds .hmrc-hidden-backlink class to backlink when document referer is empty', () => {
-      const sut = new BackLinkHelper(mockAnchorTag, mockWindow, { referrer: '' });
-      sut.init();
-
-      expect(mockAnchorTag.classList.add.mock.calls[0][0]).toBe('hmrc-hidden-backlink');
-    });
-
-    it('adds .hmrc-hidden-backlink class to backlink when document referer is null', () => {
-      const sut = new BackLinkHelper(mockAnchorTag, mockWindow, { referrer: null });
-      sut.init();
-
-      expect(mockAnchorTag.classList.add.mock.calls[0][0]).toBe('hmrc-hidden-backlink');
-    });
-
-    it('adds .hmrc-hidden-backlink class to backlink if document referer is on a different domain', () => {
-      const sut = new BackLinkHelper(mockAnchorTag, mockWindow, { referrer: 'https://some.other.site/some/referrer' });
-      sut.init();
-
-      expect(mockAnchorTag.classList.add.mock.calls[0][0]).toBe('hmrc-hidden-backlink');
-    });
-
     it('does not throw if window.history.back() is not implemented', () => {
       const ancientBrowser = { history: {}, location: { host: 'https://tax.service.gov.uk' } };
       const sut = new BackLinkHelper(mockAnchorTag, ancientBrowser, mockDocument);
