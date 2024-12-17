@@ -3,7 +3,7 @@ import { examplePreview } from '../../../lib/url-helpers';
 describe('/components/account-menu', () => {
   const defaultAccountMenu = examplePreview('account-menu/default');
 
-  async function displayStyle(selector) {
+  function displayStyle(selector) {
     return page.$eval(selector, (el) => window.getComputedStyle(el).display);
   }
 
