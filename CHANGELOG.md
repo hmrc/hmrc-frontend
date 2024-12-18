@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.46.0] - 2024-12-17
+
+### Changed
+
+- Removed backlink security checks which were causing user experience issues
+- Created an ADR to confirm
+
 ## [6.45.0] - 2024-12-17
 
 ### Changed
