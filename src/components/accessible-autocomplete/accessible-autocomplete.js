@@ -17,6 +17,7 @@ AccessibleAutoComplete.prototype.init = function init() {
       autoselect,
       defaultValue,
       minLength,
+      confirmOnBlur: true,
     };
 
     const language = this.$module.getAttribute('data-language') || 'en';
