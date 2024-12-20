@@ -45,7 +45,7 @@ async function interceptNextFormPost(page) {
 }
 
 describe('Patched accessible autocomplete', () => {
-  it.failing('should announce the hint and error message linked to the underlying select', async () => {
+  it('should announce the hint and error message linked to the underlying select', async () => {
     await render(page, withGovukSelect({
       id: 'location',
       name: 'location',
@@ -78,7 +78,7 @@ describe('Patched accessible autocomplete', () => {
     expect(ariaDescribedBy).toBe('location-hint location-error location__assistiveHint');
   });
 
-  it.failing('should inherit the error state of the underlying select', async () => {
+  it('should inherit the error state of the underlying select', async () => {
     await render(page, withGovukSelect({
       id: 'location',
       name: 'location',
@@ -111,7 +111,7 @@ describe('Patched accessible autocomplete', () => {
     expect(borderColor).toBe('rgb(212, 53, 28)');
   });
 
-  it.failing('should not retain the previous selection if an invalid option is entered', async () => {
+  it('should not retain the previous selection if an invalid option is entered', async () => {
     await render(page, withGovukSelect({
       id: 'location',
       name: 'location',
@@ -149,7 +149,7 @@ describe('Patched accessible autocomplete', () => {
     expect(await page.$eval('select', (select) => select.value)).toBe('');
   });
 
-  it.failing('should select any option with exactly matching text on blur, even if it was not chosen from the suggestions', async () => {
+  it('should select any option with exactly matching text on blur, even if it was not chosen from the suggestions', async () => {
     await render(page, withGovukSelect({
       id: 'location',
       name: 'location',

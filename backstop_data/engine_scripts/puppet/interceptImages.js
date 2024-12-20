@@ -1,4 +1,4 @@
-/**
+  /**
  * INTERCEPT IMAGES
  * Listen to all requests. If a request matches IMAGE_URL_RE
  * then stub the image with data from IMAGE_STUB_URL

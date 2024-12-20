@@ -6,20 +6,34 @@ function AccessibleAutoComplete($module, window, document) {
 
 AccessibleAutoComplete.prototype.init = function init() {
   if (this.$module) {
-    const showAllValues = (this.$module.getAttribute('data-show-all-values') === 'true');
-    const autoselect = (this.$module.getAttribute('data-auto-select') === 'true');
-    const defaultValue = this.$module.getAttribute('data-default-value');
-    const minLength = this.$module.getAttribute('data-min-length');
+    const selectElement = this.$module;
+    const selectOptions = Array.from(selectElement.options);
+    const autocompleteId = selectElement.id;
+    const showAllValues = (selectElement.getAttribute('data-show-all-values') === 'true');
+    const autoselect = (selectElement.getAttribute('data-auto-select') === 'true');
+    const defaultValue = selectElement.getAttribute('data-default-value');
+    const minLength = selectElement.getAttribute('data-min-length');
 
     const configurationOptions = {
-      selectElement: this.$module,
+      selectElement,
       showAllValues,
       autoselect,
       defaultValue,
       minLength,
+      onConfirm: (chosenOption) => {
+        selectElement.value = '';
+        const chosenOptionOrCurrentValue = (typeof chosenOption !== 'undefined')
+          ? chosenOption
+          : document.getElementById(autocompleteId)?.value;
+        const selectedOption = [].filter.call(
+          selectOptions,
+          (option) => (option.textContent || option.innerText) === chosenOptionOrCurrentValue,
+        )[0];
+        if (selectedOption) selectedOption.selected = true;
+      },
     };
 
-    const language = this.$module.getAttribute('data-language') || 'en';
+    const language = selectElement.getAttribute('data-language') || 'en';
 
     if (language === 'cy') {
       configurationOptions.tAssistiveHint = () => 'Pan fydd canlyniadau awtogwblhau ar gael, defnyddiwch y saethau i fyny ac i lawr i’w hadolygu a phwyswch y fysell ’enter’ i’w dewis.'
@@ -35,6 +49,30 @@ AccessibleAutoComplete.prototype.init = function init() {
     }
 
     window.HMRCAccessibleAutocomplete.enhanceSelectElement(configurationOptions);
+
+    const selectElementAriaDescribedBy = selectElement.getAttribute('aria-describedby') || '';
+    const autocompleteElement = document.getElementById(autocompleteId);
+    const autocompleteElementAriaDescribedBy = (autocompleteElement && autocompleteElement.getAttribute('aria-describedby')) || '';
+    const autocompleteElementMissingAriaDescribedAttrs = (
+      autocompleteElement
+      && autocompleteElement.tagName !== 'select'
+      && !autocompleteElementAriaDescribedBy.includes(selectElementAriaDescribedBy)
+    );
+    if (autocompleteElementMissingAriaDescribedAttrs) {
+      // if there is a hint and/or error then the autocomplete element
+      // needs to be aria-describedby these, which it isn't be default
+      // we need to check if it hasn't already been done to avoid
+      autocompleteElement.setAttribute(
+        'aria-describedby',
+        `${selectElementAriaDescribedBy} ${autocompleteElementAriaDescribedBy}`,
+      );
+      // and in case page is still using adam's patch, this should stop
+      // the select elements aria described by being added to the
+      // autocomplete element twice when that runs (though unsure if a
+      // screen reader would actually announce the elements twice if same
+      // element was listed twice in the aria-describedby attribute)
+      selectElement.setAttribute('aria-describedby', '');
+    }
   }
 };
 
