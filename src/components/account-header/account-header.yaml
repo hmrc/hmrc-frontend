@@ -161,6 +161,7 @@ examples:
       account-menu-dropdown-open:
         beforeTakingScreenshot:
           - click: ".hmrc-account-menu__link[aria-expanded='false']"
+          - waitFor: ".main-nav-is-open"
       account-menu-dropdown-open-messages-hovered:
         beforeTakingScreenshot:
           - click: ".hmrc-account-menu__link[aria-expanded='false']"
