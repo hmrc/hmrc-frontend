@@ -89,7 +89,8 @@
     "node-sass": "^9.0.0",
     "nodemon": "^2.0.22",
     "nunjucks": "^3.2.4",
-    "playwright-chromium": "^1.47.2",
+    "playwright-chromium": "^1.49.1",
+    "playwright-core": "^1.49.1",
     "postcss": "^8.0.0",
     "postcss-pseudo-classes": "^0.2.0",
     "postcss-scss": "^2.0.0",
@@ -115,5 +116,8 @@
     "ie 8",
     "ie 9",
     "iOS 9"
-  ]
+  ],
+  "overrides": {
+    "playwright": "$playwright-core"
+  }
 }
