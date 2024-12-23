@@ -15,7 +15,7 @@
     "build": "npm run build:dist && npm run build:package",
     "lint": "stylelint 'src/**/*.scss' && eslint .",
     "lint:fix": "stylelint 'src/**/*.scss' --fix && eslint --fix .",
-    "test": "npm run build:dist && jest src && npm run lint",
+    "test": "ls /home/jenkins/.cache/ms-playwright/ && npm run build:dist && jest src && npm run lint",
     "test:update-snapshots": "jest src -u",
     "test:backstop": "gulp backstopTest",
     "test:backstop-approve": "gulp backstop:approve",
