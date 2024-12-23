@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.48.0] - 2024-12-18
+
+### Changed
+
+- updated backstopjs version and switched it to use playwright
+
 ## [6.47.0] - 2024-12-18
 
 ### Changed
