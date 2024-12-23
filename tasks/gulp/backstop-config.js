@@ -78,7 +78,7 @@ module.exports = ({ host, port, components }) => ({
     ci_report: 'backstop_data/ci_report',
   },
   report: ['browser'],
-  engine: 'puppeteer',
+  engine: 'playwright',
   engineOptions: {
     args: ['--no-sandbox'],
   },
