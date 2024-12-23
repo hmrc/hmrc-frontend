@@ -252,9 +252,10 @@ describe('/components/timeout-dialog', () => {
         '2 seconds',
         '1 second',
       ]);
-
-      await clockTickSeconds(page, 1);
-      await page.waitForNavigation({ timeout: 1000 });
+      // sometimes we have already reached timeout page
+      // so we can discard exceptions after this point
+      await clockTickSeconds(page, 1).catch(() => {});
+      await page.waitForNavigation({ timeout: 1000 }).catch(() => {});
       await expect(page.url()).toMatch('/timeout-reached');
     });
 
