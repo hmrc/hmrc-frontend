@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.49.0] - 2025-01-06
+
+### Changed
+
+- patch some problems with accessible-autocomplete, removes need for users to separately load polyfill from adam liptrot
+
 ## [6.48.0] - 2024-12-18
 
 ### Changed

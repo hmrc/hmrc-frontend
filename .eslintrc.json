@@ -27,6 +27,9 @@
   "rules": {
     "import/prefer-default-export": "off"
   },
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
   "overrides": [
     {
       "files": [

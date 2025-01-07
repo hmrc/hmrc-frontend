@@ -11,3 +11,17 @@ $govuk-include-default-font-face: false;
 .autocomplete__hint {
   @include govuk-font($size: 19);
 }
+
+// the following makes the autocomplete inherit error styles
+// it won't work in IE11 but selects won't be enhanced into autocompletes in IE11
+
+.govuk-form-group--error div:has(+ .govuk-select--error[data-module='hmrc-accessible-autocomplete']) > .autocomplete__wrapper .autocomplete__input {
+  border-color: #d4351c;
+}
+
+// the following makes the dropdown arrow appear when showing all values
+
+.autocomplete__dropdown-arrow-down {
+  z-index: 0;
+  pointer-events: none;
+}
