@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.50.0] - 2025-01-08
+
+### Changed
+
+- Styled `timeout-dialog` call to action as button and other visual improvement (with thanks to [@gunjam](https://github.com/gunjam) for this contribution)
+- Added correct styling to links on app index page  (with thanks to [@gunjam](https://github.com/gunjam) for this contribution)
+
 ## [6.49.0] - 2025-01-06
 
 ### Changed
