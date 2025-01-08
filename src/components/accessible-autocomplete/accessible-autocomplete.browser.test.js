@@ -78,10 +78,9 @@ describe('Patched accessible autocomplete', () => {
     expect(ariaDescribedBy).toBe('location-hint location-error location__assistiveHint');
   });
 
-  // This wasn't something covered by the original polyfill that adam
-  // created, we're not sure how this should actually behave, so we're
-  // going to check with the DIAS team before we implement a fix and for
-  // now just document that this happens.
+  // This wasn't something covered by the original polyfill we based our
+  // patches on, so we've checked this should be the behaviour with
+  // HMRC's Digital Inclusion and Accessibility Standards team (DIAS).
   it('should still announce the hint and error message linked to the underlying select after interaction with field', async () => {
     await render(page, withGovukSelect({
       id: 'location',
