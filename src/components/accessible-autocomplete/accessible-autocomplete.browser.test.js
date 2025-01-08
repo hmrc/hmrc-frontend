@@ -82,7 +82,7 @@ describe('Patched accessible autocomplete', () => {
   // created, we're not sure how this should actually behave, so we're
   // going to check with the DIAS team before we implement a fix and for
   // now just document that this happens.
-  it.failing('should announce still announce the hint and error message linked to the underlying select after interaction with field', async () => {
+  it.failing('should still announce the hint and error message linked to the underlying select after interaction with field', async () => {
     await render(page, withGovukSelect({
       id: 'location',
       name: 'location',
