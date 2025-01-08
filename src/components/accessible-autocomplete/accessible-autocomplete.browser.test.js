@@ -115,6 +115,9 @@ describe('Patched accessible autocomplete', () => {
 
     expect(tagName).not.toBe('select'); // or select element was not enhanced to be an autocomplete component
     expect(ariaDescribedBy).toBe('location-hint location-error location__assistiveHint');
+    // The value will currently be null, because the autocomplete removes the
+    // link to location__assistiveHint to reduce screen reader verbosity.
+    // Where the assistiveHint explains how you can interact with the input.
   });
 
   it('should inherit the error state of the underlying select', async () => {
