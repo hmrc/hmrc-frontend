@@ -78,6 +78,45 @@ describe('Patched accessible autocomplete', () => {
     expect(ariaDescribedBy).toBe('location-hint location-error location__assistiveHint');
   });
 
+  // This wasn't something covered by the original polyfill that adam
+  // created, we're not sure how this should actually behave, so we're
+  // going to check with the DIAS team before we implement a fix and for
+  // now just document that this happens.
+  it.failing('should announce still announce the hint and error message linked to the underlying select after interaction with field', async () => {
+    await render(page, withGovukSelect({
+      id: 'location',
+      name: 'location',
+      attributes: {
+        'data-module': 'hmrc-accessible-autocomplete',
+      },
+      label: {
+        text: 'Choose location',
+      },
+      errorMessage: {
+        text: 'You must choose a location',
+      },
+      hint: {
+        text: 'This can be different to where you went before',
+      },
+      items: [
+        {
+          value: ' ',
+          text: 'Choose location',
+        },
+        // omitted other options for brevity of test
+      ],
+    }));
+
+    const element = await page.$('#location');
+    const tagName = await element.evaluate((el) => el.tagName.toLowerCase());
+    await expect(page).toFill('#location', 'London');
+    await page.$eval('#location', (input) => input.blur());
+    const ariaDescribedBy = await element.evaluate((el) => el.getAttribute('aria-describedby'));
+
+    expect(tagName).not.toBe('select'); // or select element was not enhanced to be an autocomplete component
+    expect(ariaDescribedBy).toBe('location-hint location-error location__assistiveHint');
+  });
+
   it('should inherit the error state of the underlying select', async () => {
     await render(page, withGovukSelect({
       id: 'location',
