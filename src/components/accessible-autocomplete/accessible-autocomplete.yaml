@@ -129,10 +129,10 @@ examples:
         text: Select country
       hint:
         text: "Please select a country"
-      errorMessage: "An error occured"
+      errorMessage: "An error occurred"
       id: location-picker
       select: |
-        <select id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
+        <select class="govuk-select govuk-select--error" aria-describedby="location-picker-error location-picker-hint" id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
           <option value="fr">France</option>
           <option value="de">Germany</option>
           <option value="gb">United Kingdom</option>

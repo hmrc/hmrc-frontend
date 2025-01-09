@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.51.0] - 2025-01-09
+
+### Changed
+
+- accessibility related fix to maintain aria-describedby links to error and hints on autocompletes after interaction
+
 ## [6.50.0] - 2025-01-08
 
 ### Changed

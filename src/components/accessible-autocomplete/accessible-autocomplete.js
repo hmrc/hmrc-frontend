@@ -52,7 +52,7 @@ AccessibleAutoComplete.prototype.init = function init() {
 
     const selectElementAriaDescribedBy = selectElement.getAttribute('aria-describedby') || '';
     const autocompleteElement = document.getElementById(autocompleteId);
-    const autocompleteElementAriaDescribedBy = (autocompleteElement && autocompleteElement.getAttribute('aria-describedby')) || '';
+    const autocompleteElementAriaDescribedBy = (autocompleteElement?.getAttribute('aria-describedby')) || '';
     const autocompleteElementMissingAriaDescribedAttrs = (
       autocompleteElement
       && autocompleteElement.tagName !== 'select'
@@ -60,14 +60,34 @@ AccessibleAutoComplete.prototype.init = function init() {
     );
     if (autocompleteElementMissingAriaDescribedAttrs) {
       // if there is a hint and/or error then the autocomplete element
-      // needs to be aria-describedby these, which it isn't be default
-      // we need to check if it hasn't already been done to avoid
+      // needs to be aria-describedby these, which it isn't be default.
+      // we need to check if it hasn't already been done to avoid adding
+      // them twice if someone has added a separate patch.
       autocompleteElement.setAttribute(
         'aria-describedby',
         `${selectElementAriaDescribedBy} ${autocompleteElementAriaDescribedBy}`,
       );
+
+      if (window.MutationObserver != null) {
+        // when the input is empty, the autocomplete adds a link to a hint
+        // that explains how to interact with the input via aria-describedby
+        // and when it's not empty it removes it. These changes cause the
+        // removal of the links to the error and hint, so we need to add
+        // those links back, as well as maintain the link to the hint if it
+        // was present because the input is empty.
+        new MutationObserver(() => {
+          const currentAriaDescribedBy = autocompleteElement.getAttribute('aria-describedby') || '';
+          if (!currentAriaDescribedBy?.includes(selectElementAriaDescribedBy)) {
+            autocompleteElement.setAttribute('aria-describedby', `${selectElementAriaDescribedBy} ${currentAriaDescribedBy}`);
+          }
+        }).observe(autocompleteElement, {
+          attributes: true,
+          attributeFilter: ['aria-describedby'],
+        });
+      }
+
       // and in case page is still using adam's patch, this should stop
-      // the select elements aria described by being added to the
+      // the select elements aria-describedby from being added to the
       // autocomplete element twice when that runs (though unsure if a
       // screen reader would actually announce the elements twice if same
       // element was listed twice in the aria-describedby attribute)
