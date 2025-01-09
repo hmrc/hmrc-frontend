@@ -45,7 +45,13 @@ async function interceptNextFormPost(page) {
 }
 
 describe('Patched accessible autocomplete', () => {
-  it('should announce the hint and error message linked to the underlying select', async () => {
+  /**
+   * We don't need to explicitly check there are no javascript errors
+   * in the browser because we use jestPuppeteer to exitOnPageError
+   * which does it for us.
+   */
+
+  it('should announce the hints and error message linked to the underlying select', async () => {
     await render(page, withGovukSelect({
       id: 'location',
       name: 'location',
@@ -71,17 +77,15 @@ describe('Patched accessible autocomplete', () => {
     }));
 
     const element = await page.$('#location');
-    const tagName = await element.evaluate((el) => el.tagName.toLowerCase());
+    await expect(element).toBeAccessibleAutocomplete();
     const ariaDescribedBy = await element.evaluate((el) => el.getAttribute('aria-describedby'));
-
-    expect(tagName).not.toBe('select'); // or select element was not enhanced to be an autocomplete component
     expect(ariaDescribedBy).toBe('location-hint location-error location__assistiveHint');
   });
 
   // This wasn't something covered by the original polyfill we based our
   // patches on, so we've checked this should be the behaviour with
   // HMRC's Digital Inclusion and Accessibility Standards team (DIAS).
-  it('should still announce the hint and error message linked to the underlying select after interaction with field', async () => {
+  it('should still announce the hints and error message linked to the underlying select after interaction with field', async () => {
     await render(page, withGovukSelect({
       id: 'location',
       name: 'location',
@@ -109,15 +113,45 @@ describe('Patched accessible autocomplete', () => {
     const currentAriaDescribedByFrom = (element) => element.evaluate((el) => el.getAttribute('aria-describedby'));
 
     const element = await page.$('#location');
-    const tagName = await element.evaluate((el) => el.tagName.toLowerCase());
+    await expect(element).toBeAccessibleAutocomplete();
     await expect(page).toFill('#location', 'London');
-    await page.$eval('#location', (input) => input.blur());
-
-    expect(tagName).not.toBe('select'); // or select element was not enhanced to be an autocomplete component
+    await element.evaluate((input) => input.blur());
     expect(await currentAriaDescribedByFrom(element)).toBe('location-hint location-error ');
     await expect(page).toFill('#location', '');
     // following shows that hint is retained if input is empty, and updates immediately
     expect(await currentAriaDescribedByFrom(element)).toBe('location-hint location-error location__assistiveHint');
+  });
+
+  it('should still announce the assistiveHint correctly if there is no hint or error on the select', async () => {
+    await render(page, withGovukSelect({
+      id: 'location',
+      name: 'location',
+      attributes: {
+        'data-module': 'hmrc-accessible-autocomplete',
+      },
+      label: {
+        text: 'Choose location',
+      },
+      items: [
+        {
+          value: ' ',
+          text: 'Choose location',
+        },
+        // omitted other options for brevity of test
+      ],
+    }));
+
+    const currentAriaDescribedByFrom = (element) => element.evaluate((el) => el.getAttribute('aria-describedby'));
+
+    const element = await page.$('#location');
+    await expect(element).toBeAccessibleAutocomplete();
+    expect(await currentAriaDescribedByFrom(element)).toBe('location__assistiveHint');
+    await expect(page).toFill('#location', 'London');
+    await element.evaluate((input) => input.blur());
+    expect(await currentAriaDescribedByFrom(element)).toBe(null);
+    await expect(page).toFill('#location', '');
+    // following shows that hint is retained if input is empty, and updates immediately
+    expect(await currentAriaDescribedByFrom(element)).toBe('location__assistiveHint');
   });
 
   it('should inherit the error state of the underlying select', async () => {
@@ -146,10 +180,8 @@ describe('Patched accessible autocomplete', () => {
     }));
 
     const element = await page.$('#location');
-    const tagName = await element.evaluate((el) => el.tagName.toLowerCase());
+    await expect(element).toBeAccessibleAutocomplete();
     const borderColor = await element.evaluate((el) => getComputedStyle(el).getPropertyValue('border-color'));
-
-    expect(tagName).not.toBe('select'); // or select element was not enhanced to be an autocomplete component
     expect(borderColor).toBe('rgb(212, 53, 28)');
   });
 
@@ -183,6 +215,8 @@ describe('Patched accessible autocomplete', () => {
       ],
     }));
 
+    const element = await page.$('#location');
+    await expect(element).toBeAccessibleAutocomplete();
     await expect(page).toFill('#location', 'Lon');
     await acceptFirstSuggestionFor('#location');
     expect(await page.$eval('select', (select) => select.value)).toBe('london');
@@ -221,11 +255,13 @@ describe('Patched accessible autocomplete', () => {
       ],
     }));
 
+    const element = await page.$('#location');
+    await expect(element).toBeAccessibleAutocomplete();
     await expect(page).toFill('#location', 'Lon');
     await acceptFirstSuggestionFor('#location');
     expect(await page.$eval('select', (select) => select.value)).toBe('london');
     await expect(page).toFill('#location', 'South West');
-    await page.$eval('#location', (input) => input.blur());
+    await element.evaluate((input) => input.blur());
     expect(await page.$eval('select', (select) => select.value)).toBe('southwest');
   });
 
@@ -260,6 +296,8 @@ describe('Patched accessible autocomplete', () => {
       ],
     }));
 
+    const element = await page.$('#location');
+    await expect(element).toBeAccessibleAutocomplete();
     await expect(page).toFill('#location', 'Lon');
     await acceptFirstSuggestionFor('#location');
     expect(await page.$eval('select', (select) => select.value)).toBe('london');
@@ -300,10 +338,8 @@ describe('Patched accessible autocomplete', () => {
       await delay(100); // because it takes ~50ms for adam's polyfill to apply
 
       const element = await page.$('#location');
-      const tagName = await element.evaluate((el) => el.tagName.toLowerCase());
+      await expect(element).toBeAccessibleAutocomplete();
       const ariaDescribedBy = await element.evaluate((el) => el.getAttribute('aria-describedby'));
-
-      expect(tagName).not.toBe('select'); // or select element was not enhanced to be an autocomplete component
       expect(ariaDescribedBy).toBe('location-hint location-error location__assistiveHint');
     });
 
@@ -338,6 +374,8 @@ describe('Patched accessible autocomplete', () => {
       await page.evaluate(adamsPolyfill);
       await delay(100); // because it takes ~50ms for adam's polyfill to apply
 
+      const element = await page.$('#location');
+      await expect(element).toBeAccessibleAutocomplete();
       await expect(page).toFill('#location', 'Lon');
       await acceptFirstSuggestionFor('#location');
       const { postedFormData } = await interceptNextFormPost(page);
@@ -376,6 +414,8 @@ describe('Patched accessible autocomplete', () => {
       await page.evaluate(adamsPolyfill);
       await delay(100); // because it takes ~50ms for adam's polyfill to apply
 
+      const element = await page.$('#location');
+      await expect(element).toBeAccessibleAutocomplete();
       await expect(page).toFill('#location', 'Lon');
       await acceptFirstSuggestionFor('#location');
       const { postedFormData } = await interceptNextFormPost(page);
