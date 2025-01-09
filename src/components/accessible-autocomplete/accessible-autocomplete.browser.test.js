@@ -82,7 +82,7 @@ describe('Patched accessible autocomplete', () => {
   // created, we're not sure how this should actually behave, so we're
   // going to check with the DIAS team before we implement a fix and for
   // now just document that this happens.
-  it.failing('should still announce the hint and error message linked to the underlying select after interaction with field', async () => {
+  it('should still announce the hint and error message linked to the underlying select after interaction with field', async () => {
     await render(page, withGovukSelect({
       id: 'location',
       name: 'location',
@@ -107,17 +107,18 @@ describe('Patched accessible autocomplete', () => {
       ],
     }));
 
+    const currentAriaDescribedByFrom = (element) => element.evaluate((el) => el.getAttribute('aria-describedby'));
+
     const element = await page.$('#location');
     const tagName = await element.evaluate((el) => el.tagName.toLowerCase());
     await expect(page).toFill('#location', 'London');
     await page.$eval('#location', (input) => input.blur());
-    const ariaDescribedBy = await element.evaluate((el) => el.getAttribute('aria-describedby'));
 
     expect(tagName).not.toBe('select'); // or select element was not enhanced to be an autocomplete component
-    expect(ariaDescribedBy).toBe('location-hint location-error location__assistiveHint');
-    // The value will currently be null, because the autocomplete removes the
-    // link to location__assistiveHint to reduce screen reader verbosity.
-    // Where the assistiveHint explains how you can interact with the input.
+    expect(await currentAriaDescribedByFrom(element)).toBe('location-hint location-error ');
+    await expect(page).toFill('#location', '');
+    // following shows that hint is retained if input is empty, and updates immediately
+    expect(await currentAriaDescribedByFrom(element)).toBe('location-hint location-error location__assistiveHint');
   });
 
   it('should inherit the error state of the underlying select', async () => {
