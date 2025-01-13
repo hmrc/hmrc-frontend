@@ -225,6 +225,90 @@ describe('Patched accessible autocomplete', () => {
     expect(await page.$eval('select', (select) => select.value)).toBe('');
   });
 
+  it('should post nothing if user input does not exactly match any option and form is immediately submitted', async () => {
+    await render(page, withGovukSelect({
+      id: 'location',
+      name: 'location',
+      attributes: {
+        'data-module': 'hmrc-accessible-autocomplete',
+        'data-auto-select': 'false',
+        // this is the default, but included to be explicit with test state
+        // auto select would mean that you don't have to enter exactly matching
+        // text to select on blur
+      },
+      label: {
+        text: 'Choose location',
+      },
+      items: [
+        {
+          value: ' ',
+          text: 'Choose location',
+        },
+        {
+          value: 'london',
+          text: 'London',
+        },
+        {
+          value: 'southwest',
+          text: 'South West',
+        },
+      ],
+    }));
+
+    const element = await page.$('#location');
+    await expect(element).toBeAccessibleAutocomplete();
+    await expect(page).toFill('#location', 'London');
+    await element.evaluate((input) => input.blur());
+    expect(await page.$eval('select', (select) => select.value)).toBe('london');
+    const { postedFormData } = await interceptNextFormPost(page);
+    await element.click();
+    await element.type('South');
+    await page.click('button[type="submit"]');
+    await expect(postedFormData).resolves.toBe(undefined);
+  });
+
+  it('should post matching value if user input exactly matches an option and form is immediately submitted', async () => {
+    await render(page, withGovukSelect({
+      id: 'location',
+      name: 'location',
+      attributes: {
+        'data-module': 'hmrc-accessible-autocomplete',
+        'data-auto-select': 'false',
+        // this is the default, but included to be explicit with test state
+        // auto select would mean that you don't have to enter exactly matching
+        // text to select on blur
+      },
+      label: {
+        text: 'Choose location',
+      },
+      items: [
+        {
+          value: ' ',
+          text: 'Choose location',
+        },
+        {
+          value: 'london',
+          text: 'London',
+        },
+        {
+          value: 'southwest',
+          text: 'South West',
+        },
+      ],
+    }));
+
+    const element = await page.$('#location');
+    await expect(element).toBeAccessibleAutocomplete();
+    await expect(page).toFill('#location', 'London');
+    await element.evaluate((input) => input.blur());
+    expect(await page.$eval('select', (select) => select.value)).toBe('london');
+    const { postedFormData } = await interceptNextFormPost(page);
+    await element.click();
+    await element.type('South West');
+    await page.click('button[type="submit"]');
+    await expect(postedFormData).resolves.toBe('location=southwest');
+  });
+
   it('should select any option with exactly matching text on blur, even if it was not chosen from the suggestions', async () => {
     await render(page, withGovukSelect({
       id: 'location',
