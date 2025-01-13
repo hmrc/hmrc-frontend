@@ -4,13 +4,7 @@ $hmrc-assets-path: $govuk-extensions-url-context + "/hmrc-frontend/hmrc/";
 
 $govuk-suppressed-warnings: (
   // following is inherited default value set by govuk-prototype-kit when loading plugin scss
-  legacy-colour-param,
-  // following is needed because we're not on the latest govuk-frontend version (so can't switch to using index), but can end up using it in prototypes
-  // TODO we should be able to remove once we update to govuk-frontend 5.4.0
-  import-using-all,
-  // following is needed because changing this will cause a visual difference to the pta account menu, so we need to check with them how to proceed
-  // https://github.com/alphagov/govuk-design-system/issues/2289
-  govuk-typography-scale-14
+  legacy-colour-param
 );
 
 @import "all";

@@ -3,6 +3,6 @@ $hmrc-assets-path: "";
 $govuk-assets-path: "govuk/";
 $govuk-new-link-styles: true;
 
-@import "../../govuk-frontend/dist/govuk/all";
+@import "../../govuk-frontend/dist/govuk/index";
 @import "components/all";
 @import "hmrc-frontend-print-overrides";
