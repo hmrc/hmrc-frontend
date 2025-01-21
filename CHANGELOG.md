@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.53.0] - 2025-01-21
+
+### Changed
+
+- The patched behaviour of the accessible autocomplete
+  - after discussion with the Digital Inclusion and Accessibility Standards (DIAS) team we've reverted the fix to
+    maintain aria-describedby links to error and hints on autocompletes after interaction.
+
 ## [6.52.0] - 2025-01-13
 
 ### Changed
