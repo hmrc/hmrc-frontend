@@ -83,9 +83,11 @@ describe('Patched accessible autocomplete', () => {
   });
 
   // This wasn't something covered by the original polyfill we based our
-  // patches on, so we've checked this should be the behaviour with
-  // HMRC's Digital Inclusion and Accessibility Standards team (DIAS).
-  it('should still announce the hints and error message linked to the underlying select after interaction with field', async () => {
+  // patches on, if we implement a fix naively then it causes the screen
+  // reader announcements to become too noisy, so after discussion with
+  // the digital inclusion and accessibility standards (DIAS) team we've
+  // chosen not to fix this at the moment.
+  it.failing('should still announce the hints and error message linked to the underlying select after interaction with field', async () => {
     await render(page, withGovukSelect({
       id: 'location',
       name: 'location',

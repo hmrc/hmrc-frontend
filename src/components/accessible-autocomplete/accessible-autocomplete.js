@@ -67,24 +67,14 @@ AccessibleAutoComplete.prototype.init = function init() {
         'aria-describedby',
         `${selectElementAriaDescribedBy} ${autocompleteElementAriaDescribedBy}`,
       );
-
-      if (window.MutationObserver != null) {
-        // when the input is empty, the autocomplete adds a link to a hint
-        // that explains how to interact with the input via aria-describedby
-        // and when it's not empty it removes it. These changes cause the
-        // removal of the links to the error and hint, so we need to add
-        // those links back, as well as maintain the link to the hint if it
-        // was present because the input is empty.
-        new MutationObserver(() => {
-          const currentAriaDescribedBy = autocompleteElement.getAttribute('aria-describedby') || '';
-          if (!currentAriaDescribedBy?.includes(selectElementAriaDescribedBy)) {
-            autocompleteElement.setAttribute('aria-describedby', `${selectElementAriaDescribedBy} ${currentAriaDescribedBy}`);
-          }
-        }).observe(autocompleteElement, {
-          attributes: true,
-          attributeFilter: ['aria-describedby'],
-        });
-      }
+      // IMPORTANT ACCESSIBILITY NOTE:
+      // on interaction, the accessible autocomplete will update the
+      // aria-describedby attribute, which will cause the links to hint
+      // and error to be removed. After talking with DIAS we've opted
+      // not to re-add the links at the moment, because when we do they
+      // are re-announced to users too much (after they select an option)
+      // we may investigate ways to add the links back after a delay to
+      // maintain them without reducing usability in the future.
 
       // and in case page is still using adam's patch, this should stop
       // the select elements aria-describedby from being added to the
