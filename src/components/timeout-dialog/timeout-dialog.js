@@ -146,7 +146,7 @@ function TimeoutDialog($module, $sessionActivityService) {
 
     if (settings.title) {
       const $tmp = utils.generateDomElementFromStringAndAppendText(
-        '<h1 id="hmrc-timeout-heading" class="govuk-heading-m push--top" aria-hidden="true">',
+        '<h1 id="hmrc-timeout-heading" class="govuk-heading-m push--top">',
         settings.title,
       );
       $element.appendChild($tmp);
@@ -156,7 +156,7 @@ function TimeoutDialog($module, $sessionActivityService) {
       '<span id="hmrc-timeout-countdown" class="hmrc-timeout-dialog__countdown">',
     );
 
-    const $audibleMessage = utils.generateDomElementFromString('<p id="hmrc-timeout-message" class="govuk-visually-hidden screenreader-content" aria-live="assertive">');
+    const $audibleMessage = utils.generateDomElementFromString('<p id="hmrc-timeout-message" class="govuk-visually-hidden screenreader-content">');
     const $visualMessge = utils.generateDomElementFromStringAndAppendText(
       '<p class="govuk-body hmrc-timeout-dialog__message" aria-hidden="true">',
       settings.message,
@@ -222,11 +222,9 @@ function TimeoutDialog($module, $sessionActivityService) {
 
     const getAudibleHumanText = (counter) => {
       const humanText = getHumanText(roundSecondsUp(counter));
-      let messageParts;
-      if (counter > 60) {
-        messageParts = [settings.title, '. ', settings.message, ' ', humanText, '.'];
-      } else {
-        messageParts = [settings.message, ' ', humanText, '.'];
+      const messageParts = [settings.message, ' ', humanText, '.'];
+      if (counter <= 60) {
+        $audibleMessage.setAttribute('aria-live', 'assertive');
       }
       if (settings.messageSuffix) {
         messageParts.push(' ');
