@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.54.0] - 2025-01-23
+
+### Changed
+
+- Fixed a bug with timeout dialogue whereby the title of the dialogue box wasn't being read on first playback on all screen readers.
+
 ## [6.53.0] - 2025-01-21
 
 ### Changed

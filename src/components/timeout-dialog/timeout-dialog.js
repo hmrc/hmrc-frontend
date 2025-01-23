@@ -146,7 +146,7 @@ function TimeoutDialog($module, $sessionActivityService) {
 
     if (settings.title) {
       const $tmp = utils.generateDomElementFromStringAndAppendText(
-        '<h1 id="hmrc-timeout-heading" class="govuk-heading-m push--top">',
+        '<h1 id="hmrc-timeout-heading" class="govuk-heading-m push--top" aria-hidden="true">',
         settings.title,
       );
       $element.appendChild($tmp);
@@ -222,7 +222,12 @@ function TimeoutDialog($module, $sessionActivityService) {
 
     const getAudibleHumanText = (counter) => {
       const humanText = getHumanText(roundSecondsUp(counter));
-      const messageParts = [settings.message, ' ', humanText, '.'];
+      let messageParts;
+      if (counter > 60) {
+        messageParts = [settings.title, '. ', settings.message, ' ', humanText, '.'];
+      } else {
+        messageParts = [settings.message, ' ', humanText, '.'];
+      }
       if (settings.messageSuffix) {
         messageParts.push(' ');
         messageParts.push(settings.messageSuffix);
