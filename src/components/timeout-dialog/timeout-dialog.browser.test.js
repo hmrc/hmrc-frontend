@@ -193,12 +193,13 @@ describe('/components/timeout-dialog', () => {
     `);
     await clockTickSeconds(page, 899);
     await page.setRequestInterception(true);
-    await page.once('request', (req) => {
-      setTimeout(() => req.respond({
+    page.once('request', async (req) => {
+      await delay(2000);
+      await req.respond({
         contentType: 'text/plain',
         body: 'simulate slow response to signing out',
-      }), 2000);
-      page.setRequestInterception(false);
+      });
+      await page.setRequestInterception(false);
     });
     await page.evaluate(() => {
       document.getElementById('hmrc-timeout-sign-out-link').click();
