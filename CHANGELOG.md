@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.54.0] - 2025-01-27
+
+### Changed
+
+- Added a PR template covering the required steps when contributing to the library via a PR
+
 ## [6.53.0] - 2025-01-21
 
 ### Changed
