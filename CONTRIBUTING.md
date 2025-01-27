@@ -273,5 +273,5 @@ Services on GOV.UK are for the benefit of all users. This means you must build a
 The maintainers will get a notification that your PR has been raised, however we are a small team and you might not get 
 an immediate response. If you haven't heard back within a few working days you can bump the thread with a 
 comment to get our attention in case the notification was missed. We might not be able to merge the change immediately, 
-epending on the size of the change, prior engagement with the team to agree and prepare for the work, other work the team 
+depending on the size of the change, prior engagement with the team to agree and prepare for the work, other work the team 
 has in progress, and external stakeholders we might need to check with.
