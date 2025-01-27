@@ -1,0 +1,29 @@
+params:
+- name: language
+  type: string
+  required: false
+  description: Either "en" for English or "cy" for Welsh
+- name: assetsPath
+  type: string
+  required: false
+  description: The public path for the assets folder. If not provided it defaults to /assets
+- name: useTudorCrown
+  type: boolean
+  required: false
+  description: A feature flag to use the new Tudor Crown logo. If unset, defaults to true
+previewLayout: full-width
+
+examples:
+- name: default
+  description: The standard banner
+  data:
+    language: en
+- name: welsh
+  description: The standard welsh banner
+  data:
+    language: cy
+- name: with-st-edwards-crown
+  description: The standard banner with the old HMRC Crest
+  data:
+    language: en
+    useTudorCrown: false

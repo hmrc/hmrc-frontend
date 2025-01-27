@@ -1,0 +1,32 @@
+.hmrc-banner {
+  position: relative;
+  padding: 10px 0 6px;
+}
+
+@media (forced-colors: active) {
+  .hmrc-organisation-logo {
+    svg {
+      forced-color-adjust: none;
+      color: canvastext;
+    }
+  }
+}
+
+.hmrc-organisation-logo {
+  margin: 0 35px 0 0;
+  padding: 4px 0 4px 5px;
+  border-left: 2px solid govuk-organisation-colour("hm-revenue-customs");
+  color: govuk-colour("black");
+
+  svg,
+  img {
+    vertical-align: middle;
+    fill: currentColor;
+  }
+
+  p {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 0;
+  }
+}
