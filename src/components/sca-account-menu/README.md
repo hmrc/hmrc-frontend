@@ -6,7 +6,7 @@ styles from `hmrc-account-menu`. These examples add basic visual regression test
 
 The purpose of this example and visual regression test is to try to spot changes in `hmrc-frontend` which would break
 `sca-wrapper` downstream. The `PtaMenuBar.scala.html` should be regularly checked for updates to ensure the code in
-`example.njk` still reflects `PtaMenuBar.scala.html`.
+`template.njk` still reflects `PtaMenuBar.scala.html`.
 
 **If the visual regression test for sca-wrapper-menu breaks or causes an update to the reference images, PlatUI should
 liaise with maintainers of [sca-wrapper](https://github.com/hmrc/sca-wrapper).**
