@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.56.0] - 2025-01-29
+
+### Changed
+
+- Added in component to add visual regression tests for a copy of the markup from the [sca-wrapper](https://github.com/hmrc/sca-wrapper)
+
 ## [6.55.0] - 2025-01-27
 
 ### Changed
