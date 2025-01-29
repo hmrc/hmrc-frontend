@@ -1,11 +1,11 @@
 {% from "../notification-badge/macro.njk" import hmrcNotificationBadge %}
 
 <!-- ACCOUNT MENU -->
-<!-- From https://github.com/hmrc/sca-wrapper/blob/main/sca-wrapper-play-30/src/main/twirl/uk/gov/hmrc/sca/views/PtaMenuBar.scala.html --!>
+<!-- From https://github.com/hmrc/sca-wrapper/blob/main/sca-wrapper-play-30/src/main/twirl/uk/gov/hmrc/sca/views/PtaMenuBar.scala.html -->
 <nav id="secondary-nav" class="hmrc-account-menu" aria-label="Account" data-module="hmrc-account-menu">
 
 <!-- LEFT ALIGNED ITEMS -->
-<!-- From https://github.com/hmrc/sca-wrapper/blob/main/sca-wrapper-play-30/src/main/twirl/uk/gov/hmrc/sca/views/PtaMenuItemLeft.scala.html --!>
+<!-- From https://github.com/hmrc/sca-wrapper/blob/main/sca-wrapper-play-30/src/main/twirl/uk/gov/hmrc/sca/views/PtaMenuItemLeft.scala.html -->
     {% for leftItem in params.leftAlignedItems %}
           <a href="{{ leftItem.href }}" class="hmrc-account-menu__link hmrc-account-menu__link--home {% if leftItem.linkActive == true %}hmrc-account-menu__link--active{% endif %}" id="menu.left.{{ leftItem.position }}">
            <span class="{{ leftItem.icon | default('') }}">
@@ -22,7 +22,7 @@
         </li>
 
 <!-- RIGHT ALIGNED ITEMS -->
-<!-- From https://github.com/hmrc/sca-wrapper/blob/main/sca-wrapper-play-30/src/main/twirl/uk/gov/hmrc/sca/views/PtaMenuItemRight.scala.html --!>
+<!-- From https://github.com/hmrc/sca-wrapper/blob/main/sca-wrapper-play-30/src/main/twirl/uk/gov/hmrc/sca/views/PtaMenuItemRight.scala.html -->
     {% for rightItem in params.rightAlignedItems %}
         <li>
          <a href="{{ rightItem.url }}" class="hmrc-account-menu__link {% if rightItem.linkActive == true %}hmrc-account-menu__link--active{% endif %}">
