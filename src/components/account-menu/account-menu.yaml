@@ -28,7 +28,7 @@ params:
   - name: messageCount
     type: number
     required: false
-    description: The number of messages to display in the notifacation badge next to Messages. Defaults to not being displayed.
+    description: The number of messages to display in the notification badge next to Messages. Defaults to not being displayed.
 - name: checkProgress
   type: object
   required: false

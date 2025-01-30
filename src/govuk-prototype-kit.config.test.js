@@ -2,8 +2,11 @@
 const glob = require('glob');
 const path = require('path');
 
+const excludedComponents = ['sca-account-menu'];
+
 const definedComponents = glob.sync('src/components/**/macro.njk')
-  .map((filename) => path.basename(path.dirname(filename)));
+  .map((filename) => path.basename(path.dirname(filename)))
+  .filter((filename) => !(excludedComponents.includes(filename)));
 
 const configuredComponents = require('./govuk-prototype-kit.config.json')
   .nunjucksMacros

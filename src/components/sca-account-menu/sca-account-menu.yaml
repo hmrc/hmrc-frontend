@@ -1,0 +1,203 @@
+params:
+- name: leftAlignedItems
+  type: array
+  required: false
+  description: The left aligned menu items
+  params:
+  - name: id
+    type: string
+    required: true
+    description: The id of the menu item
+  - name: text
+    type: string
+    required: true
+    description: The text of the menu item
+  - name: href
+    type: string
+    required: true
+    description: The href of the menu item
+  - name: position
+    type: integer
+    required: true
+    description: The position (index) of the menu item
+  - name: icon
+    type: string
+    required: false
+    description: The class name of the icon to use
+  - name: linkActive
+    type: boolean
+    required: false
+    description: A boolean representing whether to make the link active. This is just for display purpose in our tests, the sca-wrapper contains bespoke logic for this
+- name: rightAlignedItems
+  type: array
+  required: false
+  description: The right aligned menu items
+  params:
+    - name: id
+      type: string
+      required: true
+      description: The id of the menu item
+    - name: text
+      type: string
+      required: true
+      description: The text of the menu item
+    - name: href
+      type: string
+      required: true
+      description: The href of the menu item
+    - name: position
+      type: integer
+      required: true
+      description: The position (index) of the menu item
+    - name: icon
+      type: string
+      required: false
+      description: The class name of the icon to use
+    - name: linkActive
+      type: boolean
+      required: false
+      description: A boolean representing whether to make the link active. This is just for display purpose in our tests, the sca-wrapper contains bespoke logic for this
+    - name: notificationBadge
+      type: integer
+      required: false
+      description: The number of messages to display in the notification badge. Defaults to not being displayed.
+- name: ptaMinMenuConfig
+  type: object
+  required: false
+  description: The Account menu when minimised
+  params:
+  - name: menuName
+    type: string
+    required: true
+    description: "The menu name when minimised"
+  - name: backName
+    type: string
+    required: true
+    description: "The back name when minimised"
+
+examples:
+- name: default
+  description: The standard account menu as used on Personal Tax Account pages.
+  data:
+    ptaMinMenuConfig:
+      backName: "Some backName"
+      menuName: "Some menuName"
+- name: with-left-aligned
+  description: The PTA menu with left aligned items
+  data:
+    ptaMinMenuConfig:
+      backName: "Some backName"
+      menuName: "Some menuName"
+    leftAlignedItems:
+      - id: 1
+        text: "Left Item 1"
+        href: "#"
+        position: 1
+      - id: 2
+        text: "Left Item 2"
+        href: "#"
+        position: 2
+- name: with-right-aligned
+  description: The PTA menu with right aligned items
+  data:
+    ptaMinMenuConfig:
+      backName: "Some backName"
+      menuName: "Some menuName"
+    rightAlignedItems:
+      - id: 1
+        text: "Right Item 1"
+        href: "#"
+        position: 1
+      - id: 2
+        text: "Right Item 2"
+        href: "#"
+        position: 2
+- name: with-left-aligned-with-icon
+  description: The PTA menu with left aligned items with home icon
+  data:
+    ptaMinMenuConfig:
+      backName: "Some backName"
+      menuName: "Some menuName"
+    leftAlignedItems:
+      - id: 1
+        text: "Left Item 1"
+        href: "#"
+        position: 1
+        icon: "hmrc-account-icon hmrc-account-icon--home"
+- name: with-right-aligned-with-icon
+  description: The PTA menu with right aligned items with home icon
+  data:
+    ptaMinMenuConfig:
+      backName: "Some backName"
+      menuName: "Some menuName"
+    rightAlignedItems:
+      - id: 1
+        text: "Right Item 1"
+        href: "#"
+        position: 1
+        icon: "hmrc-account-icon hmrc-account-icon--home"
+- name: with-left-aligned-with-active-link
+  description: The PTA menu with left aligned items with an active link
+  data:
+    ptaMinMenuConfig:
+      backName: "Some backName"
+      menuName: "Some menuName"
+    leftAlignedItems:
+      - id: 1
+        text: "Left Item 1"
+        href: "#"
+        position: 1
+        linkActive: true
+      - id: 2
+        text: "Left Item 2"
+        href: "#"
+        position: 2
+- name: with-right-aligned-with-active-link
+  description: The PTA menu with right aligned items with an active link
+  data:
+    ptaMinMenuConfig:
+      backName: "Some backName"
+      menuName: "Some menuName"
+    rightAlignedItems:
+      - id: 1
+        text: "Right Item 1"
+        href: "#"
+        position: 1
+        linkActive: true
+      - id: 2
+        text: "Right Item 2"
+        href: "#"
+        position: 2
+- name: with-right-aligned-with-notification
+  description: The PTA menu with right aligned items
+  data:
+    ptaMinMenuConfig:
+      backName: "Some backName"
+      menuName: "Some menuName"
+    rightAlignedItems:
+      - id: 1
+        text: "Right Item 1"
+        href: "#"
+        position: 1
+        notificationBadge: 3
+      - id: 2
+        text: "Right Item 2"
+        href: "#"
+        position: 2
+- name: with-right-aligned-with-notification-with-link-active
+  description: The PTA menu with right aligned items
+  data:
+    ptaMinMenuConfig:
+      backName: "Some backName"
+      menuName: "Some menuName"
+    rightAlignedItems:
+      - id: 1
+        text: "Right Item 1"
+        href: "#"
+        position: 1
+        notificationBadge: 3
+        linkActive: true
+      - id: 2
+        text: "Right Item 2"
+        href: "#"
+        position: 2

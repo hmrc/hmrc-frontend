@@ -1,0 +1,40 @@
+{% from "../notification-badge/macro.njk" import hmrcNotificationBadge %}
+
+<!-- ACCOUNT MENU -->
+<!-- From https://github.com/hmrc/sca-wrapper/blob/main/sca-wrapper-play-30/src/main/twirl/uk/gov/hmrc/sca/views/PtaMenuBar.scala.html -->
+<nav id="secondary-nav" class="hmrc-account-menu" aria-label="Account" data-module="hmrc-account-menu">
+
+<!-- LEFT ALIGNED ITEMS -->
+<!-- From https://github.com/hmrc/sca-wrapper/blob/main/sca-wrapper-play-30/src/main/twirl/uk/gov/hmrc/sca/views/PtaMenuItemLeft.scala.html -->
+    {% for leftItem in params.leftAlignedItems %}
+          <a href="{{ leftItem.href }}" class="hmrc-account-menu__link hmrc-account-menu__link--home {% if leftItem.linkActive == true %}hmrc-account-menu__link--active{% endif %}" id="menu.left.{{ leftItem.position }}">
+           <span class="{{ leftItem.icon | default('') }}">
+              {{ leftItem.text }}
+           </span>
+          </a>
+    {% endfor %}
+<!-- LEFT ALIGNED ITEMS -->
+
+    <a id="menu.name" href="#" class="hmrc-account-menu__link hmrc-account-menu__link--menu js-hidden js-visible" tabindex="-1" aria-hidden="true" aria-expanded="false">{{ params.ptaMinMenuConfig.menuName }}</a>
+    <ul class="hmrc-account-menu__main">
+        <li class="hmrc-account-menu__link--back hidden" aria-hidden="false">
+            <a id="menu.back" href="#" tabindex="-1" class="hmrc-account-menu__link">{{ params.ptaMinMenuConfig.backName }}</a>
+        </li>
+
+<!-- RIGHT ALIGNED ITEMS -->
+<!-- From https://github.com/hmrc/sca-wrapper/blob/main/sca-wrapper-play-30/src/main/twirl/uk/gov/hmrc/sca/views/PtaMenuItemRight.scala.html -->
+    {% for rightItem in params.rightAlignedItems %}
+        <li>
+         <a href="{{ rightItem.url }}" class="hmrc-account-menu__link {% if rightItem.linkActive == true %}hmrc-account-menu__link--active{% endif %}">
+          <span class="{{ rightItem.icon | default('') }}">{{ rightItem.text }}
+         {% if rightItem.notificationBadge -%}
+         {{ hmrcNotificationBadge({ text: rightItem.notificationBadge }) }}
+         {%- endif -%}
+         </span>
+         </a>
+        </li>
+    {% endfor %}
+<!-- RIGHT ALIGNED ITEMS -->
+
+    </ul>
+</nav>
