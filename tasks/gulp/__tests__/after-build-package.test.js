@@ -39,6 +39,7 @@ describe('package/', () => {
         'example.njk',
         'README.njk',
         '*.snap',
+        '**/sca-account-menu/**',
       ];
 
       const additionalFilesNotFromSrc = [
