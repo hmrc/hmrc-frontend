@@ -142,7 +142,7 @@ function TimeoutDialog($module, $sessionActivityService) {
   };
 
   const setupDialog = (signoutTime) => {
-    const $element = utils.generateDomElementFromString('<div>');
+    const $element = utils.generateDomElementFromString('<div aria-live="assertive">');
 
     if (settings.title) {
       const $tmp = utils.generateDomElementFromStringAndAppendText(
@@ -156,7 +156,7 @@ function TimeoutDialog($module, $sessionActivityService) {
       '<span id="hmrc-timeout-countdown" class="hmrc-timeout-dialog__countdown">',
     );
 
-    const $audibleMessage = utils.generateDomElementFromString('<p id="hmrc-timeout-message" class="govuk-visually-hidden screenreader-content" aria-live="assertive">');
+    const $audibleMessage = utils.generateDomElementFromString('<p id="hmrc-timeout-message" class="govuk-visually-hidden screenreader-content">');
     const $visualMessge = utils.generateDomElementFromStringAndAppendText(
       '<p class="govuk-body hmrc-timeout-dialog__message" aria-hidden="true">',
       settings.message,
