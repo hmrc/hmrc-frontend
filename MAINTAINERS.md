@@ -81,6 +81,10 @@ We use the following workflow for patch releases:
         commit tag:"6.0.0" id:"latest"
 ```
 
+## Consider if a deprecation warning needs a change request
+
+Sometimes we may get deprecation warnings, but we might not always want to resolve this with a change request. This is because these changes can be breaking changes for the consumers of our library. Instead, you can suppress the deprecation by adding the name of the deprecation to the `silenceDeprecations` list and documenting the suppression.
+
 ## Keeping a record of decisions
 
 We are using MADRs to record significant decisions in this service. To find out more
