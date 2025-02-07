@@ -87,6 +87,7 @@ examples:
       classes: 'the-header-classes'
   visualRegressionTests:
     backstopScenarioOptions:
+      delay: 2000
       misMatchThreshold: 0.1
       viewports:
         - label: tablet
