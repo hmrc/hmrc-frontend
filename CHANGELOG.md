@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.58.0] - 2025-02-07
+
+### Changed
+
+- Add delay for flakey account-menu visual regression test
+
 ## [6.57.0] - 2025-02-07
 
 ### Changed
