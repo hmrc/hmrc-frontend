@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.57.0] - 2025-02-07
+
+### Changed
+
+- Suppresses sass deprecation warnings, new ADR and MAINTAINERS documentation around this
+- Bumps gulp-sass
+
 ## [6.56.0] - 2025-01-29
 
 ### Changed
