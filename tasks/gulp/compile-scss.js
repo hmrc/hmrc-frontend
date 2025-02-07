@@ -24,7 +24,7 @@ gulp.task('scss:compile-all-govuk-and-hmrc', () => gulp.src(`${configPaths.src}a
   .pipe(sass({
     loadPaths: ['node_modules', 'node_modules/govuk-frontend/dist', 'node_modules/govuk-frontend/dist/govuk/components'],
     quietDeps: true,
-    silenceDeprecations: ['slash-div', 'mixed-decls', 'import', 'global-builtin'],
+    silenceDeprecations: ['slash-div'],
   }))
   // minify css add vendor prefixes and normalize to compiled css
   .pipe(postcss([
@@ -44,7 +44,7 @@ gulp.task('scss:compile-accessible-autocomplete', () => gulp.src(`${configPaths.
   .pipe(sass({
     loadPaths: ['node_modules', 'node_modules/govuk-frontend/dist', 'node_modules/govuk-frontend/dist/govuk/components'],
     quietDeps: true,
-    silenceDeprecations: ['slash-div', 'mixed-decls', 'import', 'global-builtin'],
+    silenceDeprecations: ['slash-div'],
   }))
 // minify css add vendor prefixes and normalize to compiled css
   .pipe(postcss([

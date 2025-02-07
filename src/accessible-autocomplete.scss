@@ -3,7 +3,7 @@ $govuk-include-default-font-face: false;
 @import "../../govuk-frontend/dist/govuk/settings/index";
 @import "../../govuk-frontend/dist/govuk/tools/index";
 @import "../../govuk-frontend/dist/govuk/helpers/index";
-@import "../node_modules/accessible-autocomplete/dist/accessible-autocomplete.min";
+@import "../../accessible-autocomplete/dist/accessible-autocomplete.min";
 
 .autocomplete__wrapper,
 .autocomplete__input,
