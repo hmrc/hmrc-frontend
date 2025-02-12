@@ -25,22 +25,24 @@ function acceptFirstSuggestionFor(autocompleteSelector) {
 }
 
 async function interceptNextFormPost(page) {
-  let completePostedFormData;
-  const postedFormData = (
-    new Promise((resolve) => { completePostedFormData = resolve; })
-  ).finally(async () => {
-    await page.setRequestInterception(false);
+  let resolvePostedData;
+  const postedFormData = new Promise((resolve) => {
+    resolvePostedData = resolve;
   });
   await page.setRequestInterception(true);
-  page.on('request', (request) => {
+  const capturePostData = async (request) => {
+    if (request.isInterceptResolutionHandled()) return;
     if (request.method() === 'POST') {
-      completePostedFormData(request.postData());
-      return request.respond({ status: 200 });
+      resolvePostedData(request.postData());
     }
-    return request.continue();
-  });
+    await request.continue();
+  };
+  page.on('request', capturePostData);
   return {
-    postedFormData,
+    postedFormData: postedFormData.finally(async () => {
+      page.off('request', capturePostData);
+      await page.setRequestInterception(false);
+    }),
   };
 }
 

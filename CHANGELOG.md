@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.59.0] - 2025-02-11
+
+### Changed
+
+- Improved stability of some flakey browser tests
+
 ## [6.58.0] - 2025-02-07
 
 ### Changed
