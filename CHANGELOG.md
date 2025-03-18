@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.61.0] - 2025-03-17
+
+### Changed
+
+- Override puppeteer version used by our VRT tool backstopjs, so we don't download browsers twice
+
 ## [6.60.0] - 2025-03-06
 
 ### Changed
