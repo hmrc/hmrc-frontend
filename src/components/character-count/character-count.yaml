@@ -1,8 +1,8 @@
 params:
   - name: id
     type: string
-    required: true
-    description: The id of the textarea.
+    required: false
+    description: The ID of the textarea. Defaults to the value of `name`.
   - name: name
     type: string
     required: true
@@ -111,7 +111,14 @@ examples:
   - name: default
     data:
       name: more-detail
-      id: more-detail
+      maxlength: 10
+      label:
+        text: Can you provide more detail?
+
+  - name: with id
+    data:
+      name: more-detail
+      id: more-detail-with-id
       maxlength: 10
       label:
         text: Can you provide more detail?
@@ -119,7 +126,15 @@ examples:
   - name: default welsh
     data:
       name: more-detail-welsh
-      id: more-detail-welsh
+      maxlength: 10
+      label:
+        text: Can you provide more detail?
+      language: cy
+
+  - name: with id welsh
+    data:
+      name: more-detail-welsh
+      id: more-detail-with-welsh-id
       maxlength: 10
       label:
         text: Can you provide more detail?
@@ -128,7 +143,6 @@ examples:
   - name: with hint
     data:
       name: with-hint
-      id: with-hint
       maxlength: 10
       label:
         text: Can you provide more detail?
@@ -138,7 +152,6 @@ examples:
 
   - name: with default value
     data:
-      id: with-default-value
       name: default-value
       maxlength: 100
       label:
@@ -150,7 +163,6 @@ examples:
 
   - name: with default value welsh
     data:
-      id: with-default-value-welsh
       name: default-value-welsh
       maxlength: 100
       label:
@@ -163,7 +175,6 @@ examples:
 
   - name: with default value exceeding limit
     data:
-      id: exceeding-characters
       name: exceeding
       maxlength: 10
       value: |
@@ -177,7 +188,6 @@ examples:
 
   - name: with default value exceeding limit welsh
     data:
-      id: exceeding-characters
       name: exceeding
       maxlength: 10
       value: |
@@ -192,7 +202,6 @@ examples:
 
   - name: with custom rows
     data:
-      id: custom-rows
       name: custom
       maxlength: 10
       label:
@@ -201,7 +210,6 @@ examples:
 
   - name: with label as page heading
     data:
-      id: textarea-with-page-heading
       name: address
       maxlength: 10
       label:
@@ -210,7 +218,6 @@ examples:
 
   - name: with word count
     data:
-      id: word-count
       name: word-count
       maxwords: 10
       label:
@@ -218,7 +225,6 @@ examples:
 
   - name: welsh with word count
     data:
-      id: word-count
       name: word-count
       maxwords: 10
       label:
@@ -227,7 +233,6 @@ examples:
 
   - name: with threshold
     data:
-      id: with-threshold
       name: with-threshold
       maxlength: 10
       threshold: 75
@@ -238,7 +243,6 @@ examples:
   - name: classes
     hidden: true
     data:
-      id: with-classes
       name: with-classes
       maxlength: 10
       label:
@@ -247,7 +251,6 @@ examples:
   - name: attributes
     hidden: true
     data:
-      id: with-attributes
       name: with-attributes
       maxlength: 10
       label:
@@ -257,7 +260,6 @@ examples:
   - name: formGroup with classes
     hidden: true
     data:
-      id: with-formgroup
       name: with-formgroup
       maxlength: 10
       label:
@@ -267,7 +269,6 @@ examples:
   - name: custom classes on countMessage
     hidden: true
     data:
-      id: with-custom-countmessage-class
       name: with-custom-countmessage-class
       maxlength: 10
       label:
@@ -277,7 +278,6 @@ examples:
   - name: spellcheck enabled
     hidden: true
     data:
-      id: with-spellcheck
       name: with-spellcheck
       maxlength: 10
       label:
@@ -286,7 +286,6 @@ examples:
   - name: spellcheck disabled
     hidden: true
     data:
-      id: without-spellcheck
       name: without-spellcheck
       maxlength: 10
       label:
@@ -295,7 +294,6 @@ examples:
   - name: custom classes with error message
     hidden: true
     data:
-      id: with-custom-error-class
       name: with-custom-error-class
       maxlength: 10
       label:
@@ -307,13 +305,11 @@ examples:
     hidden: true
     data:
       name: more-detail
-      id: 1_more-detail
       maxlength: 10
       label:
         text: Can you provide more detail?
   - name: with id with special characters
     data:
-      id: user1.profile[address]
       name: address
       maxlength: 10
       label:
@@ -321,7 +317,6 @@ examples:
   - name: with textarea maxlength attribute
     hidden: true
     data:
-      id: maxlength-should-be-removed
       name: address
       maxlength: 10
       attributes:

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.62.0] - 2025-03-19
+
+### Changed
+
+- Made `id` optional in `character-count`, in line with changes to `govuk-frontend` in v5.9.0
+
 ## [6.61.0] - 2025-03-17
 
 ### Changed

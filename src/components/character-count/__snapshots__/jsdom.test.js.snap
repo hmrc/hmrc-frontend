@@ -17,7 +17,7 @@ exports[`Character count when it includes a hint renders with hint 1`] = `
 
 exports[`Character count when it includes an error message renders with error message 1`] = `
 
-<p id="exceeding-characters-error"
+<p id="exceeding-error"
    class="govuk-error-message"
 >
   Please do not exceed the maximum allowed limit
