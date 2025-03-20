@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.63.0] - 2025-03-20
+
+### Changed
+
+- Allow trailing/leading whitespaces in accessible-autocomplete input fields
+
 ## [6.62.0] - 2025-03-19
 
 ### Changed
