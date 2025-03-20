@@ -113,6 +113,27 @@ describe('enhanceSelectElement on the select element provided', () => {
     expect(hintValue).toEqual('France');
   });
 
+  it('should allow trailing and leading whitespace in query', async () => {
+    await page.goto(examplePreview('accessible-autocomplete/with-show-all-values'));
+
+    const input = await page.$('#location-picker');
+    await input.click();
+
+    await input.type(' Fr ');
+    await input.click();
+
+    const autocompleteFocused = await page.$('.autocomplete__menu--visible');
+    const visibleElements = await page.evaluate(() => document.querySelectorAll('.autocomplete__option'));
+
+    expect(autocompleteFocused).toBeTruthy();
+    expect(Object.keys(visibleElements).length).toEqual(1);
+
+    await page.keyboard.press('Enter');
+    const selectedOption = await page.evaluate(() => document.querySelector('.autocomplete__option').textContent);
+
+    expect(selectedOption).toBe('France');
+  });
+
   it('should not highlight first found option when autoselect is false', async () => {
     await page.goto(examplePreview('accessible-autocomplete/default'));
 
