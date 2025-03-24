@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.63.0] - 2025-03-24
+
+### Changed
+
+- Bump for jest-puppeteer to version 11.0.0
+
 ## [6.62.0] - 2025-03-19
 
 ### Changed
