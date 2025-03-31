@@ -9,7 +9,7 @@ AccessibleAutoComplete.prototype.init = function init() {
     const trimQuery = (values) => (query, syncResults) => {
       const matches = values.filter((r) => r.toLowerCase()
         .indexOf(query.toLowerCase().trim()) !== -1);
-      syncResults(matches.filter((item) => (item)));
+      syncResults(matches);
     };
     const selectElement = this.$module;
     const selectOptions = Array.from(selectElement.options);
@@ -25,7 +25,11 @@ AccessibleAutoComplete.prototype.init = function init() {
       autoselect,
       defaultValue,
       minLength,
-      source: trimQuery(Array.from(this.$module.options).map((a) => a.textContent)),
+      // we don't yet support preserveNullOptions,
+      // but if we start then it needs to override this filtering
+      // https://github.com/alphagov/accessible-autocomplete/blob/main/src/wrapper.js#L24
+      source: trimQuery(Array.from(this.$module.options).filter((a) => a.value)
+        .map((a) => a.textContent)),
       onConfirm: (chosenOption) => {
         selectElement.value = '';
         const chosenOptionOrCurrentValue = (typeof chosenOption !== 'undefined')
