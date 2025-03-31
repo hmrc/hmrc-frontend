@@ -26,6 +26,7 @@ examples:
     data:
       label:
         text: Select country
+      describedBy: location-picker
       id: location-picker
       select: |
         <select id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
@@ -38,6 +39,7 @@ examples:
     data:
       label:
         text: Select country
+      describedBy: location-picker
       id: location-picker
       select: |
         <select id="location-picker" data-module="hmrc-accessible-autocomplete">
@@ -50,10 +52,11 @@ examples:
     data:
       label:
         text: Select country
+      describedBy: location-picker
       id: location-picker
       select: |
         <select id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="Germany" data-module="hmrc-accessible-autocomplete">
-          <option value=""></option>
+          <option value="">Select country</option>
           <option value="fr">France</option>
           <option value="de">Germany</option>
           <option value="gb">United Kingdom</option>
@@ -63,10 +66,11 @@ examples:
     data:
       label:
         text: Select country
+      describedBy: location-picker
       id: location-picker
       select: |
         <select id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
-          <option value=""></option>
+          <option value="">Select country</option>
           <option value="fr">France</option>
           <option value="de">Germany</option>
           <option value="gb">United Kingdom</option>
@@ -76,10 +80,11 @@ examples:
     data:
       label:
         text: Select country
+      describedBy: location-picker
       id: location-picker
       select: |
         <select id="location-picker" data-show-all-values="true" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
-          <option value=""></option>
+          <option value="">Select country</option>
           <option value="fr">France</option>
           <option value="de">Germany</option>
           <option value="gb">United Kingdom</option>
@@ -95,6 +100,7 @@ examples:
     data:
       label:
         text: Select country
+      describedBy: location-picker
       id: location-picker
       select: |
         <select id="location-picker" data-show-all-values="false" data-auto-select="true" data-default-value="" data-module="hmrc-accessible-autocomplete">
@@ -115,6 +121,7 @@ examples:
         text: Select country
       hint:
         text: "Please select a country"
+      describedBy: location-picker
       id: location-picker
       select: |
         <select id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
@@ -130,6 +137,7 @@ examples:
       hint:
         text: "Please select a country"
       errorMessage: "An error occurred"
+      describedBy: location-picker
       id: location-picker
       select: |
         <select class="govuk-select govuk-select--error" aria-describedby="location-picker-error location-picker-hint" id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
@@ -142,6 +150,7 @@ examples:
     data:
       label:
         text: Dewiswch wlad
+      describedBy: location-picker
       id: location-picker
       select: |
         <select id="location-picker" data-language="cy" data-show-all-values="true" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
@@ -155,6 +164,7 @@ examples:
     data:
       label:
         text: Dewiswch wlad
+      describedBy: location-picker
       id: location-picker
       select: |
         <select id="location-picker" data-language="cy" data-min-length="3" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
@@ -168,6 +178,7 @@ examples:
     data:
       label:
         text: Dewiswch wlad
+      describedBy: location-picker
       id: location-picker
       select: |
         <select id="location-picker" data-language="cy" data-show-all-values="false" data-auto-select="true" data-default-value="" data-module="hmrc-accessible-autocomplete">

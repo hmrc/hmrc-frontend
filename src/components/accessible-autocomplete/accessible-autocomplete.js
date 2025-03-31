@@ -6,6 +6,11 @@ function AccessibleAutoComplete($module, window, document) {
 
 AccessibleAutoComplete.prototype.init = function init() {
   if (this.$module) {
+    const trimQuery = (values) => (query, syncResults) => {
+      const matches = values.filter((r) => r.toLowerCase()
+        .indexOf(query.toLowerCase().trim()) !== -1);
+      syncResults(matches);
+    };
     const selectElement = this.$module;
     const selectOptions = Array.from(selectElement.options);
     const autocompleteId = selectElement.id;
@@ -20,6 +25,11 @@ AccessibleAutoComplete.prototype.init = function init() {
       autoselect,
       defaultValue,
       minLength,
+      // we don't yet support preserveNullOptions,
+      // but if we start then it needs to override this filtering
+      // https://github.com/alphagov/accessible-autocomplete/blob/main/src/wrapper.js#L24
+      source: trimQuery(Array.from(this.$module.options).filter((a) => a.value)
+        .map((a) => a.textContent)),
       onConfirm: (chosenOption) => {
         selectElement.value = '';
         const chosenOptionOrCurrentValue = (typeof chosenOption !== 'undefined')
@@ -60,7 +70,7 @@ AccessibleAutoComplete.prototype.init = function init() {
     );
     if (autocompleteElementMissingAriaDescribedAttrs) {
       // if there is a hint and/or error then the autocomplete element
-      // needs to be aria-describedby these, which it isn't be default.
+      // needs to be aria-describedby these, which it isn't by default.
       // we need to check if it hasn't already been done to avoid adding
       // them twice if someone has added a separate patch.
       autocompleteElement.setAttribute(

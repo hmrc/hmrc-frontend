@@ -62,6 +62,19 @@ describe('enhanceSelectElement on the select element provided', () => {
     expect(Object.keys(visibleElements).length).toEqual(3);
   });
 
+  it('should not present empty values when showAllValues is true', async () => {
+    await page.goto(examplePreview('accessible-autocomplete/with-show-all-values'));
+
+    const input = await page.$('#location-picker');
+    await input.click();
+
+    const visibleElements = await page.evaluate(() => Array.from(
+      document.querySelectorAll('.autocomplete__option'),
+    ).map((e) => e.textContent.trim()));
+    expect(visibleElements.length).toEqual(3);
+    expect(visibleElements.every((text) => text !== '')).toBe(true);
+  });
+
   it('should present one option when showAllValues is false', async () => {
     await page.goto(examplePreview('accessible-autocomplete/default'));
 
@@ -111,6 +124,27 @@ describe('enhanceSelectElement on the select element provided', () => {
     });
     expect(hintFontFamily).toContain('GDS Transport');
     expect(hintValue).toEqual('France');
+  });
+
+  it('should allow trailing and leading whitespace in query', async () => {
+    await page.goto(examplePreview('accessible-autocomplete/with-show-all-values'));
+
+    const input = await page.$('#location-picker');
+    await input.click();
+
+    await input.type(' Fr ');
+    await input.click();
+
+    const autocompleteFocused = await page.$('.autocomplete__menu--visible');
+    const visibleElements = await page.evaluate(() => document.querySelectorAll('.autocomplete__option'));
+
+    expect(autocompleteFocused).toBeTruthy();
+    expect(Object.keys(visibleElements).length).toEqual(1);
+
+    await page.keyboard.press('Enter');
+    const selectedOption = await page.evaluate(() => document.querySelector('.autocomplete__option').textContent);
+
+    expect(selectedOption).toBe('France');
   });
 
   it('should not highlight first found option when autoselect is false', async () => {
