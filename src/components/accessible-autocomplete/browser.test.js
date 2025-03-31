@@ -68,10 +68,11 @@ describe('enhanceSelectElement on the select element provided', () => {
     const input = await page.$('#location-picker');
     await input.click();
 
-    const visibleElements = await page.evaluate(() => document.querySelectorAll('.autocomplete__option'));
-
-    expect(Object.keys(visibleElements).length).toEqual(3);
-    expect(Array.from(visibleElements).every((e) => e.textContent.trim() !== '')).toBeTruthy();
+    const visibleElements = await page.evaluate(() => Array.from(
+      document.querySelectorAll('.autocomplete__option'),
+    ).map((e) => e.textContent.trim()));
+    expect(visibleElements.length).toEqual(3);
+    expect(visibleElements.every((text) => text !== '')).toBe(true);
   });
 
   it('should present one option when showAllValues is false', async () => {
