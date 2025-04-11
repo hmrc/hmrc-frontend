@@ -16,12 +16,6 @@
   -moz-opacity: 0.8;
 }
 
-html {
-  &.no-scroll {
-    overflow: hidden;
-  }
-}
-
 .hmrc-timeout-dialog {
   position: fixed;
   z-index: 1002;
@@ -29,14 +23,22 @@ html {
   left: 50%;
   width: 280px;
   padding: 30px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: auto;
   transform: translate(-50%, -50%);
   border: 5px solid govuk-colour("black");
   background-color: govuk-colour("white");
 
   @include govuk-media-query($from: tablet) {
     width: 435px;
+  }
+
+  @include govuk-media-query($until: tablet) {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    display: grid;
+    place-items: center;
+    padding: 5px;
   }
 
   &:focus {
