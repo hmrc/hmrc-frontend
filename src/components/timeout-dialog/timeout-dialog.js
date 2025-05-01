@@ -163,7 +163,6 @@ function TimeoutDialog($module, $sessionActivityService) {
     );
     $visualMessge.appendChild(document.createTextNode(' '));
     $visualMessge.appendChild($countdownElement);
-    $visualMessge.appendChild(document.createTextNode('.'));
     if (settings.messageSuffix) {
       $visualMessge.appendChild(document.createTextNode(` ${settings.messageSuffix}`));
     }
@@ -212,17 +211,17 @@ function TimeoutDialog($module, $sessionActivityService) {
       let minutes; let
         visibleMessage;
       if (counter < 60) {
-        visibleMessage = `${counter} ${settings.properties[counter !== 1 ? 'seconds' : 'second']}`;
+        visibleMessage = `${counter} ${settings.properties[counter !== 1 ? 'seconds' : 'second']}.`;
       } else {
         minutes = Math.ceil(counter / 60);
-        visibleMessage = `${minutes} ${settings.properties[minutes === 1 ? 'minute' : 'minutes']}`;
+        visibleMessage = `${minutes} ${settings.properties[minutes === 1 ? 'minute' : 'minutes']}.`;
       }
       return visibleMessage;
     };
 
     const getAudibleHumanText = (counter) => {
       const humanText = getHumanText(roundSecondsUp(counter));
-      const messageParts = [settings.message, ' ', humanText, '.'];
+      const messageParts = [settings.message, ' ', humanText];
       if (settings.messageSuffix) {
         messageParts.push(' ');
         messageParts.push(settings.messageSuffix);
