@@ -20,6 +20,14 @@ examples:
       staySignedInButtonFocused:
         beforeTakingScreenshot:
           - focus: ".govuk-button"
+      zoomed:
+        backstopScenarioOptions:
+          viewports:
+            - label: phone
+              width: 320
+              height: 480
+        beforeTakingScreenshot:
+          - zoom: "200%"
 - name: long-delay-with-title
   data:
     title: "Example Timeout Dialog"
