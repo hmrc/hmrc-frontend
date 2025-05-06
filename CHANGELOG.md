@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.65.0] - 2025-05-01
+
+### Changed
+
+- Fixes for timeout-dialog for accessibility on small screens when zoomed in
+- Also fixes an issue where a fullstop will occasionally go onto a new line on timeout-dialog
+
 ## [6.64.0] - 2025-03-28
 
 ### Changed

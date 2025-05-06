@@ -236,22 +236,22 @@ describe('/components/timeout-dialog', () => {
 
       const visibleCountdownDuringLastMinute = await takeTextContentEachSecondForAMinute(page, '#hmrc-timeout-countdown');
 
-      expect(visibleCountdownWithMoreThanAMinuteRemaining).toBe('2 minutes');
+      expect(visibleCountdownWithMoreThanAMinuteRemaining).toBe('2 minutes.');
 
       expect(visibleCountdownDuringLastMinute.slice(0, 5)).toStrictEqual([
-        '1 minute',
-        '59 seconds',
-        '58 seconds',
-        '57 seconds',
-        '56 seconds',
+        '1 minute.',
+        '59 seconds.',
+        '58 seconds.',
+        '57 seconds.',
+        '56 seconds.',
       ]);
 
       expect(visibleCountdownDuringLastMinute.slice(-5)).toStrictEqual([
-        '5 seconds',
-        '4 seconds',
-        '3 seconds',
-        '2 seconds',
-        '1 second',
+        '5 seconds.',
+        '4 seconds.',
+        '3 seconds.',
+        '2 seconds.',
+        '1 second.',
       ]);
       // sometimes we have already reached timeout page
       // so we can discard exceptions after this point

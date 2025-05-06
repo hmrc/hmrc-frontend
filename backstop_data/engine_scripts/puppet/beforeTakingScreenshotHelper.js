@@ -29,6 +29,12 @@ module.exports = async (page, { beforeTakingScreenshot }) => {
     }
   }
 
+  allowedPageActions.zoom = async zoom => {
+    await page.evaluate((zoom) => {
+      document.body.style.zoom = zoom
+    }, zoom);
+  }
+
   allowedPageActions.increaseFontSizes = async fontSize => {
     await page.evaluate((fontSize) => {
       document.documentElement.style.fontSize = fontSize
