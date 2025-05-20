@@ -11,6 +11,12 @@ $govuk-header-link-underline-thickness: 3px;
 
   .hmrc-sign-out-nav {
     float: right;
+
+    .govuk-template--rebranded & {
+      @include govuk-media-query($from: desktop) {
+        padding-top: govuk-spacing(3) + 3px; // makes the baseline match gov.uk logo and service name
+      }
+    }
   }
 
   .hmrc-sign-out-nav__link {
@@ -39,11 +45,26 @@ $govuk-header-link-underline-thickness: 3px;
     .govuk-list {
       margin-bottom: 0;
 
+      .govuk-template--rebranded & {
+        @include govuk-media-query($from: desktop) {
+          padding-top: govuk-spacing(3) + 3px; // makes the baseline match gov.uk logo and service name
+        }
+      }
+
       a:not(.govuk-header__link) {
         @include govuk-font($size: 16, $weight: "bold");
 
         color: govuk-colour("mid-grey");
         text-decoration: none;
+
+        &:link,
+        &:hover,
+        &:visited,
+        &:focus {
+          .govuk-template--rebranded & {
+            color: #fff;
+          }
+        }
       }
     }
 
@@ -57,6 +78,10 @@ $govuk-header-link-underline-thickness: 3px;
       content: "|";
       padding-right: 2px;
       color: govuk-colour("dark-grey");
+
+      .govuk-template--rebranded & {
+        color: #ffffff50; // is this acceptable? mimics the existing light grey...
+      }
     }
   }
 }
