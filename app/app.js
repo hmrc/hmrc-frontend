@@ -47,6 +47,7 @@ module.exports = (options) => {
   const govukFonts = fs.readdirSync(path.join(configPaths.govukFrontend, 'dist', 'govuk', 'assets', 'fonts'));
 
   app.use((req, res, next) => {
+    env.addGlobal('govukRebrand', req.query?.rebrand === 'true');
     // Disallow search index indexing
     // none - Equivalent to noindex, nofollow
     // noindex - Do not show this page in search results and do not show a
