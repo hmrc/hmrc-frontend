@@ -19,6 +19,10 @@ $govuk-header-link-underline-thickness: 3px;
     }
   }
 
+  .govuk-header__navigation + .hmrc-sign-out-nav {
+    padding-top: 0;
+  }
+
   .hmrc-sign-out-nav__link {
     color: govuk-colour("white");
     font-weight: bold;
@@ -49,6 +53,10 @@ $govuk-header-link-underline-thickness: 3px;
         @include govuk-media-query($from: desktop) {
           padding-top: govuk-spacing(3) + 3px; // makes the baseline match gov.uk logo and service name
         }
+      }
+
+      .govuk-header__navigation + .govuk-list {
+        padding-top: 0;
       }
 
       a:not(.govuk-header__link) {
