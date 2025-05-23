@@ -11,6 +11,19 @@ $govuk-header-link-underline-thickness: 3px;
 
   .hmrc-sign-out-nav {
     float: right;
+
+    .govuk-template--rebranded & {
+      @include govuk-media-query($from: desktop) {
+        padding-top: govuk-spacing(3) + 3px; // makes the baseline match gov.uk logo and service name
+      }
+    }
+  }
+
+  .govuk-header__navigation + .hmrc-sign-out-nav {
+    .govuk-template--rebranded & {
+      padding-top: 0;
+      padding-bottom: govuk-spacing(2);
+    }
   }
 
   .hmrc-sign-out-nav__link {
@@ -30,20 +43,64 @@ $govuk-header-link-underline-thickness: 3px;
     &:focus {
       color: #0b0c0c;
     }
+
+    .govuk-template--rebranded & {
+      @include govuk-link-common; // explicit choice to differ from govuk-frontend header links
+      @include govuk-link-style-inverse;
+
+      font-weight: normal;
+
+      &:hover {
+        text-decoration-thickness: $govuk-header-link-underline-thickness;
+      }
+    }
   }
 
   .hmrc-language-select {
     padding-right: govuk-spacing(3);
     float: right;
 
+    .govuk-template--rebranded & {
+      padding-right: 0;
+    }
+
     .govuk-list {
       margin-bottom: 0;
+
+      .govuk-template--rebranded & {
+        @include govuk-media-query($from: desktop) {
+          padding-top: govuk-spacing(3) + 3px; // makes the baseline match gov.uk logo and service name
+        }
+      }
+
+      .govuk-header__link {
+        .govuk-template--rebranded & {
+          @include govuk-link-common; // explicit choice to differ from govuk-frontend header links
+          @include govuk-link-style-inverse;
+
+          font-weight: normal;
+
+          &:hover {
+            text-decoration-thickness: $govuk-header-link-underline-thickness;
+          }
+        }
+      }
 
       a:not(.govuk-header__link) {
         @include govuk-font($size: 16, $weight: "bold");
 
         color: govuk-colour("mid-grey");
         text-decoration: none;
+
+        &:link,
+        &:hover,
+        &:visited,
+        &:focus {
+          .govuk-template--rebranded & {
+            font-weight: normal;
+            color: #fff;
+          }
+        }
       }
     }
 
@@ -51,14 +108,27 @@ $govuk-header-link-underline-thickness: 3px;
       display: inline-block;
       margin-right: 0;
       border-bottom: 0;
+
+      .govuk-template--rebranded & {
+        padding-top: 0;
+        padding-bottom: govuk-spacing(2);
+      }
     }
 
     .govuk-header__navigation-item + .govuk-header__navigation-item::before {
       content: "|";
       padding-right: 2px;
       color: govuk-colour("dark-grey");
+
+      .govuk-template--rebranded & {
+        color: #ffffff50; // is this acceptable? mimics the existing light grey...
+      }
     }
   }
+}
+
+.govuk-template--rebranded .hmrc-header.hmrc-header--with-additional-navigation .govuk-header__navigation + .hmrc-language-select .govuk-list {
+  padding-top: 0;
 }
 
 .hmrc-header__service-name {

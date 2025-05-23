@@ -69,7 +69,10 @@ module.exports = ({ host, port, components }) => ({
   ],
   onBeforeScript: 'puppet/onBefore.js',
   onReadyScript: 'puppet/onReady.js',
-  scenarios: buildScenarioList(host, port, components),
+  scenarios: buildScenarioList(host, port, components).flatMap((scenario) => [
+    // this means we have twice as many VRT which might increase test time a lot...
+    scenario, { ...scenario, label: `${scenario.label} (using rebrand)`, url: `${scenario.url}?rebrand=true` },
+  ]),
   paths: {
     bitmaps_reference: 'backstop_data/bitmaps_reference',
     bitmaps_test: 'backstop_data/bitmaps_test',
@@ -83,7 +86,7 @@ module.exports = ({ host, port, components }) => ({
     args: ['--no-sandbox'],
   },
   // if running locally, and either stage hangs, try reducing these limits
-  asyncCaptureLimit: 5,
+  asyncCaptureLimit: 3,
   asyncCompareLimit: 50,
   debug: false,
   debugWindow: false,
