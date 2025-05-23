@@ -2,9 +2,6 @@
   "name": "hmrc-frontend",
   "version": "6.65.0",
   "description": "Design patterns for HMRC frontends",
-  "engines": {
-    "node": "20"
-  },
   "scripts": {
     "start": "gulp dev",
     "test:build:package": "jest tasks/gulp/__tests__/after-build-package.test.js",
