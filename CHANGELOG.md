@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.67.0] - 2025-05-29
+
+### Changed
+
+- Added `rebrand` parameter to the hmrc-frontend `footer` implementation
+
 ## [6.66.0] - 2025-05-23
 
 ### Changed
