@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.68.0] - 2025-06-02
+
+### Changed
+
+- Bump govuk-frontend to 5.10.2
+  - brings in a fix for padding in govuk-header when rebranded
+
 ## [6.67.0] - 2025-05-29
 
 ### Changed
