@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.69.0] - 2025-06-04
+
+### Changed
+
+- Copy `rebrand` images and manifest to the `hmrc-frontend` build
+
 ## [6.68.0] - 2025-06-02
 
 ### Changed
