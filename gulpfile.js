@@ -6,6 +6,7 @@ require('./tasks/gulp/compile-js');
 require('./tasks/gulp/compile-scss');
 require('./tasks/gulp/watch');
 require('./tasks/gulp/copy-to-destination');
+require('./tasks/gulp/copy-to-destination-rebrand');
 require('./tasks/gulp/asset-version');
 require('./tasks/gulp/backstop');
 require('./tasks/gulp/package');
@@ -24,8 +25,10 @@ const copyPackageFiles = series(
   'copy-package-sources',
   'copy-govuk-fonts',
   'copy-govuk-images',
+  'copy-govuk-images-rebrand',
   'copy-govuk-config',
   'copy-govuk-manifest-json',
+  'copy-govuk-manifest-json-rebrand',
 );
 
 const buildPackage = series(
