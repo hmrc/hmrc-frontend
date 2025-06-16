@@ -17,5 +17,6 @@
   "GHSA-mwcw-c2x4-8c55": "nanoid: devDependency, no risk given our usage",
   "GHSA-rhx6-c78j-4q9w": "path-to-regexp: devDependency, no risk given our usage",
   "GHSA-968p-4wvh-cqc8": "babel: we don't use .replace with user supplied data, no impact to us",
-  "GHSA-8cj5-5rvv-wf4v": "tar-fs: devDependency, no risk given our usage"
+  "GHSA-8cj5-5rvv-wf4v": "tar-fs: devDependency, no risk given our usage",
+  "GHSA-v6h2-p8h4-qcjw": "brace-expansion: devDependency, no risk given our usage"
 }
