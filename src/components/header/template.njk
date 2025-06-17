@@ -10,8 +10,10 @@
 
 {%- set menuButtonText = params.menuButtonText if params.menuButtonText else ('Dewislen' if language == 'cy' else 'Menu') -%}
 
+{%- set oldLanguageToggle = params.languageToggle and not params.serviceNavigation %}
+
 <header>
-<div class="govuk-header hmrc-header {%- if params.classes %} {{ params.classes }}{% endif %}{{ ' hmrc-header--with-additional-navigation' if params.signOutHref or params.languageToggle }}" data-module="govuk-header"
+<div class="govuk-header hmrc-header {%- if params.classes %} {{ params.classes }}{% endif %}{{ ' hmrc-header--with-additional-navigation' if params.signOutHref or oldLanguageToggle }}" data-module="govuk-header"
   {{- govukAttributes(params.attributes) }}>
   <div class="govuk-header__container {{ params.containerClasses | default("govuk-width-container", true) }}">
     <div class="govuk-header__logo">
@@ -27,7 +29,7 @@
         {% endif %}
       </a>
     </div>
-  {% if params.serviceName or params.navigation | length or params.signOutHref or params.languageToggle %}
+  {% if params.serviceName or params.navigation | length or params.signOutHref or oldLanguageToggle %}
     <div class="govuk-header__content">
     {% if params.serviceName %}
       {% if params.serviceUrl %}
@@ -70,7 +72,7 @@
         {% if language == 'cy' %}Allgofnodi{% else %}Sign out{% endif %}
         </a>
       </nav>
-    {% elseif params.languageToggle %}{# TODO should this really be elseif? #}
+    {% elseif oldLanguageToggle %}{# TODO should this really be elseif? #}
       <nav class="hmrc-language-select" {% if language == 'en' %} aria-label="Choose a language" {% else %} aria-label="Dewiswch iaith"{% endif %}>
         <ul class="govuk-list hmrc-language-select__items">
           <li class="govuk-header__navigation-item">
@@ -92,6 +94,10 @@
   <div class="govuk-width-container">
     {{ govukPhaseBanner(params.phaseBanner) }}
   </div>
+{% endif %}
+{% if params.serviceNavigation %}
+    {# leave all smart stuff to play-frontend-hmrc helpers and keep this really presentational? #}
+    {{ serviceNavigation(params.serviceNavigation) }}
 {% endif %}
 {%- if params.userResearchBanner %}
     {{ hmrcUserResearchBanner({language: params.language, url: params.userResearchBanner.url }) }}
