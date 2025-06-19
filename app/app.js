@@ -121,7 +121,7 @@ module.exports = (options) => {
     const macroParameters = JSON.stringify(exampleConfig.data, null, '\t');
     const componentDirectory = helperFunctions.componentNameToComponentDirectory(componentName);
 
-    res.locals.componentView = !fs.existsSync(`${componentDirectory}/macro.njk`)
+    res.locals.componentView = !fs.existsSync(path.join(configPaths.components, componentDirectory, 'macro.njk'))
       ? ''
       : env.renderString(`
 {% from '${componentDirectory}/macro.njk' import ${macroName} %}
