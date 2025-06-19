@@ -128,6 +128,7 @@ module.exports = (options) => {
 {{ ${macroName}(${macroParameters}) }}`,
       );
     } catch (err) {
+      console.log(err);
       res.locals.componentView = null;
     }
 
