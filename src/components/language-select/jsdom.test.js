@@ -6,7 +6,7 @@ import { render, getExamples } from '../../../lib/jest-helpers';
 
 const examples = getExamples('language-select');
 
-describe('New Tab Link', () => {
+describe('Language select', () => {
   describe('by default', () => {
     it('passes accessibility tests', async () => {
       const $ = render('language-select', examples.default);
