@@ -38,7 +38,6 @@
 }
 
 .govuk-service-navigation .hmrc-service-navigation-language-select {
-  // @include govuk-font($size: $font-size);
   display: inline;
   flex: 0 0 auto;
   margin-top: auto;
@@ -46,7 +45,6 @@
 
   .hmrc-service-navigation-language-select__list {
     position: relative;
-    // margin: govuk-spacing(2) 0;
     padding-left: 0;
 
     @include govuk-responsive-margin(6, $direction: left);

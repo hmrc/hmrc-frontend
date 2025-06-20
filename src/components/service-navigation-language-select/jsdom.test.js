@@ -27,9 +27,8 @@ describe('Service Navigation Language Select', () => {
       expect($component.attr('href')).toEqual(examples.default.cy.href);
       expect($component.data('journeyClick')).toEqual('link - click:lang-select:Cymraeg');
 
-      expect($component.find('.govuk-visually-hidden').eq(0).text()).toEqual('Newid yr iaith ir Gymraeg');
-      expect($component.find('[aria-hidden="true"]').eq(0).text()).toEqual('CYM');
-      expect($.text().trim().replace(/[\s,\n]+/g, ' ')).toEqual('ENG Newid yr iaith ir Gymraeg CYM');
+      expect($component.find('.govuk-visually-hidden').eq(0).text()).toEqual(' – Newid yr iaith ir Gymraeg');
+      expect($.text().trim().replace(/[\s,\n]+/g, ' ')).toEqual('ENG CYM – Newid yr iaith ir Gymraeg');
 
       expect($('.hmrc-service-navigation-language-select__list-item').find('[aria-current="true"]').eq(0).text()).toEqual('ENG');
     });
@@ -45,10 +44,8 @@ describe('Service Navigation Language Select', () => {
       expect($component.attr('lang')).toEqual('en');
       expect($component.attr('href')).toEqual(examples.welsh.en.href);
       expect($component.data('journeyClick')).toEqual('link - click:lang-select:English');
-
-      expect($component.find('.govuk-visually-hidden').eq(0).text()).toEqual('Change the language to English');
-      expect($component.find('[aria-hidden="true"]').eq(0).text()).toEqual('ENG');
-      expect($.text().trim().replace(/[\s,\n]+/g, ' ')).toEqual('Change the language to English ENG CYM');
+      expect($component.find('.govuk-visually-hidden').eq(0).text()).toEqual(' – Change the language to English');
+      expect($.text().trim().replace(/[\s,\n]+/g, ' ')).toEqual('ENG – Change the language to English CYM');
 
       expect($('.hmrc-service-navigation-language-select__list-item').find('[aria-current="true"]').eq(0).text()).toEqual('CYM');
     });
