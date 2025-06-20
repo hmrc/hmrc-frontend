@@ -656,7 +656,7 @@ examples:
       serviceName: Service name
       serviceUrl: '#s1'
       slots:
-        end: | # this is the rendered output of the hmrcServiceNavigationLanguageSelect component
+        end: | # example of possible rendered output of the hmrcServiceNavigationLanguageSelect component
           <nav class="hmrc-service-navigation-language-select" aria-label="Language switcher">
               <ul class="hmrc-service-navigation-language-select__list">
                 <li class="hmrc-service-navigation-language-select__list-item">
@@ -664,8 +664,7 @@ examples:
                 </li>
                 <li class="hmrc-service-navigation-language-select__list-item">
                   <a href="/components/service-navigation-language-select/welsh/preview" hreflang="cy" lang="cy" rel="alternate" class="govuk-link govuk-service-navigation__link" data-journey-click="link - click:lang-select:Cymraeg">
-                    <span class="govuk-visually-hidden">Newid yr iaith ir Gymraeg</span>
-                    <span aria-hidden="true">CYM</span>
+                    CYM<span class="govuk-visually-hidden"> – Newid yr iaith ir Gymraeg</span>
                   </a>
                 </li>
               </ul>
