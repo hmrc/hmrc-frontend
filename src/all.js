@@ -8,12 +8,22 @@ import HmrcPrintLink from './components/hmrc-print-link/hmrc-print-link';
 function initAll() {
   const $AccountMenuSelector = '[data-module="hmrc-account-menu"]';
   if (document.querySelector($AccountMenuSelector)) {
-    new AccountMenu($AccountMenuSelector).init();
+    try {
+      new AccountMenu($AccountMenuSelector).init();
+    } catch ({ message }) {
+      // eslint-disable-next-line no-console
+      console.error(`hmrc-frontend - AccountMenu failed to initialise: ${message}`);
+    }
   }
 
   const $HmrcPrintLinks = document.querySelectorAll('a[data-module="hmrc-print-link"]');
   $HmrcPrintLinks.forEach(($HmrcPrintLink) => {
-    new HmrcPrintLink($HmrcPrintLink, window).init();
+    try {
+      new HmrcPrintLink($HmrcPrintLink, window).init();
+    } catch ({ message }) {
+      // eslint-disable-next-line no-console
+      console.error(`hmrc-frontend - HmrcPrintLinks failed to initialise: ${message}`);
+    }
   });
 
   const sessionActivityService = new SessionActivityService(window.BroadcastChannel);
@@ -21,17 +31,32 @@ function initAll() {
 
   const $TimeoutDialog = document.querySelector('meta[name="hmrc-timeout-dialog"]');
   if ($TimeoutDialog) {
-    new TimeoutDialog($TimeoutDialog, sessionActivityService).init();
+    try {
+      new TimeoutDialog($TimeoutDialog, sessionActivityService).init();
+    } catch ({ message }) {
+      // eslint-disable-next-line no-console
+      console.error(`hmrc-frontend - TimeoutDialog failed to initialise: ${message}`);
+    }
   }
 
   const $UserResearchBanner = document.querySelector('[data-module="hmrc-user-research-banner"]');
   if ($UserResearchBanner) {
-    new UserResearchBanner($UserResearchBanner).init();
+    try {
+      new UserResearchBanner($UserResearchBanner).init();
+    } catch ({ message }) {
+      // eslint-disable-next-line no-console
+      console.error(`hmrc-frontend - UserResearchBanner failed to initialise: ${message}`);
+    }
   }
 
   const $BackLinks = document.querySelectorAll('[data-module="hmrc-back-link"]');
   $BackLinks.forEach(($BackLink) => {
-    new BackLinkHelper($BackLink, window, document).init();
+    try {
+      new BackLinkHelper($BackLink, window, document).init();
+    } catch ({ message }) {
+      // eslint-disable-next-line no-console
+      console.error(`hmrc-frontend - BackLinkHelper failed to initialise: ${message}`);
+    }
   });
 }
 
