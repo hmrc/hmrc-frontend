@@ -6,13 +6,17 @@ import SessionActivityService from './components/timeout-dialog/session-activity
 import HmrcPrintLink from './components/hmrc-print-link/hmrc-print-link';
 
 function initAll() {
+  function initError(componentName, message) {
+    // eslint-disable-next-line no-console
+    return console.error(`hmrc-frontend - ${componentName} failed to initialise: ${message}`);
+  }
+
   const $AccountMenuSelector = '[data-module="hmrc-account-menu"]';
   if (document.querySelector($AccountMenuSelector)) {
     try {
       new AccountMenu($AccountMenuSelector).init();
     } catch ({ message }) {
-      // eslint-disable-next-line no-console
-      console.error(`hmrc-frontend - AccountMenu failed to initialise: ${message}`);
+      initError('AccountMenu', message);
     }
   }
 
@@ -21,8 +25,7 @@ function initAll() {
     try {
       new HmrcPrintLink($HmrcPrintLink, window).init();
     } catch ({ message }) {
-      // eslint-disable-next-line no-console
-      console.error(`hmrc-frontend - HmrcPrintLinks failed to initialise: ${message}`);
+      initError('HmrcPrintLink', message);
     }
   });
 
@@ -34,8 +37,7 @@ function initAll() {
     try {
       new TimeoutDialog($TimeoutDialog, sessionActivityService).init();
     } catch ({ message }) {
-      // eslint-disable-next-line no-console
-      console.error(`hmrc-frontend - TimeoutDialog failed to initialise: ${message}`);
+      initError('TimeoutDialog', message);
     }
   }
 
@@ -44,8 +46,7 @@ function initAll() {
     try {
       new UserResearchBanner($UserResearchBanner).init();
     } catch ({ message }) {
-      // eslint-disable-next-line no-console
-      console.error(`hmrc-frontend - UserResearchBanner failed to initialise: ${message}`);
+      initError('UserResearchBanner', message);
     }
   }
 
@@ -55,7 +56,7 @@ function initAll() {
       new BackLinkHelper($BackLink, window, document).init();
     } catch ({ message }) {
       // eslint-disable-next-line no-console
-      console.error(`hmrc-frontend - BackLinkHelper failed to initialise: ${message}`);
+      initError('BackLinkHelper', message);
     }
   });
 }
