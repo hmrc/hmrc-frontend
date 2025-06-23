@@ -11,9 +11,8 @@ function initAll() {
       init();
     } catch (error) {
       // eslint-disable-next-line no-console
-      return console.error('hmrc-frontend component initialisation failed', error);
+      console.error('hmrc-frontend component initialisation failed', error);
     }
-    return true;
   }
 
   const $AccountMenuSelector = '[data-module="hmrc-account-menu"]';

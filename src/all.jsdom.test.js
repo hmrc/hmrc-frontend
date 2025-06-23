@@ -34,12 +34,21 @@ describe('Init All', () => {
     });
 
     it('should initialise correctly configured elements found on the page', () => {
+      const logSpy = jest.spyOn(global.console, 'error');
       addBackLinkToPage();
       const brokenTimeoutDialog = document.createElement('meta');
-      brokenTimeoutDialog.setAttribute('content', 'hmrc-timeout-dialog'); // broken configuration of timeout-dialog will error
+      brokenTimeoutDialog.setAttribute('name', 'hmrc-timeout-dialog');
+      brokenTimeoutDialog.setAttribute('content', 'hmrc-timeout-dialog');
+      brokenTimeoutDialog.setAttribute('data-timeout', '60');
+      brokenTimeoutDialog.setAttribute('data-countdown', '55');
+      brokenTimeoutDialog.setAttribute('data-keep-alive-url', '?keepalive');
+      brokenTimeoutDialog.setAttribute('data-sign-out-url', ''); // broken configuration of timeout-dialog will error
+      brokenTimeoutDialog.setAttribute('data-synchronise-tabs', 'true');
       document.head.appendChild(brokenTimeoutDialog);
       HMRCFrontend.initAll();
       expect(BackLinkHelper.prototype.init).toHaveBeenCalled();
+      expect(logSpy).toHaveBeenCalled();
+      expect(logSpy).toHaveBeenCalledWith('hmrc-frontend component initialisation failed', Error('Missing config item(s): [data-sign-out-url]'));
     });
   });
 });
