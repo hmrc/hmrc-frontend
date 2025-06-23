@@ -35,17 +35,9 @@ describe('Init All', () => {
 
     it('should initialise correctly configured elements found on the page', () => {
       addBackLinkToPage();
-      const brokenTimeoutDialog = document.createElement('div');
-      brokenTimeoutDialog.innerHTML = `
-          <meta name="hmrc-timeout-dialog"
-            content="hmrc-timeout-dialog"
-            data-timeout="60"
-            data-countdown="55"
-            data-keep-alive-url="?keepalive"
-            data-sign-out-url=""
-            data-synchronise-tabs="true"/>
-        `; // broken configuration of timeout-dialog will error
-      document.body.appendChild(brokenTimeoutDialog.firstChild);
+      const brokenTimeoutDialog = document.createElement('meta');
+      brokenTimeoutDialog.setAttribute('content', 'hmrc-timeout-dialog'); // broken configuration of timeout-dialog will error
+      document.head.appendChild(brokenTimeoutDialog);
       HMRCFrontend.initAll();
       expect(BackLinkHelper.prototype.init).toHaveBeenCalled();
     });
