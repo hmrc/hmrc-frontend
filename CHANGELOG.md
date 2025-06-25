@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.73.0] - 2025-06-23
+
+### Changed
+
+- Wrap components that need initialising in a try-catch, so if one component errors, the others can continue to function
+
 ## [6.72.0] - 2025-06-20
 
 ### Changed

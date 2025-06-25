@@ -6,14 +6,27 @@ import SessionActivityService from './components/timeout-dialog/session-activity
 import HmrcPrintLink from './components/hmrc-print-link/hmrc-print-link';
 
 function initAll() {
+  function logAndIgnoreErrors(init) {
+    try {
+      init();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('hmrc-frontend component initialisation failed', error);
+    }
+  }
+
   const $AccountMenuSelector = '[data-module="hmrc-account-menu"]';
   if (document.querySelector($AccountMenuSelector)) {
-    new AccountMenu($AccountMenuSelector).init();
+    logAndIgnoreErrors(() => {
+      new AccountMenu($AccountMenuSelector).init();
+    });
   }
 
   const $HmrcPrintLinks = document.querySelectorAll('a[data-module="hmrc-print-link"]');
   $HmrcPrintLinks.forEach(($HmrcPrintLink) => {
-    new HmrcPrintLink($HmrcPrintLink, window).init();
+    logAndIgnoreErrors(() => {
+      new HmrcPrintLink($HmrcPrintLink, window).init();
+    });
   });
 
   const sessionActivityService = new SessionActivityService(window.BroadcastChannel);
@@ -21,17 +34,23 @@ function initAll() {
 
   const $TimeoutDialog = document.querySelector('meta[name="hmrc-timeout-dialog"]');
   if ($TimeoutDialog) {
-    new TimeoutDialog($TimeoutDialog, sessionActivityService).init();
+    logAndIgnoreErrors(() => {
+      new TimeoutDialog($TimeoutDialog, sessionActivityService).init();
+    });
   }
 
   const $UserResearchBanner = document.querySelector('[data-module="hmrc-user-research-banner"]');
   if ($UserResearchBanner) {
-    new UserResearchBanner($UserResearchBanner).init();
+    logAndIgnoreErrors(() => {
+      new UserResearchBanner($UserResearchBanner).init();
+    });
   }
 
   const $BackLinks = document.querySelectorAll('[data-module="hmrc-back-link"]');
   $BackLinks.forEach(($BackLink) => {
-    new BackLinkHelper($BackLink, window, document).init();
+    logAndIgnoreErrors(() => {
+      new BackLinkHelper($BackLink, window, document).init();
+    });
   });
 }
 
