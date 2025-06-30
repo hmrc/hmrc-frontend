@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.75.0] - 2025-06-30
+
+### Changed
+
+- Made it possible to render service navigation in hmrcHeader
+- Added a new component hmrcServiceNavigationLanguageSelect for rendering language toggle to be used inside service
+  navigation
+
 ## [6.74.0] - 2025-06-27
 
 ### Changed

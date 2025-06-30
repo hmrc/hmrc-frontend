@@ -1,0 +1,24 @@
+{% extends "layout.njk" %}
+
+{% from "../header/macro.njk" import hmrcHeader %}
+
+{% block header %}
+  {{ hmrcHeader({
+    serviceNavigation: {
+      serviceName: "Example service",
+      slots: {
+        end: componentView
+      }
+    }
+  }) }}
+{% endblock %}
+
+{% block main %}
+  <div class="govuk-width-container">
+          <main class="govuk-main-wrapper" id="main-content">
+
+              <div style="height:300px;"></div>
+
+          </main>
+        </div>
+{% endblock %}
