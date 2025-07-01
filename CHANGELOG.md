@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- Update stylelint
+
+## [6.74.0] - 2025-06-27
+
+### Changed
+
 - Bump govuk-frontend to 5.11.0
 
 ## [6.73.0] - 2025-06-23
