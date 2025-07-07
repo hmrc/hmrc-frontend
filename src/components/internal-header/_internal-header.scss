@@ -48,7 +48,7 @@
   svg {
     float: left;
     vertical-align: top;
-    fill: currentColor;
+    fill: currentcolor;
   }
 
   img {
@@ -56,7 +56,7 @@
     vertical-align: top;
     width: 32px;
     height: 32px;
-    padding: 0 10px 0 10px;
+    padding: 0 10px;
   }
 
   &:link,
@@ -71,7 +71,7 @@
 .hmrc-internal-header__logo-text {
   display: flex;
   vertical-align: top;
-  margin: 0 0 0 0;
+  margin: 0;
 }
 
 .hmrc-internal-header__service-name {

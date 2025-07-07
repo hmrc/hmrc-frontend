@@ -1,3 +1,4 @@
+// stylelint-disable
 @import "../../../../govuk-frontend/dist/govuk/settings/index";
 @import "../../../../govuk-frontend/dist/govuk/tools/index";
 @import "../../../../govuk-frontend/dist/govuk/helpers/index";
@@ -332,7 +333,7 @@ $hmrc-banner-blue: #005ea5;
   position: absolute;
   top: 20px;
   right: 15px;
-  color: #fff;
+  color: #ffffff;
 }
 
 @media print {

@@ -1,3 +1,4 @@
+// stylelint-disable number-max-precision -- deferred during move to stylelint-config-gds
 .hmrc-language-select {
   @include govuk-font($size: 16);
   @include govuk-clearfix;
