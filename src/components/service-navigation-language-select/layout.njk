@@ -6,6 +6,21 @@
   {{ hmrcHeader({
     serviceNavigation: {
       serviceName: "Example service",
+      navigation: [
+        {
+          href: "#",
+          text: "Navigation item 1"
+        },
+        {
+          href: "#",
+          text: "Navigation item 2",
+          active: true
+        },
+        {
+          href: "#",
+          text: "Navigation item 3"
+        }
+      ],
       slots: {
         end: componentView
       }
