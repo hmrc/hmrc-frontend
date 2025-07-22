@@ -1,6 +1,6 @@
 {
   "name": "hmrc-frontend",
-  "version": "6.76.0",
+  "version": "6.77.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
@@ -21,7 +21,8 @@
     "test:backstop-approve": "gulp backstop:approve",
     "docs:generate-decision-log-listing": "adr-log -d ./docs/adr -i ./docs/adr/index.md -e template.md",
     "audit": "better-npm-audit audit",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "node lib/check-govuk-and-hmrc-frontend-versions.js"
   },
   "repository": {
     "type": "git",
