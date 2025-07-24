@@ -62,7 +62,7 @@
     {
       "files": [
         "tasks/gulp/**/*",
-        "check-compatibility.js",
+        "check-compatibility-with-govuk-frontend-version.js",
         "start.js",
         "lib/puppeteer/**/*"
       ],
