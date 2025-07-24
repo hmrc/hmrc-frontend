@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.77.0] - 2025-07-24
+
+### Changed
+
+- Bump govuk-frontend to 5.11.1
+
 ## [6.76.0] - 2025-07-08
 
 ### Changed
