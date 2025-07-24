@@ -7,11 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [6.79.0] - 2025-07-22
+## [6.79.0] - 2025-07-24
 
 ### Changed
 
 - Added a script to check the compatibility of hmrc and govuk frontends
+
+## [6.78.0] - 2025-07-24
+
+### Changed
+
+- Updated npm audit exclusions
+
+## [6.77.0] - 2025-07-24
+
+### Changed
+
+- Bump govuk-frontend to 5.11.1
 
 ## [6.76.0] - 2025-07-08
 
