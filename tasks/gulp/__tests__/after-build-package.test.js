@@ -43,6 +43,7 @@ describe('package/', () => {
       ];
 
       const additionalFilesNotFromSrc = [
+        'check-compatibility-with-govuk-frontend-version.js',
         'govuk-prototype-kit.config.json',
         'package.json',
         'README.md',

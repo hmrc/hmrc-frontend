@@ -29,6 +29,7 @@ const copyPackageFiles = series(
   'copy-govuk-config',
   'copy-govuk-manifest-json',
   'copy-govuk-manifest-json-rebrand',
+  'copy-check-compatibility-with-govuk-frontend-version',
 );
 
 const buildPackage = series(

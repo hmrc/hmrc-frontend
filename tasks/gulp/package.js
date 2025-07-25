@@ -80,3 +80,6 @@ gulp.task('copy-package-sources', () => gulp.src([
   ], { syntax: postcss1 }))
   .pipe(scssFiles.restore)
   .pipe(gulp.dest(`${configPaths.package}hmrc/`)));
+
+gulp.task('copy-check-compatibility-with-govuk-frontend-version', () => gulp.src(['check-compatibility-with-govuk-frontend-version.js'])
+  .pipe(gulp.dest(configPaths.package)));
