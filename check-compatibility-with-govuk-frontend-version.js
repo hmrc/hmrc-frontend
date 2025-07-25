@@ -4,16 +4,12 @@ if (process.env.HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK === 'true') {
 const fs = require('fs');
 const path = require('path');
 
-const projectDir = process.env.INIT_CWD;
-const hmrcFrontendDir = path.join(projectDir, 'node_modules/hmrc-frontend/');
-const projectPackagePath = path.join(projectDir, 'package.json');
-let minimumGovukFrontendVersion = '';
+// To our knowledge hmrc-frontend won't work with versions below this.
+// This is because of a change to directory structure (/dist/).
+const minimumGovukFrontendVersion = '5.1.0';
 
-try {
-  minimumGovukFrontendVersion = JSON.parse(fs.readFileSync(path.join(hmrcFrontendDir, 'package.json'), 'utf8')).dependencies['govuk-frontend'].replace(/[^0-9.]/g, '');
-} catch (err) {
-  process.exit(0); // Exit if no package.json is found under project_path/node_modules/hmrc-frontend
-}
+const projectDir = process.env.INIT_CWD;
+const projectPackagePath = path.join(projectDir, 'package.json');
 
 const projectPackageJson = JSON.parse(fs.readFileSync(projectPackagePath, 'utf8'));
 const currentVersionInProject = projectPackageJson.dependencies['govuk-frontend'].replace(/[^0-9.]/g, '');

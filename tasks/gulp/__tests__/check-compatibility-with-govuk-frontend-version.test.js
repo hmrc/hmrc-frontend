@@ -12,10 +12,9 @@ describe('govuk-frontend version compatibility check', () => {
     unlink(mockPackagePath, () => {});
   });
 
-  beforeEach(() => {
+  beforeAll(() => {
     process.env.HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK = '';
     process.env.INIT_CWD = path.join(process.env.INIT_CWD, 'tasks/gulp/__tests__');
-    jest.resetModules();
   });
 
   describe('Installing outside of a Prototype kit project', () => {
@@ -42,7 +41,7 @@ describe('govuk-frontend version compatibility check', () => {
         createMockPackage({
           dependencies: {
             'govuk-frontend': '5.11.0',
-            'hmrc-frontend': '6.78.0',
+            'hmrc-frontend': '6.79.0',
           },
         });
 
@@ -63,10 +62,10 @@ describe('govuk-frontend version compatibility check', () => {
         createMockPackage({
           dependencies: {
             'govuk-frontend': '4.4.0',
-            'hmrc-frontend': '6.77.0',
+            'hmrc-frontend': '6.79.0',
           },
         });
-        const child = exec(`node ${scriptPath}`);
+        const child = exec(`node ${scriptPath}`, { env: process.env.INIT_CWD });
         child.on('exit', (code) => {
           try {
             expect(code).toBe(1);
