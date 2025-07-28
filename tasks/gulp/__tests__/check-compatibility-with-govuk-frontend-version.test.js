@@ -19,10 +19,10 @@ describe('govuk-frontend version compatibility check', () => {
   });
 
   describe('Installing outside of a Prototype kit project', () => {
-    it('should exit the process with code 0', (done) => {
+    it('should not run the check', (done) => {
       createMockPackage({
         dependencies: {
-          'govuk-frontend': '5.11.0',
+          'govuk-frontend': '4.4.0',
           'hmrc-frontend': '6.79.0',
         },
       });
