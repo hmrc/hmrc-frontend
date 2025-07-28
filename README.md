@@ -31,6 +31,14 @@ cd hmrc-frontend
 npm install
 ```
 
+#### Overriding compatibility
+
+Your prototype may fail locally on `npm install`, due to the version of govuk-frontend being incompatible with hmrc-frontend. If you don't want to bump that version, you can set an environment variable to be able to continue without it:
+
+```
+export HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK=true
+```
+
 ### How to run
 
 1. Run `npm start`

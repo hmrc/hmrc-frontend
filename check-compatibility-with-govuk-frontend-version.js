@@ -5,15 +5,27 @@ const fs = require('fs');
 const path = require('path');
 
 // To our knowledge hmrc-frontend won't work with versions below this.
-// This is because of a change to directory structure (/dist/).
-const minimumGovukFrontendVersion = '5.1.0';
+const minimumGovukFrontendVersion = '5.4.0';
+
+function semverGreaterThan(a, b) {
+  const [aMaj, aMin, aPat] = a.split('.').map(Number);
+  const [bMaj, bMin, bPat] = b.split('.').map(Number);
+  return ((aMaj - bMaj) || (aMin - bMin) || (aPat - bPat)) > 0;
+}
 
 const projectDir = process.env.INIT_CWD;
 const projectPackagePath = path.join(projectDir, 'package.json');
 
 const projectPackageJson = JSON.parse(fs.readFileSync(projectPackagePath, 'utf8'));
+
+try {
+  projectPackageJson.dependencies['govuk-prototype-kit'].replace(/[^0-9.]/g, '');
+} catch (err) {
+  process.exit(0); // Exit if govuk-prototype-kit is not found in package.json
+}
+
 const currentVersionInProject = projectPackageJson.dependencies['govuk-frontend'].replace(/[^0-9.]/g, '');
-if (currentVersionInProject >= minimumGovukFrontendVersion) {
+if (semverGreaterThan(currentVersionInProject, minimumGovukFrontendVersion)) {
   process.exit(0);
 } else {
   // eslint-disable-next-line no-console
