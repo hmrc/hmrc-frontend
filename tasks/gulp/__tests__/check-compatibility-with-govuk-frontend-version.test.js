@@ -85,7 +85,6 @@ describe('govuk-frontend version compatibility check', () => {
 
     describe('when \'env.HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK\' is set', () => {
       it('should exit the process with code 0 when set to true', (done) => {
-        process.env.HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK = 'true';
         createMockPackage({
           dependencies: {
             'govuk-prototype-kit': '13.0.0',
@@ -93,7 +92,13 @@ describe('govuk-frontend version compatibility check', () => {
             'hmrc-frontend': '6.79.0',
           },
         });
-        const child = exec(`node ${scriptPath}`, { env: { ...process.env, INIT_CWD: initCwd } });
+        const child = exec(`node ${scriptPath}`, {
+          env: {
+            ...process.env,
+            INIT_CWD: initCwd,
+            HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK: 'true',
+          },
+        });
         child.on('exit', (code) => {
           try {
             expect(code).toBe(0);
@@ -105,7 +110,6 @@ describe('govuk-frontend version compatibility check', () => {
       });
 
       it('should exit the process with code 1 when set with a value other than true and incompatible version', (done) => {
-        process.env.HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK = 'blue';
         createMockPackage({
           dependencies: {
             'govuk-prototype-kit': '13.0.0',
@@ -113,7 +117,13 @@ describe('govuk-frontend version compatibility check', () => {
             'hmrc-frontend': '6.79.0',
           },
         });
-        const child = exec(`node ${scriptPath}`, { env: { ...process.env, INIT_CWD: initCwd } });
+        const child = exec(`node ${scriptPath}`, {
+          env: {
+            ...process.env,
+            INIT_CWD: initCwd,
+            HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK: 'blue',
+          },
+        });
         child.on('exit', (code) => {
           try {
             expect(code).toBe(1);
