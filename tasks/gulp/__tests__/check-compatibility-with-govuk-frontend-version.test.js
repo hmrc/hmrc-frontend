@@ -1,21 +1,35 @@
 /* eslint-env jest */
-const { writeFileSync, unlink } = require('fs');
+const { writeFileSync, promises: { rm, mkdtemp } } = require('fs');
 const path = require('path');
 const { exec } = require('child_process');
-
-const initCwd = path.join(process.env.INIT_CWD, 'tasks/gulp/__tests__');
+const { tmpdir } = require('os');
 
 describe('govuk-frontend version compatibility check', () => {
-  const scriptPath = path.resolve(__dirname, '../../../check-compatibility-with-govuk-frontend-version.js');
-  const mockPackagePath = path.resolve(__dirname, 'package.json');
-  const createMockPackage = (contents) => writeFileSync(mockPackagePath, JSON.stringify(contents));
+  const compatibilityCheckScript = path.resolve(__dirname, '../../../check-compatibility-with-govuk-frontend-version.js');
 
-  afterAll(() => {
-    unlink(mockPackagePath, () => {});
+  let tmpDir;
+
+  beforeEach(async () => {
+    tmpDir = await mkdtemp(path.join(tmpdir(), 'hmrc-frontend-unit-tests-'));
   });
 
-  beforeAll(() => {
-    process.env.HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK = '';
+  afterEach(async () => {
+    await rm(tmpDir, {
+      recursive: true,
+      force: true, // ignores exceptions if target doesn't exist
+    });
+    jest.resetAllMocks();
+  });
+
+  const createMockPackage = (contents) => writeFileSync(path.join(tmpDir, 'package.json'), JSON.stringify(contents));
+
+  const runCompatibilityCheck = (extraEnv = {}) => exec(`node ${compatibilityCheckScript}`, {
+    cwd: tmpDir,
+    env: {
+      ...process.env, // because we need to inherit PATH
+      INIT_CWD: tmpDir,
+      ...extraEnv,
+    },
   });
 
   describe('Installing outside of a Prototype kit project', () => {
@@ -26,9 +40,7 @@ describe('govuk-frontend version compatibility check', () => {
           'hmrc-frontend': '6.79.0',
         },
       });
-
-      const child = exec(`node ${scriptPath}`, { env: { ...process.env, INIT_CWD: initCwd } });
-      child.on('exit', (code) => {
+      runCompatibilityCheck().on('exit', (code) => {
         try {
           expect(code).toBe(0);
           done();
@@ -49,9 +61,7 @@ describe('govuk-frontend version compatibility check', () => {
             'hmrc-frontend': '6.79.0',
           },
         });
-
-        const child = exec(`node ${scriptPath}`, { env: { ...process.env, INIT_CWD: initCwd } });
-        child.on('exit', (code) => {
+        runCompatibilityCheck().on('exit', (code) => {
           try {
             expect(code).toBe(0);
             done();
@@ -71,9 +81,7 @@ describe('govuk-frontend version compatibility check', () => {
             'hmrc-frontend': '^6.79.0',
           },
         });
-
-        const child = exec(`node ${scriptPath}`, { env: { ...process.env, INIT_CWD: initCwd } });
-        child.on('exit', (code) => {
+        runCompatibilityCheck().on('exit', (code) => {
           try {
             expect(code).toBe(0);
             done();
@@ -93,8 +101,7 @@ describe('govuk-frontend version compatibility check', () => {
             'hmrc-frontend': '6.79.0',
           },
         });
-        const child = exec(`node ${scriptPath}`, { env: { ...process.env, INIT_CWD: initCwd } });
-        child.on('exit', (code) => {
+        runCompatibilityCheck().on('exit', (code) => {
           try {
             expect(code).toBe(1);
             done();
@@ -114,8 +121,7 @@ describe('govuk-frontend version compatibility check', () => {
             'hmrc-frontend': '^6.79.0',
           },
         });
-        const child = exec(`node ${scriptPath}`, { env: { ...process.env, INIT_CWD: initCwd } });
-        child.on('exit', (code) => {
+        runCompatibilityCheck().on('exit', (code) => {
           try {
             expect(code).toBe(1);
             done();
@@ -135,14 +141,9 @@ describe('govuk-frontend version compatibility check', () => {
             'hmrc-frontend': '6.79.0',
           },
         });
-        const child = exec(`node ${scriptPath}`, {
-          env: {
-            ...process.env,
-            INIT_CWD: initCwd,
-            HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK: 'true',
-          },
-        });
-        child.on('exit', (code) => {
+        runCompatibilityCheck({
+          HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK: 'true',
+        }).on('exit', (code) => {
           try {
             expect(code).toBe(0);
             done();
@@ -160,14 +161,9 @@ describe('govuk-frontend version compatibility check', () => {
             'hmrc-frontend': '6.79.0',
           },
         });
-        const child = exec(`node ${scriptPath}`, {
-          env: {
-            ...process.env,
-            INIT_CWD: initCwd,
-            HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK: 'blue',
-          },
-        });
-        child.on('exit', (code) => {
+        runCompatibilityCheck({
+          HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK: 'blue',
+        }).on('exit', (code) => {
           try {
             expect(code).toBe(1);
             done();
@@ -177,9 +173,5 @@ describe('govuk-frontend version compatibility check', () => {
         });
       });
     });
-  });
-
-  afterEach(() => {
-    jest.resetAllMocks();
   });
 });
