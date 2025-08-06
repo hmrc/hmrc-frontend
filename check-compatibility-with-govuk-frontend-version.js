@@ -17,12 +17,7 @@ function semverGreaterThanOrEqualTo(a, b) {
   return ((aMaj - bMaj) || (aMin - bMin) || (aPat - bPat)) >= 0;
 }
 
-function withinPrototypeKitAndUsingIncompatibleGovukFrontendVersion(currentVersion) {
-  const minimumGovukFrontendVersion = '5.4.0';
-  return !semverGreaterThanOrEqualTo(currentVersion, minimumGovukFrontendVersion);
-}
-
-try {
+function withinPrototypeKitAndUsingIncompatibleGovukFrontendVersion() {
   const projectDir = process.env.INIT_CWD || process.cwd();
   const projectPackagePath = path.join(projectDir, 'package.json');
   const projectPackageJson = JSON.parse(fs.readFileSync(projectPackagePath, 'utf8'));
@@ -36,12 +31,9 @@ try {
   }
 
   const currentVersionInProject = projectPackageJson.dependencies['govuk-frontend'].replace(/[^0-9.]/g, '');
+  const minimumGovukFrontendVersion = '5.4.0';
 
-  if (hmrcFrontendDisableCompatibilityCheck()) {
-    process.exit(0);
-  }
-
-  if (withinPrototypeKitAndUsingIncompatibleGovukFrontendVersion(currentVersionInProject)) {
+  if (!semverGreaterThanOrEqualTo(currentVersionInProject, minimumGovukFrontendVersion)) {
     // eslint-disable-next-line no-console
     process.stderr.write(`
     Hello friend, looks like you're on
@@ -58,7 +50,19 @@ try {
                     ||     ||
     - PlatMooI the PlatUI Helper Cow
     `);
+    return true;
+  }
+  return false;
+}
+
+try {
+  if (hmrcFrontendDisableCompatibilityCheck()) {
+    process.exit(0);
+  }
+  if (withinPrototypeKitAndUsingIncompatibleGovukFrontendVersion()) {
     process.exit(1);
+  } else {
+    process.exit(0);
   }
 } catch (err) {
   process.exit(0);
