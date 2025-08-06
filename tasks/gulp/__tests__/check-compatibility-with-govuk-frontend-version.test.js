@@ -62,6 +62,28 @@ describe('govuk-frontend version compatibility check', () => {
       });
     });
 
+    describe('Installing with a compatible version and different characters in the version', () => {
+      it('should exit the process with code 0', (done) => {
+        createMockPackage({
+          dependencies: {
+            'govuk-prototype-kit': '^13.0.0',
+            'govuk-frontend': '^5.11.0-rc.1',
+            'hmrc-frontend': '^6.79.0',
+          },
+        });
+
+        const child = exec(`node ${scriptPath}`, { env: { ...process.env, INIT_CWD: initCwd } });
+        child.on('exit', (code) => {
+          try {
+            expect(code).toBe(0);
+            done();
+          } catch (error) {
+            done(error);
+          }
+        });
+      });
+    });
+
     describe('Installing with an incompatible version', () => {
       it('should exit the process with code 1', (done) => {
         createMockPackage({
@@ -69,6 +91,27 @@ describe('govuk-frontend version compatibility check', () => {
             'govuk-prototype-kit': '13.0.0',
             'govuk-frontend': '4.4.0',
             'hmrc-frontend': '6.79.0',
+          },
+        });
+        const child = exec(`node ${scriptPath}`, { env: { ...process.env, INIT_CWD: initCwd } });
+        child.on('exit', (code) => {
+          try {
+            expect(code).toBe(1);
+            done();
+          } catch (error) {
+            done(error);
+          }
+        });
+      });
+    });
+
+    describe('Installing with an incompatible version and different characters in the version', () => {
+      it('should exit the process with code 1', (done) => {
+        createMockPackage({
+          dependencies: {
+            'govuk-prototype-kit': '^13.0.0',
+            'govuk-frontend': '^4.4.0-rc.1',
+            'hmrc-frontend': '^6.79.0',
           },
         });
         const child = exec(`node ${scriptPath}`, { env: { ...process.env, INIT_CWD: initCwd } });
