@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.81.0] - 2025-08-07
+
+### Changed
+
+- Updates compatibility check script to allow HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK=true to be included in an npmrc file to suppress the check
+
 ## [6.80.0] - 2025-08-07
 
 ### Changed
