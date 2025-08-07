@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.80.0] - 2025-08-07
+
+### Changed
+
+- Adds the compatibility check to gulp required scripts
+
 ## [6.79.0] - 2025-08-06
 
 ### Changed
