@@ -43,6 +43,7 @@ gulp.task('copy:packageJson', (done) => {
 
   const requiredScripts = [
     'preinstall',
+    'postinstall',
   ];
 
   Object.keys(packageFile.scripts).forEach((key) => {
