@@ -1,9 +1,10 @@
 {
   "name": "hmrc-frontend",
-  "version": "6.78.0",
+  "version": "6.79.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
+    "test:compatibility": " jest tasks/gulp/__tests__/check-compatibility-with-govuk-frontend-version.test.js",
     "test:build:package": "jest tasks/gulp/__tests__/after-build-package.test.js",
     "test:build:dist": "jest tasks/gulp/__tests__/after-build-dist.test.js",
     "test:build:webjar": "jest tasks/gulp/__tests__/after-build-webjar.jsdom.test.js",
@@ -15,13 +16,14 @@
     "build": "npm run build:dist && npm run build:package",
     "lint": "stylelint 'src/**/*.scss' && eslint .",
     "lint:fix": "stylelint 'src/**/*.scss' --fix && eslint --fix .",
-    "test": "npm run build:dist && jest src && npm run lint",
+    "test": "npm run build:dist && npm run test:compatibility && jest src && npm run lint",
     "test:update-snapshots": "jest src -u",
     "test:backstop": "gulp backstopTest",
     "test:backstop-approve": "gulp backstop:approve",
     "docs:generate-decision-log-listing": "adr-log -d ./docs/adr -i ./docs/adr/index.md -e template.md",
     "audit": "better-npm-audit audit",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "node check-compatibility-with-govuk-frontend-version.js"
   },
   "repository": {
     "type": "git",

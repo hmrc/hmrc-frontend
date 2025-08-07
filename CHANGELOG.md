@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.79.0] - 2025-08-06
+
+### Changed
+
+- Added a script to check the compatibility of hmrc and govuk frontends
+
+### Action required in prototypes using govuk-frontend less than 5.4.0 
+
+- We now display an error on install to warn prototype maintainers of incompatibility with versions of govuk-frontend less than 5.4.0 in prototypes
+  - You can update your govuk-frontend version or suppress it by setting HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK=true
+
 ## [6.78.0] - 2025-07-24
 
 ### Changed
