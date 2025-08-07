@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Adds the compatibility check to gulp required scripts
+- Adds required postinstall script to run the check for govuk-frontend compatibility on install in a prototype
 
 ## [6.79.0] - 2025-08-06
 
