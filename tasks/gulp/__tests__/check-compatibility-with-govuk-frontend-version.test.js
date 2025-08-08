@@ -173,5 +173,46 @@ describe('govuk-frontend version compatibility check', () => {
         });
       });
     });
+    describe('when \'npm_config_hmrc_frontend_disable_compatibility_check\' is set', () => {
+      it('should exit the process with code 0 when set to true', (done) => {
+        createMockPackage({
+          dependencies: {
+            'govuk-prototype-kit': '13.0.0',
+            'govuk-frontend': '4.4.0',
+            'hmrc-frontend': '6.79.0',
+          },
+        });
+        runCompatibilityCheck({
+          npm_config_hmrc_frontend_disable_compatibility_check: 'true',
+        }).on('exit', (code) => {
+          try {
+            expect(code).toBe(0);
+            done();
+          } catch (error) {
+            done(error);
+          }
+        });
+      });
+
+      it('should exit the process with code 1 when set with a value other than true and incompatible version', (done) => {
+        createMockPackage({
+          dependencies: {
+            'govuk-prototype-kit': '13.0.0',
+            'govuk-frontend': '4.4.0',
+            'hmrc-frontend': '6.79.0',
+          },
+        });
+        runCompatibilityCheck({
+          npm_config_hmrc_frontend_disable_compatibility_check: 'blue',
+        }).on('exit', (code) => {
+          try {
+            expect(code).toBe(1);
+            done();
+          } catch (error) {
+            done(error);
+          }
+        });
+      });
+    });
   });
 });
