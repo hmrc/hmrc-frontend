@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 
 function hmrcFrontendDisableCompatibilityCheck() {
-  return process.env.HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK === 'true';
+  return (process.env.npm_config_hmrc_frontend_disable_compatibility_check || process.env.HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK) === 'true';
 }
 
 function semverGreaterThanOrEqualTo(a, b) {
