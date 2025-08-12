@@ -621,3 +621,23 @@ examples:
         href: "/components/header/with-language-toggle-english/preview"
       cy:
         href: "/components/header/with-language-toggle-welsh/preview"
+
+- name: with service name link and research banner
+  description: we tweak styles of user research banner when it follows header with no phase banner in between
+  data:
+    serviceName: Example service
+    serviceUrl: '/components/header'
+    userResearchBanner:
+      url: '/sign-up-for-user-research'
+
+- name: with service name link and phase banner and research banner
+  description: we tweak styles of user research banner when it follows header with no phase banner in between
+  data:
+    serviceName: Example service
+    serviceUrl: '/components/header'
+    userResearchBanner:
+      url: '/sign-up-for-user-research'
+    phaseBanner:
+      tag:
+        text: alpha
+      html: This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
