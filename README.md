@@ -44,6 +44,8 @@ export HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK=true
 1. Run `npm start`
 2. Components are available at [http://localhost:3000]()
 
+To see version of the page with rebrand enabled just add `?rebrand=true` at the end of url.
+
 ## Using HMRC Frontend locally
 
 ### Prototypes
