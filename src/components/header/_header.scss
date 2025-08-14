@@ -164,3 +164,8 @@ $govuk-header-link-underline-thickness: 3px;
 .hmrc-header + .hmrc-user-research-banner {
   top: -10px;
 }
+
+// Above style is breaking the user-research-banner when the rebrand is enabled
+.govuk-template--rebranded .hmrc-header + .hmrc-user-research-banner {
+  top: 0;
+}

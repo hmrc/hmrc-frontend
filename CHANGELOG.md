@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.82.0] - 2025-08-12
+
+### Changed
+
+- Fix for user research banner that overlapped header when rebrand was enabled
+
 ## [6.81.0] - 2025-08-07
 
 ### Changed
