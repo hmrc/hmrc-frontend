@@ -1,0 +1,45 @@
+params:
+  - name: language
+    type: string
+    required: false
+    description: Either "en" for english or "cy" for welsh.
+  - name: en
+    type: object
+    required: false
+    description: A container for the English link URL
+    params:
+    - name: href
+      type: string
+      required: false
+      description: The URL the user would use to switch to English
+  - name: cy
+    type: object
+    required: false
+    description: A container for the English link URL
+    params:
+    - name: href
+      type: string
+      required: false
+      description: The URL the user would use to switch to English
+examples:
+- name: default
+  description:
+  data:
+    language: 'en'
+    cy:
+      href: '/components/service-navigation-language-select/welsh/preview'
+- name: welsh
+  data:
+    language: 'cy'
+    en:
+      href: '/components/service-navigation-language-select/preview'
+  visualRegressionTests:
+    alternateStates:
+      hovered:
+        beforeTakingScreenshot:
+          - hover: ".govuk-link"
+      focused:
+        beforeTakingScreenshot:
+          - focus: ".govuk-link"
+
+
