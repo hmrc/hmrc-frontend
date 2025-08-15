@@ -100,6 +100,10 @@
       "importFrom": "hmrc/components/report-technical-issue/macro.njk"
     },
     {
+      "macroName": "hmrcServiceNavigationLanguageSelect",
+      "importFrom": "hmrc/components/service-navigation-language-select/macro.njk"
+    },
+    {
       "macroName": "hmrcTimeline",
       "importFrom": "hmrc/components/timeline/macro.njk"
     },

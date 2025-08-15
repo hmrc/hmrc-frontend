@@ -647,11 +647,6 @@ examples:
     serviceNavigation:
       serviceName: Service name
       serviceUrl: '#s1'
-      slots:
-        start: Start
-        end: End
-        navigationStart: Navigation Start
-        navigationEnd: Navigation End
 
 - name: with service navigation and govukHeader
   data:
@@ -660,6 +655,21 @@ examples:
     serviceNavigation:
       serviceName: Service name
       serviceUrl: '#s1'
+      slots:
+        end: | # this is the rendered output of the hmrcServiceNavigationLanguageSelect component
+          <nav class="hmrc-service-navigation-language-select" aria-label="Language switcher">
+              <ul class="hmrc-service-navigation-language-select__list">
+                <li class="hmrc-service-navigation-language-select__list-item">
+                  <span aria-current="true">ENG</span>
+                </li>
+                <li class="hmrc-service-navigation-language-select__list-item">
+                  <a href="/components/service-navigation-language-select/welsh/preview" hreflang="cy" lang="cy" rel="alternate" class="govuk-link govuk-service-navigation__link" data-journey-click="link - click:lang-select:Cymraeg">
+                    <span class="govuk-visually-hidden">Newid yr iaith ir Gymraeg</span>
+                    <span aria-hidden="true">CYM</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
     languageToggle:
       en:
         href: "/components/header/with-language-toggle-english/preview"
@@ -668,10 +678,14 @@ examples:
 
 - name: service navigation with other banners
   data:
-    phaseBanner: true
     serviceNavigation:
       serviceName: Service name
       serviceUrl: '#s1'
-    userResearchBanner: true
+    userResearchBanner:
+      url: '/sign-up-for-user-research'
+    phaseBanner:
+      tag:
+        text: alpha
+      html: This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
     displayHmrcBanner: true
     additionalBannersBlock: "<div class=\"custom-banner govuk-body\">for example an attorney banner</div>"
