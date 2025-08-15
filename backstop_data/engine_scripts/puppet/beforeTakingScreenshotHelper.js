@@ -4,8 +4,11 @@ module.exports = async (page, { beforeTakingScreenshot }) => {
   allowedPageActions.click = async selector =>
     await page.click(selector);
 
-  allowedPageActions.hover = async selector =>
+  allowedPageActions.hover = async selector => {
     await page.hover(selector);
+    // to try and reduce seemingly unavoidable flakiness
+    await page.waitForTimeout(100);
+  }
 
   allowedPageActions.focus = async selector =>
     await page.focus(selector);
@@ -16,8 +19,11 @@ module.exports = async (page, { beforeTakingScreenshot }) => {
   allowedPageActions.press = async key =>
     await page.press(key);
 
-  allowedPageActions.waitFor = async selector =>
-    await page.waitForSelector(selector);
+  allowedPageActions.waitFor = async selector => {
+    await page.locator(selector).waitFor();
+    // to try and reduce seemingly unavoidable flakiness
+    await page.waitForTimeout(100);
+  }
 
   allowedPageActions.setRefererSameDomain = async refererIsSameDomain => {
     if(refererIsSameDomain) {
