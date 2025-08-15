@@ -2,6 +2,7 @@
 {% from "../banner/macro.njk" import hmrcBanner %}
 {% from "../user-research-banner/macro.njk" import hmrcUserResearchBanner %}
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
 {% from "govuk/macros/attributes.njk" import govukAttributes %}
 {% from "govuk/macros/logo.njk" import govukLogo -%}
@@ -11,7 +12,7 @@
 {%- set menuButtonText = params.menuButtonText if params.menuButtonText else ('Dewislen' if language == 'cy' else 'Menu') -%}
 
 <header>
-<div class="govuk-header hmrc-header {%- if params.classes %} {{ params.classes }}{% endif %}{{ ' hmrc-header--with-additional-navigation' if params.signOutHref or params.languageToggle }}" data-module="govuk-header"
+<div class="govuk-header hmrc-header {%- if params.classes %} {{ params.classes }}{% endif %}{{ ' hmrc-header--with-additional-navigation' if params.signOutHref or params.languageToggle }} {%- if params.serviceNavigation %} {{ 'govuk-header--full-width-border' }}{% endif %}" data-module="govuk-header"
   {{- govukAttributes(params.attributes) }}>
   <div class="govuk-header__container {{ params.containerClasses | default("govuk-width-container", true) }}">
     <div class="govuk-header__logo">
@@ -92,6 +93,10 @@
   <div class="govuk-width-container">
     {{ govukPhaseBanner(params.phaseBanner) }}
   </div>
+{% endif %}
+{% if params.serviceNavigation %}
+    {# leave all smart stuff to play-frontend-hmrc helpers and keep this really presentational? #}
+    {{ govukServiceNavigation(params.serviceNavigation) }}
 {% endif %}
 {%- if params.userResearchBanner %}
     {{ hmrcUserResearchBanner({language: params.language, url: params.userResearchBanner.url }) }}

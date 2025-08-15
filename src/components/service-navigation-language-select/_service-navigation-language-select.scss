@@ -1,0 +1,29 @@
+.hmrc-service-navigation-language-select {
+  @include govuk-font($size: 16);
+  @include govuk-clearfix;
+}
+
+.hmrc-service-navigation-language-select__list {
+  margin-top: 1em;
+  float: right;
+  text-align: right;
+}
+
+.hmrc-service-navigation-language-select__list-item {
+  display: inline-block;
+
+  &:first-child::after {
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 0.1875em;
+    height: 1em;
+    // stylelint-disable-next-line number-max-precision -- gives a 1.5px border width
+    border-right: 0.09375em solid  $govuk-text-colour;
+  }
+
+  a,
+  [aria-current] {
+    padding: 0.3125em;
+  }
+}
