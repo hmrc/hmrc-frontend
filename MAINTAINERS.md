@@ -85,6 +85,10 @@ We use the following workflow for patch releases:
 
 Sometimes we may get deprecation warnings, but we might not always want to resolve this with a change request. This is because these changes can be breaking changes for the consumers of our library who reuse our uncompiled sass. The largest group of which are prototypes. Instead, you can suppress the deprecation by adding the name of the deprecation to the `silenceDeprecations` list and documenting the suppression.
 
+## Double check if the govuk-crest needs updating
+
+Under `src/assets/images/`, there is a png of the govuk-crest. For the most part, it's unlikely we will need to change this image, but at some point in the future, you may need to update this. This can be done by taking any software that can take and convert an svg file into the png format.
+
 ## Keeping a record of decisions
 
 We are using MADRs to record significant decisions in this service. To find out more
