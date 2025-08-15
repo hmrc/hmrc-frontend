@@ -121,15 +121,11 @@ module.exports = (options) => {
     const macroParameters = JSON.stringify(exampleConfig.data, null, '\t');
     const componentDirectory = helperFunctions.componentNameToComponentDirectory(componentName);
 
-    try {
-      res.locals.componentView = env.renderString(
-        `
+    res.locals.componentView = !fs.existsSync(path.join(configPaths.components, componentDirectory, 'macro.njk'))
+      ? ''
+      : env.renderString(`
 {% from '${componentDirectory}/macro.njk' import ${macroName} %}
-{{ ${macroName}(${macroParameters}) }}`,
-      );
-    } catch (err) {
-      res.locals.componentView = null;
-    }
+{{ ${macroName}(${macroParameters}) }}`);
 
     let bodyClasses = '';
     if (req.query.iframe) {
