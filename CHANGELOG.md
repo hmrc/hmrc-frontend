@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.83.0] - 2025-08-15
+
+### Changed
+
+- Added a png of the govuk crest under `src/assets/images`
+
 ## [6.82.0] - 2025-08-12
 
 ### Changed
