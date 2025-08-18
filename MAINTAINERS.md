@@ -87,7 +87,17 @@ Sometimes we may get deprecation warnings, but we might not always want to resol
 
 ## Double check if the govuk-crest needs updating
 
-Under `src/assets/images/`, there is a png of the govuk-crest. For the most part, it's unlikely we will need to change this image, but at some point in the future, you may need to update this. This can be done by taking any software that can take and convert an svg file into the png format.
+Under `src/assets/images/`, there is a png of the [govuk-crest](src/assets/images/govuk-crest.png) and [govuk-crest-2x](src/assets/images/govuk-crest-2x.png). For the most part, it's unlikely we will need to change this image, but at some point in the future, you may need to update this. This can be done by taking any software that can take and convert an svg file into the png format.
+
+### How-to regenerate 1x and 2x versions from SVG if it has been updated
+
+If [govuk-frontend](https://github.com/alphagov/govuk-frontend/) provides an updated svg file for [govuk-crest](https://github.com/alphagov/govuk-frontend/blob/main/dist/assets/images/govuk-crest.svg), you can use any software to convert the file to png format. For vector-based illustrations (svg files), you could use [Inkscape](https://inkscape.org/), or any other vector-based software that allows exporting to the png file format.
+
+`govuk-crest-2x` may not be included in [govuk-frontend](https://github.com/alphagov/govuk-frontend/). If that's the case, you will need to take the govuk-crest file and upscale it yourself, using any vector-based software that allows you to do so. Then you will need to export it as a png file.
+
+### Why do we have these?
+
+These are here for services and applications that need a png format for the crest, such as emails, which cannot utilise the svg file format.
 
 ## Keeping a record of decisions
 
