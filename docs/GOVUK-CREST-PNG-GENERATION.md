@@ -32,10 +32,14 @@ If [govuk-frontend](https://github.com/alphagov/govuk-frontend/) provides an upd
     4. Ensure everything else on this tab is unticked
 13. In this Optimized SVG Output window, click the `IDs` tab and tick all three of the options
 14. Press OK
-15. Use a command-line tool like [svgo](https://github.com/svg/svgo), or an online tool like [svgomg](https://github.com/jakearchibald/svgomg/) to further optimise the file
+15. Use a command-line tool like [svgo](https://github.com/svg/svgo), or an online tool like [svgomg](https://github.com/jakearchibald/svgomg/) to further optimise the file. 
+    1. Make sure you keep a Number Precision of at least 2
 16. Open the optimised file in Inkscape
 17. In the menu, click `File > Export`
 18. In the `Export` tab, ensure the `Page` option is selected
-19. Ensure `PNG (*.png)` is selected
-20. Click the folder icon on the file path to choose where to save the file - Remember to give the file a name like `govuk-crest-2x.png`.
-21. Click Export
+19. Ensure `Optimized PNG (*.png)` is selected
+20. Click the gear icon next to the `Optimized PNG` selection
+21. Set the `Level:` to `Ten Compression Trials`
+22. Select Lossy Options and tick all three options 
+23. Click the folder icon on the file path to choose where to save the file - Remember to give the file a name like `govuk-crest-2x.png`.
+24. Click Export
