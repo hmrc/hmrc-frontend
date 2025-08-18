@@ -14,22 +14,22 @@ If [govuk-frontend](https://github.com/alphagov/govuk-frontend/) provides an upd
 6. Right click an empty part of the page behind the svg and click `Document Properties`
 7. Set `Width` to `250px` and ensure Height increases along with it - If not, update `Height` to `204px`.
 8. Select all of the parts of the crest and at the top of Inkscape, set `X:` to `10` and `Y:` to `0`
-  1. Note: If the crest image has changed, it might be worth double checking the `X` and `Y` values and make sure it's about centred.
+    1. Note: If the crest image has changed, it might be worth double checking the `X` and `Y` values and make sure it's about centred.
 9. In the menu, click `File > Save As` and select `Optimized SVG (*.svg)`.
 10. In this Optimized SVG Output window, set `Number of significant digits for coordinates` to `2`.
 11. In this Optimized SVG Output window, tick/untick the following:
-  1. Tick `Shorten Colour Values`
-  2. Tick `Convert CSS attributes to XML attributes`
-  3. Tick `Collapse groups`
-  4. Tick `Create groups for similar attributes`
-  5. Untick `Keep editor data`
-  6. Untick `Keep unreferenced definitions`
-  7. Untick `Work around renderer bugs`
+    1. Tick `Shorten Colour Values`
+    2. Tick `Convert CSS attributes to XML attributes`
+    3. Tick `Collapse groups`
+    4. Tick `Create groups for similar attributes`
+    5. Untick `Keep editor data`
+    6. Untick `Keep unreferenced definitions`
+    7. Untick `Work around renderer bugs`
 12. In this Optimized SVG Output window, click the `SVG Output` tab and tick/untick the following:
-  1. Tick `Remove the XML definition`
-  2. Tick `Remove metadata`
-  3. Tick `Remove comments`
-  4. Ensure everything else on this tab is unticked
+    1. Tick `Remove the XML definition`
+    2. Tick `Remove metadata`
+    3. Tick `Remove comments`
+    4. Ensure everything else on this tab is unticked
 13. In this Optimized SVG Output window, click the `IDs` tab and tick all three of the options
 14. Press OK
 15. Use a command-line tool like [svgo](https://github.com/svg/svgo), or an online tool like [svgomg](https://github.com/jakearchibald/svgomg/) to further optimise the file
