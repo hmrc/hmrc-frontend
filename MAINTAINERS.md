@@ -87,7 +87,13 @@ Sometimes we may get deprecation warnings, but we might not always want to resol
 
 ## Double check if the govuk-crest needs updating
 
-Under `src/assets/images/`, there is a png of the govuk-crest. For the most part, it's unlikely we will need to change this image, but at some point in the future, you may need to update this. This can be done by taking any software that can take and convert an svg file into the png format.
+Under `src/assets/images/`, there is a png of the [govuk-crest](src/assets/images/govuk-crest.png) and [govuk-crest-2x](src/assets/images/govuk-crest-2x.png). For the most part, it's unlikely we will need to change this image, but at some point in the future, you may need to update this. This can be done by taking any software that can take and convert an svg file into the png format.
+
+The [GOVUK-CREST-GENERATION.md](docs/GOVUK-CREST-GENERATION.md) documentation has a step-by-step set of informations on how to generate an optimised png.
+
+### Why do we have these png versions of the govuk-crest files?
+
+These are here for services and applications that need a png format for the crest, such as emails, which cannot utilise the svg file format.
 
 ## Keeping a record of decisions
 
