@@ -6,7 +6,7 @@ gulp.task('copy-hmrc-images', () => gulp.src([
 ], { cwd: `${configPaths.src}`, encoding: false })
   .pipe(gulp.dest(`${configPaths.dist}/components`)));
 
-gulp.task('copy-govuk-crest-images', () => gulp.src([
+gulp.task('copy-hmrc-assets', () => gulp.src([
   'assets/images/*',
 ], { cwd: `${configPaths.src}`, encoding: false })
   .pipe(gulp.dest(`${configPaths.dist}/assets/images`)));

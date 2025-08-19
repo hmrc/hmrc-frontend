@@ -16,7 +16,7 @@ const { publishLocalWebjar, buildWebjar } = require('./tasks/gulp/webjar');
 
 const copyDistFiles = series(
   'copy-hmrc-images',
-  'copy-govuk-crest-images',
+  'copy-hmrc-assets',
   'copy-govuk-images',
   'copy-govuk-fonts',
   'copy-govuk-manifest-json',
