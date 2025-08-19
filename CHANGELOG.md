@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.86.0] - 2025-08-19
+
+### Changed
+
+- Ensures that the crest image files are added to dist via gulp tasks, making them accessible via s3
+
 ## [6.85.0] - 2025-08-18
 
 ### Changed
