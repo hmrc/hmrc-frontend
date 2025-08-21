@@ -27,3 +27,44 @@
     padding: 0.3125em;
   }
 }
+
+// TODO the styles below this line were copied verbatim from prototype, not final
+// Tim B had some ideas for refactoring it because of changes coming from GDS soon
+
+.govuk-service-navigation:has(.hmrc-service-navigation-language-select) {
+  .govuk-width-container {
+    display: flex;
+  }
+}
+
+.govuk-service-navigation .hmrc-service-navigation-language-select {
+  // @include govuk-font($size: $font-size);
+  display: inline;
+  flex: 0 0 auto;
+  margin-top: auto;
+  margin-left: auto;
+
+  .hmrc-service-navigation-language-select__list {
+    position: relative;
+    // margin: govuk-spacing(2) 0;
+    padding-left: 0;
+
+    @include govuk-responsive-margin(6, $direction: left);
+
+    @include govuk-media-query($from: tablet) {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding: govuk-spacing(4) 0;
+    }
+  }
+}
+
+.hmrc-service-navigation-language-select .govuk-service-navigation__item {
+  margin-bottom: govuk-spacing(3);
+
+  @include govuk-responsive-margin(6, $direction: left);
+
+  @include govuk-media-query($from: tablet) {
+    margin-bottom: 0;
+  }
+}

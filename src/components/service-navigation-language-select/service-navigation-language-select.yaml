@@ -1,3 +1,4 @@
+previewLayout: service-navigation-language-select/layout
 params:
   - name: language
     type: string

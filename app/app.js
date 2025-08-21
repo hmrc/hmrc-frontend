@@ -128,6 +128,7 @@ module.exports = (options) => {
 {{ ${macroName}(${macroParameters}) }}`,
       );
     } catch (err) {
+      /* eslint-disable no-console */
       console.log(err);
       res.locals.componentView = null;
     }
