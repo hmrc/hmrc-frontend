@@ -89,18 +89,23 @@
   {% endif %}
   </div>
 </div>
-{%- if params.phaseBanner %}
+{% if params.displayHmrcBanner and not params.useDeprecatedPositionForHmrcBanner %}
   <div class="govuk-width-container">
-    {{ govukPhaseBanner(params.phaseBanner) }}
+    {{ hmrcBanner({language: params.language, useTudorCrown: params.useTudorCrown}) }}
   </div>
 {% endif %}
 {% if params.serviceNavigation %}
     {{ govukServiceNavigation(params.serviceNavigation) }}
 {% endif %}
+{%- if params.phaseBanner %}
+  <div class="govuk-width-container">
+    {{ govukPhaseBanner(params.phaseBanner) }}
+  </div>
+{% endif %}
 {%- if params.userResearchBanner %}
     {{ hmrcUserResearchBanner({language: params.language, url: params.userResearchBanner.url }) }}
 {% endif %}
-{%- if params.displayHmrcBanner %}
+{% if params.displayHmrcBanner and params.useDeprecatedPositionForHmrcBanner %}
   <div class="govuk-width-container">
     {{ hmrcBanner({language: params.language, useTudorCrown: params.useTudorCrown}) }}
   </div>
