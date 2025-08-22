@@ -247,6 +247,14 @@ describe('header', () => {
       const $ = render('banner', examples['with hmrc banner welsh']);
       expect($('.hmrc-banner > .hmrc-organisation-logo > p.govuk-body-s').text().trim()).toEqual('Cyllid a Thollau EF');
     });
+    it('is not displayed more than once', () => {
+      // covered by VRT, but template conditionals are separated, so added an extra check
+      const renderedExamples = [
+        render('header', examples['with hmrc banner english']),
+        render('header', examples['hmrc banner in deprecated position']),
+      ];
+      renderedExamples.every((example) => expect(example('.hmrc-banner').length).toEqual(1));
+    });
   });
 
   describe('additional banners block', () => {
