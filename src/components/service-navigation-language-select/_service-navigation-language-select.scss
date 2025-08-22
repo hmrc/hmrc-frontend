@@ -28,10 +28,8 @@
   }
 }
 
-// TODO the styles below this line were copied verbatim from prototype, not final
-// Tim B had some ideas for refactoring it because of changes coming from GDS soon
-
-.govuk-service-navigation:has(.hmrc-service-navigation-language-select) {
+.govuk-service-navigation:has(.hmrc-service-navigation-language-select),
+.hmrc-service-navigation--with-language-select { // if you need to support browsers without support for :has()
   .govuk-width-container {
     display: flex;
   }
