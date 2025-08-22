@@ -14,6 +14,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Made it possible to render service navigation in hmrcHeader
 - Added a new component hmrcServiceNavigationLanguageSelect for rendering language toggle to be used inside service
   navigation
+- Moved the default position of the hmrcBanner when displayed with hmrcHeader to match its guidance on
+  design.tax.service.gov.uk, it now sits directly below the govuk-header. This changed in response to
+  the ["navigate a service" pattern](https://design-system.service.gov.uk/patterns/navigate-a-service/) (which is
+  distinct/wider than the service navigation component). It's possible to revert to the old position by passing
+  useDeprecatedPositionForHmrcBanner if you need to defer it moving temporarily.
 
 ## [6.86.0] - 2025-08-19
 
