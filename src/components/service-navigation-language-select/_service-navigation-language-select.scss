@@ -28,8 +28,7 @@
   }
 }
 
-.govuk-service-navigation:has(.hmrc-service-navigation-language-select),
-.hmrc-service-navigation--with-language-select { // if you need to support browsers without support for :has()
+.hmrc-service-navigation--with-language-select {
   .govuk-width-container {
     display: flex;
   }

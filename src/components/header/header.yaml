@@ -663,6 +663,7 @@ examples:
     serviceNavigation:
       serviceName: Service name
       serviceUrl: '#s1'
+      classes: hmrc-service-navigation--with-language-select
       slots:
         end: | # example of possible rendered output of the hmrcServiceNavigationLanguageSelect component
           <nav class="hmrc-service-navigation-language-select" aria-label="Language switcher">
