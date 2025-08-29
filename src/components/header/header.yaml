@@ -123,6 +123,14 @@ params:
   type: boolean
   required: false
   description: A feature flag to use the new Tudor Crown logo. If unset, defaults to true
+- name: serviceNavigation
+  type: object
+  required: false
+  description: passthrough the params for service navigation to be displayed in the correct spot between other banners
+- name: useDeprecatedPositionForHmrcBanner
+  type: boolean
+  required: false
+  description: hmrc banner should now be displayed immediately following the govuk-header, preceding the other banners, this param allows you to move it back below the banners
 previewLayout: full-width
 accessibilityCriteria: |
   Text and links in the Header must:
@@ -641,3 +649,66 @@ examples:
       tag:
         text: alpha
       html: This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+
+- name: with service navigation
+  data:
+    serviceNavigation:
+      serviceName: Service name
+      serviceUrl: '#s1'
+
+- name: with service navigation and govukHeader
+  data:
+    serviceName: Service name
+    serviceUrl: '#s1'
+    serviceNavigation:
+      serviceName: Service name
+      serviceUrl: '#s1'
+      classes: hmrc-service-navigation--with-language-select
+      slots:
+        end: | # example of possible rendered output of the hmrcServiceNavigationLanguageSelect component
+          <nav class="hmrc-service-navigation-language-select" aria-label="Language switcher">
+              <ul class="hmrc-service-navigation-language-select__list">
+                <li class="hmrc-service-navigation-language-select__list-item">
+                  <span aria-current="true">ENG</span>
+                </li>
+                <li class="hmrc-service-navigation-language-select__list-item">
+                  <a href="/components/service-navigation-language-select/welsh/preview" hreflang="cy" lang="cy" rel="alternate" class="govuk-link govuk-service-navigation__link" data-journey-click="link - click:lang-select:Cymraeg">
+                    CYM<span class="govuk-visually-hidden"> – Newid yr iaith ir Gymraeg</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+    languageToggle:
+      en:
+        href: "/components/header/with-language-toggle-english/preview"
+      cy:
+        href: "/components/header/with-language-toggle-welsh/preview"
+
+- name: service navigation with other banners
+  data:
+    serviceNavigation:
+      serviceName: Service name
+      serviceUrl: '#s1'
+    userResearchBanner:
+      url: '/sign-up-for-user-research'
+    phaseBanner:
+      tag:
+        text: alpha
+      html: This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    displayHmrcBanner: true
+    additionalBannersBlock: "<div class=\"custom-banner govuk-body\">for example an attorney banner</div>"
+
+- name: hmrc banner in deprecated position
+  data:
+    serviceNavigation:
+      serviceName: Service name
+      serviceUrl: '#s1'
+    userResearchBanner:
+      url: '/sign-up-for-user-research'
+    phaseBanner:
+      tag:
+        text: alpha
+      html: This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    displayHmrcBanner: true
+    useDeprecatedPositionForHmrcBanner: true
+    additionalBannersBlock: "<div class=\"custom-banner govuk-body\">for example an attorney banner</div>"

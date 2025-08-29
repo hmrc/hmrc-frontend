@@ -1,0 +1,40 @@
+{% extends "layout.njk" %}
+
+{% from "../header/macro.njk" import hmrcHeader %}
+
+{% block header %}
+  {{ hmrcHeader({
+    serviceNavigation: {
+      serviceName: "Example service",
+      classes: 'hmrc-service-navigation--with-language-select',
+      navigation: [
+        {
+          href: "#",
+          text: "Navigation item 1"
+        },
+        {
+          href: "#",
+          text: "Navigation item 2",
+          active: true
+        },
+        {
+          href: "#",
+          text: "Navigation item 3"
+        }
+      ],
+      slots: {
+        end: componentView
+      }
+    }
+  }) }}
+{% endblock %}
+
+{% block main %}
+  <div class="govuk-width-container">
+          <main class="govuk-main-wrapper" id="main-content">
+
+              <div style="height:300px;"></div>
+
+          </main>
+        </div>
+{% endblock %}

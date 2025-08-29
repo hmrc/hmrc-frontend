@@ -1,0 +1,39 @@
+{% if params.language === 'en' %}
+  <nav class="hmrc-service-navigation-language-select" aria-label="Language switcher">
+    <ul class="hmrc-service-navigation-language-select__list">
+      <li class="hmrc-service-navigation-language-select__list-item">
+        <span aria-current="true">ENG</span>
+      </li>
+      <li class="hmrc-service-navigation-language-select__list-item">
+        <a href="{{ params.cy.href }}"
+          hreflang="cy"
+          lang="cy"
+          rel="alternate"
+          class="govuk-link govuk-service-navigation__link"
+          data-journey-click="link - click:lang-select:Cymraeg">
+          CYM<span class="govuk-visually-hidden"> – Newid yr iaith ir Gymraeg</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+{% endif %}
+
+{% if params.language === 'cy' %}
+  <nav class="hmrc-service-navigation-language-select" aria-label="Switcher iaith">
+    <ul class="hmrc-service-navigation-language-select__list">
+      <li class="hmrc-service-navigation-language-select__list-item">
+        <a href="{{ params.en.href }}"
+          hreflang="en"
+          lang="en"
+          rel="alternate"
+          class="govuk-link govuk-service-navigation__link"
+          data-journey-click="link - click:lang-select:English">
+          ENG<span class="govuk-visually-hidden"> – Change the language to English</span>
+        </a>
+      </li>
+      <li class="hmrc-service-navigation-language-select__list-item">
+        <span aria-current="true">CYM</span>
+      </li>
+    </ul>
+  </nav>
+{% endif %}

@@ -1,0 +1,73 @@
+.hmrc-service-navigation-language-select {
+  @include govuk-font($size: 16);
+  @include govuk-clearfix;
+}
+
+.hmrc-service-navigation-language-select__list {
+  margin-top: 1em;
+  float: right;
+  text-align: right;
+}
+
+.hmrc-service-navigation-language-select__list-item {
+  display: inline-block;
+
+  &:first-child::after {
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 0.1875em;
+    height: 1em;
+    // stylelint-disable-next-line number-max-precision -- gives a 1.5px border width
+    border-right: 0.09375em solid $govuk-text-colour;
+  }
+
+  a,
+  [aria-current] {
+    padding: 0.3125em;
+  }
+}
+
+.hmrc-service-navigation--with-language-select {
+  .govuk-width-container {
+    display: flex;
+  }
+}
+
+.govuk-service-navigation .hmrc-service-navigation-language-select {
+  display: inline;
+  flex: 0 0 auto;
+  margin-top: auto;
+  margin-left: auto;
+}
+
+.govuk-service-navigation .hmrc-service-navigation-language-select .hmrc-service-navigation-language-select__list {
+  position: relative;
+  padding-left: 0;
+
+  @include govuk-responsive-margin(6, $direction: left);
+
+  @include govuk-media-query($from: tablet) {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: govuk-spacing(4) 0;
+
+    @include _govuk-rebrand {
+      padding: govuk-spacing(3) 0;
+
+      // some magic numbers from govuk-frontend service nav rebrand,
+      // adapted for the 16px font-size of the language switcher
+      line-height: (29 / 16);
+    }
+  }
+}
+
+.hmrc-service-navigation-language-select .govuk-service-navigation__item {
+  margin-bottom: govuk-spacing(3);
+
+  @include govuk-responsive-margin(6, $direction: left);
+
+  @include govuk-media-query($from: tablet) {
+    margin-bottom: 0;
+  }
+}
