@@ -2,7 +2,7 @@
   @include govuk-font($size: 19);
 
   box-sizing: border-box;
-  padding: govuk-spacing(4) 0;
+  padding: govuk-spacing(4) 0 govuk-spacing(3);
   border-bottom: 10px solid govuk-organisation-colour("hm-revenue-customs");
 
   @include govuk-media-query(desktop) {
@@ -28,7 +28,7 @@
 
 .hmrc-internal-header__logo {
   margin-bottom: govuk-spacing(2);
-  border-left: 2px solid govuk-organisation-colour("hm-revenue-customs");
+  // border-left: 2px solid govuk-organisation-colour("hm-revenue-customs");
 
   @include govuk-media-query(desktop) {
     width: 33.33%;
@@ -36,19 +36,34 @@
     vertical-align: top;
     margin-bottom: 0;
   }
+
+  &::before {
+    content: " ";
+    border-left: 2px solid govuk-organisation-colour("hm-revenue-customs");
+
+    // Not the best way?
+    float: left;
+    height: 32px;
+    width: 10px;
+  }
 }
 
 .hmrc-internal-header__logo-link {
-  @include govuk-link-common;
-  @include govuk-link-style-default;
+  // @include govuk-link-common;
+  // @include govuk-link-style-default;
   @include govuk-link-print-friendly;
 
   display: table;
+
+  margin-left: 10px;
+  padding-bottom: 3px;
 
   svg {
     float: left;
     vertical-align: top;
     fill: currentcolor;
+
+    margin-right: 10px;
   }
 
   img {
@@ -62,9 +77,23 @@
   &:link,
   &:visited {
     color: govuk-colour("black");
+  }
     font-size: 20px;
     line-height: 32px;
     text-decoration: none;
+
+  &:hover,
+  &:active {
+    // Negate added border
+    margin-bottom: $govuk-header-link-underline-thickness * -1;
+    border-bottom: $govuk-header-link-underline-thickness solid;
+  }
+
+  &:focus {
+    @include govuk-focused-text;
+
+    margin-bottom: 0;
+    border-bottom: 0;
   }
 }
 
@@ -72,6 +101,7 @@
   display: flex;
   vertical-align: top;
   margin: 0;
+
 }
 
 .hmrc-internal-header__service-name {
@@ -100,6 +130,21 @@
   &:link,
   &:visited {
     color: govuk-colour("black");
+  }
+
+
+  &:hover,
+  &:active {
+    // Negate added border
+    margin-bottom: $govuk-header-link-underline-thickness * -1;
+    border-bottom: $govuk-header-link-underline-thickness solid;
+  }
+
+  &:focus {
+    @include govuk-focused-text;
+
+    margin-bottom: 0;
+    border-bottom: 0;
   }
 
   @include govuk-media-query(desktop) {
