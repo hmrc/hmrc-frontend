@@ -28,7 +28,7 @@
 
 .hmrc-internal-header__logo {
   margin-bottom: govuk-spacing(2);
-  // border-left: 2px solid govuk-organisation-colour("hm-revenue-customs");
+  position: relative;
 
   @include govuk-media-query(desktop) {
     width: 33.33%;
@@ -38,49 +38,33 @@
   }
 
   &::before {
-    content: " ";
+    content: "";
     border-left: 2px solid govuk-organisation-colour("hm-revenue-customs");
-
-    // Not the best way?
-    float: left;
+    position: absolute;
+    top: 0;
+    left: 0;
     height: 32px;
-    width: 10px;
   }
 }
 
 .hmrc-internal-header__logo-link {
-  // @include govuk-link-common;
-  // @include govuk-link-style-default;
   @include govuk-link-print-friendly;
 
+  font-size: 1.25em;
+  line-height: 32px;
+  text-decoration: none;
   display: table;
-
-  margin-left: 10px;
+  margin-left: 12px;
   padding-bottom: 3px;
 
-  svg {
-    float: left;
-    vertical-align: top;
-    fill: currentcolor;
-
-    margin-right: 10px;
-  }
-
-  img {
-    float: left;
-    vertical-align: top;
-    width: 32px;
-    height: 32px;
-    padding: 0 10px;
+  @include govuk-media-query ($from: tablet) {
+    font-size: 1.0526em;
   }
 
   &:link,
   &:visited {
     color: govuk-colour("black");
   }
-    font-size: 20px;
-    line-height: 32px;
-    text-decoration: none;
 
   &:hover,
   &:active {
@@ -95,23 +79,31 @@
     margin-bottom: 0;
     border-bottom: 0;
   }
+
+  svg {
+    float: left;
+    vertical-align: top;
+    fill: currentcolor;
+    margin-right: 10px;
+  }
+
+  img {
+    float: left;
+    vertical-align: top;
+    width: 32px;
+    height: 32px;
+    padding: 0 10px;
+  }
 }
 
 .hmrc-internal-header__logo-text {
   display: flex;
   vertical-align: top;
   margin: 0;
-
 }
 
 .hmrc-internal-header__service-name {
-  @include govuk-typography-common;
-
-  font-size: 20px;
-  font-weight: bold;
-
   @include govuk-media-query ($from: desktop) {
-    font-size: 24px;
     width: 66.66%;
     padding-left: $govuk-gutter-half;
     float: left;
@@ -123,15 +115,14 @@
   @include govuk-link-style-default;
   @include govuk-link-print-friendly;
 
-  font-size: 20px;
-  font-weight: bold;
+  @include govuk-font($size: 24, $weight: 'bold');
+
   text-decoration: none;
 
   &:link,
   &:visited {
     color: govuk-colour("black");
   }
-
 
   &:hover,
   &:active {
@@ -145,9 +136,5 @@
 
     margin-bottom: 0;
     border-bottom: 0;
-  }
-
-  @include govuk-media-query(desktop) {
-    font-size: 24px;
   }
 }
