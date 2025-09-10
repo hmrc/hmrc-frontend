@@ -1,6 +1,6 @@
 {
   "name": "hmrc-frontend",
-  "version": "6.89.0",
+  "version": "6.90.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
@@ -8,7 +8,7 @@
     "test:build:package": "jest tasks/gulp/__tests__/after-build-package.test.js",
     "test:build:dist": "jest tasks/gulp/__tests__/after-build-dist.test.js",
     "test:build:webjar": "jest tasks/gulp/__tests__/after-build-webjar.jsdom.test.js",
-    "build:package": "gulp buildPackage --destination 'package' && npm run test:build:package",
+    "build:package": "guAdded rebranded images and manifest to `dist`lp buildPackage --destination 'package' && npm run test:build:package",
     "build:dist": "gulp buildDist --destination 'dist' && npm run test:build:dist",
     "build:webjar": "gulp buildWebjar && npm run test:build:webjar",
     "publish-local:webjar": "gulp publishLocalWebjar",
@@ -20,7 +20,6 @@
     "test:update-snapshots": "jest src -u",
     "test:backstop": "gulp backstopTest",
     "test:backstop-approve": "gulp backstop:approve",
-    "docs:generate-decision-log-listing": "adr-log -d ./docs/adr -i ./docs/adr/index.md -e template.md",
     "audit": "better-npm-audit audit",
     "prepare": "husky install",
     "postinstall": "node check-compatibility-with-govuk-frontend-version.js"
