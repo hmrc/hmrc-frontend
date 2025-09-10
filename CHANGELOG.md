@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+## [6.91.0] - 2025-09-15
+
+### Changed
+
+- Cleaned up npm dependencies
+- Small MAINTAINERS change following removal of some dependencies
+- Removed unused IE9 polyfill
 
 ## [6.90.0] - 2025-09-12
 
