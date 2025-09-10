@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.89.0] - 2025-09-10
+
+### Changed
+
+- Added rebranded images and manifest to `dist`
+
 ## [6.88.0] - 2025-09-01
 
 ### Changed

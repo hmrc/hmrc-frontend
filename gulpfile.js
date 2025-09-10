@@ -18,8 +18,10 @@ const copyDistFiles = series(
   'copy-hmrc-images',
   'copy-hmrc-assets',
   'copy-govuk-images',
+  'copy-govuk-images-rebrand',
   'copy-govuk-fonts',
   'copy-govuk-manifest-json',
+  'copy-govuk-manifest-json-rebrand',
 );
 
 const copyPackageFiles = series(
