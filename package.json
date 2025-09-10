@@ -8,7 +8,7 @@
     "test:build:package": "jest tasks/gulp/__tests__/after-build-package.test.js",
     "test:build:dist": "jest tasks/gulp/__tests__/after-build-dist.test.js",
     "test:build:webjar": "jest tasks/gulp/__tests__/after-build-webjar.jsdom.test.js",
-    "build:package": "guAdded rebranded images and manifest to `dist`lp buildPackage --destination 'package' && npm run test:build:package",
+    "build:package": "gulp buildPackage --destination 'package' && npm run test:build:package",
     "build:dist": "gulp buildDist --destination 'dist' && npm run test:build:dist",
     "build:webjar": "gulp buildWebjar && npm run test:build:webjar",
     "publish-local:webjar": "gulp publishLocalWebjar",
