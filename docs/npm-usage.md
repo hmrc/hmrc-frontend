@@ -43,11 +43,11 @@ Everything in devDependencies is for local development and testing purposes only
 | jest                              | JavaScript Testing Framework                                                            | https://jestjs.io/ |
 | jest-axe                          | Jest matcher for axe accessibility testing                                              | https://www.npmjs.com/package/jest-axe |
 | jest-environment-jsdom            | JSDom testing environment                                                               | https://jestjs.io/docs/next/configuration#testenvironment-string |
-|jest-puppeteer                     | Jest preset that contains configuration for writing integration tests with Puppeteer    | https://www.npmjs.com/package/jest-puppeteer |
-|jest-serializer-html               | Turns strings that start with `<` to neatly indent html                                 | https://www.npmjs.com/package/jest-serializer-html |
-|js-yaml                            | An implementation of YAML                                                               | https://www.npmjs.com/package/js-yaml |
-|mkdirp                             | An implementation of `mkdir -p` for nodejs                                              | https://www.npmjs.com/package/mkdirp |
-|node-fetch                         | Brings the fetch api to nodejs                                                          | https://www.npmjs.com/package/node-fetch |
+| jest-puppeteer                     | Jest preset that contains configuration for writing integration tests with Puppeteer    | https://www.npmjs.com/package/jest-puppeteer |
+| jest-serializer-html               | Turns strings that start with `<` to neatly indent html                                 | https://www.npmjs.com/package/jest-serializer-html |
+| js-yaml                            | An implementation of YAML                                                               | https://www.npmjs.com/package/js-yaml |
+| mkdirp                             | An implementation of `mkdir -p` for nodejs                                              | https://www.npmjs.com/package/mkdirp |
+| node-fetch                         | Brings the fetch api to nodejs                                                          | https://www.npmjs.com/package/node-fetch |
 | node-sass                         | A library for binding nodejs to LibSass - Deprecated                                    | https://www.npmjs.com/package/node-sass |
 | nodemon                           | Helps develop with nodejs by automatically restarting when file changes detected        | https://nodemon.io/ |
 | nunjucks                          | Templating engine for JavaScript                                                        | https://www.npmjs.com/package/nunjucks |
