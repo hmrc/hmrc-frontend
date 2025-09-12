@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.90.0] - 2025-09-12
+
+### Changed
+
+- Added hover and focus states to internal header
+- Allowed internal header text to be resized using browser settings (switched from px to ems)
+
 ## [6.89.0] - 2025-09-10
 
 ### Changed
@@ -80,7 +87,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Added a script to check the compatibility of hmrc and govuk frontends
 
-### Action required in prototypes using govuk-frontend less than 5.4.0 
+### Action required in prototypes using govuk-frontend less than 5.4.0
 
 - We now display an error on install to warn prototype maintainers of incompatibility with versions of govuk-frontend less than 5.4.0 in prototypes
   - You can update your govuk-frontend version or suppress it by setting HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK=true
