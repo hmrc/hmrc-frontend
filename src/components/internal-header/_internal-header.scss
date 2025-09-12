@@ -2,7 +2,7 @@
   @include govuk-font($size: 19);
 
   box-sizing: border-box;
-  padding: govuk-spacing(4) 0;
+  padding: govuk-spacing(4) 0 govuk-spacing(3);
   border-bottom: 10px solid govuk-organisation-colour("hm-revenue-customs");
 
   @include govuk-media-query(desktop) {
@@ -28,7 +28,7 @@
 
 .hmrc-internal-header__logo {
   margin-bottom: govuk-spacing(2);
-  border-left: 2px solid govuk-organisation-colour("hm-revenue-customs");
+  position: relative;
 
   @include govuk-media-query(desktop) {
     width: 33.33%;
@@ -36,19 +36,55 @@
     vertical-align: top;
     margin-bottom: 0;
   }
+
+  &::before {
+    content: "";
+    border-left: 2px solid govuk-organisation-colour("hm-revenue-customs");
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 32px;
+  }
 }
 
 .hmrc-internal-header__logo-link {
-  @include govuk-link-common;
-  @include govuk-link-style-default;
   @include govuk-link-print-friendly;
 
+  font-size: 1.25em;
+  line-height: 32px;
+  text-decoration: none;
   display: table;
+  margin-left: 12px;
+  padding-bottom: 3px;
+
+  @include govuk-media-query ($from: tablet) {
+    font-size: 1.0526em;
+  }
+
+  &:link,
+  &:visited {
+    color: govuk-colour("black");
+  }
+
+  &:hover,
+  &:active {
+    // Negate added border
+    margin-bottom: $govuk-header-link-underline-thickness * -1;
+    border-bottom: $govuk-header-link-underline-thickness solid;
+  }
+
+  &:focus {
+    @include govuk-focused-text;
+
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
 
   svg {
     float: left;
     vertical-align: top;
     fill: currentcolor;
+    margin-right: 10px;
   }
 
   img {
@@ -57,14 +93,6 @@
     width: 32px;
     height: 32px;
     padding: 0 10px;
-  }
-
-  &:link,
-  &:visited {
-    color: govuk-colour("black");
-    font-size: 20px;
-    line-height: 32px;
-    text-decoration: none;
   }
 }
 
@@ -75,13 +103,9 @@
 }
 
 .hmrc-internal-header__service-name {
-  @include govuk-typography-common;
-
-  font-size: 20px;
-  font-weight: bold;
+  @include govuk-font($size: 24, $weight: 'bold', $line-height: 1.25);
 
   @include govuk-media-query ($from: desktop) {
-    font-size: 24px;
     width: 66.66%;
     padding-left: $govuk-gutter-half;
     float: left;
@@ -93,8 +117,6 @@
   @include govuk-link-style-default;
   @include govuk-link-print-friendly;
 
-  font-size: 20px;
-  font-weight: bold;
   text-decoration: none;
 
   &:link,
@@ -102,7 +124,17 @@
     color: govuk-colour("black");
   }
 
-  @include govuk-media-query(desktop) {
-    font-size: 24px;
+  &:hover,
+  &:active {
+    // Negate added border
+    margin-bottom: $govuk-header-link-underline-thickness * -1;
+    border-bottom: $govuk-header-link-underline-thickness solid;
+  }
+
+  &:focus {
+    @include govuk-focused-text;
+
+    margin-bottom: 0;
+    border-bottom: 0;
   }
 }
