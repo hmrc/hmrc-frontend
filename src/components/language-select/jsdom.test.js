@@ -27,9 +27,9 @@ describe('Language select', () => {
       expect($component.attr('href')).toEqual(examples.default.cy.href);
       expect($component.data('journeyClick')).toEqual('link - click:lang-select:Cymraeg');
 
-      expect($component.find('.govuk-visually-hidden').eq(0).text()).toEqual('Newid yr iaith ir Gymraeg');
+      expect($component.find('.govuk-visually-hidden').eq(0).text()).toEqual('Newid yr iaith i’r Gymraeg');
       expect($component.find('[aria-hidden="true"]').eq(0).text()).toEqual('Cymraeg');
-      expect($.text().trim().replace(/[\s,\n]+/g, ' ')).toEqual('English Newid yr iaith ir Gymraeg Cymraeg');
+      expect($.text().trim().replace(/[\s,\n]+/g, ' ')).toEqual('English Newid yr iaith i’r Gymraeg Cymraeg');
 
       expect($('.hmrc-language-select__list-item').find('[aria-current="true"]').eq(0).text()).toEqual('English');
     });

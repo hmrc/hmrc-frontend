@@ -108,10 +108,5 @@ See our [decision log](docs/adr/index.md) for a list of past decisions.
    in the fields. Do not feel you have to fill in all the fields, only fill in fields
    that are strictly necessary. Some decisions will merit more detail than others.
 
-1. To re-generate the [listing page for previous decisions](docs/adr/index.md)
-   so it includes the new decision, run:
-
-    ```shell script
-    npm run docs:generate-decision-log-listing
-    ```
-
+1. Add another line in the [listing page for previous decisions](docs/adr/index.md)
+   so it includes the new decision.

@@ -25,7 +25,8 @@
     "dist/**/*"
   ],
   "rules": {
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "import/extensions": "off" //govuk-frontend.min.js path requires the file extension
   },
   "parserOptions": {
     "ecmaVersion": "latest"

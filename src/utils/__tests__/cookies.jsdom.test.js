@@ -1,6 +1,5 @@
 /* eslint-env jest */
 
-import MockDate from 'mockdate';
 import { getCookie, setCookie } from '../cookies';
 
 describe('cookies', () => {
@@ -33,7 +32,8 @@ describe('cookies', () => {
     });
 
     it('should set a cookie with an expiry date', () => {
-      MockDate.set('1/1/2050');
+      jest.useFakeTimers();
+      jest.setSystemTime(new Date('1/1/2050'));
 
       const cookieString = setCookie('foo', 'bar', { days: 1 });
 
