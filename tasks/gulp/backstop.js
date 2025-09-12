@@ -1,4 +1,3 @@
-const chalk = require('chalk');
 const gulp = require('gulp');
 const glob = require('glob');
 const path = require('path');
@@ -24,21 +23,24 @@ const runBackstop = (command) => backstop(command, options);
 
 gulp.task('backstop:approve', () => runBackstop('approve'));
 
+const green = '\x1b[32m';
+const reset = '\x1b[0m';
+
 gulp.task('backstop-test', async () => {
-  console.log(chalk.green('\nStart server for visual regression testing'));
+  console.log(`${green}\nStart server for visual regression testing${reset}`);
 
   const server = await new Promise((resolve) => {
     // eslint-disable-next-line no-shadow
     const server = app.listen(port, () => { resolve(server); });
   });
 
-  console.log(chalk.green(`\nServer started at http://${host}:${port}`));
+  console.log(`${green}\nServer started at http://${host}:${port}${reset}`);
 
   try {
-    console.log(chalk.green('\nPerforming visual regression testing'));
+    console.log(`${green}\nPerforming visual regression testing${reset}`);
     await runBackstop('test');
   } finally {
-    console.log(chalk.green('\nClose server for visual regression testing'));
+    console.log(`${green}\nClose server for visual regression testing${reset}`);
     await server.close();
   }
 });

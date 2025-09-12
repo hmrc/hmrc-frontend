@@ -18,7 +18,6 @@ Everything in devDependencies is for local development and testing purposes only
 | autoprefixer                      | PostCSS plugin to apply vendor prefixes (e.g ::-{class} will generate ::-moz-class)     | https://www.npmjs.com/package/autoprefixer |
 | backstopjs                        | Automate visual regression testing                                                      | https://www.npmjs.com/package/backstopjs |
 | better-npm-audit                  | Provides a clearer npm audit                                                            | https://www.npmjs.com/package/better-npm-audit |
-| chalk                             | Provides terminal styling (used in tasks/gulp/backstop.js)                              | https://www.npmjs.com/package/chalk |
 | cheerio                           | Library for parsing and manipulating HTML/XML                                           | https://cheerio.js.org/ |
 | cssnano                           | CSS minification and optimisation                                                       | https://cssnano.github.io/cssnano/ |
 | del                               | Deletes files and directories using globs                                               | https://www.npmjs.com/package/del |
@@ -46,7 +45,6 @@ Everything in devDependencies is for local development and testing purposes only
 |jest-serializer-html               | Turns strings that start with `<` to neatly indent html                                 | https://www.npmjs.com/package/jest-serializer-html |
 |js-yaml                            | An implementation of YAML                                                               | https://www.npmjs.com/package/js-yaml |
 |mkdirp                             | An implementation of `mkdir -p` for nodejs                                              | https://www.npmjs.com/package/mkdirp |
-|mockdate                           | A JavaScript Mock Date object                                                           | https://www.npmjs.com/package/mockdate |
 |node-fetch                         | Brings the fetch api to nodejs                                                          | https://www.npmjs.com/package/node-fetch |
 | node-sass                         | A library for binding nodejs to LibSass - Deprecated                                    | https://www.npmjs.com/package/node-sass |
 | nodemon                           | Helps develop with nodejs by automatically restarting when file changes detected        | https://nodemon.io/ |
