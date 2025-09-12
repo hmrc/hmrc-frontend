@@ -13,6 +13,8 @@ Everything in devDependencies is for local development and testing purposes only
 |---                                | ---                                                                                     | ---                      |
 | @babel/preset-env                 | Allows us to use the latest JavaScript without needing to manage which syntax is needed | https://babeljs.io/docs/babel-preset-env |
 | @rollup/plugin-babel              | Integration between rollup and babel                                                    | https://www.npmjs.com/package/@rollup/plugin-babel |
+| @rollup/plugin-commonjs           | Convert CommonJS to ES6 so it can be included in a rollup bundle                        | https://www.npmjs.com/package/@rollup/plugin-commonjs |
+| @rollup/plugin-node-resolve       | Locate modules in node_modules                                                          | https://www.npmjs.com/package/@rollup/plugin-node-resolve |
 | adm-zip                           | JavaScript implementation for zip compression for nodejs                                | https://www.npmjs.com/package/adm-zip |
 | ajv                               | JSON Validator for nodejs and browser                                                   | https://www.npmjs.com/package/ajv |
 | autoprefixer                      | PostCSS plugin to apply vendor prefixes (e.g ::-{class} will generate ::-moz-class)     | https://www.npmjs.com/package/autoprefixer |
@@ -52,15 +54,11 @@ Everything in devDependencies is for local development and testing purposes only
 | playwright-chromium               | Launch or connect to Chromium                                                           | https://playwright.dev/docs/api/class-playwright#playwright-chromium |
 | playwright-core                   | No-browser variant of playwright                                                        | N/A (See playwright docs) |
 | postcss                           | Transform styles with js plugins                                                        | https://postcss.org/ |
-| postcss-pseudo-classes            | Automatically add companion classes when pseudo-selectors are used                      | https://www.npmjs.com/package/postcss-pseudo-classes |
 | postcss-scss                      | SCSS parser for PostCSS                                                                 | https://www.npmjs.com/package/postcss-scss |
 | puppeteer                         | High-level API to control Chrome or Firefox via DevTools or WebDriver BiDi              | https://www.npmjs.com/package/puppeteer |
 | recursive-readdir                 | Recursively list all files in a directory and its subdirectories                        | https://www.npmjs.com/package/recursive-readdir |
 | remarkable                        | Markdown parser                                                                         | https://www.npmjs.com/package/remarkable |
-| rimraf                            | `rm -rf` for nodejs                                                                     | https://www.npmjs.com/package/rimraf |
 | rollup                            | Module bundler for JavaScript, compiles small pieces of code into something larger      | https://rollupjs.org/ |
-| rollup-plugin-commonjs            | Convert CommonJS to ES6 so it can be included in a rollup bundle (Deprecated)           | https://www.npmjs.com/package/rollup-plugin-commonjs |
-| rollup-plugin-node-resolve        | Locate modules in node_modules (Deprecated)                                             | https://www.npmjs.com/package/rollup-plugin-node-resolve |
 | sass                              | JavaScript implementation of Sass (Dart Sass)                                           | https://www.npmjs.com/package/sass |
 | sinon                             | Standalone test spies, stubs and mocks for JavaScript                                   | https://sinonjs.org/ |
 | standard                          | Standard style guide, linter and formatter                                              | https://standardjs.com/ |

@@ -3,6 +3,7 @@ const gulp = require('gulp');
 const fs = require('fs');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
+const postcss1 = require('postcss-scss');
 const filter = require('gulp-filter');
 const packageFile = require('../../package.json');
 const configPaths = require('../../config/paths.json');
@@ -77,7 +78,7 @@ gulp.task('copy-package-sources', () => gulp.src([
   .pipe(scssFiles)
   .pipe(postcss([
     autoprefixer,
-  ], { syntax: postcss }))
+  ], { syntax: postcss1 }))
   .pipe(scssFiles.restore)
   .pipe(gulp.dest(`${configPaths.package}hmrc/`)));
 
