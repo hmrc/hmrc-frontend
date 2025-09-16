@@ -19,76 +19,112 @@ params:
     type: string
     required: false
     description: One or more element IDs to add to the `aria-describedby` attribute, used to provide additional descriptive information for screenreader users.
-
+previewLayout: 'accessible-autocomplete/example'
+type: 'layout'
 examples:
   - name: default
     description:
     data:
-      label:
-        text: Select country
-      describedBy: location-picker
-      id: location-picker
-      select: |
-        <select id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
-          <option value="fr">France</option>
-          <option value="de">Germany</option>
-          <option value="gb">United Kingdom</option>
-        </select>
+      params:
+        label:
+          text: Select country
+        describedBy: location-picker
+        id: location-picker
+        items:
+          - value: fr
+            text: France
+          - value: de
+            text: Germany
+          - value: gb
+            text: United Kingdom
+        attributes:
+          data-show-all-values: false
+          data-auto-select: false
+          data-default-value:
+          data-module: hmrc-accessible-autocomplete
   - name: without-optional-data-attributes
     description:
     data:
-      label:
-        text: Select country
-      describedBy: location-picker
-      id: location-picker
-      select: |
-        <select id="location-picker" data-module="hmrc-accessible-autocomplete">
-          <option value="fr">France</option>
-          <option value="de">Germany</option>
-          <option value="gb">United Kingdom</option>
-        </select>
+      params:
+        label:
+          text: Select country
+        describedBy: location-picker
+        id: location-picker
+        items:
+          - value: fr
+            text: France
+          - value: de
+            text: Germany
+          - value: gb
+            text: United Kingdom
+        attributes:
+          data-module: hmrc-accessible-autocomplete
   - name: with-default-value
     description:
     data:
-      label:
-        text: Select country
-      describedBy: location-picker
-      id: location-picker
-      select: |
-        <select id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="Germany" data-module="hmrc-accessible-autocomplete">
-          <option value="">Select country</option>
-          <option value="fr">France</option>
-          <option value="de">Germany</option>
-          <option value="gb">United Kingdom</option>
-        </select>
+      params:
+        label:
+          text: Select country
+        describedBy: location-picker
+        id: location-picker
+        items:
+          - value:
+            text: Select country
+          - value: fr
+            text: France
+          - value: de
+            text: Germany
+          - value: gb
+            text: United Kingdom
+        attributes:
+          data-show-all-values: false
+          data-auto-select: false
+          data-default-value: Germany
+          data-module: hmrc-accessible-autocomplete
   - name: with-empty-default-value
     description:
     data:
-      label:
-        text: Select country
-      describedBy: location-picker
-      id: location-picker
-      select: |
-        <select id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
-          <option value="">Select country</option>
-          <option value="fr">France</option>
-          <option value="de">Germany</option>
-          <option value="gb">United Kingdom</option>
-        </select>
+      params:
+        label:
+          text: Select country
+        describedBy: location-picker
+        id: location-picker
+        items:
+          - value:
+            text: Select country
+          - value: fr
+            text: France
+          - value: de
+            text: Germany
+          - value: gb
+            text: United Kingdom
+        attributes:
+          data-show-all-values: false
+          data-auto-select: false
+          data-default-value:
+          data-module: hmrc-accessible-autocomplete
   - name: with-show-all-values
     description:
     data:
-      label:
-        text: Select country
-      describedBy: location-picker
-      id: location-picker
-      select: |
-        <select id="location-picker" data-show-all-values="true" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
-          <option value="">Select country</option>
-          <option value="fr">France</option>
-          <option value="de">Germany</option>
-          <option value="gb">United Kingdom</option>
-        </select>
+      params:
+        label:
+          text: Select country
+        describedBy: location-picker
+        id: location-picker
+        items:
+          - value:
+            text: Select country
+          - value: fr
+            text: France
+          - value: de
+            text: Germany
+          - value: gb
+            text: United Kingdom
+        attributes:
+          data-show-all-values: true
+          data-auto-select: false
+          data-default-value:
+          data-module: hmrc-accessible-autocomplete
     visualRegressionTests:
       alternateStates:
         accessibility-autocomplete-with-large-font:
@@ -98,16 +134,23 @@ examples:
   - name: with-autoselect-on
     description:
     data:
-      label:
-        text: Select country
-      describedBy: location-picker
-      id: location-picker
-      select: |
-        <select id="location-picker" data-show-all-values="false" data-auto-select="true" data-default-value="" data-module="hmrc-accessible-autocomplete">
-          <option value="fr">France</option>
-          <option value="de">Germany</option>
-          <option value="gb">United Kingdom</option>
-        </select>
+      params:
+        label:
+          text: Select country
+        describedBy: location-picker
+        id: location-picker
+        items:
+          - value: fr
+            text: France
+          - value: de
+            text: Germany
+          - value: gb
+            text: United Kingdom
+        attributes:
+          data-show-all-values: false
+          data-auto-select: true
+          data-default-value:
+          data-module: hmrc-accessible-autocomplete
     visualRegressionTests:
       alternateStates:
         showingAutoSelectHint:
@@ -117,73 +160,116 @@ examples:
   - name: with-label-and-hint
     description:
     data:
-      label:
-        text: Select country
-      hint:
-        text: "Please select a country"
-      describedBy: location-picker
-      id: location-picker
-      select: |
-        <select id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
-          <option value="fr">France</option>
-          <option value="de">Germany</option>
-          <option value="gb">United Kingdom</option>
-        </select>
+      params:
+        label:
+          text: Select country
+        hint:
+          text: "Please select a country"
+        describedBy: location-picker
+        id: location-picker
+        items:
+          - value: fr
+            text: France
+          - value: de
+            text: Germany
+          - value: gb
+            text: United Kingdom
+        attributes:
+          data-show-all-values: false
+          data-auto-select: false
+          data-default-value:
+          data-module: hmrc-accessible-autocomplete
   - name: with-label-and-hint-and-error
     description:
     data:
-      label:
-        text: Select country
-      hint:
-        text: "Please select a country"
-      errorMessage: "An error occurred"
-      describedBy: location-picker
-      id: location-picker
-      select: |
-        <select class="govuk-select govuk-select--error" aria-describedby="location-picker-error location-picker-hint" id="location-picker" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
-          <option value="fr">France</option>
-          <option value="de">Germany</option>
-          <option value="gb">United Kingdom</option>
-        </select>
+      params:
+        label:
+          text: Select country
+        hint:
+          text: "Please select a country"
+        errorMessage:
+          text: "Error message"
+        describedBy: location-picker
+        id: location-picker
+        items:
+          - value: fr
+            text: France
+          - value: de
+            text: Germany
+          - value: gb
+            text: United Kingdom
+        attributes:
+          data-show-all-values: false
+          data-auto-select: false
+          data-default-value:
+          data-module: hmrc-accessible-autocomplete
   - name: with-welsh-language
     description:
     data:
-      label:
-        text: Dewiswch wlad
-      describedBy: location-picker
-      id: location-picker
-      select: |
-        <select id="location-picker" data-language="cy" data-show-all-values="true" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
-          <option value="fr">France</option>
-          <option value="de">Germany</option>
-          <option value="gb">United Kingdom</option>
-          <option value="us">United States</option>
-        </select>
+      params:
+        label:
+          text: Dewiswch wlad
+        describedBy: location-picker
+        id: location-picker
+        items:
+          - value: fr
+            text: France
+          - value: de
+            text: Germany
+          - value: gb
+            text: United Kingdom
+          - value: us
+            text: United States
+        attributes:
+          data-language: cy
+          data-show-all-values: true
+          data-auto-select: false
+          data-default-value:
+          data-module: hmrc-accessible-autocomplete
   - name: with-welsh-language-and-min-length
     description:
     data:
-      label:
-        text: Dewiswch wlad
-      describedBy: location-picker
-      id: location-picker
-      select: |
-        <select id="location-picker" data-language="cy" data-min-length="3" data-show-all-values="false" data-auto-select="false" data-default-value="" data-module="hmrc-accessible-autocomplete">
-          <option value="fr">France</option>
-          <option value="de">Germany</option>
-          <option value="gb">United Kingdom</option>
-          <option value="us">United States</option>
-        </select>
+      params:
+        label:
+          text: Dewiswch wlad
+        describedBy: location-picker
+        id: location-picker
+        items:
+          - value: fr
+            text: France
+          - value: de
+            text: Germany
+          - value: gb
+            text: United Kingdom
+          - value: us
+            text: Unites States
+        attributes:
+          data-language: cy
+          data-min-length: 3
+          data-show-all-values: false
+          data-auto-select: true
+          data-default-value:
+          data-module: hmrc-accessible-autocomplete
   - name: with-welsh-language-and-autoselect-on
     description:
     data:
-      label:
-        text: Dewiswch wlad
-      describedBy: location-picker
-      id: location-picker
-      select: |
-        <select id="location-picker" data-language="cy" data-show-all-values="false" data-auto-select="true" data-default-value="" data-module="hmrc-accessible-autocomplete">
-          <option value="fr">France</option>
-          <option value="de">Germany</option>
-          <option value="gb">United Kingdom</option>
-          <option value="us">United States</option>
-        </select>
+      params:
+        label:
+          text: Dewiswch wlad
+        describedBy: location-picker
+        id: location-picker
+        items:
+          - value: fr
+            text: France
+          - value: de
+            text: Germany
+          - value: gb
+            text: United Kingdom
+          - value: us
+            text: United States
+        attributes:
+          data-language: cy
+          data-show-all-values: false
+          data-auto-select: true
+          data-default-value:
+          data-module: hmrc-accessible-autocomplete
