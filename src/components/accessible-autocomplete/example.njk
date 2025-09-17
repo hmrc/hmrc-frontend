@@ -1,0 +1,9 @@
+{% extends "main.html" %}
+
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+
+{% block content %}
+
+{{ govukSelect(params) }}
+
+{% endblock %}

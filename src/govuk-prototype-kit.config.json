@@ -40,10 +40,6 @@
   ],
   "nunjucksMacros": [
     {
-      "macroName": "hmrcAccessibleAutocomplete",
-      "importFrom": "hmrc/components/accessible-autocomplete/macro.njk"
-    },
-    {
       "macroName": "hmrcAccountMenu",
       "importFrom": "hmrc/components/account-menu/macro.njk"
     },
