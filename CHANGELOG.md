@@ -11,8 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Switched accessible-autocomplete from component to example
-- Updated accessible-autocomplete to use govukSelect
+- removed a template file used by our automated tests that we were incorrectly publishing to npm
 
 ## [6.91.0] - 2025-09-15
 
