@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Removed unused data-journey attributes from header, language-select and service-navigation-language-select components
+- Removed unused data-journey-click attributes from header, language-select and service-navigation-language-select components
 
 ## [6.92.0] - 2025-09-17
 
