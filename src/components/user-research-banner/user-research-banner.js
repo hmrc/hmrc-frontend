@@ -12,7 +12,9 @@ UserResearchBanner.prototype.init = function init() {
 
   if (cookieData == null) {
     this.$module.classList.add('hmrc-user-research-banner--show');
-    this.$closeLink.addEventListener('click', this.eventHandlers.noThanksClick.bind(this));
+    if (this.$closeLink) {
+      this.$closeLink.addEventListener('click', this.eventHandlers.noThanksClick.bind(this));
+    }
   }
 };
 
