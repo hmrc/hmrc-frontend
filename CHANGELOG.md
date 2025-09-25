@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.95.0] - 2025-09-25
+
+### Changed
+
+- Fix for user research banner hide button console error
+
 ## [6.94.0] - 2025-09-24
 
 ### Changed
