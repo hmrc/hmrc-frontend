@@ -27,6 +27,17 @@ describe('Internal Header', () => {
 
       expect($('.hmrc-internal-header__logo-link > svg').html().trim()).toContain('<path class="cls-1" d="m28.5,16.6c');
     });
+
+    it('renders custom container classes', () => {
+      const $ = render('internal-header', {
+        containerClasses: 'app-width-container',
+      });
+
+      const $component = $('.hmrc-internal-header');
+      const $container = $component.find('.govuk-width-container');
+
+      expect($container.hasClass('app-width-container')).toBeTruthy();
+    });
   });
 
   describe('with Welsh language specified', () => {
