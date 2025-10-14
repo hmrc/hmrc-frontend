@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.96.0] - 2025-10-14
+
+### Changed
+
+- Bump govuk-frontend version
+- Remove all usage of sass-mq
+
 ## [6.96.0] - 2025-10-06
 
 ### Changed
