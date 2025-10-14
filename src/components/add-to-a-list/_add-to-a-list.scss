@@ -1,20 +1,19 @@
 @import "../../../../govuk-frontend/dist/govuk/settings/index";
 @import "../../../../govuk-frontend/dist/govuk/tools/index";
 @import "../../../../govuk-frontend/dist/govuk/helpers/index";
-@import "../../../../govuk-frontend/dist/govuk/vendor/sass-mq";
 
 .hmrc-add-to-a-list {
   padding-left: 0;
 
   @include govuk-font($size: 19);
 
-  @include mq($from: desktop) {
+  @media (min-width: govuk-breakpoint-value(desktop)) {
     display: table;
   }
 }
 
 .hmrc-add-to-a-list--short {
-  @include mq($from: desktop) {
+  @media (min-width: govuk-breakpoint-value(desktop)) {
     // to make group of q&a line up horizontally (unless there is just one group)
     width: 100%;
 
@@ -26,7 +25,7 @@
 }
 
 .hmrc-add-to-a-list--long {
-  @include mq($from: desktop) {
+  @media (min-width: govuk-breakpoint-value(desktop)) {
     // to make group of q&a line up horizontally (unless there is just one group)
     width: 100%;
 
@@ -43,7 +42,7 @@
   padding-bottom: govuk-spacing(1);
   border-bottom: 1px solid $govuk-border-colour;
 
-  @include mq($from: desktop) {
+  @media (min-width: govuk-breakpoint-value(desktop)) {
     display: table-row;
     padding-bottom: 0;
     border-bottom-width: 0;
@@ -56,7 +55,7 @@
   display: block;
   margin: 0;
 
-  @include mq($from: desktop) {
+  @media (min-width: govuk-breakpoint-value(desktop)) {
     display: table-cell;
     padding: govuk-spacing(3) 0;
     border-bottom: 1px solid $govuk-border-colour;
@@ -67,7 +66,7 @@
   margin: govuk-spacing(2) govuk-spacing(9) 0 0;
   font-weight: bold;
 
-  @include mq($from: desktop) {
+  @media (min-width: govuk-breakpoint-value(desktop)) {
     margin: 0;
   }
 }
@@ -81,7 +80,7 @@
   margin-bottom: govuk-spacing(2);
   text-align: right;
 
-  @include mq($from: desktop) {
+  @media (min-width: govuk-breakpoint-value(desktop)) {
     padding-right: 0;
   }
 }
@@ -92,7 +91,7 @@
   right: 0;
   text-align: right;
 
-  @include mq($from: desktop) {
+  @media (min-width: govuk-breakpoint-value(desktop)) {
     position: static;
 
     + .hmrc-add-to-a-list__remove {
