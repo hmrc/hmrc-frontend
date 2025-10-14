@@ -358,7 +358,7 @@ $hmrc-banner-blue: #005ea5;
   }
 }
 
-@media (min-width: govuk-breakpoint-value(tablet)) {
+@media (min-width: govuk-media-query(tablet)) {
   .hmrc-full-width-banner__close {
     right: 35px;
   }

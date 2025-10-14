@@ -7,13 +7,13 @@
 
   @include govuk-font($size: 19);
 
-  @media (min-width: govuk-breakpoint-value(desktop)) {
+  @media (min-width: govuk-media-query(desktop)) {
     display: table;
   }
 }
 
 .hmrc-add-to-a-list--short {
-  @media (min-width: govuk-breakpoint-value(desktop)) {
+  @media (min-width: govuk-media-query(desktop)) {
     // to make group of q&a line up horizontally (unless there is just one group)
     width: 100%;
 
@@ -25,7 +25,7 @@
 }
 
 .hmrc-add-to-a-list--long {
-  @media (min-width: govuk-breakpoint-value(desktop)) {
+  @media (min-width: govuk-media-query(desktop)) {
     // to make group of q&a line up horizontally (unless there is just one group)
     width: 100%;
 
@@ -42,7 +42,7 @@
   padding-bottom: govuk-spacing(1);
   border-bottom: 1px solid $govuk-border-colour;
 
-  @media (min-width: govuk-breakpoint-value(desktop)) {
+  @media (min-width: govuk-media-query(desktop)) {
     display: table-row;
     padding-bottom: 0;
     border-bottom-width: 0;
@@ -55,7 +55,7 @@
   display: block;
   margin: 0;
 
-  @media (min-width: govuk-breakpoint-value(desktop)) {
+  @media (min-width: govuk-media-query(desktop)) {
     display: table-cell;
     padding: govuk-spacing(3) 0;
     border-bottom: 1px solid $govuk-border-colour;
@@ -66,7 +66,7 @@
   margin: govuk-spacing(2) govuk-spacing(9) 0 0;
   font-weight: bold;
 
-  @media (min-width: govuk-breakpoint-value(desktop)) {
+  @media (min-width: govuk-media-query(desktop)) {
     margin: 0;
   }
 }
@@ -80,7 +80,7 @@
   margin-bottom: govuk-spacing(2);
   text-align: right;
 
-  @media (min-width: govuk-breakpoint-value(desktop)) {
+  @media (min-width: govuk-media-query(desktop)) {
     padding-right: 0;
   }
 }
@@ -91,7 +91,7 @@
   right: 0;
   text-align: right;
 
-  @media (min-width: govuk-breakpoint-value(desktop)) {
+  @media (min-width: govuk-media-query(desktop)) {
     position: static;
 
     + .hmrc-add-to-a-list__remove {
