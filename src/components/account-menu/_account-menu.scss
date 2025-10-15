@@ -5,7 +5,6 @@
 @import "../../../../govuk-frontend/dist/govuk/settings/index";
 @import "../../../../govuk-frontend/dist/govuk/tools/index";
 @import "../../../../govuk-frontend/dist/govuk/helpers/index";
-@import "../../../../govuk-frontend/dist/govuk/vendor/sass-mq";
 
 // previously provided by govuk-template, no equivalent in govuk-frontend
 .hidden {
@@ -359,7 +358,7 @@ $hmrc-banner-blue: #005ea5;
   }
 }
 
-@include mq(tablet) {
+@include govuk-media-query($from: tablet) {
   .hmrc-full-width-banner__close {
     right: 35px;
   }

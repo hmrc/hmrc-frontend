@@ -10,7 +10,7 @@
   "pluginDependencies": [
     {
       "packageName": "govuk-frontend",
-      "minVersion": "5.12.0"
+      "minVersion": "5.13.0"
     }
   ],
   "assets": [
