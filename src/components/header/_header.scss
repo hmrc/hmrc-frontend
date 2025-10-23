@@ -169,3 +169,13 @@ $govuk-header-link-underline-thickness: 3px;
 .govuk-template--rebranded .hmrc-header + .hmrc-user-research-banner {
   top: 0;
 }
+
+.hmrc-header--with-support-for-long-service-names .govuk-header__content {
+  display: flex;
+}
+
+.hmrc-header--with-support-for-long-service-names .hmrc-sign-out-nav {
+  flex: 0 0 auto;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}

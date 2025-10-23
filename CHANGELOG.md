@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.98.0] - 2025-10-23
+
+### Changed
+
+- Add css to support long service names
+
 ## [6.97.0] - 2025-10-14
 
 ### Changed
