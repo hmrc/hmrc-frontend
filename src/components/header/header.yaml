@@ -712,3 +712,9 @@ examples:
     displayHmrcBanner: true
     useDeprecatedPositionForHmrcBanner: true
     additionalBannersBlock: "<div class=\"custom-banner govuk-body\">for example an attorney banner</div>"
+
+- name: with very long service name
+  data:
+    serviceName: This is long service name that is going to reflow onto two lines
+    signOutHref: /sign-out
+    classes: hmrc-header--with-support-for-long-service-names
