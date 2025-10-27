@@ -1,6 +1,6 @@
 {
   "name": "hmrc-frontend",
-  "version": "6.97.0",
+  "version": "6.98.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
@@ -88,7 +88,7 @@
     "nodemon": "^3.1.10",
     "nunjucks": "^3.2.4",
     "playwright-chromium": "^1.49.1",
-    "playwright-core": "^1.49.1",
+    "playwright-core": "^1.50.1",
     "postcss": "^8.0.0",
     "postcss-scss": "^4.0.9",
     "puppeteer": "^23.4.1",
