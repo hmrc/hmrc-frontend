@@ -1,5 +1,5 @@
 <header class="hmrc-internal-header">
-  <div class="govuk-width-container {%- if params.containerClasses %} {{ params.containerClasses }}{% endif %}">
+  <div class="{{ params.containerClasses | default("govuk-width-container", true) }}">
     <div class="hmrc-internal-header__logo">
       <a href="{{ params.homepageUrl | default('/') }}" class="hmrc-internal-header__logo-link">
         {% if params.useTudorCrown | default(true) %}

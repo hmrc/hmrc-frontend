@@ -28,15 +28,12 @@ describe('Internal Header', () => {
       expect($('.hmrc-internal-header__logo-link > svg').html().trim()).toContain('<path class="cls-1" d="m28.5,16.6c');
     });
 
-    it('renders custom container classes', () => {
-      const $ = render('internal-header', {
-        containerClasses: 'app-width-container',
-      });
+    it('renders default container class', () => {
+      const $ = render('internal-header', examples.default);
 
-      const $component = $('.hmrc-internal-header');
-      const $container = $component.find('.govuk-width-container');
+      const $component = $('.hmrc-internal-header div');
 
-      expect($container.hasClass('app-width-container')).toBeTruthy();
+      expect($component.hasClass('govuk-width-container')).toBeTruthy();
     });
   });
 
@@ -74,6 +71,16 @@ describe('Internal Header', () => {
 
       expect($serviceName.text().trim()).toBe('Service Name');
       expect($serviceName.find('a').length).toBe(0);
+    });
+  });
+
+  describe('With container classes specified', () => {
+    it('replaces default container class with specified container classes', () => {
+      const $ = render('internal-header', examples['with-container-class']);
+      const $component = $('.hmrc-internal-header div');
+
+      expect($component.hasClass('app-width-container')).toBeTruthy();
+      expect($component.attr('class').split(/\s+/).length).toBe(1);
     });
   });
 });
