@@ -1,3 +1,3 @@
 {
-  "GHSA-vj76-c3g6-qr5v": "tar-fs symlink validation bypass: test dependency, no risk given our usage"
+  "GHSA-7mvr-c777-76hp": "Playwright browser install without SSL: PLATUI-4022 created to uplift, devDependency only"
 }
