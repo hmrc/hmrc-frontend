@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.99.0] - 2025-11-05
+
+### Changed
+
+- Updated the `govuk-prototype-kit.config.json` to add versioned `accessible-autocomplete` CSS and Javascript to prototypes
+
 ## [6.98.0] - 2025-11-03
 
 ### Changed

@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const replace = require('gulp-replace');
 
 const fs = require('fs');
 const postcss = require('gulp-postcss');
@@ -61,6 +62,7 @@ gulp.task('copy:packageJson', (done) => {
 });
 
 gulp.task('copy-govuk-config', () => gulp.src([`${configPaths.src}govuk-prototype-kit.config.json`])
+  .pipe(replace('{{PACKAGE-VERSION}}', packageFile.version))
   .pipe(gulp.dest(configPaths.package)));
 
 gulp.task('copy-package-sources', () => gulp.src([
