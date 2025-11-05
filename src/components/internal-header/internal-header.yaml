@@ -1,4 +1,5 @@
 previewLayout: full-width
+
 params:
 - name: homepageUrl
   type: string
@@ -64,3 +65,7 @@ examples:
   description: With service name and no service url
   data:
     serviceName: Service Name
+- name: with-container-class
+  description: With a defined container class
+  data:
+    containerClasses: app-width-container
