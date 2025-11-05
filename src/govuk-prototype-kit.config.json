@@ -23,7 +23,11 @@
   ],
   "scripts": [
     "/hmrc/all.js",
-    "/hmrc/init-all.js"
+    "/hmrc/init-all.js",
+    "/hmrc/accessible-autocomplete-{{PACKAGE-VERSION}}.js"
+  ],
+  "stylesheets": [
+    "/hmrc/accessible-autocomplete-{{PACKAGE-VERSION}}.css"
   ],
   "importNunjucksMacrosInto": [
     "/hmrc/templates/account-header.html"

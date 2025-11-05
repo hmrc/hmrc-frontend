@@ -124,6 +124,16 @@ describe('package/', () => {
       }));
   });
 
+  describe('govuk-prototype-kit.config.json', () => {
+    it('is added with correct package version included in assets', () => readFile(path.join(configPaths.package, 'govuk-prototype-kit.config.json'), 'utf8')
+      .then((contents) => {
+        expect(contents).toMatch(`/hmrc/accessible-autocomplete-${pkg.version}.js`);
+        expect(contents).toMatch(`/hmrc/accessible-autocomplete-${pkg.version}.css`);
+      }).catch((error) => {
+        throw error;
+      }));
+  });
+
   describe('all.scss', () => {
     const govukLink = path.join(configPaths.packageTest, 'govuk-frontend');
     const hmrcLink = path.join(configPaths.packageTest, 'hmrc-frontend');
