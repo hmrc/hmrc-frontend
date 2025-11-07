@@ -12,30 +12,17 @@ $govuk-header-link-underline-thickness: 3px;
 
   .hmrc-sign-out-nav {
     float: right;
+    margin-bottom: 10px;
 
     .govuk-template--rebranded & {
-      @include govuk-media-query($from: desktop) {
-        padding-top: govuk-spacing(3) + 3px; // makes the baseline match gov.uk logo and service name
-      }
-    }
-  }
-
-  .govuk-header__navigation + .hmrc-sign-out-nav {
-    .govuk-template--rebranded & {
-      padding-top: 0;
-      padding-bottom: govuk-spacing(2);
+      margin-bottom: 15px;
     }
   }
 
   .hmrc-sign-out-nav__link {
     color: govuk-colour("white");
     font-weight: bold;
-    line-height: 1.64285;
     text-decoration: none;
-
-    @include govuk-media-query($from: desktop) {
-      line-height: 2.375;
-    }
 
     &:hover {
       text-decoration: underline;
@@ -170,17 +157,46 @@ $govuk-header-link-underline-thickness: 3px;
   top: 0;
 }
 
-.hmrc-header--with-support-for-long-service-names .govuk-header__content {
-  display: flex;
-  align-items: end;
+// decision made here with the following patch
+// use of :has() and :not() is ok because this
+// issue isn't going to be a problem forever
+// because people are migrating to use service
+// navigation to display their service name and
+// navigation items.
+
+.hmrc-header:has(.govuk-header__navigation) {
+  .govuk-header__service-name {
+    @include govuk-media-query($until: mobile) {
+      float: none; // otherwise the menu button sits immediately to right of service name on smallest screens
+    }
+  }
 }
 
-.hmrc-header--with-support-for-long-service-names .hmrc-sign-out-nav {
-  flex: 0 0 auto;
-  margin-bottom: 10px;
+.hmrc-header:has(.hmrc-sign-out-nav):not(:has(.govuk-header__navigation)) .govuk-header__content {
+  display: flex;
+  // not sure we need these fallbacks for `last baseline` but not hurting
+  align-items: flex-end;
+  align-items: end;
+  align-items: last baseline;
+}
+
+.hmrc-header:has(.hmrc-sign-out-nav):not(:has(.govuk-header__navigation)) .hmrc-sign-out-nav {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.hmrc-header:has(.hmrc-sign-out-nav):not(:has(.govuk-header__navigation)) .hmrc-sign-out-nav__link {
   margin-left: 10px;
 }
 
-.hmrc-header--with-support-for-long-service-names .hmrc-sign-out-nav__link.hmrc-sign-out-nav__link {
-  line-height: 1.5;
+.hmrc-header:has(.govuk-header__navigation) .hmrc-sign-out-nav {
+  margin-top: 4px;
+
+  @include govuk-media-query($from: tablet) {
+    margin-top: 10px;
+  }
+
+  @include govuk-media-query($from: desktop) {
+    margin-top: 0;
+  }
 }
