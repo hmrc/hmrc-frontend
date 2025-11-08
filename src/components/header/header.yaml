@@ -493,6 +493,15 @@ examples:
         active: true
     signOutHref: /sign-out
 
+- name: with long service name and one custom navigation item and a sign out link
+  data:
+    serviceName: This is long service name that is going to reflow onto two lines
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+    signOutHref: /sign-out
+
 - name: with custom navigation items and a sign out link
   data:
     navigation:
@@ -712,3 +721,12 @@ examples:
     displayHmrcBanner: true
     useDeprecatedPositionForHmrcBanner: true
     additionalBannersBlock: "<div class=\"custom-banner govuk-body\">for example an attorney banner</div>"
+
+- name: with very long service name and sign out link
+  data:
+    serviceName: This is long service name that is going to reflow onto two lines
+    signOutHref: /sign-out
+
+- name: with very long service name
+  data:
+    serviceName: This is long service name that is going to reflow onto two lines

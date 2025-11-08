@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.104.0] - 2025-11-28
+
+### Changed
+
+- Stop long service names causing sign out links to move onto a new line
+
 ## [6.103.0] - 2025-11-20
 
 ### Changed
@@ -44,7 +50,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Update npm exceptions list
+<<<<<<< HEAD
 - 
+=======
+
+>>>>>>> 3a4c764 (PLATUI-4002: stop long service names moving sign out link to new line)
 ## [6.97.0] - 2025-10-14
 
 ### Changed
