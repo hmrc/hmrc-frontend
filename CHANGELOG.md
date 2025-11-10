@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.101.0] - 2025-11-10
+
+### Changed
+
+- Stop long service names causing sign out links to move onto a new line
+
 ## [6.100.0] - 2025-11-05
 
 ### Changed
@@ -24,6 +30,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Update npm exceptions list
+
 ## [6.97.0] - 2025-10-14
 
 ### Changed
