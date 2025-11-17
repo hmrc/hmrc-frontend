@@ -14,7 +14,7 @@ const defaultHost = docker ? 'host.docker.internal' : 'localhost';
 const host = process.env.BACKSTOP_TEST_HOST || defaultHost;
 const components = glob.sync('src/components/*/*.yaml').map((componentsConfig) => ({
   componentsPath: path.basename(componentsConfig, '.yaml'),
-  componentsConfig: yaml.safeLoadAll(fs.readFileSync(componentsConfig))[0],
+  componentsConfig: yaml.loadAll(fs.readFileSync(componentsConfig))[0],
 }));
 const config = backstopConfig({ host, port, components });
 const options = { config, docker };

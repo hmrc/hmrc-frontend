@@ -1,3 +1,4 @@
 {
-  "GHSA-7mvr-c777-76hp": "Playwright browser install without SSL: PLATUI-4022 created to uplift, devDependency only"
+  "GHSA-7mvr-c777-76hp": "Playwright browser install without SSL: PLATUI-4022 created to uplift, devDependency only",
+  "GHSA-mh29-5h37-fv8m": "js-yaml: devDependency only, no risk given our usage (do not parse untrusted yaml documents)"
 }
