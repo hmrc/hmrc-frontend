@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.102.0] - 2025-11-19
+
+### Changed
+
+- Added `hmrc-service-navigation-language-select` to `hmrc-frontend-print-overrides.scss` to ensure new language select 
+  is not including in print views
+
 ## [6.101.0] - 2025-11-17
 
 ### Changed
