@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.103.0] - 2025-11-20
+
+### Changed
+
+- Updated versions of `glob` to address vulnerability
+
 ## [6.102.0] - 2025-11-19
 
 ### Changed
