@@ -23,6 +23,7 @@ $govuk-header-link-underline-thickness: 3px;
     color: govuk-colour("white");
     font-weight: bold;
     text-decoration: none;
+    margin-left: 10px;
 
     &:hover {
       text-decoration: underline;
@@ -157,35 +158,30 @@ $govuk-header-link-underline-thickness: 3px;
   top: 0;
 }
 
-// use of :has() and :not() is ok because this
-// issue isn't going to be a problem forever
+// Notes on the patches below:
+//
+// use of :has() and :not() is ok because these
+// issues aren't going to be a problem forever
 // because people are migrating to use service
 // navigation to display their service name and
-// navigation items. So it's making it better
+// navigation items
 
-.hmrc-header:has(.govuk-header__navigation) {
-  .govuk-header__service-name {
-    @include govuk-media-query($until: mobile) {
-      float: none; // otherwise the menu button sits immediately to right of service name on smallest screens
-    }
+// the following block of styles makes sure
+// that a service name which spans multiple
+// lines won't cause the sign out link to be
+// displayed under the service name but will
+// be aligned with baseline of its last line
+
+.hmrc-header:has(.hmrc-sign-out-nav):not(:has(.govuk-header__navigation)) {
+  .govuk-header__content {
+    display: flex;
+    align-items: last baseline;
   }
-}
 
-.hmrc-header:has(.hmrc-sign-out-nav):not(:has(.govuk-header__navigation)) .govuk-header__content {
-  display: flex;
-  // not sure we need these fallbacks for `last baseline` but not hurting
-  align-items: flex-end;
-  align-items: end;
-  align-items: last baseline;
-}
-
-.hmrc-header:has(.hmrc-sign-out-nav):not(:has(.govuk-header__navigation)) .hmrc-sign-out-nav {
-  flex-shrink: 0;
-  margin-left: auto;
-}
-
-.hmrc-header:has(.hmrc-sign-out-nav):not(:has(.govuk-header__navigation)) .hmrc-sign-out-nav__link {
-  margin-left: 10px;
+  .hmrc-sign-out-nav {
+    flex-shrink: 0;
+    margin-left: auto;
+  }
 }
 
 .hmrc-header:has(.govuk-header__navigation) .hmrc-sign-out-nav {
@@ -197,5 +193,18 @@ $govuk-header-link-underline-thickness: 3px;
 
   @include govuk-media-query($from: desktop) {
     margin-top: 0;
+  }
+}
+
+// the following stops the menu button from sitting
+// immediately to right of service name on smallest
+// screens which looks bad and might be an a11y
+// issue in terms of mobile touch target sizing.
+
+.hmrc-header:has(.govuk-header__navigation) {
+  .govuk-header__service-name {
+    @include govuk-media-query($until: mobile) {
+      float: none;
+    }
   }
 }
