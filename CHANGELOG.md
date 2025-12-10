@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.105.0] - 2025-12-10
+
+### Changed
+
+- We are re-releasing 6.104.0 - because it didn't publish to npm correctly
+
 ## [6.104.0] - 2025-11-28
 
 ### Changed
