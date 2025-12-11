@@ -730,3 +730,7 @@ examples:
 - name: with very long service name
   data:
     serviceName: This is long service name that is going to reflow onto two lines
+
+- name: sign out link with no service name
+  data:
+    signOutHref: /sign-out

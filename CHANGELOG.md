@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.105.0] - 2025-12-11
+
+### Changed
+
+- Fix positioning of sign out links when there is no service name in header, broken in 6.104.0
+
 ## [6.104.0] - 2025-11-28
 
 ### Changed
