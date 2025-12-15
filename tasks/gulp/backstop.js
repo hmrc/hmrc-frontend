@@ -48,8 +48,8 @@ gulp.task('backstop-test', async () => {
     '--page-requisites', // because we want things like css, javascript, fonts, and images
     '--adjust-extension', // because we want /preview links to become /preview.html links
     '--convert-links', // because we want the links to work in the static version
-    '--directory-prefix', './examples', // because we want to output to ./netlify
-    '--no-host-directories', // because we want './netlify/index.html' not './netlify/localhost:3000/index.html'
+    '--directory-prefix', './examples', // because we want to output to ./examples
+    '--no-host-directories', // because we want './examples/index.html' not './examples/localhost:3000/index.html'
     '--execute', 'robots=off', // because the existing robots.txt disallows wget so we only get index.html
     '--accept-regex', `localhost:${port}`, // because we don't want to try to visit any external links
     '--reject-regex', '\\?|\\.md$', // because we don't want to download links that have query strings
