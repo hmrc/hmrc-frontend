@@ -15,6 +15,7 @@
         <ul class="govuk-list govuk-list--bullet">
           {% for exampleName in componentName | componentExamples %}
             <li><a href="/components/{{ componentName }}/{{ exampleName }}/preview" class="govuk-link">{{ exampleName | replace("-", " ") | capitalize }} example</a></li>
+            <li><a href="/components/{{ componentName }}/{{ exampleName }}/preview-rebrand" class="govuk-link">{{ exampleName | replace("-", " ") | capitalize }} example (rebranded)</a></li>
           {% endfor %}
         </ul>
       {% endfor %}

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.106.0] - 2025-12-17
+
+### Changed
+
+- Speed up backstop by prerendering examples and then loading from files
+
 ## [6.105.0] - 2025-12-11
 
 ### Changed

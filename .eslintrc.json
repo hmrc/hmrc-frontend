@@ -22,7 +22,8 @@
     "webjar/**/*",
     "webjar-dist/**/*",
     "public/**/*",
-    "dist/**/*"
+    "dist/**/*",
+    "examples/**/*"
   ],
   "rules": {
     "import/prefer-default-export": "off",

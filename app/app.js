@@ -47,7 +47,7 @@ module.exports = (options) => {
   const govukFonts = fs.readdirSync(path.join(configPaths.govukFrontend, 'dist', 'govuk', 'assets', 'fonts'));
 
   app.use((req, res, next) => {
-    env.addGlobal('govukRebrand', req.query?.rebrand === 'true');
+    env.addGlobal('govukRebrand', req.url.includes('rebrand'));
     // Disallow search index indexing
     // none - Equivalent to noindex, nofollow
     // noindex - Do not show this page in search results and do not show a
@@ -97,7 +97,10 @@ module.exports = (options) => {
   });
 
   // Component example preview
-  app.get('/components/:component/:example*?/preview', (req, res, next) => {
+  app.get([
+    '/components/:component/:example*?/preview',
+    '/components/:component/:example*?/preview-rebrand',
+  ], (req, res, next) => {
     // Find the data for the specified example (or the default example)
     const componentName = req.params.component;
     const requestedExampleName = req.params.example || 'default';

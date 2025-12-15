@@ -102,10 +102,10 @@ examples:
           - focus: ".hmrc-account-menu__link--home"
       account-menu-messages-hovered:
         beforeTakingScreenshot:
-          - hover: ".hmrc-account-menu__link[href='/messages/href']"
+          - hover: ".hmrc-account-menu__link[href$='/messages/href']"
       account-menu-messages-focused:
         beforeTakingScreenshot:
-          - focus: ".hmrc-account-menu__link[href='/messages/href']"
+          - focus: ".hmrc-account-menu__link[href$='/messages/href']"
       language-select-current-lang-focused-and-alternate-lang-hovered:
         beforeTakingScreenshot:
           - focus: ".hmrc-language-select a[lang='en']"
@@ -168,12 +168,12 @@ examples:
         beforeTakingScreenshot:
           - click: ".hmrc-account-menu__link[aria-expanded='false']"
           - waitFor: ".main-nav-is-open"
-          - hover: ".hmrc-account-menu__link[href='/messages/href']"
+          - hover: ".hmrc-account-menu__link[href$='/messages/href']"
       account-menu-dropdown-open-messages-focused:
         beforeTakingScreenshot:
           - click: ".hmrc-account-menu__link[aria-expanded='false']"
           - waitFor: ".main-nav-is-open"
-          - focus: ".hmrc-account-menu__link[href='/messages/href']"
+          - focus: ".hmrc-account-menu__link[href$='/messages/href']"
 
 - name: link-states-on-mobile-with-dropdown-link-active
   data:
@@ -219,12 +219,12 @@ examples:
         beforeTakingScreenshot:
           - click: ".hmrc-account-menu__link[aria-expanded='false']"
           - waitFor: ".main-nav-is-open"
-          - hover: ".hmrc-account-menu__link[href='/messages/href']"
+          - hover: ".hmrc-account-menu__link[href$='/messages/href']"
       account-menu-dropdown-open-active-link-focused:
         beforeTakingScreenshot:
           - click: ".hmrc-account-menu__link[aria-expanded='false']"
           - waitFor: ".main-nav-is-open"
-          - focus: ".hmrc-account-menu__link[href='/messages/href']"
+          - focus: ".hmrc-account-menu__link[href$='/messages/href']"
 
 - name: all-available-options-with-tudor-crown
   data:

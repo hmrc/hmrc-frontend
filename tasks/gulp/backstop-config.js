@@ -2,6 +2,8 @@ const Ajv = require('ajv');
 
 const ajv = new Ajv({ allErrors: true });
 
+const path = require('path');
+
 const configMatchesAllowedSchema = ajv.compile(require('./visual-regression-testing-config-schema.json'));
 
 const validateConfig = (component, { visualRegressionTests: config = {} }) => {
@@ -36,7 +38,7 @@ const buildScenarioList = (host, port, components) => components.flatMap(({
     const scenarioForThisExample = {
       ...backstopScenarioDefaults,
       label: `${componentsPath} (${examplesConfig.name} example)`,
-      url: `http://${host}:${port}/components/${componentsPath}/${examplesPath}/preview`,
+      url: `file://${!process.env.CI ? '/src/examples' : path.resolve('examples')}/components/${componentsPath}/${examplesPath}/preview.html`,
       ...componentsBackstopScenarioOptions,
       ...examplesBackstopScenarioOptions,
     };
@@ -71,7 +73,7 @@ module.exports = ({ host, port, components }) => ({
   onReadyScript: 'puppet/onReady.js',
   scenarios: buildScenarioList(host, port, components).flatMap((scenario) => [
     // this means we have twice as many VRT which might increase test time a lot...
-    scenario, { ...scenario, label: `${scenario.label} (using rebrand)`, url: `${scenario.url}?rebrand=true` },
+    scenario, { ...scenario, label: `${scenario.label} (using rebrand)`, url: `${scenario.url.replace('preview.html', 'preview-rebrand.html')}` },
   ]),
   paths: {
     bitmaps_reference: 'backstop_data/bitmaps_reference',
@@ -83,10 +85,10 @@ module.exports = ({ host, port, components }) => ({
   report: ['browser'],
   engine: 'playwright',
   engineOptions: {
-    args: ['--no-sandbox'],
+    args: ['--no-sandbox', '--allow-file-access-from-files', '--disable-web-security'],
   },
   // if running locally, and either stage hangs, try reducing these limits
-  asyncCaptureLimit: 3,
+  asyncCaptureLimit: 50,
   asyncCompareLimit: 50,
   debug: false,
   debugWindow: false,
