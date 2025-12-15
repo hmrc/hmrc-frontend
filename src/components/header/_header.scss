@@ -14,8 +14,28 @@ $govuk-header-link-underline-thickness: 3px;
     float: right;
     margin-bottom: 10px;
 
+    @include govuk-media-query($from: desktop) {
+      padding-top: 10px;
+
+      .govuk-template--rebranded & {
+        padding-top: 29px;
+      }
+    }
+
     .govuk-template--rebranded & {
       margin-bottom: 15px;
+    }
+  }
+
+  .govuk-header__navigation + .hmrc-sign-out-nav {
+    padding-top: 4px;
+
+    @include govuk-media-query($from: tablet) {
+      padding-top: 10px;
+    }
+
+    @include govuk-media-query($from: desktop) {
+      padding-top: 0;
     }
   }
 
@@ -181,18 +201,6 @@ $govuk-header-link-underline-thickness: 3px;
   .hmrc-sign-out-nav {
     flex-shrink: 0;
     margin-left: auto;
-  }
-}
-
-.hmrc-header:has(.govuk-header__navigation) .hmrc-sign-out-nav {
-  margin-top: 4px;
-
-  @include govuk-media-query($from: tablet) {
-    margin-top: 10px;
-  }
-
-  @include govuk-media-query($from: desktop) {
-    margin-top: 0;
   }
 }
 
