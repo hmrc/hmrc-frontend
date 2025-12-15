@@ -52,4 +52,5 @@ examples:
 visualRegressionTests:
   alternateStates:
     focused:
-      clickSelector: .govuk-label
+      beforeTakingScreenshot:
+        - click: ".govuk-label"

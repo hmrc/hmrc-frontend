@@ -69,8 +69,8 @@ module.exports = ({ host, port, components }) => ({
       height: 768,
     },
   ],
-  onBeforeScript: 'puppet/onBefore.js',
-  onReadyScript: 'puppet/onReady.js',
+  onBeforeScript: 'playwright/onBefore.js',
+  onReadyScript: 'playwright/onReady.js',
   scenarios: buildScenarioList(host, port, components).flatMap((scenario) => [
     // this means we have twice as many VRT which might increase test time a lot...
     scenario, { ...scenario, label: `${scenario.label} (using rebrand)`, url: `${scenario.url.replace('preview.html', 'preview-rebrand.html')}` },

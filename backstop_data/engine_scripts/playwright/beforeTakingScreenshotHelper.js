@@ -1,37 +1,31 @@
 module.exports = async (page, { beforeTakingScreenshot }) => {
   const allowedPageActions = {}
 
-  allowedPageActions.click = async selector =>
+  allowedPageActions.click = async selector => {
+    await page.waitForSelector(selector);
     await page.click(selector);
+  }
 
   allowedPageActions.hover = async selector => {
+    await page.waitForSelector(selector);
     await page.hover(selector);
-    // to try and reduce seemingly unavoidable flakiness
-    await page.waitForTimeout(100);
   }
 
-  allowedPageActions.focus = async selector =>
+  allowedPageActions.focus = async selector => {
+    await page.waitForSelector(selector);
     await page.focus(selector);
-
-  allowedPageActions.type = async ({ into, text }) =>
-    await page.type(into, text);
-
-  allowedPageActions.press = async key =>
-    await page.press(key);
-
-  allowedPageActions.waitFor = async selector => {
-    await page.locator(selector).waitFor();
-    // to try and reduce seemingly unavoidable flakiness
-    await page.waitForTimeout(100);
   }
 
-  allowedPageActions.setRefererSameDomain = async refererIsSameDomain => {
-    if(refererIsSameDomain) {
-      const pageUrl = page.url();
-      await page.goto(pageUrl, {
-        referer: pageUrl,
-        referrerPolicy: 'origin'
-      });
+  allowedPageActions.type = async ({ into, text }) => {
+    await page.waitForSelector(into);
+    await page.type(into, text);
+  }
+
+  allowedPageActions.waitFor = async selectorOrDuration => {
+    if (parseInt(selectorOrDuration) > 0) {
+      await page.waitForTimeout(selectorOrDuration)
+    } else {
+      await page.waitForSelector(selectorOrDuration);
     }
   }
 
