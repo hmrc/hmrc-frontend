@@ -323,7 +323,3 @@ examples:
         maxlength: 10
       label:
         text: Full address
-
-visualRegressionTests:
-  backstopScenarioOptions:
-    delay: 2000

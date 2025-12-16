@@ -47,6 +47,13 @@ module.exports = async (page, { beforeTakingScreenshot }) => {
     }, fontSize);
   }
 
+  // must have useFakeTimers:
+  allowedPageActions.advanceClockInSeconds = async seconds => {
+    await page.evaluate((ms) => {
+      window.clock.tick(ms)
+    }, seconds * 1000);
+  }
+
   if (beforeTakingScreenshot) {
     for (const step of beforeTakingScreenshot) {
       const [action, params] = Object.entries(step)[0];
