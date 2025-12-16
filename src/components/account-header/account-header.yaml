@@ -161,16 +161,16 @@ examples:
       account-menu-dropdown-open:
         beforeTakingScreenshot:
           - click: ".hmrc-account-menu__link[aria-expanded='false']"
-          - waitFor: 1000
+          - waitFor: ".hmrc-account-menu__main:visible"
       account-menu-dropdown-open-messages-hovered:
         beforeTakingScreenshot:
           - click: ".hmrc-account-menu__link[aria-expanded='false']"
-          - waitFor: 1000
+          - waitFor: ".hmrc-account-menu__main:visible"
           - hover: ".hmrc-account-menu__link[href$='/messages/href']"
       account-menu-dropdown-open-messages-focused:
         beforeTakingScreenshot:
           - click: ".hmrc-account-menu__link[aria-expanded='false']"
-          - waitFor: 1000
+          - waitFor: ".hmrc-account-menu__main:visible"
           - focus: ".hmrc-account-menu__link[href$='/messages/href']"
 
 - name: link-states-on-mobile-with-dropdown-link-active
@@ -211,16 +211,16 @@ examples:
       account-menu-dropdown-open:
         beforeTakingScreenshot:
           - click: ".hmrc-account-menu__link[aria-expanded='false']"
-          - waitFor: 1000
+          - waitFor: ".hmrc-account-menu__main:visible"
       account-menu-dropdown-open-active-link-hovered:
         beforeTakingScreenshot:
           - click: ".hmrc-account-menu__link[aria-expanded='false']"
-          - waitFor: 1000
+          - waitFor: ".hmrc-account-menu__main:visible"
           - hover: ".hmrc-account-menu__link[href$='/messages/href']"
       account-menu-dropdown-open-active-link-focused:
         beforeTakingScreenshot:
           - click: ".hmrc-account-menu__link[aria-expanded='false']"
-          - waitFor: 1000
+          - waitFor: ".hmrc-account-menu__main:visible"
           - focus: ".hmrc-account-menu__link[href$='/messages/href']"
 
 - name: all-available-options-with-tudor-crown
