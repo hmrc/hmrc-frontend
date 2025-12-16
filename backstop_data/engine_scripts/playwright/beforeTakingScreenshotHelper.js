@@ -1,29 +1,35 @@
 module.exports = async (page, { beforeTakingScreenshot }) => {
   const allowedPageActions = {}
+  const postInteractionWait = 150 // ms, to reduce flakiness without having to modify old implementations
 
   allowedPageActions.click = async selector => {
     await page.waitForSelector(selector);
     await page.click(selector);
+    await page.waitForTimeout(postInteractionWait);
   }
 
   allowedPageActions.hover = async selector => {
     await page.waitForSelector(selector);
     await page.hover(selector);
+    await page.waitForTimeout(postInteractionWait);
   }
 
   allowedPageActions.focus = async selector => {
     await page.waitForSelector(selector);
     await page.focus(selector);
+    await page.waitForTimeout(postInteractionWait);
   }
 
   allowedPageActions.type = async ({ into, text }) => {
     await page.waitForSelector(into);
     await page.type(into, text);
+    await page.waitForTimeout(postInteractionWait);
   }
 
   allowedPageActions.waitFor = async selectorOrDuration => {
-    if (parseInt(selectorOrDuration) > 0) {
-      await page.waitForTimeout(selectorOrDuration)
+    const timeoutDuration = parseInt(selectorOrDuration)
+    if (timeoutDuration > 0) {
+      await page.waitForTimeout(timeoutDuration);
     } else {
       await page.waitForSelector(selectorOrDuration);
     }
