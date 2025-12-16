@@ -4,7 +4,7 @@ module.exports = async (page, { beforeTakingScreenshot }) => {
 
   allowedPageActions.click = async selector => {
     await page.waitForSelector(selector);
-    await page.click(selector);
+    await page.locator(selector).dispatchEvent('click');
     await page.waitForTimeout(postInteractionWait);
   }
 
