@@ -87,7 +87,7 @@ examples:
       classes: 'the-header-classes'
   visualRegressionTests:
     backstopScenarioOptions:
-      misMatchThreshold: 0.1
+      delay: 2000
       viewports:
         - label: tablet
           width: 1024
@@ -141,6 +141,7 @@ examples:
       classes: 'the-header-classes'
   visualRegressionTests:
     backstopScenarioOptions:
+      delay: 2000
       viewports:
         - label: phone
           width: 320
@@ -200,6 +201,7 @@ examples:
       classes: 'the-header-classes'
   visualRegressionTests:
     backstopScenarioOptions:
+      delay: 2000
       viewports:
         - label: phone
           width: 320

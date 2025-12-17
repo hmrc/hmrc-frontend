@@ -88,7 +88,7 @@ module.exports = ({ host, port, components }) => ({
     args: ['--no-sandbox', '--allow-file-access-from-files', '--disable-web-security'],
   },
   // if running locally, and either stage hangs, try reducing these limits
-  asyncCaptureLimit: 20,
+  asyncCaptureLimit: 50,
   asyncCompareLimit: 50,
   debug: false,
   debugWindow: false,
