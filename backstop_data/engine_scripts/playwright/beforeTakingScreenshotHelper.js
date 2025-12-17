@@ -1,16 +1,20 @@
 module.exports = async (page, { beforeTakingScreenshot }) => {
-  const allowedPageActions = {}
+  const allowedPageActions = {};
+  const postInteractionWait = 250; // ms
 
   allowedPageActions.click = async selector => {
     await page.locator(selector).click();
+    await page.waitForTimeout(postInteractionWait);
   }
 
   allowedPageActions.hover = async selector => {
     await page.locator(selector).hover();
+    await page.waitForTimeout(postInteractionWait);
   }
 
   allowedPageActions.focus = async selector => {
     await page.locator(selector).focus();
+    await page.waitForTimeout(postInteractionWait);
   }
 
   allowedPageActions.type = async ({ into, text }) => {
@@ -38,7 +42,7 @@ module.exports = async (page, { beforeTakingScreenshot }) => {
     }, fontSize);
   }
 
-  // must have useFakeTimers:
+  // must have backstopScenarioOptions: useFakeTimers: true
   allowedPageActions.advanceClockInSeconds = async seconds => {
     await page.evaluate((ms) => {
       window.clock.tick(ms)
