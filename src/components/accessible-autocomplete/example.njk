@@ -6,4 +6,43 @@
 
 {{ govukSelect(params) }}
 
+<script>
+function getMatchingRules(element) {
+  const matchedRules = [];
+
+  for (const sheet of document.styleSheets) {
+    try {
+      for (const rule of sheet.cssRules) {
+        if (rule.selectorText && element.matches(rule.selectorText)) {
+          const properties = {};
+
+          for (let i = 0; i < rule.style.length; i++) {
+            const prop = rule.style[i];
+            properties[prop] = rule.style.getPropertyValue(prop);
+          }
+
+          matchedRules.push({
+            selector: rule.selectorText,
+            specificity: rule.selectorText, // you'd need a library for actual specificity
+            properties,
+            source: sheet.href || 'inline <style>'
+          });
+        }
+      }
+    } catch (e) {
+      // Cross-origin stylesheet
+    }
+  }
+
+  return matchedRules;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log("!!!DEBUG");
+  console.log(JSON.stringify(getMatchingRules(
+    document.getElementById('{{ params.id }}')
+  )));
+});
+</script>
+
 {% endblock %}

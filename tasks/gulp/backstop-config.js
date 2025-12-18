@@ -91,7 +91,7 @@ module.exports = ({ host, port, components }) => ({
   // some account-header click/hover/focus examples struggle with higher capture limits in jenkins
   asyncCaptureLimit: process.env.CI ? 3 : 50,
   asyncCompareLimit: 50,
-  debug: false,
+  debug: true,
   debugWindow: false,
   misMatchThreshold: 0.01,
   dockerCommandTemplate: 'docker run --rm -it --network host --mount type=bind,source="{cwd}",target=/src backstopjs/backstopjs:{version} {backstopCommand} {args}',
