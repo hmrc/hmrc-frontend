@@ -274,3 +274,6 @@ examples:
           data-auto-select: true
           data-default-value:
           data-module: hmrc-accessible-autocomplete
+visualRegressionTests:
+  backstopScenarioOptions:
+    delay: 2000
