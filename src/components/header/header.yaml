@@ -330,7 +330,8 @@ examples:
         - label: phone
           width: 320
           height: 480
-      clickSelector: ".govuk-header__menu-button"
+      beforeTakingScreenshot:
+        - click: ".govuk-header__menu-button"
 
 - name: navigation item with html
   data:

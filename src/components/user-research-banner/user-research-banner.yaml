@@ -39,7 +39,3 @@ examples:
     url: 'https://www.example.com/user-research'
     language: en
     hideCloseButton: true
-
-visualRegressionTests:
-  backstopScenarioOptions:
-    delay: 2000

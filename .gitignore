@@ -44,3 +44,5 @@ backstop_data/html_report/*
 webjar/
 webjar-dist/
 core
+
+examples

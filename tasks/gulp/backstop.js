@@ -4,9 +4,11 @@ const path = require('path');
 const fs = require('fs');
 const yaml = require('js-yaml');
 const backstop = require('backstopjs');
+const util = require('node:util');
 const configPaths = require('../../config/paths.json');
 const backstopConfig = require('./backstop-config');
 const app = require('../../app/app')({ nunjucks: { watch: false } });
+const execFile = util.promisify(require('node:child_process').execFile);
 
 const port = configPaths.ports.test;
 const docker = !process.env.CI;
@@ -36,11 +38,32 @@ gulp.task('backstop-test', async () => {
 
   console.log(`${green}\nServer started at http://${host}:${port}${reset}`);
 
-  try {
-    console.log(`${green}\nPerforming visual regression testing${reset}`);
-    await runBackstop('test');
-  } finally {
-    console.log(`${green}\nClose server for visual regression testing${reset}`);
-    await server.close();
-  }
+  fs.rmSync('examples', {
+    force: true,
+    recursive: true,
+  });
+
+  await execFile('wget', [
+    '--mirror', // because we want to crawl the site recursively
+    '--page-requisites', // because we want things like css, javascript, fonts, and images
+    '--adjust-extension', // because we want /preview links to become /preview.html links
+    '--convert-links', // because we want the links to work in the static version
+    '--directory-prefix', './examples', // because we want to output to ./examples
+    '--no-host-directories', // because we want './examples/index.html' not './examples/localhost:3000/index.html'
+    '--execute', 'robots=off', // because the existing robots.txt disallows wget so we only get index.html
+    '--accept-regex', `localhost:${port}`, // because we don't want to try to visit any external links
+    '--reject-regex', '\\?|\\.md$', // because we don't want to download links that have query strings
+    '--timeout', '5', // seconds, because we don't want this to hang forever and eat up build minutes
+    `http://localhost:${port}`,
+  ], { stdio: 'inherit' }).catch(() => {
+    console.log('ignoring errors during creating of static site');
+  });
+
+  console.log(`${green}\nClose server for visual regression testing${reset}`);
+
+  await server.close();
+
+  console.log(`${green}\nPerforming visual regression testing${reset}`);
+
+  await runBackstop('test');
 });

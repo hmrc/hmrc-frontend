@@ -154,9 +154,10 @@ examples:
     visualRegressionTests:
       alternateStates:
         showingAutoSelectHint:
-          keyPressSelectors:
-            - selector: "#location-picker"
-              keyPress: "Fr"
+          beforeTakingScreenshot:
+            - type:
+                into: "#location-picker"
+                text: "Fr"
   - name: with-label-and-hint
     description:
     data:
