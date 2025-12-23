@@ -1,6 +1,6 @@
-# NPM Usage
+# PNPM Usage
 
-Where possible, we try to minimise the amount of npm packages we depend on. The following table shows all dependencies we have and where they are used:
+Where possible, we try to minimise the amount of node packages we depend on. The following table shows all dependencies we have and where they are used:
 
 | Dependency Name                   | Purpose                                                                                 | Extra resources          |
 |---                                |---                                                                                      | ---                      |

@@ -25,7 +25,7 @@ You can:
 
 ## Before you create a pull request
 
-### Run `npm install` and make sure you've updated the version number
+### Run `pnpm install` and make sure you've updated the version number
 
 Running the following will:
 - make sure any changes to your package.json are reflected in your package-lock.json
@@ -38,21 +38,21 @@ you should bump the major version, otherwise the minor version
 > Make sure you commit the changes!
 
 ```
-npm install
+pnpm install
 # for breaking changes:
-npm version major
+pnpm version major
 # for non-breaking changes:
-npm version minor
+pnpm version minor
 ```
 
 ### Adding or updating NPM dependencies
 
 To minimise the security risk from accidentally installing a compromised package, you should:
 - Use the `--ignore-scripts` parameter when installing to prevent the package from executing scripts during installation. This can't be configured automatically in the repo because it would disable our ability to run any scripts (even the top-level ones in the project)
-- Run `npm run audit` post installation to check for vulnerabilities after installing before running a build or test using it
+- Run `pnpm run audit` post installation to check for vulnerabilities after installing before running a build or test using it
 
 > [!NOTE]
-> Deliberately compromised packages tend to be quickly removed from NPM once they are discovered, but a removed package might be present in a cache somewhere so for safety we should always run this check.
+> Deliberately compromised packages tend to be quickly removed from PNPM once they are discovered, but a removed package might be present in a cache somewhere so for safety we should always run this check.
 
 - Carefully consider if new dependencies are really needed, and try to avoid adding them whenever possible
 
@@ -76,7 +76,7 @@ hmrc-frontend follows the [Airbnb JavaScript Style Guide](https://github.com/air
 and autofix your code,
 
 ```shell script
-npm run lint:fix
+pnpm run lint:fix
 ```
 
 The above command will show you any remaining issues after the tool has fixed what it can for you.
@@ -89,7 +89,7 @@ The build server also checks the code when running the tests.
 Run tests to make sure they pass. If the existing tests do not apply to your code, write new ones.
 
 ```shell script
-npm run test
+pnpm run test
 ```
 
 #### Visual regression tests
@@ -102,21 +102,21 @@ This is because there are subtle differences in rendering between platforms and 
 consistent with CI. To run the tests,
 
 ```shell script
-npm run test:backstop
+pnpm run test:backstop
 ```
 
 On completion, Backstop will emit the results as an HTML report in `/backstop_data/hmrc_report`.  If a failure is the
 result of a known change to the component, the reference images can be updated by running,
 
 ```shell script
-npm run test:backstop-approve
+pnpm test:backstop-approve
 ```
 
 ##### Troubleshooting
 * If you're running on a Linux OS, you may need to configure the `BACKSTOP_TEST_HOST` environment variable for the docker container used by BackstopJS.
 To do this and run the BackstopJS tests in one command, you can run the following command
     ```shell
-    env BACKSTOP_TEST_HOST={your local machines ip address} npm run test:backstop 
+    env BACKSTOP_TEST_HOST={your local machines ip address} pnpm test:backstop 
     ```
 
 * If backstop tests hang, you should try lowering `asyncCaptureLimit` and/or `asyncCompareLimit` in [`backstop-config.js`](tasks/gulp/backstop-config.js).
@@ -125,7 +125,7 @@ The tests will take longer to run, but might no longer hang.
 * If you run into a problem where some of your visual regression tests are failing due to unrelated changes (for instance on screens you may not have touched or updated),
 you may want to delete the `node_modules` folder from the root of the project and then re-run command.
     ```shell
-    npm install
+    pnpm install
     ```
 
 All examples of components will be checked by backstop. You can adjust the backstop configuration for a component or a

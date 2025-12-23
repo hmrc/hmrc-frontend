@@ -3,7 +3,7 @@
 ## Publishing the hmrc-frontend WebJar locally
 
 In order to make the hmrc-frontend assets easy to consume in a JVM environment,
-the npm `build:webjar` task builds a JVM compatible webjar. This webjar is published to HMRC's open
+the pnpm `build:webjar` task builds a JVM compatible webjar. This webjar is published to HMRC's open
 artefact repository by an internal automated deployment process and is a dependency of
 [hmrc/play-frontend-hmrc](https://www.github.com/hmrc/play-frontend-hmrc).
 
@@ -12,9 +12,9 @@ it's possible to publish the hmrc-frontend webjar locally as follows. You will n
 and [Maven](https://maven.apache.org/install.html) installed.
 
 ```shell script
-npm run build:package
-npm run build:webjar
-npm run publish-local:webjar
+pnpm run build:package
+pnpm run build:webjar
+pnpm run publish-local:webjar
 ```
 
 You can then reference the webjar in the `LibDependencies.scala` file in `play-frontend-hmrc` as follows:
@@ -52,7 +52,7 @@ We use the following workflow for patch releases:
 3. Create a feature branch off the release branch, for the required changes, eg.
    `git checkout -b PLATUI-999-my-critical-changes`
 4. Bump the patch version on your local feature branch
-   `npm version patch`
+   `pnpm version patch`
 5. Make and test the required changes on your local feature branch
 6. Once you're happy with your changes, push them up to GitHub
    `git push -u origin PLATUI-999-my-critical-changes`

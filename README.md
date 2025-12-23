@@ -33,7 +33,7 @@ npm install
 
 #### Overriding compatibility
 
-Your prototype may fail locally on `npm install`, due to the version of govuk-frontend being incompatible with hmrc-frontend. If you don't want to bump that version, you can set an environment variable to be able to continue without it:
+Your prototype may fail locally on `pnpm install`, due to the version of govuk-frontend being incompatible with hmrc-frontend. If you don't want to bump that version, you can set an environment variable to be able to continue without it:
 
 ```
 export HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK=true
@@ -41,7 +41,7 @@ export HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK=true
 
 ### How to run
 
-1. Run `npm start`
+1. Run `pnpm start`
 2. Components are available at [http://localhost:3000]()
 
 To see version of the page with rebrand enabled just add `?rebrand=true` at the end of url.
@@ -50,7 +50,7 @@ To see version of the page with rebrand enabled just add `?rebrand=true` at the 
 
 ### Prototypes
 
-`npm install hmrc-frontend`
+`pnpm install hmrc-frontend`
 
 ### Frontend microservices
 
