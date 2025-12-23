@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.107.0] - 2025-12-23
+
+### Changed
+
+- Removed GOV.UK footer from the examples using `main.html` (overwritten with empty block)
+
 ## [6.106.0] - 2025-12-17
 
 ### Changed
