@@ -221,6 +221,14 @@ the alternate states with an empty list.
 
 For more general backstop configuration take a look at [tasks/gulp/backstop-config.js]()
 
+##### Remove unused backstop reference images
+
+If the name of a visual regression test scenario changes, the reference image won't be automatically deleted
+
+Accumulating some unused reference images is unlikely to cause any problems
+
+To remove them, run the tests and remove any files in bitmaps_reference that are not in the bitmaps_test folder
+
 #### Test for compatibility
 The code you contribute must be accessible. This means it works on every browser or device your users 
 may use to access it.
