@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.108.0] - 2026-01-05
+
+### Changed
+
+- Removed some unused visual regression test reference images
+
 ## [6.107.0] - 2026-01-05
 
 ### Changed
