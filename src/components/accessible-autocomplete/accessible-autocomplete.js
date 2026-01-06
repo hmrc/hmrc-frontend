@@ -18,7 +18,7 @@ AccessibleAutoComplete.prototype.init = function init() {
     const autoselect = (selectElement.getAttribute('data-auto-select') === 'true');
     const defaultValue = selectElement.getAttribute('data-default-value');
     const minLength = selectElement.getAttribute('data-min-length');
-    const displayMenu = 'overlay';
+    const displayMenu = selectElement.getAttribute('data-display-menu') || 'inline';
 
     const configurationOptions = {
       selectElement,
@@ -59,6 +59,7 @@ AccessibleAutoComplete.prototype.init = function init() {
         return `${length} ${resultOrResults} ar gael. ${contentSelectedOption}`;
       };
     }
+
 
     window.HMRCAccessibleAutocomplete.enhanceSelectElement(configurationOptions);
 
