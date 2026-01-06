@@ -18,6 +18,7 @@ AccessibleAutoComplete.prototype.init = function init() {
     const autoselect = (selectElement.getAttribute('data-auto-select') === 'true');
     const defaultValue = selectElement.getAttribute('data-default-value');
     const minLength = selectElement.getAttribute('data-min-length');
+    const displayMenu = 'overlay';
 
     const configurationOptions = {
       selectElement,
@@ -25,6 +26,7 @@ AccessibleAutoComplete.prototype.init = function init() {
       autoselect,
       defaultValue,
       minLength,
+      displayMenu,
       // we don't yet support preserveNullOptions,
       // but if we start then it needs to override this filtering
       // https://github.com/alphagov/accessible-autocomplete/blob/main/src/wrapper.js#L24
