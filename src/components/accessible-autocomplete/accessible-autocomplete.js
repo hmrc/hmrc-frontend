@@ -60,7 +60,6 @@ AccessibleAutoComplete.prototype.init = function init() {
       };
     }
 
-
     window.HMRCAccessibleAutocomplete.enhanceSelectElement(configurationOptions);
 
     const selectElementAriaDescribedBy = selectElement.getAttribute('aria-describedby') || '';
