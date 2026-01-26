@@ -1,3 +1,5 @@
 {
-  "GHSA-6rw7-vpxm-498p": "qs: devDependency only, no risk given our usage (do not accept user input that could cause DoS attack)"
+  "GHSA-6rw7-vpxm-498p": "qs: devDependency only, no risk given our usage (do not accept user input that could cause DoS attack)",
+  "GHSA-r6q2-hw4h-h46w": "tar: devDependency only, no risk given our usage",
+  "GHSA-xxjr-mmjv-4gpg": "lodash: devDependency only, no risk given our usage"
 }
