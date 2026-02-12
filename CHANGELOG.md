@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.114.0] - 2026-02-11
+
+### Changed
+
+- Removed use of _govuk-rebrand mixin to be compatible with govuk-frontend v6
+
 ## [6.113.0] - 2026-02-02
 
 ### Changed

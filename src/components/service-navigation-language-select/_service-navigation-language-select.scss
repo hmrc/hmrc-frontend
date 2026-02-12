@@ -52,7 +52,7 @@
     margin-bottom: 0;
     padding: govuk-spacing(4) 0;
 
-    @include _govuk-rebrand {
+    .govuk-template--rebranded & {
       padding: govuk-spacing(3) 0;
 
       // some magic numbers from govuk-frontend service nav rebrand,
