@@ -10,11 +10,12 @@
 {%- set menuButtonText = params.menuButtonText if params.menuButtonText else ('Dewislen' if language == 'cy' else 'Menu') -%}
 
 <header>
+
 <div class="govuk-header hmrc-header {%- if params.classes %} {{ params.classes }}{% endif %}{{ ' hmrc-header--with-additional-navigation' if params.signOutHref or params.languageToggle }}{{ ' govuk-header--full-width-border' if params.serviceNavigation }}" data-module="govuk-header"
   {{- govukAttributes(params.attributes) }}>
   <div class="govuk-header__container {{ params.containerClasses | default("govuk-width-container", true) }}">
     <div class="govuk-header__logo">
-      <a href="{{ params.homepageUrl | default("/", true) }}" class="govuk-header__link govuk-header__link--homepage">
+      <a href="{{ params.homepageUrl | default("/", true) }}" class="govuk-header__homepage-link">
         {{ govukLogo({
           classes: "govuk-header__logotype",
           ariaLabelText: "GOV.UK"
