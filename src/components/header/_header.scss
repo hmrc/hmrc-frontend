@@ -98,7 +98,7 @@ $govuk-header-link-underline-thickness: 3px;
       a:not(.govuk-header__link) {
         @include govuk-font($size: 16, $weight: "bold");
 
-        color: govuk-colour("mid-grey");
+        color: govuk-colour("black", $variant: "tint-80");
         text-decoration: none;
 
         &:link,
@@ -127,7 +127,7 @@ $govuk-header-link-underline-thickness: 3px;
     .govuk-header__navigation-item + .govuk-header__navigation-item::before {
       content: "|";
       padding-right: 2px;
-      color: govuk-colour("dark-grey");
+      color: govuk-colour("black", $variant: "tint-25");
 
       .govuk-template--rebranded & {
         color: #ffffff50; // is this acceptable? mimics the existing light grey...

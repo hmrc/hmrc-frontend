@@ -15,7 +15,7 @@
   left: 2px;
   width: 1.5rem;
   border-right: 2px solid;
-  background: govuk-colour("light-grey");
+  background: govuk-colour("black", $variant: "tint-95");
   text-align: center;
 
   @include govuk-font($size: 19, $weight: bold);

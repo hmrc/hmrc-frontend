@@ -46,14 +46,14 @@ $hmrc-transition-type: "all";
   z-index: 0;
   margin-bottom: 0;
   transition: #{$hmrc-transition-type} $hmrc-account-menu-transition-time ease-in-out;
-  border-bottom: 1px solid govuk-colour("mid-grey");
+  border-bottom: 1px solid govuk-colour("black", $variant: "tint-80");
   background-color: govuk-colour("white");
 }
 
 .is-smaller.hmrc-account-menu {
   margin-bottom: 0;
   transition: none;
-  border-bottom: 1px solid govuk-colour("mid-grey");
+  border-bottom: 1px solid govuk-colour("black", $variant: "tint-80");
 
   &.main-nav-menu-is-open {
     margin-bottom: 5em;
@@ -162,11 +162,11 @@ body:not(.js-enabled) {
     padding: 0;
     float: none;
     clear: both;
-    background-color: govuk-colour("light-grey");
+    background-color: govuk-colour("black", $variant: "tint-95");
 
     &.main-nav-is-open {
       position: relative;
-      border-top: 1px solid govuk-colour("mid-grey");
+      border-top: 1px solid govuk-colour("black", $variant: "tint-80");
 
       &::before,
       &::after {
@@ -183,7 +183,7 @@ body:not(.js-enabled) {
       &::before {
         right: 3px;
         border-width: 7px;
-        border-bottom-color: govuk-colour("mid-grey");
+        border-bottom-color: govuk-colour("black", $variant: "tint-80");
       }
 
       &::after {
@@ -196,7 +196,7 @@ body:not(.js-enabled) {
     li {
       display: block;
       overflow: hidden;
-      border-bottom: 1px solid govuk-colour("mid-grey");
+      border-bottom: 1px solid govuk-colour("black", $variant: "tint-80");
 
       &:last-child {
         border-bottom: 0;
@@ -215,7 +215,7 @@ body:not(.js-enabled) {
 
   .hmrc-account-menu__link--back {
     padding-left: 20px;
-    border-bottom: 1px solid govuk-colour("light-grey");
+    border-bottom: 1px solid govuk-colour("black", $variant: "tint-95");
     background-image: url("#{$hmrc-assets-path}components/account-menu/images/icon-chevron-left.svg");
     background-repeat: no-repeat;
     background-position: 10px;
@@ -276,13 +276,13 @@ body:not(.js-enabled) {
     &::before {
       right: 13px;
       border-width: 7px;
-      border-bottom-color: govuk-colour("mid-grey");
+      border-bottom-color: govuk-colour("black", $variant: "tint-80");
     }
 
     &::after {
       margin-left: -6px;
       border-width: 6px;
-      border-bottom-color: govuk-colour("light-grey");
+      border-bottom-color: govuk-colour("black", $variant: "tint-95");
     }
   }
 }
