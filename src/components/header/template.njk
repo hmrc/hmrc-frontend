@@ -7,8 +7,6 @@
 {% from "govuk/macros/attributes.njk" import govukAttributes %}
 {% from "govuk/macros/logo.njk" import govukLogo -%}
 
-{%- set _rebrand = params.rebrand | default(govukRebrand() if govukRebrand is callable else govukRebrand) -%}
-
 {%- set menuButtonText = params.menuButtonText if params.menuButtonText else ('Dewislen' if language == 'cy' else 'Menu') -%}
 
 <header>
@@ -19,8 +17,7 @@
       <a href="{{ params.homepageUrl | default("/", true) }}" class="govuk-header__link govuk-header__link--homepage">
         {{ govukLogo({
           classes: "govuk-header__logotype",
-          ariaLabelText: "GOV.UK",
-          rebrand: _rebrand
+          ariaLabelText: "GOV.UK"
         }) | trim | indent(8) }}
         {% if (params.productName) %}
         <span class="govuk-header__product-name">{{ params.productName }}</span>
