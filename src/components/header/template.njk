@@ -20,7 +20,6 @@
         {{ govukLogo({
           classes: "govuk-header__logotype",
           ariaLabelText: "GOV.UK",
-          useTudorCrown: params.useTudorCrown,
           rebrand: _rebrand
         }) | trim | indent(8) }}
         {% if (params.productName) %}
@@ -91,7 +90,7 @@
 </div>
 {% if params.displayHmrcBanner and not params.useDeprecatedPositionForHmrcBanner %}
   <div class="govuk-width-container">
-    {{ hmrcBanner({language: params.language, useTudorCrown: params.useTudorCrown}) }}
+    {{ hmrcBanner({language: params.language}) }}
   </div>
 {% endif %}
 {% if params.serviceNavigation %}
@@ -107,7 +106,7 @@
 {% endif %}
 {% if params.displayHmrcBanner and params.useDeprecatedPositionForHmrcBanner %}
   <div class="govuk-width-container">
-    {{ hmrcBanner({language: params.language, useTudorCrown: params.useTudorCrown}) }}
+    {{ hmrcBanner({language: params.language}) }}
   </div>
 {% endif %}
 {{- params.additionalBannersBlock | safe }}

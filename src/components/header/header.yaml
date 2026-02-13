@@ -119,10 +119,6 @@ params:
   type: string
   required: false
   description: Additional banners to be appended into header
-- name: useTudorCrown
-  type: boolean
-  required: false
-  description: A feature flag to use the new Tudor Crown logo. If unset, defaults to true
 - name: serviceNavigation
   type: object
   required: false
@@ -430,18 +426,6 @@ examples:
     language: en
     displayHmrcBanner: true
     additionalBannersBlock: "<div class=\"custom-banner govuk-body\">for example an attorney banner</div>"
-
-- name: with st edwards crown
-  description: The standard header with the Tudor Crown logo
-  data:
-    userResearchBanner:
-      url: '/sign-up-for-user-research'
-    phaseBanner:
-      tag:
-        text: alpha
-      html: This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-    displayHmrcBanner: true
-    useTudorCrown: false
 
 - name: with params common to govuk header
   description: With only the params common to govuk header
