@@ -1,3 +1,4 @@
 {
-  "GHSA-p5wg-g6qr-c7cg": "eslint serialization causing Stack Overflow: devDependency only, no risk given our usage"
+  "GHSA-w7fw-mjwx-w883": "qs arrayLimit bypass issue: devDependency, no risk given our usage",
+  "GHSA-43fc-jf86-j433": "axios __proto__ Key in mergeConfig issue: devDependency, no risk given our usage"
 }
