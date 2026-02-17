@@ -9,7 +9,7 @@
 {% from "govuk/macros/logo.njk" import govukLogo -%}
 
 <header class="govuk-template__header">
-    <div class="govuk-header hmrc-header {%- if params.classes %} {{ params.classes }}{% endif %}" {{- govukAttributes(params.attributes) }}>
+    <div class="govuk-header hmrc-header{{ ' hmrc-header--with-additional-navigation' if params.signOutHref }} {%- if params.classes %} {{ params.classes }}{% endif %}" {{- govukAttributes(params.attributes) }}>
       <div class="govuk-header__container {{ params.containerClasses | default("govuk-width-container", true) }}">
         <div class="govuk-header__logo">
           <a href="{{ params.homepageUrl | default("//gov.uk", true) }}" class="govuk-header__homepage-link">
