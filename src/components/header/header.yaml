@@ -3,10 +3,63 @@ params:
   type: string
   required: false
   description: The url of the homepage. Defaults to /
+- name: assetsPath
+  type: string
+  required: false
+  description: The public path for the assets folder. If not provided it defaults to /assets/images
 - name: productName
   type: string
   required: false
   description: Product name, used when the product name follows on directly from ‘GOV.UK’. For example, GOV.UK Pay or GOV.UK Design System. In most circumstances, you should use serviceName.
+- name: serviceName
+  type: string
+  required: false
+  description: The name of your service, included in the header.
+- name: serviceUrl
+  type: string
+  required: false
+  description: Url for the service name anchor.
+- name: navigation
+  type: array
+  required: false
+  description: An array of navigation item objects.
+  params:
+  - name: text
+    type: string
+    required: false
+    description: Text for the navigation item. If `html` is provided, the `text` argument will be ignored.
+  - name: html
+    type: string
+    required: false
+    description: HTML for the navigation item. If `html` is provided, the `text` argument will be ignored.
+  - name: href
+    type: string
+    required: false
+    description: Url of the navigation item anchor.
+  - name: active
+    type: boolean
+    required: false
+    description: Flag to mark the navigation item as active or not.
+  - name: attributes
+    type: object
+    required: false
+    description: HTML attributes (for example data attributes) to add to the navigation item anchor.
+- name: navigationClasses
+  type: string
+  required: false
+  description: Classes for the navigation section of the header.
+- name: navigationLabel
+  type: string
+  required: false
+  description: Text for the `aria-label` attribute of the navigation. Defaults to the same value as `menuButtonText`.
+- name: menuButtonLabel
+  type: string
+  required: false
+  description: Text for the `aria-label` attribute of the button that opens the mobile navigation, if there is a mobile navigation menu.
+- name: menuButtonText
+  type: string
+  required: false
+  description: Text of the button that opens the mobile navigation menu, if there is a mobile navigation menu. There is no enforced character limit, but there is a limited display space so keep text as short as possible. By default, this is set to 'Menu'.
 - name: containerClasses
   type: string
   required: false
@@ -15,6 +68,10 @@ params:
   type: string
   required: false
   description: Classes to add to the header container.
+- name: attributes
+  type: object
+  required: false
+  description: HTML attributes (for example data attributes) to add to the header container.
 - name: language
   type: string
   required: false
@@ -65,7 +122,11 @@ params:
 - name: serviceNavigation
   type: object
   required: false
-  description: pass through the params for service navigation to be displayed in the correct spot between other banners
+  description: passthrough the params for service navigation to be displayed in the correct spot between other banners
+- name: useDeprecatedPositionForHmrcBanner
+  type: boolean
+  required: false
+  description: hmrc banner should now be displayed immediately following the govuk-header, preceding the other banners, this param allows you to move it back below the banners
 previewLayout: full-width
 accessibilityCriteria: |
   Text and links in the Header must:
@@ -95,6 +156,132 @@ examples:
       html: This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
     displayHmrcBanner: true
 
+- name: with service name
+  description: If your service is more than a few pages long, you can help users understand where they are by adding the service name.
+  data:
+    serviceName: Service Name
+    serviceUrl: '/components/header'
+
+- name: with navigation
+  data:
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+      - href: '#4'
+        text: Navigation item 4
+
+- name: with navigation welsh
+  descrption: This sets the whole header to be welsh. The text "Menu" and the aria-label are translated into Welsh.
+  data:
+    language: cy
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+      - href: '#4'
+        text: Navigation item 4
+
+- name: with service name and navigation
+  description: If you need to include basic navigation, contact or account management links.
+  data:
+    serviceName: Service Name
+    serviceUrl: '/components/header'
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+      - href: '#4'
+        text: Navigation item 4
+
+- name: with large navigation
+  description: An edge case example with a large number of navitation items with long names used to test wrapping
+  data:
+    navigation:
+      - href: '/browse/benefits'
+        text: Benefits
+      - href: '/browse/births-deaths-marriages'
+        text: Births, deaths, marriages and care
+      - href: '/browse/business'
+        text: Business and self-employed
+      - href: '/browse/childcare-parenting'
+        text: Childcare and parenting
+      - href: '/browse/citizenship'
+        text: Citizenship and living in the UK
+      - href: '/browse/justice'
+        text: Crime, justice and the law
+      - href: '/browse/disabilities'
+        text: Disabled people
+      - href: '/browse/driving'
+        text: Driving and transport
+      - href: '/browse/education'
+        text: Education and learning
+      - href: '/browse/employing-people'
+        text: Employing people
+      - href: '/browse/environment-countryside'
+        text: Environment and countryside
+      - href: '/browse/housing-local-services'
+        text: Housing and local services
+      - href: '/browse/tax'
+        text: Money and tax
+      - href: '/browse/abroad'
+        text: Passports, travel and living abroad
+      - href: '/browse/visas-immigration'
+        text: Visas and immigration
+      - href: '/browse/working'
+        text: Working, jobs and pensions
+
+- name: with large navigation welsh
+  description: An edge case example with a large number of navitation items with long names used to test wrapping
+  data:
+    language: cy
+    serviceName: Gwasanaeth ar gyfer gwasanaeth gydag enw hir iawn yn Gymraeg
+    navigation:
+      - href: '/browse/benefits'
+        text: Benefits
+      - href: '/browse/births-deaths-marriages'
+        text: Births, deaths, marriages and care
+      - href: '/browse/business'
+        text: Business and self-employed
+      - href: '/browse/childcare-parenting'
+        text: Childcare and parenting
+      - href: '/browse/citizenship'
+        text: Citizenship and living in the UK
+      - href: '/browse/justice'
+        text: Crime, justice and the law
+      - href: '/browse/disabilities'
+        text: Disabled people
+      - href: '/browse/driving'
+        text: Driving and transport
+      - href: '/browse/education'
+        text: Education and learning
+      - href: '/browse/employing-people'
+        text: Employing people
+      - href: '/browse/environment-countryside'
+        text: Environment and countryside
+      - href: '/browse/housing-local-services'
+        text: Housing and local services
+      - href: '/browse/tax'
+        text: Money and tax
+      - href: '/browse/abroad'
+        text: Passports, travel and living abroad
+      - href: '/browse/visas-immigration'
+        text: Visas and immigration
+      - href: '/browse/working'
+        text: Working, jobs and pensions
+
 - name: with product name
   data:
     navigationClasses: govuk-header__navigation--end
@@ -105,6 +292,75 @@ examples:
     containerClasses: govuk-header__container--full-width
     navigationClasses: govuk-header__navigation--end
     productName: Product Name
+
+- name: full width with navigation
+  data:
+    containerClasses: govuk-header__container--full-width
+    navigationClasses: govuk-header__navigation--end
+    productName: Product Name
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+
+- name: full width with navigation and menu open on mobile
+  data:
+    containerClasses: govuk-header__container--full-width
+    navigationClasses: govuk-header__navigation--end
+    productName: Product Name
+    navigation:
+      - href: '#1'
+        text: Navigation item 1
+        active: true
+      - href: '#2'
+        text: Navigation item 2
+      - href: '#3'
+        text: Navigation item 3
+  visualRegressionTests:
+    backstopScenarioOptions:
+      viewports:
+        - label: phone
+          width: 320
+          height: 480
+      beforeTakingScreenshot:
+        - click: ".govuk-header__menu-button"
+
+- name: navigation item with html
+  data:
+    serviceName: Service Name
+    serviceUrl: '/components/header'
+    navigation:
+      - href: '#1'
+        html: <em>Navigation item 1</em>
+        active: true
+      - href: '#2'
+        html: <em>Navigation item 2</em>
+      - href: '#3'
+        html: <em>Navigation item 3</em>
+
+- name: navigation item with text without link
+  data:
+    serviceName: Service Name
+    serviceUrl: '/components/header'
+    navigation:
+      - text: Navigation item 1
+      - text: Navigation item 2
+      - text: Navigation item 3
+
+- name: navigation item with html without link
+  hidden: true
+  data:
+    serviceName: Service Name
+    serviceUrl: '/components/header'
+    navigation:
+      - html: <em>Navigation item 1</em>
+        active: true
+      - html: <em>Navigation item 2</em>
+      - html: <em>Navigation item 3</em>
 
 - name: sign out link
   data:
@@ -117,6 +373,26 @@ examples:
     serviceName: Gwasanaeth enghreifftiol
     language: cy
     signOutHref: /sign-out
+
+- name: with language toggle english
+  data:
+    serviceName: Example Service
+    language: en
+    languageToggle:
+      en:
+        href: "/components/header/with-language-toggle-english/preview"
+      cy:
+        href: "/components/header/with-language-toggle-welsh/preview"
+
+- name: with language toggle welsh
+  data:
+    serviceName: Gwasanaeth enghreifftiol
+    language: cy
+    languageToggle:
+      en:
+        href: "/components/header/with-language-toggle-english/preview"
+      cy:
+        href: "/components/header/with-language-toggle-welsh/preview"
 
 - name: with hmrc banner english
   data:
@@ -140,9 +416,15 @@ examples:
       cy:
         href: "/components/header/with-hmrc-banner-welsh/preview"
 
+- name: with service name but no service link
+  data:
+    serviceNavigation:
+      serviceName: Service Name
+
 - name: with additional banner
   data:
-    serviceName: Service with HMRC Banner and an additional one
+    serviceNavigation:
+      serviceName: Service with HMRC Banner and an additional one
     language: en
     displayHmrcBanner: true
     additionalBannersBlock: "<div class=\"custom-banner govuk-body\">for example an attorney banner</div>"
@@ -151,37 +433,27 @@ examples:
   description: With only the params common to govuk header
   data:
     homepageUrl: '#h1'
-    serviceName: Service name
-    serviceUrl: '#s1'
     productName: Product
-    navigationClasses: nc1
     containerClasses: cc1
     classes: c1
-    navigation:
-      - href: '#n1'
-        text: Navigation item 1
-        active: true
-      - href: '#n2'
-        html: <strong>Navigation item 2</strong>
-      - href: '#n3'
-        text: Navigation item 3
-        attributes:
-          data-test-attribute-1: value-1
-          data-test-attribute-2: value-2
-      - href: '#n4'
-        text: Navigation item 4
     attributes:
       data-test-attribute-3: value-3
 
-- name: with research banner
+- name: with service name link and research banner
   description: we tweak styles of user research banner when it follows header with no phase banner in between
   data:
+    serviceNavigation:
+      serviceName: Example service
+      serviceUrl: '/components/header'
     userResearchBanner:
       url: '/sign-up-for-user-research'
 
-- name: with phase banner and research banner
+- name: with service name link and phase banner and research banner
   description: we tweak styles of user research banner when it follows header with no phase banner in between
   data:
+    serviceNavigation:
+      serviceName: Example service
+      serviceUrl: '/components/header'
     userResearchBanner:
       url: '/sign-up-for-user-research'
     phaseBanner:
@@ -223,6 +495,13 @@ examples:
       cy:
         href: "/components/header/with-language-toggle-welsh/preview"
 
+- name: with service navigation and signout link
+  data:
+    signOutHref: /sign-out
+    serviceNavigation:
+      serviceName: Service name
+      serviceUrl: '#s1'
+
 - name: service navigation with other banners
   data:
     serviceNavigation:
@@ -236,3 +515,18 @@ examples:
       html: This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
     displayHmrcBanner: true
     additionalBannersBlock: "<div class=\"custom-banner govuk-body\">for example an attorney banner</div>"
+
+- name: with very long service name and sign out link
+  data:
+    signOutHref: /sign-out
+    serviceNavigation:
+      serviceName: This is long service name that is going to reflow onto two lines
+
+- name: with very long service name
+  data:
+    serviceNavigation:
+      serviceName: This is long service name that is going to reflow onto two lines
+
+- name: sign out link with no service name
+  data:
+    signOutHref: /sign-out

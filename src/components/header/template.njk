@@ -9,22 +9,49 @@
 {% from "govuk/macros/logo.njk" import govukLogo -%}
 
 <header class="govuk-template__header">
-  {{ govukHeader({classes: params.classes, containerClasses: params.containerClasses, homepageUrl: params.homepageUrl, productName: params.productName}) }}
+    <div class="govuk-header hmrc-header {%- if params.classes %} {{ params.classes }}{% endif %}" {{- govukAttributes(params.attributes) }}>
+      <div class="govuk-header__container {{ params.containerClasses | default("govuk-width-container", true) }}">
+        <div class="govuk-header__logo">
+          <a href="{{ params.homepageUrl | default("//gov.uk", true) }}" class="govuk-header__homepage-link">
+            {{ govukLogo({
+              classes: "govuk-header__logotype",
+              ariaLabelText: "GOV.UK"
+            }) | trim | indent(8) }}
+            {% if (params.productName) %}
+            <span class="govuk-header__product-name">
+              {{- params.productName -}}
+            </span>
+            {% endif %}
+          </a>
+        </div>
+        {% if params.signOutHref %}
+          <div class="govuk-header__content">
+            <nav class="hmrc-sign-out-nav">
+              <a class="govuk-link hmrc-sign-out-nav__link" href="{{ params.signOutHref }}">
+              {% if language == 'cy' %}Allgofnodi{% else %}Sign out{% endif %}
+              </a>
+            </nav>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
 
   {% if params.displayHmrcBanner %}
     <div class="govuk-width-container">
       {{ hmrcBanner({language: params.language}) }}
     </div>
   {% endif %}
-
   {% if params.serviceNavigation %}
       {{ govukServiceNavigation(params.serviceNavigation) }}
   {% endif %}
-
+  {%- if params.phaseBanner %}
+    <div class="govuk-width-container">
+      {{ govukPhaseBanner(params.phaseBanner) }}
+    </div>
+  {% endif %}
   {%- if params.userResearchBanner %}
       {{ hmrcUserResearchBanner({language: params.language, url: params.userResearchBanner.url }) }}
   {% endif %}
-
   {{- params.additionalBannersBlock | safe }}
-
 </header>
