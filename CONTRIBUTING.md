@@ -61,7 +61,7 @@ To minimise the security risk from accidentally installing a compromised package
 In production, styles from hmrc-frontend are imported via a webjar. If services compile their own
 CSS and reference the SCSS files directly, any references to govuk-frontend modules starting with `node_modules/govuk-frontend`
 will not work. Instead, you must use a relative path starting with `../../../../govuk-frontend`
- to reference these modules as shown [here](src/components/currency-input/_currency-input.scss)
+ to reference these modules as shown [here](src/components/add-to-a-list/_add-to-a-list.scss)
 
 ### Use EditorConfig
 

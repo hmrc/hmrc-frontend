@@ -46,14 +46,6 @@ describe('Internal Header', () => {
     });
   });
 
-  describe('with St Edwards Crown logo specified', () => {
-    it('should have the correct SVG', () => {
-      const $ = render('internal-header', examples['with-st-edwards-crown']);
-
-      expect($('.hmrc-internal-header__logo-link > svg').html().trim()).toContain('<path d="M104.32,73.72,101,73.29c');
-    });
-  });
-
   describe('With a Service Name and service URL', () => {
     it('renders a service name with a link', () => {
       const $ = render('internal-header', examples['with-service-name']);

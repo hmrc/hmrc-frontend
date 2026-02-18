@@ -26,7 +26,7 @@ describe('backstopConfig', () => {
               },
             },
             {
-              componentsPath: 'currency-input',
+              componentsPath: 'add-to-a-list',
               componentsConfig: {
                 examples: [{ name: 'default' }],
               },
@@ -56,7 +56,7 @@ describe('backstopConfig', () => {
               },
             },
             {
-              componentsPath: 'currency-input',
+              componentsPath: 'add-to-a-list',
               componentsConfig: {
                 examples: [{ name: 'default' }],
               },

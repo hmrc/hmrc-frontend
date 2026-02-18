@@ -79,10 +79,15 @@ params:
   type: object
   required: false
   description: HTML attributes (for example data attributes) to add to the footer component container.
-- name: rebrand
-  type: boolean
+- name: footerClasses
+  type: string
   required: false
-  description: If `true`, use the redesigned footer with the GOV.UK crown. Default is `false`.
+  description: Classes to add to the containing `footer` element
+- name: footerAttributes
+  type: object
+  required: false
+  description: HTML attributes (for example data attributes) to add to the containing `footer` element
+
 
 previewLayout: full-width
 accessibilityCriteria: |
@@ -318,6 +323,14 @@ examples:
             text: Navigation item 6
 
 # Hidden examples are not shown in the review app, but are used for tests and HTML fixtures
+- name: with footer attributes
+  data:
+    footerAttributes:
+      data-test-footer-attribute: value
+      data-test-footer-attribute-2: value-2
+- name: with footer classes
+  data:
+   footerClasses: app-footer-wrapper--custom-modifier
 - name: attributes
   data:
     attributes:

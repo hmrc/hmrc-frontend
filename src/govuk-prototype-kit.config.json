@@ -10,11 +10,10 @@
   "pluginDependencies": [
     {
       "packageName": "govuk-frontend",
-      "minVersion": "5.14.0"
+      "minVersion": "6.0.0"
     }
   ],
   "assets": [
-    "/hmrc/components/account-menu/images",
     "/hmrc/components/banner/images",
     "/hmrc/components/internal-header/images"
   ],
@@ -29,24 +28,10 @@
   "stylesheets": [
     "/hmrc/accessible-autocomplete-{{PACKAGE-VERSION}}.css"
   ],
-  "importNunjucksMacrosInto": [
-    "/hmrc/templates/account-header.html"
-  ],
-  "templates": [
-    {
-      "name": "Blank page with Account Header",
-      "path": "/hmrc/templates/account-header.html",
-      "type": "nunjucks"
-    }
-  ],
   "nunjucksPaths": [
     "/"
   ],
   "nunjucksMacros": [
-    {
-      "macroName": "hmrcAccountMenu",
-      "importFrom": "hmrc/components/account-menu/macro.njk"
-    },
     {
       "macroName": "hmrcAddToAList",
       "importFrom": "hmrc/components/add-to-a-list/macro.njk"
@@ -60,10 +45,6 @@
       "importFrom": "hmrc/components/character-count/macro.njk"
     },
     {
-      "macroName": "hmrcCurrencyInput",
-      "importFrom": "hmrc/components/currency-input/macro.njk"
-    },
-    {
       "macroName": "hmrcFooter",
       "importFrom": "hmrc/components/footer/macro.njk"
     },
@@ -74,10 +55,6 @@
     {
       "macroName": "hmrcInternalHeader",
       "importFrom": "hmrc/components/internal-header/macro.njk"
-    },
-    {
-      "macroName": "hmrcLanguageSelect",
-      "importFrom": "hmrc/components/language-select/macro.njk"
     },
     {
       "macroName": "hmrcListWithActions",
