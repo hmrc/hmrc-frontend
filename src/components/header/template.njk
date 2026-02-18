@@ -9,32 +9,30 @@
 {% from "govuk/macros/logo.njk" import govukLogo -%}
 
 <header class="govuk-template__header">
-    <div class="govuk-header hmrc-header{{ ' hmrc-header--with-additional-navigation' if params.signOutHref }} {%- if params.classes %} {{ params.classes }}{% endif %}" {{- govukAttributes(params.attributes) }}>
-      <div class="govuk-header__container {{ params.containerClasses | default("govuk-width-container", true) }}">
-        <div class="govuk-header__logo">
-          <a href="{{ params.homepageUrl | default("//gov.uk", true) }}" class="govuk-header__homepage-link">
-            {{ govukLogo({
-              classes: "govuk-header__logotype",
-              ariaLabelText: "GOV.UK"
+<div class="govuk-header hmrc-header{{ ' hmrc-header--with-additional-navigation' if params.signOutHref }} {%- if params.classes %} {{ params.classes }}{% endif %}" {{- govukAttributes(params.attributes) }}>
+  <div class="govuk-header__container {{ params.containerClasses | default("govuk-width-container", true) }}">
+    <div class="govuk-header__logo">
+      <a href="{{ params.homepageUrl | default("//gov.uk", true) }}" class="govuk-header__homepage-link">
+        {{ govukLogo({
+          classes: "govuk-header__logotype",
+          ariaLabelText: "GOV.UK"
             }) | trim | indent(8) }}
-            {% if (params.productName) %}
-            <span class="govuk-header__product-name">
-              {{- params.productName -}}
-            </span>
-            {% endif %}
-          </a>
-        </div>
-        {% if params.signOutHref %}
-          <div class="govuk-header__content">
-            <nav class="hmrc-sign-out-nav">
-              <a class="govuk-link hmrc-sign-out-nav__link" href="{{ params.signOutHref }}">
-              {% if language == 'cy' %}Allgofnodi{% else %}Sign out{% endif %}
-              </a>
-            </nav>
-          </div>
-        {% endif %}
-      </div>
+        {% if (params.productName) %}
+        <span class="govuk-header__product-name">
+        {{- params.productName -}}
+        </span>
+      {% endif %}
+      </a>
+    {% if params.signOutHref %}
+      <nav class="hmrc-sign-out-nav">
+        <a class="govuk-link hmrc-sign-out-nav__link" href="{{ params.signOutHref }}">
+        {% if language == 'cy' %}Allgofnodi{% else %}Sign out{% endif %}
+        </a>
+      </nav>
+    {% endif %}
     </div>
+  </div>
+</div>
 
 
   {% if params.displayHmrcBanner %}

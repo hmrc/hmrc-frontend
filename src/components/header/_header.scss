@@ -13,30 +13,7 @@ $govuk-header-link-underline-thickness: 3px;
   .hmrc-sign-out-nav {
     float: right;
     margin-bottom: 10px;
-
-    @include govuk-media-query($from: desktop) {
-      padding-top: 10px;
-
-      .govuk-template & {
-        padding-top: 29px;
-      }
-    }
-
-    .govuk-template & {
-      margin-bottom: 15px;
-    }
-  }
-
-  .govuk-header__navigation + .hmrc-sign-out-nav {
-    padding-top: 4px;
-
-    @include govuk-media-query($from: tablet) {
-      padding-top: 10px;
-    }
-
-    @include govuk-media-query($from: desktop) {
-      padding-top: 0;
-    }
+    padding-top: 6px;
   }
 
   .hmrc-sign-out-nav__link {
@@ -176,43 +153,4 @@ $govuk-header-link-underline-thickness: 3px;
 // Above style is breaking the user-research-banner when the rebrand is enabled
 .govuk-template .hmrc-header + .hmrc-user-research-banner {
   top: 0;
-}
-
-// Notes on the patches below:
-//
-// use of :has() and :not() is ok because these
-// issues aren't going to be a problem forever
-// because people are migrating to use service
-// navigation to display their service name and
-// navigation items
-
-// the following block of styles makes sure
-// that a service name which spans multiple
-// lines won't cause the sign out link to be
-// displayed under the service name but will
-// be aligned with baseline of its last line
-
-.hmrc-header:has(.hmrc-sign-out-nav):not(:has(.govuk-header__navigation)) {
-  .govuk-header__content {
-    display: flex;
-    align-items: last baseline;
-  }
-
-  .hmrc-sign-out-nav {
-    flex-shrink: 0;
-    margin-left: auto;
-  }
-}
-
-// the following stops the menu button from sitting
-// immediately to right of service name on smallest
-// screens which looks bad and might be an a11y
-// issue in terms of mobile touch target sizing.
-
-.hmrc-header:has(.govuk-header__navigation) {
-  .govuk-header__service-name {
-    @include govuk-media-query($until: mobile) {
-      float: none;
-    }
-  }
 }
