@@ -13,30 +13,7 @@ $govuk-header-link-underline-thickness: 3px;
   .hmrc-sign-out-nav {
     float: right;
     margin-bottom: 10px;
-
-    @include govuk-media-query($from: desktop) {
-      padding-top: 10px;
-
-      .govuk-template--rebranded & {
-        padding-top: 29px;
-      }
-    }
-
-    .govuk-template--rebranded & {
-      margin-bottom: 15px;
-    }
-  }
-
-  .govuk-header__navigation + .hmrc-sign-out-nav {
-    padding-top: 4px;
-
-    @include govuk-media-query($from: tablet) {
-      padding-top: 10px;
-    }
-
-    @include govuk-media-query($from: desktop) {
-      padding-top: 0;
-    }
+    padding-top: 6px;
   }
 
   .hmrc-sign-out-nav__link {
@@ -53,7 +30,7 @@ $govuk-header-link-underline-thickness: 3px;
       color: #0b0c0c;
     }
 
-    .govuk-template--rebranded & {
+    .govuk-template & {
       @include govuk-link-common; // explicit choice to differ from govuk-frontend header links
       @include govuk-link-style-inverse;
 
@@ -69,21 +46,21 @@ $govuk-header-link-underline-thickness: 3px;
     padding-right: govuk-spacing(3);
     float: right;
 
-    .govuk-template--rebranded & {
+    .govuk-template & {
       padding-right: 0;
     }
 
     .govuk-list {
       margin-bottom: 0;
 
-      .govuk-template--rebranded & {
+      .govuk-template & {
         @include govuk-media-query($from: desktop) {
           padding-top: govuk-spacing(3) + 3px; // makes the baseline match gov.uk logo and service name
         }
       }
 
       .govuk-header__link {
-        .govuk-template--rebranded & {
+        .govuk-template & {
           @include govuk-link-common; // explicit choice to differ from govuk-frontend header links
           @include govuk-link-style-inverse;
 
@@ -98,14 +75,14 @@ $govuk-header-link-underline-thickness: 3px;
       a:not(.govuk-header__link) {
         @include govuk-font($size: 16, $weight: "bold");
 
-        color: govuk-colour("mid-grey");
+        color: govuk-colour("black", $variant: "tint-80");
         text-decoration: none;
 
         &:link,
         &:hover,
         &:visited,
         &:focus {
-          .govuk-template--rebranded & {
+          .govuk-template & {
             font-weight: normal;
             color: #ffffff;
           }
@@ -118,7 +95,7 @@ $govuk-header-link-underline-thickness: 3px;
       margin-right: 0;
       border-bottom: 0;
 
-      .govuk-template--rebranded & {
+      .govuk-template & {
         padding-top: 0;
         padding-bottom: govuk-spacing(2);
       }
@@ -127,16 +104,16 @@ $govuk-header-link-underline-thickness: 3px;
     .govuk-header__navigation-item + .govuk-header__navigation-item::before {
       content: "|";
       padding-right: 2px;
-      color: govuk-colour("dark-grey");
+      color: govuk-colour("black", $variant: "tint-25");
 
-      .govuk-template--rebranded & {
+      .govuk-template & {
         color: #ffffff50; // is this acceptable? mimics the existing light grey...
       }
     }
   }
 }
 
-.govuk-template--rebranded .hmrc-header.hmrc-header--with-additional-navigation .govuk-header__navigation + .hmrc-language-select .govuk-list {
+.govuk-template .hmrc-header.hmrc-header--with-additional-navigation .govuk-header__navigation + .hmrc-language-select .govuk-list {
   padding-top: 0;
 }
 
@@ -174,45 +151,6 @@ $govuk-header-link-underline-thickness: 3px;
 }
 
 // Above style is breaking the user-research-banner when the rebrand is enabled
-.govuk-template--rebranded .hmrc-header + .hmrc-user-research-banner {
+.govuk-template .hmrc-header + .hmrc-user-research-banner {
   top: 0;
-}
-
-// Notes on the patches below:
-//
-// use of :has() and :not() is ok because these
-// issues aren't going to be a problem forever
-// because people are migrating to use service
-// navigation to display their service name and
-// navigation items
-
-// the following block of styles makes sure
-// that a service name which spans multiple
-// lines won't cause the sign out link to be
-// displayed under the service name but will
-// be aligned with baseline of its last line
-
-.hmrc-header:has(.hmrc-sign-out-nav):not(:has(.govuk-header__navigation)) {
-  .govuk-header__content {
-    display: flex;
-    align-items: last baseline;
-  }
-
-  .hmrc-sign-out-nav {
-    flex-shrink: 0;
-    margin-left: auto;
-  }
-}
-
-// the following stops the menu button from sitting
-// immediately to right of service name on smallest
-// screens which looks bad and might be an a11y
-// issue in terms of mobile touch target sizing.
-
-.hmrc-header:has(.govuk-header__navigation) {
-  .govuk-header__service-name {
-    @include govuk-media-query($until: mobile) {
-      float: none;
-    }
-  }
 }

@@ -14,9 +14,9 @@ describe('footer', () => {
     return (text || '').trim().replace(/\s+/g, ' ');
   }
 
-  it('should match the output of govuk footer when displayed in english', async () => {
+  it('should match the output of govuk footer wrapped in a footer element', async () => {
     const params = examples['with params common to govuk footer'];
-    const hmrcFooterHtml = render('footer', params)('body').html().trim();
+    const hmrcFooterHtml = render('footer', params)('footer').html().trim();
     const govukFooterHtml = render('govuk/components/footer', params)('body').html().trim();
     expect(normaliseText(hmrcFooterHtml)).toEqual(normaliseText(govukFooterHtml));
   });

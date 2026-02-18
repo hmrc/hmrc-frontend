@@ -15,22 +15,23 @@
 
 {% set defaultMetaVisuallyHiddenTitle = "Cysylltiadau cymorth" if params.language == "cy" else "Support links" %}
 
-{{ govukFooter({
-  meta: {
-    visuallyHiddenTitle: params.meta.visuallyHiddenTitle | default(defaultMetaVisuallyHiddenTitle),
-    html: params.meta.html,
-    text: params.meta.text,
-    items: params.meta.items
-  } if params.meta,
-  navigation: params.navigation,
-  contentLicence: {
-    html: contentLicenceHtml
-  },
-  copyright: {
-    html: copyrightHtml
-  },
-  containerClasses: params.containerClasses,
-  classes: params.classes,
-  attributes: params.attributes,
-  rebrand: params.rebrand
-}) }}
+<footer class="govuk-template__footer">
+  {{ govukFooter({
+    meta: {
+      visuallyHiddenTitle: params.meta.visuallyHiddenTitle | default(defaultMetaVisuallyHiddenTitle),
+      html: params.meta.html,
+      text: params.meta.text,
+      items: params.meta.items
+    } if params.meta,
+    navigation: params.navigation,
+    contentLicence: {
+      html: contentLicenceHtml
+    },
+    copyright: {
+      html: copyrightHtml
+    },
+    containerClasses: params.containerClasses,
+    classes: params.classes,
+    attributes: params.attributes
+  }) }}
+</footer>

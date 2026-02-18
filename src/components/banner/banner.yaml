@@ -22,8 +22,3 @@ examples:
   description: The standard welsh banner
   data:
     language: cy
-- name: with-st-edwards-crown
-  description: The standard banner with the old HMRC Crest
-  data:
-    language: en
-    useTudorCrown: false

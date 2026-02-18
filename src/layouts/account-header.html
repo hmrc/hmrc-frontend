@@ -6,29 +6,17 @@
 {% block header %}
   {{ hmrcHeader({
     homepageUrl: hmrcAccountHeader.homepageUrl,
-    serviceName: hmrcAccountHeader.serviceName or serviceName,
-    serviceUrl: hmrcAccountHeader.serviceUrl,
     containerClasses: hmrcAccountHeader.headerContainerClasses or "govuk-width-container",
     language: hmrcAccountHeader.language,
     attributes: hmrcAccountHeader.attributes,
-    classes: hmrcAccountHeader.classes,
-    containerClasses: hmrcAccountHeader.containerClasses,
-    languageToggle: {
-      en: {
-        href: hmrcAccountHeader.languageToggle.en.href
-      },
-      cy: {
-        href: hmrcAccountHeader.languageToggle.cy.href
-      }
-    },
-    useTudorCrown: hmrcAccountHeader.useTudorCrown
+    classes: hmrcAccountHeader.classes
   }) }}
 {% endblock %}
 
-{% block main %}
+{% block container %}
   <div class="govuk-width-container">
     {{ hmrcAccountMenu (hmrcAccountHeader) }}
-    {% block beforeContent %}{% endblock %}
+    {% block startContainer %}{% endblock %}
     <main class="govuk-main-wrapper {{ mainClasses }}" id="main-content">
       {% block content %}{% endblock %}
     </main>

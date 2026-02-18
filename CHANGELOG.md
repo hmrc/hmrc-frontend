@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [7.0.0] - 2026-02-23
+
+### Changed
+
+- Uplifted to use `govuk-frontend` v6.0.0
+- Removed old crown logo in line with GDS guidance
+- Removed old-style branding in line with GDS guidance
+- Removed service name, navigation, and language select from `header` in line with GDS guidance - all of these should
+  now be added using Service Navigation
+
 ## [6.115.0] - 2026-02-16
 
 ### Changed
