@@ -418,13 +418,11 @@ examples:
 
 - name: with service name but no service link
   data:
-    serviceNavigation:
-      serviceName: Service Name
+    serviceName: Service Name
 
 - name: with additional banner
   data:
-    serviceNavigation:
-      serviceName: Service with HMRC Banner and an additional one
+    serviceName: Service with HMRC Banner and an additional one
     language: en
     displayHmrcBanner: true
     additionalBannersBlock: "<div class=\"custom-banner govuk-body\">for example an attorney banner</div>"
@@ -433,27 +431,41 @@ examples:
   description: With only the params common to govuk header
   data:
     homepageUrl: '#h1'
+    serviceName: Service name
+    serviceUrl: '#s1'
     productName: Product
+    navigationClasses: nc1
     containerClasses: cc1
     classes: c1
+    navigation:
+      - href: '#n1'
+        text: Navigation item 1
+        active: true
+      - href: '#n2'
+        html: <strong>Navigation item 2</strong>
+      - href: '#n3'
+        text: Navigation item 3
+        attributes:
+          data-test-attribute-1: value-1
+          data-test-attribute-2: value-2
+      - href: '#n4'
+        text: Navigation item 4
     attributes:
       data-test-attribute-3: value-3
 
 - name: with service name link and research banner
   description: we tweak styles of user research banner when it follows header with no phase banner in between
   data:
-    serviceNavigation:
-      serviceName: Example service
-      serviceUrl: '/components/header'
+    serviceName: Example service
+    serviceUrl: '/components/header'
     userResearchBanner:
       url: '/sign-up-for-user-research'
 
 - name: with service name link and phase banner and research banner
   description: we tweak styles of user research banner when it follows header with no phase banner in between
   data:
-    serviceNavigation:
-      serviceName: Example service
-      serviceUrl: '/components/header'
+    serviceName: Example service
+    serviceUrl: '/components/header'
     userResearchBanner:
       url: '/sign-up-for-user-research'
     phaseBanner:
@@ -518,14 +530,14 @@ examples:
 
 - name: with very long service name and sign out link
   data:
+    serviceName: This is long service name that is going to reflow onto two lines
     signOutHref: /sign-out
     serviceNavigation:
       serviceName: This is long service name that is going to reflow onto two lines
 
 - name: with very long service name
   data:
-    serviceNavigation:
-      serviceName: This is long service name that is going to reflow onto two lines
+    serviceName: This is long service name that is going to reflow onto two lines
 
 - name: sign out link with no service name
   data:
