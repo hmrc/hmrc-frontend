@@ -71,7 +71,10 @@ module.exports = ({ host, port, components }) => ({
   ],
   onBeforeScript: 'playwright/onBefore.js',
   onReadyScript: 'playwright/onReady.js',
-  scenarios: buildScenarioList(host, port, components),
+  scenarios: buildScenarioList(host, port, components).flatMap((scenario) => [
+    // this means we have twice as many VRT which might increase test time a lot...
+    scenario, { ...scenario, label: `${scenario.label} (using rebrand)`, url: `${scenario.url.replace('preview.html', 'preview-rebrand.html')}` },
+  ]),
   paths: {
     bitmaps_reference: 'backstop_data/bitmaps_reference',
     bitmaps_test: 'backstop_data/bitmaps_test',
