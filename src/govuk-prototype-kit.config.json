@@ -32,21 +32,10 @@
   "importNunjucksMacrosInto": [
     "/hmrc/templates/account-header.html"
   ],
-  "templates": [
-    {
-      "name": "Blank page with Account Header",
-      "path": "/hmrc/templates/account-header.html",
-      "type": "nunjucks"
-    }
-  ],
   "nunjucksPaths": [
     "/"
   ],
   "nunjucksMacros": [
-    {
-      "macroName": "hmrcAccountMenu",
-      "importFrom": "hmrc/components/account-menu/macro.njk"
-    },
     {
       "macroName": "hmrcAddToAList",
       "importFrom": "hmrc/components/add-to-a-list/macro.njk"
@@ -74,10 +63,6 @@
     {
       "macroName": "hmrcInternalHeader",
       "importFrom": "hmrc/components/internal-header/macro.njk"
-    },
-    {
-      "macroName": "hmrcLanguageSelect",
-      "importFrom": "hmrc/components/language-select/macro.njk"
     },
     {
       "macroName": "hmrcListWithActions",
