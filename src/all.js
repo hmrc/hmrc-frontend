@@ -1,4 +1,3 @@
-import AccountMenu from './components/account-menu/account-menu';
 import BackLinkHelper from './components/back-link-helper/back-link-helper';
 import TimeoutDialog from './components/timeout-dialog/timeout-dialog';
 import UserResearchBanner from './components/user-research-banner/user-research-banner';
@@ -13,13 +12,6 @@ function initAll() {
       // eslint-disable-next-line no-console
       console.error('hmrc-frontend component initialisation failed', error);
     }
-  }
-
-  const $AccountMenuSelector = '[data-module="hmrc-account-menu"]';
-  if (document.querySelector($AccountMenuSelector)) {
-    logAndIgnoreErrors(() => {
-      new AccountMenu($AccountMenuSelector).init();
-    });
   }
 
   const $HmrcPrintLinks = document.querySelectorAll('a[data-module="hmrc-print-link"]');
@@ -56,7 +48,6 @@ function initAll() {
 
 export default {
   initAll,
-  AccountMenu,
   TimeoutDialog,
   UserResearchBanner,
   BackLinkHelper,
