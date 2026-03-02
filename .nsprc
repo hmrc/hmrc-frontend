@@ -1,3 +1,5 @@
 {
-  "GHSA-3ppc-4f35-3m26": "minimatch ReDoS issue: devDependency only, no risk given our usage"
+  "GHSA-3ppc-4f35-3m26": "minimatch ReDoS issue: devDependency only, no risk given our usage",
+  "GHSA-23c5-xmqv-rm74": "minimatch ReDoS issue: devDependency only, no risk given our usage",
+  "GHSA-7r86-cg39-jmmj": "minimatch ReDoS issue: devDependency only, no risk given our usage"
 }
