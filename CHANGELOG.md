@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [6.118.0] - 2026-03-02
+
+### Changed
+
+- Sign user out of all synchronized tabs
+
+## [6.117.0] - 2026-03-02
+
 ## [6.117.0] - 2026-03-02
 
 ### Changed

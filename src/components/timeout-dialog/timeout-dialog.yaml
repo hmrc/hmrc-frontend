@@ -64,6 +64,14 @@ examples:
     keepAliveUrl: "?abc=def"
     signOutUrl: "?ghi=jkl"
     synchroniseTabs: true
+- name: synchronise-tabs-signout
+  data:
+    timeout: 75
+    countdown: 73
+    keepAliveUrl: "?abc=def"
+    signOutUrl: "?ghi=jkl"
+    synchroniseTabs: true
+    synchroniseTabsSignout: true
 - name: timeout-warnings-not-synchronised
   data:
     timeout: 75

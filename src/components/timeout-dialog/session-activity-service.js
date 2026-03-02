@@ -10,6 +10,13 @@ export default class SessionActivityService {
     }
   }
 
+  logSignedOut() {
+    if (this.activityChannel) {
+      const event = { signedOut: true };
+      this.activityChannel.postMessage(event);
+    }
+  }
+
   onActivity(callback) {
     if (this.activityChannel) {
       this.activityChannel.onmessage = (event) => {
