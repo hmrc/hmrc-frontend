@@ -85,7 +85,6 @@
     "js-yaml": "^4.1.1",
     "mkdirp": "^3.0.1",
     "node-fetch": "^3.3.1",
-    "node-sass": "^9.0.0",
     "nodemon": "^3.1.10",
     "nunjucks": "^3.2.4",
     "playwright-chromium": "^1.49.1",
