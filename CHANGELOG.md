@@ -19,13 +19,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Removed `account-menu` and `language-select` components, services should now be using `service-navigation` with `service-navigation-language-select`
 - Removed `currency-input` component as this has previously deprecated, services should be using `input` from the `govuk-frontend`
 
-
 ## [6.117.0] - 2026-03-02
 
 ### Changed
 
 - Updated npm audit exclusions
-- 
+ 
 ## [6.116.0] - 2026-02-23
 
 ### Changed
