@@ -2,54 +2,51 @@
 $govuk-header-link-underline-thickness: 3px;
 
 .hmrc-header.hmrc-header--with-additional-navigation {
-  .govuk-header__service-name {
-    float: left;
+  @include govuk-clearfix;
+
+  .govuk-header__logo {
+    display: inline-block;
   }
 
   .hmrc-sign-out-nav {
     float: right;
-    margin-bottom: 10px;
-    padding-top: 6px;
+    margin-left: 10px;
   }
 
   .hmrc-sign-out-nav__link {
-    color: govuk-colour("white");
-    font-weight: bold;
-    text-decoration: none;
-    margin-left: 10px;
+    @include govuk-link-common;
+    @include govuk-link-style-inverse;
 
-    &:hover {
-      text-decoration: underline;
-    }
+    position: relative;
+    display: inline-block;
+    padding: 22px 15px;
+    font-weight: 700;
+    color: govuk-colour("white");
+    text-decoration: none;
 
     &:focus {
-      color: #0b0c0c;
+      box-shadow: 0 0 $govuk-focus-colour;
     }
 
-    .govuk-template & {
-      @include govuk-link-common; // explicit choice to differ from govuk-frontend header links
-      @include govuk-link-style-inverse;
+    &::after {
+      content: "";
+      display: none;
+      position: absolute;
+      height: $govuk-header-link-underline-thickness;
+      right: 15px;
+      bottom: 0;
+      left: 15px;
+      background-color: govuk-colour("white");
+    }
 
-      font-weight: normal;
+    &:hover::after {
+      display: block;
+    }
 
-      &:hover {
-        text-decoration-thickness: $govuk-header-link-underline-thickness;
-      }
+    &:focus::after {
+      display: block;
+      background-color: govuk-colour('black');
     }
   }
 }
 
-.govuk-template .hmrc-header.hmrc-header--with-additional-navigation .govuk-header__navigation + .hmrc-language-select .govuk-list {
-  padding-top: 0;
-}
-
-// Shift user research banner up 10px to compensate for govuk header border
-// only when adjacent to govuk header
-.hmrc-header + .hmrc-user-research-banner {
-  top: -10px;
-}
-
-// Above style is breaking the user-research-banner when the rebrand is enabled
-.govuk-template .hmrc-header + .hmrc-user-research-banner {
-  top: 0;
-}

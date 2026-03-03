@@ -23,14 +23,14 @@
         </span>
       {% endif %}
       </a>
+    </div>
     {% if params.signOutHref %}
       <nav class="hmrc-sign-out-nav">
         <a class="govuk-link hmrc-sign-out-nav__link" href="{{ params.signOutHref }}">
-        {% if language == 'cy' %}Allgofnodi{% else %}Sign out{% endif %}
+          {% if language == 'cy' %}Allgofnodi{% else %}Sign out{% endif %}
         </a>
       </nav>
     {% endif %}
-    </div>
   </div>
 </div>
 {% if params.displayHmrcBanner %}
