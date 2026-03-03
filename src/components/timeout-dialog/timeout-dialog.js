@@ -11,6 +11,7 @@ function TimeoutDialog($module, $sessionActivityService) {
   const cleanupFunctions = [];
   let currentTimer;
   const sessionActivityService = $sessionActivityService;
+  let signedOut = false;
 
   function init() {
     const validate = ValidateInput;
@@ -61,6 +62,9 @@ function TimeoutDialog($module, $sessionActivityService) {
       synchroniseTabs: validate.boolean(
         lookupData('data-synchronise-tabs') || false,
       ),
+      synchroniseTabsSignout: validate.boolean(
+        lookupData('data-synchronise-tabs-signout') || false,
+      ),
       hideSignOutButton: validate.boolean(
         lookupData('data-hide-sign-out-button') || false,
       ),
@@ -82,6 +86,12 @@ function TimeoutDialog($module, $sessionActivityService) {
   const listenForSessionActivityAndResetDialogTimer = () => {
     if (settings.synchroniseTabs) {
       sessionActivityService.onActivity((event) => {
+        if (event.signedOut) {
+          if (!signedOut && settings.synchroniseTabsSignout) {
+            signOut();
+            return;
+          }
+        }
         const timeOfActivity = event.timestamp;
         cleanup();
         setupDialogTimer(timeOfActivity);
@@ -285,6 +295,8 @@ function TimeoutDialog($module, $sessionActivityService) {
   const getDateNow = () => Date.now();
 
   const signOut = () => {
+    signedOut = true;
+    sessionActivityService.logSignedOut();
     RedirectHelper.redirectToUrl(settings.signOutUrl);
   };
 

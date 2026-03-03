@@ -38,6 +38,21 @@ describe('/components/timeout-dialog/session-activity-service', () => {
     });
   });
 
+  describe('logSignedOut', () => {
+    it('should post an event containing signedOut status to the activity channel', () => {
+      const sut = new SessionActivityService(mockBroadcastChannelFactory);
+      sut.logSignedOut();
+      expect(mockBroadcastChannel.postMessage)
+        .toHaveBeenCalledWith({ signedOut: true });
+    });
+    describe('when BroadcastChannel is undefined', () => {
+      it('should do nothing', () => {
+        const sut = new SessionActivityService(undefined);
+        expect(() => sut.logSignedOut).not.toThrow();
+      });
+    });
+  });
+
   describe('onActivity', () => {
     it('should register the passed callback fn with the broadcast channel', () => {
       const sut = new SessionActivityService(mockBroadcastChannelFactory);

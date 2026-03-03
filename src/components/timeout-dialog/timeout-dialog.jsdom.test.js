@@ -39,6 +39,7 @@ describe('/components/timeout-dialog', () => {
 
   SessionActivityService.mockImplementation(() => ({
     logActivity: jest.fn(),
+    logSignedOut: jest.fn(),
     onActivity: jest.fn(),
   }));
   const mockSessionActivityService = new SessionActivityService();
@@ -122,6 +123,7 @@ describe('/components/timeout-dialog', () => {
     utils.ajaxGet.mockReset();
     redirectHelper.redirectToUrl.mockReset();
     mockSessionActivityService.onActivity.mockReset();
+    mockSessionActivityService.logSignedOut.mockReset();
     jest.clearAllTimers();
   });
 
@@ -194,6 +196,12 @@ describe('/components/timeout-dialog', () => {
 
       clickElem(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link'));
       expect(redirectHelper.redirectToUrl).toHaveBeenCalledWith('/sign-out');
+    });
+
+    it('should broadcast the signed out status when sign out is clicked', () => {
+      assume(mockSessionActivityService.logSignedOut).not.toHaveBeenCalled();
+      clickElem(testScope.latestDialog$element.querySelector('#hmrc-timeout-sign-out-link'));
+      expect(mockSessionActivityService.logSignedOut).toHaveBeenCalled();
     });
 
     it('should use the sign out url on the sign out link', () => {
