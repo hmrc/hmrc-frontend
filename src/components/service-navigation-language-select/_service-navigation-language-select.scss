@@ -44,6 +44,8 @@
 .govuk-service-navigation .hmrc-service-navigation-language-select .hmrc-service-navigation-language-select__list {
   position: relative;
   padding-left: 0;
+  margin-top: 12px;
+  margin-bottom: 12px;
 
   @include govuk-responsive-margin(6, $direction: left);
 
