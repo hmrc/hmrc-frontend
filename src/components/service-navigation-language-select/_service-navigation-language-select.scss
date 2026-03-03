@@ -44,21 +44,19 @@
 .govuk-service-navigation .hmrc-service-navigation-language-select .hmrc-service-navigation-language-select__list {
   position: relative;
   padding-left: 0;
+  margin-top: 12px;
+  margin-bottom: 12px;
 
   @include govuk-responsive-margin(6, $direction: left);
 
   @include govuk-media-query($from: tablet) {
     margin-top: 0;
     margin-bottom: 0;
-    padding: govuk-spacing(4) 0;
+    padding: govuk-spacing(3) 0;
 
-    .govuk-template--rebranded & {
-      padding: govuk-spacing(3) 0;
-
-      // some magic numbers from govuk-frontend service nav rebrand,
-      // adapted for the 16px font-size of the language switcher
-      line-height: (29 / 16);
-    }
+    // some magic numbers from govuk-frontend service nav rebrand,
+    // adapted for the 16px font-size of the language switcher
+    line-height: (29 / 16);
   }
 }
 

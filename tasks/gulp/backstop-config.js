@@ -88,7 +88,6 @@ module.exports = ({ host, port, components }) => ({
     args: ['--no-sandbox', '--allow-file-access-from-files', '--disable-web-security'],
   },
   // if running locally, and either stage hangs, try reducing these limits
-  // some account-header click/hover/focus examples struggle with higher capture limits in jenkins
   asyncCaptureLimit: process.env.CI ? 3 : 50,
   asyncCompareLimit: 50,
   debug: false,

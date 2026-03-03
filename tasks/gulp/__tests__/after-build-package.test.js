@@ -3,7 +3,6 @@
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
-const nodeSass = require('node-sass');
 const dartSass = require('sass');
 const recursive = require('recursive-readdir');
 const pkg = require('../../../package.json');
@@ -39,7 +38,6 @@ describe('package/', () => {
         'example.njk',
         'README.njk',
         '*.snap',
-        '**/sca-account-menu/**',
       ];
 
       const additionalFilesNotFromSrc = [
@@ -64,15 +62,6 @@ describe('package/', () => {
         'hmrc/govuk/images/govuk-icon-mask.svg',
         'hmrc/govuk/images/govuk-opengraph-image.png',
         'hmrc/govuk/manifest.json',
-        'hmrc/govuk/rebrand/images/favicon.ico',
-        'hmrc/govuk/rebrand/images/favicon.svg',
-        'hmrc/govuk/rebrand/images/govuk-crest.svg',
-        'hmrc/govuk/rebrand/images/govuk-icon-180.png',
-        'hmrc/govuk/rebrand/images/govuk-icon-192.png',
-        'hmrc/govuk/rebrand/images/govuk-icon-512.png',
-        'hmrc/govuk/rebrand/images/govuk-icon-mask.svg',
-        'hmrc/govuk/rebrand/images/govuk-opengraph-image.png',
-        'hmrc/govuk/rebrand/manifest.json',
         `hmrc/hmrc-frontend-${pkg.version}.min.css`,
         `hmrc/hmrc-frontend-${pkg.version}.min.js`,
         `hmrc/maps/hmrc-frontend-${pkg.version}.min.css.map`,
@@ -162,26 +151,6 @@ describe('package/', () => {
       try {
         const allScssFile = path.join(configPaths.packageTest, 'hmrc-frontend/hmrc/all.scss');
         dartSass.compile(allScssFile);
-      } catch (e) {
-        await removeSymLinksIfPresent();
-        console.error(e.messageFormatted || e);
-        throw e;
-      } finally {
-        await removeSymLinksIfPresent();
-      }
-    });
-
-    it('should compile with node-sass without throwing an exception or creating invalid css', async () => {
-      await createSymlinks();
-      try {
-        const calcStatementContainingSassVariableNameOutputLiterally = /calc\([^)]*\$[^)]+\)/i;
-        const allScssFile = path.join(configPaths.packageTest, 'hmrc-frontend/hmrc/all.scss');
-        const { css } = nodeSass.renderSync({ file: allScssFile });
-        // below, you can add checks to make sure we don't add something only compatible with
-        // dart-sass but which still compiles without exception when using node-sass just
-        // generating invalid css that will not render correctly for users. So far we just
-        // have one example of this from https://github.com/alphagov/govuk-frontend/issues/4782
-        expect(css.toString()).not.toMatch(calcStatementContainingSassVariableNameOutputLiterally);
       } catch (e) {
         await removeSymLinksIfPresent();
         console.error(e.messageFormatted || e);

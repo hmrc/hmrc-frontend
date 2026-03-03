@@ -1,4 +1,5 @@
 {% from "govuk/components/footer/macro.njk" import govukFooter %}
+{% from "govuk/macros/attributes.njk" import govukAttributes %}
 
 {% set contentLicenceHtml -%}
   {% if(params.language == 'cy') %}Mae‘r holl gynnwys ar gael o dan {% else %}All content is available under the {% endif %}
@@ -15,22 +16,23 @@
 
 {% set defaultMetaVisuallyHiddenTitle = "Cysylltiadau cymorth" if params.language == "cy" else "Support links" %}
 
-{{ govukFooter({
-  meta: {
-    visuallyHiddenTitle: params.meta.visuallyHiddenTitle | default(defaultMetaVisuallyHiddenTitle),
-    html: params.meta.html,
-    text: params.meta.text,
-    items: params.meta.items
-  } if params.meta,
-  navigation: params.navigation,
-  contentLicence: {
-    html: contentLicenceHtml
-  },
-  copyright: {
-    html: copyrightHtml
-  },
-  containerClasses: params.containerClasses,
-  classes: params.classes,
-  attributes: params.attributes,
-  rebrand: params.rebrand
-}) }}
+<footer class="govuk-template__footer {%- if params.footerClasses %} {{ params.footerClasses }}{% endif %}" {{- govukAttributes(params.footerAttributes)}}>
+  {{ govukFooter({
+    meta: {
+      visuallyHiddenTitle: params.meta.visuallyHiddenTitle | default(defaultMetaVisuallyHiddenTitle),
+      html: params.meta.html,
+      text: params.meta.text,
+      items: params.meta.items
+    } if params.meta,
+    navigation: params.navigation,
+    contentLicence: {
+      html: contentLicenceHtml
+    },
+    copyright: {
+      html: copyrightHtml
+    },
+    containerClasses: params.containerClasses,
+    classes: params.classes,
+    attributes: params.attributes
+  }) }}
+</footer>

@@ -31,7 +31,7 @@ function withinPrototypeKitAndUsingIncompatibleGovukFrontendVersion() {
   }
 
   const currentVersionInProject = projectPackageJson.dependencies['govuk-frontend'].replace(/[^0-9.]/g, '');
-  const minimumGovukFrontendVersion = '5.4.0';
+  const minimumGovukFrontendVersion = '6.0.0';
 
   return (!semverGreaterThanOrEqualTo(currentVersionInProject, minimumGovukFrontendVersion));
 }
@@ -44,15 +44,15 @@ try {
     // eslint-disable-next-line no-console
     process.stderr.write(`
     Hello friend, looks like your prototype is using a version of
-    govuk-frontend lower than v5.4.0, which is the minimum version
-    compatible to automatically compile and load the styles for the 
+    govuk-frontend lower than v6.0.0, which is the minimum version
+    compatible to automatically compile and load the styles for the
     version of hmrc-frontend you're installing with the govuk-prototype-kit.
 
     You can silence this warning by setting the environment variable
     HMRC_FRONTEND_DISABLE_COMPATIBILITY_CHECK=true.
       - PlatUI
     -------------------------------------------
-            \\   ^__^ 
+            \\   ^__^
             \\  (oo)_______
                 (__)       )\\/\\
                     ||----w |

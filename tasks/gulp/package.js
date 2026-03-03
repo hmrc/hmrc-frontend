@@ -75,7 +75,6 @@ gulp.task('copy-package-sources', () => gulp.src([
   `!${configPaths.components}**/example.njk`,
   `!${configPaths.components}**/__snapshots__/**`,
   `!${configPaths.components}**/__snapshots__/`,
-  `!${configPaths.components}**/sca-account-menu/**`,
 ], { encoding: false })
   .pipe(scssFiles)
   .pipe(postcss([

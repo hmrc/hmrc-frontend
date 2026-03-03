@@ -21,10 +21,6 @@ params:
   type: string
   required: false
   description: The public path for the assets folder. If not provided it defaults to /assets
-- name: useTudorCrown
-  type: boolean
-  required: false
-  description: A feature flag to use the new Tudor Crown logo. If unset, defaults to the old St Edward’s Crown
 
 accessibilityCriteria:
   Text and links in the Header must:
@@ -56,11 +52,6 @@ examples:
   data:
     serviceName: Service Name
     serviceUrl: '/components/internal-header/with-service-name/preview'
-- name: with-st-edwards-crown
-  description: The internal header with the old HMRC Crest
-  data:
-    language: en
-    useTudorCrown: false
 - name: with-service-name-and-no-service-url
   description: With service name and no service url
   data:

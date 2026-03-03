@@ -14,9 +14,9 @@ describe('footer', () => {
     return (text || '').trim().replace(/\s+/g, ' ');
   }
 
-  it('should match the output of govuk footer when displayed in english', async () => {
+  it('should match the output of govuk footer wrapped in a footer element', async () => {
     const params = examples['with params common to govuk footer'];
-    const hmrcFooterHtml = render('footer', params)('body').html().trim();
+    const hmrcFooterHtml = render('footer', params)('footer').html().trim();
     const govukFooterHtml = render('govuk/components/footer', params)('body').html().trim();
     expect(normaliseText(hmrcFooterHtml)).toEqual(normaliseText(govukFooterHtml));
   });
@@ -26,6 +26,21 @@ describe('footer', () => {
 
     const results = await axe($.html());
     expect(results).toHaveNoViolations();
+  });
+
+  it('renders footerAttributes correctly', () => {
+    const $ = render('footer', examples['with footer attributes']);
+
+    const $component = $('.govuk-template__footer');
+    expect($component.attr('data-test-footer-attribute')).toEqual('value');
+    expect($component.attr('data-test-footer-attribute-2')).toEqual('value-2');
+  });
+
+  it('renders footerClasses correctly', () => {
+    const $ = render('footer', examples['with footer classes']);
+
+    const $component = $('.govuk-template__footer');
+    expect($component.hasClass('app-footer-wrapper--custom-modifier')).toBeTruthy();
   });
 
   it('renders attributes correctly', () => {
