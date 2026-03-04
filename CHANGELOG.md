@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [7.1.0] - 2026-03-04
+
+### Changed
+
+- Uplifted to use `govuk-frontend` v6.1.0
+- Replaced `@include govuk-text-colour` with `color: govuk-functional-colour(text)`
+- Updated division in `.scss` files to use `calc`, for example replaced `(29 / 16)` with `calc(29 / 16)`
+
 ## [7.0.0] - 2026-03-02
 
 ### Changed

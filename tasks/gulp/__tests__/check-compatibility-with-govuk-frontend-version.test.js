@@ -57,7 +57,7 @@ describe('govuk-frontend version compatibility check', () => {
         createMockPackage({
           dependencies: {
             'govuk-prototype-kit': '13.0.0',
-            'govuk-frontend': '6.0.0',
+            'govuk-frontend': '6.1.0',
             'hmrc-frontend': '7.0.0',
           },
         });
@@ -77,7 +77,7 @@ describe('govuk-frontend version compatibility check', () => {
         createMockPackage({
           dependencies: {
             'govuk-prototype-kit': '^13.0.0',
-            'govuk-frontend': '^6.0.0-rc.1',
+            'govuk-frontend': '^6.1.0-rc.1',
             'hmrc-frontend': '^7.0.0',
           },
         });
@@ -98,7 +98,7 @@ describe('govuk-frontend version compatibility check', () => {
           dependencies: {
             'govuk-prototype-kit': '13.0.0',
             'govuk-frontend': '5.4.0',
-            'hmrc-frontend': '7.0.0',
+            'hmrc-frontend': '7.1.0',
           },
         });
         runCompatibilityCheck().on('exit', (code) => {
@@ -118,7 +118,7 @@ describe('govuk-frontend version compatibility check', () => {
           dependencies: {
             'govuk-prototype-kit': '^13.0.0',
             'govuk-frontend': '^5.4.0-rc.1',
-            'hmrc-frontend': '^7.0.0',
+            'hmrc-frontend': '^7.1.0',
           },
         });
         runCompatibilityCheck().on('exit', (code) => {
@@ -138,7 +138,7 @@ describe('govuk-frontend version compatibility check', () => {
           dependencies: {
             'govuk-prototype-kit': '13.0.0',
             'govuk-frontend': '5.4.0',
-            'hmrc-frontend': '7.0.0',
+            'hmrc-frontend': '7.1.0',
           },
         });
         runCompatibilityCheck({
@@ -158,7 +158,7 @@ describe('govuk-frontend version compatibility check', () => {
           dependencies: {
             'govuk-prototype-kit': '13.0.0',
             'govuk-frontend': '5.4.0',
-            'hmrc-frontend': '7.0.0',
+            'hmrc-frontend': '7.1.0',
           },
         });
         runCompatibilityCheck({
@@ -179,7 +179,7 @@ describe('govuk-frontend version compatibility check', () => {
           dependencies: {
             'govuk-prototype-kit': '13.0.0',
             'govuk-frontend': '5.4.0',
-            'hmrc-frontend': '7.0.0',
+            'hmrc-frontend': '7.1.0',
           },
         });
         runCompatibilityCheck({
@@ -199,7 +199,7 @@ describe('govuk-frontend version compatibility check', () => {
           dependencies: {
             'govuk-prototype-kit': '13.0.0',
             'govuk-frontend': '5.4.0',
-            'hmrc-frontend': '7.0.0',
+            'hmrc-frontend': '7.1.0',
           },
         });
         runCompatibilityCheck({
