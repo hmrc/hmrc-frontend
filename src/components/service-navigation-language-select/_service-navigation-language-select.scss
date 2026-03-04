@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .hmrc-service-navigation-language-select {
   @include govuk-font($size: 16);
   @include govuk-clearfix;
@@ -56,7 +58,7 @@
 
     // some magic numbers from govuk-frontend service nav rebrand,
     // adapted for the 16px font-size of the language switcher
-    line-height: (29 / 16);
+    line-height: math.div(29, 16);
   }
 }
 
