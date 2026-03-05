@@ -38,9 +38,9 @@
 
   &__event-meta {
     @include govuk-font($size: 19);
+    @include govuk-text-colour;
     @include govuk-responsive-margin(3, "bottom");
 
-    color: govuk-functional-colour(text);
     display: block;
   }
 }
