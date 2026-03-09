@@ -1,3 +1,5 @@
+@use "sass:math";
+
 // stylelint-disable number-max-precision -- deferred during move to stylelint-config-gds
 @import "../../../../govuk-frontend/dist/govuk/settings/index";
 @import "../../../../govuk-frontend/dist/govuk/tools/index";
@@ -60,6 +62,6 @@
     @include govuk-font($size: 19);
 
     // Same padding as govuk-button
-    padding: (govuk-spacing(2) - $govuk-border-width-form-element) govuk-spacing(2) (govuk-spacing(2) - $govuk-border-width-form-element - ($govuk-border-width-form-element / 2));
+    padding: (govuk-spacing(2) - $govuk-border-width-form-element) govuk-spacing(2) (govuk-spacing(2) - $govuk-border-width-form-element - (math.div($govuk-border-width-form-element, 2)));
   }
 }
