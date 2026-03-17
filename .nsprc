@@ -1,5 +1,4 @@
 {
-  "GHSA-3ppc-4f35-3m26": "minimatch ReDoS issue - repeated wildcards: devDependency only, no risk given our usage",
-  "GHSA-23c5-xmqv-rm74": "minimatch ReDoS issue - nested *(): devDependency only, no risk given our usage",
-  "GHSA-7r86-cg39-jmmj": "minimatch ReDoS issue - matchOne(): devDependency only, no risk given our usage"
+  "GHSA-vpq2-c234-7xj6": "@tootallnate/once: devDependency only, no risk given our usage",
+  "GHSA-gmq8-994r-jv83": "yauzl: devDependency only, no risk given our usage"
 }
