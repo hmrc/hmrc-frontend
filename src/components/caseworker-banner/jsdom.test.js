@@ -46,11 +46,11 @@ describe('caseworker-banner', () => {
   });
 
   describe('with Welsh language', () => {
-    it.skip('shows the Welsh title', async () => {
+    it('shows the Welsh title', async () => {
       const params = examples.welsh;
       const hmrcCaseworkerBannerHtml = render('caseworker-banner', params)('.govuk-notification-banner__title').html().trim();
 
-      expect(hmrcCaseworkerBannerHtml).toBe('The Welsh wording');
+      expect(hmrcCaseworkerBannerHtml).toBe('Arweiniad Gweithiwr Achos');
     });
   });
 
@@ -85,7 +85,7 @@ describe('caseworker-banner', () => {
       const $ = render('caseworker-banner', params);
       const $content = $('.govuk-notification-banner__content');
 
-      expect($content.html().trim()).toEqual('<p class="govuk-body">&lt;span&gt;This is my content&lt;/span&gt;</p>');
+      expect($content.html().trim()).toEqual('<p class="govuk-body">&lt;span&gt;Some escaped content&lt;/span&gt;</p>');
     });
 
     it('has custom title id', async () => {

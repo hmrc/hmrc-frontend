@@ -3,10 +3,12 @@ examples:
 - name: default
   description: The caseworker banner
   data:
+    text: Use HMRC records to complete this page. Do not request this information from the user.
 - name: welsh
   description: The caseworker banner in Welsh
   data:
     language: cy
+    text: Use HMRC records to complete this page. Do not request this information from the user.
 - name: html content
   description: The caseworker banner with html content
   data:
@@ -18,7 +20,7 @@ examples:
 - name: text content
   description: The caseworker banner with escaped text content
   data:
-    text: <h1>My heading</h1>
+    text: Use HMRC records to complete this page. Do not request this information from the user.
 - name: attributes
   hidden: true
   data:
@@ -35,14 +37,14 @@ examples:
 - name: html-as-text
   hidden: true
   data:
-    text: <span>This is my content</span>
+    text: <span>Some escaped content</span>
 - name: non-overridable-params
   hidden: true
   data:
     disableAutoFocus: false
     role: section
     titleHeadingLevel: 3
-    titleHtml: <h1>My title that should never display</h1>
-    titleText: My title text that should never display
-    type: success
+    titleHtml: <h1>A title that should never display</h1>
+    titleText: A text title that should never display
+    type: banner
 
