@@ -41,6 +41,10 @@
       "importFrom": "hmrc/components/banner/macro.njk"
     },
     {
+      "macroName": "hmrcCaseworkerBanner",
+      "importFrom": "hmrc/components/caseworker-banner/macro.njk"
+    },
+    {
       "macroName": "hmrcCharacterCount",
       "importFrom": "hmrc/components/character-count/macro.njk"
     },

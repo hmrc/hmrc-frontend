@@ -1,0 +1,40 @@
+{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+{% set titleText = "Caseworker banner Welsh" if params.language === "cy" else "Caseworker banner" %}
+
+{% set content %}
+  {% if params.html %}
+    {{ params.html | safe }}
+  {% else %}
+    <p class="govuk-body">{{ params.text }}</p>
+  {% endif %}
+{% endset %}
+
+{{ govukNotificationBanner({
+  attributes: params.attributes,
+  classes: "hmrc-caseworker-banner" + (" " + params.classes if params.classes),
+  disableAutoFocus: true,
+  html: content,
+  role: null,
+  text: null,
+  titleHeadingLevel: 2,
+  titleHtml: null,
+  titleId : params.titleId,
+  titleText: titleText,
+  type: null
+}) }}
+
+{#
+  √ attributes: params.attributes,
+  caller: params.caller,
+  √ classes: "hmrc-caseworker-banner" + (" " + params.classes if params.classes),
+  √ disableAutoFocus: True,
+  html: params.html,
+  √ role: null,
+  √ text: params.text,
+  √ titleHeadingLevel: 2,
+  √ titleHtml: null,
+  √ titleId : params.titleId,
+  √ titleText: titleText,
+  √ type: null
+#}

@@ -1,0 +1,48 @@
+params:
+examples:
+- name: default
+  description: The caseworker banner
+  data:
+- name: welsh
+  description: The caseworker banner in Welsh
+  data:
+    language: cy
+- name: html content
+  description: The caseworker banner with html content
+  data:
+    html: |
+      <ul class="govuk-list govuk-list--bullet">
+      <li>some test content in a list</li>
+      <li><a class="govuk-link" rel="noopener noreferrer" href="https://www.gov.uk/government/organisations/hm-revenue-customs" target="_blank">My link (opens in new tab)</a></li>
+      </ul>
+- name: text content
+  description: The caseworker banner with escaped text content
+  data:
+    text: <h1>My heading</h1>
+- name: attributes
+  hidden: true
+  data:
+    attributes:
+      my-attribute: my-value
+- name: classes
+  hidden: true
+  data:
+    classes: my-class
+- name: title-id
+  hidden: true
+  data:
+    titleId: myId
+- name: html-as-text
+  hidden: true
+  data:
+    text: <span>This is my content</span>
+- name: non-overridable-params
+  hidden: true
+  data:
+    disableAutoFocus: false
+    role: section
+    titleHeadingLevel: 3
+    titleHtml: <h1>My title that should never display</h1>
+    titleText: My title text that should never display
+    type: success
+
