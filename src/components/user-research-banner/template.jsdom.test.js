@@ -37,12 +37,12 @@ describe('User Research Banner', () => {
 
     it('should have English text by default', () => {
       const $ = render('user-research-banner', examples.default);
-      expect($('.hmrc-user-research-banner__title').text().trim()).toEqual('Help make GOV.UK better');
+      expect($('.hmrc-user-research-banner__title').text().trim()).toEqual('Your feedback could get you a Love2Shop voucher');
     });
 
     it('should have Welsh text when specified', () => {
       const $ = render('user-research-banner', examples.welsh);
-      expect($('.hmrc-user-research-banner__title').text().trim()).toEqual('Helpwch i wella GOV.UK');
+      expect($('.hmrc-user-research-banner__title').text().trim()).toEqual('Gall eich adborth ennill taleb Love2Shop i chi');
     });
 
     it('should have visible English text for the close button by default', () => {

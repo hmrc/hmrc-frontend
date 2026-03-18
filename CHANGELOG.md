@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [7.3.0] - 2026-03-18
+
+### Changed
+
+Updated the content of the User Research Banner
+
 ## [7.2.0] - 2026-03-17
 
 ### Changed
