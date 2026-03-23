@@ -13,8 +13,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Updated npm audit exclusions
 
-## [7.1.0] - 2026-03-04
-
 ## [7.2.0] - 2026-03-17
 
 ### Changed
