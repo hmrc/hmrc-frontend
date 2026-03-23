@@ -8,7 +8,7 @@ examples:
   description: The caseworker banner in Welsh
   data:
     language: cy
-    text: Use HMRC records to complete this page. Do not request this information from the user.
+    text: Defnyddiwch gofnodion CThEF er mwyn cwblhau’r dudalen hon. Peidiwch â gwneud cais i’r defnyddiwr am y wybodaeth hon.
 - name: html content
   description: The caseworker banner with html content
   data:
