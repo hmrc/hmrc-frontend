@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [7.4.0] - 2026-03-23
+
+### Added
+
+- Caseworker banner component
+
 ## [7.3.0] - 2026-03-23
 
 ### Changed
@@ -43,7 +49,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Updated npm audit exclusions
- 
+
 ## [6.116.0] - 2026-02-23
 
 ### Changed
@@ -132,7 +138,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Added `hmrc-service-navigation-language-select` to `hmrc-frontend-print-overrides.scss` to ensure new language select 
+- Added `hmrc-service-navigation-language-select` to `hmrc-frontend-print-overrides.scss` to ensure new language select
   is not including in print views
 
 ## [6.101.0] - 2025-11-17
