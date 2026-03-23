@@ -41,7 +41,7 @@ describe('caseworker-banner', () => {
     it('should have the English title text', async () => {
       const $ = render('caseworker-banner', params);
 
-      expect($('#govuk-notification-banner-title').text().trim()).toBe('Caseworker banner');
+      expect($('#govuk-notification-banner-title').text().trim()).toBe('Caseworker guidance');
     });
   });
 
@@ -121,7 +121,7 @@ describe('caseworker-banner', () => {
     it('should have the English title text', async () => {
       const $ = render('caseworker-banner', params);
 
-      expect($('#govuk-notification-banner-title').text().trim()).toBe('Caseworker banner');
+      expect($('#govuk-notification-banner-title').text().trim()).toBe('Caseworker guidance');
     });
 
     it('should not have a success type class', async () => {
