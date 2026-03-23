@@ -1,0 +1,50 @@
+params:
+examples:
+- name: default
+  description: The caseworker banner
+  data:
+    text: Use HMRC records to complete this page. Do not request this information from the user.
+- name: welsh
+  description: The caseworker banner in Welsh
+  data:
+    language: cy
+    text: Defnyddiwch gofnodion CThEF er mwyn cwblhau’r dudalen hon. Peidiwch â gwneud cais i’r defnyddiwr am y wybodaeth hon.
+- name: html content
+  description: The caseworker banner with html content
+  data:
+    html: |
+      <ul class="govuk-list govuk-list--bullet">
+      <li>some test content in a list</li>
+      <li><a class="govuk-link" rel="noopener noreferrer" href="https://www.gov.uk/government/organisations/hm-revenue-customs" target="_blank">My link (opens in new tab)</a></li>
+      </ul>
+- name: text content
+  description: The caseworker banner with escaped text content
+  data:
+    text: Use HMRC records to complete this page. Do not request this information from the user.
+- name: attributes
+  hidden: true
+  data:
+    attributes:
+      my-attribute: my-value
+- name: classes
+  hidden: true
+  data:
+    classes: my-class
+- name: title-id
+  hidden: true
+  data:
+    titleId: myId
+- name: html-as-text
+  hidden: true
+  data:
+    text: <span>Some escaped content</span>
+- name: non-overridable-params
+  hidden: true
+  data:
+    disableAutoFocus: false
+    role: section
+    titleHeadingLevel: 3
+    titleHtml: <h1>A title that should never display</h1>
+    titleText: A text title that should never display
+    type: banner
+

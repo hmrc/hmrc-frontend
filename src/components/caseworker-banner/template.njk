@@ -1,0 +1,28 @@
+{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+{% set titleText = "Arweiniad Gweithiwr Achos" if params.language === "cy" else "Caseworker guidance" %}
+
+{% set content %}
+  {% if params.html %}
+    {{ params.html | safe }}
+  {% else %}
+    <p class="govuk-body">{{ params.text }}</p>
+  {% endif %}
+{% endset %}
+
+{# explicit nulls here are to show that caseworker banner is only intended to use a subset of notification banner options #}
+
+{{ govukNotificationBanner({
+  attributes: params.attributes,
+  classes: "hmrc-caseworker-banner" + (" " + params.classes if params.classes),
+  disableAutoFocus: true,
+  html: content,
+  role: null,
+  text: null,
+  titleHeadingLevel: 2,
+  titleHtml: null,
+  titleId : params.titleId,
+  titleText: titleText,
+  type: null
+}) }}
+

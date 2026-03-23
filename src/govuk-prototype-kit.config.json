@@ -10,7 +10,7 @@
   "pluginDependencies": [
     {
       "packageName": "govuk-frontend",
-      "minVersion": "6.0.0"
+      "minVersion": "6.1.0"
     }
   ],
   "assets": [
@@ -39,6 +39,10 @@
     {
       "macroName": "hmrcBanner",
       "importFrom": "hmrc/components/banner/macro.njk"
+    },
+    {
+      "macroName": "hmrcCaseworkerBanner",
+      "importFrom": "hmrc/components/caseworker-banner/macro.njk"
     },
     {
       "macroName": "hmrcCharacterCount",
