@@ -10,6 +10,8 @@
   {% endif %}
 {% endset %}
 
+{# explicit nulls here are to show that caseworker banner is only intended to use a subset of notification banner options #}
+
 {{ govukNotificationBanner({
   attributes: params.attributes,
   classes: "hmrc-caseworker-banner" + (" " + params.classes if params.classes),
