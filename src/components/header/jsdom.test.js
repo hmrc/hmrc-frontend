@@ -94,11 +94,11 @@ describe('header', () => {
     });
     it('should have English text by default', () => {
       const $ = render('banner', examples['with hmrc banner english']);
-      expect($('.hmrc-banner > .hmrc-organisation-logo > p.govuk-body-s').text().trim()).toEqual('HM Revenue & Customs');
+      expect($('.hmrc-banner > .govuk-width-container > .hmrc-organisation-logo > p.govuk-body-s').text().trim()).toEqual('HM Revenue & Customs');
     });
     it('should have Welsh text when specified', () => {
       const $ = render('banner', examples['with hmrc banner welsh']);
-      expect($('.hmrc-banner > .hmrc-organisation-logo > p.govuk-body-s').text().trim()).toEqual('Cyllid a Thollau EF');
+      expect($('.hmrc-banner > .govuk-width-container > .hmrc-organisation-logo > p.govuk-body-s').text().trim()).toEqual('Cyllid a Thollau EF');
     });
   });
 
