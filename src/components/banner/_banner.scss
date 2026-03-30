@@ -1,6 +1,7 @@
 .hmrc-banner {
   position: relative;
-  padding: 10px 0 6px;
+  padding: 10px 0;
+  border-bottom: 1px solid govuk-organisation-colour("hm-revenue-customs");
 }
 
 @media (forced-colors: active) {
