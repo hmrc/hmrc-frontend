@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [7.5.0] - 2026-03-30
+
+### Changed
+
+- Updated the visual style of HMRC banner to work better with rebrand and Service Navigation
+
 ## [7.4.0] - 2026-03-23
 
 ### Added
