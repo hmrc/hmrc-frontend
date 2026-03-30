@@ -34,9 +34,7 @@
   </div>
 </div>
 {% if params.displayHmrcBanner %}
-  <div class="govuk-width-container">
-    {{ hmrcBanner({language: params.language}) }}
-  </div>
+  {{ hmrcBanner({language: params.language}) }}
 {% endif %}
 {% if params.serviceNavigation %}
     {{ govukServiceNavigation(params.serviceNavigation) }}
