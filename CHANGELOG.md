@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [7.7.0] - 2026-04-01
+
+### Changed
+
+- Removed the visual regression test reference images incorporating `with rebrand` as the old-style branding is no longer available
+
 ## [7.6.0] - 2026-03-30
 
 ### Changed

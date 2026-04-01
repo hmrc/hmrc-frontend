@@ -118,11 +118,6 @@ examples:
   data:
     {}
 
-- name: with rebrand
-  description: GOV.UK rebrand enabled
-  data:
-    rebrand: true
-
 - name: with meta
   description: Secondary navigation with meta information relating to the site
   data:
