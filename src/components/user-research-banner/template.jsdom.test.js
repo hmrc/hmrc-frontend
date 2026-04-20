@@ -27,22 +27,22 @@ describe('User Research Banner', () => {
 
     it('should have English link text by default', () => {
       const $ = render('user-research-banner', examples.default);
-      expect($('.hmrc-user-research-banner__link').text().trim()).toEqual('Sign up to take part in research (opens in new tab)');
+      expect($('.hmrc-user-research-banner__link').text().trim()).toEqual('Join our research panel (opens in new tab)');
     });
 
     it('should have Welsh link text when specified', () => {
       const $ = render('user-research-banner', examples.welsh);
-      expect($('.hmrc-user-research-banner__link').text().trim()).toEqual('Cofrestrwch i gymryd rhan mewn ymchwil (yn agor tab newydd)');
+      expect($('.hmrc-user-research-banner__link').text().trim()).toEqual('Ymunwch â’n panel ymchwil (yn agor tab newydd)');
     });
 
     it('should have English text by default', () => {
       const $ = render('user-research-banner', examples.default);
-      expect($('.hmrc-user-research-banner__title').text().trim()).toEqual('Help make GOV.UK better');
+      expect($('.hmrc-user-research-banner__title').text().trim()).toEqual('You may receive a voucher for feedback');
     });
 
     it('should have Welsh text when specified', () => {
       const $ = render('user-research-banner', examples.welsh);
-      expect($('.hmrc-user-research-banner__title').text().trim()).toEqual('Helpwch i wella GOV.UK');
+      expect($('.hmrc-user-research-banner__title').text().trim()).toEqual('Mae’n bosibl y byddwch yn cael taleb am roi adborth');
     });
 
     it('should have visible English text for the close button by default', () => {
