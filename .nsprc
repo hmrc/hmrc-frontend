@@ -1,3 +1,5 @@
 {
-  "GHSA-vpq2-c234-7xj6": "@tootallnate/once: devDependency only, no risk given our usage"
+  "GHSA-vpq2-c234-7xj6": "@tootallnate/once: devDependency only, no risk given our usage",
+  "GHSA-rp42-5vxx-qpwr": "basic-ftp vulnerable to denial of service: devDependency only, no risk given our usage",
+  "GHSA-r4q5-vmmm-2653": "follow-redirects leaks Custom Authentication Headers: devDependency only, no risk given our usage"
 }
