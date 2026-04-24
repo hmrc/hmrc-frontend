@@ -25,3 +25,8 @@ $govuk-include-default-font-face: false;
   z-index: 0;
   pointer-events: none;
 }
+
+.autocomplete__menu--hidden {
+  // stylelint-disable-next-line declaration-property-value-disallowed-list
+  transition: display 0s 200ms allow-discrete;
+}
