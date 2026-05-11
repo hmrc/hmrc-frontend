@@ -1,3 +1,22 @@
 {
-  "GHSA-vpq2-c234-7xj6": "@tootallnate/once: devDependency only, no risk given our usage"
+  "GHSA-vpq2-c234-7xj6": "@tootallnate/once: devDependency only, no risk given our usage",
+  "GHSA-fv7c-fp4j-7gwp": "@babel/plugin-transform-modules-systemjs: devDependency only, no risk given our usage",
+  "GHSA-w9j2-pvgh-6h63": "axios authentication bypass: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
+  "GHSA-pmwg-cvhr-8vh7": "axios NO_PROXY Protection bypassed: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
+  "GHSA-3w6x-2g7m-8v23": "axios Invisible JSON Response Tampering: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
+  "GHSA-q8qp-cvcw-x6jj": "axios prototype pollution read-side gadgets: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
+  "GHSA-xhjh-pmcv-23jw": "axios Null Byte Injection via Reverse-Encoding: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
+  "GHSA-445q-vr5w-6q77": "axios CRLF Injection in multipart/form-data body: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
+  "GHSA-m7pr-hjqh-92cm": "axios no_proxy bypass via IP alias allows SSRF: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
+  "GHSA-62hf-57xw-28j9": "axios unbounded recursion in toFormData: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
+  "GHSA-5c9x-8gcm-mpgx": "axios maxBodyLength bypass: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
+  "GHSA-vf2m-468p-8v99": "axios maxContentLength bypass: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
+  "GHSA-pf86-5x62-jrwf": "axios Prototype Pollution Gadgets: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
+  "GHSA-6chq-wfr3-2hj9": "axios Header Injection via Prototype Pollution: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
+  "GHSA-xx6v-rp6x-q39c": "axios XSRF Token Cross-Origin Leakage: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
+  "GHSA-rpmf-866q-6p89": "basic-ftp malicious FTP server can cause client-side DoS: devDependency only, no risk given our usage",
+  "GHSA-q3j6-qgpj-74h6": "fast-uri: devDependency only, pulled in via eslint, no risk given our usage",
+  "GHSA-v39h-62p7-jpjc": "fast-uri: devDependency only, pulled in via eslint, no risk given our usage",
+  "GHSA-v2v4-37r5-5v8g": "ip-address: devDependency only, no risk given our usage"
+
 }
