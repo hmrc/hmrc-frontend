@@ -422,8 +422,7 @@ describe('Patched accessible autocomplete', () => {
       const { postedFormData } = await interceptNextFormPost(page);
       await expect(page).toFill('#location', 'South');
       // In the section below we need to click the "Submit" button twice due to a known
-      // issue where trying to click "Submit" when "No results found" causes it to
-      // move when they collapse and that then makes the click miss the button
+      // issue where trying to click "Submit" when "No results found"
       // https://github.com/alphagov/accessible-autocomplete/issues/48
       await page.click('button[type="submit"]');
       await page.click('button[type="submit"]');
