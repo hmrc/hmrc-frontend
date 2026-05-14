@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [7.14.0] - 2026-05-13
+
+### Changed
+
+- Updated the `accessible-autocomplete` patched CSS to add a small transition delay. This allows time for the drop down to close when no option selected.
+
 ## [7.13.0] - 2026-05-11
 
 ### Changed

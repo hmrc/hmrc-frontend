@@ -11,13 +11,10 @@ import { renderString as renderComponent } from '../../../lib/jest-helpers';
 const adamsPolyfill = readFileSync(path.join(__dirname, '__tests__', '2024-12-adams-polyfill.js.txt'), 'utf8');
 
 function withGovukSelect(params) {
-  return withHmrcStylesAndScripts(`<form method="post"><button type="submit">Submit</button>${
+  return withHmrcStylesAndScripts(`<form method="post">${
     // wrapped in form because adam's polyfill needs select to be in a form
-    // submit button precedes select because when it follows it, trying to
-    // click it when suggestions are showing causes it to move when they
-    // collapse and that then makes the click miss the button
     renderComponent('govuk/components/select', params)
-  }</form>`);
+  }<button type="submit">Submit</button></form>`);
 }
 
 function acceptFirstSuggestionFor(autocompleteSelector) {
@@ -424,6 +421,48 @@ describe('Patched accessible autocomplete', () => {
       await acceptFirstSuggestionFor('#location');
       const { postedFormData } = await interceptNextFormPost(page);
       await expect(page).toFill('#location', 'South');
+      // In the section below we need to click the "Submit" button twice due to a known
+      // issue where trying to click "Submit" when "No results found"
+      // https://github.com/alphagov/accessible-autocomplete/issues/48
+      await page.click('button[type="submit"]');
+      await page.click('button[type="submit"]');
+      await expect(postedFormData).resolves.toBe(undefined);
+    });
+
+    it('should submit successfully if results found but none selected', async () => {
+      await render(page, withGovukSelect({
+        id: 'location',
+        name: 'location',
+        attributes: {
+          'data-module': 'hmrc-accessible-autocomplete',
+        },
+        label: {
+          text: 'Choose location',
+        },
+        errorMessage: {
+          text: 'You must choose a location',
+        },
+        hint: {
+          text: 'This can be different to where you went before',
+        },
+        items: [
+          {
+            value: ' ',
+            text: 'Choose location',
+          },
+          {
+            value: 'london',
+            text: 'London',
+          },
+        ],
+      }));
+
+      const element = await page.$('#location');
+      await expect(element).toBeAccessibleAutocomplete();
+      await expect(page).toFill('#location', 'Lon');
+      const { postedFormData } = await interceptNextFormPost(page);
+      // For this use case, we expect a single button click to now have enough
+      // time for the click to be registered due to delay added in PLATUI-4277
       await page.click('button[type="submit"]');
       await expect(postedFormData).resolves.toBe(undefined);
     });
