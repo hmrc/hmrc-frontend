@@ -16,13 +16,14 @@
     "build": "npm run build:dist && npm run build:package",
     "lint": "stylelint 'src/**/*.scss' && eslint .",
     "lint:fix": "stylelint 'src/**/*.scss' --fix && eslint --fix .",
-    "test": "npm run build:dist && npm run test:compatibility && jest src && npm run lint",
+    "test": "npm run build:dist && npm run test:compatibility && install:chrome && jest src && npm run lint",
     "test:update-snapshots": "jest src -u",
     "test:backstop": "gulp backstopTest",
     "test:backstop-approve": "gulp backstop:approve",
     "audit": "better-npm-audit audit",
     "prepare": "husky install",
-    "postinstall": "node check-compatibility-with-govuk-frontend-version.js"
+    "postinstall": "node check-compatibility-with-govuk-frontend-version.js",
+    "install:chrome": "npx puppeteer browsers install chrome"
   },
   "repository": {
     "type": "git",
