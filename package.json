@@ -23,7 +23,7 @@
     "audit": "better-npm-audit audit",
     "prepare": "husky install",
     "postinstall": "node check-compatibility-with-govuk-frontend-version.js",
-    "install:playwright": "npx playwright install"
+    "install:playwright": "playwright install"
   },
   "repository": {
     "type": "git",
