@@ -23,7 +23,7 @@
     "audit": "better-npm-audit audit",
     "prepare": "husky install",
     "postinstall": "node check-compatibility-with-govuk-frontend-version.js",
-    "install:chrome": "puppeteer browsers install chrome && playwright install chromium"
+    "install:chrome": "puppeteer browsers install chrome"
   },
   "repository": {
     "type": "git",
