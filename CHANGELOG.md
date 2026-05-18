@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [7.15.0] - 2026-05-14
+
+### Changed
+
+- Added `min-release-age` of 7 days and `ignore-scripts` to our `npm` configuration
+
 ## [7.14.0] - 2026-05-13
 
 ### Changed
