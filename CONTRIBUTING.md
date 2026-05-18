@@ -85,7 +85,7 @@ The build server also checks the code when running the tests.
 
 ### Test your code
 The unit and visual regression tests rely on the Puppeteer and Playwright `npm` packages. If you are seeing errors in the
-tests due to these not being installed locally, you can run the following scripts:
+tests due to these not being installed locally, you can run the following script:
 ```shell script
 npm run install:test-browsers
 ```
