@@ -22,7 +22,8 @@
     "audit": "better-npm-audit audit",
     "prepare": "husky install",
     "install:playwright": "playwright install",
-    "install:puppeteer": "puppeteer browsers install chrome --base-url=\"$PUPPETEER_CHROME_DOWNLOAD_BASE_URL\""
+    "install:puppeteer": "puppeteer browsers install chrome --base-url=\"$PUPPETEER_CHROME_DOWNLOAD_BASE_URL\"",
+    "install:test-browsers": "puppeteer browsers install chrome && playwright install"
   },
   "repository": {
     "type": "git",

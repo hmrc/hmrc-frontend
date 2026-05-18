@@ -84,6 +84,11 @@ The above command will show you any remaining issues after the tool has fixed wh
 The build server also checks the code when running the tests.
 
 ### Test your code
+The unit and visual regression tests rely on the Puppeteer and Playwright `npm` packages. If you are seeing errors in the
+tests due to these not being installed locally, you can run the following scripts:
+```shell script
+npm run install:test-browsers
+```
 
 #### Unit tests
 Run tests to make sure they pass. If the existing tests do not apply to your code, write new ones.
