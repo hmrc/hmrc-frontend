@@ -17,6 +17,8 @@
   "GHSA-rpmf-866q-6p89": "basic-ftp malicious FTP server can cause client-side DoS: devDependency only, no risk given our usage",
   "GHSA-q3j6-qgpj-74h6": "fast-uri: devDependency only, pulled in via eslint, no risk given our usage",
   "GHSA-v39h-62p7-jpjc": "fast-uri: devDependency only, pulled in via eslint, no risk given our usage",
-  "GHSA-v2v4-37r5-5v8g": "ip-address: devDependency only, no risk given our usage"
-
+  "GHSA-v2v4-37r5-5v8g": "ip-address: devDependency only, no risk given our usage",
+  "GHSA-q8mj-m7cp-5q26": "qs.stringify remotely triggerable DoS with TypeError on null/undefined entries in comma-format arrays: pulled in via devDependency, no risk given our usage",
+  "GHSA-58qx-3vcg-4xpx": "ws uninitialized memory disclosure issue: pulled in via devDependency, no risk given our usage",
+  "GHSA-jxxr-4gwj-5jf2": "brace-expansion large numeric range defeats documented `max` DoS protection: devDependency only, no risk given our usage"
 }
