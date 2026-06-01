@@ -36,6 +36,10 @@ params:
       type: string
       required: true
       description: The URL the user research banner should link to
+    - name: hideCloseButton
+      type: boolean
+      required: false
+      description: Optional field to enable or disable the close banner button.
 - name: phaseBanner
   type: object
   required: false
@@ -168,6 +172,13 @@ examples:
   data:
     userResearchBanner:
       url: '/sign-up-for-user-research'
+
+- name: with research banner with hide close button
+  description: with research banner with the hide close button property set to true
+  data:
+    userResearchBanner:
+      url: '/sign-up-for-user-research'
+      hideCloseButton: true
 
 - name: with phase banner and research banner
   description: we tweak styles of user research banner when it follows header with no phase banner in between

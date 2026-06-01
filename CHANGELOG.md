@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [7.18.0] - 2026-06-01
+
+### Changed
+
+- Fixed a bug with `header`, where `hideCloseButton` could not be passed through to the `user-research-banner` in `header`
+
 ## [7.17.0] - 2026-06-01
 
 ### Changed
