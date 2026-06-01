@@ -43,7 +43,7 @@
     {{ govukPhaseBanner(params.phaseBanner) }}
 {% endif %}
 {%- if params.userResearchBanner %}
-    {{ hmrcUserResearchBanner({language: params.language, url: params.userResearchBanner.url }) }}
+    {{ hmrcUserResearchBanner({language: params.language, url: params.userResearchBanner.url, hideCloseButton: params.userResearchBanner.hideCloseButton }) }}
 {% endif %}
 {{- params.additionalBannersBlock | safe }}
 </header>
