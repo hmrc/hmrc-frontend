@@ -1,4 +1,5 @@
 @use "sass:math";
+@use "../../../../govuk-frontend/dist/govuk/base" as *;
 
 .hmrc-service-navigation-language-select {
   @include govuk-font($size: 16);

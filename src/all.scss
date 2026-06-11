@@ -1,17 +1,7 @@
-$govuk-global-styles: true;
-$govuk-new-link-styles: true !default;
-$govuk-new-organisation-colours: true !default;
-
-/// Path to the assets directory, with trailing slash.
-///
-/// This is the directory where the images and fonts subdirectories live. You
-/// will need to make this directory available via your application – see the
-/// README for details.
-///
-/// @type String
-/// @access public
-
-$hmrc-assets-path: "./" !default;
-$govuk-assets-path: $hmrc-assets-path !default;
-
-@import "components/all";
+@use "components/all" as * with (
+  $govuk-global-styles: true,
+  $govuk-new-link-styles: true !default,
+  $govuk-new-organisation-colours: true !default,
+  $hmrc-assets-path: "./" !default,
+  $govuk-assets-path: $hmrc-assets-path !default
+);

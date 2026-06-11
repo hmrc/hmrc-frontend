@@ -1,4 +1,6 @@
 // stylelint-disable max-nesting-depth, number-max-precision -- deferred during move to stylelint-config-gds
+@use "../../../../govuk-frontend/dist/govuk/base" as *;
+
 $govuk-header-link-underline-thickness: 3px;
 
 .hmrc-header.hmrc-header--with-additional-navigation {

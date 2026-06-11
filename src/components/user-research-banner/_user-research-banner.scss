@@ -1,6 +1,7 @@
-@import "../../../../govuk-frontend/dist/govuk/helpers/links";
-@import "../../../../govuk-frontend/dist/govuk/helpers/typography";
-@import "../../../../govuk-frontend/dist/govuk/utilities/clearfix";
+@use "../../../../govuk-frontend/dist/govuk/helpers/links" as *;
+@use "../../../../govuk-frontend/dist/govuk/helpers/typography" as *;
+@use "../../../../govuk-frontend/dist/govuk/utilities/clearfix" as *;
+@use "../../../../govuk-frontend/dist/govuk/base" as *;
 
 .hmrc-user-research-banner {
   display: none;
