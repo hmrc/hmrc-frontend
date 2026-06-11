@@ -1,9 +1,9 @@
 @use "sass:math";
 
 // stylelint-disable number-max-precision -- deferred during move to stylelint-config-gds
-@import "../../../../govuk-frontend/dist/govuk/settings/index";
-@import "../../../../govuk-frontend/dist/govuk/tools/index";
-@import "../../../../govuk-frontend/dist/govuk/helpers/index";
+@use "../../../../govuk-frontend/dist/govuk/settings/index" as *;
+@use "../../../../govuk-frontend/dist/govuk/tools/index" as *;
+@use "../../../../govuk-frontend/dist/govuk/helpers/index" as *;
 
 .hmrc-timeout-overlay {
   position: fixed;

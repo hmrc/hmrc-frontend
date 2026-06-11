@@ -3,6 +3,8 @@
 
 // Custom styles
 
+@use "../../../../govuk-frontend/dist/govuk/base" as *;
+
 .hmrc-status-tag {
   color: $govuk-text-colour;
   font-family: "GDS Transport", Arial, sans-serif;

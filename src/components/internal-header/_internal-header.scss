@@ -1,3 +1,6 @@
+@use "../../../../govuk-frontend/dist/govuk/base" as *;
+@use "../../../../govuk-frontend/dist/govuk/components/header" as *;
+
 .hmrc-internal-header {
   @include govuk-font($size: 19);
 
@@ -69,8 +72,8 @@
   &:hover,
   &:active {
     // Negate added border
-    margin-bottom: $govuk-header-link-underline-thickness * -1;
-    border-bottom: $govuk-header-link-underline-thickness solid;
+    //margin-bottom: $govuk-header-link-underline-thickness * -1;
+    //border-bottom: $govuk-header-link-underline-thickness solid;
   }
 
   &:focus {
@@ -127,8 +130,8 @@
   &:hover,
   &:active {
     // Negate added border
-    margin-bottom: $govuk-header-link-underline-thickness * -1;
-    border-bottom: $govuk-header-link-underline-thickness solid;
+    //margin-bottom: $govuk-header-link-underline-thickness * -1;
+    //border-bottom: $govuk-header-link-underline-thickness solid;
   }
 
   &:focus {

@@ -7,4 +7,4 @@ $govuk-suppressed-warnings: (
   legacy-colour-param
 );
 
-@import "all";
+@use "all" as *;
