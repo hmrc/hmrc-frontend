@@ -28,5 +28,6 @@
   "GHSA-hfxv-24rg-xrqf": "axios ReDoS via Cookie Name Injection: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
   "GHSA-777c-7fjr-54vf": "axios allocation of resources: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
   "GHSA-p92q-9vqr-4j8v": "axios Proxy-Authorization Credential Leak: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
-  "GHSA-j5f8-grm9-p9fc": "axios Proxy-Authorization header leak: devDependency only, pulled in via jest-puppeteer, no risk given our usage"
+  "GHSA-j5f8-grm9-p9fc": "axios Proxy-Authorization header leak: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
+  "GHSA-q7cg-457f-vx79": "joi: uncaught RangeError on deeply nested input. devDependency only, pulled in via jest, no risk given our usage"
 }
