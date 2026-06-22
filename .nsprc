@@ -29,5 +29,9 @@
   "GHSA-777c-7fjr-54vf": "axios allocation of resources: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
   "GHSA-p92q-9vqr-4j8v": "axios Proxy-Authorization Credential Leak: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
   "GHSA-j5f8-grm9-p9fc": "axios Proxy-Authorization header leak: devDependency only, pulled in via jest-puppeteer, no risk given our usage",
-  "GHSA-q7cg-457f-vx79": "joi: uncaught RangeError on deeply nested input. devDependency only, pulled in via jest, no risk given our usage"
+  "GHSA-q7cg-457f-vx79": "joi: uncaught RangeError on deeply nested input. devDependency only, pulled in via jest, no risk given our usage",
+  "GHSA-96hv-2xvq-fx4p": "ws memory exhaustion DoS from tiny fragments and data chunks: pulled in via devDependency, no risk given our usage",
+  "GHSA-h67p-54hq-rp68": "js-yaml quadratic-complexity DoS in merge key: pulled in via devDependency, no risk given our usage",
+  "GHSA-hmw2-7cc7-3qxx": "form-data: CRLF injection in form-data via unescaped multipart field names: pulled in via devDependency, no risk given our usage",
+  "GHSA-4x5r-pxfx-6jf8": "babel/core: arbitrary file read via sourceMappingURL comment: devDependency only, no risk given our usage"
 }
