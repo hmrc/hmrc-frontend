@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [7.23.0] - 2026-06-23
+
+- Removed GOV.UK Frontend variables that no longer exist
+
 ## [7.22.0] - 2026-06-22
 
 ### Changed
