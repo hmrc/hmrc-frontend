@@ -13,10 +13,10 @@
   <div class="govuk-header__container {{ params.containerClasses | default("govuk-width-container", true) }}">
     <div class="govuk-header__logo">
       <a href="{{ params.homepageUrl | default("//gov.uk", true) }}" class="govuk-header__homepage-link">
-        {{ govukLogo({
-          classes: "govuk-header__logotype",
-          ariaLabelText: "GOV.UK"
-            }) | trim | indent(8) }}
+          {{ govukLogo({
+            classes: "govuk-header__logotype",
+            ariaLabelText: "GOV.UK"
+              }) | trim | indent(8) }}
         {% if (params.productName) %}
         <span class="govuk-header__product-name">
         {{- params.productName -}}
