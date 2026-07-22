@@ -1,4 +1,7 @@
 .hmrc-caseworker-banner {
   border-color: govuk-colour("black");
-  background-color: govuk-colour("black");
+
+  .govuk-notification-banner__header {
+    background-color: govuk-colour("black");
+  }
 }
