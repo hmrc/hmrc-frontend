@@ -1,6 +1,6 @@
 {
   "name": "hmrc-frontend",
-  "version": "7.26.0",
+  "version": "7.27.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
@@ -90,7 +90,7 @@
     "nunjucks": "^3.2.4",
     "playwright-chromium": "^1.49.1",
     "playwright-core": "^1.49.1",
-    "postcss": "^8.0.0",
+    "postcss": "^8.5.18",
     "postcss-scss": "^4.0.9",
     "puppeteer": "^23.4.1",
     "recursive-readdir": "^2.2.2",
@@ -120,6 +120,7 @@
     "diff": "^8.0.3",
     "tar": "^7.5.7",
     "axios": "^1.18.0",
-    "svgo": "^4.0.2"
+    "svgo": "^4.0.2",
+    "postcss": "^8.5.18"
   }
 }
