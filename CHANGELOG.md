@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [7.27.0] - 2026-07-27
+
+- Updated npm audit exclusions and bumped `postcss` version
+
 ## [7.26.0] - 2026-07-22
 
 - Updated npm audit exclusions
