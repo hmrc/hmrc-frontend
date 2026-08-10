@@ -1,6 +1,6 @@
 {
   "name": "hmrc-frontend",
-  "version": "7.27.0",
+  "version": "7.28.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
@@ -83,14 +83,14 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-puppeteer": "^11.0.0",
     "jest-serializer-html": "^5.0.0",
-    "js-yaml": "^4.1.1",
+    "js-yaml": "^4.3.1",
     "mkdirp": "^3.0.1",
     "node-fetch": "^3.3.1",
     "nodemon": "^3.1.10",
     "nunjucks": "^3.2.4",
     "playwright-chromium": "^1.49.1",
     "playwright-core": "^1.49.1",
-    "postcss": "^8.5.18",
+    "postcss": "^8.5.23",
     "postcss-scss": "^4.0.9",
     "puppeteer": "^23.4.1",
     "recursive-readdir": "^2.2.2",
@@ -110,17 +110,17 @@
     "iOS 9"
   ],
   "overrides": {
+    "autolinker": "^4.1.5",
+    "axios": "^1.18.0",
+    "diff": "^8.0.3",
+    "form-data": "^4.0.4",
+    "gulp-header": "^2.0.9",
     "playwright": "$playwright-core",
+    "postcss": "^8.5.23",
     "puppeteer": "$puppeteer",
     "rollup": "$rollup",
-    "form-data": "^4.0.4",
-    "tough-cookie": "^4.1.3",
-    "autolinker": "^4.1.5",
-    "gulp-header": "^2.0.9",
-    "diff": "^8.0.3",
     "tar": "^7.5.7",
-    "axios": "^1.18.0",
-    "svgo": "^4.0.2",
-    "postcss": "^8.5.18"
+    "tough-cookie": "^4.1.3",
+    "svgo": "^4.0.2"
   }
 }
