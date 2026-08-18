@@ -25,5 +25,6 @@
   "GHSA-xcpc-8h2w-3j85": "adm-zip: Crafted ZIP file triggers excessive memory allocation. devDependency only, no risk given our usage",
   "GHSA-v56q-mh7h-f735": "immutable: devDependency only, pulled in via sass, no risk given our usage",
   "GHSA-xvcm-6775-5m9r": "immutable: devDependency only, pulled in via sass, no risk given our usage",
-  "GHSA-v422-hmwv-36x6": "body-parser: devDependency only, pulled in via sass, no risk given our usage"
+  "GHSA-v422-hmwv-36x6": "body-parser: devDependency only, pulled in via sass, no risk given our usage",
+  "GHSA-jmr9-qjv8-65gv": "extract-zip: devDependency only, no risk given our usage"
 }
