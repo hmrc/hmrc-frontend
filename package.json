@@ -1,6 +1,6 @@
 {
   "name": "hmrc-frontend",
-  "version": "7.29.0",
+  "version": "7.30.0",
   "description": "Design patterns for HMRC frontends",
   "scripts": {
     "start": "gulp dev",
@@ -19,7 +19,7 @@
     "test:update-snapshots": "jest src -u",
     "test:backstop": "gulp backstopTest",
     "test:backstop-approve": "gulp backstop:approve",
-    "audit": "better-npm-audit audit",
+    "audit": "npm outdated; better-npm-audit audit",
     "prepare": "husky install",
     "install:playwright": "playwright install",
     "install:puppeteer": "puppeteer browsers install chrome --base-url=\"$PUPPETEER_CHROME_DOWNLOAD_BASE_URL\"",
