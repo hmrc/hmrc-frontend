@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [7.30.0] - 2026-08-25
+
+- Run npm outdated as part of the npm audit command
+
 ## [7.29.0] - 2026-08-18
 
 - Updated npm audit exclusions
