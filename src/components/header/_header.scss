@@ -41,11 +41,19 @@ $govuk-header-link-underline-thickness: 3px;
 
     &:hover::after {
       display: block;
+
+      @media (forced-colors: active) {
+        background-color: linktext;
+      }
     }
 
     &:focus::after {
       display: block;
       background-color: govuk-colour('black');
+
+      @media (forced-colors: active) {
+        background-color: linktext;
+      }
     }
   }
 }

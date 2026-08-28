@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [7.31.0] - 2026-08-28
+
+- Added underline to signout link on hover/focus when high contrast is enabled in OS
+
 ## [7.30.0] - 2026-08-25
 
 - Run npm outdated as part of the npm audit command
