@@ -20,15 +20,21 @@
   "GHSA-mh99-v99m-4gvg": "brace-expansion: devDependency only, no risk given our usage",
   "GHSA-rgw5-rvv9-x895": "brace-expansion: devDependency only, no risk given our usage",
   "GHSA-q7cg-457f-vx79": "joi: uncaught RangeError on deeply nested input. devDependency only, pulled in via jest, no risk given our usage",
+  "GHSA-6w3j-5fw6-r9vr": "joi: Prototype pollution via a `__proto__` language key in custom messages. devDependency only, pulled in via jest, no risk given our usage",
+  "GHSA-gg4h-3hg2-grpc": "joi: object().rename() with a template target can set the validated object's prototype. devDependency only, pulled in via jest, no risk given our usage",
   "GHSA-96hv-2xvq-fx4p": "ws memory exhaustion DoS from tiny fragments and data chunks: pulled in via devDependency, no risk given our usage",
   "GHSA-h67p-54hq-rp68": "js-yaml: quadratic-complexity DoS in merge key: pulled in via devDependency, no risk given our usage",
   "GHSA-52cp-r559-cp3m": "js-yaml: merge-key chains: pulled in via devDependency, no risk given our usage",
   "GHSA-5p4m-2wfm-xmqj": "js-yaml: Quadratic CPU consumption in !!omap resolution: pulled in via devDependency, no risk given our usage",
+  "GHSA-2883-xcg3-v3hh": "js-yaml: maxTotalMergeKeys does not limit CPU use for empty merge sources: pulled in via devDependency, no risk given our usage",
   "GHSA-hmw2-7cc7-3qxx": "form-data: CRLF injection in form-data via unescaped multipart field names: pulled in via devDependency, no risk given our usage",
   "GHSA-4x5r-pxfx-6jf8": "babel/core: arbitrary file read via sourceMappingURL comment: devDependency only, no risk given our usage",
   "GHSA-xcpc-8h2w-3j85": "adm-zip: Crafted ZIP file triggers excessive memory allocation. devDependency only, no risk given our usage",
+  "GHSA-vwc7-r8mq-g2x9": "adm-zip: Extraction follows destination symlinks. devDependency only, no risk given our usage",
   "GHSA-v56q-mh7h-f735": "immutable: devDependency only, pulled in via sass, no risk given our usage",
   "GHSA-xvcm-6775-5m9r": "immutable: devDependency only, pulled in via sass, no risk given our usage",
   "GHSA-v422-hmwv-36x6": "body-parser: devDependency only, pulled in via sass, no risk given our usage",
-  "GHSA-jmr9-qjv8-65gv": "extract-zip: devDependency only, no risk given our usage"
+  "GHSA-jmr9-qjv8-65gv": "extract-zip: devDependency only, no risk given our usage",
+  "GHSA-7pqw-9j4j-h8q3": "extract-zip: allows arbitrary file writes through symlink archive entries. devDependency only, no risk given our usage",
+  "GHSA-2wm5-q62r-hmrv": "colord: slow rejection of oversized malformed colour strings. devDependency only, no risk given our usage"
 }
