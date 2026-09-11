@@ -12,21 +12,19 @@
 }
 
 .hmrc-service-navigation-language-select__list-item  {
-  display: inline-block;
+  display: flex;
+  align-items: center;
 
-  &:first-child::after {
-    content: "";
-    display: inline-block;
-    position: relative;
-    top: 0.1875em;
-    height: 1em;
-    // stylelint-disable-next-line number-max-precision -- gives a 1.5px border width
-    border-right: 0.09375em solid $govuk-text-colour;
-  }
-
-  a,
-  [aria-current] {
-    padding: 0.3125em;
+  &:not(:last-child) {
+    &::after {
+      content: "";
+      display: block;
+      height: 1em;
+      margin-right: govuk-spacing(2);
+      margin-left: govuk-spacing(2);
+      border-right: 1px solid;
+      border-right-color: govuk-functional-colour(border);
+    }
   }
 }
 
