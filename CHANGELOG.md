@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [7.38.0] - 2026-09-22
+
+- Fixed bug where `service-navigation-language-select` could overflow container when there is a long service name
+
 ## [7.37.0] - 2026-09-22
 
 - Dependencies upgrade

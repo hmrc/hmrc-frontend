@@ -5,8 +5,7 @@
 {% block header %}
   {{ hmrcHeader({
     serviceNavigation: {
-      serviceName: "Example service",
-      classes: 'hmrc-service-navigation--with-language-select',
+      serviceName: serviceNavigationServiceName | default("Example service"),
       navigation: [
         {
           href: "#",
@@ -23,7 +22,10 @@
         }
       ],
       slots: {
-        end: componentView
+        end: {
+          html: componentView,
+          align: align | default('')
+        }
       }
     }
   }) }}
