@@ -110,3 +110,7 @@ See our [decision log](docs/adr/index.md) for a list of past decisions.
 
 1. Add another line in the [listing page for previous decisions](docs/adr/index.md)
    so it includes the new decision.
+
+### cheerio dependency - problematic upgrade
+
+We had some issues with upgrading `cheerio` dependency to the newest version. Details what we did and problems we faced can be found in [JIRA comment](https://jira.tools.tax.service.gov.uk/browse/PLATUI-4421?focusedId=2862789&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-2862789)
