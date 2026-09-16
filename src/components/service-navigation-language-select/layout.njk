@@ -6,6 +6,7 @@
   {{ hmrcHeader({
     serviceNavigation: {
       serviceName: serviceNavigationServiceName | default("Example service"),
+      classes: 'hmrc-service-navigation--with-language-select',
       navigation: [
         {
           href: "#",
@@ -23,8 +24,7 @@
       ],
       slots: {
         end: {
-          html: componentView,
-          align: align | default('')
+          html: componentView
         }
       }
     }
