@@ -45,6 +45,14 @@ examples:
       href: '/components/service-navigation-language-select/welsh/preview'
     serviceNavigationServiceName: Apply to receive a rare holofoil Pikachu Pokémon card from the King
     align: 'inline'
+- name: with long name with long words
+  description:
+  data:
+    language: 'en'
+    cy:
+      href: '/components/service-navigation-language-select/welsh/preview'
+    serviceNavigationServiceName: Catch a rare Pokémon in Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch
+    align: 'inline'
 - name: without align inline
   description:
   data:
