@@ -143,5 +143,13 @@ module.exports = (options) => {
     res.send('User-agent: *\nDisallow: /');
   });
 
+  // Custom error handling middleware - avoid leaking stack traces or
+  // internal implementation details in the response
+  // eslint-disable-next-line no-unused-vars
+  app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.send('Sorry, something went wrong.');
+  });
+
   return app;
 };
