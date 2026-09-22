@@ -1,7 +1,4 @@
 {
-  "GHSA-xcpc-8h2w-3j85": "adm-zip: Crafted ZIP file triggers excessive memory allocation. devDependency only, no risk given our usage",
-  "GHSA-vwc7-r8mq-g2x9": "adm-zip: Extraction follows destination symlinks. devDependency only, no risk given our usage",
-  "GHSA-7q85-xj36-vmfc": "adm-zip: Uncontrolled memory allocation via the declared uncompressed size (DoS). devDependency only, no risk given our usage",
   "GHSA-jmr9-qjv8-65gv": "extract-zip: devDependency only, no risk given our usage",
   "GHSA-7pqw-9j4j-h8q3": "extract-zip: allows arbitrary file writes through symlink archive entries. devDependency only, no risk given our usage",
   "GHSA-x5fp-wj9c-mxmx": "qs: devDependency only, no risk given our usage",
