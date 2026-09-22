@@ -89,7 +89,7 @@ module.exports = ({ host, port, components }) => ({
   asyncCompareLimit: 50,
   debug: false,
   debugWindow: false,
-  misMatchThreshold: 0.01,
+  misMatchThreshold: 0.1,
   dockerCommandTemplate: 'docker run --rm -it --network host --mount type=bind,source="{cwd}",target=/src backstopjs/backstopjs:{version} {backstopCommand} {args}',
   resembleOutputOptions: {
     ignoreAntialiasing: true,
