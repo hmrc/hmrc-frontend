@@ -30,11 +30,27 @@ examples:
     language: 'en'
     cy:
       href: '/components/service-navigation-language-select/welsh/preview'
+  visualRegressionTests:
+    alternateStates:
+      hovered:
+        beforeTakingScreenshot:
+          - hover: ".govuk-link"
+      focused:
+        beforeTakingScreenshot:
+          - focus: ".govuk-link"
 - name: welsh
   data:
     language: 'cy'
     en:
       href: '/components/service-navigation-language-select/preview'
+  visualRegressionTests:
+    alternateStates:
+      hovered:
+        beforeTakingScreenshot:
+          - hover: ".govuk-link"
+      focused:
+        beforeTakingScreenshot:
+          - focus: ".govuk-link"
 - name: with long name
   description:
   data:
@@ -42,6 +58,14 @@ examples:
     cy:
       href: '/components/service-navigation-language-select/welsh/preview'
     serviceNavigationServiceName: Apply to receive a rare holofoil Pikachu Pokémon card from the King
+  visualRegressionTests:
+    alternateStates:
+      hovered:
+        beforeTakingScreenshot:
+          - hover: ".govuk-link"
+      focused:
+        beforeTakingScreenshot:
+          - focus: ".govuk-link"
 - name: with long name with long words
   description:
   data:
