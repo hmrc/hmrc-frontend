@@ -5,7 +5,7 @@
 {% block header %}
   {{ hmrcHeader({
     serviceNavigation: {
-      serviceName: "Example service",
+      serviceName: serviceNavigationServiceName | default("Example service"),
       classes: 'hmrc-service-navigation--with-language-select',
       navigation: [
         {

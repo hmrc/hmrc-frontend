@@ -1,9 +1,10 @@
 previewLayout: service-navigation-language-select/layout
+type: 'layout'
 params:
   - name: language
     type: string
     required: false
-    description: Either "en" for english or "cy" for welsh.
+    description: Either "en" for English or "cy" for Welsh.
   - name: en
     type: object
     required: false
@@ -29,11 +30,49 @@ examples:
     language: 'en'
     cy:
       href: '/components/service-navigation-language-select/welsh/preview'
+  visualRegressionTests:
+    alternateStates:
+      hovered:
+        beforeTakingScreenshot:
+          - hover: ".govuk-link"
+      focused:
+        beforeTakingScreenshot:
+          - focus: ".govuk-link"
 - name: welsh
   data:
     language: 'cy'
     en:
       href: '/components/service-navigation-language-select/preview'
+  visualRegressionTests:
+    alternateStates:
+      hovered:
+        beforeTakingScreenshot:
+          - hover: ".govuk-link"
+      focused:
+        beforeTakingScreenshot:
+          - focus: ".govuk-link"
+- name: with long name
+  description:
+  data:
+    language: 'en'
+    cy:
+      href: '/components/service-navigation-language-select/welsh/preview'
+    serviceNavigationServiceName: Apply to receive a rare holofoil Pikachu Pokémon card from the King
+  visualRegressionTests:
+    alternateStates:
+      hovered:
+        beforeTakingScreenshot:
+          - hover: ".govuk-link"
+      focused:
+        beforeTakingScreenshot:
+          - focus: ".govuk-link"
+- name: with long name with long words
+  description:
+  data:
+    language: 'en'
+    cy:
+      href: '/components/service-navigation-language-select/welsh/preview'
+    serviceNavigationServiceName: Catch a rare Pokémon in Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch
   visualRegressionTests:
     alternateStates:
       hovered:
