@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [7.39.0] - 2026-10-05
+
+- Updated npm audit exclusions
+- Dependencies upgrade
+
 ## [7.38.0] - 2026-09-22
 
 - Fixed bug where `service-navigation-language-select` could overflow container when there is a long service name
