@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [7.40.0] - 2026-10-05
+
+- Updated `accessible-autocomplete` version from v3.0.1 to v3.0.2
+
 ## [7.39.0] - 2026-10-05
 
 - Updated npm audit exclusions
