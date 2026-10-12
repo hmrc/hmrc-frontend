@@ -19,8 +19,12 @@
   "GHSA-jmr9-qjv8-65gv": "extract-zip: devDependency only, no risk given our usage",
   "GHSA-7pqw-9j4j-h8q3": "extract-zip: allows arbitrary file writes through symlink archive entries. devDependency only, no risk given our usage",
   "GHSA-hrr3-gc8f-f4qj": "fast-uri: devDependency only, pulled in via eslint, no risk given our usage",
+  "GHSA-wr44-6hxh-3jwq": "joi: devDependency only, no risk given our usage",
   "GHSA-j6r3-76f7-8jcv": "ip-address: devDependency only, no risk given our usage",
   "GHSA-h3mg-xc3c-68pw": "ip-address: devDependency only, no risk given our usage",
+  "GHSA-jqcg-44mw-7w3h": "proxy-addr: devDependency only, no risk given our usage",
   "GHSA-x5fp-wj9c-mxmx": "qs: devDependency only, no risk given our usage",
-  "GHSA-4mjr-xmp4-gh2g": "qs: devDependency only, no risk given our usage"
+  "GHSA-4mjr-xmp4-gh2g": "qs: devDependency only, no risk given our usage",
+  "GHSA-68fv-2mgg-jv7q": "source-map-js: devDependency only, no risk given our usage",
+  "GHSA-hp3w-g68c-fv3c": "sprintf-js: devDependency only, no risk given our usage"
 }
