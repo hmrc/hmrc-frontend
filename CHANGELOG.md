@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [7.42.0] - 2026-10-19
+
+- Added ADR about linters
+
 ## [7.41.0] - 2026-10-12
 
 - Updated npm audit exclusions
