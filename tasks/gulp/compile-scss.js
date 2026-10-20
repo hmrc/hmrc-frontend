@@ -11,6 +11,7 @@ const destinationPath = require('./destination-path');
 const pkg = require('../../package.json');
 
 function errorHandler(error) {
+  // oxlint-disable-next-line no-console
   console.error(error.message);
 
   // Ensure the task we're running exits with an error code

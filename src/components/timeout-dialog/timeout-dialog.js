@@ -1,3 +1,4 @@
+/* oxlint-disable no-use-before-define */
 import dialog from './dialog';
 import ValidateInput from './validate-input';
 import RedirectHelper from './redirectHelper';
@@ -240,7 +241,7 @@ function TimeoutDialog($module, $sessionActivityService) {
 
     const updateTextIfChanged = ($elem, text) => {
       if ($elem.innerText !== text) {
-        // eslint-disable-next-line no-param-reassign
+        // oxlint-disable-next-line no-param-reassign
         $elem.innerText = text;
       }
     };

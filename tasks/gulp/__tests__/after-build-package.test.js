@@ -23,6 +23,7 @@ describe('package/', () => {
       // Sort to make comparison easier
         .sort(),
       (error) => {
+        // oxlint-disable-next-line no-console
         console.error('Unable to get package files', error);
       },
     );
@@ -77,6 +78,7 @@ describe('package/', () => {
         // Sort to make comparison easier
           .sort(),
         (error) => {
+          // oxlint-disable-next-line no-console
           console.error('Unable to get package files', error);
         },
       );
@@ -128,12 +130,12 @@ describe('package/', () => {
     const removeSymLinksIfPresent = async () => {
       try {
         await fs.promises.unlink(govukLink);
-      } catch (e) {
+      } catch {
         // empty
       }
       try {
         await fs.promises.unlink(hmrcLink);
-      } catch (e) {
+      } catch {
         // empty
       }
     };
@@ -152,6 +154,7 @@ describe('package/', () => {
         dartSass.compile(allScssFile);
       } catch (e) {
         await removeSymLinksIfPresent();
+        // oxlint-disable-next-line no-console
         console.error(e.messageFormatted || e);
         throw e;
       } finally {

@@ -3,7 +3,6 @@
 // N milliseconds. If `immediate` is passed, trigger the function on the
 // leading edge, instead of the trailing.
 
-// eslint-disable-next-line  import/prefer-default-export
 export function debounce(func, wait, immediate) {
   let timeout;
 

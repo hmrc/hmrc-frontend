@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/extensions
 import jestPuppeteerConfig from './jest-puppeteer.config.js';
 
 const { headless } = jestPuppeteerConfig.launch;

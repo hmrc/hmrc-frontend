@@ -93,7 +93,7 @@ describe('enhanceSelectElement on the select element provided', () => {
 
     const input = await page.$('#location-picker');
     await input.click();
-    // eslint-disable-next-line no-param-reassign,no-return-assign
+    // oxlint-disable-next-line no-param-reassign,no-return-assign
     await page.$eval('#location-picker', (el) => el.value = 'Fr');
     await input.click();
 
@@ -114,7 +114,7 @@ describe('enhanceSelectElement on the select element provided', () => {
 
     const input = await page.$('#location-picker');
     await input.click();
-    // eslint-disable-next-line no-param-reassign,no-return-assign
+    // oxlint-disable-next-line no-param-reassign,no-return-assign
     await page.$eval('#location-picker', (el) => el.value = 'Fr');
     await page.waitForSelector('.autocomplete__hint');
     const { hintFontFamily, hintValue } = await page.evaluate(() => {
@@ -152,7 +152,7 @@ describe('enhanceSelectElement on the select element provided', () => {
 
     const input = await page.$('#location-picker');
     await input.click();
-    // eslint-disable-next-line no-param-reassign,no-return-assign
+    // oxlint-disable-next-line no-param-reassign,no-return-assign
     await page.$eval('#location-picker', (el) => el.value = 'Fr');
     await input.click();
 
@@ -192,7 +192,7 @@ describe('enhanceSelectElement on the select element provided', () => {
     const input = await page.$('#location-picker');
     await input.click();
 
-    // eslint-disable-next-line no-param-reassign,no-return-assign
+    // oxlint-disable-next-line no-param-reassign,no-return-assign
     await page.$eval('#location-picker', (el) => el.value = 'Un');
     await page.waitForFunction(isAssistiveStatusHintPopulated);
 
@@ -206,7 +206,7 @@ describe('enhanceSelectElement on the select element provided', () => {
     const input = await page.$('#location-picker');
     await input.click();
 
-    // eslint-disable-next-line no-param-reassign,no-return-assign
+    // oxlint-disable-next-line no-param-reassign,no-return-assign
     await page.$eval('#location-picker', (el) => el.value = 'Un');
     await page.waitForFunction(isAssistiveStatusHintPopulated);
 
@@ -259,7 +259,7 @@ describe('enhanceSelectElement on the select element provided', () => {
     const input = await page.$('#location-picker');
     await input.click();
 
-    // eslint-disable-next-line no-param-reassign,no-return-assign
+    // oxlint-disable-next-line no-param-reassign,no-return-assign
     await page.$eval('#location-picker', (el) => el.value = 'Un');
     await page.waitForFunction(isAssistiveStatusHintPopulated);
 
