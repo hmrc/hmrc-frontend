@@ -210,7 +210,7 @@ describe('/components/timeout-dialog', () => {
   });
 
   function takeTextContentEachSecondForAMinute(page, selector) {
-    // eslint-disable-next-line no-shadow
+    // oxlint-disable-next-line no-shadow
     return page.evaluate((selector) => {
       const element = document.querySelector(selector);
       return Array.from({ length: 60 }, () => {

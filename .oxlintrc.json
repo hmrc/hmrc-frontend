@@ -1,0 +1,37 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "extends": [
+    "./node_modules/oxlint-config-presets/airbnb/base.json"
+  ],
+  "options": {
+    "typeAware": false
+  },
+  "env": {
+    "builtin": true,
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "globals": {
+    "page": "readonly",
+    "browser": "readonly",
+    "context": "readonly",
+    "puppeteerConfig": "readonly",
+    "jestPuppeteer": "readonly"
+  },
+  "ignorePatterns": [
+    "src/vendor/polyfills/**/*",
+    "backstop_data/**/*",
+    "sassdoc/**/*",
+    "package/**/*",
+    "webjar/**/*",
+    "webjar-dist/**/*",
+    "public/**/*",
+    "dist/**/*",
+    "examples/**/*"
+  ],
+  "rules": {
+    "import/extensions": "allow",
+    "import/prefer-default-export": "allow"
+  }
+}

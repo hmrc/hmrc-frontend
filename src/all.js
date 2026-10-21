@@ -9,7 +9,7 @@ function initAll() {
     try {
       init();
     } catch (error) {
-      // eslint-disable-next-line no-console
+      // oxlint-disable-next-line no-console
       console.error('hmrc-frontend component initialisation failed', error);
     }
   }

@@ -29,13 +29,15 @@ const green = '\x1b[32m';
 const reset = '\x1b[0m';
 
 gulp.task('backstop-test', async () => {
+  // oxlint-disable-next-line no-console
   console.log(`${green}\nStart server for visual regression testing${reset}`);
 
   const server = await new Promise((resolve) => {
-    // eslint-disable-next-line no-shadow
+    // oxlint-disable-next-line no-shadow
     const server = app.listen(port, () => { resolve(server); });
   });
 
+  // oxlint-disable-next-line no-console
   console.log(`${green}\nServer started at http://${host}:${port}${reset}`);
 
   fs.rmSync('examples', {
@@ -56,13 +58,16 @@ gulp.task('backstop-test', async () => {
     '--timeout', '5', // seconds, because we don't want this to hang forever and eat up build minutes
     `http://localhost:${port}`,
   ], { stdio: 'inherit' }).catch(() => {
+    // oxlint-disable-next-line no-console
     console.log('ignoring errors during creating of static site');
   });
 
+  // oxlint-disable-next-line no-console
   console.log(`${green}\nClose server for visual regression testing${reset}`);
 
   await server.close();
 
+  // oxlint-disable-next-line no-console
   console.log(`${green}\nPerforming visual regression testing${reset}`);
 
   await runBackstop('test');
