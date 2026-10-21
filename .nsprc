@@ -25,6 +25,7 @@
   "GHSA-jqcg-44mw-7w3h": "proxy-addr: devDependency only, no risk given our usage",
   "GHSA-x5fp-wj9c-mxmx": "qs: devDependency only, no risk given our usage",
   "GHSA-4mjr-xmp4-gh2g": "qs: devDependency only, no risk given our usage",
-  "GHSA-68fv-2mgg-jv7q": "source-map-js: devDependency only, no risk given our usage",
-  "GHSA-hp3w-g68c-fv3c": "sprintf-js: devDependency only, no risk given our usage"
+  "GHSA-hp3w-g68c-fv3c": "sprintf-js: devDependency only, no risk given our usage",
+  "GHSA-q3jh-wrc6-jgq8": "follow-redirects: devDependency only, no risk given our usage",
+  "GHSA-8r9p-f939-6h3c": "follow-redirects: devDependency only, no risk given our usage"
 }
