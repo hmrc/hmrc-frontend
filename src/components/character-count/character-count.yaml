@@ -18,15 +18,19 @@ params:
   - name: maxlength
     type: string
     required: true
-    description: If `maxwords` is set, this is not required. The maximum number of characters. If `maxwords` is provided, the `maxlength` argument will be ignored.
+    description: The maximum number of characters (or words if `countType` is set to `"words"`).
   - name: maxwords
     type: string
     required: true
-    description: If `maxlength` is set, this is not required. The maximum number of words. If `maxwords` is provided, the `maxlength` argument will be ignored.
+    description: 'The maximum number of words. Replaced by the `maxlength` and `countType: "words"` options.'
   - name: threshold
     type: string
     required: false
     description: The percentage value of the limit at which point the count message is displayed. If this attribute is set, the count message will be hidden by default.
+  - name: countType
+    type: string
+    required: false
+    description: The count type used to count the text – `"length"` or `"words"`. Defaults to `"length"`.
   - name: label
     type: object
     required: true
@@ -216,16 +220,18 @@ examples:
         text: Full address
         isPageHeading: true
 
-  - name: with word count
+  - name: with maxwords
     data:
-      name: word-count
+      id: maxwords
+      name: maxwords
       maxwords: 10
       label:
         text: Full address
 
-  - name: welsh with word count
+  - name: welsh with maxwords
     data:
-      name: word-count
+      id: maxwords-welsh
+      name: maxwords-welsh
       maxwords: 10
       label:
         text: Full address

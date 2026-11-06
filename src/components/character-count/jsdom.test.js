@@ -108,7 +108,7 @@ describe('Character count', () => {
     });
 
     it('renders with the amount of words expected', () => {
-      const $ = render('character-count', examples['with word count']);
+      const $ = render('character-count', examples['with maxwords']);
 
       const $countMessage = $('.govuk-character-count__message');
       expect($countMessage.text()).toContain('You can enter up to 10 words');
@@ -145,7 +145,7 @@ describe('Character count', () => {
     });
 
     it('renders with the amount of words expected', () => {
-      const $ = render('character-count', examples['welsh with word count']);
+      const $ = render('character-count', examples['welsh with maxwords']);
 
       const $countMessage = $('.govuk-character-count__message');
       expect($countMessage.text()).toContain('Gallwch nodi hyd at 10 o eiriau');
