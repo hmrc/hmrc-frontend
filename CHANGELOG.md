@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [7.46.0] - 2026-11-05
 
 - Updated govuk-frontend to v6.6.0
+- Added new param `countType` to `character-count`, in parity with govuk-frontend changes
 
 ## [7.45.0] - 2026-11-02
 
